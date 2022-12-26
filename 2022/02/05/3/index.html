@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>輕巧實用的圖表套件Chart.js | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  
+  <meta name="description" content="Chart.js是一款輕巧但又包含了豐富內容的圖表套件，它可以幫助我們快速的製作出各種美觀的圖表，種類包含了折線圖(Line Chart)、圓餅圖(Pie Chart)、甜甜圈圖(Doughnut Chart)、雷達圖(Radar Chart)等多種圖形，並且每種圖形都提供了高度的客製化功能，滿足各種不同需求，在這裡介紹快速上手的方法，若想知道更多關於Chart.js可以做到的事情可以看看他們的官方文件">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="輕巧實用的圖表套件Chart.js"/>
+  <meta property="og:site_name" content="6yuwei"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', '279078064', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">6yuwei</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-3" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2022-02-05T15:00:24.000Z"><a href="/2022/02/05/3/">2022-02-05</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">輕巧實用的圖表套件Chart.js</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><img src="/2022/02/05/3/cover.jpg"></p>
+<p>Chart.js是一款輕巧但又包含了豐富內容的圖表套件，它可以幫助我們快速的製作出各種美觀的圖表，種類包含了折線圖(Line Chart)、圓餅圖(Pie Chart)、甜甜圈圖(Doughnut Chart)、雷達圖(Radar Chart)等多種圖形，並且每種圖形都提供了高度的客製化功能，滿足各種不同需求，在這裡介紹快速上手的方法，若想知道更多關於Chart.js可以做到的事情可以看看他們的<a target="_blank" rel="noopener" href="https://www.chartjs.org/docs/latest/">官方文件</a></p>
+<span id="more"></span>
+
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install chart.<span class="property">js</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.com/libraries/Chart.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h2><h3 id="Script標籤"><a href="#Script標籤" class="headerlink" title="Script標籤"></a>Script標籤</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/chartjs/dist/chart.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> myChart = <span class="keyword">new</span> <span class="title class_">Chart</span>(ctx, &#123;...&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Chart</span>, registerables &#125; <span class="keyword">from</span> <span class="string">&#x27;chart.js&#x27;</span>;</span><br><span class="line"><span class="title class_">Chart</span>.<span class="title function_">register</span>(...registerables);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myChart = <span class="keyword">new</span> <span class="title class_">Chart</span>(ctx, &#123;...&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p> 先在html中建立畫布</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;myChart&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;400&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>取得畫布元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ctx = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myChart&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>建立圖表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  <span class="attr">labels</span>: [</span><br><span class="line">    <span class="string">&#x27;Red&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Blue&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Yellow&#x27;</span></span><br><span class="line">  ], <span class="comment">// labels 為圖例的內容</span></span><br><span class="line">  <span class="attr">datasets</span>: [&#123;</span><br><span class="line">    <span class="attr">label</span>: <span class="string">&#x27;My First Dataset&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: [<span class="number">300</span>, <span class="number">50</span>, <span class="number">100</span>],</span><br><span class="line">    <span class="attr">backgroundColor</span>: [</span><br><span class="line">      <span class="string">&#x27;rgb(255, 99, 132)&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;rgb(54, 162, 235)&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;rgb(255, 205, 86)&#x27;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">hoverOffset</span>: <span class="number">4</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> myChart = <span class="keyword">new</span> <span class="title class_">Chart</span>(ctx, &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;pie&#x27;</span>, <span class="comment">// 圖表種類</span></span><br><span class="line">    data,</span><br><span class="line">    <span class="attr">options</span>: &#123;</span><br><span class="line">      <span class="attr">plugins</span>: &#123;</span><br><span class="line">        <span class="attr">legend</span>: &#123;</span><br><span class="line">          <span class="comment">// legend 為圖例的設定</span></span><br><span class="line">          <span class="attr">position</span>: <span class="string">&#x27;bottom&#x27;</span>,</span><br><span class="line">          <span class="attr">labels</span>: &#123;</span><br><span class="line">            <span class="attr">color</span>: <span class="string">&#x27;#F8EBCF&#x27;</span>,</span><br><span class="line">            <span class="attr">padding</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="attr">boxHeight</span>: <span class="number">24</span>,</span><br><span class="line">            <span class="attr">font</span>: &#123;</span><br><span class="line">              <span class="attr">size</span>: <span class="number">16</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="attr">maxWidth</span>: <span class="number">400</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>更新圖表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myChart.<span class="property">data</span>.<span class="property">datasets</span>[<span class="number">0</span>].<span class="property">data</span>[<span class="number">2</span>] = <span class="number">50</span>; <span class="comment">// 先修改資料</span></span><br><span class="line">myChart.<span class="title function_">update</span>(); <span class="comment">// 再調用更新</span></span><br></pre></td></tr></table></figure>
+
+<p>調整畫布尺寸</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myChart.<span class="title function_">resize</span>(); <span class="comment">// 根據父元素尺寸</span></span><br><span class="line">myChart.<span class="title function_">resize</span>(width, height); <span class="comment">// 自訂尺寸</span></span><br></pre></td></tr></table></figure>
+
+<p>銷毀圖表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myChart.<span class="title function_">destroy</span>();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/plugin/">plugin</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=796581497680750";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2022/02/05/3/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3d/">3d</a><small>1</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/Japanese/">Japanese</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/design/">design</a><small>1</small></li>
+  
+    <li><a href="/tags/framework/">framework</a><small>1</small></li>
+  
+    <li><a href="/tags/front-end/">front end</a><small>3</small></li>
+  
+    <li><a href="/tags/frontend/">frontend</a><small>1</small></li>
+  
+    <li><a href="/tags/interview/">interview</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>5</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/share/">share</a><small>2</small></li>
+  
+    <li><a href="/tags/tool/">tool</a><small>1</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2022 6yuwei
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/custom.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
