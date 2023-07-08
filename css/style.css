@@ -46,7 +46,7 @@ h3 {
 }
 a {
   text-decoration: none;
-  color: #34d29b;
+  color: #28cb92;
 }
 a:hover {
   text-decoration: underline;
@@ -107,11 +107,11 @@ a:hover {
   margin: 50px auto;
 }
 #header a {
-  color: #34d29b;
+  color: #28cb92;
   font-weight: bold;
 }
 #header a:hover {
-  color: #34d29b;
+  color: #28cb92;
   text-decoration: none;
 }
 #header h1 {
@@ -135,6 +135,15 @@ a:hover {
 #header #main-nav ul li {
   float: left;
   margin-left: 30px;
+}
+#header #main-nav ul li a {
+  font-size: 18px;
+  color: #5b5b5b;
+}
+#header #main-nav ul li a:hover {
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 article {
   background: #fff;
@@ -242,7 +251,7 @@ article header .icon {
   position: absolute;
   top: 20px;
   left: 20px;
-  color: #34d29b;
+  color: #28cb92;
 }
 @media screen and (max-width: 600px) {
   article header .icon {
@@ -258,14 +267,16 @@ article header .icon:before {
   text-align: center;
 }
 article header time {
-  color: #34d29b;
+  color: #28cb92;
   font: 0.9em "Roboto", "Noto Sans TC", Helvetica, Arial, sans-serif;
   margin-bottom: 5px;
   display: block;
   line-height: 1;
 }
 article header time a {
-  color: #34d29b;
+  color: #28cb92;
+  font-size: 20px;
+  font-weight: bold;
 }
 article header .title {
   font-weight: normal;
@@ -274,7 +285,7 @@ article header .title a {
   color: #444;
 }
 article header .title a:hover {
-  color: #34d29b;
+  color: #28cb92;
   text-decoration: none;
 }
 article .entry {
@@ -294,7 +305,10 @@ article .entry h5,
 article .entry h6,
 article .entry .video-container {
   margin-top: 15px;
-  font-size: 16px;
+  font-size: 18px;
+  letter-spacing: 0.6px;
+  line-height: 1.8;
+  text-align: left;
 }
 article .entry h2 {
   font-size: 24px;
@@ -489,7 +503,7 @@ article footer a {
   color: #a1a1a1;
 }
 article footer a:hover {
-  color: #34d29b;
+  color: #28cb92;
   text-decoration: none;
 }
 article footer a:before {
@@ -555,7 +569,7 @@ article footer .addthis iframe {
   margin-bottom: 50px;
 }
 #pagination a:hover {
-  background: #34d29b;
+  background: #28cb92;
   color: #fff;
   text-decoration: none;
   text-shadow: none;
@@ -631,7 +645,7 @@ article footer .addthis iframe {
   padding: 15px 20px;
 }
 #sidebar .widget .entry li a {
-  color: #34d29b;
+  color: #28cb92;
 }
 #sidebar .widget ul,
 #sidebar .widget ol,
@@ -743,10 +757,10 @@ article footer .addthis iframe {
   font-size: 100%;
 }
 .entry .gist .gist-file .gist-meta a {
-  color: #34d29b;
+  color: #28cb92;
 }
 .entry .gist .gist-file .gist-meta a:visited {
-  color: #34d29b;
+  color: #28cb92;
 }
 figure.highlight {
   background: #eee;

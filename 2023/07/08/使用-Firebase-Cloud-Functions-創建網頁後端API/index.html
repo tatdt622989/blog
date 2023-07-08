@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>快速使用 Firebase Cloud Functions 創建網頁後端API | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  
+  <meta name="description" content="Firebase Cloud Functions 介紹Firebase Cloud Functions 是 Firebase 的一項服務，能夠讓使用者在不需要考慮伺服器的情況下，建立可以在雲端執行的程式碼，並使用HTTPS或其他Firebase的服務進行調用，">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="快速使用 Firebase Cloud Functions 創建網頁後端API"/>
+  <meta property="og:site_name" content="6yuwei"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', '279078064', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">6yuwei</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-使用-Firebase-Cloud-Functions-創建網頁後端API" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2023-07-07T16:14:32.000Z"><a href="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/">2023-07-08</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">快速使用 Firebase Cloud Functions 創建網頁後端API</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/cover.jpg"></p>
+<h2 id="Firebase-Cloud-Functions-介紹"><a href="#Firebase-Cloud-Functions-介紹" class="headerlink" title="Firebase Cloud Functions 介紹"></a>Firebase Cloud Functions 介紹</h2><p><strong>Firebase Cloud Functions</strong> 是 Firebase 的一項服務，能夠讓使用者在不需要考慮伺服器的情況下，建立可以在雲端執行的程式碼，並使用HTTPS或其他Firebase的服務進行調用，<span id="more"></span>但是若要使用這項服務，必須將專案升級成<a target="_blank" rel="noopener" href="https://firebase.google.com/pricing">Blaze Plan</a>才能夠使用，並且調用是需要費用的，但是每個月的免費額度對一般的開發者來說應該是相當夠用了(一個月200萬次呼叫)，費用詳情可以參考<a target="_blank" rel="noopener" href="https://firebase.google.com/pricing">這裡</a>，針對請求數、儲存空間、執行時間等都有詳細的價格說明。</p>
+<h2 id="開始使用-Firebase-Cloud-Functions"><a href="#開始使用-Firebase-Cloud-Functions" class="headerlink" title="開始使用 Firebase Cloud Functions"></a>開始使用 Firebase Cloud Functions</h2><p>在使用任何 Firebase 相關的服務時，需要先建立一個專案和網頁應用程式，選擇”新增專案”後，請按照流程往下走把專案建立起來。<br><br><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase1.png"></p>
+<p>接著，點選網頁建立網頁應用程式，接著輸入應用程式名稱，依照流程跑完。<br><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase5.png"></p>
+<p>請記得將專案升級至Blaze Plan<br><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase6.png"></p>
+<h2 id="安裝-Firebase-CLI"><a href="#安裝-Firebase-CLI" class="headerlink" title="安裝 Firebase CLI"></a>安裝 Firebase CLI</h2><p>要使用Firebase Functions還需要在本地安裝 Firebase CLI ，這裡使用NPM的形式做安裝。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
+
+<p>安裝成功後，需要做身分驗證，請透過以下指令登入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase login</span><br></pre></td></tr></table></figure>
+
+<p>登入成功之後，請使用以下指令確認帳戶內是否有一開始創建的專案，若沒有請先將專案建立起來並確定專案是否為「<strong>Blaze Plan</strong>」</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase projects:list</span><br></pre></td></tr></table></figure>
+
+<p>確認完專案存在後，需要進行初始化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure>
+
+<p>輸入指令後，會出現許多問題，請在選擇Firebase服務的問題內，選擇Functions和Realtime Database(本範例會稍微介紹如何使用在Cloud Functions，不一定需要裝)，如下圖</p>
+<p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase2.png"></p>
+<p>請選擇Use an existing project並選擇已創建的專案，其他選項則是可以直接一路enter帶過</p>
+<p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase3.png"></p>
+<p>這樣一來就把整個環境建立起來了，詳細的專案設定以及Realtime Database的使用方式請查閱<a target="_blank" rel="noopener" href="https://firebase.google.com/docs/build?authuser=0&hl=zh-tw">官方文件</a>，由於這些內容不在本篇討論範圍所以就不詳細說明。</p>
+<p>建立專案之後，可以看到資料夾內有一個functions的資料夾，資料夾內有一支名為index.js的檔案，這支檔案就是function撰寫的地方。</p>
+<p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase4.png"></p>
+<h2 id="開始撰寫function"><a href="#開始撰寫function" class="headerlink" title="開始撰寫function"></a>開始撰寫function</h2><p>在index.js中，我們可以看到他有提供一些範例程式碼如下，當中需要注意的是筆者使用的版本是v2也就是第二代，跟第一代的寫法會略有不同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Import function triggers from their respective submodules:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * const &#123;onCall&#125; = require(&quot;firebase-functions/v2/https&quot;);</span></span><br><span class="line"><span class="comment"> * const &#123;onDocumentWritten&#125; = require(&quot;firebase-functions/v2/firestore&quot;);</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * See a full list of supported triggers at https://firebase.google.com/docs/functions</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123;onRequest&#125; = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/v2/https&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/logger&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create and deploy your first functions</span></span><br><span class="line"><span class="comment">// https://firebase.google.com/docs/functions/get-started</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// exports.helloWorld = onRequest((request, response) =&gt; &#123;</span></span><br><span class="line"><span class="comment">//   logger.info(&quot;Hello logs!&quot;, &#123;structuredData: true&#125;);</span></span><br><span class="line"><span class="comment">//   response.send(&quot;Hello from Firebase!&quot;);</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br></pre></td></tr></table></figure>
+
+<p>其中我們會發現到exports.helloWorld的內容就是建立function的方式，也等於之後我們會用來調用的後端API，而為了需要讓能夠被ajax所調用我們需要使用<strong>onRequest</strong>這個函式，使用方法如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;onRequest, onCall&#125; = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/v2/https&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;setGlobalOptions&#125; = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/v2&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/logger&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">setGlobalOptions</span>(&#123;<span class="attr">region</span>: <span class="string">&quot;asia-east1&quot;</span>&#125;); <span class="comment">// 設定資料中心</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 將數字加上隨機數字1-1000</span></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">addRandomNumber</span> = <span class="title function_">onRequest</span>(&#123;</span><br><span class="line">    <span class="attr">cors</span>: <span class="literal">true</span>, <span class="comment">// 允許跨域</span></span><br><span class="line">  &#125;, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;number&#125; = req.<span class="property">body</span>;</span><br><span class="line">    <span class="keyword">const</span> randomNumber = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">1000</span>) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="built_in">parseInt</span>(number, <span class="number">10</span>) + randomNumber;</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">send</span>(&#123;result&#125;); <span class="comment">// 將結果回傳給使用者</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>functions因為儲存在google的雲端運算中心，所以為了得到最好的響應速度，建議設定離自己或是客戶較為接近的資料中心，筆者這裡是設定為 <strong>asia-east1(台灣)</strong> ，若想使用其他的資料中心<a target="_blank" rel="noopener" href="https://firebase.google.com/docs/functions/locations"><strong>請參考</strong></a>。<br>上面的程式裡簡單寫了一個function，功能是只要帶數字進來，就會隨機加上一個1-1000的數字並回傳。</p>
+<p>寫完function後，需要將function部署到雲端，請使用以下指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase deploy --only <span class="built_in">functions</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase7.png"></p>
+<p>部署成功之後，回到Firebase後台會發現以下的畫面，內容包含了請求所需的網址</p>
+<p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase8.png"></p>
+<p>這個網址可以使用GET 、 POST 、 PUT 、 DELETE和OPTIONS的HTTP方法進行調用，由於這個function使用req.body接收資料，所以這裡筆者選用POST的方式進行測試。</p>
+<p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase9.png"></p>
+<p>使用Postman測試可以發現確實回傳給我隨機的數字，這樣就代表成功了！</p>
+<h2 id="補充：如何搭配Realtime-Database"><a href="#補充：如何搭配Realtime-Database" class="headerlink" title="補充：如何搭配Realtime Database"></a>補充：如何搭配Realtime Database</h2><p>若希望在function內使用Realtime Database做資料的存取，可以使用firebase-admin來協助將資料寫入資料庫</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;onCall, <span class="title class_">HttpsError</span>&#125; = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/v2/https&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;setGlobalOptions&#125; = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/v2&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/logger&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> admin = <span class="built_in">require</span>(<span class="string">&quot;firebase-admin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize the app</span></span><br><span class="line">admin.<span class="title function_">initializeApp</span>();</span><br><span class="line"></span><br><span class="line"><span class="title function_">setGlobalOptions</span>(&#123;<span class="attr">region</span>: <span class="string">&quot;asia-east1&quot;</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>這裡將先前的function修改成會將結果寫入資料庫，主要就是使用 <strong>const db &#x3D; admin.database();</strong> 來將資料庫引入，再執行寫入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 將數字加上隨機數字1-1000，並存入資料庫</span></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">addRandomNumber</span> = <span class="title function_">onRequest</span>(&#123;</span><br><span class="line">    <span class="attr">cors</span>: <span class="literal">true</span>, <span class="comment">// 允許跨域</span></span><br><span class="line">  &#125;, <span class="title function_">async</span>(req, res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;number&#125; = req.<span class="property">body</span>;</span><br><span class="line">    <span class="keyword">const</span> randomNumber = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">1000</span>) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="built_in">parseInt</span>(number, <span class="number">10</span>) + randomNumber;</span><br><span class="line">    <span class="keyword">const</span> db = admin.<span class="title function_">database</span>(); <span class="comment">// 引入Realtime Database</span></span><br><span class="line">    <span class="keyword">const</span> numberRef = db.<span class="title function_">ref</span>(<span class="string">`number`</span>); <span class="comment">// 定義寫入路徑</span></span><br><span class="line">    <span class="keyword">await</span> numberRef.<span class="title function_">set</span>(result); <span class="comment">// 寫入Realtime Database</span></span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">send</span>(&#123;result&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>修改完成後，再使用Postman進行調用，會發現資料庫的數值確實被修改了</p>
+<p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase10.png"></p>
+<p><strong>※注意：由於Firebase經常在更新，所以有些內容可能會已過時，若有錯誤還煩請各位朋友告知！</strong></p>
+<p>以上就是這次的全部內容，感謝看到這裡的你！</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://firebase.google.com/docs/functions">官方文件</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/JavaScript/">JavaScript</a>, <a href="/tags/Firebase/">Firebase</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=796581497680750";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3d/">3d</a><small>1</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/Japanese/">Japanese</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>7</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/design/">design</a><small>1</small></li>
+  
+    <li><a href="/tags/framework/">framework</a><small>1</small></li>
+  
+    <li><a href="/tags/front-end/">front end</a><small>3</small></li>
+  
+    <li><a href="/tags/interview/">interview</a><small>1</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/share/">share</a><small>2</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2023 6yuwei
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/custom.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
