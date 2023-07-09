@@ -631,8 +631,8 @@ article footer .addthis iframe {
   border-radius: 10px;
   margin-bottom: 50px;
 }
-#comment #fb-root {
-  width: 100%;
+#comment .fb-comments {
+  width: 100% !important;
 }
 #comment .title {
   font-weight: normal;
