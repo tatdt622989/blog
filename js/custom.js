@@ -1,14 +1,14 @@
 $(function () {
   const synth = window.speechSynthesis;
   $("article").each(function () {
-    if ($(this).find("header h1 a").attr("href")) {
+    const href = $(this).find("header .title a").attr("href");
+    if (href) {
       $(this)
         .find(".entry p>img")
         .eq(0)
+        .addClass('nofancybox')
         .wrap(
-          `<a href="${$(this)
-            .find("header h1 a")
-            .attr("href")}" class="topImgWrap"></a>`
+          `<a href="${href}" class="topImgWrap"></a>`
         );
     }
   });

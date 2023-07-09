@@ -1,4 +1,4 @@
-(function($){
+$(function(){
   // Caption
   $('.entry').each(function(i){
     $(this).find('img').each(function(){
@@ -64,4 +64,4 @@
       }
     });
   });
-})(jQuery);
+})

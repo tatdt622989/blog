@@ -51,7 +51,12 @@ RWD
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">6yuwei</a></h1>
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei">
+    </a>
+  </div>
   <h2><a href="/"></a></h2>
 </div>
 <nav id="main-nav" class="alignright">
@@ -142,7 +147,7 @@ RWD
 
 
 <section id="comment">
-  <h1 class="title">留言</h1>
+  <p class="title">留言</p>
 
   
       <div id="fb-root"></div>
@@ -222,7 +227,7 @@ RWD
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2023 6yuwei
+  &copy; 2023 <h1 class="copyright">6yuwei</h1>
   
 </div>
 <div class="clearfix"></div></footer>
@@ -236,6 +241,9 @@ RWD
 <script src="/js/custom.js"></script>
 
 
+<script src="/js/gallery.js"></script>
+
+
 
 
 
@@ -246,9 +254,9 @@ RWD
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 <script>
-(function($){
+$(function(){
   $('.fancybox').fancybox();
-})(jQuery);
+});
 </script>
 
 </body>
