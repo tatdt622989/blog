@@ -638,6 +638,9 @@ article footer .addthis iframe {
   font-weight: normal;
   margin-bottom: 15px;
 }
+#comment iframe {
+  width: 100% !important;
+}
 #pagination a {
   display: block;
   padding: 8px 14px;
