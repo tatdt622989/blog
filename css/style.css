@@ -405,7 +405,6 @@ article .entry table th {
   white-space: nowrap;
   color: #444;
   font-weight: 600;
-  background: #1f1f1f;
 }
 article .entry table td,
 article .entry table th {
@@ -673,11 +672,7 @@ article footer .addthis iframe {
   font-weight: normal;
   margin-bottom: 30px;
   text-shadow: 0 0 1px #fff;
-}
-.archive-title:before {
-  font-family: FontAwesome;
-  content: '\f073';
-  padding-right: 15px;
+  color: #3f3f3f;
 }
 .archive-title.tag:before {
   content: '\f02b';
