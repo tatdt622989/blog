@@ -105,7 +105,8 @@ theme: light
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/tatdt622989/blog.git
 
 jsonContent:
   posts:
