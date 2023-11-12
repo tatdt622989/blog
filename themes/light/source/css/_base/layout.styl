@@ -62,3 +62,20 @@ a
     margin-right 300px
   @media screen and (max-width: 900px)
     margin-right 0
+
+.table-wrap
+  width 100%
+  overflow-x auto
+  position relative
+  display flex
+  &::after
+    @media screen and (max-width: 960px)
+      content ''
+      display flex
+      width 1px
+      box-shadow 0 0 45px 10px rgba(0, 0, 0, 0.1)
+      position sticky
+      right 0
+      top 0
+  table
+    min-width 720px

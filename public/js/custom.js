@@ -20,5 +20,7 @@ $(function () {
     utterThis.lang = 'ja-JP';
     synth.speak(utterThis);
   });
+
+  $('table').wrap('<div class="table-wrap"></div>');
 });
 
