@@ -947,6 +947,11 @@ figure.highlight {
   font-size: 0.9em;
   border-radius: 10px;
 }
+@media (max-width: 767px) {
+  figure.highlight {
+    font-size: 14px;
+  }
+}
 figure.highlight figcaption {
   color: #878787;
   margin-bottom: 5px;
@@ -983,7 +988,7 @@ figure.highlight .code {
 }
 @media (max-width: 767px) {
   figure.highlight .code {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 figure.highlight .line {
