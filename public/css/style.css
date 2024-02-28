@@ -245,7 +245,7 @@ article.page .icon {
 article.post .icon:before {
   content: '\f016';
 }
-article.photo .icon:before {
+article.photo .icon:beforeheaderlink {
   content: '\f030';
 }
 article.link .icon:before {
@@ -276,6 +276,44 @@ article .post-content header>.title {
   article .post-content header>.title {
     font-size: 24px;
   }
+}
+article .post-content .link-button {
+  margin-left: 10px;
+}
+article .post-content img {
+  border-radius: 10px;
+}
+article .post-content .toc {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+article .post-content .toc .toc-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+article .post-content .toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+article .post-content .toc ul li {
+  position: relative;
+  padding-left: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.7px;
+}
+article .post-content .toc ul li:before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: #3f3f3f;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 11px;
 }
 article .gallery {
   overflow: hidden;
@@ -540,6 +578,10 @@ article .entry h5,
 article .entry h6 {
   font-weight: normal;
 }
+article .entry h3 {
+  font-weight: bold;
+  padding-top: 6px;
+}
 article .entry img,
 article .entry video {
   max-width: 100%;
@@ -706,10 +748,10 @@ article footer .addthis iframe {
   color: #3f3f3f;
 }
 .archive-title.tag:before {
-  content: '\f02b';
+  content: '';
 }
 .archive-title.category:before {
-  content: '\f07b';
+  content: '';
 }
 .archive {
   border-bottom: 1px solid #ddd;
