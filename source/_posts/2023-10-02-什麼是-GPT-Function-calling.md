@@ -9,7 +9,7 @@ tags:
 
 ![](cover.jpg)
 
-## 先了解 OpenAI API
+## OpenAI API 
 
 在了解 **GPT Function calling** 之前我們先來談談什麼是 OpenAI API ，OpenAI API是一個由OpenAI所提供便於開發者串接他們的服務(例如GPT-4、whisper等)的API，需要透過OpenAI申請API密鑰後才能夠使用<!-- more -->，並且會根據用量收取費用，詳情可以參考[這裡](https://openai.com/pricing)，而本篇要討論的內容則是OpenAI API 底下的 Chat completions API 內的 Function calling 這個功能，以下統一稱為Function calling。
 
