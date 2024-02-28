@@ -16,7 +16,7 @@ article
 
   &.photo
     .icon
-      &:before
+      &:beforeheaderlink
         content '\f030'
 
   &.link
@@ -44,6 +44,37 @@ article
       font-weight 500
       @media screen and (max-width: 480px)
         font-size 24px
+    .link-button 
+      margin-left 10px
+    img
+      border-radius 10px
+    .toc
+      background #f4f4f4
+      border-radius 10px
+      padding 10px 14px
+      margin-top 10px
+      .toc-title
+        font-size 20px
+        font-weight 500
+        margin-bottom 3px
+      ul
+        list-style none
+        padding-left 0
+        margin 0
+        li
+          position relative
+          padding-left 16px
+          line-height 1.5
+          letter-spacing 0.7px
+          &:before
+            content ''
+            width 5px
+            height 5px
+            background color-dark
+            border-radius 50%
+            position absolute
+            left 0
+            top 11px
 
   .gallery
     overflow hidden
@@ -249,6 +280,9 @@ article
 
     h3, h4, h5, h6
       font-weight normal
+    h3
+      font-weight bold
+      padding-top 6px
 
     img, video
       max-width 100%
