@@ -116,3 +116,9 @@ jsonContent:
     text: false
     permalink: true
     excerpt: true
+
+archive_generator:
+    per_page: 20
+    yearly: true
+    monthly: true
+    daily: false

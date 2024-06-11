@@ -1,0 +1,496 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>高性價比亞洲 VPS 推薦與實測心得 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  
+  <meta name="description" content="近期因為個人網站的VPS租約即將到期，又因為原先主機商Hostinger的資料中心位於美國，導致先前網站的Ping值一直都偏高，讓我決定開始蒐集VPS廠商的相關資料，並尋找位於亞洲且性價比高的VPS主機。">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="高性價比亞洲 VPS 推薦與實測心得"/>
+  <meta property="og:site_name" content="6yuwei"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css?v=240229-2.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', '279078064', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei">
+    </a>
+  </div>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-高性價比亞洲-VPS-推薦與實測心得" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2024-06-07T16:14:20.000Z"><a href="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/">2024-06-08</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">高性價比亞洲 VPS 推薦與實測心得</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/cover.jpg"></p>
+<p>近期因為個人網站的VPS租約即將到期，又因為原先主機商Hostinger的資料中心位於美國，導致先前網站的Ping值一直都偏高，讓我決定開始蒐集VPS廠商的相關資料，並尋找位於亞洲且性價比高的VPS主機。</p>
+<span id="more"></span>
+
+<p>此篇文章適合<strong>個人或小團隊</strong>，具有一定的效能需求，預算有限，且希望在主機上依照自己的需求自由配置的使用者。</p>
+<p>若是一般的靜態網站需求，有很多免費的網站空間提供商，如Github Pages、Netlify、虛擬主機等，可以滿足需求，在此不做討論。除此之外，<strong>各大雲端廠商的免費試用方案也不在本篇討論範圍</strong>。</p>
+<p>不管在國內還國外都有很多廠商提供VPS主機的租賃服務，但由於台灣的VPS主機商價格普遍偏高，因此我將目標放在有亞洲資料中心(像是日本或新加坡)的國外主機商，雖然延遲可能會稍微高一點點，但除非特殊用途，一般使用者是感受不出差異的，我認為這樣能達到效能與價格的平衡。</p>
+<h2 id="1-OVH-Cloud"><a href="#1-OVH-Cloud" class="headerlink" title="1. OVH Cloud"></a><a target="_blank" rel="noopener" href="https://www.ovhcloud.com/en/vps/">1. OVH Cloud</a></h2><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/ovhcloud.png"></p>
+<p>OVH是歐洲最大的網路代管服務提供商，雖然OVH是法國的公司，但是在亞洲也有<strong>新加坡資料中心</strong>，實測在台灣的延遲大約在50ms左右，價格與效能都很不錯，並且還有一大特色是<strong>不限流量</strong>。<br>OVH的系統生態也很完整，提供了許多不同的服務，如網域註冊、CDN、SSL證書、s3等等，可以一站式解決你的需求。</p>
+<h3 id="價格方案"><a href="#價格方案" class="headerlink" title="價格方案"></a>價格方案</h3><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/ovhcloud_price.png"></p>
+<p>OVH的VPS主機有多種不同的方案，最低價的方案是<strong>Starter</strong>，每個月僅需<strong>0.97美元(僅限第一年)&#x2F;月</strong>，第二年開始則是4.20美元&#x2F;月，提供1核心處理器、2GB記憶體、20GB硬碟空間、100Mbps網路速度，適合小型網站或應用程式的使用。<br>但是若希望有更高的效能，我個人推薦<strong>VLE系列的方案</strong>，整體性價比會比其他類型的方案更高，價格也不會太高。方案的效期若是有打算長期使用，建議直接選2年方案，不只依然可以選擇每月付費，也可以享有折扣，若是一次付清，則會享有更多的折扣。以下為方案整理，兩年方案為例：</p>
+<h3 id="推薦方案整理"><a href="#推薦方案整理" class="headerlink" title="推薦方案整理"></a>推薦方案整理</h3><table>
+<thead>
+<tr>
+<th>方案名稱</th>
+<th>價格&#x2F;月 (兩年方案)</th>
+<th>CPU</th>
+<th>RAM</th>
+<th>硬碟</th>
+<th>網路</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Starter</strong></td>
+<td><strong><span style="color:#c13232">0.97美元</span> (首年，第二年開始4.20美元)</strong></td>
+<td>1 vCore</td>
+<td>2GB</td>
+<td>20GB</td>
+<td>100Mbps</td>
+</tr>
+<tr>
+<td><strong>VLE-2</strong></td>
+<td><strong><span style="color:#c13232">4.67美元 </span></strong></td>
+<td>2 vCore</td>
+<td>2GB</td>
+<td>40GB</td>
+<td>500Mbps</td>
+</tr>
+<tr>
+<td><strong>VLE-4</strong></td>
+<td><strong><span style="color:#c13232">9.35美元 </span></strong></td>
+<td>4 vCore</td>
+<td>4GB</td>
+<td>80GB</td>
+<td>1Gbps</td>
+</tr>
+<tr>
+<td><strong>VLE-16</strong></td>
+<td><strong><span style="color:#c13232">38.25美元</span></strong></td>
+<td>16 vCore</td>
+<td>16GB</td>
+<td>160GB</td>
+<td>2Gbps</td>
+</tr>
+</tbody></table>
+<h2 id="2-Contabo"><a href="#2-Contabo" class="headerlink" title="2. Contabo"></a><a target="_blank" rel="noopener" href="https://contabo.com/en/vps/">2. Contabo</a></h2><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/contabo.png"></p>
+<p>Contabo是德國的主機商，提供了多種不同的VPS方案，價格非常便宜，亞洲的資料中心位於日本及新加坡，是我目前看過價格最便宜的VPS主機商之一，但是在台灣的延遲會稍高，後臺管理介面也比較陽春，不過若是需要較好的主機規格且不在意延遲，Contabo是一個不錯的選擇。</p>
+<h3 id="價格方案-1"><a href="#價格方案-1" class="headerlink" title="價格方案"></a>價格方案</h3><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/contabo_price.png"></p>
+<p>Contabo的VPS主機有多種不同的方案價格都非常便宜，但是需要注意的是，<strong>建議將幣值切換成歐元再購買</strong>，因為以台幣的角度來看，匯率會比較划算，除此之外，也須留意<strong>初次設定費用以及地區費用</strong>。</p>
+<p>設定費用的話，在沒有任何折價的情況下，除非<strong>一次購買12個月，才可免去設定費</strong>。<br>地區費用的話，若是選擇日本或新加坡的資料中心，則會有額外加上的地區費用。</p>
+<p>雖然如此，Contabo時常會有折扣活動，像是免去初次設定費用、地區額外費用減免等等，建議可以多留意。</p>
+<h3 id="推薦方案整理-1"><a href="#推薦方案整理-1" class="headerlink" title="推薦方案整理"></a>推薦方案整理</h3><p>這邊的方案以一次購買12個月、日本資料中心為例，因次不計算設定費用。</p>
+<table>
+<thead>
+<tr>
+<th>方案名稱</th>
+<th>價格&#x2F;月 (一年方案)</th>
+<th>CPU</th>
+<th>RAM</th>
+<th>硬碟</th>
+<th>流量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CLOUD VPS 1</strong></td>
+<td><strong><span style="color:#c13232">6.25歐元</span></strong></td>
+<td>4 vCore</td>
+<td>6GB</td>
+<td>100GB NVMe or 400GB SSD</td>
+<td>32TB traffic</td>
+</tr>
+<tr>
+<td><strong>CLOUD VPS 2</strong></td>
+<td><strong><span style="color:#c13232">14.5歐元</span></strong></td>
+<td>6 vCore</td>
+<td>16GB</td>
+<td>200GB NVMe or 400GB SSD</td>
+<td>32TB traffic</td>
+</tr>
+<tr>
+<td><strong>CLOUD VPS 3</strong></td>
+<td><strong><span style="color:#c13232">21.4歐元</span></strong></td>
+<td>8 vCore</td>
+<td>24GB</td>
+<td>300GB NVMe or 1.2TB SSD</td>
+<td>32TB traffic</td>
+</tr>
+</tbody></table>
+<h2 id="3-ConoHa"><a href="#3-ConoHa" class="headerlink" title="3. ConoHa"></a><a target="_blank" rel="noopener" href="https://www.conoha.jp/vps/">3. ConoHa</a></h2><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/conoha.png"></p>
+<p>ConoHa是日本知名的主機商，提供了多種不同的主機服務，並且時間上非常彈性，有<strong>按小時計費</strong>的方案，也有<strong>月租</strong>的方案，而且面對目前日圓匯率較低的情況，價格也相對便宜，由於地理位置距離台灣較近，延遲也相對較低，實測在台灣的延遲大約在<strong>50ms左右</strong>。但需要注意的是因為是日本的主機商，所以介面皆為日文。</p>
+<h3 id="價格方案-2"><a href="#價格方案-2" class="headerlink" title="價格方案"></a>價格方案</h3><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/conoha_price.png"></p>
+<p>ConoHa的VPS基本上就是時間越長折扣越多，從<strong>按小時計費</strong>到<strong>三年方案</strong>折價的幅度逐漸增加，若是有長期使用的需求，建議可以直接選擇<strong>三年方案</strong>，折扣幅度最大。</p>
+<h3 id="推薦方案整理-2"><a href="#推薦方案整理-2" class="headerlink" title="推薦方案整理"></a>推薦方案整理</h3><p>這邊的方案以一次購買36個月為例。</p>
+<table>
+<thead>
+<tr>
+<th>方案名稱</th>
+<th>價格&#x2F;月 (三年方案)</th>
+<th>CPU</th>
+<th>RAM</th>
+<th>硬碟</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>512MB</strong></td>
+<td><strong><span style="color:#c13232">296円</span></strong></td>
+<td>1 vCore</td>
+<td>512MB</td>
+<td>30GB</td>
+</tr>
+<tr>
+<td><strong>1GB</strong></td>
+<td><strong><span style="color:#c13232">468円</span></strong></td>
+<td>2 vCore</td>
+<td>1GB</td>
+<td>100GB</td>
+</tr>
+<tr>
+<td><strong>2GB</strong></td>
+<td><strong><span style="color:#c13232">616円</span></strong></td>
+<td>3 vCore</td>
+<td>2GB</td>
+<td>100GB</td>
+</tr>
+<tr>
+<td><strong>4GB</strong></td>
+<td><strong><span style="color:#c13232">1268円</span></strong></td>
+<td>4 vCore</td>
+<td>4GB</td>
+<td>100GB</td>
+</tr>
+</tbody></table>
+<h2 id="4-Vultr"><a href="#4-Vultr" class="headerlink" title="4. Vultr"></a><a target="_blank" rel="noopener" href="https://www.vultr.com/pricing/#cloud-compute">4. Vultr</a></h2><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/vultr.png"></p>
+<p>Vultr是美國的主機商，特色是擁有多個地點的資料中心，像是日本、韓國、新加坡的亞洲資料中心，跟同樣地點數量多，但較為昂貴的AWS、Azure、Google Cloud相比，Vultr的價格相對便宜，介面也比較容易上手。</p>
+<p>Vultr若選日本的資料中心，可以得到最低的延遲，實測在台灣的延遲大約在<strong>40ms左右</strong>，相較於先前的廠商，雖然價格稍高，但是延遲較低。</p>
+<h3 id="價格方案-3"><a href="#價格方案-3" class="headerlink" title="價格方案"></a>價格方案</h3><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/vultr_price.png"></p>
+<p>Vultr的VPS主機有多種不同的方案，但是所有方案都是<strong>按小時計費</strong>，並且幾乎不會有折扣，但是Vultr有提供<strong>免費試用</strong>，可以試用一個月，並且有<strong>200美元的試用金額</strong>，可以使用一個月。</p>
+<h3 id="推薦方案整理-3"><a href="#推薦方案整理-3" class="headerlink" title="推薦方案整理"></a>推薦方案整理</h3><table>
+<thead>
+<tr>
+<th>價格&#x2F;月</th>
+<th>CPU</th>
+<th>RAM</th>
+<th>硬碟</th>
+<th>流量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><span style="color:#c13232">2.5美元&#x2F;月(只有IPv6)</span></strong></td>
+<td>1 vCPU</td>
+<td>0.5GB</td>
+<td>10GB SSD</td>
+<td>0.5TB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">3.5美元&#x2F;月</span></strong></td>
+<td>1 vCPU</td>
+<td>0.5GB</td>
+<td>10GB SSD</td>
+<td>0.5TB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">5美元&#x2F;月</span></strong></td>
+<td>1 vCPU</td>
+<td>1GB</td>
+<td>25GB SSD</td>
+<td>1TB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">10美元&#x2F;月</span></strong></td>
+<td>1 vCPU</td>
+<td>2GB</td>
+<td>55GB SSD</td>
+<td>2TB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">15美元&#x2F;月</span></strong></td>
+<td>2 vCPU</td>
+<td>4GB</td>
+<td>65GB SSD</td>
+<td>3TB</td>
+</tr>
+</tbody></table>
+<h2 id="5-DigitalOcean"><a href="#5-DigitalOcean" class="headerlink" title="5. DigitalOcean"></a><a target="_blank" rel="noopener" href="https://www.digitalocean.com/pricing/droplets#basic-droplets">5. DigitalOcean</a></h2><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/digitalocean.png"></p>
+<p>DigitalOcean是美國的主機商，提供了多種不同的主機服務，亞洲的資料中心位於新加坡，整體的訂價策略與Vultr相似，而且個人還蠻喜歡DigitalOcean的介面，內建的ssh介面也較方便，</p>
+<h3 id="價格方案-4"><a href="#價格方案-4" class="headerlink" title="價格方案"></a>價格方案</h3><p><img src="/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/digitalocean_price.png"></p>
+<p>整體與Vultr相似，價格也是<strong>按小時計費</strong>，並且幾乎不會有折扣，但是DigitalOcean有提供<strong>免費試用</strong>，可以試用二個月，並且有<strong>200美元的試用金額</strong>。</p>
+<h3 id="推薦方案整理-4"><a href="#推薦方案整理-4" class="headerlink" title="推薦方案整理"></a>推薦方案整理</h3><p>此為一般CPU方案，價格以月計算。</p>
+<table>
+<thead>
+<tr>
+<th>價格&#x2F;月</th>
+<th>CPU</th>
+<th>RAM</th>
+<th>硬碟</th>
+<th>流量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><span style="color:#c13232">4美元&#x2F;月</span></strong></td>
+<td>1 vCPUs</td>
+<td>0.5GIB</td>
+<td>10GIB SSD</td>
+<td>500GIB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">6美元&#x2F;月</span></strong></td>
+<td>1 vCPUs</td>
+<td>1GIB</td>
+<td>25GIB SSD</td>
+<td>1000GIB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">5美元&#x2F;月</span></strong></td>
+<td>1 vCPUs</td>
+<td>2GIB</td>
+<td>50GIB SSD</td>
+<td>2000GIB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">10美元&#x2F;月</span></strong></td>
+<td>2 vCPUs</td>
+<td>2GIB</td>
+<td>60GIB SSD</td>
+<td>3000GIB</td>
+</tr>
+<tr>
+<td><strong><span style="color:#c13232">15美元&#x2F;月</span></strong></td>
+<td>2 vCPUs</td>
+<td>4GIB</td>
+<td>80GB SSD</td>
+<td>4000GIB</td>
+</tr>
+</tbody></table>
+<p>所有文章內容皆為筆者撰寫當下的情況，若有任何更動，請以廠商官方網站為準。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/VPS/">VPS</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <p class="title">留言</p>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=796581497680750";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2024/06/08/%E9%AB%98%E6%80%A7%E5%83%B9%E6%AF%94%E4%BA%9E%E6%B4%B2-VPS-%E6%8E%A8%E8%96%A6%E8%88%87%E5%AF%A6%E6%B8%AC%E5%BF%83%E5%BE%97/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3d/">3d</a><small>1</small></li>
+  
+    <li><a href="/tags/AI/">AI</a><small>2</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT/">GPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Game/">Game</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/Japanese/">Japanese</a><small>2</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>1</small></li>
+  
+    <li><a href="/tags/design/">design</a><small>1</small></li>
+  
+    <li><a href="/tags/framework/">framework</a><small>1</small></li>
+  
+    <li><a href="/tags/front-end/">front end</a><small>3</small></li>
+  
+    <li><a href="/tags/interview/">interview</a><small>1</small></li>
+  
+    <li><a href="/tags/matter-js/">matter.js</a><small>1</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/share/">share</a><small>2</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2024 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/custom.js?v=240229-2.js"></script>
+
+
+<script src="/js/gallery.js?v=240229-2.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+$(function(){
+  $('.fancybox').fancybox();
+});
+</script>
+
+</body>
+</html>
