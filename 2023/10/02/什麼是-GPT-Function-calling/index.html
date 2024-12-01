@@ -6,7 +6,7 @@
   <title>什麼是 GPT Function calling? | 6yuwei</title>
   <meta name="author" content="6yuwei">
   
-  <meta name="description" content="先了解 OpenAI API在了解 GPT Function calling 之前我們先來談談什麼是 OpenAI API ，OpenAI API是一個由OpenAI所提供便於開發者串接他們的服務(例如GPT-4、whisper等)的API，需要透過OpenAI申請API密鑰後才能夠使用">
+  <meta name="description" content="OpenAI API在了解 GPT Function calling 之前我們先來談談什麼是 OpenAI API ，OpenAI API是一個由OpenAI所提供便於開發者串接他們的服務(例如GPT-4、whisper等)的API，需要透過OpenAI申請API密鑰後才能夠使用">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -23,10 +23,13 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664"
+      crossorigin="anonymous"></script>
+
   <link rel="shortcut icon" href="/favicon.png">
   
   
-<link rel="stylesheet" href="/css/style.css?v=230709.css">
+<link rel="stylesheet" href="/css/style.css?v=240229-2.css">
 
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
@@ -42,7 +45,7 @@
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -86,7 +89,7 @@
     <div class="e-content entry" itemprop="articleBody">
       
         <p><img src="/2023/10/02/%E4%BB%80%E9%BA%BC%E6%98%AF-GPT-Function-calling/cover.jpg"></p>
-<h2 id="先了解-OpenAI-API"><a href="#先了解-OpenAI-API" class="headerlink" title="先了解 OpenAI API"></a>先了解 OpenAI API</h2><p>在了解 <strong>GPT Function calling</strong> 之前我們先來談談什麼是 OpenAI API ，OpenAI API是一個由OpenAI所提供便於開發者串接他們的服務(例如GPT-4、whisper等)的API，需要透過OpenAI申請API密鑰後才能夠使用<span id="more"></span>，並且會根據用量收取費用，詳情可以參考<a target="_blank" rel="noopener" href="https://openai.com/pricing">這裡</a>，而本篇要討論的內容則是OpenAI API 底下的 Chat completions API 內的 Function calling 這個功能，以下統一稱為Function calling。</p>
+<h2 id="OpenAI-API"><a href="#OpenAI-API" class="headerlink" title="OpenAI API"></a>OpenAI API</h2><p>在了解 <strong>GPT Function calling</strong> 之前我們先來談談什麼是 OpenAI API ，OpenAI API是一個由OpenAI所提供便於開發者串接他們的服務(例如GPT-4、whisper等)的API，需要透過OpenAI申請API密鑰後才能夠使用<span id="more"></span>，並且會根據用量收取費用，詳情可以參考<a target="_blank" rel="noopener" href="https://openai.com/pricing">這裡</a>，而本篇要討論的內容則是OpenAI API 底下的 Chat completions API 內的 Function calling 這個功能，以下統一稱為Function calling。</p>
 <h2 id="Function-calling-有什麼特別的"><a href="#Function-calling-有什麼特別的" class="headerlink" title="Function calling 有什麼特別的"></a>Function calling 有什麼特別的</h2><p>我們在使用一般的 GPT API 時，可能會用來開發一些應用程式，這些應用程式通常都會希望能夠將 GPT API 回傳的內容維持在一定的主題或格式，以避免因為使用者輸入無關的內容導致 GPT API 偏離主題，進而導致程式不可預期的錯誤，而Open AI為此提供的解決方案就是 <strong>Function calling</strong>。</p>
 <p>Function calling 能夠讓 GPT API 回傳我們開發的應用程式看得懂的內容，也就是JSON，它可以大幅度降低因為 GPT API 非預期回傳內容所導致的錯誤。</p>
 <h2 id="在開始使用-Function-calling-前"><a href="#在開始使用-Function-calling-前" class="headerlink" title="在開始使用 Function calling 前"></a>在開始使用 Function calling 前</h2><p>Function calling 需要使用到 Chat completions API，而使用這個API可以透過官方提供的現成API網址直接請求，也可以透過Node.js集成至自己的應用程式，這裡為了方便使用所以會直接使用官方提供的現成API網址。</p>
@@ -192,7 +195,7 @@
   
     <li><a href="/tags/3d/">3d</a><small>1</small></li>
   
-    <li><a href="/tags/AI/">AI</a><small>1</small></li>
+    <li><a href="/tags/AI/">AI</a><small>2</small></li>
   
     <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
   
@@ -200,11 +203,17 @@
   
     <li><a href="/tags/GPT/">GPT</a><small>1</small></li>
   
+    <li><a href="/tags/Game/">Game</a><small>1</small></li>
+  
     <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
   
-    <li><a href="/tags/Japanese/">Japanese</a><small>1</small></li>
+    <li><a href="/tags/Japanese/">Japanese</a><small>2</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>7</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
   
     <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
   
@@ -214,6 +223,8 @@
   
     <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
   
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
     <li><a href="/tags/design/">design</a><small>1</small></li>
   
     <li><a href="/tags/framework/">framework</a><small>1</small></li>
@@ -221,6 +232,8 @@
     <li><a href="/tags/front-end/">front end</a><small>3</small></li>
   
     <li><a href="/tags/interview/">interview</a><small>1</small></li>
+  
+    <li><a href="/tags/matter-js/">matter.js</a><small>1</small></li>
   
     <li><a href="/tags/other/">other</a><small>1</small></li>
   
@@ -240,7 +253,7 @@
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2023 <h1 class="copyright">6yuwei</h1>
+  &copy; 2024 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
   
 </div>
 <div class="clearfix"></div></footer>
@@ -251,10 +264,10 @@
 <script src="/js/jquery.imagesloaded.min.js"></script>
 
 
-<script src="/js/custom.js?v=230709.js"></script>
+<script src="/js/custom.js?v=240229-2.js"></script>
 
 
-<script src="/js/gallery.js?v=230709.js"></script>
+<script src="/js/gallery.js?v=240229-2.js"></script>
 
 
 
