@@ -18,5 +18,6 @@ jobs:
             host: ${{ secrets.SERVER_IP }}
             username: ${{ secrets.SERVER_USER }}
             key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+            passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
             source: "./public"
-            target: "~/htdocs/blog.6yuwei.com"
+            target: "~/php-site"
