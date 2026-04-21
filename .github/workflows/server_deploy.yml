@@ -20,4 +20,5 @@ jobs:
             key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
             passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
             source: "./public"
-            target: "~/php-site"
+            strip_components: 1
+            target: "~/php-site/blog"
