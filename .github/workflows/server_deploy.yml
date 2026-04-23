@@ -12,6 +12,9 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
+        - name: Copy api.php to public
+          run: cp api.php public/api.php
+
         - name: Deploy to server
           uses: appleboy/scp-action@v0.1.4
           with: 
