@@ -1,0 +1,70 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="92" y1="72" x2="1080" y2="578" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1726"/>
+      <stop offset="1" stop-color="#132B3A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="210" y1="126" x2="950" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F97316"/>
+      <stop offset="0.55" stop-color="#FB7185"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="45"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="36" fill="#08111D"/>
+  <g filter="url(#blur)" opacity="0.55">
+    <circle cx="227" cy="140" r="120" fill="#F97316"/>
+    <circle cx="920" cy="180" r="140" fill="#FB7185"/>
+    <circle cx="855" cy="470" r="150" fill="#38BDF8"/>
+  </g>
+  <rect x="42" y="42" width="1116" height="546" rx="28" fill="url(#bg)" stroke="rgba(255,255,255,0.12)"/>
+
+  <rect x="84" y="84" width="200" height="36" rx="18" fill="rgba(255,255,255,0.08)"/>
+  <text x="112" y="108" fill="#F8FAFC" font-size="18" font-family="SFMono-Regular, Menlo, Consolas, monospace">6yuwei / blog</text>
+
+  <text x="86" y="200" fill="#F8FAFC" font-size="54" font-weight="700" font-family="PingFang TC, Noto Sans TC, sans-serif">AI Coding 工具比較</text>
+  <text x="86" y="270" fill="#D7E2F0" font-size="30" font-family="PingFang TC, Noto Sans TC, sans-serif">Claude Code、Codex、Cursor</text>
+  <text x="86" y="314" fill="#D7E2F0" font-size="30" font-family="PingFang TC, Noto Sans TC, sans-serif">方案、限制與實際使用感受整理</text>
+
+  <rect x="86" y="364" width="496" height="2" fill="url(#accent)"/>
+
+  <g transform="translate(86 404)">
+    <rect width="212" height="112" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="22" y="40" fill="#F8FAFC" font-size="20" font-family="SFMono-Regular, Menlo, Consolas, monospace">Claude Code</text>
+    <text x="22" y="74" fill="#FDBA74" font-size="28" font-weight="700" font-family="SFMono-Regular, Menlo, Consolas, monospace">$20 / $100 / $200</text>
+    <text x="22" y="98" fill="#CBD5E1" font-size="15" font-family="PingFang TC, Noto Sans TC, sans-serif">偏向 terminal agent</text>
+  </g>
+
+  <g transform="translate(322 404)">
+    <rect width="212" height="112" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="22" y="40" fill="#F8FAFC" font-size="20" font-family="SFMono-Regular, Menlo, Consolas, monospace">Codex</text>
+    <text x="22" y="74" fill="#93C5FD" font-size="28" font-weight="700" font-family="SFMono-Regular, Menlo, Consolas, monospace">ChatGPT 內含</text>
+    <text x="22" y="98" fill="#CBD5E1" font-size="15" font-family="PingFang TC, Noto Sans TC, sans-serif">本地與雲端任務都能跑</text>
+  </g>
+
+  <g transform="translate(558 404)">
+    <rect width="212" height="112" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="22" y="40" fill="#F8FAFC" font-size="20" font-family="SFMono-Regular, Menlo, Consolas, monospace">Cursor</text>
+    <text x="22" y="74" fill="#F9A8D4" font-size="28" font-weight="700" font-family="SFMono-Regular, Menlo, Consolas, monospace">$20 / $60 / $200</text>
+    <text x="22" y="98" fill="#CBD5E1" font-size="15" font-family="PingFang TC, Noto Sans TC, sans-serif">編輯器體驗最成熟</text>
+  </g>
+
+  <rect x="840" y="118" width="256" height="372" rx="28" fill="rgba(7,14,24,0.64)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="874" y="172" fill="#F8FAFC" font-size="18" font-family="SFMono-Regular, Menlo, Consolas, monospace">quick_takeaways.md</text>
+  <text x="874" y="220" fill="#F97316" font-size="20" font-family="SFMono-Regular, Menlo, Consolas, monospace">01</text>
+  <text x="922" y="220" fill="#E2E8F0" font-size="18" font-family="PingFang TC, Noto Sans TC, sans-serif">Claude Code 最適合</text>
+  <text x="922" y="248" fill="#E2E8F0" font-size="18" font-family="PingFang TC, Noto Sans TC, sans-serif">大型重構與多檔案任務</text>
+
+  <text x="874" y="304" fill="#38BDF8" font-size="20" font-family="SFMono-Regular, Menlo, Consolas, monospace">02</text>
+  <text x="922" y="304" fill="#E2E8F0" font-size="18" font-family="PingFang TC, Noto Sans TC, sans-serif">Codex 很適合先用</text>
+  <text x="922" y="332" fill="#E2E8F0" font-size="18" font-family="PingFang TC, Noto Sans TC, sans-serif">現有 ChatGPT 方案體驗</text>
+
+  <text x="874" y="388" fill="#FB7185" font-size="20" font-family="SFMono-Regular, Menlo, Consolas, monospace">03</text>
+  <text x="922" y="388" fill="#E2E8F0" font-size="18" font-family="PingFang TC, Noto Sans TC, sans-serif">Cursor 依舊是最順手的</text>
+  <text x="922" y="416" fill="#E2E8F0" font-size="18" font-family="PingFang TC, Noto Sans TC, sans-serif">日常 AI 編輯器選擇</text>
+
+  <text x="86" y="562" fill="#94A3B8" font-size="18" font-family="PingFang TC, Noto Sans TC, sans-serif">根據官方方案與 Reddit 使用心得整理</text>
+</svg>

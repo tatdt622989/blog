@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>2026 AI Coding 工具比較：Claude Code、Codex、Cursor 怎麼選？ | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  
+  <meta name="description" content="前言最近 AI coding 工具真的變化很快，從一開始幫你補幾行程式碼，到現在直接讀整個 repo、改多個檔案、跑測試，甚至幫你整理出下一步該怎麼做，整個開發流程都不太一樣了。
+而這幾個月最常被拿來討論的，基本上就是 Claude Code、Codex、Cursor 這三個方向。尤其是 Claude Code 的 Pro &amp;#x2F; Max 方案到底差多少、實際會不會很快撞到限制，還有 Codex 到底值不值得因為它去訂 ChatGPT，這些問題我自己也查了很久。">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2026 AI Coding 工具比較：Claude Code、Codex、Cursor 怎麼選？"/>
+  <meta property="og:site_name" content="6yuwei"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664"
+      crossorigin="anonymous"></script>
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css?v=240229-2.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', '279078064', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei">
+    </a>
+  </div>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-AI-coding-工具比較：Claude-Code、Codex、Cursor-怎麼選？" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-05-06T13:30:00.000Z"><a href="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/">2026-05-06</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">2026 AI Coding 工具比較：Claude Code、Codex、Cursor 怎麼選？</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><img src="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover.svg"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近 AI coding 工具真的變化很快，從一開始幫你補幾行程式碼，到現在直接讀整個 repo、改多個檔案、跑測試，甚至幫你整理出下一步該怎麼做，整個開發流程都不太一樣了。</p>
+<p>而這幾個月最常被拿來討論的，基本上就是 <strong>Claude Code、Codex、Cursor</strong> 這三個方向。尤其是 Claude Code 的 Pro &#x2F; Max 方案到底差多少、實際會不會很快撞到限制，還有 Codex 到底值不值得因為它去訂 ChatGPT，這些問題我自己也查了很久。</p>
+<span id="more"></span>
+
+<p>所以這篇我不只看官方說明，也另外翻了不少 Reddit 上的近期使用心得，盡量把 <strong>官方規則</strong> 跟 <strong>實際使用感受</strong> 分開整理。這樣如果你最近也想開始試 AI coding 工具，應該會比較快知道自己適合哪一種。</p>
+<p>如果先講結論，我自己的看法是：</p>
+<ul>
+<li>如果你要的是目前最完整的 terminal agent 體驗，<strong>Claude Code 依然很強</strong></li>
+<li>如果你本來就有 ChatGPT Plus &#x2F; Pro，<strong>Codex 是最值得先試的選項</strong></li>
+<li>如果你最在意的是編輯器裡的手感、補全和日常小改動，<strong>Cursor 還是很順</strong></li>
+</ul>
+<h2 id="1-Claude-Code：目前最像真正工程代理人的工具"><a href="#1-Claude-Code：目前最像真正工程代理人的工具" class="headerlink" title="1. Claude Code：目前最像真正工程代理人的工具"></a><a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan">1. Claude Code：目前最像真正工程代理人的工具</a></h2><p>Claude Code 最大的特色，不是它會寫 code 而已，而是它真的比較像一個在 terminal 裡工作的代理人。它可以直接看你的資料夾結構、讀檔、改檔、跑指令，對於多檔案重構、大型專案除錯、整理現有程式碼脈絡這種事情，整體體驗通常比純編輯器型工具更完整。</p>
+<h3 id="目前官方方案與大致限制"><a href="#目前官方方案與大致限制" class="headerlink" title="目前官方方案與大致限制"></a>目前官方方案與大致限制</h3><table>
+<thead>
+<tr>
+<th>方案</th>
+<th>月費</th>
+<th>官方提供的平均用量</th>
+<th>適合誰</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pro</td>
+<td><strong><span style="color:#c13232">$20&#x2F;月</span></strong></td>
+<td>約 <strong>10-40</strong> 個 Claude Code prompts &#x2F; 5 小時</td>
+<td>小型 repo、輕量體驗</td>
+</tr>
+<tr>
+<td>Max 5x</td>
+<td><strong><span style="color:#c13232">$100&#x2F;月</span></strong></td>
+<td>約 <strong>50-200</strong> 個 Claude Code prompts &#x2F; 5 小時</td>
+<td>每天都會用、開始碰到 Pro 限制的人</td>
+</tr>
+<tr>
+<td>Max 20x</td>
+<td><strong><span style="color:#c13232">$200&#x2F;月</span></strong></td>
+<td>約 <strong>200-800</strong> 個 Claude Code prompts &#x2F; 5 小時</td>
+<td>重度使用者、平行開很多任務的人</td>
+</tr>
+</tbody></table>
+<p>需要注意的是，<strong>Claude 與 Claude Code 的用量是共用的</strong>，不是分開算。如果你白天已經在 Claude 網頁版開很多長對話，晚上再進 Claude Code，用量會一起被吃掉。</p>
+<p>另外一個很容易忽略的點是，如果你的環境裡有設定 <code>ANTHROPIC_API_KEY</code>，Claude Code 可能會直接走 API 計費，而不是吃你的 Pro &#x2F; Max 訂閱額度，這點官方文件有特別提醒。</p>
+<h3 id="Reddit-上比較常見的使用感受"><a href="#Reddit-上比較常見的使用感受" class="headerlink" title="Reddit 上比較常見的使用感受"></a>Reddit 上比較常見的使用感受</h3><p>我看下來，近期 Reddit 上對 Claude Code 的共識其實蠻明顯的：</p>
+<ul>
+<li>大家普遍認為它在 <strong>大型 codebase 理解、多檔案修改、規劃能力</strong> 上很強</li>
+<li>真正的問題通常不是品質，而是 <strong>Pro 方案很容易不夠用</strong></li>
+<li>很多人會把 Claude Code 留給「功能級別」的工作，像是重構、長鏈除錯、架構整理，而不是拿來做每一個小修改</li>
+</ul>
+<p>也就是說，<strong>Claude Code Pro 比較像試水溫方案</strong>。如果你只是偶爾寫小工具，它可以用；但如果你是希望它真的變成日常主力，很多使用者最後還是會往 Max 5x 甚至 Max 20x 移動。</p>
+<h2 id="2-Codex：如果你已經在-ChatGPT-生態裡，最值得先試"><a href="#2-Codex：如果你已經在-ChatGPT-生態裡，最值得先試" class="headerlink" title="2. Codex：如果你已經在 ChatGPT 生態裡，最值得先試"></a><a target="_blank" rel="noopener" href="https://chatgpt.com/codex/pricing/">2. Codex：如果你已經在 ChatGPT 生態裡，最值得先試</a></h2><p>Codex 現在和早期大家印象中的「OpenAI 舊 Codex 模型」已經不是同一回事。現在它更像是 OpenAI 的 coding agent 產品線，能在本地或雲端幫你做實際任務，也可以接 IDE、CLI 與額外工具。</p>
+<p>對一般使用者來說，Codex 最大的優勢很簡單：<strong>它已經被包進 ChatGPT 方案裡了</strong>。如果你本來就有 ChatGPT Plus 或 Pro，那其實不太需要額外再決定一次要不要買別的工具，先用 Codex 看看自己的工作流合不合，通常是最合理的做法。</p>
+<h3 id="目前官方方案與限制重點"><a href="#目前官方方案與限制重點" class="headerlink" title="目前官方方案與限制重點"></a>目前官方方案與限制重點</h3><p>截至 <strong>2026 年 5 月 6 日</strong>，OpenAI 官方說明是：</p>
+<ul>
+<li><strong>ChatGPT Plus：<span style="color:#c13232">$20&#x2F;月</span></strong></li>
+<li><strong>ChatGPT Pro：<span style="color:#c13232">$100&#x2F;月</span></strong> 與 <strong><span style="color:#c13232">$200&#x2F;月</span></strong> 兩個 tiers</li>
+<li>Codex 已包含在 Free &#x2F; Go &#x2F; Plus &#x2F; Pro &#x2F; Business &#x2F; Enterprise 中</li>
+</ul>
+<p>以 Plus 方案的 <strong>GPT-5.3-Codex</strong> 為例，官方目前給的平均值大致如下：</p>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>Plus 方案平均值 &#x2F; 5 小時</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Local messages</td>
+<td><strong>30-150</strong></td>
+</tr>
+<tr>
+<td>Cloud tasks</td>
+<td><strong>10-60</strong></td>
+</tr>
+<tr>
+<td>Code reviews</td>
+<td><strong>20-50</strong></td>
+</tr>
+</tbody></table>
+<p>而 Pro 目前是走 <strong>5x 或 20x 比 Plus 更多用量</strong> 的方式，超過內含用量後，Plus &#x2F; Pro 也可以另外買 credits 繼續用。OpenAI 在 <strong>2026 年 4 月 2 日</strong> 也把 Codex 的 flexible pricing 往 token &#x2F; credits 的方向調整，所以它的成本感受會比單純「一則訊息算一次」更明顯和任務大小綁在一起。</p>
+<h3 id="Reddit-上比較常見的使用感受-1"><a href="#Reddit-上比較常見的使用感受-1" class="headerlink" title="Reddit 上比較常見的使用感受"></a>Reddit 上比較常見的使用感受</h3><p>Reddit 上對 Codex 的評價，這陣子我看到比較多的是這幾點：</p>
+<ul>
+<li>很多人喜歡它的 <strong>指令遵循與推理品質</strong></li>
+<li>對複雜問題，有些使用者會覺得它比 Claude 更穩，或至少更乾淨</li>
+<li>但如果你主要依賴 cloud task，那種「丟一個任務等它回來」的節奏，很多人也會覺得 <strong>回饋迴圈比較慢</strong></li>
+</ul>
+<p>所以 Codex 的問題通常不是「能不能做」，而是 <strong>你喜不喜歡它的工作節奏</strong>。如果你已經習慣在編輯器裡一直來回微調，Codex 不一定是最順手的；但如果你本來就習慣把需求講清楚，再讓代理人一次做大一點的工作，它其實很有吸引力。</p>
+<h2 id="3-Cursor：編輯器體驗還是很強"><a href="#3-Cursor：編輯器體驗還是很強" class="headerlink" title="3. Cursor：編輯器體驗還是很強"></a><a target="_blank" rel="noopener" href="https://cursor.com/pricing">3. Cursor：編輯器體驗還是很強</a></h2><p>如果把 Claude Code 跟 Codex 都看成比較偏代理人的工具，那 Cursor 目前仍然是比較像「AI editor」的成熟產品。它的優勢不是哪個單一模型一定最強，而是整個體驗做得比較完整：補全、inline diff、在編輯器裡來回修小地方，整體都比較自然。</p>
+<h3 id="目前官方方案"><a href="#目前官方方案" class="headerlink" title="目前官方方案"></a>目前官方方案</h3><table>
+<thead>
+<tr>
+<th>方案</th>
+<th>月費</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pro</td>
+<td><strong><span style="color:#c13232">$20&#x2F;月</span></strong></td>
+</tr>
+<tr>
+<td>Pro+</td>
+<td><strong><span style="color:#c13232">$60&#x2F;月</span></strong></td>
+</tr>
+<tr>
+<td>Ultra</td>
+<td><strong><span style="color:#c13232">$200&#x2F;月</span></strong></td>
+</tr>
+</tbody></table>
+<p>Cursor 官方目前比較強調不同方案對 OpenAI、Claude、Gemini 模型的使用倍數差異，例如 <strong>Pro+ 是 3x usage、Ultra 是 20x usage</strong>。它不像 Claude Code 那樣把「大約幾個 prompts &#x2F; 5 小時」寫得那麼直接，所以實際感受會更看你的模型選擇和工作方式。</p>
+<h3 id="Reddit-上比較常見的使用感受-2"><a href="#Reddit-上比較常見的使用感受-2" class="headerlink" title="Reddit 上比較常見的使用感受"></a>Reddit 上比較常見的使用感受</h3><p>近期 Reddit 上對 Cursor 的看法大致是：</p>
+<ul>
+<li>日常小修改、快速迭代、手動微調時，<strong>Cursor 通常比 terminal agent 更順</strong></li>
+<li>如果是大型多檔案任務，很多人還是會覺得 <strong>Claude Code 更能掌握全局</strong></li>
+<li>有些人最後不是三選一，而是 <strong>Cursor + Claude Code</strong> 一起用，讓 Cursor 負責日常編輯，Claude Code 負責重任務</li>
+</ul>
+<p>這也是為什麼 Cursor 到現在還是很有競爭力。因為很多人真正要的，不是完全放手，而是 <strong>在保留 IDE 手感的前提下，把 AI 接進原本 workflow</strong>。</p>
+<h2 id="我自己會怎麼選"><a href="#我自己會怎麼選" class="headerlink" title="我自己會怎麼選"></a>我自己會怎麼選</h2><p>如果今天是我自己要花錢，我大概會這樣分：</p>
+<table>
+<thead>
+<tr>
+<th>你的情況</th>
+<th>我會比較推薦</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>只是想先試 AI coding，而且已經有 ChatGPT Plus</td>
+<td><strong>先用 Codex</strong></td>
+</tr>
+<tr>
+<td>想讓 AI 直接進 repo 做大改動、跑指令、幫你規劃</td>
+<td><strong>Claude Code Max 5x</strong></td>
+</tr>
+<tr>
+<td>很在意 IDE 體驗，平常是大量小改動與反覆微調</td>
+<td><strong>Cursor Pro &#x2F; Pro+</strong></td>
+</tr>
+<tr>
+<td>幾乎每天都在高強度 coding，還會同時開很多任務</td>
+<td><strong>Claude Code Max 20x</strong> 或 <strong>ChatGPT Pro</strong></td>
+</tr>
+</tbody></table>
+<p>如果你現在最在意的是 <strong>Claude Code 的方案值不值得上</strong>，那我自己的結論會是：</p>
+<ul>
+<li><strong>Pro 可以試，但不要用 Pro 來判斷 Claude Code 的上限</strong></li>
+<li>如果你真的拿它做正經專案，<strong>Max 5x 才比較像進入實用區間</strong></li>
+<li>如果你本來就有 ChatGPT Plus，則可以先把 <strong>Codex 當成最低成本的比較基準</strong></li>
+</ul>
+<p>也就是說，最不容易後悔的順序通常是：</p>
+<ol>
+<li>先用自己現有方案能碰到的工具</li>
+<li>確認自己到底偏好 editor workflow 還是 terminal agent workflow</li>
+<li>再決定要不要往 Claude Code Max 或更高 tier 的 Codex &#x2F; Cursor 走</li>
+</ol>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>AI coding 工具現在已經不是單純比模型聰不聰明了，而是在比 <strong>工作流、限制設計、價格結構，還有你自己會不會真的把它用進日常開發</strong>。</p>
+<p>如果你問我現在最值得注意的是哪一個，我會說 <strong>Claude Code 與 Codex 都很值得試</strong>，只是前者更像是專門給重度開發者的代理人工作台，後者則比較適合已經在 ChatGPT 生態裡的人直接延伸使用。至於 Cursor，則依然是「最好上手、最像正常 IDE」的那一邊。</p>
+<p>所有價格、限制與方案內容皆以筆者於 <strong>2026 年 5 月 6 日</strong> 撰寫當下查詢到的官方資訊為準，若之後有任何調整，請以各家官方網站為主。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan">Anthropic 官方：Using Claude Code with your Pro or Max plan</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.anthropic.com/en/articles/8324991-about-claude-s-pro-plan-usage/">Anthropic 官方：About Claude’s Pro Plan Usage</a></li>
+<li><a target="_blank" rel="noopener" href="https://support.anthropic.com/en/articles/11014257-about-claude-s-max-plan-usage/">Anthropic 官方：About Claude’s Max Plan Usage</a></li>
+<li><a target="_blank" rel="noopener" href="https://chatgpt.com/codex/pricing/">OpenAI 官方：Codex Pricing</a></li>
+<li><a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/9793128-about-chatgpt-pro-plans">OpenAI 官方：About ChatGPT Pro plans</a></li>
+<li><a target="_blank" rel="noopener" href="https://cursor.com/pricing">Cursor 官方：Pricing</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.reddit.com/r/ClaudeCode/comments/1rc7nfl/claude_code_vs_codex_vs_cursor/">Reddit 討論：Claude code vs codex vs cursor</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.reddit.com/r/cursor/comments/1qz8rof/cursor_vs_claude_code_vs_codex_ignore_price/">Reddit 討論：Cursor vs Claude Code vs Codex</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.reddit.com/r/ClaudeAI/comments/1qktuif/is_claude_max_worth_it/">Reddit 討論：Is Claude Max worth it?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.reddit.com/r/codex/comments/1t06u9l/codex_local_vs_cloud/">Reddit 討論：Codex Local vs Cloud</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/OpenAI/">OpenAI</a>, <a href="/tags/Claude/">Claude</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <p class="title">留言</p>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=796581497680750";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3d/">3d</a><small>1</small></li>
+  
+    <li><a href="/tags/AI/">AI</a><small>3</small></li>
+  
+    <li><a href="/tags/Anime/">Anime</a><small>1</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT/">GPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Game/">Game</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/Japan/">Japan</a><small>1</small></li>
+  
+    <li><a href="/tags/Japanese/">Japanese</a><small>3</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/design/">design</a><small>1</small></li>
+  
+    <li><a href="/tags/framework/">framework</a><small>1</small></li>
+  
+    <li><a href="/tags/front-end/">front end</a><small>3</small></li>
+  
+    <li><a href="/tags/interview/">interview</a><small>1</small></li>
+  
+    <li><a href="/tags/matter-js/">matter.js</a><small>1</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/share/">share</a><small>2</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/custom.js?v=240229-2.js"></script>
+
+
+<script src="/js/gallery.js?v=240229-2.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+$(function(){
+  $('.fancybox').fancybox();
+});
+</script>
+
+</body>
+</html>
