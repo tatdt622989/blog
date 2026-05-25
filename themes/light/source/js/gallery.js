@@ -5,7 +5,7 @@ $(function(){
       if (!$(this).hasClass('nofancybox')){
         var alt = this.alt;
 
-        if (alt){
+        if (alt && !$(this).closest('.img-group').length){
           $(this).after('<span class="caption">' + alt + '</span>');
         }
 
