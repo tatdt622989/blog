@@ -620,6 +620,22 @@ article .entry .img-group img {
 article .entry .img-group a {
   width: auto;
 }
+@media screen and (max-width: 600px) {
+  article .entry .img-group {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  article .entry .img-group img {
+    width: 100% !important;
+  }
+  article .entry .img-group a {
+    width: 100%;
+  }
+}
 article .entry a {
   display: -webkit-inline-box;
   display: -moz-inline-box;
