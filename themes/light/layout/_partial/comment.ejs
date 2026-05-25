@@ -4,7 +4,7 @@
 
   <% if (theme.comment_provider == "facebook") {
       if (theme.facebook) { %>
-      <%- partial('_partial/facebook_comment', {fbConfig: theme.facebook}) %>
+      <%- partial('_partial/facebook_comment', {fbConfig: theme.facebook, url: page.permalink}) %>
       <% } %>
   <% } else if(config.disqus_shortname) { %>
   <div id="disqus_thread">
