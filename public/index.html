@@ -93,62 +93,14 @@
 <blockquote>
 <p>⚠️ <strong>先講最重要的雷</strong>：Aseprite 的<strong>試用版（Trial）不支援外掛（plugin &#x2F; extension）</strong>。也就是說，如果你的目的是用 PixelLab，<strong>就必須取得正式版</strong>，試用版裝不了外掛。</p>
 </blockquote>
-<h2 id="Aseprite-是什麼？為什麼用它？"><a href="#Aseprite-是什麼？為什麼用它？" class="headerlink" title="Aseprite 是什麼？為什麼用它？"></a>Aseprite 是什麼？為什麼用它？</h2><p>Aseprite 是一套專門做 <strong>pixel art 與像素動畫</strong>的編輯器，支援逐格動畫、圖層、調色盤、tileset、匯出 sprite sheet 等遊戲開發需要的功能，幾乎是獨立遊戲圈的標準工具。</p>
-<p>它跨平台支援 <strong>Windows、macOS、Linux（Ubuntu）</strong>。</p>
-<h2 id="取得-Aseprite-的三種方式"><a href="#取得-Aseprite-的三種方式" class="headerlink" title="取得 Aseprite 的三種方式"></a>取得 Aseprite 的三種方式</h2><h3 id="方式一：購買正式版（推薦）"><a href="#方式一：購買正式版（推薦）" class="headerlink" title="方式一：購買正式版（推薦）"></a>方式一：購買正式版（推薦）</h3><p>最省事的做法。官方定價為 <strong>USD $19.99 起</strong>，一次買斷，可在以下平台購買，<strong>軟體本體都一樣</strong>：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.aseprite.org/">Aseprite 官方網站</a></li>
-<li><strong>Steam</strong>（推薦，會透過 Steam 自動更新）</li>
-<li>itch.io、Humble Bundle、Gumroad 等</li>
-</ul>
-<p>買哪個都行。如果你已經習慣用 Steam 管理軟體，從 Steam 買最方便。</p>
-<h3 id="方式二：從原始碼自行編譯（免費，但有技術門檻）"><a href="#方式二：從原始碼自行編譯（免費，但有技術門檻）" class="headerlink" title="方式二：從原始碼自行編譯（免費，但有技術門檻）"></a>方式二：從原始碼自行編譯（免費，但有技術門檻）</h3><p>Aseprite 的原始碼是公開的。根據官方授權，你<strong>可以自行下載原始碼、編譯，並用於個人用途</strong>，甚至能用它<strong>製作商業素材</strong>；唯一限制是<strong>不能把編譯好的程式再散布出去</strong>給別人。</p>
-<p>這條路完全免費，但需要自己處理編譯環境（C++、相依套件），對非工程背景的人門檻偏高。原始碼在 <a target="_blank" rel="noopener" href="https://github.com/aseprite/aseprite">Aseprite 的 GitHub</a>。</p>
-<h3 id="方式三：試用版（注意限制）"><a href="#方式三：試用版（注意限制）" class="headerlink" title="方式三：試用版（注意限制）"></a>方式三：試用版（注意限制）</h3><p>官方有提供試用版，可以先感受介面與操作。但如前面所述：</p>
-<blockquote>
-<p><strong>試用版不能安裝外掛</strong>，所以無法用來跑 PixelLab。</p>
-</blockquote>
-<p>試用版適合「想先確認自己喜不喜歡 Aseprite」，但只要你確定要用 PixelLab，就直接走方式一或方式二。</p>
-<h2 id="安裝-Aseprite"><a href="#安裝-Aseprite" class="headerlink" title="安裝 Aseprite"></a>安裝 Aseprite</h2><ul>
-<li><strong>Steam</strong>：在 Steam 商店頁按「購買」，安裝後直接從 Steam 啟動即可，更新由 Steam 處理。</li>
-<li><strong>官方網站 &#x2F; itch.io 等</strong>：購買後下載對應平台的安裝檔——Windows 為 <code>.exe</code>、macOS 為 <code>.dmg</code>，依一般軟體流程安裝即可。</li>
-<li><strong>macOS 補充</strong>：若開啟時被 Gatekeeper 擋下，可到「系統設定 → 隱私權與安全性」按「仍要打開」。</li>
-</ul>
-<p>裝好後先打開一次，確認能正常進到主畫面。</p>
-<blockquote>
-<p>📌 PixelLab 外掛需要 <strong>Aseprite v1.3.7 或更新版本</strong>。可在 <code>Help &gt; About</code> 確認版本，太舊的話先更新。</p>
-</blockquote>
-<h2 id="安裝-PixelLab-外掛"><a href="#安裝-PixelLab-外掛" class="headerlink" title="安裝 PixelLab 外掛"></a>安裝 PixelLab 外掛</h2><p>確認 Aseprite 是正式版且版本夠新後，就能裝外掛了：</p>
-<h3 id="1-下載外掛檔"><a href="#1-下載外掛檔" class="headerlink" title="1. 下載外掛檔"></a>1. 下載外掛檔</h3><p>到 <a target="_blank" rel="noopener" href="https://www.pixellab.ai/">PixelLab 官網</a> 登入你的帳號，進到帳號頁面下載外掛檔，副檔名為 **<code>.aseprite-extension</code>**。</p>
-<blockquote>
-<p>還沒有帳號的話，先在 PixelLab 註冊（可先用免費方案試用流程）。</p>
-</blockquote>
-<h3 id="2-安裝外掛"><a href="#2-安裝外掛" class="headerlink" title="2. 安裝外掛"></a>2. 安裝外掛</h3><p>有兩種方式，擇一即可：</p>
-<ul>
-<li><strong>直接雙擊</strong>（最簡單）：雙擊下載好的 <code>.aseprite-extension</code> 檔，Aseprite 會自動安裝。</li>
-<li><strong>手動安裝</strong>：開啟 Aseprite → <code>Edit &gt; Preferences</code> → 左側選 <strong>Extensions</strong> → 點 <strong>Add Extension</strong> → 選擇剛下載的檔案。</li>
-</ul>
-<h3 id="3-重新啟動-Aseprite"><a href="#3-重新啟動-Aseprite" class="headerlink" title="3. 重新啟動 Aseprite"></a>3. 重新啟動 Aseprite</h3><p>關閉並重新開啟 Aseprite，讓外掛生效。</p>
-<h3 id="4-授權權限"><a href="#4-授權權限" class="headerlink" title="4. 授權權限"></a>4. 授權權限</h3><p>第一次啟動外掛時，Aseprite 會跳出權限請求，需要允許：</p>
-<ul>
-<li><code>package.json</code> 檔案存取</li>
-<li><strong>WebSocket</strong> 連線（外掛需要連網跟 PixelLab 溝通）</li>
-<li>（選用）給予 <strong>full trust</strong>，可啟用外掛自動更新</li>
-</ul>
-<h3 id="5-開啟外掛面板"><a href="#5-開啟外掛面板" class="headerlink" title="5. 開啟外掛面板"></a>5. 開啟外掛面板</h3><p>授權完成後，PixelLab 面板通常會自動跳出。如果沒看到，可從：</p>
-<ul>
-<li>選單 <code>Edit &gt; PixelLab &gt; Open plugin</code></li>
-<li>或快捷鍵 <strong><code>Ctrl + Space + P</code></strong></li>
-</ul>
-<p>外掛會透過你的 <strong>PixelLab 帳號</strong>進行驗證，登入後就能開始生成素材了。</p>
-<h2 id="完成！接下來呢？"><a href="#完成！接下來呢？" class="headerlink" title="完成！接下來呢？"></a>完成！接下來呢？</h2><p>到這裡，你已經具備了用 AI 生成 pixel art 的完整環境：<strong>Aseprite（編輯器）＋ PixelLab（AI 生成外掛）</strong>。</p>
-<p>接下來就回到上一篇，照著功能導覽動手生第一隻角色吧 👉 <a href="/2026/06/15/pixellab-ai-pixel-art-game-assets/">想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星</a></p>
-<p>祝你做遊戲順利，從此再也不用為素材卡關。</p>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2026/06/15/aseprite-install-guide/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -184,106 +136,14 @@
 </blockquote>
 <p>買素材包？風格常常湊不齊，缺的東西永遠剛好沒有。外包？預算與時間都吃不消。自己學畫 pixel art？光是讓一隻角色的八個方向動起來，就足以讓人放棄整個專案。</p>
 <p>這篇文章要介紹的 <strong>PixelLab</strong>，正是為了這個痛點而生：它讓你用 <strong>AI 直接生成 pixel art 素材</strong>——角色、動畫、道具、地圖磚塊、甚至 UI 介面，而且能直接在你熟悉的繪圖工具 <strong>Aseprite</strong> 裡操作。</p>
-<h2 id="PixelLab-是什麼？"><a href="#PixelLab-是什麼？" class="headerlink" title="PixelLab 是什麼？"></a>PixelLab 是什麼？</h2><p>PixelLab 是一個專注於 <strong>pixel art（像素藝術）</strong> 的 AI 生成服務。和那些通用型的繪圖 AI 不同，它從模型到工具流程都是為了「做遊戲素材」設計的，所以產出的東西<strong>真的可以直接丟進遊戲裡用</strong>：</p>
-<ul>
-<li><strong>角色生成</strong>：給一段文字描述，產出帶有多個方向（4 或 8 向）的角色 sprite</li>
-<li><strong>角色動畫</strong>：走路、攻擊、待機等動作直接生成 sprite sheet</li>
-<li><strong>道具 &#x2F; 物件</strong>：寶箱、藥水、武器、裝飾物……</li>
-<li><strong>地圖磚塊（tileset）</strong>：俯視角 RPG 地圖、橫向卷軸平台、等角（isometric）地磚</li>
-<li><strong>UI 元素</strong>：按鈕、圖示、面板，甚至能依照你排好的版面一次生成整套 icon</li>
-</ul>
-<p>它有三種使用方式：</p>
-<ol>
-<li><strong>Aseprite 外掛</strong>（本篇主角）：在像素繪圖軟體 Aseprite 裡直接呼叫 AI</li>
-<li><strong>網頁版</strong>：直接在瀏覽器操作</li>
-<li><strong>API &#x2F; MCP</strong>：給工程師接到自己的工具或 AI agent 流程裡（這個之後可以再寫一篇）</li>
-</ol>
-<blockquote>
-<p>💡 <strong>前置需求</strong>：要在 Aseprite 裡使用 PixelLab，你得先有 Aseprite。安裝步驟我整理在另一篇：<a href="/2026/06/15/aseprite-install-guide/">Aseprite 安裝教學</a>，照著做就能裝好並接上 PixelLab 外掛。</p>
-</blockquote>
-<h2 id="介面導覽"><a href="#介面導覽" class="headerlink" title="介面導覽"></a>介面導覽</h2><p>裝好外掛後，PixelLab 會在 Aseprite 裡開一個面板。主選單長這樣（這是一條垂直的側邊選單）：</p>
-<p align="center"><img src="panel-main.png" alt="PixelLab 主選單面板" style="max-height: 520px;"></p>
-
-<p>可以看到功能分得很清楚：</p>
-<ul>
-<li><strong>Create image &#x2F; Edit image</strong>：生成與編輯</li>
-<li><strong>Rotate &#x2F; Animate</strong>：旋轉方向、做動畫</li>
-<li><strong>Map &#x2F; Inpaint</strong>：地圖磚塊、局部重繪</li>
-<li><strong>Other</strong>：減色（Reduce colors）、去背（Remove background）、像素修正（Pixel correction）等實用後製工具</li>
-</ul>
-<p>點進 <strong>Create image</strong> 後，會看到一整排生成模式：</p>
-<p align="center"><img src="panel-create-image.png" alt="PixelLab Create image 子選單" style="max-height: 520px;"></p>
-
-<p>這裡的重點是<strong>模式分級</strong>：</p>
-<ul>
-<li><strong>Pro tools</strong>：品質最高，會用到較多生成額度（generations），適合正式素材</li>
-<li><strong>Recommended</strong>：日常使用的平衡選項，例如 <code>Image to pixel art</code>（把一般圖轉成像素風）、<code>Create character with same style</code>（沿用同一畫風生成）</li>
-<li><strong>32x32 或更小</strong>：小尺寸 icon 專用</li>
-</ul>
-<p>新手建議從 <strong>Recommended</strong> 這排開始試，熟悉之後再針對重要素材改用 Pro。</p>
-<h2 id="核心功能實測"><a href="#核心功能實測" class="headerlink" title="核心功能實測"></a>核心功能實測</h2><h3 id="1-角色生成：一句話生出一隻主角"><a href="#1-角色生成：一句話生出一隻主角" class="headerlink" title="1. 角色生成：一句話生出一隻主角"></a>1. 角色生成：一句話生出一隻主角</h3><p>這是最殺的功能。你只要描述角色外觀，PixelLab 就會產出像素風角色。下面這隻是用 AI 生出的 chibi 角色：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/character-large.png"></p>
-<p>放大看細節，pixel art 該有的乾淨色塊、外框線都到位：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/character-pixel.png"></p>
-<p>更重要的是，它不是只給你「一張正面圖」——你可以接著用 <strong>Rotate</strong> 生成八個方向、用 <strong>Animate</strong> 生成走路 &#x2F; 攻擊動畫，整套丟進引擎就是一個能動的角色。對獨立開發者來說，這等於把過去最痛苦的工作量壓縮成幾分鐘。</p>
-<h3 id="2-Image-to-pixel-art：把現有圖片像素化"><a href="#2-Image-to-pixel-art：把現有圖片像素化" class="headerlink" title="2. Image to pixel art：把現有圖片像素化"></a>2. Image to pixel art：把現有圖片像素化</h3><p>手邊已經有 concept art、AI 生圖、或一張參考照片？用 <code>Image to pixel art</code> 可以把它轉成像素風，並且自動處理配色與解析度，省去手動「降採樣 + 對齊像素格」的苦工。</p>
-<h3 id="3-UI-from-layout：一次生成整套介面-icon"><a href="#3-UI-from-layout：一次生成整套介面-icon" class="headerlink" title="3. UI from layout：一次生成整套介面 icon"></a>3. UI from layout：一次生成整套介面 icon</h3><p>這個功能對做遊戲的人特別實用。你在面板上排好版面、替每個格子命名（avatar、mail、chest、money bag……），PixelLab 就會<strong>一次生成整套風格一致的 icon</strong>：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/ui-from-layout.png"></p>
-<p>右邊就是依左邊版面生出的成果——頭像、信件、寶箱、寶石、金幣、鈴鐺……全部同一個畫風。過去要請美術統一風格畫一整套 UI icon，現在一個指令搞定。（注意這類 Pro 工具一次會吃掉約 20–40 個生成額度。）</p>
-<h3 id="4-後製工具：去背、減色、像素修正"><a href="#4-後製工具：去背、減色、像素修正" class="headerlink" title="4. 後製工具：去背、減色、像素修正"></a>4. 後製工具：去背、減色、像素修正</h3><p>生成只是第一步，PixelLab 也內建了讓素材「能用」的後製：</p>
-<ul>
-<li><strong>Remove background</strong>：自動去背，輸出透明 PNG</li>
-<li><strong>Reduce colors</strong>：壓到指定色數，符合復古風或省記憶體需求</li>
-<li><strong>Pixel correction</strong>：修正歪掉、糊掉的像素，讓邊緣乾淨對齊</li>
-</ul>
-<h2 id="價格方案"><a href="#價格方案" class="headerlink" title="價格方案"></a>價格方案</h2><p>PixelLab 採訂閱制，並以「生成額度（generations）」計價。每個動作會消耗不同數量的額度（一般生成 1 個、Pro 工具 20–40 個）。</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/pricing.png"></p>
-<table>
-<thead>
-<tr>
-<th>方案</th>
-<th>價格</th>
-<th>適合對象</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Free trial</strong></td>
-<td>免費</td>
-<td>想先試水溫，每月有少量快速生成額度</td>
-</tr>
-<tr>
-<td><strong>Tier 1：Pixel Apprentice</strong></td>
-<td>$12 &#x2F; 月</td>
-<td>個人玩票、做 game jam 小專案</td>
-</tr>
-<tr>
-<td><strong>Tier 2：Pixel Artisan</strong></td>
-<td>$24 &#x2F; 月</td>
-<td>認真開發中的獨立開發者（額度與功能平衡）</td>
-</tr>
-<tr>
-<td><strong>Tier 3：Pixel Architect</strong></td>
-<td>$50 &#x2F; 月</td>
-<td>重度使用、團隊、需要 API &#x2F; 商用授權</td>
-</tr>
-</tbody></table>
-<h3 id="越訂越便宜：忠誠折扣與年方案"><a href="#越訂越便宜：忠誠折扣與年方案" class="headerlink" title="越訂越便宜：忠誠折扣與年方案"></a>越訂越便宜：忠誠折扣與年方案</h3><p>PixelLab 的訂閱有兩個能幫你省錢的機制，值得特別留意：</p>
-<ul>
-<li><strong>連續訂閱會逐漸變便宜</strong>：訂閱維持得越久，每月費用會隨著時間慢慢往下降——等於是給長期使用者的忠誠折扣。如果你打算長期開發一款遊戲，越早開始、訂得越久就越划算。</li>
-<li><strong>年方案（Yearly Billing）更省</strong>：在價格頁上方可以把計費方式從 <strong>Monthly Billing</strong> 切到 <strong>Yearly Billing</strong>，一次付一年會比逐月付便宜不少。確定 PixelLab 適合你之後，改用年方案是最省的選擇。</li>
-</ul>
-<blockquote>
-<p>💡 實際的折扣幅度與每月價格官方會隨時調整，下手前請以 <a target="_blank" rel="noopener" href="https://www.pixellab.ai/pricing">PixelLab 官網價格頁</a> 顯示的當前金額為準。</p>
-</blockquote>
-<p>建議先用 <strong>Free trial</strong> 把流程跑過一遍，確認產出的風格符合你的遊戲；覺得合用之後，再依使用量挑方案，並考慮直接上年方案省錢。</p>
-<h2 id="結語：給「卡在素材」的你"><a href="#結語：給「卡在素材」的你" class="headerlink" title="結語：給「卡在素材」的你"></a>結語：給「卡在素材」的你</h2><p>做遊戲最容易讓人放棄的，往往不是程式，而是「東西做不出畫面」的那種無力感。PixelLab 把 pixel art 從「需要長期練習的專業技能」變成「描述需求就能得到素材」的工具，讓你能把精力放回<strong>遊戲設計與玩法</strong>本身。</p>
-<p>如果你也是那種「有滿腦子遊戲點子、卻被美術擋在門外」的人，這套工具非常值得一試。</p>
-<p>下一步：先把工具裝起來。請接著看 👉 <a href="/2026/06/15/aseprite-install-guide/">Aseprite 安裝教學：踏進 AI Pixel Art 的第一步</a></p>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2026/06/15/pixellab-ai-pixel-art-game-assets/#more" class="more-link">Read More</a>
+          </div>
         
         
       

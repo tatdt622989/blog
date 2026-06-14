@@ -11,7 +11,8 @@
 
 「我不會畫圖。」
 
-">
+買素材包？風格常常湊不齊，缺的東西永遠剛好沒有。外包？預算與時間都吃不消。自己學畫 pixel art？光是讓一隻角色的八個方向動起來，就足以讓人放棄整個專案。
+這篇文章要介紹的 PixelLab，正是為了這個痛點而生：它讓你用 AI 直接生成 pixel art 素材——角色、動畫、道具、地圖磚塊、甚至 UI 介面，而且能直接在你熟悉的繪圖工具 Aseprite 裡操作。">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,6 +102,8 @@
 </blockquote>
 <p>買素材包？風格常常湊不齊，缺的東西永遠剛好沒有。外包？預算與時間都吃不消。自己學畫 pixel art？光是讓一隻角色的八個方向動起來，就足以讓人放棄整個專案。</p>
 <p>這篇文章要介紹的 <strong>PixelLab</strong>，正是為了這個痛點而生：它讓你用 <strong>AI 直接生成 pixel art 素材</strong>——角色、動畫、道具、地圖磚塊、甚至 UI 介面，而且能直接在你熟悉的繪圖工具 <strong>Aseprite</strong> 裡操作。</p>
+<span id="more"></span>
+
 <h2 id="PixelLab-是什麼？"><a href="#PixelLab-是什麼？" class="headerlink" title="PixelLab 是什麼？"></a>PixelLab 是什麼？</h2><p>PixelLab 是一個專注於 <strong>pixel art（像素藝術）</strong> 的 AI 生成服務。和那些通用型的繪圖 AI 不同，它從模型到工具流程都是為了「做遊戲素材」設計的，所以產出的東西<strong>真的可以直接丟進遊戲裡用</strong>：</p>
 <ul>
 <li><strong>角色生成</strong>：給一段文字描述，產出帶有多個方向（4 或 8 向）的角色 sprite</li>
@@ -134,7 +137,7 @@
 <p>這裡的重點是<strong>模式分級</strong>：</p>
 <ul>
 <li><strong>Pro tools</strong>：品質最高，會用到較多生成額度（generations），適合正式素材</li>
-<li><strong>Recommended</strong>：日常使用的平衡選項，例如 <code>Image to pixel art</code>（把一般圖轉成像素風）、<code>Create character with same style</code>（沿用同一畫風生成）</li>
+<li><strong>Recommended</strong>：日常使用的平衡選項，例如 <strong>Image to pixel art</strong>（把一般圖轉成像素風）、<strong>Create character with same style</strong>（沿用同一畫風生成）</li>
 <li><strong>32x32 或更小</strong>：小尺寸 icon 專用</li>
 </ul>
 <p>新手建議從 <strong>Recommended</strong> 這排開始試，熟悉之後再針對重要素材改用 Pro。</p>
@@ -143,7 +146,7 @@
 <p>放大看細節，pixel art 該有的乾淨色塊、外框線都到位：</p>
 <p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/character-pixel.png"></p>
 <p>更重要的是，它不是只給你「一張正面圖」——你可以接著用 <strong>Rotate</strong> 生成八個方向、用 <strong>Animate</strong> 生成走路 &#x2F; 攻擊動畫，整套丟進引擎就是一個能動的角色。對獨立開發者來說，這等於把過去最痛苦的工作量壓縮成幾分鐘。</p>
-<h3 id="2-Image-to-pixel-art：把現有圖片像素化"><a href="#2-Image-to-pixel-art：把現有圖片像素化" class="headerlink" title="2. Image to pixel art：把現有圖片像素化"></a>2. Image to pixel art：把現有圖片像素化</h3><p>手邊已經有 concept art、AI 生圖、或一張參考照片？用 <code>Image to pixel art</code> 可以把它轉成像素風，並且自動處理配色與解析度，省去手動「降採樣 + 對齊像素格」的苦工。</p>
+<h3 id="2-Image-to-pixel-art：把現有圖片像素化"><a href="#2-Image-to-pixel-art：把現有圖片像素化" class="headerlink" title="2. Image to pixel art：把現有圖片像素化"></a>2. Image to pixel art：把現有圖片像素化</h3><p>手邊已經有 concept art、AI 生圖、或一張參考照片？用 <strong>Image to pixel art</strong> 可以把它轉成像素風，並且自動處理配色與解析度，省去手動「降採樣 + 對齊像素格」的苦工。</p>
 <h3 id="3-UI-from-layout：一次生成整套介面-icon"><a href="#3-UI-from-layout：一次生成整套介面-icon" class="headerlink" title="3. UI from layout：一次生成整套介面 icon"></a>3. UI from layout：一次生成整套介面 icon</h3><p>這個功能對做遊戲的人特別實用。你在面板上排好版面、替每個格子命名（avatar、mail、chest、money bag……），PixelLab 就會<strong>一次生成整套風格一致的 icon</strong>：</p>
 <p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/ui-from-layout.png"></p>
 <p>右邊就是依左邊版面生出的成果——頭像、信件、寶箱、寶石、金幣、鈴鐺……全部同一個畫風。過去要請美術統一風格畫一整套 UI icon，現在一個指令搞定。（注意這類 Pro 工具一次會吃掉約 20–40 個生成額度。）</p>
