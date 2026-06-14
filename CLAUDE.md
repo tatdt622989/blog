@@ -70,12 +70,10 @@ tags:
 
 3. **又高又窄的圖片要限制高度，避免頁面過長**
    - 寬圖（寬 > 高）會被佈景自動縮到內容寬度，不用處理。
-   - 但**直式、長條型的截圖**（例如側邊面板，高/寬比 > 1.5）直接放會撐出超長頁面。請改用置中 + 限高的 HTML：
-
-     ```html
-     <p align="center"><img src="panel.png" alt="說明" style="max-height: 520px;"></p>
-     ```
-   - 相對路徑的 `<img src="panel.png">` 在文章資產資料夾結構下能正確解析（圖片與 `index.html` 同目錄）。
+   - 但**直式、長條型的截圖**（例如側邊面板，高/寬比 > 1.5）直接放會撐出超長頁面。
+   - ❌ **不要用 `<img style="max-height:...">` 硬限高**：佈景的 `img` 規則會強制寬度，max-height 反而把圖**橫向拉寬變形**。
+   - ✅ **正解：不改原圖比例，把原圖置中疊在一張「符合原圖顏色」的背景上**，做成接近橫幅（如 4:3）的新圖再用一般 `![](xxx.png)` 引用。本專案有 PIL（Pillow）可用，作法：取樣原圖最常見的顏色當底色 → 新建 4:3 畫布填滿底色 → 把原圖**原尺寸**貼到正中央 → 存成新檔。
+   - 改圖後存成**新檔名**（例如 `panel-main-v2.png`）再更新引用，順便避開 CDN 對舊檔名的快取（見下方部署章節的快取說明）。
 
 4. **封面圖可用 PixelLab MCP 生成**
    - 本專案已設定 PixelLab MCP server（見 `~/.claude.json` 對應本專案的 `mcpServers.pixellab`）。
@@ -128,6 +126,18 @@ push 後 GitHub Actions 會自動把 `public/` 部署到伺服器。
 - 與本次發文無關的設定修改
 
 這種情況請先整理乾淨（只留本次要發布的內容），或改用手動方式精準 `git add` 指定檔案後再 commit / push。
+
+## ⚠️ CDN（Cloudflare）快取：換圖看不到更新時
+
+網站前面有 Cloudflare，**靜態圖片（png 等）會被快取約 4 小時**（`cache-control: max-age=14400`），但文章 HTML 是 `cf-cache-status: DYNAMIC`（不快取）。
+
+影響：**已部署過的圖片，如果用「同檔名」換內容，訪客仍會看到舊圖**（CDN 回快取），就算 origin 已更新也一樣。新文章第一次發布不受影響（路徑全新）。
+
+- 排查：用 `curl -sI <圖片url>` 看 `cf-cache-status` / `age`；加上 `?nocache=隨機` 繞過快取就能確認 origin 其實已是新圖。
+- 解法（擇一）：
+  1. **改成新檔名**（如 `cover-v2.png`、`panel-main-v2.png`）並更新引用 → 網址一變 CDN 直接 miss，所有訪客立即看到新圖（本專案採用此法）。
+  2. 到 Cloudflare 後台 **Purge Cache**（清該 URL 或全清）。
+- 自己的瀏覽器另外用 **Cmd + Shift + R** 硬刷。
 
 ## 正常發文檢查清單
 
