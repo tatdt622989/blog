@@ -9,7 +9,7 @@ tags:
 - Aseprite
 ---
 
-![](cover.png)
+![](cover-v2.png)
 
 ## 前言：有想法、有引擎，就是缺美術
 

@@ -9,7 +9,7 @@ tags:
 - AI
 ---
 
-![](cover.png)
+![](cover-v2.png)
 
 ## 前言
 
