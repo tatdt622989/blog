@@ -158,3 +158,5 @@ push 後 GitHub Actions 會自動把 `public/` 部署到伺服器。
 | `_config.yml` | Hexo 站台設定 |
 | `.github/workflows/server_deploy.yml` | push 到 main 的自動部署 |
 | `api.php` | 部署時複製到 `public/api.php` |
+
+## Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com> 不要寫這個在 commit
