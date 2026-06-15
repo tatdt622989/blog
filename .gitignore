@@ -1,3 +1,6 @@
 node_modules
 .deploy_git
 .DS_Store
+
+# 本地自動化管理系統 — 程式/資料/logs/金鑰/設計文件一律不進公開版控
+/automation/
