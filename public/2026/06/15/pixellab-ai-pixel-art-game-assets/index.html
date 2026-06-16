@@ -6,13 +6,7 @@
   <title>想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   
-  <meta name="description" content="前言：有想法、有引擎，就是缺美術如果你曾經想做一款自己的小遊戲，多半會卡在同一個地方——美術素材。
-程式可以慢慢學，遊戲引擎（Unity、Godot、GameMaker）也都免費，網路教學一大堆。但是當你打開引擎、準備放進主角、敵人、道具、地圖磚塊時，才會發現一個殘酷的事實：
-
-「我不會畫圖。」
-
-買素材包？風格常常湊不齊，缺的東西永遠剛好沒有。外包？預算與時間都吃不消。自己學畫 pixel art？光是讓一隻角色的八個方向動起來，就足以讓人放棄整個專案。
-這篇文章要介紹的 PixelLab，正是為了這個痛點而生：它讓你用 AI 直接生成 pixel art 素材——角色、動畫、道具、地圖磚塊、甚至 UI 介面，而且能直接在你熟悉的繪圖工具 Aseprite 裡操作。">
+  <meta name="description" content="想用 AI 做遊戲卻缺少美術素材？深度實測 Aseprite AI 像素外掛 PixelLab，教你如何快速生成多向角色、動作動畫、地圖磚塊（Tileset）與整套 UI Icon，並解析 2026 最新訂閱方案與年約省錢技巧。">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -92,7 +86,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/cover-v2.png"></p>
+        <p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/cover-v2.png" alt="PixelLab AI 像素藝術遊戲素材生成器封面圖"></p>
 <h2 id="前言：有想法、有引擎，就是缺美術"><a href="#前言：有想法、有引擎，就是缺美術" class="headerlink" title="前言：有想法、有引擎，就是缺美術"></a>前言：有想法、有引擎，就是缺美術</h2><p>如果你曾經想做一款自己的小遊戲，多半會卡在同一個地方——<strong>美術素材</strong>。</p>
 <p>程式可以慢慢學，遊戲引擎（Unity、Godot、GameMaker）也都免費，網路教學一大堆。但是當你打開引擎、準備放進主角、敵人、道具、地圖磚塊時，才會發現一個殘酷的事實：</p>
 <blockquote>
@@ -120,7 +114,7 @@
 <p>💡 <strong>前置需求</strong>：要在 Aseprite 裡使用 PixelLab，你得先有 Aseprite。安裝步驟我整理在另一篇：<a href="/2026/06/15/aseprite-install-guide/">Aseprite 安裝教學</a>，照著做就能裝好並接上 PixelLab 外掛。</p>
 </blockquote>
 <h2 id="介面導覽"><a href="#介面導覽" class="headerlink" title="介面導覽"></a>介面導覽</h2><p>裝好外掛後，PixelLab 會在 Aseprite 裡開一個面板。主選單長這樣（這是一條垂直的側邊選單）：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/panel-main-v2.png"></p>
+<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/panel-main-v2.png" alt="PixelLab 在 Aseprite 中的主功能面板"></p>
 <p>可以看到功能分得很清楚：</p>
 <ul>
 <li><strong>Create image &#x2F; Edit image</strong>：生成與編輯</li>
@@ -129,7 +123,7 @@
 <li><strong>Other</strong>：減色（Reduce colors）、去背（Remove background）、像素修正（Pixel correction）等實用後製工具</li>
 </ul>
 <p>點進 <strong>Create image</strong> 後，會看到一整排生成模式：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/panel-create-image-v2.png"></p>
+<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/panel-create-image-v2.png" alt="PixelLab Create Image 生成模式選項"></p>
 <p>這裡的重點是<strong>模式分級</strong>：</p>
 <ul>
 <li><strong>Pro tools</strong>：品質最高，會用到較多生成額度（generations），適合正式素材</li>
@@ -140,13 +134,13 @@
 <h2 id="核心功能實測"><a href="#核心功能實測" class="headerlink" title="核心功能實測"></a>核心功能實測</h2><h3 id="1-角色生成：一句話生出一隻主角"><a href="#1-角色生成：一句話生出一隻主角" class="headerlink" title="1. 角色生成：一句話生出一隻主角"></a>1. 角色生成：一句話生出一隻主角</h3><p>這是最殺的功能。你只要描述角色外觀，PixelLab 就會產出像素風角色，而且不是只給你「一張正面圖」——可以接著用 <strong>Rotate</strong> 生成八個方向、用 <strong>Animate</strong> 生成走路 &#x2F; 攻擊動畫，整套丟進引擎就是一個能動的角色。對獨立開發者來說，這等於把過去最痛苦的工作量壓縮成幾分鐘。</p>
 <h3 id="2-Inpaint：哪個部位不滿意，就框起來局部重畫"><a href="#2-Inpaint：哪個部位不滿意，就框起來局部重畫" class="headerlink" title="2. Inpaint：哪個部位不滿意，就框起來局部重畫"></a>2. Inpaint：哪個部位不滿意，就框起來局部重畫</h3><p>角色大致 OK、只有某個細節想改時，不必整隻重生——<strong>Inpaint（局部重繪）</strong> 可以只針對你框選的區域重新生成，其餘部分原封不動。</p>
 <p>例如下面這隻 chibi 角色，想換臉部表情時，把臉的範圍選起來交給 AI 重畫（被選取、準備重繪的區域會先呈現成一塊空白）：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/character-large.png"></p>
+<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/character-large.png" alt="PixelLab 局部重繪 Inpaint 選取區域範例"></p>
 <p>重繪完成後，臉部就換上了新的表情（這裡變成了生氣臉），而髮型、衣服與身體其他部分完全維持原樣：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/character-pixel.png"></p>
+<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/character-pixel.png" alt="PixelLab 局部重繪後換上新表情的角色素材"></p>
 <p>這在「九成滿意、只差一點」的微調情境下特別好用，省去重做整張圖的功夫。</p>
 <h3 id="3-Image-to-pixel-art：把現有圖片像素化"><a href="#3-Image-to-pixel-art：把現有圖片像素化" class="headerlink" title="3. Image to pixel art：把現有圖片像素化"></a>3. Image to pixel art：把現有圖片像素化</h3><p>手邊已經有 concept art、AI 生圖、或一張參考照片？用 <strong>Image to pixel art</strong> 可以把它轉成像素風，並且自動處理配色與解析度，省去手動「降採樣 + 對齊像素格」的苦工。</p>
 <h3 id="4-UI-from-layout：一次生成整套介面-icon"><a href="#4-UI-from-layout：一次生成整套介面-icon" class="headerlink" title="4. UI from layout：一次生成整套介面 icon"></a>4. UI from layout：一次生成整套介面 icon</h3><p>這個功能對做遊戲的人特別實用。你在面板上排好版面、替每個格子命名（avatar、mail、chest、money bag……），PixelLab 就會<strong>一次生成整套風格一致的 icon</strong>：</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/ui-from-layout.png"></p>
+<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/ui-from-layout.png" alt="PixelLab UI from layout 批次生成風格一致的遊戲 UI 圖示"></p>
 <p>右邊就是依左邊版面生出的成果——頭像、信件、寶箱、寶石、金幣、鈴鐺……全部同一個畫風。過去要請美術統一風格畫一整套 UI icon，現在一個指令搞定。（注意這類 Pro 工具一次會吃掉約 20–40 個生成額度。）</p>
 <h3 id="5-後製工具：去背、減色、像素修正"><a href="#5-後製工具：去背、減色、像素修正" class="headerlink" title="5. 後製工具：去背、減色、像素修正"></a>5. 後製工具：去背、減色、像素修正</h3><p>生成只是第一步，PixelLab 也內建了讓素材「能用」的後製：</p>
 <ul>
@@ -155,7 +149,7 @@
 <li><strong>Pixel correction</strong>：修正歪掉、糊掉的像素，讓邊緣乾淨對齊</li>
 </ul>
 <h2 id="價格方案"><a href="#價格方案" class="headerlink" title="價格方案"></a>價格方案</h2><p>PixelLab 採訂閱制，並以「生成額度（generations）」計價。每個動作會消耗不同數量的額度（一般生成 1 個、Pro 工具 20–40 個）。</p>
-<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/pricing.png"></p>
+<p><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/pricing.png" alt="PixelLab 2026年最新訂閱方案價格與年約折扣表"></p>
 <table>
 <thead>
 <tr>
