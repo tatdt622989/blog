@@ -117,8 +117,10 @@ jsonContent:
     permalink: true
     excerpt: true
 
-archive_generator:
-    per_page: 20
-    yearly: true
-    monthly: true
     daily: false
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  tag: true
+  category: true

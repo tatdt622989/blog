@@ -51,7 +51,7 @@ tags:
 正文……
 ```
 
-- 封面/圖片放在文章的資產資料夾，內文用相對路徑引用，例如 `![](cover.png)`
+- 封面/圖片放在文章的資產資料夾，內文用相對路徑引用，例如 `![](cover.png)` 或 `![](cover.jpg)`
 - `tags` 用 YAML 清單；分類可加 `categories`
 
 ### ⭐ 撰寫與排版慣例（重要，務必遵守）
@@ -78,7 +78,7 @@ tags:
 4. **封面圖可用 PixelLab MCP 生成**
    - 本專案已設定 PixelLab MCP server（見 `~/.claude.json` 對應本專案的 `mcpServers.pixellab`）。
    - 生成「場景型」封面用 `create_map_object`（基本模式、`width`/`height` 設成橫幅比例如 400×240），效果比單一角色 sprite 更像吸睛的封面；角色則用 `create_character`（`mode: v3` 品質最佳）。
-   - 都是非同步：先 `create_*` 拿 id，再用 `get_*` 取結果。`get_map_object` / `get_character` 會回 `download` URL，用帶 `Authorization: Bearer <token>` 的 `curl` 下載成文章資產資料夾裡的 `cover.png`。
+   - 都是非同步：先 `create_*` 拿 id，再用 `get_*` 取結果。`get_map_object` / `get_character` 會回 download URL，用帶 `Authorization: Bearer <token>` 的 `curl` 下載成文章資產資料夾裡的 `cover.png` 或已壓縮的 `cover.jpg`（體積建議限制在 300KB 以下，以利 SEO 載入速度）。
    - ⚠️ map object 產生後 **8 小時內會自動刪除**，記得儘快下載。
 
 ### 3. 本機預覽
