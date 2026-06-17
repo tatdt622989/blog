@@ -7,7 +7,7 @@ tags:
 - Claude
 ---
 
-![](cover.png)
+![](cover.jpg)
 
 ## 前言
 
