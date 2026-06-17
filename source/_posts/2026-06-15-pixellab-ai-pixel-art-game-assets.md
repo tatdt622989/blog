@@ -8,6 +8,7 @@ tags:
 - Game Dev
 - Aseprite
 description: 想用 AI 做遊戲卻缺少美術素材？深度實測 Aseprite AI 像素外掛 PixelLab，教你如何快速生成多向角色、動作動畫、地圖磚塊（Tileset）與整套 UI Icon，並解析 2026 最新訂閱方案與年約省錢技巧。
+updated: 2026-06-17 11:18:47
 ---
 
 ![PixelLab AI 像素藝術遊戲素材生成器封面圖](cover-v2.png)

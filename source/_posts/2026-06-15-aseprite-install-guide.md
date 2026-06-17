@@ -8,6 +8,7 @@ tags:
 - Game Dev
 - AI
 description: Aseprite 像素繪圖軟體安裝與 PixelLab AI 像素外掛串接教學。本文為你整理 Steam 正式版購買、免費編譯原始碼等三種取得管道，並帶你一步步完成外掛授權，快速解決遊戲美術素材短缺痛點。
+updated: 2026-06-17 11:18:47
 ---
 
 ![](cover-v2.png)
