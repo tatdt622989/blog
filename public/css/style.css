@@ -530,13 +530,13 @@ article .entry pre {
   font-family: Monaco, Menlo, Consolas, Courier New, monospace;
 }
 article .entry code {
-  background: #1f1f1f;
-  color: #666;
-  padding: 0 5px;
+  background: rgba(0,0,0,0.06);
+  color: #c7254e;
+  padding: 2px 5px;
   margin: 0 2px;
   font-size: 0.9em;
-  border: 1px solid #ddd;
   border-radius: 3px;
+  word-break: break-word;
 }
 article .entry pre {
   background: #1f1f1f;
@@ -548,6 +548,7 @@ article .entry pre {
 }
 article .entry pre code {
   background: none;
+  color: inherit;
   padding: 0;
   margin: 0;
   border: none;

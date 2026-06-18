@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://blog.6yuwei.com/2026/06/15/pixellab-ai-pixel-art-game-assets/</loc>
+    <loc>https://blog.6yuwei.com/2026/06/15/aseprite-install-guide/</loc>
     
     <lastmod>2026-06-17</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.6yuwei.com/2026/06/15/aseprite-install-guide/</loc>
+    <loc>https://blog.6yuwei.com/2026/06/15/pixellab-ai-pixel-art-game-assets/</loc>
     
     <lastmod>2026-06-17</lastmod>
     
@@ -349,13 +349,6 @@
   </url>
   
   <url>
-    <loc>https://blog.6yuwei.com/tags/interview/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.6yuwei.com/tags/design/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -384,7 +377,35 @@
   </url>
   
   <url>
+    <loc>https://blog.6yuwei.com/tags/interview/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.6yuwei.com/tags/TypeScript/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.6yuwei.com/tags/GPT/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.6yuwei.com/tags/Node-js/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.6yuwei.com/tags/AI/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -406,27 +427,6 @@
   
   <url>
     <loc>https://blog.6yuwei.com/tags/Game/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.6yuwei.com/tags/AI/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.6yuwei.com/tags/GPT/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.6yuwei.com/tags/Node-js/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -468,6 +468,20 @@
   </url>
   
   <url>
+    <loc>https://blog.6yuwei.com/tags/Minecraft/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.6yuwei.com/tags/Linux/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.6yuwei.com/tags/OpenAI/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -503,14 +517,7 @@
   </url>
   
   <url>
-    <loc>https://blog.6yuwei.com/tags/Minecraft/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.6yuwei.com/tags/Linux/</loc>
+    <loc>https://blog.6yuwei.com/tags/Aseprite/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -532,13 +539,6 @@
   
   <url>
     <loc>https://blog.6yuwei.com/tags/Game-Dev/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.6yuwei.com/tags/Aseprite/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
