@@ -81,6 +81,9 @@ tags:
    - 都是非同步：先 `create_*` 拿 id，再用 `get_*` 取結果。`get_map_object` / `get_character` 會回 download URL，用帶 `Authorization: Bearer <token>` 的 `curl` 下載成文章資產資料夾裡的 `cover.png` 或已壓縮的 `cover.jpg`（體積建議限制在 300KB 以下，以利 SEO 載入速度）。
    - ⚠️ map object 產生後 **8 小時內會自動刪除**，記得儘快下載。
 
+5. **文章與標題（目次）一律禁止使用表情符號（Emoji）**
+   - 不論是文章大標題、副標題（H2、H3、H4 等，即目錄/目次中會出現的標題）或內文，一律禁止使用 Emoji 表情符號，以維持部落格的專業與簡潔排版。
+
 ### 3. 本機預覽
 
 ```bash

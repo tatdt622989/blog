@@ -91,24 +91,24 @@
 <p>為了解決這個難題，開發者社群推出了許多聰明的管理方案。本文將為您開箱超實用的 macOS 開源選單列工具 <strong>CodexBar</strong>，並深度解析 Codex 最近推出的<strong>自訂手動重設（Reset）功能</strong>。同時，我們也整理了 Claude 與 Codex 額度重置的背後規律，帶你掌握一套「AI 額度最佳使用策略」，從此擺脫額度不足的焦慮！</p>
 <span id="more"></span>
 
-<h2 id="🔍-額度管理神器：CodexBar-一站式監控"><a href="#🔍-額度管理神器：CodexBar-一站式監控" class="headerlink" title="🔍 額度管理神器：CodexBar 一站式監控"></a>🔍 額度管理神器：CodexBar 一站式監控</h2><p>當你同時使用多個 AI 服務時，光是為了檢查剩餘額度，就得分別登入 Anthropic Console、Codex 官網等好幾個網站，過程極其繁瑣。</p>
+<h2 id="額度管理神器：CodexBar-一站式監控"><a href="#額度管理神器：CodexBar-一站式監控" class="headerlink" title="額度管理神器：CodexBar 一站式監控"></a>額度管理神器：CodexBar 一站式監控</h2><p>當你同時使用多個 AI 服務時，光是為了檢查剩餘額度，就得分別登入 Anthropic Console、Codex 官網等好幾個網站，過程極其繁瑣。</p>
 <p>為了解決這個痛點，開發者社群推出了一款名為 <strong>CodexBar</strong> 的開源選單列工具（GitHub 專案：<a target="_blank" rel="noopener" href="https://github.com/steipete/CodexBar">steipete&#x2F;CodexBar</a>）。它可以常駐在 macOS 的頂部選單列，即時幫你追蹤各大 AI 助理的用量進度。</p>
 <p><img src="/2026/06/18/claude-codex-quota-guide/codexbar-panel.jpg" alt="CodexBar 能在選單列即時顯示 Claude 與 Codex 的用量百分比與重置倒數"></p>
-<h3 id="💡-CodexBar-的核心特色："><a href="#💡-CodexBar-的核心特色：" class="headerlink" title="💡 CodexBar 的核心特色："></a>💡 CodexBar 的核心特色：</h3><ul>
+<h3 id="CodexBar-的核心特色："><a href="#CodexBar-的核心特色：" class="headerlink" title="CodexBar 的核心特色："></a>CodexBar 的核心特色：</h3><ul>
 <li><strong>專注支援主要平台</strong>：支援 <strong>Claude Code</strong> 與 <strong>Codex</strong> 的額度與使用量監控。</li>
 <li><strong>免手動登入</strong>：它不需要你手動輸入帳號密碼，而是能安全地讀取本地瀏覽器（如 Safari、Chrome）的既有 Cookie、本地 CLI 日誌或系統 Keychain 來獲取數據。</li>
 <li><strong>注重隱私</strong>：所有數據解析都在本地電腦進行，不會將你的 API Key 或帳號資料上傳到第三方伺服器。</li>
 <li><strong>視覺化提示</strong>：直接用進度條顯示本階段（Session）與本週（Weekly）的用量百分比，並提供精確到分鐘的重置時間倒數。</li>
 </ul>
 <hr>
-<h2 id="⚡-Codex-最新功能：自訂手動重設（Reset）"><a href="#⚡-Codex-最新功能：自訂手動重設（Reset）" class="headerlink" title="⚡ Codex 最新功能：自訂手動重設（Reset）"></a>⚡ Codex 最新功能：自訂手動重設（Reset）</h2><p>除了被動地監控額度，AI 服務商也在嘗試給予開發者更多主導權。近期 Codex 就推出了一項非常人性化的新功能——<strong>手動重設額度機制</strong>。</p>
+<h2 id="Codex-最新功能：自訂手動重設（Reset）"><a href="#Codex-最新功能：自訂手動重設（Reset）" class="headerlink" title="Codex 最新功能：自訂手動重設（Reset）"></a>Codex 最新功能：自訂手動重設（Reset）</h2><p>除了被動地監控額度，AI 服務商也在嘗試給予開發者更多主導權。近期 Codex 就推出了一項非常人性化的新功能——<strong>手動重設額度機制</strong>。</p>
 <p>過去，當我們的快速額度（Fast Quota）用完後，服務通常會強迫我們進入「慢速模式」或乾等固定的滾動週期結束。而現在，在用量選單中，會明確顯示<strong>可用重設 2 次</strong>（或其他次數）的選項。</p>
 <p><img src="/2026/06/18/claude-codex-quota-guide/reset-quota.png" alt="Codex 的剩餘用量面板中，新增了可由使用者自行觸發的「可用重設」功能，讓開發者自己決定重置額度的時機"></p>
 <p>值得注意的是，這些「手動重設次數」並不是無限發送的，而是可以透過官方活動來「囤積（Banked）」。例如 OpenAI 最近推行的<strong>好友推薦 Pilot 試點計畫（該活動進行至 2026 年 6 月 24 日截止）</strong>，用戶成功推薦好友註冊付費方案，即可賺取額外的重置次數（上限為 3 次）。這也是為什麼有些付費用戶的面板上會顯示「可用重設 2 次」的原因。這項新機制讓開發者在面對短期高強度的專案重組或大型重構時，有了極大的彈性。</p>
 <hr>
-<h2 id="📊-深度分析：Claude-與-Codex-的額度重置規律"><a href="#📊-深度分析：Claude-與-Codex-的額度重置規律" class="headerlink" title="📊 深度分析：Claude 與 Codex 的額度重置規律"></a>📊 深度分析：Claude 與 Codex 的額度重置規律</h2><p>除了日常的計費週期，你是否有注意到，有時候明明還沒到重設時間，額度卻悄悄被補滿了？根據社群長期的觀察，這背後其實有以下幾個有趣的重置規律：</p>
+<h2 id="深度分析：Claude-與-Codex-的額度重置規律"><a href="#深度分析：Claude-與-Codex-的額度重置規律" class="headerlink" title="深度分析：Claude 與 Codex 的額度重置規律"></a>深度分析：Claude 與 Codex 的額度重置規律</h2><p>除了日常的計費週期，你是否有注意到，有時候明明還沒到重設時間，額度卻悄悄被補滿了？根據社群長期的觀察，這背後其實有以下幾個有趣的重置規律：</p>
 <h3 id="1-發布新模型後的「全民大送禮」"><a href="#1-發布新模型後的「全民大送禮」" class="headerlink" title="1. 發布新模型後的「全民大送禮」"></a>1. 發布新模型後的「全民大送禮」</h3><p>這是最常見的驚喜重置時間點。不論是 Anthropic 發表新一代的 Claude 模型，或是 Codex 進行平台架構升級，服務商通常會在發布當天<strong>主動將所有用戶的 Fast Quota 歸零重新計算</strong>。</p>
-<p><strong>💡 實戰案例：</strong></p>
+<p><strong>實戰案例：</strong></p>
 <ul>
 <li><strong>GPT-5.5 推出（2026&#x2F;04&#x2F;24）</strong>：OpenAI 於 4 月 24 日正式推出新一代推理模型 GPT-5.5。當天為了推廣，官方對所有付費用戶的 Fast Quota 進行了全局重置。</li>
 <li><strong>Claude Fable 5 發表（2026&#x2F;06&#x2F;09）</strong>：Anthropic 於 6 月 9 日發表 Claude Fable 5，發表當天同樣強制重設了所有人的額度。</li>
@@ -126,20 +126,20 @@
 <p><strong>這給我們的策略啟示是</strong>：如果發現 AI 服務正在大規模崩潰或剛修復，先別急著浪費你珍貴的「手動重設」次數，因為官方極有可能在幾小時內，直接幫大家免費重置一輪！</p>
 <h3 id="3-滾動時間視窗（Rolling-Window）的運作邏輯"><a href="#3-滾動時間視窗（Rolling-Window）的運作邏輯" class="headerlink" title="3. 滾動時間視窗（Rolling Window）的運作邏輯"></a>3. 滾動時間視窗（Rolling Window）的運作邏輯</h3><p>大多數服務（如 Claude Pro 或 Codex）的限制是採用「滾動時間視窗」（例如 3 小時或 5 小時滾動限制），而不是在每日的固定時間點重置。這意味著你的用量是隨著時間「慢慢釋放」的。當你在下午 2 點消耗了大量 Token，這些額度會在 5 小時後（即晚上 7 點）陸續釋放回你的可用額度中。</p>
 <hr>
-<h2 id="📘-AI-額度最佳使用手冊（使用策略）"><a href="#📘-AI-額度最佳使用手冊（使用策略）" class="headerlink" title="📘 AI 額度最佳使用手冊（使用策略）"></a>📘 AI 額度最佳使用手冊（使用策略）</h2><p>了解了上述工具與規律後，我們可以制定一套最效率的額度使用策略：</p>
-<h3 id="🛠️-策略一：善用-CodexBar-管理滾動視窗"><a href="#🛠️-策略一：善用-CodexBar-管理滾動視窗" class="headerlink" title="🛠️ 策略一：善用 CodexBar 管理滾動視窗"></a>🛠️ 策略一：善用 CodexBar 管理滾動視窗</h3><p>當你準備進行一項需要傳入大量 context 的大型 Task（例如讓 AI 閱讀整個資料夾並進行程式碼重構）之前，先看一下 <strong>CodexBar</strong>。如果顯示再過 15 分鐘就會有大量額度重設釋出，建議先稍微休息，等待重設完成後再送出請求。這能避免對話進行到一半，AI 因為額度耗盡而被迫切斷上下文。</p>
-<h3 id="🛠️-策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設"><a href="#🛠️-策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設" class="headerlink" title="🛠️ 策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設"></a>🛠️ 策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設</h3><p>手動重設次數非常珍貴，千萬不要一看到額度降到 50% 甚至 80% 就強迫症發作按下去！因為一旦按了重設，原本剩餘的快速額度就會被直接覆蓋。最極限的榨乾做法是：<strong>一定要用到完全歸零（或者已經被限流進入慢速模式）之後，再使出這招起死回生術。</strong></p>
+<h2 id="AI-額度最佳使用手冊（使用策略）"><a href="#AI-額度最佳使用手冊（使用策略）" class="headerlink" title="AI 額度最佳使用手冊（使用策略）"></a>AI 額度最佳使用手冊（使用策略）</h2><p>了解了上述工具與規律後，我們可以制定一套最效率的額度使用策略：</p>
+<h3 id="策略一：善用-CodexBar-管理滾動視窗"><a href="#策略一：善用-CodexBar-管理滾動視窗" class="headerlink" title="策略一：善用 CodexBar 管理滾動視窗"></a>策略一：善用 CodexBar 管理滾動視窗</h3><p>當你準備進行一項需要傳入大量 context 的大型 Task（例如讓 AI 閱讀整個資料夾並進行程式碼重構）之前，先看一下 <strong>CodexBar</strong>。如果顯示再過 15 分鐘就會有大量額度重設釋出，建議先稍微休息，等待重設完成後再送出請求。這能避免對話進行到一半，AI 因為額度耗盡而被迫切斷上下文。</p>
+<h3 id="策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設"><a href="#策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設" class="headerlink" title="策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設"></a>策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設</h3><p>手動重設次數非常珍貴，千萬不要一看到額度降到 50% 甚至 80% 就強迫症發作按下去！因為一旦按了重設，原本剩餘的快速額度就會被直接覆蓋。最極限的榨乾做法是：<strong>一定要用到完全歸零（或者已經被限流進入慢速模式）之後，再使出這招起死回生術。</strong></p>
 <p>同時，在決定點下重設前，<strong>務必透過 CodexBar 檢查自己當前的個人自動重置時間（例如 5 小時滾動冷卻或每週重置倒數）</strong>：</p>
 <ul>
 <li><strong>如果自動重設只剩十幾分鐘或半小時</strong>：請喝杯咖啡稍微等待，讓系統免費自動補滿，把寶貴的手動重設次數省下來。</li>
 <li><strong>如果自動重設還剩下數小時（如 4 小時以上）甚至數天，且當下有連貫寫 Code 的硬性需求</strong>：這時候毫不猶豫地觸發手動重置，此時的使用收益才是最高的！</li>
 </ul>
-<h3 id="🛠️-策略三：模型分級使用，拒絕大砲打小鳥"><a href="#🛠️-策略三：模型分級使用，拒絕大砲打小鳥" class="headerlink" title="🛠️ 策略三：模型分級使用，拒絕大砲打小鳥"></a>🛠️ 策略三：模型分級使用，拒絕大砲打小鳥</h3><p>不要任何簡單的問題都直接丟給最昂貴的旗艦模型（如 Claude 3 Opus，或 Codex 中的 GPT-5.5 &#x2F; o3 等頂級推理模型）。</p>
+<h3 id="策略三：模型分級使用，拒絕大砲打小鳥"><a href="#策略三：模型分級使用，拒絕大砲打小鳥" class="headerlink" title="策略三：模型分級使用，拒絕大砲打小鳥"></a>策略三：模型分級使用，拒絕大砲打小鳥</h3><p>不要任何簡單的問題都直接丟給最昂貴的旗艦模型（如 Claude 3 Opus，或 Codex 中的 GPT-5.5 &#x2F; o3 等頂級推理模型）。</p>
 <ul>
 <li><strong>日常代碼撰寫與 Autocomplete</strong>：使用速度極快、額度消耗極低的輕量模型（如 Claude 3.5 Sonnet，或在 Codex 中手動切換至 <strong><code>gpt-5.4-mini</code></strong> 作為日常開發主力）。</li>
 <li><strong>複雜 Bug 排查與架構設計</strong>：當輕量模型遇到瓶頸或開始「鬼打牆」時，再切換到 Opus 或頂級推理模型進行深度除錯。</li>
 </ul>
-<h3 id="🛠️-策略四：主動預測重置時間，並定期查看-Reddit-x2F-X-社群情報"><a href="#🛠️-策略四：主動預測重置時間，並定期查看-Reddit-x2F-X-社群情報" class="headerlink" title="🛠️ 策略四：主動預測重置時間，並定期查看 Reddit &#x2F; X 社群情報"></a>🛠️ 策略四：主動預測重置時間，並定期查看 Reddit &#x2F; X 社群情報</h3><p>額度管理不能只靠「被動等待」，優秀的開發者需要掌握情報主導權：</p>
+<h3 id="策略四：主動預測重置時間，並定期查看-Reddit-x2F-X-社群情報"><a href="#策略四：主動預測重置時間，並定期查看-Reddit-x2F-X-社群情報" class="headerlink" title="策略四：主動預測重置時間，並定期查看 Reddit &#x2F; X 社群情報"></a>策略四：主動預測重置時間，並定期查看 Reddit &#x2F; X 社群情報</h3><p>額度管理不能只靠「被動等待」，優秀的開發者需要掌握情報主導權：</p>
 <ol>
 <li><strong>預期並推算重置時間點</strong>：<ul>
 <li><strong>日常滾動重設</strong>：利用 CodexBar 可以看到精確到分鐘的冷卻倒數，依此安排高消耗任務的切點。</li>
@@ -153,7 +153,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="💬-結語"><a href="#💬-結語" class="headerlink" title="💬 結語"></a>💬 結語</h2><p>在 AI 時代，如何與 AI 助理高效 Cowork，精準控管資源，已成了不可或缺的生存技能。希望這套「極限榨乾指南」能幫助大家更聰明地掌握算力資源，寫 Code 再也不怕被中斷！</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>在 AI 時代，如何與 AI 助理高效 Cowork，精準控管資源，已成了不可或缺的生存技能。希望這套「極限榨乾指南」能幫助大家更聰明地掌握算力資源，寫 Code 再也不怕被中斷！</p>
 <p>你目前使用哪一款 AI 程式助理？平常又是怎麼規劃額度的？歡迎在下方留言與我們分享你的避坑指南！（最後小提醒：各大 AI 服務商的額度與重設規則隨時可能調整，第三方開源工具也請自行評估使用風險，本文僅供參考與經驗分享喔！）</p>
 
       
