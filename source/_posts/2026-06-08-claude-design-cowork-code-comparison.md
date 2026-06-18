@@ -7,6 +7,7 @@ tags:
 - Design
 - Cowork
 - Coding
+cover: cover.png
 ---
 
 ![](cover.png)
