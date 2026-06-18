@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>別再乾等 5 小時！Claude 與 Codex 額度極限榨乾術（附 2026 年 CodexBar 監控實戰） | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  
+  <meta name="description" content="別再乾等 5 小時！本文深入介紹 2026 年最新 Claude 與 Codex 額度管理策略，包含開源選單列工具 CodexBar 的餘額管理，以及自訂手動重設機制。並解析新模型發布、伺服器故障時的額度重置規律，助你榨乾最後一滴算力（內附安全使用免責聲明）。">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="別再乾等 5 小時！Claude 與 Codex 額度極限榨乾術（附 2026 年 CodexBar 監控實戰）"/>
+  <meta property="og:site_name" content="6yuwei"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664"
+      crossorigin="anonymous"></script>
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css?v=260526-2.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei">
+    </a>
+  </div>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-2026-AI程式助理額度最佳使用指南：CodexBar-餘額管理與手動重設策略" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-06-18T06:34:36.000Z"><a href="/2026/06/18/2026-AI%E7%A8%8B%E5%BC%8F%E5%8A%A9%E7%90%86%E9%A1%8D%E5%BA%A6%E6%9C%80%E4%BD%B3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%9ACodexBar-%E9%A4%98%E9%A1%8D%E7%AE%A1%E7%90%86%E8%88%87%E6%89%8B%E5%8B%95%E9%87%8D%E8%A8%AD%E7%AD%96%E7%95%A5/">2026-06-18</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">別再乾等 5 小時！Claude 與 Codex 額度極限榨乾術（附 2026 年 CodexBar 監控實戰）</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><img src="/2026/06/18/2026-AI%E7%A8%8B%E5%BC%8F%E5%8A%A9%E7%90%86%E9%A1%8D%E5%BA%A6%E6%9C%80%E4%BD%B3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%9ACodexBar-%E9%A4%98%E9%A1%8D%E7%AE%A1%E7%90%86%E8%88%87%E6%89%8B%E5%8B%95%E9%87%8D%E8%A8%AD%E7%AD%96%E7%95%A5/cover.jpg"></p>
+<p>在 2026 年的今天，身為軟體工程師，我們的工作流程已經離不開 Claude Code、Codex 等強大的 AI 程式助理。然而，隨著 AI 深入到每一個開發環節，<strong>額度焦慮</strong> 也成了大家共同的痛點。你是否也曾遇過「程式寫到一半，額度突然耗盡，只能乾等 5 小時滾動重設」的窘境？</p>
+<p>為了解決這個難題，開發者社群推出了許多聰明的管理方案。本文將為您開箱超實用的 macOS 開源選單列工具 <strong>CodexBar</strong>，並深度解析 Codex 最近推出的<strong>自訂手動重設（Reset）功能</strong>。同時，我們也整理了 Claude 與 Codex 額度重置的背後規律，帶你掌握一套「AI 額度最佳使用策略」，從此擺脫額度不足的焦慮！</p>
+<span id="more"></span>
+
+<h2 id="🔍-額度管理神器：CodexBar-一站式監控"><a href="#🔍-額度管理神器：CodexBar-一站式監控" class="headerlink" title="🔍 額度管理神器：CodexBar 一站式監控"></a>🔍 額度管理神器：CodexBar 一站式監控</h2><p>當你同時使用多個 AI 服務時，光是為了檢查剩餘額度，就得分別登入 Anthropic Console、Codex 官網等好幾個網站，過程極其繁瑣。</p>
+<p>為了解決這個痛點，開發者社群推出了一款名為 <strong>CodexBar</strong> 的開源選單列工具（GitHub 專案：<a target="_blank" rel="noopener" href="https://github.com/steipete/CodexBar">steipete&#x2F;CodexBar</a>）。它可以常駐在 macOS 的頂部選單列，即時幫你追蹤各大 AI 助理的用量進度。</p>
+<p><img src="/2026/06/18/2026-AI%E7%A8%8B%E5%BC%8F%E5%8A%A9%E7%90%86%E9%A1%8D%E5%BA%A6%E6%9C%80%E4%BD%B3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%9ACodexBar-%E9%A4%98%E9%A1%8D%E7%AE%A1%E7%90%86%E8%88%87%E6%89%8B%E5%8B%95%E9%87%8D%E8%A8%AD%E7%AD%96%E7%95%A5/codexbar-panel.jpg" alt="CodexBar 能在選單列即時顯示 Claude 與 Codex 的用量百分比與重置倒數"></p>
+<h3 id="💡-CodexBar-的核心特色："><a href="#💡-CodexBar-的核心特色：" class="headerlink" title="💡 CodexBar 的核心特色："></a>💡 CodexBar 的核心特色：</h3><ul>
+<li><strong>專注支援主要平台</strong>：支援 <strong>Claude Code</strong> 與 <strong>Codex</strong> 的額度與使用量監控。</li>
+<li><strong>免手動登入</strong>：它不需要你手動輸入帳號密碼，而是能安全地讀取本地瀏覽器（如 Safari、Chrome）的既有 Cookie、本地 CLI 日誌或系統 Keychain 來獲取數據。</li>
+<li><strong>注重隱私</strong>：所有數據解析都在本地電腦進行，不會將你的 API Key 或帳號資料上傳到第三方伺服器。</li>
+<li><strong>視覺化提示</strong>：直接用進度條顯示本階段（Session）與本週（Weekly）的用量百分比，並提供精確到分鐘的重置時間倒數。</li>
+</ul>
+<hr>
+<h2 id="⚡-Codex-最新功能：自訂手動重設（Reset）"><a href="#⚡-Codex-最新功能：自訂手動重設（Reset）" class="headerlink" title="⚡ Codex 最新功能：自訂手動重設（Reset）"></a>⚡ Codex 最新功能：自訂手動重設（Reset）</h2><p>除了被動地監控額度，AI 服務商也在嘗試給予開發者更多主導權。近期 Codex 就推出了一項非常人性化的新功能——<strong>手動重設額度機制</strong>。</p>
+<p>過去，當我們的快速額度（Fast Quota）用完後，服務通常會強迫我們進入「慢速模式」或乾等固定的滾動週期結束。而現在，在用量選單中，會明確顯示<strong>可用重設 2 次</strong>（或其他次數）的選項。</p>
+<p><img src="/2026/06/18/2026-AI%E7%A8%8B%E5%BC%8F%E5%8A%A9%E7%90%86%E9%A1%8D%E5%BA%A6%E6%9C%80%E4%BD%B3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%9ACodexBar-%E9%A4%98%E9%A1%8D%E7%AE%A1%E7%90%86%E8%88%87%E6%89%8B%E5%8B%95%E9%87%8D%E8%A8%AD%E7%AD%96%E7%95%A5/reset-quota.png" alt="Codex 的剩餘用量面板中，新增了可由使用者自行觸發的「可用重設」功能，讓開發者自己決定重置額度的時機"></p>
+<p>值得注意的是，這些「手動重設次數」並不是無限發送的，而是可以透過官方活動來「囤積（Banked）」。例如 OpenAI 最近推行的<strong>好友推薦 Pilot 試點計畫（該活動進行至 2026 年 6 月 24 日截止）</strong>，用戶成功推薦好友註冊付費方案，即可賺取額外的重置次數（上限為 3 次）。這也是為什麼有些付費用戶的面板上會顯示「可用重設 2 次」的原因。這項新機制讓開發者在面對短期高強度的專案重組或大型重構時，有了極大的彈性。</p>
+<hr>
+<h2 id="📊-深度分析：Claude-與-Codex-的額度重置規律"><a href="#📊-深度分析：Claude-與-Codex-的額度重置規律" class="headerlink" title="📊 深度分析：Claude 與 Codex 的額度重置規律"></a>📊 深度分析：Claude 與 Codex 的額度重置規律</h2><p>除了日常的計費週期，你是否有注意到，有時候明明還沒到重設時間，額度卻悄悄被補滿了？根據社群長期的觀察，這背後其實有以下幾個有趣的重置規律：</p>
+<h3 id="1-發布新模型後的「全民大送禮」"><a href="#1-發布新模型後的「全民大送禮」" class="headerlink" title="1. 發布新模型後的「全民大送禮」"></a>1. 發布新模型後的「全民大送禮」</h3><p>這是最常見的驚喜重置時間點。不論是 Anthropic 發表新一代的 Claude 模型，或是 Codex 進行平台架構升級，服務商通常會在發布當天<strong>主動將所有用戶的 Fast Quota 歸零重新計算</strong>。</p>
+<p><strong>💡 實戰案例：</strong></p>
+<ul>
+<li><strong>GPT-5.5 推出（2026&#x2F;04&#x2F;24）</strong>：OpenAI 於 4 月 24 日正式推出新一代推理模型 GPT-5.5。當天為了推廣，官方對所有付費用戶的 Fast Quota 進行了全局重置。</li>
+<li><strong>Claude Fable 5 發表（2026&#x2F;06&#x2F;09）</strong>：Anthropic 於 6 月 9 日發表 Claude Fable 5，發表當天同樣強制重設了所有人的額度。</li>
+</ul>
+<p>這兩個時間點正是實施「清空等待重設」的最佳時機。因此，每當得知有新模型即將發表時，最聰明的策略是<strong>在此之前趕緊把手頭上剩餘的額度通通清空、用在需要高消耗的大任務上</strong>。一旦新模型發布，額度被強制重置，就相當於白賺了一整輪免費額度！</p>
+<h3 id="2-伺服器故障或效能低落時的「補償性重置」"><a href="#2-伺服器故障或效能低落時的「補償性重置」" class="headerlink" title="2. 伺服器故障或效能低落時的「補償性重置」"></a>2. 伺服器故障或效能低落時的「補償性重置」</h3><p>AI 助理的背後是極其龐大的運算叢集。當遇到伺服器大塞車、API 請求延遲飆升，甚至是全球服務大中斷（Outage）時，開發者往往會面臨無法正常使用的困境。為了安撫社群，服務商在修復故障並恢復系統穩定後，經常會釋放一次<strong>補償性重置</strong>。</p>
+<p>這在社群中有許多真實的案例支持：</p>
+<ul>
+<li><strong>GPT-5.5 推出前的效能崩潰補償（2026&#x2F;04&#x2F;20）</strong>：在 GPT-5.5 發布前夕，OpenAI 伺服器因算力調整頻繁崩潰，許多開發者在 X 平台抱怨。官方隨後在發布前夕進行了補償性重設。</li>
+<li><strong>Tibo 爆料的額度異常流失修復（2026&#x2F;05&#x2F;28）</strong>：知名 AI 產品創辦人 Tibo 在 X (Twitter) 上發文爆料，指出 Codex 系統在 5 月底經歷過嚴重的「Limit Draining（額度異常流失）」Bug，導致開發者莫名額度見底。官方在 Tibo 爆料引發社群討論後承認問題，並於 5 月 28 日修復完成，隨後對所有受影響帳戶進行了手動補償重置。</li>
+<li><strong>Claude 的全球大當機補償（2026&#x2F;06&#x2F;02）</strong>：在 6 月 2 日當天，Claude 發生了嚴重的全球大癱瘓（出現廣泛的 529 Overloaded 錯誤）。服務陸續修復後，Reddit 社群上的許多付費用戶紛紛回報，自己的 5 小時滾動限制（Rolling Limit）被提早重置，這正是官方為了彌補斷線體驗所做出的全局重置。</li>
+<li><strong>Claude Fable 5 被禁後的動盪補償（2026&#x2F;06&#x2F;12 - 06&#x2F;13）</strong>：繼 6 月 9 日推出 Fable 5 後，僅過 3 天（6 月 12 日），美國政府突然以國家安全與出口管制為由，要求緊急停用 Fable 5，引發全網服務動盪與斷線。在 Anthropic 緊急封鎖該模型並改回備用模型的隔天（6 月 13 日），官方也悄悄送出了一波全局額度重設，以平息混亂。</li>
+<li><strong>Codex 的連線異常補償（2026&#x2F;06&#x2F;18 今天）</strong>：就在前天（6 月 16 日），OpenAI 爆發了嚴重的 Codex 服務異常，許多開發者在調用 GPT-5.5 模型時頻繁遭遇「model at capacity」與 API 錯誤。而在陸續修復完畢的 <strong>6 月 18 日（也就是今天）</strong>，社群上也有大量用戶驚喜發現，自己的快速額度被官方進行了補償性重置，額度瞬間補滿。</li>
+</ul>
+<p><strong>這給我們的策略啟示是</strong>：如果發現 AI 服務正在大規模崩潰或剛修復，先別急著浪費你珍貴的「手動重設」次數，因為官方極有可能在幾小時內，直接幫大家免費重置一輪！</p>
+<h3 id="3-滾動時間視窗（Rolling-Window）的運作邏輯"><a href="#3-滾動時間視窗（Rolling-Window）的運作邏輯" class="headerlink" title="3. 滾動時間視窗（Rolling Window）的運作邏輯"></a>3. 滾動時間視窗（Rolling Window）的運作邏輯</h3><p>大多數服務（如 Claude Pro 或 Codex）的限制是採用「滾動時間視窗」（例如 3 小時或 5 小時滾動限制），而不是在每日的固定時間點重置。這意味著你的用量是隨著時間「慢慢釋放」的。當你在下午 2 點消耗了大量 Token，這些額度會在 5 小時後（即晚上 7 點）陸續釋放回你的可用額度中。</p>
+<hr>
+<h2 id="📘-AI-額度最佳使用手冊（使用策略）"><a href="#📘-AI-額度最佳使用手冊（使用策略）" class="headerlink" title="📘 AI 額度最佳使用手冊（使用策略）"></a>📘 AI 額度最佳使用手冊（使用策略）</h2><p>了解了上述工具與規律後，我們可以制定一套最效率的額度使用策略：</p>
+<h3 id="🛠️-策略一：善用-CodexBar-管理滾動視窗"><a href="#🛠️-策略一：善用-CodexBar-管理滾動視窗" class="headerlink" title="🛠️ 策略一：善用 CodexBar 管理滾動視窗"></a>🛠️ 策略一：善用 CodexBar 管理滾動視窗</h3><p>當你準備進行一項需要傳入大量 context 的大型 Task（例如讓 AI 閱讀整個資料夾並進行程式碼重構）之前，先看一下 <strong>CodexBar</strong>。如果顯示再過 15 分鐘就會有大量額度重設釋出，建議先稍微休息，等待重設完成後再送出請求。這能避免對話進行到一半，AI 因為額度耗盡而被迫切斷上下文。</p>
+<h3 id="🛠️-策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設"><a href="#🛠️-策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設" class="headerlink" title="🛠️ 策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設"></a>🛠️ 策略二：絕對要榨乾到歸零，並對比「個人自動重置時間」才手動重設</h3><p>手動重設次數非常珍貴，千萬不要一看到額度降到 50% 甚至 80% 就強迫症發作按下去！因為一旦按了重設，原本剩餘的快速額度就會被直接覆蓋。最極限的榨乾做法是：<strong>一定要用到完全歸零（或者已經被限流進入慢速模式）之後，再使出這招起死回生術。</strong></p>
+<p>同時，在決定點下重設前，<strong>務必透過 CodexBar 檢查自己當前的個人自動重置時間（例如 5 小時滾動冷卻或每週重置倒數）</strong>：</p>
+<ul>
+<li><strong>如果自動重設只剩十幾分鐘或半小時</strong>：請喝杯咖啡稍微等待，讓系統免費自動補滿，把寶貴的手動重設次數省下來。</li>
+<li><strong>如果自動重設還剩下數小時（如 4 小時以上）甚至數天，且當下有連貫寫 Code 的硬性需求</strong>：這時候毫不猶豫地觸發手動重置，此時的使用收益才是最高的！</li>
+</ul>
+<h3 id="🛠️-策略三：模型分級使用，拒絕大砲打小鳥"><a href="#🛠️-策略三：模型分級使用，拒絕大砲打小鳥" class="headerlink" title="🛠️ 策略三：模型分級使用，拒絕大砲打小鳥"></a>🛠️ 策略三：模型分級使用，拒絕大砲打小鳥</h3><p>不要任何簡單的問題都直接丟給最昂貴的旗艦模型（如 Claude 3 Opus，或 Codex 中的 GPT-5.5 &#x2F; o3 等頂級推理模型）。</p>
+<ul>
+<li><strong>日常代碼撰寫與 Autocomplete</strong>：使用速度極快、額度消耗極低的輕量模型（如 Claude 3.5 Sonnet，或在 Codex 中手動切換至 <strong><code>gpt-5.4-mini</code></strong> 作為日常開發主力）。</li>
+<li><strong>複雜 Bug 排查與架構設計</strong>：當輕量模型遇到瓶頸或開始「鬼打牆」時，再切換到 Opus 或頂級推理模型進行深度除錯。</li>
+</ul>
+<h3 id="🛠️-策略四：主動預測重置時間，並定期查看-Reddit-x2F-X-社群情報"><a href="#🛠️-策略四：主動預測重置時間，並定期查看-Reddit-x2F-X-社群情報" class="headerlink" title="🛠️ 策略四：主動預測重置時間，並定期查看 Reddit &#x2F; X 社群情報"></a>🛠️ 策略四：主動預測重置時間，並定期查看 Reddit &#x2F; X 社群情報</h3><p>額度管理不能只靠「被動等待」，優秀的開發者需要掌握情報主導權：</p>
+<ol>
+<li><strong>預期並推算重置時間點</strong>：<ul>
+<li><strong>日常滾動重設</strong>：利用 CodexBar 可以看到精確到分鐘的冷卻倒數，依此安排高消耗任務的切點。</li>
+<li><strong>官方大送禮重設</strong>：追蹤各大 AI 服務商的官宣動態或開發者大會預告（通常在週二或週四發布新模型）。一旦看到新模型預告，就可以合理預期重置即將到來，並在發布前夕放膽將手頭的剩餘額度全部榨乾。</li>
+<li><strong>當機補償重設</strong>：若發現官方 API 連線極度不穩定，或是網頁端頻繁回報 529 錯誤，在系統大修復的數小時內（如 6&#x2F;2 或 6&#x2F;18），極有可能會迎來全局補償重置。</li>
+</ul>
+</li>
+<li><strong>定期到社群查看即時情報</strong>：<ul>
+<li><strong>Reddit 論壇（如 <code>r/openai</code>、<code>r/claudeai</code>）</strong>：這是觀察系統災情的最前線。當你發現 Codex 或 Claude 的扣額異常快時，先上 Reddit 看看有沒有其他人在抱怨「Limit Draining Bug」或「額度異常流失」。如果有，建議先停止送出耗能請求，避免額度被系統白白扣光。</li>
+<li><strong>X (Twitter) 大V情報網</strong>：追蹤一些知名的 AI 開發者或 KOL（例如產品創辦人 Tibo 或其他獨立開發者）。他們經常在 X 上即時爆料最新的官方後台異常、系統修復進度與補償性重置風聲。這些非官方的社群風聲往往比官方的 Status 頁面還要快上幾十分鐘，能讓你提早做出應對策略！</li>
+</ul>
+</li>
+</ol>
+<h2 id="💬-結語"><a href="#💬-結語" class="headerlink" title="💬 結語"></a>💬 結語</h2><p>在 AI 時代，如何與 AI 助理高效 Cowork，精準控管資源，已成了不可或缺的生存技能。希望這套「極限榨乾指南」能幫助大家更聰明地掌握算力資源，寫 Code 再也不怕被中斷！</p>
+<p>你目前使用哪一款 AI 程式助理？平常又是怎麼規劃額度的？歡迎在下方留言與我們分享你的避坑指南！（最後小提醒：各大 AI 服務商的額度與重設規則隨時可能調整，第三方開源工具也請自行評估使用風險，本文僅供參考與經驗分享喔！）</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/Claude/">Claude</a>, <a href="/tags/Codex/">Codex</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <p class="title">留言</p>
+
+  
+      <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v22.0&appId=796581497680750"></script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2026/06/18/2026-AI%E7%A8%8B%E5%BC%8F%E5%8A%A9%E7%90%86%E9%A1%8D%E5%BA%A6%E6%9C%80%E4%BD%B3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%9ACodexBar-%E9%A4%98%E9%A1%8D%E7%AE%A1%E7%90%86%E8%88%87%E6%89%8B%E5%8B%95%E9%87%8D%E8%A8%AD%E7%AD%96%E7%95%A5/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/categories/AI-%E8%B6%A8%E5%8B%A2/">AI 趨勢</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3d/">3d</a><small>1</small></li>
+  
+    <li><a href="/tags/AI/">AI</a><small>10</small></li>
+  
+    <li><a href="/tags/Anime/">Anime</a><small>1</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>2</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>4</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/tags/Coding/">Coding</a><small>1</small></li>
+  
+    <li><a href="/tags/Contabo/">Contabo</a><small>1</small></li>
+  
+    <li><a href="/tags/Contabo-%E8%A9%95%E5%83%B9/">Contabo 評價</a><small>1</small></li>
+  
+    <li><a href="/tags/Cowork/">Cowork</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT/">GPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Game/">Game</a><small>1</small></li>
+  
+    <li><a href="/tags/Game-Dev/">Game Dev</a><small>2</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/Japan/">Japan</a><small>1</small></li>
+  
+    <li><a href="/tags/Japanese/">Japanese</a><small>4</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>2</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/design/">design</a><small>1</small></li>
+  
+    <li><a href="/tags/framework/">framework</a><small>1</small></li>
+  
+    <li><a href="/tags/front-end/">front end</a><small>3</small></li>
+  
+    <li><a href="/tags/interview/">interview</a><small>1</small></li>
+  
+    <li><a href="/tags/matter-js/">matter.js</a><small>1</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/share/">share</a><small>2</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>1</small></li>
+  
+    <li><a href="/tags/%E7%BE%8E%E5%9C%8B%E5%87%BA%E5%8F%A3%E7%AE%A1%E5%88%B6/">美國出口管制</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%AA%9E%E8%A8%80%E5%AD%B8%E7%BF%92/">語言學習</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/custom.js?v=240229-2.js"></script>
+
+
+<script src="/js/gallery.js?v=260526-1.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+$(function(){
+  $('.fancybox').fancybox();
+});
+</script>
+
+</body>
+</html>
