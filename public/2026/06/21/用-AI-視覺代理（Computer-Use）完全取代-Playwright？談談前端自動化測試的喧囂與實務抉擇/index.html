@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>用 AI 視覺代理（Computer Use）完全取代 Playwright？談談前端自動化測試的喧囂與實務抉擇 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  
+  <meta name="description" content="本文針對「AI 視覺代理（Computer Use）將完全取代手寫代碼測試」的主流宣傳提出客觀質疑。透過對比 AI 視覺代理、自適應自我修復（Self-Healing）與確定性代碼驗證（Playwright）在成本、速度、安全性及維護門檻等層面的優劣，協助團隊根據自身場景做出最務實的技術決策。">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="用 AI 視覺代理（Computer Use）完全取代 Playwright？談談前端自動化測試的喧囂與實務抉擇"/>
+  <meta property="og:site_name" content="6yuwei"/>
+
+  
+    <meta property="og:image" content="https://blog.6yuwei.com/2026/06/21/%E7%94%A8-AI-%E8%A6%96%E8%A6%BA%E4%BB%A3%E7%90%86%EF%BC%88Computer-Use%EF%BC%89%E5%AE%8C%E5%85%A8%E5%8F%96%E4%BB%A3-Playwright%EF%BC%9F%E8%AB%87%E8%AB%87%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E7%9A%84%E5%96%A7%E5%9B%82%E8%88%87%E5%AF%A6%E5%8B%99%E6%8A%89%E6%93%87/cover.jpg" />
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664"
+      crossorigin="anonymous"></script>
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css?v=260618.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei">
+    </a>
+  </div>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-用-AI-視覺代理（Computer-Use）完全取代-Playwright？談談前端自動化測試的喧囂與實務抉擇" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-06-20T16:45:00.000Z"><a href="/2026/06/21/%E7%94%A8-AI-%E8%A6%96%E8%A6%BA%E4%BB%A3%E7%90%86%EF%BC%88Computer-Use%EF%BC%89%E5%AE%8C%E5%85%A8%E5%8F%96%E4%BB%A3-Playwright%EF%BC%9F%E8%AB%87%E8%AB%87%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E7%9A%84%E5%96%A7%E5%9B%82%E8%88%87%E5%AF%A6%E5%8B%99%E6%8A%89%E6%93%87/">2026-06-21</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">用 AI 視覺代理（Computer Use）完全取代 Playwright？談談前端自動化測試的喧囂與實務抉擇</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><img src="/2026/06/21/%E7%94%A8-AI-%E8%A6%96%E8%A6%BA%E4%BB%A3%E7%90%86%EF%BC%88Computer-Use%EF%BC%89%E5%AE%8C%E5%85%A8%E5%8F%96%E4%BB%A3-Playwright%EF%BC%9F%E8%AB%87%E8%AB%87%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E7%9A%84%E5%96%A7%E5%9B%82%E8%88%87%E5%AF%A6%E5%8B%99%E6%8A%89%E6%93%87/cover.jpg" alt="2026年AI前端驗證工具與實務抉擇示意圖"></p>
+<p>隨著 Anthropic 的 <strong>Computer Use API</strong> 與各類多模態大語言模型（LLM）的爆發，軟體工程界掀起了一股「AI 視覺代理（Agentic Testing）將完全取代傳統測試程式碼」的輿論熱潮。許多宣傳聲稱，未來開發者不再需要手寫任何 Playwright 或 Cypress 腳本，只需給 AI 一句指令，AI 就能自己看著螢幕、像人類一樣點擊與驗證網頁。</p>
+<p>這幅「全自動、無代碼」的遠景確實極具吸引力。然而，當這股技術熱潮落實到每天需要頻繁運行、且要求高穩定度的企業生產環境時，事情真的有這麼簡單嗎？AI 視覺代理真的已經準備好完全取代 Playwright 了嗎？</p>
+<p>本文將剝離市場行銷的喧囂，站在中立的工程視角，深入分析「AI 視覺代理」、「自適應自我修復（Self-Healing）」與「確定性代碼驗證（Playwright&#x2F;Cypress）」這三大前端驗證流派的優劣勢，幫助開發團隊根據自身的專案場景，做出最務實的技術抉擇。</p>
+<span id="more"></span>
+
+<h2 id="1-AI-視覺代理（Computer-Use）：探索性測試的革命，但離生產回歸測試尚遠"><a href="#1-AI-視覺代理（Computer-Use）：探索性測試的革命，但離生產回歸測試尚遠" class="headerlink" title="1. AI 視覺代理（Computer Use）：探索性測試的革命，但離生產回歸測試尚遠"></a>1. AI 視覺代理（Computer Use）：探索性測試的革命，但離生產回歸測試尚遠</h2><p>AI 視覺代理技術的本質是「感知與自主決策」。AI 透過不斷擷取網頁畫面、將截圖送給多模態模型分析，並計算操作座標來驅動瀏覽器。</p>
+<h3 id="優勢分析"><a href="#優勢分析" class="headerlink" title="優勢分析"></a>優勢分析</h3><ul>
+<li><strong>極低的編寫與維護門檻</strong>：測試人員完全不需要了解 DOM 結構，也不用手寫任何 CSS 定位器（Selectors）。只需以自然語言下達任務，AI 就能自主探索網頁並完成操作。</li>
+<li><strong>跨平台與探索性測試</strong>：AI 不限於單一網頁，它可以跨應用程式、跨視窗進行端到端的驗證，非常適合用來進行「探索性測試（Exploratory Testing）」，找出人類未曾預料到的邊界錯誤。</li>
+</ul>
+<h3 id="痛點與劣勢"><a href="#痛點與劣勢" class="headerlink" title="痛點與劣勢"></a>痛點與劣勢</h3><ul>
+<li><strong>高昂的 Token 財務成本</strong>：每次操作都需要傳送高解析度截圖，隨時間累積的對話上下文（Context）會使 Token 消耗呈雪崩式增長。在 CI&#x2F;CD 中頻繁跑測試，會產生高昂的 LLM API 帳單。</li>
+<li><strong>非確定性的隨機失敗（Flaky Tests）</strong>：模型天生存在隨機性。AI 偶爾會因為微小的視覺變更（如載入中的動畫多跑了半秒）而點錯坐標，這在最講求「100% 可重現性」的自動化測試中是致命傷。</li>
+<li><strong>高延遲與本地阻塞</strong>：AI 的「截圖-傳送-思考-點擊」循環需要數秒到數十秒的推理時間。此外，在本地調試時，部分代理會直接強佔作業系統的游標與視窗焦點，阻礙開發人員同時進行其他工作。</li>
+<li><strong>資安合規紅線</strong>：將包含敏感資料（PII）或測試環境密鑰的截圖傳送給第三方公有雲模型，是許多注重合規性（如金融、醫療）企業的禁區。</li>
+</ul>
+<hr>
+<h2 id="2-確定性代碼驗證（Playwright-x2F-Cypress）：極速且安全的防守基石"><a href="#2-確定性代碼驗證（Playwright-x2F-Cypress）：極速且安全的防守基石" class="headerlink" title="2. 確定性代碼驗證（Playwright&#x2F;Cypress）：極速且安全的防守基石"></a>2. 確定性代碼驗證（Playwright&#x2F;Cypress）：極速且安全的防守基石</h2><p>傳統的代碼驗證框架依靠工程師手寫精準的 Selector 與 Assertion，並運行在無頭瀏覽器（Headless Browser）中。</p>
+<h3 id="優勢分析-1"><a href="#優勢分析-1" class="headerlink" title="優勢分析"></a>優勢分析</h3><ul>
+<li><strong>百分之百的可重現性</strong>：代碼如何寫，瀏覽器就如何執行，沒有隨機性，結果完全可預期，非常適合作為 CI&#x2F;CD 流程中的回歸測試（Regression Testing）。</li>
+<li><strong>極致的速度與效率</strong>：直接在記憶體中操作 DOM 樹，毫秒級響應，整個測試套件通常可在數分鐘內執行完畢，且不產生任何外部 API 呼叫的 Token 費用。</li>
+<li><strong>完全的本地安全隔離</strong>：測試代碼與畫面完全保留在本地主機或企業內部的私有 CI 伺服器中，資料絕不外流。</li>
+</ul>
+<h3 id="痛點與劣勢-1"><a href="#痛點與劣勢-1" class="headerlink" title="痛點與劣勢"></a>痛點與劣勢</h3><ul>
+<li><strong>高昂的編寫與維護成本</strong>：工程師必須耗費時間編寫測試代碼。當前端介面頻繁重構或樣式大幅變更時，Selector 容易失效，導致測試腳本頻繁崩潰（Test Flakiness），需要人工反覆修復。</li>
+</ul>
+<hr>
+<h2 id="3-自適應自我修復（Self-Healing-x2F-Hybrid）：結合兩者優勢的中間流派"><a href="#3-自適應自我修復（Self-Healing-x2F-Hybrid）：結合兩者優勢的中間流派" class="headerlink" title="3. 自適應自我修復（Self-Healing &#x2F; Hybrid）：結合兩者優勢的中間流派"></a>3. 自適應自我修復（Self-Healing &#x2F; Hybrid）：結合兩者優勢的中間流派</h2><p>為了結合 Playwright 的速度與 AI 的靈活性，近年許多團隊採用了「自適應定位器與自我修復」的混合模式。</p>
+<h3 id="優勢分析-2"><a href="#優勢分析-2" class="headerlink" title="優勢分析"></a>優勢分析</h3><ul>
+<li><strong>降低維護難度</strong>：以傳統的 Playwright 或 Cypress 程式碼為骨架，但引入機器學習&#x2F;AI 作為運行期的容錯機制。當指定的 Selector（如 <code>#submit-btn</code>）失效時，AI 會實時分析 DOM 樹特徵，自動尋找最相似的元件完成操作，並在測試後自動產生修正建議。</li>
+<li><strong>保留速度與安全性</strong>：大部分時間依然是本地端的高速代碼執行，只有在發生異常時才觸發 AI 介入，因此 Token 成本與延遲皆在可控範圍內。</li>
+</ul>
+<h3 id="痛點與劣勢-2"><a href="#痛點與劣勢-2" class="headerlink" title="痛點與劣勢"></a>痛點與劣勢</h3><ul>
+<li><strong>依賴特定工具鏈</strong>：通常需要導入第三方的測試平台（如 Mabl、Testim.io 等），可能涉及額外的訂閱授權費用，且較難完全在純開源的環境下靈活定製。</li>
+</ul>
+<hr>
+<h2 id="4-實務抉擇：我的專案應該選哪一個？"><a href="#4-實務抉擇：我的專案應該選哪一個？" class="headerlink" title="4. 實務抉擇：我的專案應該選哪一個？"></a>4. 實務抉擇：我的專案應該選哪一個？</h2><p>沒有一個方案是完美的，最佳的技術決策取決於您專案的業務特徵、團隊編制與財務預算。</p>
+<table>
+<thead>
+<tr>
+<th align="left">評估維度</th>
+<th align="left">AI 視覺代理 (Computer Use)</th>
+<th align="left">自適應自我修復 (Hybrid)</th>
+<th align="left">確定性代碼 (Playwright)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>執行成本</strong></td>
+<td align="left">極高（每輪測試皆需 LLM API 費用）</td>
+<td align="left">低至中等（僅在出錯修復時觸發 AI）</td>
+<td align="left">極低（本地運行，零 Token 費用）</td>
+</tr>
+<tr>
+<td align="left"><strong>執行速度</strong></td>
+<td align="left">慢（受限於截圖上傳與模型推理延遲）</td>
+<td align="left">快（底層依然是 Headless 程式碼執行）</td>
+<td align="left">極快（記憶體級 DOM 操作）</td>
+</tr>
+<tr>
+<td align="left"><strong>可重現性</strong></td>
+<td align="left">中等至偏低（存在模型隨機性）</td>
+<td align="left">高（有程式碼骨架把關）</td>
+<td align="left">極高（完全確定性）</td>
+</tr>
+<tr>
+<td align="left"><strong>數據安全性</strong></td>
+<td align="left">較低（截圖需外傳至公有雲模型）</td>
+<td align="left">高（資料多保留在本地，僅 metadata 輔助）</td>
+<td align="left">極高（完全本地隔離運行）</td>
+</tr>
+<tr>
+<td align="left"><strong>維護成本</strong></td>
+<td align="left">極低（無 Selector 需要維護）</td>
+<td align="left">低（AI 會在運行期自動修復失效定位）</td>
+<td align="left">高（介面變更時需人工重寫代碼）</td>
+</tr>
+</tbody></table>
+<h3 id="決策建議"><a href="#決策建議" class="headerlink" title="決策建議"></a>決策建議</h3><ul>
+<li><strong>選擇「AI 視覺代理（Computer Use）」</strong>：如果您的團隊<strong>缺乏專業的測試工程師</strong>，專案屬於<strong>初期的產品雛形（MVP）</strong>，且<strong>對測試運行速度與隱私安全沒有極端要求</strong>，希望以最快速度實現端到端的覆蓋。</li>
+<li><strong>選擇「自適應自我修復（Hybrid）」</strong>：如果您的產品<strong>介面變更極其頻繁</strong>，導致工程師每天花大量時間修復崩潰的測試，希望在<strong>不犧牲 CI 速度的前提下降低維護成本</strong>。</li>
+<li><strong>選擇「確定性代碼（Playwright&#x2F;Cypress）」</strong>：如果您身處<strong>金融、醫療等有嚴格資安合規紅線的行業</strong>，或者您的專案<strong>每日需要跑數千次 CI&#x2F;CD 回歸測試</strong>，對<strong>執行速度、可重現性與預算有著嚴苛要求</strong>。</li>
+</ul>
+<p>不論技術如何喧囂，理解每項工具的邊界，並將 AI 定位在「開發期加速撰寫代碼，運行期回歸確定性引擎把關」的務實軌道上，才是當前軟體工程最穩健的落地實踐。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/">技術分享</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a>, <a href="/tags/Playwright/">Playwright</a>, <a href="/tags/Cypress/">Cypress</a>, <a href="/tags/Computer-Use/">Computer Use</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <p class="title">留言</p>
+
+  
+      <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v22.0&appId=796581497680750"></script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2026/06/21/%E7%94%A8-AI-%E8%A6%96%E8%A6%BA%E4%BB%A3%E7%90%86%EF%BC%88Computer-Use%EF%BC%89%E5%AE%8C%E5%85%A8%E5%8F%96%E4%BB%A3-Playwright%EF%BC%9F%E8%AB%87%E8%AB%87%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6%E7%9A%84%E5%96%A7%E5%9B%82%E8%88%87%E5%AF%A6%E5%8B%99%E6%8A%89%E6%93%87/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>10</small></li>
+  
+    <li><a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/">技術分享</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3D/">3D</a><small>1</small></li>
+  
+    <li><a href="/tags/AI/">AI</a><small>12</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>2</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>5</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>1</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/tags/Computer-Use/">Computer Use</a><small>1</small></li>
+  
+    <li><a href="/tags/Contabo/">Contabo</a><small>1</small></li>
+  
+    <li><a href="/tags/Cypress/">Cypress</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>2</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT/">GPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>2</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/matter-js/">matter.js</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><small>3</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%8B%95%E6%BC%AB/">動漫</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>4</small></li>
+  
+    <li><a href="/tags/%E7%BE%8E%E5%9C%8B%E5%87%BA%E5%8F%A3%E7%AE%A1%E5%88%B6/">美國出口管制</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/custom.js?v=240229-2.js"></script>
+
+
+<script src="/js/gallery.js?v=260526-1.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+$(function(){
+  $('.fancybox').fancybox();
+});
+</script>
+
+</body>
+</html>
