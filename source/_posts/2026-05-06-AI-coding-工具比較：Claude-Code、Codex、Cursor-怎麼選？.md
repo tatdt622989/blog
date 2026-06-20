@@ -5,6 +5,8 @@ tags:
 - AI
 - OpenAI
 - Claude
+categories:
+- AI
 ---
 
 ![](cover.jpg)

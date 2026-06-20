@@ -5,8 +5,8 @@ tags:
 - AI
 - Claude
 - Design
-- Cowork
-- Coding
+categories:
+- AI
 cover: cover.png
 ---
 

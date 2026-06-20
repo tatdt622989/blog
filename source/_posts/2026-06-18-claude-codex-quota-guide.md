@@ -6,7 +6,7 @@ tags:
 - Codex
 - Claude
 categories:
-- AI 工具
+- AI
 description: 別再乾等 5 小時！本文深入介紹 2026 年最新 Claude 與 Codex 額度管理策略，包含開源選單列工具 CodexBar 的餘額管理，以及自訂手動重設機制。並解析新模型發布、伺服器故障時的額度重置規律，助你榨乾最後一滴算力（內附安全使用免責聲明）。
 ---
 

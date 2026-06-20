@@ -4,6 +4,8 @@ date: 2023-07-08 00:14:32
 tags:
 - JavaScript
 - Firebase
+categories:
+- 前端開發
 ---
 
 ![](cover.jpg)

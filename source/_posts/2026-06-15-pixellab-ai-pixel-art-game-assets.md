@@ -5,8 +5,10 @@ tags:
 - AI
 - Pixel Art
 - PixelLab
-- Game Dev
+- 遊戲開發
 - Aseprite
+categories:
+- 遊戲開發
 description: 想用 AI 做遊戲卻缺少美術素材？深度實測 Aseprite AI 像素外掛 PixelLab，教你如何快速生成多向角色、動作動畫、地圖磚塊（Tileset）與整套 UI Icon，並解析 2026 最新訂閱方案與年約省錢技巧。
 updated: 2026-06-17 11:18:47
 cover: cover-v2.png
