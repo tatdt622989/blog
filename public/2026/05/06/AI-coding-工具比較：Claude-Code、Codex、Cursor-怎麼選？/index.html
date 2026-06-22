@@ -5,18 +5,20 @@
   
   <title>2026 AI Coding 工具比較：Claude Code、Codex、Cursor 怎麼選？ | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  
-  <meta name="description" content="前言最近 AI coding 工具真的變化很快，從一開始幫你補幾行程式碼，到現在直接讀整個 repo、改多個檔案、跑測試，甚至幫你整理出下一步該怎麼做，整個開發流程都不太一樣了。
-而這幾個月最常被拿來討論的，基本上就是 Claude Code、Codex、Cursor 這三個方向。尤其是 Claude Code 的 Pro &amp;#x2F; Max 方案到底差多少、實際會不會很快撞到限制，還有 Codex 到底值不值得因為它去訂 ChatGPT，這些問題我自己也查了很久。">
-  
+  <meta name="description" content="想比較 Claude Code、Codex、Cursor 該怎麼選？本文整理 2026 最新方案、額度限制與實際使用情境，幫你快速判斷哪套 AI coding 工具最適合自己的工作流。">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/">
 
   <meta property="og:title" content="2026 AI Coding 工具比較：Claude Code、Codex、Cursor 怎麼選？"/>
+  <meta property="og:description" content="想比較 Claude Code、Codex、Cursor 該怎麼選？本文整理 2026 最新方案、額度限制與實際使用情境，幫你快速判斷哪套 AI coding 工具最適合自己的工作流。"/>
   <meta property="og:site_name" content="6yuwei"/>
-
-  
-    <meta property="og:image" content="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover.jpg" />
-  
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/"/>
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="2026 AI Coding 工具比較：Claude Code、Codex、Cursor 怎麼選？">
+  <meta name="twitter:description" content="想比較 Claude Code、Codex、Cursor 該怎麼選？本文整理 2026 最新方案、額度限制與實際使用情境，幫你快速判斷哪套 AI coding 工具最適合自己的工作流。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +57,7 @@
       <img src="/img/logo.svg" alt="6yuwei">
     </a>
   </div>
-  <h2><a href="/"></a></h2>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -87,7 +89,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p><img src="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover.jpg"></p>
+        <p><img src="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover.jpg" alt="Claude Code、Codex、Cursor 三款 AI coding 工具比較封面"></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近 AI coding 工具真的變化很快，從一開始幫你補幾行程式碼，到現在直接讀整個 repo、改多個檔案、跑測試，甚至幫你整理出下一步該怎麼做，整個開發流程都不太一樣了。</p>
 <p>而這幾個月最常被拿來討論的，基本上就是 <strong>Claude Code、Codex、Cursor</strong> 這三個方向。尤其是 Claude Code 的 Pro &#x2F; Max 方案到底差多少、實際會不會很快撞到限制，還有 Codex 到底值不值得因為它去訂 ChatGPT，這些問題我自己也查了很久。</p>
 <span id="more"></span>

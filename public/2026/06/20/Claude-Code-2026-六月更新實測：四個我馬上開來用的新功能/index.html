@@ -5,17 +5,20 @@
   
   <title>Claude Code 2026 六月更新實測：四個我馬上開來用的新功能 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  
   <meta name="description" content="Claude Code 在 2026 年 6 月更新了四個實用功能：/cd 中途換工作目錄免重建快取、子代理可巢狀往下生、--safe-mode 安全模式排錯，以及最多三層的備援模型 fallbackModel。本文用實際情境帶你看懂每個功能解決什麼痛點、又該怎麼開來用。">
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/">
 
   <meta property="og:title" content="Claude Code 2026 六月更新實測：四個我馬上開來用的新功能"/>
+  <meta property="og:description" content="Claude Code 在 2026 年 6 月更新了四個實用功能：/cd 中途換工作目錄免重建快取、子代理可巢狀往下生、--safe-mode 安全模式排錯，以及最多三層的備援模型 fallbackModel。本文用實際情境帶你看懂每個功能解決什麼痛點、又該怎麼開來用。"/>
   <meta property="og:site_name" content="6yuwei"/>
-
-  
-    <meta property="og:image" content="https://blog.6yuwei.com/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover.jpg" />
-  
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/"/>
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claude Code 2026 六月更新實測：四個我馬上開來用的新功能">
+  <meta name="twitter:description" content="Claude Code 在 2026 年 6 月更新了四個實用功能：/cd 中途換工作目錄免重建快取、子代理可巢狀往下生、--safe-mode 安全模式排錯，以及最多三層的備援模型 fallbackModel。本文用實際情境帶你看懂每個功能解決什麼痛點、又該怎麼開來用。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +57,7 @@
       <img src="/img/logo.svg" alt="6yuwei">
     </a>
   </div>
-  <h2><a href="/"></a></h2>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>

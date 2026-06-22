@@ -10,37 +10,43 @@
     if (page.year) title.push(__('archive_b', page.year + (page.month ? '/' + page.month : '')));
     else title.push(__('archive_a'));
   }
+  if (!title.length && config.subtitle) title.push(config.subtitle);
   title.push(config.title);
+  var resolvedTitle = title.join(' | ');
+  var metaDescription = '';
+  if (page.description) metaDescription = page.description;
+  else if (config.description) metaDescription = config.description;
+  else if (page.excerpt) metaDescription = strip_html(page.excerpt);
+  else if (page.content) metaDescription = strip_html(page.content).substring(0, 150);
+  metaDescription = metaDescription ? metaDescription.replace(/\s+/g, ' ').trim() : '';
+  var canonicalUrl = page.permalink || (config.url + url_for(page.path || ''));
+  canonicalUrl = canonicalUrl.replace(/index\.html$/, '');
+  var ogType = page.layout === 'post' ? 'article' : 'website';
+  var ogImage = config.cover || '';
+  if (page.cover) {
+    if (page.cover.match(/^https?:\/\//)) ogImage = page.cover;
+    else if (page.cover.match(/^\//)) ogImage = config.url + page.cover;
+    else ogImage = page.permalink + page.cover;
+  } else if (page.layout === 'post') {
+    ogImage = page.permalink + 'cover.jpg';
+  }
   %>
-  <title><%= title.join(' | ') %></title>
+  <title><%= resolvedTitle %></title>
   <% if (config.author){ %><meta name="author" content="<%= config.author %>"><% } %>
-  <% if (page.description){ %>
-  <meta name="description" content="<%= page.description %>">
-  <% } else if (config.description){ %>
-  <meta name="description" content="<%= config.description %>">
-  <% } else if (page.excerpt){ %>
-  <meta name="description" content="<%= strip_html(page.excerpt).replace(/^\s*/, '').replace(/\s*$/, '') %>">
-  <% } else if (page.content){ %>
-  <meta name="description" content="<%= strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150) %>">
-  <% } %>
+  <% if (metaDescription){ %><meta name="description" content="<%= metaDescription %>"><% } %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="<%= canonicalUrl %>">
 
-  <% if (page.title){ %><meta property="og:title" content="<%= page.title %>"/><% } %>
+  <meta property="og:title" content="<%= page.title || resolvedTitle %>"/>
+  <% if (metaDescription){ %><meta property="og:description" content="<%= metaDescription %>"/><% } %>
   <meta property="og:site_name" content="<%= config.title %>"/>
-
-  <% if(page.cover) { %>
-    <% if(page.cover.match(/^https?:\/\//)) { %>
-      <meta property="og:image" content="<%= page.cover %>" />
-    <% } else if(page.cover.match(/^\//)) { %>
-      <meta property="og:image" content="<%= config.url + page.cover %>" />
-    <% } else { %>
-      <meta property="og:image" content="<%= page.permalink + page.cover %>" />
-    <% } %>
-  <% } else if(page.layout === 'post') { %>
-    <meta property="og:image" content="<%= page.permalink + 'cover.jpg' %>" />
-  <% } else { %>
-    <meta property="og:image" content="<%= config.cover %>"/>
-  <% } %>
+  <meta property="og:type" content="<%= ogType %>"/>
+  <meta property="og:url" content="<%= canonicalUrl %>"/>
+  <% if (ogImage){ %><meta property="og:image" content="<%= ogImage %>" /><% } %>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= page.title || resolvedTitle %>">
+  <% if (metaDescription){ %><meta name="twitter:description" content="<%= metaDescription %>"><% } %>
+  <% if (ogImage){ %><meta name="twitter:image" content="<%= ogImage %>"><% } %>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

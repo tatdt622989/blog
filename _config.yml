@@ -4,12 +4,13 @@
 
 # Site
 title: 6yuwei
-subtitle: ''
-description: ''
-keywords: frontend, Japan
+subtitle: AI、前端、遊戲開發、日語學習與實測
+description: 6yuwei 的技術與數位生活部落格，分享 AI、前端開發、遊戲開發、日語學習、VPS 與工具實測心得。
+keywords: AI, 前端開發, 遊戲開發, 日語學習, VPS, Codex, Claude Code, Aseprite
 author: 6yuwei
+cover: https://blog.6yuwei.com/img/logo.svg
 language: zh-TW
-timezone: ''
+timezone: Asia/Taipei
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'

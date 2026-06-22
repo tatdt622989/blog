@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /js/
-Disallow: /css/
-Disallow: /fonts/
 
 Sitemap: https://blog.6yuwei.com/sitemap.xml
