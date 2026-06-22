@@ -14,13 +14,13 @@
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2022/02/05/4/"/>
-  <meta property="og:image" content="https://blog.6yuwei.com/2022/02/05/4/cover.jpg" />
+  <meta property="og:image" content="https://blog.6yuwei.com/2022/02/05/4/cover.webp" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="使用Three.js載入外部模型及貼圖">
   <meta name="twitter:description" content="6yuwei 的技術與數位生活部落格，分享 AI、前端開發、遊戲開發、日語學習、VPS 與工具實測心得。">
-  <meta name="twitter:image" content="https://blog.6yuwei.com/2022/02/05/4/cover.jpg">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2022/02/05/4/cover.webp">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/05/4/","url":"https://blog.6yuwei.com/2022/02/05/4/","headline":"使用Three.js載入外部模型及貼圖","description":"6yuwei 的技術與數位生活部落格，分享 AI、前端開發、遊戲開發、日語學習、VPS 與工具實測心得。","datePublished":"2022-02-05T15:57:10.000Z","dateModified":"2026-06-20T02:44:47.626Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2022/02/05/4/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/05/4/","url":"https://blog.6yuwei.com/2022/02/05/4/","headline":"使用Three.js載入外部模型及貼圖","description":"6yuwei 的技術與數位生活部落格，分享 AI、前端開發、遊戲開發、日語學習、VPS 與工具實測心得。","datePublished":"2022-02-05T15:57:10.000Z","dateModified":"2026-06-22T06:53:47.277Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2022/02/05/4/cover.webp"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"前端開發","item":"https://blog.6yuwei.com/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"使用Three.js載入外部模型及貼圖","item":"https://blog.6yuwei.com/2022/02/05/4/"}]}</script>
   
@@ -94,7 +94,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p><img src="/2022/02/05/4/cover.jpg"></p>
+        <p><img src="/2022/02/05/4/cover.webp"></p>
 <p>Three.js有很多種載入模型的方式，在本文中使用的是筆者常用的載入方式，若有更好的方式歡迎留言建議。<br>在Three.js官方文件中有提到，建議使用.gltf格式的3D模型來進行外部模型的載入，可以得到更好的支援性及速度，所以若要載入的模型並非.gltf格式的檔案建議可以使用Blender來進行模型的製作以及模型的轉換(使用3D軟體轉換比較能夠確保轉出的結果接近自己想要的樣子，本文介紹主要以Blender為主，其他支援的3D軟體可以參考<a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#manual/zh/introduction/Loading-3D-models">官方文件</a>)，再由Three.js的載入器將模型載入。</p>
 <span id="more"></span>
 

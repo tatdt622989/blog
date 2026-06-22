@@ -8,7 +8,7 @@ categories:
 - 前端開發
 ---
 
-![](cover.jpg)
+![](cover.webp)
 
 ## Firebase Cloud Functions 介紹
 

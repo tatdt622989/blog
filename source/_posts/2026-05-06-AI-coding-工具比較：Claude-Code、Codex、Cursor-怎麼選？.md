@@ -11,7 +11,7 @@ description: 想比較 Claude Code、Codex、Cursor 該怎麼選？本文整理 
 updated: 2026-06-22 11:45:00
 ---
 
-![Claude Code、Codex、Cursor 三款 AI coding 工具比較封面](cover.jpg)
+![Claude Code、Codex、Cursor 三款 AI coding 工具比較封面](cover.webp)
 
 ## 前言
 

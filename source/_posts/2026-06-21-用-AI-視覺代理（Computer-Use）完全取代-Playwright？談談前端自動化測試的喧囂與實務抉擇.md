@@ -12,7 +12,7 @@ categories:
 - 技術分享
 ---
 
-![2026年AI前端驗證工具與實務抉擇示意圖](cover.jpg)
+![2026年AI前端驗證工具與實務抉擇示意圖](cover.webp)
 
 隨著 Anthropic 的 **Computer Use API** 與各類多模態大語言模型（LLM）的爆發，軟體工程界掀起了一股「AI 視覺代理（Agentic Testing）將完全取代傳統測試程式碼」的輿論熱潮。許多宣傳聲稱，未來開發者不再需要手寫任何 Playwright 或 Cypress 腳本，只需給 AI 一句指令，AI 就能自己看著螢幕、像人類一樣點擊與驗證網頁。
 
