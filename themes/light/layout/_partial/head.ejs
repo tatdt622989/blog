@@ -13,22 +13,168 @@
   if (!title.length && config.subtitle) title.push(config.subtitle);
   title.push(config.title);
   var resolvedTitle = title.join(' | ');
+  var siteUrl = (config.url || '').replace(/\/$/, '');
+  var homeUrl = siteUrl ? siteUrl + '/' : '/';
+  function cleanText(value) {
+    return value ? value.replace(/\s+/g, ' ').trim() : '';
+  }
+  function toAbsoluteUrl(value) {
+    if (!value) return '';
+    if (value.match(/^https?:\/\//)) return value;
+    if (value.match(/^\//)) return siteUrl + value;
+    var relative = value.replace(/^\.\//, '');
+    if (page.permalink) return page.permalink + relative;
+    return homeUrl + relative;
+  }
+  function firstContentImage(content) {
+    if (!content) return '';
+    var match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+    return match ? toAbsoluteUrl(match[1]) : '';
+  }
+  function asIsoDate(value) {
+    if (!value) return '';
+    if (value.toDate) return value.toDate().toISOString();
+    if (value.toISOString) return value.toISOString();
+    return '';
+  }
+  function compactObject(object) {
+    Object.keys(object).forEach(function(key) {
+      var value = object[key];
+      if (
+        value === '' ||
+        value == null ||
+        (Array.isArray(value) && !value.length) ||
+        (typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0)
+      ) {
+        delete object[key];
+      }
+    });
+    return object;
+  }
+  function firstCollectionItem(collection) {
+    if (!collection || !collection.length) return null;
+    if (Array.isArray(collection)) return collection[0];
+    if (collection.data && collection.data.length) return collection.data[0];
+    var first = null;
+    collection.forEach(function(item) {
+      if (!first) first = item;
+    });
+    return first;
+  }
+  function serializeJsonLd(object) {
+    return JSON.stringify(object).replace(/</g, '\\u003c');
+  }
   var metaDescription = '';
   if (page.description) metaDescription = page.description;
   else if (config.description) metaDescription = config.description;
   else if (page.excerpt) metaDescription = strip_html(page.excerpt);
   else if (page.content) metaDescription = strip_html(page.content).substring(0, 150);
-  metaDescription = metaDescription ? metaDescription.replace(/\s+/g, ' ').trim() : '';
-  var canonicalUrl = page.permalink || (config.url + url_for(page.path || ''));
+  metaDescription = cleanText(metaDescription);
+  var canonicalUrl = page.permalink || (siteUrl + url_for(page.path || ''));
   canonicalUrl = canonicalUrl.replace(/index\.html$/, '');
   var ogType = page.layout === 'post' ? 'article' : 'website';
-  var ogImage = config.cover || '';
+  var siteLogo = toAbsoluteUrl(config.cover || '/img/logo.svg');
+  var contentImage = firstContentImage(page.content || page.excerpt || '');
+  var ogImage = siteLogo;
   if (page.cover) {
-    if (page.cover.match(/^https?:\/\//)) ogImage = page.cover;
-    else if (page.cover.match(/^\//)) ogImage = config.url + page.cover;
-    else ogImage = page.permalink + page.cover;
-  } else if (page.layout === 'post') {
-    ogImage = page.permalink + 'cover.jpg';
+    ogImage = toAbsoluteUrl(page.cover);
+  } else if (contentImage) {
+    ogImage = contentImage;
+  }
+  var isHomePage = canonicalUrl === homeUrl;
+  var structuredData = [];
+  if (isHomePage) {
+    structuredData.push(compactObject({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": homeUrl + '#website',
+      "url": homeUrl,
+      "name": config.title,
+      "description": metaDescription || cleanText(config.description || ''),
+      "inLanguage": config.language,
+      "publisher": {
+        "@id": homeUrl + '#organization'
+      }
+    }));
+    structuredData.push(compactObject({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": homeUrl + '#organization',
+      "url": homeUrl,
+      "name": config.title,
+      "logo": siteLogo,
+      "description": cleanText(config.description || '')
+    }));
+  }
+  if (page.layout === 'post') {
+    var articleAuthor = compactObject({
+      "@type": "Person",
+      "name": config.author || config.title,
+      "url": homeUrl
+    });
+    structuredData.push(compactObject({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": canonicalUrl,
+      "url": canonicalUrl,
+      "headline": cleanText(page.title || ''),
+      "description": metaDescription,
+      "datePublished": asIsoDate(page.date),
+      "dateModified": asIsoDate(page.updated || page.date),
+      "author": [articleAuthor],
+      "publisher": compactObject({
+        "@type": "Organization",
+        "name": config.title,
+        "url": homeUrl,
+        "logo": siteLogo
+      }),
+      "image": ogImage ? [ogImage] : []
+    }));
+  }
+  var breadcrumbs = [];
+  function pushBreadcrumb(name, item) {
+    if (!name) return;
+    var crumb = {
+      "@type": "ListItem",
+      "position": breadcrumbs.length + 1,
+      "name": cleanText(name)
+    };
+    if (item) crumb.item = item;
+    breadcrumbs.push(crumb);
+  }
+  if (page.layout === 'post') {
+    pushBreadcrumb('首頁', homeUrl);
+    var primaryCategory = firstCollectionItem(page.categories);
+    if (primaryCategory) pushBreadcrumb(primaryCategory.name, toAbsoluteUrl(url_for(primaryCategory.path)));
+    pushBreadcrumb(page.title, canonicalUrl);
+  } else if (page.category) {
+    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb('分類', toAbsoluteUrl(url_for('categories/')));
+    pushBreadcrumb(typeof page.category === 'string' ? page.category : page.category.name, canonicalUrl);
+  } else if (page.tag) {
+    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb('標籤', toAbsoluteUrl(url_for('tags/')));
+    pushBreadcrumb(typeof page.tag === 'string' ? page.tag : page.tag.name, canonicalUrl);
+  } else if (page.archive) {
+    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb('彙整', toAbsoluteUrl(url_for('archives/')));
+    if (page.year) {
+      var archiveLabel = page.month ? page.year + '/' + page.month : String(page.year);
+      pushBreadcrumb(archiveLabel, canonicalUrl);
+    }
+  } else if (page.current > 1) {
+    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb(__('page', page.current), canonicalUrl);
+  } else if (page.title) {
+    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb(page.title, canonicalUrl);
+  }
+  if (breadcrumbs.length >= 2) {
+    structuredData.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbs
+    });
   }
   %>
   <title><%= resolvedTitle %></title>
@@ -47,6 +193,9 @@
   <meta name="twitter:title" content="<%= page.title || resolvedTitle %>">
   <% if (metaDescription){ %><meta name="twitter:description" content="<%= metaDescription %>"><% } %>
   <% if (ogImage){ %><meta name="twitter:image" content="<%= ogImage %>"><% } %>
+  <% structuredData.forEach(function(schema) { %>
+    <script type="application/ld+json"><%- serializeJsonLd(schema) %></script>
+  <% }); %>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

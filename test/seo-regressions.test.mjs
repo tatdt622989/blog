@@ -32,6 +32,16 @@ test('head partial emits canonical and social metadata', () => {
   assert.match(head, /twitter:card/);
 });
 
+test('theme templates define JSON-LD structured data for homepage, posts, and breadcrumbs', () => {
+  const head = read('themes/light/layout/_partial/head.ejs');
+
+  assert.match(head, /application\/ld\+json/, 'head partial should emit JSON-LD');
+  assert.match(head, /WebSite/, 'head partial should define WebSite structured data');
+  assert.match(head, /Organization/, 'head partial should define Organization structured data');
+  assert.match(head, /BlogPosting/, 'head partial should define BlogPosting structured data');
+  assert.match(head, /BreadcrumbList/, 'head partial should define BreadcrumbList structured data');
+});
+
 test('legacy published URLs have PHP redirect stubs in source', () => {
   const redirects = [
     [
@@ -84,4 +94,19 @@ test('priority posts expose description, updated, exact more tag, and non-empty 
   const japaneseTools = read('source/_posts/2026-05-25-日語自學也能高效，精選AI學習工具大公開（2026版）.md');
   assert.match(japaneseTools, /<!--more-->/);
   assert.doesNotMatch(japaneseTools, /<!-- more -->/);
+});
+
+test('generated pages expose JSON-LD for the homepage, a post, and a taxonomy page', () => {
+  const homepage = read('public/index.html');
+  const post = read('public/2026/06/18/claude-codex-quota-guide/index.html');
+  const category = read('public/categories/AI/index.html');
+
+  assert.match(homepage, /application\/ld\+json/, 'homepage should contain JSON-LD');
+  assert.match(homepage, /"@type":"WebSite"/, 'homepage should expose WebSite schema');
+  assert.match(homepage, /"@type":"Organization"/, 'homepage should expose Organization schema');
+
+  assert.match(post, /"@type":"BlogPosting"/, 'post page should expose BlogPosting schema');
+  assert.match(post, /"@type":"BreadcrumbList"/, 'post page should expose breadcrumb schema');
+
+  assert.match(category, /"@type":"BreadcrumbList"/, 'category page should expose breadcrumb schema');
 });
