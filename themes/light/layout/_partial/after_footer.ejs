@@ -1,7 +1,10 @@
-<%- js('js/jquery-3.4.1.min.js') %>
-<%- js('js/jquery.imagesloaded.min.js') %>
-<%- js('js/custom.js?v=240229-2') %>
-<%- js('js/gallery.js?v=260526-1') %>
+<script defer src="<%- url_for('js/custom.js?v=260623-1') %>"></script>
+
+<% if (page.layout === 'post'){ %>
+<script defer src="<%- url_for('js/jquery-3.4.1.min.js') %>"></script>
+<script defer src="<%- url_for('js/jquery.imagesloaded.min.js') %>"></script>
+<script defer src="<%- url_for('js/gallery.js?v=260526-1') %>"></script>
+<% } %>
 
 <% if (config.disqus_shortname){ %>
 <script>
@@ -17,12 +20,14 @@ var disqus_shortname = '<%= config.disqus_shortname %>';
 </script>
 <% } %>
 
-<% if (theme.fancybox){ %>
+<% if (theme.fancybox && page.layout === 'post'){ %>
 <%- css('fancybox/jquery.fancybox.css') %>
-<%- js('fancybox/jquery.fancybox.pack.js') %>
+<script defer src="<%- url_for('fancybox/jquery.fancybox.pack.js') %>"></script>
 <script>
-$(function(){
-  $('.fancybox').fancybox();
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
 });
 </script>
 <% } %>

@@ -137,3 +137,37 @@ test('generated post images reserve layout space before image load', () => {
   assert.match(imageFilter, /cover\[-\\w\]\*/, 'cover-v2 style filenames should be treated as cover images');
   assert.match(imageFilter, /auto-tall-image/, 'very tall non-cover images should receive a safe responsive class');
 });
+
+test('homepage cover images use responsive card variants', () => {
+  const homepage = read('public/index.html');
+  const docsCover = homepage.match(/<img\b[^>]+Docs-MCP[^>]+post-cover-image[^>]+>/);
+
+  assert.ok(docsCover, 'homepage should render the Docs MCP cover image');
+  assert.match(docsCover[0], /\bsrc="[^"]*cover-card-720\.jpg"/, 'cover image fallback should use a smaller card file');
+  assert.match(docsCover[0], /\bsrcset="[^"]*cover-card-480\.jpg 480w[^"]*cover-card-960\.jpg 960w[^"]*cover\.png 1344w/, 'cover image should expose responsive width candidates');
+  assert.match(docsCover[0], /\bsizes="\([^"]*711px"/, 'cover image should advertise the rendered content width');
+  assert.ok(
+    fs.existsSync(path.join(root, 'public/2026/06/22/Docs-MCP-到底改變了什麼？為什麼-2026-的-Codex、Claude-Code、Cursor-使用者都該裝/cover-card-720.jpg')),
+    'responsive cover variant should be generated',
+  );
+});
+
+test('homepage avoids post-only JavaScript libraries', () => {
+  const homepage = read('public/index.html');
+  const post = read('public/2026/06/23/OpenAI-推出-GPT-5-5-Cyber：防守方專屬的-AI-網路安全新利器/index.html');
+
+  assert.match(homepage, /js\/custom\.js\?v=260623-1/, 'homepage should load the small custom script');
+  assert.doesNotMatch(homepage, /jquery-3\.4\.1\.min\.js/, 'homepage should not load jQuery');
+  assert.doesNotMatch(homepage, /jquery\.fancybox\.pack\.js/, 'homepage should not load Fancybox');
+  assert.match(post, /jquery-3\.4\.1\.min\.js/, 'post pages should still load jQuery for Fancybox');
+  assert.match(post, /jquery\.fancybox\.pack\.js/, 'post pages should keep image lightbox behavior');
+});
+
+test('third-party advertising and analytics scripts are delayed', () => {
+  const homepage = read('public/index.html');
+
+  assert.match(homepage, /loadBlogThirdParty/, 'homepage should install a delayed third-party loader');
+  assert.match(homepage, /requestIdleCallback/, 'third-party scripts should wait for idle time');
+  assert.doesNotMatch(homepage, /<script async src="https:\/\/pagead2\.googlesyndication\.com/, 'AdSense should not load directly in the initial head');
+  assert.doesNotMatch(homepage, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js/, 'GA4 should not load directly in the initial head');
+});

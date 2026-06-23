@@ -1,85 +1,122 @@
-$(function () {
-  const synth = window.speechSynthesis;
-  $("article").each(function () {
-    const href = $(this).find("header .title a").attr("href");
-    if (href) {
-      $(this)
-        .find(".entry p>img")
-        .eq(0)
-        .addClass('nofancybox')
-        .wrap(
-          `<a href="${href}" class="topImgWrap"></a>`
-        );
+document.addEventListener('DOMContentLoaded', function () {
+  var synth = window.speechSynthesis;
+  var articles = Array.from(document.querySelectorAll('article'));
+
+  articles.forEach(function (article) {
+    var link = article.querySelector('header .title a');
+    var firstImage = article.querySelector('.entry p > img');
+
+    if (link && firstImage && !firstImage.closest('a')) {
+      var wrapper = document.createElement('a');
+      wrapper.href = link.href;
+      wrapper.className = 'topImgWrap';
+      firstImage.classList.add('nofancybox');
+      firstImage.parentNode.insertBefore(wrapper, firstImage);
+      wrapper.appendChild(firstImage);
     }
   });
-  $('span.speak').on('click', function() {
-    const text = $(this).data('text');
-    console.log('speak:' + text);
-    var utterThis = new SpeechSynthesisUtterance(text);
-    utterThis.voice = synth.getVoices().find((voice) => voice.lang === 'ja-JP')
-    utterThis.lang = 'ja-JP';
-    synth.speak(utterThis);
+
+  document.querySelectorAll('span.speak').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var text = button.dataset.text;
+      if (!text || !synth) return;
+
+      var utterance = new SpeechSynthesisUtterance(text);
+      var voices = synth.getVoices();
+      utterance.voice = voices.find(function (voice) {
+        return voice.lang === 'ja-JP';
+      }) || null;
+      utterance.lang = 'ja-JP';
+      synth.speak(utterance);
+    });
   });
 
-  $('table').wrap('<div class="table-wrap"></div>');
+  document.querySelectorAll('table').forEach(function (table) {
+    if (table.parentElement && table.parentElement.classList.contains('table-wrap')) return;
 
-  // auto table of contents generation
-  function createTOC() {
-    var toc = $('<div class="toc"></div>');
-    var tocTitle = $('<div class="toc-title">目次</div>');
-    toc.append(tocTitle);
-    var tocList = $('<ul></ul>');
-    toc.append(tocList);
-    // h2 to link
-    $('article h2').each(function () {
-      var title = $(this).text();
-      var id = $(this).attr('id');
-      var li = $('<li><a href="#' + id + '">' + title + '</a></li>');
-      tocList.append(li);
-    });
-    $('article h2:first').before(toc);
+    var wrapper = document.createElement('div');
+    wrapper.className = 'table-wrap';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
 
-    // h2 add link button
-    $('article h2').each(function () {
-      var id = $(this).attr('id');
-      var link = $('<a href="#' + id + '" class="link-button">#</a>');
-      $(this).append(link);
-    });
-
-    // copy link
-    $('.link-button').on('click', function (e) {
-      e.preventDefault();
-      var url = location.href;
-      var hash = $(this).attr('href');
-      url = url.replace(/#.*/, '');
-      var link = url + hash;
-      var textArea = $('<textarea></textarea>');
-      textArea.text(link);
-      $('body').append(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      textArea.remove();
-      alert('複製完成');
-      return false;
-    });
+  if (articles.length === 1) {
+    createTOC(articles[0]);
   }
 
-  if ($('article').length === 1) {
-    createTOC();
-  }
-
-  function scrollToAnchor() {
-    // if has hash, scroll to hash
-    if (location.hash) {
-      const hash = decodeURIComponent(location.hash);
-      var target = $(hash);
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top
-        }, 1000);
-      }
-    }
-  }
-  setTimeout(scrollToAnchor, 10);
+  window.setTimeout(scrollToAnchor, 10);
 });
 
+function createTOC(article) {
+  var headings = Array.from(article.querySelectorAll('h2'));
+  if (!headings.length) return;
+
+  var toc = document.createElement('div');
+  toc.className = 'toc';
+
+  var tocTitle = document.createElement('div');
+  tocTitle.className = 'toc-title';
+  tocTitle.textContent = '目次';
+  toc.appendChild(tocTitle);
+
+  var tocList = document.createElement('ul');
+  toc.appendChild(tocList);
+
+  headings.forEach(function (heading) {
+    if (!heading.id) return;
+
+    var item = document.createElement('li');
+    var link = document.createElement('a');
+    link.href = '#' + encodeURIComponent(heading.id);
+    link.textContent = heading.textContent.replace('#', '').trim();
+    item.appendChild(link);
+    tocList.appendChild(item);
+
+    var copyLink = document.createElement('a');
+    copyLink.href = '#' + encodeURIComponent(heading.id);
+    copyLink.className = 'link-button';
+    copyLink.textContent = '#';
+    copyLink.addEventListener('click', copyHeadingLink);
+    heading.appendChild(copyLink);
+  });
+
+  headings[0].parentNode.insertBefore(toc, headings[0]);
+}
+
+function copyHeadingLink(event) {
+  event.preventDefault();
+
+  var url = window.location.href.replace(/#.*/, '') + this.getAttribute('href');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function () {
+      window.alert('複製完成');
+    });
+    return false;
+  }
+
+  var textArea = document.createElement('textarea');
+  textArea.value = url;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  textArea.remove();
+  window.alert('複製完成');
+
+  return false;
+}
+
+function scrollToAnchor() {
+  if (!window.location.hash) return;
+
+  var id;
+  try {
+    id = decodeURIComponent(window.location.hash.slice(1));
+  } catch {
+    id = window.location.hash.slice(1);
+  }
+
+  var target = document.getElementById(id);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}

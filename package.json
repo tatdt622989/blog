@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "hexo generate && node scripts/optimize-public-images.js",
     "clean": "hexo clean",
-    "deploy": "hexo generate && git add . && git commit -m \"Updated Articles\" && git push origin main",
+    "deploy": "npm run build && git add . && git commit -m \"Updated Articles\" && git push origin main",
     "server": "hexo server",
     "test": "node --test test/seo-regressions.test.mjs"
   },

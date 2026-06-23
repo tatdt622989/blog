@@ -31,8 +31,45 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664"
-      crossorigin="anonymous"></script>
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
 
   <link rel="shortcut icon" href="/favicon.png">
   
@@ -42,12 +79,17 @@
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z"></script>
 <script>
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
 </script>
 
 
@@ -94,7 +136,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover.jpg" alt="Claude Code 2026 六月更新四大新功能示意封面" width="800" height="448" decoding="async" class="auto-layout-image post-cover-image"></p>
+        <p class="post-cover-frame"><img src="/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover-card-720.jpg" alt="Claude Code 2026 六月更新四大新功能示意封面" width="800" height="448" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover-card-480.jpg 480w, /2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover-card-720.jpg 720w, /2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/cover.jpg 800w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>最近一個月用 Claude Code 寫東西，明顯感覺它從「會幫你寫程式的工具」往「能放著自己長時間跑的助理」在靠攏。六月初一連串小版本（v2.1.166 到 v2.1.169，大約落在 6&#x2F;6 到 6&#x2F;8）更新了四個我覺得很實用、而且<strong>馬上就能用上</strong>的功能。這篇就用實際開發情境，帶你看懂每個功能在解決什麼痛點。</p>
 <span id="more"></span>
 
@@ -298,17 +340,12 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  
-<script src="/js/jquery-3.4.1.min.js"></script>
+  <script defer src="/js/custom.js?v=260623-1"></script>
 
 
-<script src="/js/jquery.imagesloaded.min.js"></script>
-
-
-<script src="/js/custom.js?v=240229-2.js"></script>
-
-
-<script src="/js/gallery.js?v=260526-1.js"></script>
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
 
 
 
@@ -317,14 +354,15 @@
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
-
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
 <script>
-$(function(){
-  $('.fancybox').fancybox();
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
 });
 </script>
+
 
 </body>
 </html>
