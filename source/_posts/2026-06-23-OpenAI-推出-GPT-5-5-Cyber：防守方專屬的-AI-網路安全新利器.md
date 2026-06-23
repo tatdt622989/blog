@@ -1,7 +1,7 @@
 ---
 title: OpenAI 推出 GPT-5.5 Cyber：防守方專屬的 AI 網路安全新利器
 date: 2026-06-23 10:36:28
-updated: 2026-06-23 10:52:00
+updated: 2026-06-23 17:28:00
 description: OpenAI 於 2026 年中正式推出了針對網路安全防禦特化的 GPT-5.5 Cyber 最新模型。文章整理了其在 CyberGym 基準測試中的優異數據，分析它如何超越 Mythos 5、GPT-5.5 通用版及 Claude Opus 4.7，成為守方安全專家的智慧利器。
 tags:
   - AI
@@ -12,7 +12,7 @@ categories:
   - AI
 ---
 
-![](cover.jpg)
+![OpenAI GPT-5.5 Cyber 網路安全防禦特化模型基準測試封面](cover.webp)
 
 隨著 AI 代理（Agentic AI）逐漸融入日常開發，AI 攻防戰也正式開打。OpenAI 於 2026 年 6 月發布了專為網路安全防護調校的特化模型：**GPT-5.5 Cyber (New)**。這款模型是 OpenAI 防禦性 AI（Defensive AI）套件的核心，旨在為守方的安全專家提供強大的智慧防禦支援。
 
