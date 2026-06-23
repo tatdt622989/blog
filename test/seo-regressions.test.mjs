@@ -110,3 +110,20 @@ test('generated pages expose JSON-LD for the homepage, a post, and a taxonomy pa
 
   assert.match(category, /"@type":"BreadcrumbList"/, 'category page should expose breadcrumb schema');
 });
+
+test('generated post images reserve layout space before image load', () => {
+  const post = read('public/2026/06/23/OpenAI-推出-GPT-5-5-Cyber：防守方專屬的-AI-網路安全新利器/index.html');
+  const firstImageMatch = post.match(/<p><img\b[^>]+><\/p>/);
+
+  assert.ok(firstImageMatch, 'post should render the first article image');
+
+  const firstImage = firstImageMatch[0];
+  assert.match(firstImage, /\bwidth="1200"/, 'first image should include intrinsic width');
+  assert.match(firstImage, /\bheight="669"/, 'first image should include intrinsic height');
+  assert.match(firstImage, /\bdecoding="async"/, 'first image should decode asynchronously');
+  assert.match(firstImage, /\bclass="[^"]*\bpost-cover-image\b/, 'first image should be marked as the cover image');
+  assert.doesNotMatch(firstImage, /\bloading="lazy"/, 'first image should not be lazy loaded');
+
+  const articleCss = read('themes/light/source/css/_partial/article.styl');
+  assert.match(articleCss, /aspect-ratio 16 \/ 9/, 'cover image container should reserve a stable 16:9 ratio');
+});
