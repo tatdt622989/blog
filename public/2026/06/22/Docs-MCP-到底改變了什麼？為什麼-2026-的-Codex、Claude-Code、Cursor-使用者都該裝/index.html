@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Docs MCP 到底改變了什麼？為什麼 2026 的 Codex、Claude Code、Cursor 使用者都該裝 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Docs MCP 是 OpenAI 官方提供的文件 MCP server，讓 Codex、Claude Code、Cursor 直接把官方文件拉進上下文。這篇整理它真正改變的工作流，以及 2026 年為什麼值得先裝起來。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/">
+
+  <meta property="og:title" content="Docs MCP 到底改變了什麼？為什麼 2026 的 Codex、Claude Code、Cursor 使用者都該裝"/>
+  <meta property="og:description" content="Docs MCP 是 OpenAI 官方提供的文件 MCP server，讓 Codex、Claude Code、Cursor 直接把官方文件拉進上下文。這篇整理它真正改變的工作流，以及 2026 年為什麼值得先裝起來。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/"/>
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/cover.png" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Docs MCP 到底改變了什麼？為什麼 2026 的 Codex、Claude Code、Cursor 使用者都該裝">
+  <meta name="twitter:description" content="Docs MCP 是 OpenAI 官方提供的文件 MCP server，讓 Codex、Claude Code、Cursor 直接把官方文件拉進上下文。這篇整理它真正改變的工作流，以及 2026 年為什麼值得先裝起來。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/cover.png">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/","url":"https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/","headline":"Docs MCP 到底改變了什麼？為什麼 2026 的 Codex、Claude Code、Cursor 使用者都該裝","description":"Docs MCP 是 OpenAI 官方提供的文件 MCP server，讓 Codex、Claude Code、Cursor 直接把官方文件拉進上下文。這篇整理它真正改變的工作流，以及 2026 年為什麼值得先裝起來。","datePublished":"2026-06-22T09:58:52.000Z","dateModified":"2026-06-22T10:00:00.769Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/cover.png"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/categories/AI/"},{"@type":"ListItem","position":3,"name":"Docs MCP 到底改變了什麼？為什麼 2026 的 Codex、Claude Code、Cursor 使用者都該裝","item":"https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664"
+      crossorigin="anonymous"></script>
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css?v=260618.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei">
+    </a>
+  </div>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Docs-MCP-到底改變了什麼？為什麼-2026-的-Codex、Claude-Code、Cursor-使用者都該裝" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-06-22T09:58:52.000Z"><a href="/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/">2026-06-22</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Docs MCP 到底改變了什麼？為什麼 2026 的 Codex、Claude Code、Cursor 使用者都該裝</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><img src="/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/cover.png" alt="OpenAI Docs MCP 讓 Codex、Claude Code 與 Cursor 直接讀官方文件的工作流封面"></p>
+<p>如果你最近常在 <strong>Codex</strong>、<strong>Claude Code</strong>、<strong>Cursor</strong> 之間切來切去，應該多少都有同一種煩躁感：工具本身愈來愈強，但只要一碰到 <strong>OpenAI API</strong>、<strong>Responses API</strong>、模型參數、工具 schema 這些細節，還是得自己跳出去翻官方文件。翻完之後，還得再把看到的內容重新餵回 agent。</p>
+<p>這就是我覺得 <strong>Docs MCP</strong> 真正有意思的地方。它不是另一個花俏插件，也不是單純把搜尋框搬進編輯器，而是把「查官方文件」這件事正式變成 agent 工作流的一部分。對 2026 年已經習慣讓 AI 直接進 repo 做事的人來說，這個差別其實很大。</p>
+<span id="more"></span>
+
+<h2 id="Docs-MCP-不是什麼新模型，它是官方文件入口"><a href="#Docs-MCP-不是什麼新模型，它是官方文件入口" class="headerlink" title="Docs MCP 不是什麼新模型，它是官方文件入口"></a>Docs MCP 不是什麼新模型，它是官方文件入口</h2><p>截至 <strong>2026-06-22</strong>，OpenAI 已經把 <strong>Docs MCP</strong> 做成公開的文件 MCP server，地址就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://developers.openai.com/mcp</span><br></pre></td></tr></table></figure>
+
+<p>它提供的是<strong>唯讀</strong>的 OpenAI 開發文件存取：可以搜尋、可以讀頁面內容，但<strong>不會代你呼叫 OpenAI API</strong>。這點很重要，因為它的定位不是幫你執行任務，而是讓 agent 在工作中能直接查到 <strong>developers.openai.com</strong> 與 <strong>platform.openai.com</strong> 上的官方文件。</p>
+<p>換句話說，Docs MCP 的價值不是「多一個工具」，而是把<strong>文件本身變成工具上下文</strong>。</p>
+<h2 id="它真正改變的，是三件很日常的事"><a href="#它真正改變的，是三件很日常的事" class="headerlink" title="它真正改變的，是三件很日常的事"></a>它真正改變的，是三件很日常的事</h2><p>第一，<strong>你不必再把文件內容當搬運工手動轉貼</strong>。</p>
+<p>以前最常見的流程是：先去官網找頁面、自己讀、複製重點，再回來跟 agent 說「你照這個規格改」。現在比較合理的做法，是直接讓 agent 去查官方文件，再根據查到的內容回答或改 code。這會讓回答更接近當下版本，也比較不容易混進過期參數或舊模型名稱。</p>
+<p>第二，<strong>它讓不同 agent 工具的 OpenAI 文件查詢方式開始統一</strong>。</p>
+<p>OpenAI 這頁文件沒有只寫 <strong>Codex</strong>。它把 <strong>Codex</strong>、<strong>VS Code Agent Mode</strong>、<strong>Cursor</strong>、<strong>Claude Code</strong> 的接法都放進同一份 quickstart，甚至連對應的 <strong>AGENTS.md</strong> 提示句都直接給你。這代表一件事：文件查詢不再只是某一套工具的私房功能，而是開始變成跨工具共通的工作流基礎設施。</p>
+<p>第三，<strong>它把 agent 的「可靠度」往前推了一格</strong>。</p>
+<p>OpenAI 在文件裡甚至直接建議，把「只要碰到 OpenAI API、ChatGPT Apps SDK、Codex 等問題，就優先用 OpenAI developer documentation MCP server」這種句子寫進 <strong>AGENTS.md</strong>。這很值得注意，因為它等於是在承認：如果你不把文件查詢習慣做成規則，agent 就很容易退回「憑記憶回答」。</p>
+<h2 id="為什麼這件事在-2026-特別重要"><a href="#為什麼這件事在-2026-特別重要" class="headerlink" title="為什麼這件事在 2026 特別重要"></a>為什麼這件事在 2026 特別重要</h2><p>因為現在的 AI coding 工具，早就不是只幫你補一小段 code 了。</p>
+<p>你可能會讓它：</p>
+<ul>
+<li>幫你把舊的 API 寫法改成新的 <strong>Responses API</strong></li>
+<li>幫你確認 tool schema 需要哪些欄位</li>
+<li>幫你挑目前支援某個工具的模型</li>
+<li>幫你比較 <strong>Codex</strong>、<strong>Claude Code</strong>、<strong>Cursor</strong> 裡某個設定該怎麼接</li>
+</ul>
+<p>這些工作一旦牽涉到<strong>會變動的官方規格</strong>，只靠模型記憶就不夠穩。模型再強，也不代表它腦中那份文件永遠是最新的。Docs MCP 的核心價值，就是讓「去看官方現在怎麼寫」這個動作，能在 agent 流程裡自然發生，而不是靠你每次人工提醒。</p>
+<h2 id="誰最該先裝"><a href="#誰最該先裝" class="headerlink" title="誰最該先裝"></a>誰最該先裝</h2><p>如果你屬於下面這幾種人，我會覺得 Docs MCP 幾乎是低成本高報酬：</p>
+<ul>
+<li>你有在碰 <strong>OpenAI API</strong> 或 <strong>Responses API</strong></li>
+<li>你會讓 <strong>Codex</strong> 或 <strong>Claude Code</strong> 直接幫你改實際專案</li>
+<li>你在 <strong>Cursor</strong> 裡也常用 agent 模式處理 SDK、模型、schema 問題</li>
+<li>你已經有自己的 <strong>AGENTS.md</strong>、skills、plugin 或 MCP 工作流</li>
+</ul>
+<p>反過來說，如果你平常完全不用 OpenAI 的產品、也不太需要查規格，那它就沒有那麼急。但只要你最近常在看 OpenAI 文件，這個東西應該比你想像中更快回本。</p>
+<h2 id="安裝其實很短，重點是把它接進規則"><a href="#安裝其實很短，重點是把它接進規則" class="headerlink" title="安裝其實很短，重點是把它接進規則"></a>安裝其實很短，重點是把它接進規則</h2><p>以 <strong>Codex</strong> 為例，官方文件給的指令很直接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">codex mcp add openaiDeveloperDocs --url https://developers.openai.com/mcp</span><br><span class="line">codex mcp list</span><br></pre></td></tr></table></figure>
+
+<p><strong>Claude Code</strong> 也有對應指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">claude mcp add --transport http openaiDeveloperDocs https://developers.openai.com/mcp</span><br><span class="line">claude mcp list</span><br></pre></td></tr></table></figure>
+
+<p>如果你是 <strong>Cursor</strong>，則可以在 <strong>~&#x2F;.cursor&#x2F;mcp.json</strong> 裡加上：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;openaiDeveloperDocs&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://developers.openai.com/mcp&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>但我覺得真正不能省的不是安裝，而是把規則補上。你最好在 <strong>AGENTS.md</strong> 裡明寫：只要問題跟 OpenAI API、ChatGPT Apps SDK、Codex 有關，優先查 Docs MCP。否則多數 agent 在壓力下還是會先用自己記得的內容回答。</p>
+<h2 id="我自己的結論：它不是炫技，而是讓-agent-少講錯話"><a href="#我自己的結論：它不是炫技，而是讓-agent-少講錯話" class="headerlink" title="我自己的結論：它不是炫技，而是讓 agent 少講錯話"></a>我自己的結論：它不是炫技，而是讓 agent 少講錯話</h2><p>Docs MCP 最值得寫的地方，不是因為它很新潮，而是它把一個大家每天都在做、卻一直做得很散的動作標準化了：<strong>遇到 OpenAI 的規格問題，就直接查官方文件，而且讓 agent 自己去查</strong>。</p>
+<p>如果你前陣子還在比較 <a href="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/">Claude Code、Codex、Cursor 怎麼選？</a>，或剛看完我前一篇 <a href="/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/">Claude Code 六月更新實測</a>，那我會把 Docs MCP 當成下一步很合理的補強：不是換工具，而是把你現在手上的工具變得更可靠。</p>
+<p>對我來說，這類東西真正的指標只有一個：<strong>它有沒有讓 agent 更少一本正經地講錯話</strong>。而 Docs MCP，至少目前看起來，確實有。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developers.openai.com/learn/docs-mcp">OpenAI Developers: Docs MCP</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/tools-connectors-mcp">OpenAI API Docs: MCP and Connectors</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.openai.com/codex/mcp">OpenAI Codex Docs: Model Context Protocol</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI/">AI</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/OpenAI/">OpenAI</a>, <a href="/tags/Codex/">Codex</a>, <a href="/tags/Claude-Code/">Claude Code</a>, <a href="/tags/Cursor/">Cursor</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <p class="title">留言</p>
+
+  
+      <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v22.0&appId=796581497680750"></script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2026/06/22/Docs-MCP-%E5%88%B0%E5%BA%95%E6%94%B9%E8%AE%8A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%82%BA%E4%BB%80%E9%BA%BC-2026-%E7%9A%84-Codex%E3%80%81Claude-Code%E3%80%81Cursor-%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%BD%E8%A9%B2%E8%A3%9D/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>7</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>10</small></li>
+  
+    <li><a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/">技術分享</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3D/">3D</a><small>1</small></li>
+  
+    <li><a href="/tags/AI/">AI</a><small>13</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>2</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>5</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>2</small></li>
+  
+    <li><a href="/tags/Computer-Use/">Computer Use</a><small>1</small></li>
+  
+    <li><a href="/tags/Contabo/">Contabo</a><small>1</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/Cypress/">Cypress</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>2</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT/">GPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>2</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>2</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/matter-js/">matter.js</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><small>3</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%8B%95%E6%BC%AB/">動漫</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>4</small></li>
+  
+    <li><a href="/tags/%E7%BE%8E%E5%9C%8B%E5%87%BA%E5%8F%A3%E7%AE%A1%E5%88%B6/">美國出口管制</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/custom.js?v=240229-2.js"></script>
+
+
+<script src="/js/gallery.js?v=260526-1.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+$(function(){
+  $('.fancybox').fancybox();
+});
+</script>
+
+</body>
+</html>
