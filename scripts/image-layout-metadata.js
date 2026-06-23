@@ -252,24 +252,16 @@ function addImageLayoutMetadata(html, data) {
     if (!size || size.width <= 0 || size.height <= 0) return tag;
 
     const isCover = imageIndex === 0 && isCoverImage(imagePath);
-    const isTallContentImage = !isCover && size.height / size.width > 1.5;
     imageIndex += 1;
+
+    if (!isCover) return tag;
 
     let nextTag = tag;
     nextTag = setAttribute(nextTag, 'width', Math.round(size.width));
     nextTag = setAttribute(nextTag, 'height', Math.round(size.height));
     nextTag = setAttribute(nextTag, 'decoding', 'async');
     nextTag = addClass(nextTag, 'auto-layout-image');
-
-    if (isCover) {
-      nextTag = addClass(nextTag, 'post-cover-image');
-    } else if (!getAttribute(nextTag, 'loading')) {
-      nextTag = setAttribute(nextTag, 'loading', 'lazy');
-    }
-
-    if (isTallContentImage) {
-      nextTag = addClass(nextTag, 'auto-tall-image');
-    }
+    nextTag = addClass(nextTag, 'post-cover-image');
 
     return nextTag;
   });

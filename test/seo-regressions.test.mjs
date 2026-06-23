@@ -129,13 +129,33 @@ test('generated post images reserve layout space before image load', () => {
   assert.match(articleCss, /\.post-cover-frame/, 'cover frame should not depend on DOM shape inferred with :has');
   assert.match(articleCss, /> \.topImgWrap[\s\S]*height 100%/, 'JS-added image links should fill the responsive cover frame');
   assert.doesNotMatch(articleCss, /:has\(/, 'cover frame should survive runtime image link wrapping');
-  assert.match(articleCss, /img\.auto-tall-image:not\(\.post-cover-image\)[\s\S]*width auto !important/, 'tall content images should shrink without distortion');
-  assert.match(articleCss, /max-height min\(72vh, 760px\)/, 'tall content images should not dominate small screens');
+  assert.doesNotMatch(articleCss, /auto-tall-image/, 'content image presentation should not be changed by the CLS fix');
 
   const imageFilter = read('scripts/image-layout-metadata.js');
   assert.match(imageFilter, /isCoverImage/, 'only real cover filenames should receive the fixed cover ratio');
   assert.match(imageFilter, /cover\[-\\w\]\*/, 'cover-v2 style filenames should be treated as cover images');
-  assert.match(imageFilter, /auto-tall-image/, 'very tall non-cover images should receive a safe responsive class');
+  assert.doesNotMatch(imageFilter, /auto-tall-image/, 'non-cover content images should not receive layout classes');
+});
+
+test('content images are not modified by cover-only CLS metadata', () => {
+  const post = read('public/2026/06/15/pixellab-ai-pixel-art-game-assets/index.html');
+  const pricingImage = post.match(/<img\b[^>]+pricing\.webp[^>]*>/);
+
+  assert.ok(pricingImage, 'post should render the pricing content image');
+  assert.doesNotMatch(pricingImage[0], /\bwidth="/, 'content images should keep author markup unchanged');
+  assert.doesNotMatch(pricingImage[0], /\bheight="/, 'content images should keep author markup unchanged');
+  assert.doesNotMatch(pricingImage[0], /\bloading="/, 'content images should not be changed for non-visible CLS');
+  assert.doesNotMatch(pricingImage[0], /auto-layout-image/, 'content images should not receive CLS helper classes');
+});
+
+test('stylesheet cache version is generated from style sources', () => {
+  const helper = read('scripts/style-version-helper.js');
+  const homepage = read('public/index.html');
+
+  assert.match(helper, /crypto\.createHash\('sha1'\)/, 'style version should be content-derived');
+  assert.match(helper, /hexo\.extend\.helper\.register\('versioned_css'/, 'template should use a Hexo helper');
+  assert.match(homepage, /\/css\/style\.css\?v=[a-f0-9]{10}/, 'generated CSS URL should include an automatic version hash');
+  assert.doesNotMatch(homepage, /style\.css\?v=260623-2/, 'generated CSS URL should not depend on manual date bumps');
 });
 
 test('homepage cover images use responsive card variants', () => {

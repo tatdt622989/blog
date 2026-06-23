@@ -73,9 +73,7 @@
 
   <link rel="shortcut icon" href="/favicon.png">
   
-  
-<link rel="stylesheet" href="/css/style.css?v=260618.css">
-
+  <link rel="stylesheet" href="/css/style.css?v=195a6965fe">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -143,7 +141,7 @@
 
 <h2 id="額度管理神器：CodexBar-一站式監控"><a href="#額度管理神器：CodexBar-一站式監控" class="headerlink" title="額度管理神器：CodexBar 一站式監控"></a>額度管理神器：CodexBar 一站式監控</h2><p>當你同時使用多個 AI 服務時，光是為了檢查剩餘額度，就得分別登入 Anthropic Console、Codex 官網等好幾個網站，過程極其繁瑣。</p>
 <p>為了解決這個痛點，開發者社群推出了一款名為 <strong>CodexBar</strong> 的開源選單列工具（GitHub 專案：<a target="_blank" rel="noopener" href="https://github.com/steipete/CodexBar">steipete&#x2F;CodexBar</a>）。它可以常駐在 macOS 的頂部選單列，即時幫你追蹤各大 AI 助理的用量進度。</p>
-<p><img src="/2026/06/18/claude-codex-quota-guide/codexbar-panel.jpg" alt="CodexBar 能在選單列即時顯示 Claude 與 Codex 的用量百分比與重置倒數" width="2520" height="1418" decoding="async" class="auto-layout-image" loading="lazy"></p>
+<p><img src="/2026/06/18/claude-codex-quota-guide/codexbar-panel.jpg" alt="CodexBar 能在選單列即時顯示 Claude 與 Codex 的用量百分比與重置倒數"></p>
 <h3 id="CodexBar-的核心特色："><a href="#CodexBar-的核心特色：" class="headerlink" title="CodexBar 的核心特色："></a>CodexBar 的核心特色：</h3><ul>
 <li><strong>專注支援主要平台</strong>：支援 <strong>Claude Code</strong> 與 <strong>Codex</strong> 的額度與使用量監控。</li>
 <li><strong>免手動登入</strong>：它不需要你手動輸入帳號密碼，而是能安全地讀取本地瀏覽器（如 Safari、Chrome）的既有 Cookie、本地 CLI 日誌或系統 Keychain 來獲取數據。</li>
@@ -153,7 +151,7 @@
 <hr>
 <h2 id="Codex-最新功能：自訂手動重設（Reset）"><a href="#Codex-最新功能：自訂手動重設（Reset）" class="headerlink" title="Codex 最新功能：自訂手動重設（Reset）"></a>Codex 最新功能：自訂手動重設（Reset）</h2><p>除了被動地監控額度，AI 服務商也在嘗試給予開發者更多主導權。近期 Codex 就推出了一項非常人性化的新功能——<strong>手動重設額度機制</strong>。</p>
 <p>過去，當我們的快速額度（Fast Quota）用完後，服務通常會強迫我們進入「慢速模式」或乾等固定的滾動週期結束。而現在，在用量選單中，會明確顯示<strong>可用重設 2 次</strong>（或其他次數）的選項。</p>
-<p><img src="/2026/06/18/claude-codex-quota-guide/reset-quota.png" alt="Codex 的剩餘用量面板中，新增了可由使用者自行觸發的「可用重設」功能，讓開發者自己決定重置額度的時機" width="622" height="350" decoding="async" class="auto-layout-image" loading="lazy"></p>
+<p><img src="/2026/06/18/claude-codex-quota-guide/reset-quota.png" alt="Codex 的剩餘用量面板中，新增了可由使用者自行觸發的「可用重設」功能，讓開發者自己決定重置額度的時機"></p>
 <p>值得注意的是，這些「手動重設次數」並不是無限發送的，而是可以透過官方活動來「囤積（Banked）」。例如 OpenAI 最近推行的<strong>好友推薦 Pilot 試點計畫（該活動進行至 2026 年 6 月 24 日截止）</strong>，用戶成功推薦好友註冊付費方案，即可賺取額外的重置次數（上限為 3 次）。這也是為什麼有些付費用戶的面板上會顯示「可用重設 2 次」的原因。這項新機制讓開發者在面對短期高強度的專案重組或大型重構時，有了極大的彈性。</p>
 <hr>
 <h2 id="深度分析：Claude-與-Codex-的額度重置規律"><a href="#深度分析：Claude-與-Codex-的額度重置規律" class="headerlink" title="深度分析：Claude 與 Codex 的額度重置規律"></a>深度分析：Claude 與 Codex 的額度重置規律</h2><p>除了日常的計費週期，你是否有注意到，有時候明明還沒到重設時間，額度卻悄悄被補滿了？根據社群長期的觀察，這背後其實有以下幾個有趣的重置規律：</p>
