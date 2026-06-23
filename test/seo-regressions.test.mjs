@@ -113,9 +113,9 @@ test('generated pages expose JSON-LD for the homepage, a post, and a taxonomy pa
 
 test('generated post images reserve layout space before image load', () => {
   const post = read('public/2026/06/23/OpenAI-推出-GPT-5-5-Cyber：防守方專屬的-AI-網路安全新利器/index.html');
-  const firstImageMatch = post.match(/<p><img\b[^>]+><\/p>/);
+  const firstImageMatch = post.match(/<p\b[^>]*\bpost-cover-frame\b[^>]*><img\b[^>]+><\/p>/);
 
-  assert.ok(firstImageMatch, 'post should render the first article image');
+  assert.ok(firstImageMatch, 'post should render the first article image inside a stable cover frame');
 
   const firstImage = firstImageMatch[0];
   assert.match(firstImage, /\bwidth="1200"/, 'first image should include intrinsic width');
@@ -126,4 +126,14 @@ test('generated post images reserve layout space before image load', () => {
 
   const articleCss = read('themes/light/source/css/_partial/article.styl');
   assert.match(articleCss, /aspect-ratio 16 \/ 9/, 'cover image container should reserve a stable 16:9 ratio');
+  assert.match(articleCss, /\.post-cover-frame/, 'cover frame should not depend on DOM shape inferred with :has');
+  assert.match(articleCss, /> \.topImgWrap[\s\S]*height 100%/, 'JS-added image links should fill the responsive cover frame');
+  assert.doesNotMatch(articleCss, /:has\(/, 'cover frame should survive runtime image link wrapping');
+  assert.match(articleCss, /img\.auto-tall-image:not\(\.post-cover-image\)[\s\S]*width auto !important/, 'tall content images should shrink without distortion');
+  assert.match(articleCss, /max-height min\(72vh, 760px\)/, 'tall content images should not dominate small screens');
+
+  const imageFilter = read('scripts/image-layout-metadata.js');
+  assert.match(imageFilter, /isCoverImage/, 'only real cover filenames should receive the fixed cover ratio');
+  assert.match(imageFilter, /cover\[-\\w\]\*/, 'cover-v2 style filenames should be treated as cover images');
+  assert.match(imageFilter, /auto-tall-image/, 'very tall non-cover images should receive a safe responsive class');
 });
