@@ -56,17 +56,21 @@ categories:
 ## 實務配置：如何將 Superpowers 導入你的 AI 開發工具？
 
 ### 1. 在 Claude Code 中使用 Superpowers
-Claude Code 擁有強大的自主檔案存取與命令執行能力，是 Superpowers 的最佳舞台。
-*   **技能安裝**：在專案根目錄下建立 `.agents/skills/` 資料夾，並將 Superpowers 的 `SKILL.md`（包含規劃、測試、除錯等技能）放入其中。
-*   **規則啟用**：在專案的 `.agents/AGENTS.md`（或 `CLAUDE.md`）中，加入以下指令：
-    > 當你收到任何開發任務時，你必須無條件遵循 `.agents/skills/` 中的規範。在動筆前，必須先進行需求釐清、撰寫 plan.md，並嚴格執行 TDD 流程。
-
-當你再次在終端機啟動 `claude` 並給予任務時，你會發現它不再直接修改檔案，而是先彈出規格確認問題，並在寫完測試後才進行實作。
+Claude Code 提供了內建的插件系統，完全不需要手動建立目錄與複製檔案，只需在對話中執行單一指令即可完成安裝：
+*   **一鍵安裝**：在啟動的 `claude` 終端機對話中，輸入以下指令：
+    ```bash
+    /plugin install superpowers
+    ```
+    （若需手動指定特定源，可使用 `/plugin install superpowers@superpowers-marketplace`）
+*   **自動載入**：安裝完畢後，Superpowers 的技能會自動載入。當你對 Claude 下達任務時，它會自動觸發 `/superpowers:brainstorm` 與 `/superpowers:write-plan`，強制進入 TDD 流程。
 
 ### 2. 在 Codex 中配置 Superpowers
-對於使用 Codex 命令行工具的開發者，我們可以透過系統提示詞與本機 Rule 指引來載入規範：
-*   將 Superpowers 的核心紀律寫入 Codex 的全域設定檔（System Prompts）。
-*   利用專案本機的組態檔，在 Codex 每次讀取 Workspace Context 時，強制注入「先寫測試再寫 Code」的防線。
+對於 Codex 命令行工具，我們同樣可以透過簡單的配置將其與本機環境結合：
+*   **指定載入目錄**：只需在 Codex 設定檔中，將 Superpowers 的本機路徑加入到自動加載的 `skills` 目錄：
+    ```bash
+    git clone https://github.com/obra/superpowers.git ~/.codex/skills/superpowers
+    ```
+*   這能讓 Codex 每次在該專案環境啟動時，自動將 Superpowers 的工程約束注入為全域 Context。
 
 ---
 
