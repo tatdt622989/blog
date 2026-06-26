@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>告別 AI 瞎寫程式的時代：用 Superpowers 框架為 Claude Code 與 Codex 注入工程紀律 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="當前 Claude Code 與 Codex 等 AI 代理寫程式速度驚人，但也帶來了盲目的 Vibe Coding 問題。本文深入剖析 Jesse Vincent 開源的 Superpowers 代理協作框架，探討其如何透過 Socratic 規格釐清、實作規劃與 TDD 等三階段工程紀律，約束並重塑 AI 的研發工作流，將 AI 從急躁的打字員訓練為嚴謹的軟體工程師。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/">
+
+  <meta property="og:title" content="告別 AI 瞎寫程式的時代：用 Superpowers 框架為 Claude Code 與 Codex 注入工程紀律"/>
+  <meta property="og:description" content="當前 Claude Code 與 Codex 等 AI 代理寫程式速度驚人，但也帶來了盲目的 Vibe Coding 問題。本文深入剖析 Jesse Vincent 開源的 Superpowers 代理協作框架，探討其如何透過 Socratic 規格釐清、實作規劃與 TDD 等三階段工程紀律，約束並重塑 AI 的研發工作流，將 AI 從急躁的打字員訓練為嚴謹的軟體工程師。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/"/>
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="告別 AI 瞎寫程式的時代：用 Superpowers 框架為 Claude Code 與 Codex 注入工程紀律">
+  <meta name="twitter:description" content="當前 Claude Code 與 Codex 等 AI 代理寫程式速度驚人，但也帶來了盲目的 Vibe Coding 問題。本文深入剖析 Jesse Vincent 開源的 Superpowers 代理協作框架，探討其如何透過 Socratic 規格釐清、實作規劃與 TDD 等三階段工程紀律，約束並重塑 AI 的研發工作流，將 AI 從急躁的打字員訓練為嚴謹的軟體工程師。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover.jpg">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/","url":"https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/","headline":"告別 AI 瞎寫程式的時代：用 Superpowers 框架為 Claude Code 與 Codex 注入工程紀律","description":"當前 Claude Code 與 Codex 等 AI 代理寫程式速度驚人，但也帶來了盲目的 Vibe Coding 問題。本文深入剖析 Jesse Vincent 開源的 Superpowers 代理協作框架，探討其如何透過 Socratic 規格釐清、實作規劃與 TDD 等三階段工程紀律，約束並重塑 AI 的研發工作流，將 AI 從急躁的打字員訓練為嚴謹的軟體工程師。","datePublished":"2026-06-26T07:48:00.000Z","dateModified":"2026-06-26T08:01:51.760Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"技術分享","item":"https://blog.6yuwei.com/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/"},{"@type":"ListItem","position":3,"name":"告別 AI 瞎寫程式的時代：用 Superpowers 框架為 Claude Code 與 Codex 注入工程紀律","item":"https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css?v=195a6965fe">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-告別-AI-瞎寫程式的時代：用-Superpowers-框架為-Claude-Code-與-Codex-注入工程紀律" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-06-26T07:48:00.000Z"><a href="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/">2026-06-26</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">告別 AI 瞎寫程式的時代：用 Superpowers 框架為 Claude Code 與 Codex 注入工程紀律</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-720.jpg" alt="Superpowers 框架與 AI 代理工程紀律封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-480.jpg 480w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-720.jpg 720w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-960.jpg 960w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-1280.jpg 1280w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover.jpg 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>隨著 <a href="/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/">Claude Code</a> 與 Codex 等自主程式開發代理（Agentic Coding Tools）在 2026 年的爆發，開發者只需在終端機輸入一行自然語言，AI 就能在幾分鐘內自主閱讀專案、安裝依賴、修改代碼並完成部署。這種極速的開發體驗讓人興奮，但也帶來了全新的副作用：<strong>Vibe Coding（氛圍感開發）</strong>的氾濫。</p>
+<p>這就是我們在討論 <a href="/2026/06/24/AI-%E6%99%82%E4%BB%A3%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%B8%AB%E8%AD%B7%E5%9F%8E%E6%B2%B3%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E5%A4%A7%E9%83%A8%E5%88%86-AI-%E7%94%9F%E6%88%90%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%AF%AB%E7%84%A1%E5%83%B9%E5%80%BC%EF%BC%8C%E8%80%8C%E4%BD%A0%E4%BE%9D%E7%84%B6%E4%B8%8D%E5%8F%AF%E5%8F%96%E4%BB%A3/">AI 時代的工程師護城河</a> 時所面臨的核心困境：缺乏工程品質把關的代碼終將淪為無法維護的技術債。許多開發者發現，當給予 AI 代理一個複雜任務時，它往往像一個急躁且缺乏經驗的實習生——還沒完全釐清需求、沒有考慮邊界條件，就急著動手修改代碼，最後產生一堆缺乏測試、邏輯破碎且難以維護的程式碼。</p>
+<p>為了給這些狂奔的 AI 代理套上緊箍咒，Jesse Vincent 於 GitHub 開源了 <strong>Superpowers</strong> 代理協作框架（<code>obra/superpowers</code>）。這篇文章將深入探討 <strong>Superpowers</strong> 的核心運作機制，分享它如何透過結構化的「技能（Skills）」與「規則（Rules）」，為 Claude Code 與 Codex 注入嚴格的工程紀律，將 AI 從一個急躁的打字員，訓練為嚴謹的軟體工程師。</p>
+<span id="more"></span>
+
+<h2 id="什麼是-Superpowers-框架？它的運作原理是什麼？"><a href="#什麼是-Superpowers-框架？它的運作原理是什麼？" class="headerlink" title="什麼是 Superpowers 框架？它的運作原理是什麼？"></a>什麼是 Superpowers 框架？它的運作原理是什麼？</h2><p><strong>Superpowers</strong> 本質上不是一個新的大語言模型，而是一套<strong>針對 AI 代理開發的「運作手冊與紀律規範」</strong>。</p>
+<p>在傳統開發中，我們使用 Lint、靜態分析與 CI&#x2F;CD 來約束人類工程師；而 <strong>Superpowers</strong> 則是利用 AI 代理本身具備「在採取行動前先閱讀本地脈絡」的特性，在專案目錄下配置一系列精心設計的 <code>SKILL.md</code>（技能檔）與規則。當 AI 代理啟動並掃描專案時，它會自動載入這些規範，並在後續的每一個開發步驟中強制執行。</p>
+<p>這套框架將 AI 代理的開發生命週期約束在三個非談判性（Non-negotiable）的階段中：</p>
+<h3 id="第一階段：蘇格拉底式規格釐清（Socratic-Brainstorming）"><a href="#第一階段：蘇格拉底式規格釐清（Socratic-Brainstorming）" class="headerlink" title="第一階段：蘇格拉底式規格釐清（Socratic Brainstorming）"></a>第一階段：蘇格拉底式規格釐清（Socratic Brainstorming）</h3><p>當你向 AI 代理下達「幫我重構資料庫連線池」或「新增一個 API 路由」的任務時，未受約束的 AI 會立刻開始動手修改檔案。</p>
+<p>而在 <strong>Superpowers</strong> 規範下，AI 代理被禁止直接寫代碼。它必須先扮演一位挑剔的架構師，使用蘇格拉底式的提問，主動向人類開發者釐清：</p>
+<ul>
+<li>這個功能的具體邊界是什麼？</li>
+<li>有哪些已知的約束條件（如效能要求、第三方 API 限制）？</li>
+<li>有沒有需要特別防範的邊緣案例（Edge Cases）？</li>
+</ul>
+<p>只有當人類開發者確認規格無誤後，AI 才能進入下一階段。這從源頭上杜絕了「AI 因為瞎猜需求而寫出錯誤產品」的狀況。</p>
+<h3 id="第二階段：實作規劃（Implementation-Planning）"><a href="#第二階段：實作規劃（Implementation-Planning）" class="headerlink" title="第二階段：實作規劃（Implementation Planning）"></a>第二階段：實作規劃（Implementation Planning）</h3><p>規格釐清後，AI 代理必須在本機寫入一份詳細的實作計畫（通常為 <code>plan.md</code>）。這份計畫必須將宏大的任務拆解成細小的、可驗證的 To-do list。</p>
+<p>透過這個步驟，AI 代理在面對大型程式庫（Codebase）時，能保持清晰的上下文脈絡，按部就班地執行計畫，並在遇到編譯錯誤時有據可依，避免陷入不斷自我修改卻越改越亂的死循環。</p>
+<h3 id="第三階段：測試驅動開發（Test-Driven-Development-TDD）"><a href="#第三階段：測試驅動開發（Test-Driven-Development-TDD）" class="headerlink" title="第三階段：測試驅動開發（Test-Driven Development, TDD）"></a>第三階段：測試驅動開發（Test-Driven Development, TDD）</h3><p>這是 <strong>Superpowers</strong> 最硬核的核心紀律。框架強制要求 AI 代理必須遵循傳統軟體工程中的 TDD 循環（紅-綠-重構）：</p>
+<ol>
+<li><strong>寫測試（Red）</strong>：在動手寫任何功能代碼前，AI 必須先寫好單元測試或整合測試，並執行它以確認測試失敗。</li>
+<li><strong>寫實作（Green）</strong>：編寫最簡可行代碼，使測試順利通過。</li>
+<li><strong>重構（Refactor）</strong>：在測試的保護傘下，對代碼進行去八股化、消除重複（DRY）與效能優化，並確保測試依然通過。</li>
+</ol>
+<p>這條防線極大程度地防止了 AI 生成沒有測試保護的「一次性垃圾代碼」，確保專案具備長期的可維護性。</p>
+<hr>
+<h2 id="實務配置：如何將-Superpowers-導入你的-AI-開發工具？"><a href="#實務配置：如何將-Superpowers-導入你的-AI-開發工具？" class="headerlink" title="實務配置：如何將 Superpowers 導入你的 AI 開發工具？"></a>實務配置：如何將 Superpowers 導入你的 AI 開發工具？</h2><h3 id="1-在-Claude-Code-中使用-Superpowers"><a href="#1-在-Claude-Code-中使用-Superpowers" class="headerlink" title="1. 在 Claude Code 中使用 Superpowers"></a>1. 在 Claude Code 中使用 Superpowers</h3><p>Claude Code 擁有強大的自主檔案存取與命令執行能力，是 Superpowers 的最佳舞台。</p>
+<ul>
+<li><strong>技能安裝</strong>：在專案根目錄下建立 <code>.agents/skills/</code> 資料夾，並將 Superpowers 的 <code>SKILL.md</code>（包含規劃、測試、除錯等技能）放入其中。</li>
+<li><strong>規則啟用</strong>：在專案的 <code>.agents/AGENTS.md</code>（或 <code>CLAUDE.md</code>）中，加入以下指令：<blockquote>
+<p>當你收到任何開發任務時，你必須無條件遵循 <code>.agents/skills/</code> 中的規範。在動筆前，必須先進行需求釐清、撰寫 plan.md，並嚴格執行 TDD 流程。</p>
+</blockquote>
+</li>
+</ul>
+<p>當你再次在終端機啟動 <code>claude</code> 並給予任務時，你會發現它不再直接修改檔案，而是先彈出規格確認問題，並在寫完測試後才進行實作。</p>
+<h3 id="2-在-Codex-中配置-Superpowers"><a href="#2-在-Codex-中配置-Superpowers" class="headerlink" title="2. 在 Codex 中配置 Superpowers"></a>2. 在 Codex 中配置 Superpowers</h3><p>對於使用 Codex 命令行工具的開發者，我們可以透過系統提示詞與本機 Rule 指引來載入規範：</p>
+<ul>
+<li>將 Superpowers 的核心紀律寫入 Codex 的全域設定檔（System Prompts）。</li>
+<li>利用專案本機的組態檔，在 Codex 每次讀取 Workspace Context 時，強制注入「先寫測試再寫 Code」的防線。</li>
+</ul>
+<hr>
+<h2 id="從「急躁打字員」到「嚴謹工程師」的價值反思"><a href="#從「急躁打字員」到「嚴謹工程師」的價值反思" class="headerlink" title="從「急躁打字員」到「嚴謹工程師」的價值反思"></a>從「急躁打字員」到「嚴謹工程師」的價值反思</h2><p>導入 <strong>Superpowers</strong> 框架後，最直觀的感受是：<strong>AI 變慢了</strong>。</p>
+<p>它不再是一秒鐘刷出上百行代碼，而是會花時間跟你對齊需求、花時間寫測試、並在重構時小心翼翼。這對追求「快」的開發者來說可能有些不習慣，但從長遠的軟體生命週期來看，這種「慢」才是真正的快。</p>
+<p>藉由強制的測試約束，<strong>Superpowers</strong> 帶來了以下核心商業與技術價值：</p>
+<ul>
+<li><strong>消除技術債</strong>：測試覆蓋率在開發過程中被自動補齊，代碼結構經過重構，避免了 Vibe Coding 累積的隱形債務。</li>
+<li><strong>保護人類開發者的精力</strong>：你不需要在 AI 寫完程式後去當「消防員」除錯，因為 AI 已經在測試階段自己把邊緣案例修正完畢。</li>
+<li><strong>重塑 AI 與人類的協作關係</strong>：人類從「代碼除錯員」回歸到「規格定義者與方向掌控者」，AI 則真正成為了具備工程素養的副駕駛。</li>
+</ul>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>AI 程式工具的演進降低了開發的起跑難度，但軟體工程的本質壁壘從未改變——那便是對<strong>架構設計、測試覆蓋與代碼品質的紀律要求</strong>。</p>
+<p>Jesse Vincent 的 <strong>Superpowers</strong> 框架，其核心智慧在於它認識到了「AI 的強大必須被紀律約束」。透過在專案中配置簡單的 Skills 與 Rules，我們能將人類累積數十年的工程實踐，自動化地約束在 AI 的工作流中。這是將 AI 程式工具從「寫玩具 App 的玩具」提升為「開發生產環境軟體的利器」過程中，極具前瞻性且不可或缺的關鍵一步。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/">技術分享</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>, <a href="/tags/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/">技術分享</a>, <a href="/tags/Superpowers/">Superpowers</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <p class="title">留言</p>
+
+  
+      <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v22.0&appId=796581497680750"></script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>8</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>10</small></li>
+  
+    <li><a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/">技術分享</a><small>3</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/3D/">3D</a><small>1</small></li>
+  
+    <li><a href="/tags/AI/">AI</a><small>16</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>2</small></li>
+  
+    <li><a href="/tags/Blender/">Blender</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>5</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>2</small></li>
+  
+    <li><a href="/tags/Computer-Use/">Computer Use</a><small>1</small></li>
+  
+    <li><a href="/tags/Contabo/">Contabo</a><small>1</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/Cypress/">Cypress</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>2</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT/">GPT</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT-5-5-Cyber/">GPT-5.5 Cyber</a><small>1</small></li>
+  
+    <li><a href="/tags/Google-Map/">Google Map</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>3</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>2</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/Superpowers/">Superpowers</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/matter-js/">matter.js</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>3</small></li>
+  
+    <li><a href="/tags/scss/">scss</a><small>2</small></li>
+  
+    <li><a href="/tags/tween-js/">tween.js</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><small>3</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%8B%95%E6%BC%AB/">動漫</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/">技術分享</a><small>2</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>4</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>2</small></li>
+  
+    <li><a href="/tags/%E7%B6%B2%E8%B7%AF%E5%AE%89%E5%85%A8/">網路安全</a><small>1</small></li>
+  
+    <li><a href="/tags/%E7%BE%8E%E5%9C%8B%E5%87%BA%E5%8F%A3%E7%AE%A1%E5%88%B6/">美國出口管制</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>2</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+</body>
+</html>
