@@ -6,8 +6,8 @@ description: OpenAI 於 2026 年中正式推出了針對網路安全防禦特化
 tags:
   - AI
   - OpenAI
-  - GPT-5.5 Cyber
   - 網路安全
+  - GPT
 categories:
   - AI
 ---
