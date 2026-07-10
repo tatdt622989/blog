@@ -10,9 +10,10 @@ tags:
   - Codex
 categories:
   - AI 技術
+cover: /2026/07/10/introducing-openai-chatgpt-work-agent-productivity/cover.jpg?v=2
 ---
 
-![](cover.jpg)
+![](/2026/07/10/introducing-openai-chatgpt-work-agent-productivity/cover.jpg?v=2)
 
 OpenAI 於 2026 年 7 月 9 日發布了 **ChatGPT Work**，這款定位為「自主代理人（Agentic AI）」的生產力工具，能自主執行多步驟、長流程的複雜工作，標誌著生成式 AI 正式跨入代理人時代。
 
