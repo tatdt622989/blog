@@ -1,7 +1,7 @@
 ---
-title: 告別 AI 瞎寫程式的時代：用 Superpowers 框架為 Claude Code 與 Codex 注入工程紀律
+title: Claude Code 與 AI 寫程式的工程紀律：用 Superpowers 框架實踐 TDD 告別 Vibe Coding
 date: 2026-06-26 15:48:00
-description: 當前 Claude Code 與 Codex 等 AI 代理寫程式速度驚人，但也帶來了盲目的 Vibe Coding 問題。本文深入剖析 Jesse Vincent 開源的 Superpowers 代理協作框架，探討其如何透過 Socratic 規格釐清、實作規劃與 TDD 等三階段工程紀律，約束並重塑 AI 的研發工作流，將 AI 從急躁的打字員訓練為嚴謹的軟體工程師。
+description: 如何解決 Claude Code 等 AI 寫程式工具帶來的 Vibe Coding 技術債？本文深入剖析開源 Superpowers 框架，透過 TDD、需求釐清與實作規劃三階段，為 AI 代理注入軟體工程紀律，將其訓練為嚴謹的工程師。
 tags:
   - AI
   - 軟體工程
@@ -16,22 +16,24 @@ categories:
 
 隨著 [Claude Code](/2026/06/20/Claude-Code-2026-六月更新實測：四個我馬上開來用的新功能/) 與 Codex 等自主程式開發代理的爆發，軟體開發迎來了極速生成時代，卻也帶來了盲目 **Vibe Coding** 的副作用。這正是我們在探討 [AI 時代的工程師護城河](/2026/06/24/AI-時代的工程師護城河：為什麼大部分-AI-生成的程式碼毫無價值，而你依然不可取代/) 時面臨的核心困境：缺乏工程品質把關的 AI 代理，往往像個急躁的實習生，沒搞懂需求、沒寫測試就急著改代碼，最終留下難以維護的技術債。
 
-為了給這些狂奔的 AI 代理套上緊箍咒，Jesse Vincent 開源了 **Superpowers** 代理協作框架（`obra/superpowers`）。本文將深入解析其運作機制，看它如何透過結構化技能與規則，為 AI 注入嚴格的工程紀律，將其訓練為嚴謹的軟體工程師。
+為了給這些狂奔的 AI 代理套上緊箍咒，Jesse Vincent 開源了 **Superpowers** 代理協作框架（**obra/superpowers**）。本文將深入解析其運作機制，看它如何透過結構化技能與規則，為 AI 注入嚴格的工程紀律，將其訓練為嚴謹的軟體工程師。
 
 <!--more-->
+
+在傳統開發流程中，我們習慣在程式碼寫完後才透過靜態分析或測試來除錯。然而，面對每秒能產生上百行程式碼的 **AI 代理**，這種事後補救的方法會讓人類工程師疲於奔命。這正是為什麼我們需要一種能在 AI 思考與動手前就介入的 **預防性框架**，從根本上規範 AI 的行為模式。
 
 ## 什麼是 Superpowers 框架？它的運作原理是什麼？
 
 **Superpowers** 本質上不是一個新的大語言模型，而是一套**針對 AI 代理開發的「運作手冊與紀律規範」**。
 
-在傳統開發中，我們使用 Lint、靜態分析與 CI/CD 來約束人類工程師；而 **Superpowers** 則是利用 AI 代理本身具備「在採取行動前先閱讀本地脈絡」的特性，在專案目錄下配置一系列精心設計的 `SKILL.md`（技能檔）與規則。當 AI 代理啟動並掃描專案時，它會自動載入這些規範，並在後續的每一個開發步驟中強制執行。
+在傳統開發中，我們使用 Lint、靜態分析與 CI/CD 來約束人類工程師；而 **Superpowers** 則是利用 AI 代理本身具備「在採取行動前先閱讀本地脈絡」的特性，在專案目錄下配置一系列精心設計的 **SKILL.md**（技能檔）與規則。當 AI 代理啟動並掃描專案時，它會自動載入這些規範，並在後續的每一個開發步驟中強制執行。
 
 這套框架將 AI 代理的開發生命週期約束在三個非談判性（Non-negotiable）的階段中：
 
 ### 第一階段：蘇格拉底式規格釐清（Socratic Brainstorming）
 當你向 AI 代理下達「幫我重構資料庫連線池」或「新增一個 API 路由」的任務時，未受約束的 AI 會立刻開始動手修改檔案。
 
-而在 **Superpowers** 規範下，AI 代理被禁止直接寫代碼。它必須先扮演一位挑剔的架構師，使用蘇格拉底式的提問，主動向人類開發者釐清：
+而在 **Superpowers** 規範下， AI 代理被禁止直接寫代碼。它必須先扮演一位挑剔的架構師，使用蘇格拉底式的提問，主動向人類開發者釐清：
 *   這個功能的具體邊界是什麼？
 *   有哪些已知的約束條件（如效能要求、第三方 API 限制）？
 *   有沒有需要特別防範的邊緣案例（Edge Cases）？
@@ -39,7 +41,7 @@ categories:
 只有當人類開發者確認規格無誤後，AI 才能進入下一階段。這從源頭上杜絕了「AI 因為瞎猜需求而寫出錯誤產品」的狀況。
 
 ### 第二階段：實作規劃（Implementation Planning）
-規格釐清後，AI 代理必須在本機寫入一份詳細的實作計畫（通常為 `plan.md`）。這份計畫必須將宏大的任務拆解成細小的、可驗證的 To-do list。
+規格釐清後，AI 代理必須在本機寫入一份詳細的實作計畫（通常為 **plan.md**）。這份計畫必須將宏大的任務拆解成細小的、可驗證的 To-do list。
 
 透過這個步驟，AI 代理在面對大型程式庫（Codebase）時，能保持清晰的上下文脈絡，按部就班地執行計畫，並在遇到編譯錯誤時有據可依，避免陷入不斷自我修改卻越改越亂的死循環。
 
@@ -56,21 +58,32 @@ categories:
 ## 實務配置：如何將 Superpowers 導入你的 AI 開發工具？
 
 ### 1. 在 Claude Code 中使用 Superpowers
-Claude Code 提供了內建的插件系統，完全不需要手動建立目錄與複製檔案，只需在對話中執行單一指令即可完成安裝：
-*   **一鍵安裝**：在啟動的 `claude` 終端機對話中，輸入以下指令：
+Claude Code 提供了內建的插件系統，完全不需要手動建立目錄與複製檔案，只需在對話中執行指令即可完成安裝：
+*   **註冊與安裝**：在啟動的 **claude** 終端機對話中，需先執行以下指令註冊 Marketplace：
+    ```bash
+    /plugin marketplace add obra/superpowers-marketplace
+    ```
+    註冊完成後，即可執行安裝指令：
     ```bash
     /plugin install superpowers
     ```
-    （若需手動指定特定源，可使用 `/plugin install superpowers@superpowers-marketplace`）
 *   **自動載入**：安裝完畢後，Superpowers 的技能會自動載入。當你對 Claude 下達任務時，它會自動觸發 `/superpowers:brainstorm` 與 `/superpowers:write-plan`，強制進入 TDD 流程。
 
 ### 2. 在 Codex 中配置 Superpowers
-對於 Codex 命令行工具，我們同樣可以透過簡單的配置將其與本機環境結合：
-*   **指定載入目錄**：只需在 Codex 設定檔中，將 Superpowers 的本機路徑加入到自動加載的 `skills` 目錄：
+對於 Codex 命令行工具，我們同樣可以透過配置將其與本機環境結合：
+*   **指定載入目錄**：首先將 Superpowers 專案 clone 至本機目錄（例如 **~/superpowers**）：
     ```bash
-    git clone https://github.com/obra/superpowers.git ~/.codex/skills/superpowers
+    git clone https://github.com/obra/superpowers.git ~/superpowers
     ```
-*   這能讓 Codex 每次在該專案環境啟動時，自動將 Superpowers 的工程約束注入為全域 Context。
+    接著在 Codex 設定檔（如 **~/.codexrc**）中，將該專案的 **skills** 子目錄路徑加入到自動加載路徑中：
+    ```json
+    {
+      "skillPaths": [
+        "~/superpowers/skills"
+      ]
+    }
+    ```
+*   這能讓 Codex 每次在該專案環境啟動時，自動將 Superpowers 的工程約束注入為全域 Context，同時避免了因為目錄層級多出 **superpowers/skills/** 而無法自動加載的問題。
 
 ---
 
