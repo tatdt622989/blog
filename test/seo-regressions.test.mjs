@@ -160,15 +160,17 @@ test('stylesheet cache version is generated from style sources', () => {
 
 test('homepage cover images use responsive card variants', () => {
   const homepage = read('public/index.html');
-  const docsCover = homepage.match(/<img\b[^>]+Docs-MCP[^>]+post-cover-image[^>]+>/);
+  const latestCover = homepage.match(/<img\b[^>]+\bpost-cover-image\b[^>]+>/);
 
-  assert.ok(docsCover, 'homepage should render the Docs MCP cover image');
-  assert.match(docsCover[0], /\bsrc="[^"]*cover-card-720\.jpg"/, 'cover image fallback should use a smaller card file');
-  assert.match(docsCover[0], /\bsrcset="[^"]*cover-card-480\.jpg 480w[^"]*cover-card-960\.jpg 960w[^"]*cover\.png 1344w/, 'cover image should expose responsive width candidates');
-  assert.match(docsCover[0], /\bsizes="\([^"]*711px"/, 'cover image should advertise the rendered content width');
+  assert.ok(latestCover, 'homepage should render a post cover image');
+  assert.match(latestCover[0], /\bsrc="[^"]*-card-720\.jpg"/, 'cover image fallback should use a smaller card file');
+  assert.match(latestCover[0], /\bsrcset="[^"]*-card-480\.jpg 480w[^"]*-card-960\.jpg 960w/, 'cover image should expose responsive width candidates');
+  assert.match(latestCover[0], /\bsizes="\([^"]*711px"/, 'cover image should advertise the rendered content width');
+
+  const fallbackPath = latestCover[0].match(/\bsrc="([^"]+)"/)?.[1];
   assert.ok(
-    fs.existsSync(path.join(root, 'public/2026/06/22/Docs-MCP-到底改變了什麼？為什麼-2026-的-Codex、Claude-Code、Cursor-使用者都該裝/cover-card-720.jpg')),
-    'responsive cover variant should be generated',
+    fallbackPath && fs.existsSync(path.join(root, 'public', decodeURIComponent(fallbackPath))),
+    'homepage cover fallback should exist in the generated public directory',
   );
 });
 
