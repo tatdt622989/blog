@@ -1,6 +1,7 @@
 ---
 title: Claude Code 跨工作階段訊息：讓不同 Session 互相傳話的完整用法
 date: 2026-08-09 14:10:00
+updated: 2026-08-09 14:21:31
 description: Claude Code v2.1.224 新增跨工作階段訊息，讓不同 Session 交換任務摘要、詢問進度並回覆答案。本文整理實際用法、跨機限制、Agent Teams 差異與安全設定。
 tags:
 - AI
@@ -15,7 +16,7 @@ categories:
 
 Claude Code 最近出現一個很容易讓人第一眼誤會、但實際上相當實用的功能：**不同的 Claude Code Session 現在可以互相傳訊息**。
 
-這正是 Claude Devs 在 X 上展示的功能。你可以在一個終端機裡工作到一半，請 Claude 去詢問另一個終端機裡的 Session；另一個 Session 也可以把剛完成的工作摘要傳回來，甚至在它發現自己的修改會影響其他 Session 時主動通知對方。
+它的實際用法很直覺：你可以在一個終端機裡工作到一半，請 Claude 去詢問另一個終端機裡的 Session；另一個 Session 也可以把剛完成的工作摘要傳回來，甚至在它發現自己的修改會影響其他 Session 時主動通知對方。
 
 不過，這個功能不是把兩段完整對話合併，也不是把整個專案檔案自動搬來搬去。它傳遞的是**文字訊息與摘要**，而且每個 Session 仍然保有自己的工作目錄、權限與對話脈絡。理解這個邊界，才不會把它和 `--resume`、子代理或 Agent Teams 混在一起。
 
