@@ -1,15 +1,14 @@
 ---
 title: 用 AI 視覺代理（Computer Use）完全取代 Playwright？談談前端自動化測試的喧囂與實務抉擇
 date: 2026-06-21 00:45:00
+updated: 2026-08-17 15:20:00
 description: 本文針對「AI 視覺代理（Computer Use）將完全取代手寫代碼測試」的主流宣傳提出客觀質疑。透過對比 AI 視覺代理、自適應自我修復（Self-Healing）與確定性代碼驗證（Playwright）在成本、速度、安全性及維護門檻等層面的優劣，協助團隊根據自身場景做出最務實的技術決策。
+categories:
+- AI 科技
 tags:
 - AI
 - 前端測試
-- Playwright
-- Cypress
-- Computer Use
-categories:
-- 技術分享
+- AI Agent
 ---
 
 ![2026年AI前端驗證工具與實務抉擇示意圖](cover.webp)

@@ -1,16 +1,15 @@
 ---
 title: AI 代理人時代來臨！OpenAI 全新 ChatGPT Work 深度解析與實戰應用
 date: 2026-07-10 10:28:43
+updated: 2026-08-17 15:20:00
 description: OpenAI 於 2026 年 7 月 9 日正式推出生產力代理人工具 ChatGPT Work。本文為您解析其自主代理能力、定價、GPT-5.6 模型規格，以及 OpenAI 如何整併 Codex 與 Atlas 以解決產品碎片化的超級應用策略。
-tags:
-  - ChatGPT
-  - OpenAI
-  - GPT-5.6
-  - AI Agent
-  - Codex
-categories:
-  - AI 技術
 cover: /2026/07/10/introducing-openai-chatgpt-work-agent-productivity/cover.jpg?v=2
+categories:
+- AI 科技
+tags:
+- OpenAI
+- AI Agent
+- Codex
 ---
 
 ![](/2026/07/10/introducing-openai-chatgpt-work-agent-productivity/cover.jpg?v=2)

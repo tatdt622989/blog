@@ -1,14 +1,13 @@
 ---
 title: 就在明天！GPT-5.6 星球級模型震撼登場：Sol、Terra、Luna 發布前準備與實戰指南
 date: 2026-07-08 13:16:13
+updated: 2026-08-17 15:20:00
 description: OpenAI 預計於 7 月 9 日正式發佈 GPT-5.6 模型家族。本文整理 Sol、Terra、Luna 三大模型定位，並針對 ChatGPT Plus 與 Codex 用戶提供發佈前的使用限制、測試集與 IDE 準備指南。
-tags:
-  - ChatGPT
-  - Codex
-  - OpenAI
-  - GPT-5.6
 categories:
-  - AI 技術
+- AI 科技
+tags:
+- OpenAI
+- Codex
 ---
 
 ![](cover.jpg)

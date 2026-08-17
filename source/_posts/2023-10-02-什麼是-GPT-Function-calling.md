@@ -1,11 +1,12 @@
 ---
 title: 什麼是 GPT Function calling?
 date: 2023-10-02 22:56:16
-tags:
-- GPT
-- Node.js
-- AI
+updated: 2026-08-17 15:20:00
 categories:
+- AI 科技
+tags:
+- OpenAI
+- Node.js
 - AI
 ---
 

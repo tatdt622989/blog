@@ -1,15 +1,15 @@
 ---
 title: Claude Code 跨工作階段訊息：讓不同 Session 互相傳話的完整用法
 date: 2026-08-09 14:10:00
-updated: 2026-08-09 14:21:31
+updated: 2026-08-17 15:20:00
 description: Claude Code v2.1.224 新增跨工作階段訊息，讓不同 Session 交換任務摘要、詢問進度並回覆答案。本文整理實際用法、跨機限制、Agent Teams 差異與安全設定。
+categories:
+- AI 科技
 tags:
 - AI
 - Claude Code
 - AI Agent
 - 開發工具
-categories:
-- AI 技術
 ---
 
 ![Claude Code 跨工作階段訊息讓多個 Session 交換任務摘要的示意圖](cover.jpg)

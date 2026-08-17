@@ -1,14 +1,13 @@
 ---
 title: Grok 4.6 進入 Grok Build：長時間開發工作流有什麼改變？
 date: 2026-08-13 10:25:34
+updated: 2026-08-17 15:20:00
 description: Grok 4.6 已成為 Grok Build 的核心模型。本文釐清 Grok 4.6、Grok Build、grok-build-0.1 與 Build Mode 的差異，並分析長時間任務、平行子代理、Plan 模式、500K 上下文與 API 成本，如何影響真實專案開發。
+categories:
+- AI 科技
 tags:
 - Grok
-- xAI
-- AI Coding
 - AI Agent
-categories:
-- AI 技術
 ---
 
 ![Grok 4.6 驅動 Grok Build 執行長時間開發與平行代理工作流示意圖](cover.jpg)

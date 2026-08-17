@@ -1,11 +1,12 @@
 ---
 title: TypeScript入門：什麼是TypeScript？
 date: 2023-03-05 23:45:21
+updated: 2026-08-17 15:20:00
+categories:
+- 前端開發
 tags:
 - TypeScript
 - JavaScript
-categories:
-- 前端開發
 ---
 
 ![](cover.webp)

@@ -1,15 +1,14 @@
 ---
 title: OpenAI GPT-Realtime-2 實測應用：從免代碼 Playground 到 API 串接，打造你的超擬真日語口說家教
 date: 2026-07-02 18:33:31
-tags:
-  - AI
-  - OpenAI
-  - 日語學習
-  - Realtime API
-  - GPT
-categories:
-  - 日語學習
+updated: 2026-08-17 15:20:00
 description: OpenAI 全新 GPT-Realtime-2 語音推理模型讓語音助理學會了「先思考再開口」。本文將由淺入深，先為一般讀者提供 ChatGPT 進階語音與官方遊樂場（Playground）的免代碼自學設定指南，再為開發者詳細解析如何透過 API 進行程式串接、參數配置與延遲/成本優化。
+categories:
+- 日語學習
+tags:
+- AI
+- OpenAI
+- 日語學習
 ---
 
 ![OpenAI GPT-Realtime-2 語音推理模型示意圖](cover.jpg)

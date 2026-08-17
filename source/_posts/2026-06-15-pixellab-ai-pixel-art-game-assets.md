@@ -1,17 +1,17 @@
 ---
 title: 想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星
 date: 2026-06-15 00:17:47
+updated: 2026-08-17 15:20:00
+description: 想用 AI 做遊戲卻缺少美術素材？深度實測 Aseprite AI 像素外掛 PixelLab，教你如何快速生成多向角色、動作動畫、地圖磚塊（Tileset）與整套 UI Icon，並解析 2026 最新訂閱方案與年約省錢技巧。
+cover: cover-v2.webp
+categories:
+- 遊戲開發
 tags:
 - AI
 - Pixel Art
 - PixelLab
 - 遊戲開發
 - Aseprite
-categories:
-- 遊戲開發
-description: 想用 AI 做遊戲卻缺少美術素材？深度實測 Aseprite AI 像素外掛 PixelLab，教你如何快速生成多向角色、動作動畫、地圖磚塊（Tileset）與整套 UI Icon，並解析 2026 最新訂閱方案與年約省錢技巧。
-updated: 2026-06-17 11:18:47
-cover: cover-v2.webp
 ---
 
 ![PixelLab AI 像素藝術遊戲素材生成器封面圖](cover-v2.webp)

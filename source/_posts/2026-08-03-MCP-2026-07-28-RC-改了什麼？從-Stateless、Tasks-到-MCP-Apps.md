@@ -1,14 +1,15 @@
 ---
 title: MCP 2026-07-28 RC 改了什麼？從 Stateless、Tasks 到 MCP Apps
 date: 2026-08-03 18:30:00
+updated: 2026-08-17 15:20:00
 description: MCP 2026-07-28 RC 是 Model Context Protocol 的一次大幅改版。本文整理 Stateless、server discover、Tasks、MCP Apps、授權與相容性，帶你判斷一般使用者與 MCP 開發者現在該不該升級，以及如何安全測試。
+categories:
+- AI 科技
 tags:
 - AI
 - MCP
 - AI Agent
 - 開發工具
-categories:
-- AI 技術
 ---
 
 ![MCP 2026-07-28 協定更新與 AI Agent 工具連線示意圖](cover.jpg)

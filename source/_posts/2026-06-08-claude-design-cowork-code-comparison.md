@@ -1,15 +1,15 @@
 ---
 title: 2026 深度解析：Claude 在 Design、Cowork 與 Code 三大維度的全方位表現與比較
 date: 2026-06-08 15:49:11
+updated: 2026-08-17 15:20:00
+description: 想看 Claude 在 Design、Cowork 與 Code 三個維度到底怎麼用？本文整理 Artifacts、Projects 與 Claude Code 的實際應用場景、優勢與限制，幫團隊快速判斷導入方式。
+cover: cover.webp
+categories:
+- AI 科技
 tags:
 - AI
 - Claude
-- Design
-categories:
-- AI
-description: 想看 Claude 在 Design、Cowork 與 Code 三個維度到底怎麼用？本文整理 Artifacts、Projects 與 Claude Code 的實際應用場景、優勢與限制，幫團隊快速判斷導入方式。
-updated: 2026-06-22 11:45:00
-cover: cover.webp
+- 前端開發
 ---
 
 ![Claude 在 Design、Cowork 與 Code 三個維度的應用比較封面](cover.webp)

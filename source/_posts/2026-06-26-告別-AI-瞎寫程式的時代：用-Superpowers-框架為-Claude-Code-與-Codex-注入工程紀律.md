@@ -1,15 +1,14 @@
 ---
 title: Claude Code 與 AI 寫程式的工程紀律：用 Superpowers 框架實踐 TDD 告別 Vibe Coding
 date: 2026-06-26 15:48:00
+updated: 2026-08-17 15:20:00
 description: 如何解決 Claude Code 等 AI 寫程式工具帶來的 Vibe Coding 技術債？本文深入剖析開源 Superpowers 框架，透過 TDD、需求釐清與實作規劃三階段，為 AI 代理注入軟體工程紀律，將其訓練為嚴謹的工程師。
-tags:
-  - AI
-  - 軟體工程
-  - 獨立開發者
-  - 技術分享
-  - Superpowers
 categories:
-  - 技術分享
+- AI 科技
+tags:
+- AI
+- 軟體工程
+- 獨立開發者
 ---
 
 ![Superpowers 框架與 AI 代理工程紀律封面](cover.jpg)

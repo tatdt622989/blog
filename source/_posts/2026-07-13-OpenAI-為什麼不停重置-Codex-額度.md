@@ -1,14 +1,15 @@
 ---
 title: OpenAI 為什麼不停重置 Codex 額度？Anthropic 是靶子，開發者工作流才是戰利品
 date: 2026-07-13 11:47:28
+updated: 2026-08-17 15:20:00
+description: OpenAI 在 GPT-5.6 與 ChatGPT Work 上線後頻繁重置 Codex 使用限制，甚至暫時移除 5 小時額度。本文整理 Tibo 最近幾天的公開動作，分析這場算力補貼如何同時搶奪 Claude 使用者、測試 Agent 負載並建立開發者工作習慣。
+categories:
+- AI 科技
 tags:
 - OpenAI
 - Codex
-- Anthropic
+- Claude
 - AI Agent
-categories:
-- AI
-description: OpenAI 在 GPT-5.6 與 ChatGPT Work 上線後頻繁重置 Codex 使用限制，甚至暫時移除 5 小時額度。本文整理 Tibo 最近幾天的公開動作，分析這場算力補貼如何同時搶奪 Claude 使用者、測試 Agent 負載並建立開發者工作習慣。
 ---
 
 ![OpenAI 以算力補貼推動 Codex 工作流並與競爭對手爭奪開發者的產業分析封面](cover.jpg)

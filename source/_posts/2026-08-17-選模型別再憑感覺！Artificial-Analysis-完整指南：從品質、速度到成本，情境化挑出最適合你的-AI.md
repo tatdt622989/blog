@@ -1,15 +1,14 @@
 ---
 title: 選模型別再憑感覺！Artificial Analysis 完整指南：從品質、速度到成本，情境化挑出最適合你的 AI
 date: 2026-08-17 14:13:06
+updated: 2026-08-17 15:20:00
 description: 深度解析第三方獨立評測平台 Artificial Analysis 的使用方法。本文透過生活化比喻與實際情境截圖，帶你白話看懂品質指標、推論速度、真實 API 成本與 Coding Agent 排行榜，教你如何利用帕雷托前沿挑選出性價比最高的 AI 模型。
+categories:
+- AI 科技
 tags:
 - AI
-- 機器學習
 - LLM
-- Artificial Analysis
-- 軟體架構
-categories:
-- [AI 工具, 評測與選型]
+- 軟體工程
 ---
 
 ![](cover.jpg)

@@ -1,11 +1,12 @@
 ---
 title: 快速使用 Firebase Cloud Functions 創建網頁後端API
 date: 2023-07-08 00:14:32
+updated: 2026-08-17 15:20:00
+categories:
+- 前端開發
 tags:
 - JavaScript
 - Firebase
-categories:
-- 前端開發
 ---
 
 ![](cover.webp)

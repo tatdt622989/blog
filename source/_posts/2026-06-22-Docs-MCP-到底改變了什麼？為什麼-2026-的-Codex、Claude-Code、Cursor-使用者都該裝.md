@@ -1,15 +1,16 @@
 ---
 title: Docs MCP 到底改變了什麼？為什麼 2026 的 Codex、Claude Code、Cursor 使用者都該裝
 date: 2026-06-22 17:58:52
+updated: 2026-08-17 15:20:00
+description: Docs MCP 是 OpenAI 官方提供的文件 MCP server，讓 Codex、Claude Code、Cursor 直接將最新官方文件拉進上下文。這篇整理它如何精簡開發工作流，以及為什麼值得立即配置。
+categories:
+- AI 科技
 tags:
 - AI
 - Codex
 - Claude Code
 - Cursor
 - OpenAI
-categories:
-- AI
-description: Docs MCP 是 OpenAI 官方提供的文件 MCP server，讓 Codex、Claude Code、Cursor 直接將最新官方文件拉進上下文。這篇整理它如何精簡開發工作流，以及為什麼值得立即配置。
 ---
 
 ![OpenAI Docs MCP 讓 Codex、Claude Code 與 Cursor 直接讀官方文件的工作流封面](cover.png)

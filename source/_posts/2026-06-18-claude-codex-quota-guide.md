@@ -1,14 +1,14 @@
 ---
 title: 別再乾等 5 小時！2026 最新 Claude 與 Codex 額度極限榨乾術
 date: 2026-06-18 14:34:36
+updated: 2026-08-17 15:20:00
+description: 別再乾等 5 小時！本文深入介紹 2026 年最新 Claude 與 Codex 額度管理策略，包含開源選單列工具 CodexBar 的餘額管理，以及自訂手動重設機制。並解析新模型發布、伺服器故障時的額度重置規律，助你榨乾最後一滴算力（內附安全使用免責聲明）。
+categories:
+- AI 科技
 tags:
 - AI
 - Codex
 - Claude
-categories:
-- AI
-description: 別再乾等 5 小時！本文深入介紹 2026 年最新 Claude 與 Codex 額度管理策略，包含開源選單列工具 CodexBar 的餘額管理，以及自訂手動重設機制。並解析新模型發布、伺服器故障時的額度重置規律，助你榨乾最後一滴算力（內附安全使用免責聲明）。
-updated: 2026-06-22 11:45:00
 ---
 
 ![Claude 與 Codex 額度管理策略封面](cover.webp)
