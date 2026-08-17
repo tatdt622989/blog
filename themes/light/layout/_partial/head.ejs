@@ -250,7 +250,8 @@
   });
   </script>
 
-  <link rel="icon" href="<%- url_for('favicon.svg') %>" type="image/svg+xml">
+  <link rel="icon" href="<%- url_for('favicon.png') %>" type="image/png">
+  <link rel="apple-touch-icon" href="<%- url_for('favicon.png') %>">
   <%- favicon_tag('favicon.png') %>
   <% if (config.feed) { %>
     <%- feed_tag() %>
