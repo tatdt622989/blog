@@ -250,10 +250,10 @@
   });
   </script>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="<%- url_for('favicon-32x32.png') %>">
-  <link rel="icon" type="image/png" sizes="192x192" href="<%- url_for('favicon-192x192.png') %>">
-  <link rel="apple-touch-icon" sizes="180x180" href="<%- url_for('apple-touch-icon.png') %>">
-  <%- favicon_tag('favicon.png') %>
+  <link rel="icon" type="image/png" sizes="32x32" href="<%- url_for('favicon-32x32.png') %>?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="<%- url_for('favicon-192x192.png') %>?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="<%- url_for('apple-touch-icon.png') %>?v=20260817">
+  <link rel="shortcut icon" href="<%- url_for('favicon.png') %>?v=20260817">
   <% if (config.feed) { %>
     <%- feed_tag() %>
   <% } else if (theme.rss) { %>
