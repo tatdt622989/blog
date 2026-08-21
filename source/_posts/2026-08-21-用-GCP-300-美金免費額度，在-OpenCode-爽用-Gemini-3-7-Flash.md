@@ -1,7 +1,7 @@
 ---
-title: 用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 3.7 Flash
+title: 用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型
 date: 2026-08-21 10:45:00
-description: 最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 3.7 Flash 飆速寫程式。
+description: 最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 最新模型（如 Gemini 3.7 Flash）飆速寫程式。
 tags:
 - AI
 - 獨立開發者
@@ -14,7 +14,7 @@ categories:
 
 想要享受頂級 AI Coding Agent 的開發效率，又不想每個月掏荷包付訂閱費或受限於 5 小時頻率冷卻？
 
-這篇直接公開最簡實戰解法：**領取 Google Cloud（GCP）新戶 300 美元免費試用金（約 NT$9,700），若平常有訂閱 Google AI Pro 還能額外享有每個月 10 美元抵免額；接著開啟 Agent Platform API 並建立一把 API Key，就能直接在 OpenCode 內填入使用**。搭配近期能力大幅進化的 **Gemini 3.7 Flash**，兼具 1M 超大上下文、混合推理與極低 Token 費率，相當於直接解鎖數億 Token 的免費算力庫！
+這篇直接公開最簡實戰解法：**領取 Google Cloud（GCP）新戶 300 美元免費試用金（約 NT$9,700），若平常有訂閱 Google AI Pro 還能額外享有每個月 10 美元抵免額；接著開啟 Agent Platform API 並建立一把 API Key，就能直接在 OpenCode 內填入使用**。搭配近期能力大幅進化的 **Gemini 最新模型（如 Gemini 3.7 Flash）**，兼具 1M 超大上下文、混合推理與極低 Token 費率，相當於直接解鎖數億 Token 的免費算力庫！
 
 <!--more-->
 
@@ -94,4 +94,4 @@ categories:
 
 ## 結語
 
-告別繁瑣的認證指令與昂貴的訂閱制！只要 **GCP 300 美元試用金 + 開啟 Agent Platform API 建立 API Key + OpenCode + Gemini 3.7 Flash**，幾分鐘內就能打造出零成本、超大上下文且無頻率限制的極致 AI Coding 工作流。
+告別繁瑣的認證指令與昂貴的訂閱制！只要 **GCP 300 美元試用金 + 開啟 Agent Platform API 建立 API Key + OpenCode + Gemini 最新模型**，幾分鐘內就能打造出零成本、超大上下文且無頻率限制的極致 AI Coding 工作流。

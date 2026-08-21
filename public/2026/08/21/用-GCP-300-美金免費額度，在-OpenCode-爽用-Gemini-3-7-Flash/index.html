@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 3.7 Flash | 6yuwei</title>
+  <title>用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 3.7 Flash 飆速寫程式。">
+  <meta name="description" content="最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 最新模型（如 Gemini 3.7 Flash）飆速寫程式。">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/">
 
-  <meta property="og:title" content="用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 3.7 Flash"/>
-  <meta property="og:description" content="最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 3.7 Flash 飆速寫程式。"/>
+  <meta property="og:title" content="用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型"/>
+  <meta property="og:description" content="最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 最新模型（如 Gemini 3.7 Flash）飆速寫程式。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/"/>
   <meta property="og:image" content="https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover.jpg?v=4690a881" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 3.7 Flash">
-  <meta name="twitter:description" content="最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 3.7 Flash 飆速寫程式。">
+  <meta name="twitter:title" content="用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型">
+  <meta name="twitter:description" content="最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 最新模型（如 Gemini 3.7 Flash）飆速寫程式。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover.jpg?v=4690a881">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/","url":"https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/","headline":"用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 3.7 Flash","description":"最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 3.7 Flash 飆速寫程式。","datePublished":"2026-08-21T02:45:00.000Z","dateModified":"2026-08-21T05:43:03.891Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/","url":"https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/","headline":"用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型","description":"最簡實戰指南！教你領取 Google Cloud (GCP) 300 美元試用金（若有訂閱 Google AI Pro 還享每月 10 美元福利），開啟 Agent Platform API 並建立 API Key，直接填入 OpenCode 的 Vertex 設定即可爽用 Gemini 最新模型（如 Gemini 3.7 Flash）飆速寫程式。","datePublished":"2026-08-21T02:45:00.000Z","dateModified":"2026-08-21T05:44:45.445Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover.jpg"]}</script>
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 3.7 Flash","item":"https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型","item":"https://blog.6yuwei.com/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/"}]}</script>
   
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,7 +138,7 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 3.7 Flash</h1>
+    <h1 class="p-name title" itemprop="headline name">用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型</h1>
   
 
     </header>
@@ -146,7 +146,7 @@
       
         <p class="post-cover-frame"><img src="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover-card-720-card-720.jpg?v=39ec995f" width="1200" height="669" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover-card-720-card-480.jpg?v=634ff72f 480w, /2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover-card-720-card-720.jpg?v=39ec995f 720w, /2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover-card-720-card-960.jpg?v=bd27bc55 960w, /2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-3-7-Flash/cover-card-720.jpg?v=7e5af80a 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>想要享受頂級 AI Coding Agent 的開發效率，又不想每個月掏荷包付訂閱費或受限於 5 小時頻率冷卻？</p>
-<p>這篇直接公開最簡實戰解法：<strong>領取 Google Cloud（GCP）新戶 300 美元免費試用金（約 NT$9,700），若平常有訂閱 Google AI Pro 還能額外享有每個月 10 美元抵免額；接著開啟 Agent Platform API 並建立一把 API Key，就能直接在 OpenCode 內填入使用</strong>。搭配近期能力大幅進化的 <strong>Gemini 3.7 Flash</strong>，兼具 1M 超大上下文、混合推理與極低 Token 費率，相當於直接解鎖數億 Token 的免費算力庫！</p>
+<p>這篇直接公開最簡實戰解法：<strong>領取 Google Cloud（GCP）新戶 300 美元免費試用金（約 NT$9,700），若平常有訂閱 Google AI Pro 還能額外享有每個月 10 美元抵免額；接著開啟 Agent Platform API 並建立一把 API Key，就能直接在 OpenCode 內填入使用</strong>。搭配近期能力大幅進化的 <strong>Gemini 最新模型（如 Gemini 3.7 Flash）</strong>，兼具 1M 超大上下文、混合推理與極低 Token 費率，相當於直接解鎖數億 Token 的免費算力庫！</p>
 <span id="more"></span>
 
 <h2 id="為什麼這套組合最划算？"><a href="#為什麼這套組合最划算？" class="headerlink" title="為什麼這套組合最划算？"></a>為什麼這套組合最划算？</h2><ul>
@@ -201,7 +201,7 @@
 <li><strong>自動全額折抵</strong>：在服務清單中可以看到 <strong>Vertex AI</strong> 產生的使用費（例如 $45.20），會自動被其他優惠&#x2F;抵免額全數沖銷，實際結算小計為 <strong>$0.00</strong>，完全不用擔心被額外扣款。</li>
 </ul>
 <hr>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>告別繁瑣的認證指令與昂貴的訂閱制！只要 <strong>GCP 300 美元試用金 + 開啟 Agent Platform API 建立 API Key + OpenCode + Gemini 3.7 Flash</strong>，幾分鐘內就能打造出零成本、超大上下文且無頻率限制的極致 AI Coding 工作流。</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>告別繁瑣的認證指令與昂貴的訂閱制！只要 <strong>GCP 300 美元試用金 + 開啟 Agent Platform API 建立 API Key + OpenCode + Gemini 最新模型</strong>，幾分鐘內就能打造出零成本、超大上下文且無頻率限制的極致 AI Coding 工作流。</p>
 
       
     </div>
