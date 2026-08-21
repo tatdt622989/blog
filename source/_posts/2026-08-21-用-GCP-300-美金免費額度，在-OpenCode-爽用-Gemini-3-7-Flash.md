@@ -31,7 +31,11 @@ categories:
 
 1. 前往 **Google Cloud Console**（`https://cloud.google.com/free`），登入 Google 帳號並點擊 **免費開始使用**，完成信用卡驗證（試用期內不會主動扣款）。
 2. 建立一個專屬開發專案（例如 `ai-coding-sandbox`）。
-3. 前往 **結算（Billing）→ 抵免額（Credits）** 頁面，確認 **Free Trial** 300 美元（約 NT$9,700，效期 90 天）已入帳。若你有訂閱 **Google AI Pro（Google One AI Premium）**，下方還會看到每月固定贈送的 10 美元（約 NT$324）月度抵免額福利：
+3. **額外福利（選填）**：若你平時有訂閱 **Google AI Pro（Google One AI Premium）**，可以前往 **[Google for Developers 福利專區](https://me.developers.google.com/benefits)**，每個月手動領取 10 美元（約 NT$324）的 Gen AI & Cloud credits 作為額外補貼：
+
+![Google Developer Program 福利專區領取每月 10 美元 Gen AI 抵免額](google-developer-benefits.jpg)
+
+4. 前往 GCP 主控台的 **結算（Billing）→ 抵免額（Credits）** 頁面，即可確認 **Free Trial** 300 美元（約 NT$9,700，效期 90 天）以及領取的月度抵免額均已入帳：
 
 ![GCP 結算後台顯示 300 美元 Free Trial 試用抵免額與每月 10 美元開發者福利已入帳](gcp-billing-credits.jpg)
 
@@ -60,7 +64,7 @@ categories:
 ### 實測亮點與避坑提醒
 - **混合推理（Hybrid Reasoning）**：動態深度思考機制，精準搞定跨檔案依賴重構與複雜演算法。
 - **極速生成**：首字延遲極低，幾秒內即可完成大型程式碼補丁與單元測試。
-- **超大算力槓桿**：300 美元試用金足以消耗數億 Token；若平時有訂閱 **Google AI Pro**，每月獲得的 10 美元（NT$324）抵免額也足夠在 OpenCode 中作為日常源源不絕的 Coding 算力。
+- **超大算力槓桿**：主要主力在於 300 美元試用金搭配 Flash 極低計費，足以支撐數億 Token 的龐大生成；若平時有訂閱 **Google AI Pro** 領取每月 10 美元（NT$324），也能作為日常額外的算力小補貼。
 - **重要避坑提醒（不包含 Claude 模型）**：透過此方式建立的 Agent Platform API Key 僅限調用 Google 原生模型（Gemini、Imagen 等）；Anthropic 的 **Claude 系列模型不包含在內**，若欲使用 Claude 需另外走標準 Vertex AI 的 IAM / Service Account 認證管道。
 
 ---
