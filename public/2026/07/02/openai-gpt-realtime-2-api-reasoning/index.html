@@ -14,11 +14,11 @@
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/"/>
-  <meta property="og:image" content="https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover.jpg" />
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover.jpg?v=6d92ed86" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OpenAI GPT-Realtime-2 實測應用：從免代碼 Playground 到 API 串接，打造你的超擬真日語口說家教">
   <meta name="twitter:description" content="OpenAI 全新 GPT-Realtime-2 語音推理模型讓語音助理學會了「先思考再開口」。本文將由淺入深，先為一般讀者提供 ChatGPT 進階語音與官方遊樂場（Playground）的免代碼自學設定指南，再為開發者詳細解析如何透過 API 進行程式串接、參數配置與延遲/成本優化。">
-  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover.jpg">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover.jpg?v=6d92ed86">
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/","url":"https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/","headline":"OpenAI GPT-Realtime-2 實測應用：從免代碼 Playground 到 API 串接，打造你的超擬真日語口說家教","description":"OpenAI 全新 GPT-Realtime-2 語音推理模型讓語音助理學會了「先思考再開口」。本文將由淺入深，先為一般讀者提供 ChatGPT 進階語音與官方遊樂場（Playground）的免代碼自學設定指南，再為開發者詳細解析如何透過 API 進行程式串接、參數配置與延遲/成本優化。","datePublished":"2026-07-02T10:33:31.000Z","dateModified":"2026-08-17T07:20:00.000Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover.jpg"]}</script>
   
@@ -144,7 +144,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720.jpg" alt="OpenAI GPT-Realtime-2 語音推理模型示意圖" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-480.jpg 480w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720.jpg 720w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-960.jpg 960w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-1280.jpg 1280w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720.jpg 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720-card-720-card-720-card-720.jpg?v=bc2cbf48" alt="OpenAI GPT-Realtime-2 語音推理模型示意圖" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720-card-720-card-720-card-480.jpg?v=46c1239e 480w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720-card-720-card-720-card-720.jpg?v=bc2cbf48 720w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720-card-720-card-720-card-960.jpg?v=85cda26f 960w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720-card-720-card-720-card-1280.jpg?v=d272b28a 1280w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720-card-720-card-720-card-720.jpg?v=d5d1d986 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>OpenAI 推出的全新 <strong>gpt-realtime-2</strong> 語音模型，最大變革在於 AI 在開口說話前，會先在後台「推理思考」。它不再只是個快速丟出標準答案的語音助理，而是能像真人日語老師一樣，溫和引導你發現文法錯誤、並模擬高階商務敬語情境。本文直接進入重點，<strong>前半部分提供一般學習者的免代碼設定指南，後半部分則提供開發者 API 串接與優化指南</strong>。</p>
 <span id="more"></span>
 

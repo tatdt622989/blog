@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
 const publicDir = path.join(__dirname, '..', 'public');
 const coverWidths = [480, 720, 960, 1280];
 const supportedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp']);
+const fileHashMap = new Map();
 
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -16,6 +18,20 @@ function walk(dir, files = []) {
   }
 
   return files;
+}
+
+function getFileHash(filePath) {
+  if (!fileHashMap.has(filePath)) {
+    try {
+      const buffer = fs.readFileSync(filePath);
+      const hash = crypto.createHash('md5').update(buffer).digest('hex').slice(0, 8);
+      fileHashMap.set(filePath, hash);
+    } catch {
+      fileHashMap.set(filePath, '');
+    }
+  }
+
+  return fileHashMap.get(filePath);
 }
 
 function getAttribute(tag, name) {
@@ -61,8 +77,9 @@ function resolvePublicImagePath(src, htmlPath) {
 
 function toPublicUrl(filePath) {
   const relative = path.relative(publicDir, filePath).split(path.sep).map(encodeURIComponent).join('/');
+  const hash = getFileHash(filePath);
 
-  return `/${relative}`;
+  return hash ? `/${relative}?v=${hash}` : `/${relative}`;
 }
 
 function variantPathFor(imagePath, width) {
@@ -121,7 +138,9 @@ function optimizeCoverTag(tag, htmlPath, variantsByImage) {
     variantsByImage.set(imagePath, variants);
   }
 
-  if (!variants.length) return tag;
+  if (!variants.length) {
+    return setAttribute(tag, 'src', toPublicUrl(imagePath));
+  }
 
   const srcset = variants
     .map((variant) => `${toPublicUrl(variant.path)} ${variant.width}w`)
@@ -136,16 +155,74 @@ function optimizeCoverTag(tag, htmlPath, variantsByImage) {
   return nextTag;
 }
 
+function optimizeGeneralImageTag(tag, htmlPath) {
+  if (hasClass(tag, 'post-cover-image')) return tag;
+
+  const src = getAttribute(tag, 'src');
+  if (!src) return tag;
+
+  const imagePath = resolvePublicImagePath(src, htmlPath);
+  if (!imagePath || !fs.existsSync(imagePath) || !supportedExtensions.has(path.extname(imagePath).toLowerCase())) {
+    return tag;
+  }
+
+  return setAttribute(tag, 'src', toPublicUrl(imagePath));
+}
+
+function optimizeMetaTags(html, htmlPath) {
+  return html.replace(/<meta\b[^>]*>/gi, (tag) => {
+    const property = getAttribute(tag, 'property');
+    const name = getAttribute(tag, 'name');
+    const content = getAttribute(tag, 'content');
+
+    if (!content) return tag;
+    if (property !== 'og:image' && name !== 'twitter:image') return tag;
+
+    try {
+      const url = new URL(content, 'https://blog.6yuwei.com');
+      const imagePath = resolvePublicImagePath(url.pathname, htmlPath);
+
+      if (imagePath && fs.existsSync(imagePath)) {
+        const hash = getFileHash(imagePath);
+        if (hash) {
+          url.searchParams.set('v', hash);
+          return setAttribute(tag, 'content', url.toString());
+        }
+      }
+    } catch {}
+
+    return tag;
+  });
+}
+
 function optimizeHtmlFile(htmlPath, variantsByImage) {
-  const html = fs.readFileSync(htmlPath, 'utf8');
-  if (!html.includes('post-cover-image')) return false;
+  let html = fs.readFileSync(htmlPath, 'utf8');
+  let changed = false;
 
-  const nextHtml = html.replace(/<img\b[^>]*>/gi, (tag) => optimizeCoverTag(tag, htmlPath, variantsByImage));
+  const nextHtmlWithCovers = html.replace(/<img\b[^>]*>/gi, (tag) => {
+    if (hasClass(tag, 'post-cover-image')) {
+      return optimizeCoverTag(tag, htmlPath, variantsByImage);
+    }
+    return optimizeGeneralImageTag(tag, htmlPath);
+  });
 
-  if (nextHtml === html) return false;
+  if (nextHtmlWithCovers !== html) {
+    html = nextHtmlWithCovers;
+    changed = true;
+  }
 
-  fs.writeFileSync(htmlPath, nextHtml);
-  return true;
+  const nextHtmlWithMeta = optimizeMetaTags(html, htmlPath);
+  if (nextHtmlWithMeta !== html) {
+    html = nextHtmlWithMeta;
+    changed = true;
+  }
+
+  if (changed) {
+    fs.writeFileSync(htmlPath, html);
+    return true;
+  }
+
+  return false;
 }
 
 function main() {
@@ -156,9 +233,10 @@ function main() {
   ), 0);
   const variantCount = Array.from(variantsByImage.values()).reduce((count, variants) => count + variants.length, 0);
 
-  console.log(`Optimized ${updatedHtmlCount} HTML files with ${variantCount} responsive cover variants.`);
+  console.log(`Optimized ${updatedHtmlCount} HTML files with ${variantCount} responsive cover variants (and cache-busting ?v=hash parameters).`);
 }
 
 if (require.main === module) {
   main();
 }
+
