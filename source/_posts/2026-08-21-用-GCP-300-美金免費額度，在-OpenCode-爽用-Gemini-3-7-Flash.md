@@ -69,14 +69,26 @@ categories:
 
 ---
 
-## 步驟四：即時 Token 用量監控
+## 步驟四：用量與帳單折抵即時監控
 
-想隨時確認 Token 消耗狀況與剩餘抵免額，直接進入 GCP 的 **[Agent Studio 用量資訊主頁](https://console.cloud.google.com/agent-platform/studio/settings/usage-dashboard)**：
+想隨時確認 Token 消耗狀況或實際扣款折抵明細，可以透過以下兩個地方查看：
+
+### 1. Agent Studio 即時 Token 用量主頁
+
+直接進入 GCP 的 **[Agent Studio 用量資訊主頁](https://console.cloud.google.com/agent-platform/studio/settings/usage-dashboard)**：
 
 ![Google Cloud 用量資訊主頁即時查看 Gemini 3.7 Flash 每日輸入與輸出 Token 統計](gcp-usage-dashboard.jpg)
 
 - **直觀圖表**：即時查看 `gemini-3.7-flash` 每日輸入與輸出詞元數量。
-- **餘額與倒數**：頂部清楚標示剩餘抵免額金額與有效天數，用量一目了然。
+- **餘額與倒數**：頂部清楚標示剩餘抵免額金額與 90 天有效倒數，用量一目了然。
+
+### 2. 結算（Billing）→ 報表（Reports）費用折抵明細
+
+如果想確認實際費用是否被 100% 折抵，可以前往 GCP 控制台的 **結算（Billing）→ 報表（Reports）**：
+
+![GCP 結算報表顯示 Vertex AI 費用被抵免額完全折抵，實際應付金額為 0 元](gcp-billing-reports.jpg)
+
+- **自動全額折抵**：在服務清單中可以看到 **Vertex AI** 產生的使用費（例如 $45.20），會自動被其他優惠/抵免額全數沖銷，實際結算小計為 **$0.00**，完全不用擔心被額外扣款。
 
 ---
 
