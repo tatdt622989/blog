@@ -10,7 +10,7 @@ categories:
 - AI 科技
 ---
 
-![](cover-v2.jpg)
+![](cover.jpg)
 
 想要享受頂級 AI Coding Agent 的開發效率，又不想每個月掏荷包付訂閱費或受限於 5 小時頻率冷卻？
 
