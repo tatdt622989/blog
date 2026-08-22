@@ -1,0 +1,408 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="專為非工程師整理的極簡網站上線實戰教學。跳過繁瑣的伺服器架設與指令，用 Cloudflare Pages 與 Vercel 免費託管 AI 生成的網頁，並掌握 API Key 環境變數防護與網域綁定，快速將點子發布到全球網路。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/">
+
+  <meta property="og:title" content="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學"/>
+  <meta property="og:description" content="專為非工程師整理的極簡網站上線實戰教學。跳過繁瑣的伺服器架設與指令，用 Cloudflare Pages 與 Vercel 免費託管 AI 生成的網頁，並掌握 API Key 環境變數防護與網域綁定，快速將點子發布到全球網路。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/"/>
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學">
+  <meta name="twitter:description" content="專為非工程師整理的極簡網站上線實戰教學。跳過繁瑣的伺服器架設與指令，用 Cloudflare Pages 與 Vercel 免費託管 AI 生成的網頁，並掌握 API Key 環境變數防護與網域綁定，快速將點子發布到全球網路。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/","url":"https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/","headline":"非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學","description":"專為非工程師整理的極簡網站上線實戰教學。跳過繁瑣的伺服器架設與指令，用 Cloudflare Pages 與 Vercel 免費託管 AI 生成的網頁，並掌握 API Key 環境變數防護與網域綁定，快速將點子發布到全球網路。","datePublished":"2026-08-22T15:51:29.000Z","dateModified":"2026-08-22T16:39:48.696Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"前端開發","item":"https://blog.6yuwei.com/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學","item":"https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=153caef343">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-非工程師也能做！用-AI-生成網站到免費安全上線的完整實戰教學" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-08-22T15:51:29.000Z"><a href="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/">2026-08-22</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720-card-720.jpg?v=080b7cca" alt="非工程師透過 AI 生成網站並免費安全發布至全球雲端流程示意圖" width="1600" height="893" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720-card-480.jpg?v=d605b5c3 480w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720-card-720.jpg?v=080b7cca 720w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720-card-960.jpg?v=c930ccf4 960w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720-card-1280.jpg?v=789176f1 1280w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720.jpg?v=64acf178 1600w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>用 ChatGPT、Claude 或 Cursor 寫出網頁後，很多人會卡在「只有自己電腦看得見，不知道怎麼發布給別人用」。</p>
+<p>其實現在完全不需要租主機、不用學 Linux 指令、也不用花任何一毛錢。這篇直接整理最精簡、免費且安全的上線路徑，只要照著做，幾分鐘內就能拿到一組全世界都能瀏覽的專屬網址。</p>
+<span id="more"></span>
+
+<h2 id="步驟一：讓-AI-產出可直接上線的檔案結構"><a href="#步驟一：讓-AI-產出可直接上線的檔案結構" class="headerlink" title="步驟一：讓 AI 產出可直接上線的檔案結構"></a>步驟一：讓 AI 產出可直接上線的檔案結構</h2><p>請 AI 寫程式時，最忌諱輸出零散、無法直接執行的片段。請直接在提示詞中加入這段要求：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">請幫我製作 [功能描述] 網頁。</span><br><span class="line">請將所有 HTML、CSS 樣式與 JavaScript 互動邏輯整合在單一一個 index.html 檔案中，</span><br><span class="line">不需要依賴複雜的後端伺服器，確保本機直接點開就能正常運作。</span><br></pre></td></tr></table></figure>
+
+<p>拿到程式碼後的處理方式：</p>
+<ol>
+<li>在電腦上建立一個新資料夾（例如 <strong>my-web</strong>）。</li>
+<li>在裡面新增檔案並命名為 <strong>index.html</strong>，把程式碼貼上存檔。</li>
+<li>點兩下 <strong>index.html</strong>，確認在瀏覽器中顯示與互動正常。</li>
+</ol>
+<hr>
+<h2 id="步驟二：最快上線法-—-Cloudflare-Pages-拖拉上傳（30-秒完成）"><a href="#步驟二：最快上線法-—-Cloudflare-Pages-拖拉上傳（30-秒完成）" class="headerlink" title="步驟二：最快上線法 — Cloudflare Pages 拖拉上傳（30 秒完成）"></a>步驟二：最快上線法 — Cloudflare Pages 拖拉上傳（30 秒完成）</h2><p>如果你的網站不需要後端資料庫，這是最快、終身免費且具備全球 CDN 加速的上線方式。</p>
+<ol>
+<li>到 <strong>Cloudflare</strong> 官網註冊並登入免費帳號。</li>
+<li>進入控制台，在左側選單點選 <strong>Compute (Workers &amp; Pages)</strong> ➔ 點擊 <strong>Create application</strong> ➔ 選擇 <strong>Pages</strong>。</li>
+<li>點擊 <strong>Upload assets</strong>。</li>
+<li>輸入專案名稱（這會是你的子網域名稱，例如 <strong>my-tool</strong>）。</li>
+<li>直接把剛才裝有 <strong>index.html</strong> 的 <strong>my-web</strong> 資料夾拖進上傳區塊。</li>
+<li>點擊 <strong>Deploy site</strong>。</li>
+</ol>
+<p>部署完成後，你會立即獲得一組 <strong><a target="_blank" rel="noopener" href="https://my-tool.pages.dev/">https://my-tool.pages.dev</a></strong> 網址，已自動配置好 HTTPS 安全憑證。</p>
+<hr>
+<h2 id="步驟三：進階自動化-—-改-Code-自動同步更新（GitHub-Vercel）"><a href="#步驟三：進階自動化-—-改-Code-自動同步更新（GitHub-Vercel）" class="headerlink" title="步驟三：進階自動化 — 改 Code 自動同步更新（GitHub + Vercel）"></a>步驟三：進階自動化 — 改 Code 自動同步更新（GitHub + Vercel）</h2><p>如果你的網站會頻繁修改，每次手動拖拉會很浪費時間。搭配 <strong>GitHub Desktop</strong> 與 <strong>Vercel</strong>，可以做到每次改完存檔就自動發布新版。</p>
+<ol>
+<li><strong>安裝工具</strong>：下載並安裝免指令的圖形化工具 <strong>GitHub Desktop</strong>，登入 GitHub 帳號。</li>
+<li><strong>發布專案</strong>：在 GitHub Desktop 點選 <strong>File ➔ Add Local Repository</strong> 選取你的專案資料夾，點擊 <strong>Publish repository</strong> 推送到 GitHub。</li>
+<li><strong>綁定 Vercel</strong>：<ul>
+<li>前往 <strong>Vercel</strong> 官網，使用 GitHub 帳號登入。</li>
+<li>點擊 <strong>Add New ➔ Project</strong>，找到你的專案點擊 <strong>Import</strong>。</li>
+<li>保持預設設定，直接點擊 <strong>Deploy</strong>。</li>
+</ul>
+</li>
+<li><strong>自動更新工作流</strong>：之後只要請 AI 修改完程式碼存檔，在 GitHub Desktop 按下 <strong>Commit</strong> 與 <strong>Push</strong>，Vercel 就會在 1 分鐘內自動編譯並更新線上網站。</li>
+</ol>
+<hr>
+<h2 id="步驟四：安全防護-—-避免-API-Key-外洩與帳單爆表"><a href="#步驟四：安全防護-—-避免-API-Key-外洩與帳單爆表" class="headerlink" title="步驟四：安全防護 — 避免 API Key 外洩與帳單爆表"></a>步驟四：安全防護 — 避免 API Key 外洩與帳單爆表</h2><p>如果你的網站需要呼叫 OpenAI、Anthropic 或 Gemini 的 API，這一步非常關鍵。</p>
+<h3 id="1-嚴禁把-API-Key-寫死在-index-html"><a href="#1-嚴禁把-API-Key-寫死在-index-html" class="headerlink" title="1. 嚴禁把 API Key 寫死在 index.html"></a>1. 嚴禁把 API Key 寫死在 index.html</h3><p>前端所有的 HTML 與 JavaScript 都是公開的，任何人按右鍵「檢視網頁原始碼」就能偷走你的金鑰並盜刷額度。</p>
+<h3 id="2-請-AI-寫-Serverless-轉發"><a href="#2-請-AI-寫-Serverless-轉發" class="headerlink" title="2. 請 AI 寫 Serverless 轉發"></a>2. 請 AI 寫 Serverless 轉發</h3><p>向 AI 發出這段提示詞：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">請幫我把呼叫 API 的邏輯改寫成 Vercel Serverless Function（檔案路徑為 api/chat.js）。</span><br><span class="line">前端改為向 /api/chat 發送請求，並在伺服器端讀取 process.env.API_KEY，不要在前端暴露金鑰。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-在-Vercel-後台設定環境變數"><a href="#3-在-Vercel-後台設定環境變數" class="headerlink" title="3. 在 Vercel 後台設定環境變數"></a>3. 在 Vercel 後台設定環境變數</h3><ol>
+<li>進入 Vercel 專案後台，點選 <strong>Settings ➔ Environment Variables</strong>。</li>
+<li><strong>Key</strong> 輸入變數名稱（例如 <strong>OPENAI_API_KEY</strong>），<strong>Value</strong> 填入你的真實 API Key。</li>
+<li>點擊 <strong>Save</strong>。金鑰只會保存在雲端伺服器環境中，外部訪客完全看不到。</li>
+</ol>
+<h3 id="4-設定用量硬上限（Hard-Limit）"><a href="#4-設定用量硬上限（Hard-Limit）" class="headerlink" title="4. 設定用量硬上限（Hard Limit）"></a>4. 設定用量硬上限（Hard Limit）</h3><p>至 OpenAI 或各平台後台的 <strong>Billing ➔ Usage limits</strong>，將每月扣款上限鎖定在安全範圍（例如 5 到 10 美元），杜絕無窮迴圈或惡意流量造成的意外帳單。</p>
+<hr>
+<h2 id="步驟五：綁定自訂網址（選配）"><a href="#步驟五：綁定自訂網址（選配）" class="headerlink" title="步驟五：綁定自訂網址（選配）"></a>步驟五：綁定自訂網址（選配）</h2><p>想要使用自己的專屬網址（例如 <strong><a target="_blank" rel="noopener" href="http://www.mybrand.com/">www.mybrand.com</a></strong>）：</p>
+<ol>
+<li>在 <strong>Namecheap</strong> 或 <strong>Cloudflare Registrar</strong> 購買網域（一年約 10 美元）。</li>
+<li>在 Vercel 或 Cloudflare Pages 的 <strong>Domains</strong> 設定頁面輸入你的網域。</li>
+<li>按照畫面提示，到 DNS 後台新增一筆 <strong>CNAME</strong> 紀錄指向平台提供的位址即可。</li>
+</ol>
+<hr>
+<h2 id="重點回顧"><a href="#重點回顧" class="headerlink" title="重點回顧"></a>重點回顧</h2><ul>
+<li><strong>純單頁工具</strong>：直接丟 <strong>Cloudflare Pages</strong>，拖拉 30 秒上線。</li>
+<li><strong>持續更新專案</strong>：用 <strong>GitHub Desktop + Vercel</strong>，按一下 Push 自動同步。</li>
+<li><strong>有串接 AI API</strong>：金鑰一律放 <strong>Environment Variables</strong>，絕不寫在前端，並鎖定每月用量預算上限。</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>, <a href="/tags/AI/">AI</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <p class="title">留言</p>
+
+  
+      <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v22.0&appId=796581497680750"></script>
+
+<div class="fb-comments" data-href="https://blog.6yuwei.com/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>24</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>5</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>27</small></li>
+  
+    <li><a href="/tags/AI-Agent/">AI Agent</a><small>8</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>7</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>7</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/Grok/">Grok</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>8</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>8</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>5</small></li>
+  
+    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>4</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>5</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+</body>
+</html>
