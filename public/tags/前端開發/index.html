@@ -81,7 +81,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=91f6a63cf6">
+  <link rel="stylesheet" href="/css/style.css?v=5d849ed62e">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -384,67 +384,6 @@
     // 1. 載入 Mermaid.js 與 Panzoom.js
     loadScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function(){
       loadScript('https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.5.1/dist/panzoom.min.js', function(){
-        
-        // 全螢幕 Modal
-        var modal = document.createElement('div');
-        modal.className = 'mermaid-modal';
-        modal.innerHTML = `
-          <div class="mermaid-modal-header">
-            <span>架構流程圖全螢幕檢視（支援雙指/滾輪縮放與拖曳）</span>
-            <div class="modal-controls">
-              <button id="modal-pan-out" title="縮小">－</button>
-              <button id="modal-pan-reset" title="重置">100%</button>
-              <button id="modal-pan-in" title="放大">＋</button>
-              <button id="modal-pan-close" class="close-btn" title="關閉 (ESC)">✕ 關閉</button>
-            </div>
-          </div>
-          <div class="mermaid-modal-body">
-            <div class="modal-svg-wrapper"></div>
-          </div>
-        `;
-        document.body.appendChild(modal);
-
-        var modalBody = modal.querySelector('.mermaid-modal-body');
-        var modalSvgWrapper = modal.querySelector('.modal-svg-wrapper');
-        var modalPanzoom = null;
-
-        function closeModal(){
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-          if (modalPanzoom) {
-            modalPanzoom.destroy();
-            modalPanzoom = null;
-          }
-          modalSvgWrapper.innerHTML = '';
-        }
-
-        modal.querySelector('#modal-pan-close').addEventListener('click', closeModal);
-        modal.querySelector('#modal-pan-in').addEventListener('click', function(){ if (modalPanzoom) modalPanzoom.zoomIn(); });
-        modal.querySelector('#modal-pan-out').addEventListener('click', function(){ if (modalPanzoom) modalPanzoom.zoomOut(); });
-        modal.querySelector('#modal-pan-reset').addEventListener('click', function(){ if (modalPanzoom) modalPanzoom.reset(); });
-        document.addEventListener('keydown', function(e){
-          if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-        });
-
-        function openModal(svgEl){
-          var clone = svgEl.cloneNode(true);
-          clone.style.maxWidth = 'none';
-          clone.style.maxHeight = 'none';
-          clone.style.width = 'auto';
-          clone.style.height = 'auto';
-          modalSvgWrapper.innerHTML = '';
-          modalSvgWrapper.appendChild(clone);
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-
-          modalPanzoom = Panzoom(clone, {
-            maxScale: 6,
-            minScale: 0.4,
-            cursor: 'grab',
-            touchAction: 'none'
-          });
-          modalBody.addEventListener('wheel', modalPanzoom.zoomWithWheel, { passive: false });
-        }
 
         // 初始化 Mermaid
         window.mermaid.initialize({
@@ -490,12 +429,11 @@
             var header = document.createElement('div');
             header.className = 'mermaid-header';
             header.innerHTML = `
-              <span class="mermaid-title">架構流程圖</span>
+              <span class="mermaid-title">架構流程圖（支援雙指/滑鼠縮放拖曳）</span>
               <div class="mermaid-tools">
                 <button class="mermaid-btn btn-zoom-in" title="放大">＋</button>
                 <button class="mermaid-btn btn-zoom-out" title="縮小">－</button>
                 <button class="mermaid-btn btn-reset" title="重置">↺</button>
-                <button class="mermaid-btn fullscreen-btn" title="全螢幕放大">⛶ 全螢幕</button>
               </div>
             `;
 
@@ -528,10 +466,6 @@
             header.querySelector('.btn-reset').addEventListener('click', function(e){
               e.stopPropagation();
               pz.reset();
-            });
-            header.querySelector('.fullscreen-btn').addEventListener('click', function(e){
-              e.stopPropagation();
-              openModal(svg);
             });
           });
         }).catch(function(err){
