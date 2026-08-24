@@ -81,7 +81,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=153caef343">
+  <link rel="stylesheet" href="/css/style.css?v=91f6a63cf6">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -205,7 +205,7 @@
   <h3 class="title">標籤</h3>
   <ul class="entry">
   
-    <li><a href="/tags/AI/">AI</a><small>27</small></li>
+    <li><a href="/tags/AI/">AI</a><small>28</small></li>
   
     <li><a href="/tags/AI-Agent/">AI Agent</a><small>8</small></li>
   
@@ -213,11 +213,11 @@
   
     <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
   
-    <li><a href="/tags/Claude/">Claude</a><small>7</small></li>
+    <li><a href="/tags/Claude/">Claude</a><small>8</small></li>
   
     <li><a href="/tags/Claude-Code/">Claude Code</a><small>3</small></li>
   
-    <li><a href="/tags/Codex/">Codex</a><small>7</small></li>
+    <li><a href="/tags/Codex/">Codex</a><small>8</small></li>
   
     <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
   
@@ -259,7 +259,7 @@
   
     <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
   
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>8</small></li>
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>9</small></li>
   
     <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
   
@@ -292,6 +292,191 @@
 
 
 
+
+
+
+<script>
+(function(){
+  function loadScript(src, cb){
+    var s = document.createElement('script');
+    s.src = src;
+    s.crossOrigin = 'anonymous';
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  function initMermaidPanzoom(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    // 1. 載入 Mermaid.js 與 Panzoom.js
+    loadScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function(){
+      loadScript('https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.5.1/dist/panzoom.min.js', function(){
+        
+        // 全螢幕 Modal
+        var modal = document.createElement('div');
+        modal.className = 'mermaid-modal';
+        modal.innerHTML = `
+          <div class="mermaid-modal-header">
+            <span>架構流程圖全螢幕檢視（支援雙指/滾輪縮放與拖曳）</span>
+            <div class="modal-controls">
+              <button id="modal-pan-out" title="縮小">－</button>
+              <button id="modal-pan-reset" title="重置">100%</button>
+              <button id="modal-pan-in" title="放大">＋</button>
+              <button id="modal-pan-close" class="close-btn" title="關閉 (ESC)">✕ 關閉</button>
+            </div>
+          </div>
+          <div class="mermaid-modal-body">
+            <div class="modal-svg-wrapper"></div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+
+        var modalBody = modal.querySelector('.mermaid-modal-body');
+        var modalSvgWrapper = modal.querySelector('.modal-svg-wrapper');
+        var modalPanzoom = null;
+
+        function closeModal(){
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+          if (modalPanzoom) {
+            modalPanzoom.destroy();
+            modalPanzoom = null;
+          }
+          modalSvgWrapper.innerHTML = '';
+        }
+
+        modal.querySelector('#modal-pan-close').addEventListener('click', closeModal);
+        modal.querySelector('#modal-pan-in').addEventListener('click', function(){ if (modalPanzoom) modalPanzoom.zoomIn(); });
+        modal.querySelector('#modal-pan-out').addEventListener('click', function(){ if (modalPanzoom) modalPanzoom.zoomOut(); });
+        modal.querySelector('#modal-pan-reset').addEventListener('click', function(){ if (modalPanzoom) modalPanzoom.reset(); });
+        document.addEventListener('keydown', function(e){
+          if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        });
+
+        function openModal(svgEl){
+          var clone = svgEl.cloneNode(true);
+          clone.style.maxWidth = 'none';
+          clone.style.maxHeight = 'none';
+          clone.style.width = 'auto';
+          clone.style.height = 'auto';
+          modalSvgWrapper.innerHTML = '';
+          modalSvgWrapper.appendChild(clone);
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+
+          modalPanzoom = Panzoom(clone, {
+            maxScale: 6,
+            minScale: 0.4,
+            cursor: 'grab',
+            touchAction: 'none'
+          });
+          modalBody.addEventListener('wheel', modalPanzoom.zoomWithWheel, { passive: false });
+        }
+
+        // 初始化 Mermaid
+        window.mermaid.initialize({
+          startOnLoad: false,
+          theme: 'base',
+          themeVariables: {
+            fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            fontSize: '15px',
+            primaryColor: '#f0f9ff',
+            primaryTextColor: '#0f172a',
+            primaryBorderColor: '#0284c7',
+            lineColor: '#334155',
+            secondaryColor: '#f8fafc',
+            tertiaryColor: '#ffffff',
+            edgeLabelBackground: '#ffffff',
+            clusterBkg: '#f8fafc',
+            clusterBorder: '#94a3b8',
+            nodeBorder: '#0284c7',
+            mainBkg: '#f0f9ff'
+          },
+          flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true,
+            curve: 'basis',
+            nodeSpacing: 25,
+            rankSpacing: 35
+          }
+        });
+
+        // 執行渲染
+        window.mermaid.run({
+          querySelector: '.mermaid'
+        }).then(function(){
+          // 渲染完成後掛載 Panzoom 與外層工具列
+          els.forEach(function(el){
+            var svg = el.querySelector('svg');
+            if (!svg) return;
+
+            // 封裝卡片與頂部工具列
+            var box = document.createElement('div');
+            box.className = 'mermaid-box';
+
+            var header = document.createElement('div');
+            header.className = 'mermaid-header';
+            header.innerHTML = `
+              <span class="mermaid-title">架構流程圖</span>
+              <div class="mermaid-tools">
+                <button class="mermaid-btn btn-zoom-in" title="放大">＋</button>
+                <button class="mermaid-btn btn-zoom-out" title="縮小">－</button>
+                <button class="mermaid-btn btn-reset" title="重置">↺</button>
+                <button class="mermaid-btn fullscreen-btn" title="全螢幕放大">⛶ 全螢幕</button>
+              </div>
+            `;
+
+            var viewport = document.createElement('div');
+            viewport.className = 'mermaid-viewport';
+
+            el.parentNode.insertBefore(box, el);
+            viewport.appendChild(el);
+            box.appendChild(header);
+            box.appendChild(viewport);
+
+            // 卡片內 Panzoom 實例化
+            var pz = Panzoom(svg, {
+              maxScale: 4,
+              minScale: 0.5,
+              cursor: 'grab',
+              touchAction: 'none'
+            });
+
+            viewport.addEventListener('wheel', pz.zoomWithWheel, { passive: false });
+
+            header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+              e.stopPropagation();
+              pz.zoomIn();
+            });
+            header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+              e.stopPropagation();
+              pz.zoomOut();
+            });
+            header.querySelector('.btn-reset').addEventListener('click', function(e){
+              e.stopPropagation();
+              pz.reset();
+            });
+            header.querySelector('.fullscreen-btn').addEventListener('click', function(e){
+              e.stopPropagation();
+              openModal(svg);
+            });
+          });
+        }).catch(function(err){
+          console.error('Mermaid render error:', err);
+        });
+
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaidPanzoom);
+  } else {
+    initMermaidPanzoom();
+  }
+})();
+</script>
 
 
 
