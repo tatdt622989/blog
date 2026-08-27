@@ -346,6 +346,11 @@ test('mobile header keeps navigation compact and the language menu unclipped', (
     );
     assert.match(
       englishStyles,
+      /#header \.logo a img \{\s*width: 100%;\s*height: auto;\s*\}/,
+      'the responsive logo should not retain its fixed HTML height',
+    );
+    assert.match(
+      englishStyles,
       /#header \.language-switcher \.language-switcher__code \{[\s\S]*?flex-shrink: 0;/,
       'language code badges should not shrink behind the clipped panel edge',
     );

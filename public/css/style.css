@@ -204,6 +204,7 @@ a:hover {
 }
 #header .logo a img {
   width: 100%;
+  height: auto;
 }
 #header h1 {
   font-weight: normal;
