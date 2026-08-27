@@ -21,12 +21,12 @@
       <% if (index){ %>
         <% if (item.excerpt){ %>
           <div class="alignleft">
-            <a href="<%- url_for(item.path) %>#more" class="more-link"><%= theme.excerpt_link %></a>
+            <a href="<%- url_for(item.path) %>#more" class="more-link"><%= __('read_more') %></a>
           </div>
         <% } %>
         <% if (item.comment && config.disqus_shortname){ %>
         <div class="alignright">
-          <a href="<%- item.permalink %>#disqus_thread" class="comment-link">Comments</a>
+          <a href="<%- item.permalink %>#disqus_thread" class="comment-link"><%= __('comment') %></a>
         </div>
         <% } %>
       <% } else { %>

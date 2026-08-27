@@ -10,3 +10,15 @@ archive_a: Archives
 archive_b: "Archives: %s"
 page: Page %d
 recent_posts: Recent Posts
+nav_home: Home
+nav_archives: Archives
+nav_works: Works
+read_more: Read More
+breadcrumb_home: Home
+breadcrumb_categories: Categories
+breadcrumb_tags: Tags
+breadcrumb_archives: Archives
+language_switcher: Switch language
+language_zh_tw: 中文
+language_zh_tw_full: Traditional Chinese
+language_en: English

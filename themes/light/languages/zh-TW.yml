@@ -10,3 +10,15 @@ archive_a: 彙整
 archive_b: 彙整：%s
 page: 第 %d 頁
 recent_posts: 最新文章
+nav_home: 首頁
+nav_archives: 彙整
+nav_works: 作品
+read_more: 閱讀全文
+breadcrumb_home: 首頁
+breadcrumb_categories: 分類
+breadcrumb_tags: 標籤
+breadcrumb_archives: 彙整
+language_switcher: 切換語言
+language_zh_tw: 中文
+language_zh_tw_full: 繁體中文
+language_en: English

@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate && node scripts/optimize-public-images.js",
+    "build:site": "node scripts/build-multilingual.js",
+    "build": "npm run build:site && node scripts/optimize-public-images.js",
     "clean": "hexo clean",
     "deploy": "npm run build && git add . && git commit -m \"Updated Articles\" && git push origin main",
     "server": "hexo server",
-    "test": "node --test test/*.test.mjs"
+    "test": "node scripts/run-tests.js"
   },
   "hexo": {
     "version": "6.3.0"

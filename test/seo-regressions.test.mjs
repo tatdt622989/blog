@@ -4,8 +4,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
+const generatedPublicRoot = process.env.BLOG_TEST_PUBLIC_DIR
+  ? path.resolve(process.env.BLOG_TEST_PUBLIC_DIR)
+  : path.join(root, 'public');
 
 function read(relativePath) {
+  if (relativePath.startsWith('public/')) {
+    return fs.readFileSync(
+      path.join(generatedPublicRoot, relativePath.slice('public/'.length)),
+      'utf8',
+    );
+  }
+
   return fs.readFileSync(path.join(root, relativePath), 'utf8');
 }
 
@@ -99,7 +109,7 @@ test('priority posts expose description, updated, exact more tag, and non-empty 
 test('generated pages expose JSON-LD for the homepage, a post, and a taxonomy page', () => {
   const homepage = read('public/index.html');
   const post = read('public/2026/06/18/claude-codex-quota-guide/index.html');
-  const category = read('public/categories/AI/index.html');
+  const category = read('public/categories/AI-科技/index.html');
 
   assert.match(homepage, /application\/ld\+json/, 'homepage should contain JSON-LD');
   assert.match(homepage, /"@type":"WebSite"/, 'homepage should expose WebSite schema');
@@ -163,13 +173,13 @@ test('homepage cover images use responsive card variants', () => {
   const latestCover = homepage.match(/<img\b[^>]+\bpost-cover-image\b[^>]+>/);
 
   assert.ok(latestCover, 'homepage should render a post cover image');
-  assert.match(latestCover[0], /\bsrc="[^"]*-card-720\.jpg"/, 'cover image fallback should use a smaller card file');
-  assert.match(latestCover[0], /\bsrcset="[^"]*-card-480\.jpg 480w[^"]*-card-960\.jpg 960w/, 'cover image should expose responsive width candidates');
+  assert.match(latestCover[0], /\bsrc="[^"]*-card-720\.jpg(?:\?v=[a-f0-9]{8})?"/, 'cover image fallback should use a smaller card file');
+  assert.match(latestCover[0], /\bsrcset="[^"]*-card-480\.jpg(?:\?v=[a-f0-9]{8})? 480w[^"]*-card-960\.jpg(?:\?v=[a-f0-9]{8})? 960w/, 'cover image should expose responsive width candidates');
   assert.match(latestCover[0], /\bsizes="\([^"]*711px"/, 'cover image should advertise the rendered content width');
 
-  const fallbackPath = latestCover[0].match(/\bsrc="([^"]+)"/)?.[1];
+  const fallbackPath = latestCover[0].match(/\bsrc="([^"]+)"/)?.[1]?.split(/[?#]/)[0];
   assert.ok(
-    fallbackPath && fs.existsSync(path.join(root, 'public', decodeURIComponent(fallbackPath))),
+    fallbackPath && fs.existsSync(path.join(generatedPublicRoot, decodeURIComponent(fallbackPath))),
     'homepage cover fallback should exist in the generated public directory',
   );
 });
@@ -192,4 +202,12 @@ test('third-party advertising and analytics scripts are delayed', () => {
   assert.match(homepage, /requestIdleCallback/, 'third-party scripts should wait for idle time');
   assert.doesNotMatch(homepage, /<script async src="https:\/\/pagead2\.googlesyndication\.com/, 'AdSense should not load directly in the initial head');
   assert.doesNotMatch(homepage, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js/, 'GA4 should not load directly in the initial head');
+});
+
+test('post pages do not render the disabled Facebook comments integration', () => {
+  const post = read('public/2026/06/18/claude-codex-quota-guide/index.html');
+
+  assert.doesNotMatch(post, /connect\.facebook\.net/, 'post pages should not load the Facebook SDK');
+  assert.doesNotMatch(post, /class="fb-comments"/, 'post pages should not render the Facebook comments widget');
+  assert.doesNotMatch(post, /<section id="comment">/, 'post pages should not leave an empty comments section');
 });

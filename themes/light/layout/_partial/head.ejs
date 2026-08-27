@@ -13,15 +13,16 @@
   if (!title.length && config.subtitle) title.push(config.subtitle);
   title.push(config.title);
   var resolvedTitle = title.join(' | ');
-  var siteUrl = (config.url || '').replace(/\/$/, '');
-  var homeUrl = siteUrl ? siteUrl + '/' : '/';
+  var siteOrigin = absolute_site_url('/').replace(/\/$/, '');
+  var homeUrl = absolute_site_url(config.root || '/');
+  var currentLocale = current_locale();
   function cleanText(value) {
     return value ? value.replace(/\s+/g, ' ').trim() : '';
   }
   function toAbsoluteUrl(value) {
     if (!value) return '';
     if (value.match(/^https?:\/\//)) return value;
-    if (value.match(/^\//)) return siteUrl + value;
+    if (value.match(/^\//)) return absolute_site_url(value);
     var relative = value.replace(/^\.\//, '');
     if (page.permalink) return page.permalink + relative;
     return homeUrl + relative;
@@ -70,8 +71,9 @@
   else if (page.excerpt) metaDescription = strip_html(page.excerpt);
   else if (page.content) metaDescription = strip_html(page.content).substring(0, 150);
   metaDescription = cleanText(metaDescription);
-  var canonicalUrl = page.permalink || (siteUrl + url_for(page.path || ''));
+  var canonicalUrl = page.permalink || absolute_site_url(url_for(page.path || ''));
   canonicalUrl = canonicalUrl.replace(/index\.html$/, '');
+  var alternateLanguageLinks = page_alternate_links(page);
   var ogType = page.layout === 'post' ? 'article' : 'website';
   var siteLogo = toAbsoluteUrl(config.cover || '/img/logo.svg');
   var contentImage = firstContentImage(page.content || page.excerpt || '');
@@ -91,16 +93,16 @@
       "url": homeUrl,
       "name": config.title,
       "description": metaDescription || cleanText(config.description || ''),
-      "inLanguage": config.language,
+      "inLanguage": currentLocale,
       "publisher": {
-        "@id": homeUrl + '#organization'
+        "@id": siteOrigin + '/#organization'
       }
     }));
     structuredData.push(compactObject({
       "@context": "https://schema.org",
       "@type": "Organization",
-      "@id": homeUrl + '#organization',
-      "url": homeUrl,
+      "@id": siteOrigin + '/#organization',
+      "url": siteOrigin + '/',
       "name": config.title,
       "logo": siteLogo,
       "description": cleanText(config.description || '')
@@ -121,6 +123,7 @@
       "description": metaDescription,
       "datePublished": asIsoDate(page.date),
       "dateModified": asIsoDate(page.updated || page.date),
+      "inLanguage": currentLocale,
       "author": [articleAuthor],
       "publisher": compactObject({
         "@type": "Organization",
@@ -143,30 +146,30 @@
     breadcrumbs.push(crumb);
   }
   if (page.layout === 'post') {
-    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb(__('breadcrumb_home'), homeUrl);
     var primaryCategory = firstCollectionItem(page.categories);
     if (primaryCategory) pushBreadcrumb(primaryCategory.name, toAbsoluteUrl(url_for(primaryCategory.path)));
     pushBreadcrumb(page.title, canonicalUrl);
   } else if (page.category) {
-    pushBreadcrumb('首頁', homeUrl);
-    pushBreadcrumb('分類', toAbsoluteUrl(url_for('categories/')));
+    pushBreadcrumb(__('breadcrumb_home'), homeUrl);
+    pushBreadcrumb(__('breadcrumb_categories'), toAbsoluteUrl(url_for('categories/')));
     pushBreadcrumb(typeof page.category === 'string' ? page.category : page.category.name, canonicalUrl);
   } else if (page.tag) {
-    pushBreadcrumb('首頁', homeUrl);
-    pushBreadcrumb('標籤', toAbsoluteUrl(url_for('tags/')));
+    pushBreadcrumb(__('breadcrumb_home'), homeUrl);
+    pushBreadcrumb(__('breadcrumb_tags'), toAbsoluteUrl(url_for('tags/')));
     pushBreadcrumb(typeof page.tag === 'string' ? page.tag : page.tag.name, canonicalUrl);
   } else if (page.archive) {
-    pushBreadcrumb('首頁', homeUrl);
-    pushBreadcrumb('彙整', toAbsoluteUrl(url_for('archives/')));
+    pushBreadcrumb(__('breadcrumb_home'), homeUrl);
+    pushBreadcrumb(__('breadcrumb_archives'), toAbsoluteUrl(url_for('archives/')));
     if (page.year) {
       var archiveLabel = page.month ? page.year + '/' + page.month : String(page.year);
       pushBreadcrumb(archiveLabel, canonicalUrl);
     }
   } else if (page.current > 1) {
-    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb(__('breadcrumb_home'), homeUrl);
     pushBreadcrumb(__('page', page.current), canonicalUrl);
   } else if (page.title) {
-    pushBreadcrumb('首頁', homeUrl);
+    pushBreadcrumb(__('breadcrumb_home'), homeUrl);
     pushBreadcrumb(page.title, canonicalUrl);
   }
   if (breadcrumbs.length >= 2) {
@@ -182,12 +185,21 @@
   <% if (metaDescription){ %><meta name="description" content="<%= metaDescription %>"><% } %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="canonical" href="<%= canonicalUrl %>">
+  <% alternateLanguageLinks.forEach(function(link) { %>
+  <link rel="alternate" hreflang="<%= link.hreflang %>" href="<%= link.href %>">
+  <% }); %>
 
   <meta property="og:title" content="<%= page.title || resolvedTitle %>"/>
   <% if (metaDescription){ %><meta property="og:description" content="<%= metaDescription %>"/><% } %>
   <meta property="og:site_name" content="<%= config.title %>"/>
   <meta property="og:type" content="<%= ogType %>"/>
   <meta property="og:url" content="<%= canonicalUrl %>"/>
+  <meta property="og:locale" content="<%= og_locale() %>"/>
+  <% alternateLanguageLinks.filter(function(link) {
+    return link.hreflang !== currentLocale && link.hreflang !== 'x-default';
+  }).forEach(function(link) { %>
+  <meta property="og:locale:alternate" content="<%= og_locale(link.hreflang) %>"/>
+  <% }); %>
   <% if (ogImage){ %><meta property="og:image" content="<%= ogImage %>" /><% } %>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="<%= page.title || resolvedTitle %>">
@@ -250,10 +262,10 @@
   });
   </script>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="<%- url_for('favicon-32x32.png') %>?v=20260817">
-  <link rel="icon" type="image/png" sizes="192x192" href="<%- url_for('favicon-192x192.png') %>?v=20260817">
-  <link rel="apple-touch-icon" sizes="180x180" href="<%- url_for('apple-touch-icon.png') %>?v=20260817">
-  <link rel="shortcut icon" href="<%- url_for('favicon.png') %>?v=20260817">
+  <link rel="icon" type="image/png" sizes="32x32" href="<%- siteOrigin %>/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="<%- siteOrigin %>/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="<%- siteOrigin %>/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="<%- siteOrigin %>/favicon.png?v=20260817">
   <% if (config.feed) { %>
     <%- feed_tag() %>
   <% } else if (theme.rss) { %>

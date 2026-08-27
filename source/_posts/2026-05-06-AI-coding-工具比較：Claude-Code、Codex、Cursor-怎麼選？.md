@@ -1,8 +1,11 @@
 ---
 title: 2026 AI Coding 工具比較：Claude Code、Codex、Cursor 怎麼選？
 date: 2026-05-06 21:30:00
-updated: 2026-08-17 15:20:00
+updated: 2026-08-27 19:00:00
 description: 想比較 Claude Code、Codex、Cursor 該怎麼選？本文整理 2026 最新方案、額度限制與實際使用情境，幫你快速判斷哪套 AI coding 工具最適合自己的工作流。
+translation_key: ai-coding-tools-comparison
+translations:
+  en: /en/2026/05/06/claude-code-vs-codex-vs-cursor/
 categories:
 - AI 科技
 tags:

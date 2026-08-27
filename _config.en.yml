@@ -1,0 +1,15 @@
+# English locale overrides. This file is merged after _config.yml.
+subtitle: Practical notes on AI, frontend engineering, game development, Japanese learning, and tested tools
+description: 6yuwei's technical and digital-life blog, sharing practical experience with AI, frontend and game development, Japanese learning, VPS hosting, and developer tools.
+keywords: AI, frontend development, game development, Japanese learning, VPS, Codex, Claude Code, Aseprite
+language: en
+url: https://blog.6yuwei.com/en
+root: /en/
+
+source_dir: source/en
+public_dir: public/en
+
+sitemap:
+  path: sitemap.xml
+  tag: true
+  category: true

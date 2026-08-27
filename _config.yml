@@ -12,6 +12,13 @@ cover: https://blog.6yuwei.com/img/logo.svg
 language: zh-TW
 timezone: Asia/Taipei
 
+# Locales
+i18n:
+  default_locale: zh-TW
+  locales:
+    zh-TW: /
+    en: /en/
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://blog.6yuwei.com
@@ -122,6 +129,6 @@ jsonContent:
 
 # Sitemap
 sitemap:
-  path: sitemap.xml
+  path: sitemap-zh-TW.xml
   tag: true
   category: true

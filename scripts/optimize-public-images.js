@@ -3,7 +3,28 @@ const path = require('path');
 const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
-const publicDir = path.join(__dirname, '..', 'public');
+function resolvePublicDir(argv = process.argv.slice(2), env = process.env, baseDir = path.join(__dirname, '..')) {
+  let argumentPath = null;
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const argument = argv[index];
+    if (argument !== '--public-dir') throw new Error(`Unknown argument: ${argument}`);
+
+    const value = argv[index + 1];
+    if (!value || value.startsWith('--')) {
+      throw new Error('--public-dir requires a directory path');
+    }
+
+    argumentPath = value;
+    index += 1;
+  }
+
+  const configuredPath = argumentPath || env.BLOG_TEST_PUBLIC_DIR || path.join(baseDir, 'public');
+
+  return path.resolve(baseDir, configuredPath);
+}
+
+let publicDir = path.resolve(__dirname, '..', 'public');
 const coverWidths = [480, 720, 960, 1280];
 const supportedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 const fileHashMap = new Map();
@@ -226,6 +247,8 @@ function optimizeHtmlFile(htmlPath, variantsByImage) {
 }
 
 function main() {
+  publicDir = resolvePublicDir();
+  fileHashMap.clear();
   const variantsByImage = new Map();
   const htmlFiles = walk(publicDir).filter((file) => file.endsWith('.html'));
   const updatedHtmlCount = htmlFiles.reduce((count, file) => (
@@ -240,3 +263,7 @@ if (require.main === module) {
   main();
 }
 
+module.exports = {
+  main,
+  resolvePublicDir,
+};

@@ -1,7 +1,11 @@
 ---
 title: TypeScript入門：什麼是TypeScript？
 date: 2023-03-05 23:45:21
-updated: 2026-08-17 15:20:00
+updated: 2026-08-27 18:25:00
+description: 這篇 TypeScript 入門文章介紹它與 JavaScript 的關係、靜態型別帶來的好處，以及型別推斷、介面、泛型與列舉等核心能力，並透過一個具型別限制的計算機範例，協助前端開發者掌握基本語法與實際用途。
+translation_key: typescript-introduction
+translations:
+  en: /en/2023/03/05/what-is-typescript/
 categories:
 - 前端開發
 tags:
@@ -9,13 +13,11 @@ tags:
 - JavaScript
 ---
 
-![](cover.webp)
-
-## 簡介
+![TypeScript 與 JavaScript 靜態型別入門封面](cover.webp)
 
 隨著JavaScript在網頁開發中的使用越來越普及，TypeScript作為JavaScript的靜態超集，也開始受到越來越多的關注。TypeScript由Microsoft開發，是一種開源的程式語言，通常被稱為JavaScript的超集，它通過為JavaScript添加類型定義和其他功能來擴展JavaScript的功能。
 
-<!-- more -->
+<!--more-->
 
 ## 類型定義
 

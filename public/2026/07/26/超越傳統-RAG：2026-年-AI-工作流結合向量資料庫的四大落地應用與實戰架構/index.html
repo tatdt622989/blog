@@ -8,19 +8,22 @@
   <meta name="description" content="從 Contextual Retrieval、Agentic RAG、GraphRAG、Agent 長期記憶到 AST 與 CDC 增量索引，本文以官方資料拆解向量資料庫在現代 AI 工作流中的四種實務架構、限制與選型原則。">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/">
+  
 
   <meta property="og:title" content="超越基礎 RAG：AI 工作流結合向量資料庫的四種實務架構"/>
   <meta property="og:description" content="從 Contextual Retrieval、Agentic RAG、GraphRAG、Agent 長期記憶到 AST 與 CDC 增量索引，本文以官方資料拆解向量資料庫在現代 AI 工作流中的四種實務架構、限制與選型原則。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
   <meta property="og:image" content="https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2.jpg?v=36f66425" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="超越基礎 RAG：AI 工作流結合向量資料庫的四種實務架構">
   <meta name="twitter:description" content="從 Contextual Retrieval、Agentic RAG、GraphRAG、Agent 長期記憶到 AST 與 CDC 增量索引，本文以官方資料拆解向量資料庫在現代 AI 工作流中的四種實務架構、限制與選型原則。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2.jpg?v=36f66425">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/","url":"https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/","headline":"超越基礎 RAG：AI 工作流結合向量資料庫的四種實務架構","description":"從 Contextual Retrieval、Agentic RAG、GraphRAG、Agent 長期記憶到 AST 與 CDC 增量索引，本文以官方資料拆解向量資料庫在現代 AI 工作流中的四種實務架構、限制與選型原則。","datePublished":"2026-07-26T14:00:00.000Z","dateModified":"2026-08-17T07:20:00.000Z","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/","url":"https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/","headline":"超越基礎 RAG：AI 工作流結合向量資料庫的四種實務架構","description":"從 Contextual Retrieval、Agentic RAG、GraphRAG、Agent 長期記憶到 AST 與 CDC 增量索引，本文以官方資料拆解向量資料庫在現代 AI 工作流中的四種實務架構、限制與選型原則。","datePublished":"2026-07-26T14:00:00.000Z","dateModified":"2026-08-17T07:20:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"超越基礎 RAG：AI 工作流結合向量資料庫的四種實務架構","item":"https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/"}]}</script>
   
@@ -78,12 +81,12 @@
   });
   </script>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260817">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=20260817">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260817">
-  <link rel="shortcut icon" href="/favicon.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=7c20acafa2">
+  <link rel="stylesheet" href="/css/style.css?v=3cdfc62617">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -117,11 +120,48 @@
 <nav id="main-nav" class="alignright">
   <ul>
     
-      <li><a href="/">Home</a></li>
+      <li><a href="/">首頁</a></li>
     
-      <li><a href="/archives">Archives</a></li>
+      <li><a href="/archives">彙整</a></li>
     
-    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+    
+    <li class="language-switcher">
+      <details class="language-switcher__menu">
+        <summary aria-label="切換語言">
+          <span class="language-switcher__globe" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+            </svg>
+          </span>
+          <span class="language-switcher__current">中文</span>
+          <span class="language-switcher__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="language-switcher__panel">
+          <a
+            href="/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/"
+            lang="zh-TW"
+            hreflang="zh-TW"
+            class="language-switcher__option is-active"
+            aria-current="page"
+          >
+            <span>繁體中文</span>
+            <span class="language-switcher__code" aria-hidden="true">ZH</span>
+          </a>
+          <a
+            href="/en/"
+            lang="en"
+            hreflang="en"
+            class="language-switcher__option "
+            
+          >
+            <span>English</span>
+            <span class="language-switcher__code" aria-hidden="true">EN</span>
+          </a>
+        </div>
+      </details>
+    </li>
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -144,7 +184,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-720-card-720-card-720.jpg?v=9b0d690f" alt="AI 工作流結合向量資料庫的四種 RAG 實務架構" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-720-card-720-card-480.jpg?v=339ae40d 480w, /2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-720-card-720-card-720.jpg?v=9b0d690f 720w, /2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-720-card-720-card-960.jpg?v=c74083a9 960w, /2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-720-card-720.jpg?v=3b5bba93 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-720.jpg?v=7b182bc8" alt="AI 工作流結合向量資料庫的四種 RAG 實務架構" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-480.jpg?v=f7d29cc4 480w, /2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-720.jpg?v=7b182bc8 720w, /2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2-card-960.jpg?v=35954311 960w, /2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/cover-v2.jpg?v=36f66425 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>大型語言模型的上下文視窗愈來愈長，並沒有讓檢索增強生成（RAG）失去價值。真正改變的是問題本身：團隊不再只問「要不要使用向量資料庫」，而是必須決定 <strong>哪些資料該在什麼時候進入模型上下文、如何保持新鮮，以及檢索失敗時該怎麼處理</strong>。</p>
 <p>固定字數切片、取回 Top-K 結果，再一次塞進 Prompt 的基礎做法，仍適合資料量小、問題單純的情境；但面對跨文件推理、持續更新的資料與長時間運作的 Agent，它就容易暴露限制。以下整理四種值得理解的實務架構，也說明哪些說法有實驗依據、哪些只是需要自行驗證的工程選擇。</p>
 <span id="more"></span>
@@ -310,18 +350,6 @@
 </article>
 
 
-<section id="comment">
-  <p class="title">留言</p>
-
-  
-      <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v22.0&appId=796581497680750"></script>
-
-<div class="fb-comments" data-href="https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-
-      
-  
-</section>
 
 </div></div>
     <aside id="sidebar" class="alignright">

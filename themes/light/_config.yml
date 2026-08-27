@@ -1,6 +1,6 @@
 menu:
-  Home: /
-  Archives: archives
+  nav_home: /
+  nav_archives: archives
 
 widgets:
 - search
@@ -27,7 +27,7 @@ fancybox: true
 google_analytics: G-HW6MDZLN6Z
 rss:
 
-comment_provider: facebook
+comment_provider: none
 # Facebook comment
 facebook:
   appid: 796581497680750
