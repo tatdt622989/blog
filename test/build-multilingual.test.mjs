@@ -354,6 +354,11 @@ test('mobile header keeps navigation compact and the language menu unclipped', (
       /#header \.language-switcher \.language-switcher__code \{[\s\S]*?flex-shrink: 0;/,
       'language code badges should not shrink behind the clipped panel edge',
     );
+    assert.match(
+      englishStyles,
+      /@media \(max-width: 480px\) \{[\s\S]*?#header \.language-switcher \.language-switcher__panel \{[\s\S]*?top: calc\(100% \+ 48px\);/,
+      'the mobile language panel should open below the navigation row',
+    );
   } finally {
     fs.rmSync(buildRoot, { recursive: true, force: true });
   }

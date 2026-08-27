@@ -542,7 +542,7 @@ a:hover {
   #header .language-switcher .language-switcher__panel {
     width: calc(100vw - 40px);
     max-width: 226px;
-    top: calc(100% + 8px);
+    top: calc(100% + 48px);
   }
   #header .language-switcher a.language-switcher__option {
     min-height: 48px;
