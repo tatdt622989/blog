@@ -302,3 +302,54 @@ test('multilingual build writes both locale trees to an isolated output director
     fs.rmSync(buildRoot, { recursive: true, force: true });
   }
 });
+
+test('mobile header keeps navigation compact and the language menu unclipped', () => {
+  const buildRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'blog-mobile-header-'));
+  const outputDir = path.join(buildRoot, 'public');
+
+  try {
+    const result = spawnSync(
+      process.execPath,
+      ['scripts/build-multilingual.js', '--output', outputDir, '--silent'],
+      {
+        cwd: process.cwd(),
+        encoding: 'utf8',
+        timeout: 120_000,
+      },
+    );
+
+    assert.equal(
+      result.status,
+      0,
+      `build failed\nstdout:\n${result.stdout}\nstderr:\n${result.stderr}`,
+    );
+
+    const englishHome = fs.readFileSync(path.join(outputDir, 'en', 'index.html'), 'utf8');
+    const englishStyles = fs.readFileSync(path.join(outputDir, 'en', 'css', 'style.css'), 'utf8');
+    const switcherIndex = englishHome.indexOf('<div class="language-switcher">');
+    const navigationIndex = englishHome.indexOf('<nav id="main-nav"');
+
+    assert.ok(switcherIndex >= 0, 'expected a standalone language switcher');
+    assert.ok(
+      switcherIndex < navigationIndex,
+      'language switcher should be a header sibling before navigation',
+    );
+    assert.match(
+      englishStyles,
+      /@media \(max-width: 480px\) \{\s*#header \{[\s\S]*?display: grid;/,
+      'mobile header should compile to a compact grid',
+    );
+    assert.match(
+      englishStyles,
+      /@media \(max-width: 480px\) \{\s*#header h2 \{\s*display: none;/,
+      'mobile header should hide the long subtitle',
+    );
+    assert.match(
+      englishStyles,
+      /#header \.language-switcher \.language-switcher__code \{[\s\S]*?flex-shrink: 0;/,
+      'language code badges should not shrink behind the clipped panel edge',
+    );
+  } finally {
+    fs.rmSync(buildRoot, { recursive: true, force: true });
+  }
+});

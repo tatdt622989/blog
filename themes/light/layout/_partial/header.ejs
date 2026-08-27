@@ -7,49 +7,49 @@
   </div>
   <h2><a href="<%- config.root %>"><% if (config.subtitle){ %><%= config.subtitle %><% } %></a></h2>
 </div>
+<% var activeLocale = current_locale(); %>
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="<%= __('language_switcher') %>">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current"><%= activeLocale === 'en' ? __('language_en') : __('language_zh_tw') %></span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="<%- language_switch_url(page, 'zh-TW') %>"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option <%= activeLocale === 'zh-TW' ? 'is-active' : '' %>"
+        <% if (activeLocale === 'zh-TW') { %>aria-current="page"<% } %>
+      >
+        <span><%= __('language_zh_tw_full') %></span>
+        <span class="language-switcher__code" aria-hidden="true">ZH</span>
+      </a>
+      <a
+        href="<%- language_switch_url(page, 'en') %>"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option <%= activeLocale === 'en' ? 'is-active' : '' %>"
+        <% if (activeLocale === 'en') { %>aria-current="page"<% } %>
+      >
+        <span><%= __('language_en') %></span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
 <nav id="main-nav" class="alignright">
   <ul>
     <% for (var i in theme.menu){ %>
       <li><a href="<%- url_for(theme.menu[i]) %>"><%= __(i) %></a></li>
     <% } %>
     <li><a href="https://6yuwei.com" target="_blank"><%= __('nav_works') %></a></li>
-    <% var activeLocale = current_locale(); %>
-    <li class="language-switcher">
-      <details class="language-switcher__menu">
-        <summary aria-label="<%= __('language_switcher') %>">
-          <span class="language-switcher__globe" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
-            </svg>
-          </span>
-          <span class="language-switcher__current"><%= activeLocale === 'en' ? __('language_en') : __('language_zh_tw') %></span>
-          <span class="language-switcher__chevron" aria-hidden="true"></span>
-        </summary>
-        <div class="language-switcher__panel">
-          <a
-            href="<%- language_switch_url(page, 'zh-TW') %>"
-            lang="zh-TW"
-            hreflang="zh-TW"
-            class="language-switcher__option <%= activeLocale === 'zh-TW' ? 'is-active' : '' %>"
-            <% if (activeLocale === 'zh-TW') { %>aria-current="page"<% } %>
-          >
-            <span><%= __('language_zh_tw_full') %></span>
-            <span class="language-switcher__code" aria-hidden="true">ZH</span>
-          </a>
-          <a
-            href="<%- language_switch_url(page, 'en') %>"
-            lang="en"
-            hreflang="en"
-            class="language-switcher__option <%= activeLocale === 'en' ? 'is-active' : '' %>"
-            <% if (activeLocale === 'en') { %>aria-current="page"<% } %>
-          >
-            <span><%= __('language_en') %></span>
-            <span class="language-switcher__code" aria-hidden="true">EN</span>
-          </a>
-        </div>
-      </details>
-    </li>
   </ul>
   <div class="clearfix"></div>
 </nav>

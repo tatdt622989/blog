@@ -2,9 +2,24 @@
   text-shadow 0 0 1px #fff
   margin 50px auto
   @media (max-width: 480px)
-    display flex
-    flex-direction column
-    margin 30px auto 20px auto
+    display grid
+    grid-template-columns minmax(0, 1fr) auto
+    grid-template-rows auto auto
+    align-items center
+    column-gap 12px
+    row-gap 8px
+    margin 18px auto 14px auto
+
+  > .alignleft
+    @media (max-width: 480px)
+      float none
+      grid-column 1
+      grid-row 1
+      min-width 0
+
+  > .clearfix
+    @media (max-width: 480px)
+      display none
   a
     color #22a779
     font-weight bold
@@ -14,6 +29,8 @@
 
   .logo
     max-width 140px
+    @media (max-width: 480px)
+      max-width 118px
     a
       display flex
       img
@@ -29,196 +46,224 @@
     font-size 0.9em
     line-height 1
     margin-top 10px
+    @media (max-width: 480px)
+      display none
   
   #main-nav
     font-family font-title
     line-height 2.5em
+    @media (max-width: 480px)
+      float none
+      grid-column 1 / -1
+      grid-row 2
+      width 100%
+      line-height 1
     ul
       list-style none
       @media (max-width: 480px)
-        display flex
-        flex-wrap wrap
+        display grid
+        grid-template-columns repeat(3, minmax(0, 1fr))
         align-items center
+        gap 4px
       li
         float left
         margin-left 30px
         @media (max-width: 480px)
-          margin 0 10px
+          float none
+          margin 0
+          min-width 0
+          text-align center
         a
           font-size 18px
           color #3f3f3f
           transition all 0.3s ease
+          @media (max-width: 480px)
+            display block
+            padding 10px 4px
+            font-size 16px
+            line-height 20px
           &:hover
             opacity 0.8
 
-      li.language-switcher
-        position relative
-        z-index 30
-        white-space nowrap
-        line-height 1
+  .language-switcher
+    float right
+    position relative
+    z-index 30
+    margin-left 30px
+    white-space nowrap
+    line-height 1
 
-        @media (max-width: 480px)
-          margin-left auto
+    @media (max-width: 480px)
+      float none
+      grid-column 2
+      grid-row 1
+      justify-self end
+      margin 0
 
-        .language-switcher__menu
-          position relative
+    .language-switcher__menu
+      position relative
 
-          &[open]
-            summary
-              color #177c5d
-              border-color rgba(34, 167, 121, 0.55)
-              background rgba(255, 255, 255, 0.96)
-              box-shadow 0 8px 24px rgba(28, 91, 70, 0.14)
-
-            .language-switcher__chevron
-              transform rotate(180deg)
-
-            .language-switcher__panel
-              animation language-menu-in 160ms ease-out
-
+      &[open]
         summary
-          box-sizing border-box
-          min-width 112px
-          min-height 40px
-          display flex
-          align-items center
-          justify-content center
-          gap 8px
-          padding 0 12px
-          color #31564b
-          background rgba(255, 255, 255, 0.72)
-          border 1px solid rgba(34, 167, 121, 0.25)
-          border-radius 999px
-          box-shadow 0 4px 14px rgba(44, 105, 85, 0.08)
-          cursor pointer
-          list-style none
-          transition color 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease
-
-          &::-webkit-details-marker
-            display none
-
-          &:hover
-            color #177c5d
-            border-color rgba(34, 167, 121, 0.5)
-            background rgba(255, 255, 255, 0.92)
-
-          &:focus-visible
-            outline 3px solid rgba(34, 167, 121, 0.25)
-            outline-offset 3px
-
-        .language-switcher__globe
-          width 18px
-          height 18px
-          display flex
-          color #22a779
-
-          svg
-            width 18px
-            height 18px
-            fill none
-            stroke currentColor
-            stroke-width 1.7
-            stroke-linecap round
-            stroke-linejoin round
-
-        .language-switcher__current
-          font-size 14px
-          font-weight 600
-          letter-spacing 0.02em
+          color #177c5d
+          border-color rgba(34, 167, 121, 0.55)
+          background rgba(255, 255, 255, 0.96)
+          box-shadow 0 8px 24px rgba(28, 91, 70, 0.14)
 
         .language-switcher__chevron
-          width 6px
-          height 6px
-          margin-top -3px
-          border-right 1.5px solid currentColor
-          border-bottom 1.5px solid currentColor
-          transform rotate(45deg)
-          transition transform 160ms ease
+          transform rotate(180deg)
 
         .language-switcher__panel
-          box-sizing border-box
-          width 196px
-          position absolute
-          top calc(100% + 10px)
-          right 0
-          padding 7px
-          background rgba(255, 255, 255, 0.98)
-          border 1px solid rgba(34, 167, 121, 0.2)
-          border-radius 15px
-          box-shadow 0 18px 42px rgba(30, 75, 60, 0.18), 0 3px 10px rgba(30, 75, 60, 0.08)
-          overflow hidden
+          animation language-menu-in 160ms ease-out
 
-          &::before
-            content ''
-            position absolute
-            top 7px
-            bottom 7px
-            left 7px
-            width 3px
-            border-radius 99px
-            background linear-gradient(to bottom, #22a779 0 50%, #89d6bb 50% 100%)
+    summary
+      box-sizing border-box
+      min-width 112px
+      min-height 40px
+      display flex
+      align-items center
+      justify-content center
+      gap 8px
+      padding 0 12px
+      color #31564b
+      background rgba(255, 255, 255, 0.72)
+      border 1px solid rgba(34, 167, 121, 0.25)
+      border-radius 999px
+      box-shadow 0 4px 14px rgba(44, 105, 85, 0.08)
+      cursor pointer
+      list-style none
+      transition color 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease
 
-        a.language-switcher__option
-          box-sizing border-box
-          min-height 44px
-          display flex
-          align-items center
-          justify-content space-between
-          gap 18px
-          margin-left 5px
-          padding 0 10px 0 12px
-          color #3f4d48
-          font-size 14px
-          font-weight 500
-          line-height 1.25
-          border-radius 10px
-          transition color 140ms ease, background 140ms ease, transform 140ms ease
+      &::-webkit-details-marker
+        display none
 
-          &:hover
-            color #177c5d
-            background #f1faf7
-            opacity 1
-            text-decoration none
-            transform translateX(2px)
+      &:hover
+        color #177c5d
+        border-color rgba(34, 167, 121, 0.5)
+        background rgba(255, 255, 255, 0.92)
 
-          &:focus-visible
-            outline 2px solid rgba(34, 167, 121, 0.5)
-            outline-offset -2px
+      &:focus-visible
+        outline 3px solid rgba(34, 167, 121, 0.25)
+        outline-offset 3px
 
-          &.is-active
-            color #126b50
-            background #eaf7f2
-            font-weight 700
+    .language-switcher__globe
+      width 18px
+      height 18px
+      display flex
+      color #22a779
 
-            .language-switcher__code
-              color #fff
-              background #22a779
+      svg
+        width 18px
+        height 18px
+        fill none
+        stroke currentColor
+        stroke-width 1.7
+        stroke-linecap round
+        stroke-linejoin round
+
+    .language-switcher__current
+      font-size 14px
+      font-weight 600
+      letter-spacing 0.02em
+
+    .language-switcher__chevron
+      width 6px
+      height 6px
+      margin-top -3px
+      border-right 1.5px solid currentColor
+      border-bottom 1.5px solid currentColor
+      transform rotate(45deg)
+      transition transform 160ms ease
+
+    .language-switcher__panel
+      box-sizing border-box
+      width 226px
+      position absolute
+      top calc(100% + 10px)
+      right 0
+      padding 7px
+      background rgba(255, 255, 255, 0.98)
+      border 1px solid rgba(34, 167, 121, 0.2)
+      border-radius 15px
+      box-shadow 0 18px 42px rgba(30, 75, 60, 0.18), 0 3px 10px rgba(30, 75, 60, 0.08)
+      overflow hidden
+
+      &::before
+        content ''
+        position absolute
+        top 7px
+        bottom 7px
+        left 7px
+        width 3px
+        border-radius 99px
+        background linear-gradient(to bottom, #22a779 0 50%, #89d6bb 50% 100%)
+
+    a.language-switcher__option
+      box-sizing border-box
+      min-height 44px
+      display flex
+      align-items center
+      justify-content space-between
+      gap 10px
+      margin-left 5px
+      padding 0 10px 0 12px
+      color #3f4d48
+      font-size 14px
+      font-weight 500
+      line-height 1.25
+      border-radius 10px
+      transition color 140ms ease, background 140ms ease, transform 140ms ease
+
+      > span:first-child
+        min-width 0
+
+      &:hover
+        color #177c5d
+        background #f1faf7
+        opacity 1
+        text-decoration none
+        transform translateX(2px)
+
+      &:focus-visible
+        outline 2px solid rgba(34, 167, 121, 0.5)
+        outline-offset -2px
+
+      &.is-active
+        color #126b50
+        background #eaf7f2
+        font-weight 700
 
         .language-switcher__code
-          min-width 28px
-          padding 4px 5px
-          color #71817b
-          background #f1f5f3
-          border-radius 7px
-          font-size 10px
-          font-weight 700
-          line-height 1
-          letter-spacing 0.08em
-          text-align center
+          color #fff
+          background #22a779
 
-        @media (max-width: 480px)
-          summary
-            min-width 118px
-            min-height 44px
-            padding 0 13px
+    .language-switcher__code
+      box-sizing border-box
+      flex-shrink 0
+      min-width 38px
+      padding 4px 5px
+      color #71817b
+      background #f1f5f3
+      border-radius 7px
+      font-size 10px
+      font-weight 700
+      line-height 1
+      letter-spacing 0.08em
+      text-align center
 
-          .language-switcher__panel
-            width calc(100vw - 40px)
-            max-width 196px
-            top calc(100% + 8px)
+    @media (max-width: 480px)
+      summary
+        min-width 112px
+        min-height 44px
+        padding 0 12px
 
-          a.language-switcher__option
-            min-height 48px
+      .language-switcher__panel
+        width calc(100vw - 40px)
+        max-width 226px
+        top calc(100% + 8px)
+
+      a.language-switcher__option
+        min-height 48px
 
 @keyframes language-menu-in
   from
@@ -229,7 +274,7 @@
     transform translateY(0) scale(1)
 
 @media (prefers-reduced-motion: reduce)
-  #header #main-nav li.language-switcher
+  #header .language-switcher
     .language-switcher__menu[open] .language-switcher__panel
       animation none
 
