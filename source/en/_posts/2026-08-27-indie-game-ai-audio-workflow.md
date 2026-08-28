@@ -1,7 +1,7 @@
 ---
 title: "Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX & Suno BGM Automation"
 date: 2026-08-27 16:07:15
-description: A practical guide for indie game developers on running open-source MOSS-SoundEffect-v2.0 (48kHz DiT) locally via CLI for SFX and automating Suno BGM generation with Codex and browser extensions.
+description: A practical guide for indie game developers on running open-source MOSS-SoundEffect-v2.0 (48kHz DiT) locally via CLI for SFX, Suno Pro plans ($8/mo for 500 songs with commercial license), and BGM workflow.
 permalink: 2026/08/27/indie-game-ai-audio-workflow/
 translation_key: indie-game-ai-audio-workflow
 translations:
@@ -23,7 +23,7 @@ In indie game development, audio is often one of the most time-consuming hurdles
 This article documents the practical audio pipeline I use in my own projects:
 * **Prerequisites & Hardware**: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD to store and execute local open-source models.
 * **Sound Effects (SFX)**: Pure local CLI / Python script inference (zero browser dependency) using Apache 2.0 licensed `MOSS-SoundEffect-v2.0` (48 kHz audio) and `Stable Audio Open 1.0`.
-* **Background Music (BGM)**: Using Codex to read project context and automating Suno generation in the web app via a Chrome extension.
+* **Background Music (BGM)**: Using Codex to read project context and automating Suno generation in the web app via a Chrome extension, paired with an affordable Suno Pro plan for commercial rights.
 * **Asset Management & In-Engine Testing**: Building candidate pools and auditioning sound variants directly in the game engine.
 
 <!--more-->
@@ -47,7 +47,7 @@ Before generating sound effects and music, here is the hardware and software bre
   * AI assistants (Codex / Claude) can execute Python CLI scripts directly in the terminal to batch-generate SFX clips.
 * **Cloud BGM Generation (Web Automation)**:
   * Chrome browser + automation extension (to automatically fill Codex-generated prompts into the Suno web interface)
-  * Suno platform
+  * Suno platform (Pro plan recommended for commercial rights)
 
 ---
 
@@ -87,15 +87,26 @@ For longer 5 to 10 second ambient soundscapes (such as cave water drips, dungeon
 
 ---
 
-## 2. Game BGM: Context-Aware Suno Automation with Codex
+## 2. Game BGM: Suno Plans & Context-Aware Automation with Codex
 
 Unlike short SFX, background music demands melodic composition and full arrangement. For this, **Suno**'s cloud engine remains the preferred choice.
 
-To eliminate the friction of manually switching windows and writing musical prompts, a Chrome extension bridges Suno into the IDE workflow.
-
 ![Automating Suno Game BGM with Codex Context Analysis and Chrome Extension](suno-bgm-workflow.jpg)
 
-### Automating the Prompt Pipeline
+### 1. Suno Pricing & Commercial Rights for Indie Devs
+Commercial games must not use the Free Basic plan (no commercial rights, limited to 50 credits/day). The most cost-effective tier for indie creators is **Suno Pro**:
+
+| Plan | Monthly Price | Annual Price (Billed Monthly) | Monthly Credits | Estimated Songs | Commercial Rights |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Basic (Free)** | **$0** | **$0** | 50 credits / day | ~5 songs / day | No Commercial Rights |
+| **Pro (Recommended)** | **$10 / mo** | **$8 / mo** | **2,500 credits / mo** | **~500 songs** | **Full Commercial Rights** |
+| **Premier** | **$30 / mo** | **$24 / mo** | **10,000 credits / mo** | **~2,000 songs** | **Full Commercial Rights** |
+
+* **Affordable**: At only **$8/month (billed annually)** or $10/month, it is cheaper than a coffee run.
+* **500 Songs per Month**: 2,500 credits provide roughly 500 generation candidates (10 credits per generation of 2 songs), providing plenty of variations for a solo developer.
+* **Commercial Protection**: All tracks generated during an active Pro subscription carry full commercial ownership for publishing on Steam, App Store, or Google Play.
+
+### 2. Automating the Prompt Pipeline with Codex
 1. **Reading Project Context**: Codex reads the active level design file or script (e.g., "an early-morning, cozy pixel-art lake fishing level with relaxed tempo and nostalgic mood").
 2. **Generating Structured Suno Prompts**:
    ```text
@@ -107,7 +118,7 @@ To eliminate the friction of manually switching windows and writing musical prom
    ```
 3. **Dispatching via Browser Extension**: A Chrome extension automatically inputs the prompt into the Suno web app and triggers generation while you continue coding in your IDE.
 
-### Seamless Loop Editing in 30 Seconds
+### 3. Seamless Loop Editing in 30 Seconds
 AI-generated tracks naturally include intro and outro fadeouts. To turn a raw generation into a seamless game loop:
 1. Open the audio in Audacity or any DAW and trim off the opening build-up and closing fade-out, keeping the most consistent 30 to 60-second section.
 2. Cut the last 2 seconds of the track and paste them at the very beginning on an overlapping layer.
@@ -144,7 +155,7 @@ Benefits of this approach:
 This modular audio pipeline breaks down into clear roles:
 1. **Hardware Base**: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD for free, unrestricted local inference.
 2. **Interactive SFX (Pure Local)**: Zero browser dependency, running `MOSS-SoundEffect-v2.0` (48 kHz) via CLI for rapid batch generation and tactile sound exploration.
-3. **BGM Composition (Cloud Automation)**: Codex reading level context and automating Suno generation via Chrome extension, finalized with a quick crossfade loop.
+3. **BGM Composition (Cloud Automation)**: Subscribing to Suno Pro ($8–$10/mo for 500 songs + commercial rights), automating prompts with Codex and Chrome extension, and creating seamless crossfade loops.
 4. **Asset Organization**: Preserving prompt JSON files, using WAV for zero-latency SFX, and streaming OGG/MP3 for music.
 
 By combining local open-source models with browser-driven music generation, solo developers can build a cohesive, immersive soundscape for their games without licensing friction or high production costs.
