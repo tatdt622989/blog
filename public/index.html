@@ -197,6 +197,7 @@
 <p>獨立遊戲開發到後期，音效和配樂通常是最耗時的一塊。去免費音效庫找，音質和風格往往很難統一，而且大量重複；找人委託配樂，對個人專案或小型 Game Jam 來說成本又偏高。</p>
 <p>這篇文章記錄我目前在專案中實際使用的聲音製作流程：</p>
 <ul>
+<li><strong>前置設備需求</strong>：Mac Apple Silicon + 高速外接 SSD，存放並執行開源模型。</li>
 <li><strong>短音效（SFX）</strong>：外接硬碟放開源模型（<code>MOSS-SoundEffect</code> &#x2F; <code>Stable Audio</code>），在 Mac 本地直接推論生成。</li>
 <li><strong>背景音樂（BGM）</strong>：用 Codex 讀取當前關卡設定，透過 Chrome 擴充套件自動在 Suno 生成對應曲風。</li>
 <li><strong>資產管理與實測</strong>：建立候選音效池（Candidate Pool），在遊戲中直接實測挑選最合適的版本。</li>
