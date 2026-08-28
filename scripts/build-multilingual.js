@@ -5,6 +5,7 @@ const os = require('os');
 const path = require('path');
 const Hexo = require('hexo');
 const {
+  normalizeSitemapCanonicalUrls,
   normalizeSitemapHomeXml,
   writeSitemapIndex,
 } = require('../lib/sitemap-index');
@@ -82,11 +83,20 @@ async function buildMultilingualSite(options = {}) {
       options.silent,
     );
 
+    const chineseSitemapPath = path.join(outputDir, 'sitemap-zh-TW.xml');
+    const chineseSitemap = fs.readFileSync(chineseSitemapPath, 'utf8');
+    fs.writeFileSync(
+      chineseSitemapPath,
+      normalizeSitemapCanonicalUrls(chineseSitemap),
+    );
+
     const englishSitemapPath = path.join(outputDir, 'en', 'sitemap.xml');
     const englishSitemap = fs.readFileSync(englishSitemapPath, 'utf8');
     fs.writeFileSync(
       englishSitemapPath,
-      normalizeSitemapHomeXml(englishSitemap, 'https://blog.6yuwei.com/en/'),
+      normalizeSitemapCanonicalUrls(
+        normalizeSitemapHomeXml(englishSitemap, 'https://blog.6yuwei.com/en/'),
+      ),
     );
 
     writeSitemapIndex(outputDir, 'https://blog.6yuwei.com', SITEMAP_PATHS);

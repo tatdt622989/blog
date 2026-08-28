@@ -215,6 +215,13 @@ test('privacy page omits consent-dependent advertising and analytics tags', () =
   assert.match(homepage, /googletagmanager\.com\/gtag\/js/);
 });
 
+test('privacy sitemap entry matches the canonical trailing-slash URL', () => {
+  const sitemap = read('public/sitemap-zh-TW.xml');
+
+  assert.match(sitemap, /<loc>https:\/\/blog\.6yuwei\.com\/privacy\/<\/loc>/);
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/blog\.6yuwei\.com\/privacy\/index\.html<\/loc>/);
+});
+
 test('post pages do not render the disabled Facebook comments integration', () => {
   const post = read('public/2026/06/18/claude-codex-quota-guide/index.html');
 
