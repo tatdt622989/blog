@@ -1,7 +1,7 @@
 ---
 title: "Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX & Suno BGM Automation"
 date: 2026-08-27 16:07:15
-description: A practical guide for indie game developers on running open-source MOSS-SoundEffect via pure CLI locally for sound effects and automating Suno BGM generation with Codex and browser extensions.
+description: A practical guide for indie game developers on running open-source MOSS-SoundEffect-v2.0 (48kHz DiT) locally via CLI for SFX and automating Suno BGM generation with Codex and browser extensions.
 permalink: 2026/08/27/indie-game-ai-audio-workflow/
 translation_key: indie-game-ai-audio-workflow
 translations:
@@ -22,7 +22,7 @@ In indie game development, audio is often one of the most time-consuming hurdles
 
 This article documents the practical audio pipeline I use in my own projects:
 * **Prerequisites & Hardware**: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD to store and execute local open-source models.
-* **Sound Effects (SFX)**: Pure local CLI / Python script inference (zero browser dependency) for instant, batch SFX generation.
+* **Sound Effects (SFX)**: Pure local CLI / Python script inference (zero browser dependency) using Apache 2.0 licensed `MOSS-SoundEffect-v2.0` (48 kHz audio) and `Stable Audio Open 1.0`.
 * **Background Music (BGM)**: Using Codex to read project context and automating Suno generation in the web app via a Chrome extension.
 * **Asset Management & In-Engine Testing**: Building candidate pools and auditioning sound variants directly in the game engine.
 
@@ -40,8 +40,10 @@ Before generating sound effects and music, here is the hardware and software bre
 ### 2. Software & Toolchain (Clear Tool Division)
 * **Local SFX Generation (Pure Local CLI, No Browser Needed)**:
   * Python 3.10+ (managed with `uv` for fast virtual environments)
-  * Inference Frameworks: Apple MLX (`mlx`, `mlx-lm`) on Mac, PyTorch (CUDA) on PC
-  * Open-Source Models: `MOSS-SoundEffect` (4-bit MLX version on Mac, standard PyTorch weights on PC) and `Stable Audio Open`
+  * Inference Frameworks: Apple MLX (`mlx`, `mlx-lm`) on Mac, PyTorch / `diffusers` (CUDA) on PC
+  * Open-Source Models:
+    * **`MOSS-SoundEffect-v2.0`** (Developed by OpenMOSS team, DiT + Flow Matching architecture with Qwen text encoder and DAC VAE, 48 kHz output, Apache 2.0 commercial license)
+    * **`Stable Audio Open 1.0`** (Stability AI open 1.2B DiT model, 44.1 kHz stereo output for longer ambient soundscapes)
   * AI assistants (Codex / Claude) can execute Python CLI scripts directly in the terminal to batch-generate SFX clips.
 * **Cloud BGM Generation (Web Automation)**:
   * Chrome browser + automation extension (to automatically fill Codex-generated prompts into the Suno web interface)
@@ -61,9 +63,10 @@ Sound effects typically require generating 10 to 20 variations to audition and f
 Running models locally via terminal scripts **requires zero browser interaction**:
 * **Zero Cost & Unlimited Generations**: Tweak and regenerate as many candidates as needed.
 * **Fast Inference**: Running quantized or CUDA-accelerated models generates a clean sound effect in 2 to 3 seconds, without network latency.
+* **High-Fidelity 48 kHz Quality**: MOSS-SoundEffect-v2.0 paired with DAC VAE ensures crisp transients without compression artifacts.
 
 ### Prompt Syntax & Real-World Recipes
-The primary model used for interactive SFX is **MOSS-SoundEffect** (MLX 4-bit on Mac or PyTorch on PC), triggered directly via command line.
+The primary model used for interactive SFX is **MOSS-SoundEffect-v2.0** (MLX 4-bit on Mac or PyTorch on PC), triggered directly via command line.
 
 A reliable prompt syntax formula: **Action + Material + Acoustic Characteristics**.
 
@@ -80,7 +83,7 @@ Examples from actual project builds:
   * Tile Reveal: `Mechanical tile flip, gentle stone block slide click, crisp tactile grid uncover`
 
 ### Ambient Sounds with Stable Audio Open
-For longer 5 to 10 second ambient soundscapes (such as cave water drips, dungeon torches, or gentle forest wind), **Stable Audio Open** provides broader atmospheric textures to complement the short SFX clips.
+For longer 5 to 10 second ambient soundscapes (such as cave water drips, dungeon torches, or gentle forest wind), **Stable Audio Open 1.0** provides 44.1 kHz stereo atmospheric textures to complement the short SFX clips.
 
 ---
 
@@ -140,7 +143,7 @@ Benefits of this approach:
 
 This modular audio pipeline breaks down into clear roles:
 1. **Hardware Base**: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD for free, unrestricted local inference.
-2. **Interactive SFX (Pure Local)**: Zero browser dependency, running `MOSS-SoundEffect` via CLI for rapid batch generation and tactile sound exploration.
+2. **Interactive SFX (Pure Local)**: Zero browser dependency, running `MOSS-SoundEffect-v2.0` (48 kHz) via CLI for rapid batch generation and tactile sound exploration.
 3. **BGM Composition (Cloud Automation)**: Codex reading level context and automating Suno generation via Chrome extension, finalized with a quick crossfade loop.
 4. **Asset Organization**: Preserving prompt JSON files, using WAV for zero-latency SFX, and streaming OGG/MP3 for music.
 

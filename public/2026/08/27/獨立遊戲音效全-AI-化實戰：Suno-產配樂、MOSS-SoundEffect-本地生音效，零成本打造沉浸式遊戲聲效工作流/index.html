@@ -5,7 +5,7 @@
   
   <title>獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用終端機與本地模型秒生短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。">
+  <meta name="description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地秒生 48kHz 短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/">
   
@@ -17,7 +17,7 @@
   
 
   <meta property="og:title" content="獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流"/>
-  <meta property="og:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用終端機與本地模型秒生短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。"/>
+  <meta property="og:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地秒生 48kHz 短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
@@ -28,10 +28,10 @@
   <meta property="og:image" content="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg?v=049f9420" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流">
-  <meta name="twitter:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用終端機與本地模型秒生短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。">
+  <meta name="twitter:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地秒生 48kHz 短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg?v=049f9420">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","url":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","headline":"獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流","description":"獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用終端機與本地模型秒生短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。","datePublished":"2026-08-27T08:07:15.000Z","dateModified":"2026-08-28T07:05:19.822Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","url":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","headline":"獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流","description":"獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地秒生 48kHz 短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。","datePublished":"2026-08-27T08:07:15.000Z","dateModified":"2026-08-28T07:08:38.002Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"遊戲開發","item":"https://blog.6yuwei.com/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流","item":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/"}]}</script>
   
@@ -197,7 +197,7 @@
 <p>這篇文章記錄我目前在專案中實際使用的聲音製作流程：</p>
 <ul>
 <li><strong>前置設備需求</strong>：無論是 Mac（Apple Silicon）或 PC（NVIDIA 顯卡），搭配外接 SSD 即可在本地執行開源模型。</li>
-<li><strong>短音效（SFX）</strong>：純本地 Python &#x2F; CLI 終端機推論（完全不用瀏覽器），幾秒鐘無痛批次生成。</li>
+<li><strong>短音效（SFX）</strong>：純本地 Python &#x2F; CLI 終端機推論（完全不用瀏覽器），採用 Apache 2.0 開源模型 <code>MOSS-SoundEffect-v2.0</code>（48 kHz 取樣率）與 <code>Stable Audio Open</code> 秒生音效。</li>
 <li><strong>背景音樂（BGM）</strong>：用 Codex 讀取當前關卡設定，透過 Chrome 擴充套件自動在 Suno 網頁端生成對應曲風。</li>
 <li><strong>資產管理與實測</strong>：建立候選音效池（Candidate Pool），在遊戲中直接實測挑選最合適的版本。</li>
 </ul>
@@ -212,8 +212,12 @@
 <h3 id="2-軟體與工具鏈（分工明確）"><a href="#2-軟體與工具鏈（分工明確）" class="headerlink" title="2. 軟體與工具鏈（分工明確）"></a>2. 軟體與工具鏈（分工明確）</h3><ul>
 <li><strong>本地短音效生成（純本機 CLI 腳本，完全不依賴瀏覽器）</strong>：<ul>
 <li>Python 3.10+（建議搭配 <code>uv</code> 管理環境）</li>
-<li>推論框架：Mac 使用 Apple MLX 框架（<code>mlx</code>, <code>mlx-lm</code>），PC 使用 PyTorch (CUDA)</li>
-<li>開源模型：<code>MOSS-SoundEffect</code>（Mac 4-bit MLX 版 &#x2F; PC PyTorch 版）與 <code>Stable Audio Open</code></li>
+<li>推論框架：Mac 使用 Apple MLX 框架（<code>mlx</code>, <code>mlx-lm</code>），PC 使用 PyTorch &#x2F; <code>diffusers</code> (CUDA)</li>
+<li>開源音效模型：<ul>
+<li>**<code>MOSS-SoundEffect-v2.0</code>**（OpenMOSS 開源，採用 DiT + Flow Matching 架構與 Qwen 文本編碼器，支援中英雙語提示詞，輸出最高 48 kHz 音質，Apache 2.0 可商用授權）</li>
+<li>**<code>Stable Audio Open 1.0</code>**（Stability AI 開源，1.2B 參數 DiT 架構，CC 授權音訊訓練，輸出 44.1 kHz 立體聲，適合長氛圍音）</li>
+</ul>
+</li>
 <li>AI 助理（Codex &#x2F; Claude 等）可直接在終端機呼叫 Python 腳本批次生成音效。</li>
 </ul>
 </li>
@@ -231,9 +235,9 @@
 <ul>
 <li><strong>零成本、無次數限制</strong>：隨時依需求大量生成與微調。</li>
 <li><strong>推論速度快</strong>：在本地端跑量化或 CUDA 加速版本，單個音效約 2 到 3 秒完成，完全沒有 API 網路延遲。</li>
+<li><strong>高品質 48 kHz 取樣率</strong>：MOSS-SoundEffect-v2.0 結合 DAC VAE 解碼，產出的短音效細節飽滿且無壓縮雜音。</li>
 </ul>
-<h3 id="2-MOSS-SoundEffect-實戰與-Prompt-公式"><a href="#2-MOSS-SoundEffect-實戰與-Prompt-公式" class="headerlink" title="2. MOSS-SoundEffect 實戰與 Prompt 公式"></a>2. MOSS-SoundEffect 實戰與 Prompt 公式</h3><p>短音效主力使用 <strong>MOSS-SoundEffect</strong>（Mac 上跑 MLX 4-bit 量化版，PC 上跑 PyTorch），終端機輸入一行指令就能生成。</p>
-<p>提示詞基本結構：<strong>動作（Action）+ 物理材質（Material）+ 聲音特性（Acoustics）</strong>。</p>
+<h3 id="2-MOSS-SoundEffect-實戰與-Prompt-公式"><a href="#2-MOSS-SoundEffect-實戰與-Prompt-公式" class="headerlink" title="2. MOSS-SoundEffect 實戰與 Prompt 公式"></a>2. MOSS-SoundEffect 實戰與 Prompt 公式</h3><p>提示詞基本結構：<strong>動作（Action）+ 物理材質（Material）+ 聲音特性（Acoustics）</strong>。由於 MOSS-SoundEffect 內建支援中英雙語，下詞直覺精準。</p>
 <p>專案常用範例：</p>
 <ul>
 <li><strong>UI 介面（點擊、切換）</strong>：<ul>
@@ -252,14 +256,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-環境音使用-Stable-Audio-Open"><a href="#3-環境音使用-Stable-Audio-Open" class="headerlink" title="3. 環境音使用 Stable Audio Open"></a>3. 環境音使用 Stable Audio Open</h3><p>若需要 5 到 10 秒的環境底噪（例如洞穴滴水、地牢火把、微風樹葉聲），同樣在本機切換至 <strong>Stable Audio Open</strong> 腳本生成，與短音效互補。</p>
+<h3 id="3-環境音使用-Stable-Audio-Open"><a href="#3-環境音使用-Stable-Audio-Open" class="headerlink" title="3. 環境音使用 Stable Audio Open"></a>3. 環境音使用 Stable Audio Open</h3><p>若需要 5 到 10 秒的環境底噪（例如洞穴滴水、地牢火把、微風樹葉聲），同樣在本機切換至 <strong>Stable Audio Open</strong> 腳本生成，輸出 44.1 kHz 立體聲音軌，與短音效互補。</p>
 <hr>
 <h2 id="三、-遊戲背景音樂：Codex-讀專案脈絡-Suno-自動生成"><a href="#三、-遊戲背景音樂：Codex-讀專案脈絡-Suno-自動生成" class="headerlink" title="三、 遊戲背景音樂：Codex 讀專案脈絡 + Suno 自動生成"></a>三、 遊戲背景音樂：Codex 讀專案脈絡 + Suno 自動生成</h2><p>相較於短音效在本地推論，背景音樂（BGM）因為追求極高的旋律性與編曲完整度，目前首選依然是雲端的 <strong>Suno</strong>。</p>
 <p>為了避免每次切換視窗手動想提示詞，我才利用 Chrome 擴充套件將 Suno 網頁端串接進開發流程。</p>
 <p><img src="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/suno-bgm-workflow.jpg?v=63ae5fc3" alt="透過 Codex 分析遊戲關卡情境並結合瀏覽器擴充套件自動生成 Suno 遊戲配樂的工作流程示意圖"></p>
 <h3 id="1-Codex-搭配瀏覽器擴充套件自動化"><a href="#1-Codex-搭配瀏覽器擴充套件自動化" class="headerlink" title="1. Codex 搭配瀏覽器擴充套件自動化"></a>1. Codex 搭配瀏覽器擴充套件自動化</h3><ol>
 <li><strong>讀取專案情境</strong>：Codex 讀取目前正在編寫的關卡文件或程式碼（例如「清晨像素釣魚關卡，節奏緩慢，放鬆氛圍」）。</li>
-<li><strong>輸出結構化 Suno 提示詞</strong>：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Genre: Cozy Lofi / Ambient Game BGM]</span><br><span class="line">[Instruments: Soft Electric Piano, Acoustic Guitar, Gentle Sub Bass, Subtle Vinyl Crackle]</span><br><span class="line">[Mood: Peaceful, Relaxing, Nostalgic, Early Morning Fishing]</span><br><span class="line">[Tempo: 75 BPM, Slow, Steady Groove]</span><br><span class="line">[Structure: Instrumental Loopable Track, No Vocals]</span><br></pre></td></tr></table></figure></li>
+<li><strong>輸出結構化 Suno 提示詞</strong>（使用中括號結構化標籤避免模型產出人聲或偏離風格）：<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Genre: Cozy Lofi / Ambient Game BGM]</span><br><span class="line">[Instruments: Soft Electric Piano, Acoustic Guitar, Gentle Sub Bass, Subtle Vinyl Crackle]</span><br><span class="line">[Mood: Peaceful, Relaxing, Nostalgic, Early Morning Fishing]</span><br><span class="line">[Tempo: 75 BPM, Slow, Steady Groove]</span><br><span class="line">[Structure: Instrumental Loopable Track, No Vocals]</span><br></pre></td></tr></table></figure></li>
 <li><strong>擴充套件自動送出</strong>：透過 Chrome 擴充套件直接將 Prompt 填入 Suno 網頁並觸發生成，寫 Code 同步產出候選曲目。</li>
 </ol>
 <h3 id="2-Suno-音樂無縫循環（Seamless-Loop）處理"><a href="#2-Suno-音樂無縫循環（Seamless-Loop）處理" class="headerlink" title="2. Suno 音樂無縫循環（Seamless Loop）處理"></a>2. Suno 音樂無縫循環（Seamless Loop）處理</h3><p>Suno 生成的音樂通常有開頭與結尾淡出，直接放進遊戲循環播放會有明顯中斷。</p>
@@ -307,7 +311,7 @@
 <h2 id="五、-總結"><a href="#五、-總結" class="headerlink" title="五、 總結"></a>五、 總結</h2><p>這套工作流程的核心分工：</p>
 <ol>
 <li><strong>硬體基底</strong>：Mac（Apple Silicon）或 PC（NVIDIA 顯卡）搭配外接 SSD 存放模型權重，實現 0 成本、無限制的本地推論環境。</li>
-<li><strong>短音效（純本地）</strong>：完全不依賴瀏覽器，終端機本地跑 <code>MOSS-SoundEffect</code> 批次產出多個候選版本，在遊戲裡直接挑選。</li>
+<li><strong>短音效（純本地）</strong>：完全不依賴瀏覽器，終端機本地跑 <code>MOSS-SoundEffect</code>（48 kHz 取樣率）批次產出多個候選版本，在遊戲裡直接挑選。</li>
 <li><strong>背景音樂（雲端自動化）</strong>：Codex 結合專案情境生成提示詞，透過 Chrome 擴充套件叫 Suno 出歌，再用 Crossfade 處理成無縫循環。</li>
 <li><strong>資產整理</strong>：保留提示詞 JSON 作為紀錄，短音效用 WAV 確保零延遲，BGM 用 OGG&#x2F;MP3 串流載入。</li>
 </ol>
