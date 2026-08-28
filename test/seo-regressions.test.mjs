@@ -204,6 +204,17 @@ test('third-party advertising and analytics scripts are delayed', () => {
   assert.doesNotMatch(homepage, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js/, 'GA4 should not load directly in the initial head');
 });
 
+test('privacy page omits consent-dependent advertising and analytics tags', () => {
+  const privacy = read('public/privacy/index.html');
+  const homepage = read('public/index.html');
+
+  assert.doesNotMatch(privacy, /pagead2\.googlesyndication\.com/);
+  assert.doesNotMatch(privacy, /googletagmanager\.com\/gtag\/js/);
+  assert.doesNotMatch(privacy, /gtag\('config'/);
+  assert.match(homepage, /pagead2\.googlesyndication\.com/);
+  assert.match(homepage, /googletagmanager\.com\/gtag\/js/);
+});
+
 test('post pages do not render the disabled Facebook comments integration', () => {
   const post = read('public/2026/06/18/claude-codex-quota-guide/index.html');
 

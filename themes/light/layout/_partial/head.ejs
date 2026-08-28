@@ -2,6 +2,7 @@
   <meta charset="utf-8">
   <%
   var title = [];
+  var suppressThirdPartyTracking = page.no_tracking === true;
   if (page.current > 1) title.push(__('page', page.current));
   if (page.title) title.push(page.title);
   if (page.category) title.push(page.category);
@@ -252,6 +253,7 @@
   }());
   </script>
 
+<% if (!suppressThirdPartyTracking) { -%>
   <script>
   loadBlogThirdParty(function(){
     var script = document.createElement('script');
@@ -261,6 +263,7 @@
     document.head.appendChild(script);
   });
   </script>
+<% } -%>
 
   <link rel="icon" type="image/png" sizes="32x32" href="<%- siteOrigin %>/favicon-32x32.png?v=20260817">
   <link rel="icon" type="image/png" sizes="192x192" href="<%- siteOrigin %>/favicon-192x192.png?v=20260817">
@@ -273,5 +276,7 @@
   <% } %>
   <%- versioned_css('css/style.css') %>
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+<% if (!suppressThirdPartyTracking) { -%>
   <%- partial('google_analytics') %>
+<% } -%>
 </head>
