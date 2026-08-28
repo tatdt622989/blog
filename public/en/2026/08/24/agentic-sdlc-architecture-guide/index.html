@@ -1,0 +1,775 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/">
+  
+
+  <meta property="og:title" content="Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks"/>
+  <meta property="og:description" content="A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws."/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks">
+  <meta name="twitter:description" content="A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws.">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/","url":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/","headline":"Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks","description":"A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws.","datePublished":"2026-08-24T06:10:32.000Z","dateModified":"2026-08-28T15:27:18.276Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Software Engineering","item":"https://blog.6yuwei.com/en/categories/Software-Engineering/"},{"@type":"ListItem","position":3,"name":"Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks","item":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/en/css/style.css?v=5078c7cfdc">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/en/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/en/">
+      <img src="/en/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+  <h2><a href="/en/">Practical notes on AI, frontend engineering, game development, Japanese learning, and tested tools</a></h2>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="Switch language">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">English</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/08/24/告別-Vibe-Coding！Agentic-SDLC-完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>Traditional Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">ZH</span>
+      </a>
+      <a
+        href="/en/2026/08/24/agentic-sdlc-architecture-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/en/">Home</a></li>
+    
+      <li><a href="/en/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-agentic-sdlc-architecture-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-08-24T06:10:32.000Z"><a href="/en/2026/08/24/agentic-sdlc-architecture-guide/">2026-08-24</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5" alt="Comprehensive Agentic SDLC Software Development Lifecycle Architecture Diagram" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-480.jpg?v=2036c8dc 480w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5 720w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-960.jpg?v=880dde98 960w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-1280.jpg?v=9e3791f4 1280w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>Over the past year, AI-assisted software engineering transitioned from code completion tools to the high-energy excitement of <strong>Vibe Coding</strong>. Many developers grew accustomed to the intuitive loop: “Write a quick prompt -&gt; Let AI generate code -&gt; Run tests.” In toy projects with a few dozen lines of code, this intuitive mode feels magical. But once applied to complex production codebases with tens of thousands of lines and tightly coupled modules, vibe coding collapses rapidly.</p>
+<p>You have likely encountered this frustrating scenario: the AI confidently claims a bug is fixed, but modifying module A silently breaks module B; five top-tier models review the code and declare it clean, yet production hits an immediate race condition; or the AI records “historical learnings” that pollute the knowledge base with hallucinated conventions after a single month of autonomous runs.</p>
+<p>In software engineering, the real bottleneck has never been <strong>“code generation velocity”</strong>; it has always been <strong>“verification and delivery confidence.”</strong> To bridge the gap where generation speed vastly outpaces verification capability (the GenAI Divide), the only viable path is to establish an industrial-grade <strong>Agentic SDLC (Agent Software Development Life Cycle)</strong>.</p>
+<span id="more"></span>
+
+<h2 id="The-Four-Core-Truths-Defining-Hooks-Skills-MCP-and-Orchestrators"><a href="#The-Four-Core-Truths-Defining-Hooks-Skills-MCP-and-Orchestrators" class="headerlink" title="The Four Core Truths: Defining Hooks, Skills, MCP, and Orchestrators"></a>The Four Core Truths: Defining Hooks, Skills, MCP, and Orchestrators</h2><p>When attempting agent automation, teams often make the mistake of dumping all responsibilities into a single monolithic prompt or chat session. Before building a robust agentic architecture, it is essential to understand the distinct responsibilities of these four foundational components:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Component</th>
+<th align="left">The Core Question It Answers</th>
+<th align="left">Architectural Role in the System</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Hook</strong></td>
+<td align="left"><strong>When must this deterministically occur?</strong></td>
+<td align="left">Lifecycle guard and deterministic interception mechanism</td>
+</tr>
+<tr>
+<td align="left"><strong>Skill</strong></td>
+<td align="left"><strong>How should this class of problem be solved?</strong></td>
+<td align="left">On-demand procedural bundles and decision manuals</td>
+</tr>
+<tr>
+<td align="left"><strong>MCP</strong></td>
+<td align="left"><strong>What external tools or datasets need to be accessed?</strong></td>
+<td align="left">Agent I&#x2F;O bus and capability protocol layer</td>
+</tr>
+<tr>
+<td align="left"><strong>Orchestrator</strong></td>
+<td align="left"><strong>Where are we now, and where do we go next?</strong></td>
+<td align="left">Global finite state machine and workflow execution engine</td>
+</tr>
+</tbody></table>
+<p>This taxonomy is critical. For instance, in Claude Code’s design philosophy, Hooks fire deterministically at specific lifecycle events (e.g., <strong>SessionStart</strong>, <strong>PreToolUse</strong>, <strong>PostToolUse</strong>, <strong>TaskCompleted</strong>, <strong>Stop</strong>, <strong>SessionEnd</strong>) to enforce rigid policy checks. Meanwhile, MCP (Model Context Protocol) serves purely as an I&#x2F;O bus providing standardized Tools, Resources, and Prompts; it should never be conflated with the workflow itself.</p>
+<p>The global execution trajectory is governed by the underlying <strong>Orchestrator (State Machine)</strong>.</p>
+<hr>
+<h2 id="The-13-Stage-Agentic-SDLC-State-Machine-amp-Open-Source-Stack"><a href="#The-13-Stage-Agentic-SDLC-State-Machine-amp-Open-Source-Stack" class="headerlink" title="The 13-Stage Agentic SDLC State Machine &amp; Open-Source Stack"></a>The 13-Stage Agentic SDLC State Machine &amp; Open-Source Stack</h2><p>A production-grade Agentic SDLC is not a linear generative loop. It is a 13-stage deterministic state machine featuring intake normalization, verification gates, parallel role-based reviews, and closed-loop memory consolidation:</p>
+<pre class="mermaid">
+flowchart TD
+    classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef patch fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+    classDef review fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
+    classDef mem fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    Start([User Intent]):::intake
+    S1["1. Intake & Spec Normalization"]:::intake
+    S2["2. Context Assembly"]:::intake
+    S3["3. Architecture Design & Planning"]:::plan
+    S4["4. Plan Challenge (Critic)"]:::plan
+    G1["PLAN GATE (Spec Verification Gate)"]:::gate
+    S5["5. Test & Eval Spec (TDD)"]:::test
+    S6["6. Sandbox Implementation"]:::dev
+    S7["7. Deterministic Verification (Build/Test)"]:::test
+    P_Fix["10. Patch Loop"]:::patch
+    S8["8. Parallel Specialized Review"]:::review
+    S9["9. Findings Triage & Arbitration"]:::review
+    G2["CLOSURE GATE (Acceptance Gate)"]:::gate
+    S12["12. Memory Consolidation"]:::mem
+    S13["13. Knowledge Promotion"]:::mem
+    EndNode([Delivery & Release]):::done
+
+    Start --> S1
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> G1
+    G1 -->|Approved| S5
+    G1 -.->|Needs Revision| S3
+    S5 --> S6
+    S6 --> S7
+    S7 -->|All Checks PASS| S8
+    S7 -.->|Tests Fail| P_Fix
+    P_Fix --> S6
+    S8 --> S9
+    S9 --> G2
+    G2 -->|Acceptance Passed| S12
+    G2 -.->|Blocking Issues| P_Fix
+    S12 --> S13
+    S13 --> EndNode
+</pre>
+
+<p>Below is an in-depth breakdown of the 13 lifecycle stages, their Hook&#x2F;Skill&#x2F;MCP bindings, and industry-standard open-source implementations:</p>
+<hr>
+<h3 id="Stage-1-Intake-amp-Intent-Normalization"><a href="#Stage-1-Intake-amp-Intent-Normalization" class="headerlink" title="Stage 1: Intake &amp; Intent Normalization"></a>Stage 1: Intake &amp; Intent Normalization</h3><ul>
+<li><strong>Objective</strong>: Transform unstructured, colloquial human prompts (e.g., “Add a point deduction API”) into structured requirements with boundary conditions and input&#x2F;output contracts.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Hook</strong>: Inject global repo guidelines at <code>PromptSubmit</code>.</li>
+<li><strong>Skill</strong>: Execute <code>intent-classification</code> and <code>spec-normalization</code>.</li>
+<li><strong>MCP</strong>: Ingest tickets via Issue Tracker MCPs (GitHub&#x2F;Jira).</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>Pydantic</code> &#x2F; <code>Instructor</code></strong>: Enforce strict JSON Schema compliance to generate a validated <code>requirements.json</code>.</li>
+<li><strong>GitHub Issues &#x2F; Linear API</strong>: Automatically extract descriptions, labels, and acceptance criteria.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Stage-2-Context-Assembly"><a href="#Stage-2-Context-Assembly" class="headerlink" title="Stage 2: Context Assembly"></a>Stage 2: Context Assembly</h3><ul>
+<li><strong>Objective</strong>: Retrieve only the relevant codebase files, architectural conventions, and memory records without exhausting token limits.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Hook</strong>: Load project guidelines and active memory at <code>SessionStart</code> and <code>PreCompact</code>.</li>
+<li><strong>Skill</strong>: Execute <code>context-builder</code> and <code>code-retrieval</code>.</li>
+<li><strong>MCP</strong>: Query Memory, Database, and Documentation MCP servers.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>Repomix</code> (yamadashy&#x2F;repomix)</strong>: Packages repositories into structured, AI-friendly context bundles.</li>
+<li><strong><code>ast-grep</code> &#x2F; <code>Tree-sitter</code></strong>: Precise AST retrieval for symbol definitions and call graphs, avoiding fuzzy keyword matching.</li>
+<li><strong><code>Mem0</code> &#x2F; <code>agentmemory</code></strong>: Hybrid vector and graph databases querying past decisions and bug logs.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Stages-3-amp-4-Design-Planning-amp-Plan-Challenge"><a href="#Stages-3-amp-4-Design-Planning-amp-Plan-Challenge" class="headerlink" title="Stages 3 &amp; 4: Design, Planning &amp; Plan Challenge"></a>Stages 3 &amp; 4: Design, Planning &amp; Plan Challenge</h3><ul>
+<li><strong>Objective</strong>: Draft <code>plan.md</code> and subject it to an adversarial Critic Agent acting as Devil’s Advocate before passing through the <strong>PLAN GATE</strong>.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Skill</strong>: Invoke <code>planning-skill</code> and <code>plan-review-skill</code>.</li>
+<li><strong>Gate</strong>: Unapproved plans loop back to Stage 3; direct execution without gate clearance is strictly prohibited.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>LangGraph</code></strong>: Build Plan-Challenge state machines with Human-in-the-Loop approval nodes.</li>
+<li><strong>Mermaid Flowchart Generation</strong>: Automatically diagram proposed architecture changes for rapid human review.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Stage-5-Test-amp-Eval-Specification-TDD"><a href="#Stage-5-Test-amp-Eval-Specification-TDD" class="headerlink" title="Stage 5: Test &amp; Eval Specification (TDD)"></a>Stage 5: Test &amp; Eval Specification (TDD)</h3><ul>
+<li><strong>Objective</strong>: Enforce strict Test-Driven Development (TDD). Define executable tests and Done-When criteria prior to writing any production code.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Skill</strong>: Load <code>tdd-design</code> and <code>eval-spec-skill</code>.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>Vitest</code> &#x2F; <code>Jest</code> &#x2F; <code>Pytest</code></strong>: Construct failing (Red) test suites.</li>
+<li><strong><code>SWE-bench</code> Style Evals</strong>: Define Fail-to-Pass test matrices translating acceptance criteria into automated suites.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Stage-6-Implementation-in-Ephemeral-Sandboxes"><a href="#Stage-6-Implementation-in-Ephemeral-Sandboxes" class="headerlink" title="Stage 6: Implementation in Ephemeral Sandboxes"></a>Stage 6: Implementation in Ephemeral Sandboxes</h3><ul>
+<li><strong>Objective</strong>: Execute code changes inside secure, isolated environments to prevent corruption of the host machine.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Hook</strong>: Intercept dangerous commands (e.g., editing <code>.env</code> or running <code>rm -rf</code>) at <code>PreToolUse</code>.</li>
+<li><strong>Skill</strong>: Load <code>implementation-skill</code>.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>E2B</code> (e2b-dev&#x2F;E2B)</strong>: Fast MicroVM sandboxes providing isolated Linux environments with instant state snapshots and resets.</li>
+<li><strong><code>All-Hands-AI/OpenHands</code></strong>: Autonomous sandbox coding platform supporting multi-agent delegation.</li>
+<li><strong><code>paul-gauthier/aider</code></strong>: Terminal-based pair programming with Git commit iteration.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Stage-7-Deterministic-Verification"><a href="#Stage-7-Deterministic-Verification" class="headerlink" title="Stage 7: Deterministic Verification"></a>Stage 7: Deterministic Verification</h3><ul>
+<li><strong>Objective</strong>: <strong>[First Line of Defense]</strong> Execute Build, Lint, Typecheck, Unit Tests, and E2E suites using non-hallucinatory, deterministic tooling.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Hook</strong>: Automatically trigger validation scripts at <code>PostToolUse</code> or <code>TaskCompleted</code>.</li>
+<li><strong>Skill</strong>: Execute <code>deterministic-verification-skill</code>.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong>Typechecking &amp; Linting</strong>: <code>TypeScript (tsc)</code>, <code>Ruff</code>, <code>Mypy</code>, <code>Biome</code>.</li>
+<li><strong>Testing</strong>: <code>Vitest</code>, <code>Pytest</code>, <code>Playwright</code> (End-to-End browser tests).</li>
+<li><strong>Local CI Runners</strong>: Run GitHub Actions workflows locally via <code>nektos/act</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Stages-8-amp-9-Specialized-Parallel-Review-amp-Findings-Triage"><a href="#Stages-8-amp-9-Specialized-Parallel-Review-amp-Findings-Triage" class="headerlink" title="Stages 8 &amp; 9: Specialized Parallel Review &amp; Findings Triage"></a>Stages 8 &amp; 9: Specialized Parallel Review &amp; Findings Triage</h3><ul>
+<li><strong>Objective</strong>: <strong>[Second Line of Defense]</strong> Once deterministic tests pass, spin up specialized reviewer models in parallel, arbitrated by a Judge Agent.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Orchestrator</strong>: Trigger concurrent reviewer child processes.</li>
+<li><strong>Skill</strong>: Distribute specialized reviewer prompts.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>qodo-ai/pr-agent</code></strong>: Automated PR diff analysis targeting security, architecture, and missing edge cases.</li>
+<li><strong><code>Open Policy Agent (OPA)</code></strong>: Policy-as-Code checks for regulatory and organizational compliance.</li>
+<li><strong><code>LLM-as-a-Judge</code></strong>: Arbitrates multi-reviewer findings into a deduplicated <code>review-findings.json</code>.</li>
+</ul>
+</li>
+</ul>
+<pre class="mermaid">
+flowchart TD
+    classDef startNode fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef revNode fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
+    classDef judgeNode fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef outNode fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+
+    Diff[1. Code Changes Git Diff]:::startNode
+    R1["Reviewer A: Correctness & Boundary Conditions"]:::revNode
+    R2["Reviewer B: Architecture & Modular Decoupling"]:::revNode
+    R3["Reviewer C: Async Concurrency & Thread Safety"]:::revNode
+    R4["Reviewer D: Security & Access Control"]:::revNode
+    R5["Reviewer E: Specification & Contract Alignment"]:::revNode
+    Judge["3. Judge / Triage Agent (Evidence Check -> Deduplication -> Severity Rank)"]:::judgeNode
+    Findings["4. Output Structured review-findings.json"]:::outNode
+
+    Diff --> R1
+    Diff --> R2
+    Diff --> R3
+    Diff --> R4
+    Diff --> R5
+    R1 --> Judge
+    R2 --> Judge
+    R3 --> Judge
+    R4 --> Judge
+    R5 --> Judge
+    Judge --> Findings
+</pre>
+
+<hr>
+<h3 id="Stages-10-amp-11-Patch-Loop-amp-Closure-Gate"><a href="#Stages-10-amp-11-Patch-Loop-amp-Closure-Gate" class="headerlink" title="Stages 10 &amp; 11: Patch Loop &amp; Closure Gate"></a>Stages 10 &amp; 11: Patch Loop &amp; Closure Gate</h3><ul>
+<li><strong>Objective</strong>: If blocking findings are identified, loop back to the implementation sandbox, generate fixes, and re-run deterministic checks until clearing the <strong>CLOSURE GATE</strong>.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Hook</strong>: Validate test status at <code>Stop</code>; abort exit if regressions remain.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>Temporal</code></strong>: Distributed state engine offering retry budgets and state rollback guarantees.</li>
+<li><strong>GitHub Branch Protection Rules</strong>: Enforce all status checks green before enabling PR merges.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Stages-12-amp-13-Memory-Consolidation-amp-Knowledge-Promotion"><a href="#Stages-12-amp-13-Memory-Consolidation-amp-Knowledge-Promotion" class="headerlink" title="Stages 12 &amp; 13: Memory Consolidation &amp; Knowledge Promotion"></a>Stages 12 &amp; 13: Memory Consolidation &amp; Knowledge Promotion</h3><ul>
+<li><strong>Objective</strong>: Flush ephemeral working memory, write execution traces to episodic memory, and promote recurring validated patterns to long-term documentation via the <strong>PROMOTION GATE</strong>.</li>
+<li><strong>Mechanism</strong>:<ul>
+<li><strong>Hook</strong>: Trigger consolidation and promotion routines at <code>SessionEnd</code>.</li>
+</ul>
+</li>
+<li><strong>Industry Stacks</strong>:<ul>
+<li><strong><code>Mem0</code> &#x2F; <code>agentmemory</code></strong>: Tiered memory storage and vector indexing.</li>
+<li><strong>Architecture Decision Records (ADRs)</strong>: Commit permanent architectural decisions as Markdown files in <code>docs/adr/</code>.</li>
+</ul>
+</li>
+</ul>
+<pre class="mermaid">
+flowchart TD
+    classDef m1 fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef m2 fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef m3 fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef gate fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+    classDef kb fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef stay fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a;
+
+    M1["1. Working Memory<br>Ephemeral variables & raw tool outputs"]:::m1
+    M2["2. Episodic Memory<br>Execution trajectories & bug logs"]:::m2
+    M3["3. Project Memory<br>Conventions & coding rules"]:::m3
+    Gate["PROMOTION GATE<br>Verified across multiple runs as stable ground truth?"]:::gate
+    KB["4. Domain Knowledge Base / ADR<br>Permanent storage (prevents self-pollution)"]:::kb
+    Stay["Retained in Episodic Memory<br>(Available for historical reference)"]:::stay
+
+    M1 -->|Task Complete| M2
+    M2 -->|Distill Conventions| M3
+    M3 --> Gate
+    Gate -->|Confirmed Truth| KB
+    Gate -.->|Transient Insight| Stay
+</pre>
+
+<hr>
+<h2 id="Two-Non-Negotiable-Engineering-Laws"><a href="#Two-Non-Negotiable-Engineering-Laws" class="headerlink" title="Two Non-Negotiable Engineering Laws"></a>Two Non-Negotiable Engineering Laws</h2><p>Within the Agentic SDLC, two foundational rules govern reliability:</p>
+<h3 id="Law-1-Order-Dictates-Survival—Deterministic-Verification-Precedes-Model-Review"><a href="#Law-1-Order-Dictates-Survival—Deterministic-Verification-Precedes-Model-Review" class="headerlink" title="Law 1: Order Dictates Survival—Deterministic Verification Precedes Model Review"></a>Law 1: Order Dictates Survival—Deterministic Verification Precedes Model Review</h3><p><strong>Never prompt five LLMs to review code before confirming that the project compiles and passes type checks.</strong></p>
+<ul>
+<li><strong>Stage 7 (Deterministic Verification)</strong>: Build, Lint, Typecheck, and Unit Tests form a zero-hallucination, low-cost baseline.</li>
+<li><strong>Stage 8 (Parallel Model Review)</strong>: Spend expensive tokens on higher-level architectural scrutiny only after deterministic checks pass 100%.</li>
+</ul>
+<h3 id="Law-2-Model-Consensus-Is-Never-Ground-Truth"><a href="#Law-2-Model-Consensus-Is-Never-Ground-Truth" class="headerlink" title="Law 2: Model Consensus Is Never Ground Truth"></a>Law 2: Model Consensus Is Never Ground Truth</h3><p>Within an autonomous system, <strong>voting consensus among multiple models does not equal code correctness</strong>. The hierarchy of trust must be rigidly observed:</p>
+<blockquote>
+<p><strong>Hierarchy of Trust</strong>: <strong>Executable Test Results</strong> &gt; <strong>Static Analysis Evidence</strong> &gt; <strong>Original Specification Alignment</strong> &gt; <strong>Single Model Reasoning</strong> &gt; <strong>Multi-Model Voting Consensus</strong></p>
+</blockquote>
+<p><strong>A passing test suite in an execution sandbox always outranks an AI model’s stated confidence.</strong></p>
+<hr>
+<h2 id="The-Structured-Evidence-amp-Artifact-Layer"><a href="#The-Structured-Evidence-amp-Artifact-Layer" class="headerlink" title="The Structured Evidence &amp; Artifact Layer"></a>The Structured Evidence &amp; Artifact Layer</h2><p>Between stages and agents, <strong>natural language handoffs are strictly prohibited</strong> (e.g., “The previous agent told me everything is done”).</p>
+<p>All inter-stage state transitions must rely on structured, immutable artifacts:</p>
+<ul>
+<li><strong><code>requirements.json</code></strong>: Normalized boundary conditions and acceptance criteria.</li>
+<li><strong><code>plan.md</code></strong>: Architectural blueprints and risk assessments.</li>
+<li><strong><code>test-report.json</code></strong>: Verified exit codes, runtimes, and test coverage metrics.</li>
+<li><strong><code>review-findings.json</code></strong>: Categorized issues with severity tags and line citations.</li>
+<li><strong><code>git-diff</code> &#x2F; <code>commit-sha</code></strong>: Exact source code modifications.</li>
+</ul>
+<p>Downstream agents always operate on the structured artifacts produced by upstream stages, eliminating context drift and transmission distortion.</p>
+<hr>
+<h2 id="Conclusion-Converting-Tokens-into-Engineering-Reliability"><a href="#Conclusion-Converting-Tokens-into-Engineering-Reliability" class="headerlink" title="Conclusion: Converting Tokens into Engineering Reliability"></a>Conclusion: Converting Tokens into Engineering Reliability</h2><p>Moving from Vibe Coding to an Agentic SDLC is a necessary return to software engineering rigor.</p>
+<p>Instead of expecting a single frontier model to think in a black box for 40 minutes, code for 40 minutes, and review itself for 20 minutes, modern teams distribute token budgets across a structured pipeline:</p>
+<blockquote>
+<p><strong>End-to-End Flow</strong>: <strong>Architect</strong> -&gt; <strong>Plan Critics</strong> -&gt; <strong>Sandbox Impl</strong> -&gt; <strong>Deterministic Tests</strong> -&gt; <strong>Parallel Reviewers</strong> -&gt; <strong>Judge Triage</strong> -&gt; <strong>Acceptance Gate</strong></p>
+</blockquote>
+<p>When the <strong>State Machine</strong> directs progress, <strong>Verification Gates</strong> safeguard quality, and <strong>Structured Artifacts</strong> preserve fidelity, AI evolves from an unpredictable code generator into a dependable, production-ready software assembly line.</p>
+<hr>
+<h3 id="Related-Reading"><a href="#Related-Reading" class="headerlink" title="Related Reading"></a>Related Reading</h3><ul>
+<li><a href="/en/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/">Grok 4.6 in Grok Build: What Changes for Long-Running AI Developer Workflows?</a></li>
+<li><a href="/en/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/">Put AI to Work in the Cloud: Inside xAI Grok Bot’s 4 Core Architectures &amp; 6 Mind-Blowing Workflows</a></li>
+<li><a href="/en/2026/05/06/claude-code-vs-codex-vs-cursor/">AI Coding Tool Comparison: Claude Code vs. Codex vs. Cursor</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/en/categories/Software-Engineering/">Software Engineering</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/en/tags/Codex/">Codex</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Claude/">Claude</a>, <a href="/en/tags/Frontend-Development/">Frontend Development</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com/en">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>2</small></li>
+  
+    <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>4</small></li>
+  
+    <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Game-Development/">Game Development</a><small>2</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/tags/AI/">AI</a><small>4</small></li>
+  
+    <li><a href="/en/tags/AI-Agent/">AI Agent</a><small>2</small></li>
+  
+    <li><a href="/en/tags/AI-Coding/">AI Coding</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Aseprite/">Aseprite</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Claude/">Claude</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/en/tags/Codex/">Codex</a><small>4</small></li>
+  
+    <li><a href="/en/tags/CodexBar/">CodexBar</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Developer-Tools/">Developer Tools</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Game-Development/">Game Development</a><small>2</small></li>
+  
+    <li><a href="/en/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/en/tags/Indie-Developer/">Indie Developer</a><small>1</small></li>
+  
+    <li><a href="/en/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/en/tags/LLM/">LLM</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Parallel-Work/">Parallel Work</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
+  
+    <li><a href="/en/tags/PixelLab/">PixelLab</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Suno/">Suno</a><small>1</small></li>
+  
+    <li><a href="/en/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Usage-Limits/">Usage Limits</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script defer src="/en/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/en/js/jquery-3.4.1.min.js"></script>
+<script defer src="/en/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/en/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/en/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>

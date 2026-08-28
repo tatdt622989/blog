@@ -2,6 +2,9 @@
 title: 告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰
 date: 2026-08-24 14:10:32
 description: 深入解析 Agentic SDLC 軟體開發生命週期架構，從 Hook、Skill、MCP 四維分工到 13 階段狀態機，詳解各生命週期常用落地方案（LangGraph、OpenHands、E2B、Mem0、PR-Agent、OPA 等）與確定性驗證鐵律。
+translation_key: agentic-sdlc-architecture-guide
+translations:
+  en: /en/2026/08/24/agentic-sdlc-architecture-guide/
 tags:
 - AI
 - Claude
