@@ -1,7 +1,7 @@
 ---
 title: "Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX & Suno BGM Automation"
 date: 2026-08-27 16:07:15
-description: A practical guide for indie game developers on running open-source MOSS-SoundEffect locally on Apple Silicon for sound effects and automating Suno BGM generation with Codex and browser extensions.
+description: A practical guide for indie game developers on running open-source MOSS-SoundEffect locally on Mac or PC for sound effects and automating Suno BGM generation with Codex and browser extensions.
 permalink: 2026/08/27/indie-game-ai-audio-workflow/
 translation_key: indie-game-ai-audio-workflow
 translations:
@@ -21,8 +21,8 @@ tags:
 In indie game development, audio is often one of the most time-consuming hurdles. Free sound libraries suffer from inconsistent quality, licensing risks, and overused clips. On the other hand, hiring a composer is rarely feasible for solo creators or game jam prototypes.
 
 This article documents the practical audio pipeline I use in my own projects:
-* **Prerequisites & Hardware**: Apple Silicon Mac with an external SSD to store and execute local open-source models.
-* **Sound Effects (SFX)**: Running quantized open-source models (`MOSS-SoundEffect` / `Stable Audio`) locally on Mac for zero-cost, instant generation.
+* **Prerequisites & Hardware**: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD to store and execute local open-source models.
+* **Sound Effects (SFX)**: Running open-source models (`MOSS-SoundEffect` / `Stable Audio`) locally for zero-cost, instant generation.
 * **Background Music (BGM)**: Using Codex to read project context and automating Suno generation via a Chrome extension.
 * **Asset Management & In-Engine Testing**: Building candidate pools and auditioning sound variants directly in the game engine.
 
@@ -33,16 +33,19 @@ This article documents the practical audio pipeline I use in my own projects:
 Before generating sound effects and music, here is the hardware and software setup required for this local workflow:
 
 ### 1. Hardware Requirements
-* **Computer**: Mac with Apple Silicon (M1 / M2 / M3 / M4 series). 16GB or more Unified Memory is recommended to run 4-bit quantized audio models smoothly without throttling.
-* **External Storage (SSD)**: High-speed external drive (1TB+ NVMe / USB-C SSD) dedicated to storing model weights (`ai-model-cache`) and audio candidate files, preserving internal Mac disk space.
+* **Mac Platform**: Apple Silicon models (such as Mac mini, MacBook Pro, Mac Studio across M-series chips including M4, M5, and M6). 16GB or more Unified Memory is recommended to run 4-bit quantized audio models smoothly without throttling.
+* **PC Platform (Windows / Linux)**: NVIDIA dedicated GPU (RTX 3060 / 4060 / 5060 or higher with at least 8GB VRAM) for accelerated PyTorch / CUDA inference.
+* **External Storage (SSD)**: High-speed external drive (1TB+ NVMe / USB-C SSD) dedicated to storing model weights and audio candidate files, preserving internal disk space.
 
 ### 2. Software & Toolchain
 * **Python Environment**: Python 3.10+ managed with `uv` for fast virtual environment setup.
-* **Inference Framework**: Apple MLX framework (`mlx`, `mlx-lm`), optimized specifically for Apple Silicon hardware.
+* **Inference Frameworks**:
+  * **Mac**: Apple MLX framework (`mlx`, `mlx-lm`), optimized specifically for Apple Silicon hardware.
+  * **PC**: PyTorch (CUDA) / Transformers / Diffusers or WebUI toolchains.
 * **Open-Source Audio Models**:
-  * `moss-soundeffect-mlx` (4-bit quantized version for rapid interactive SFX generation)
-  * `Stable Audio Open` (for longer ambient soundscapes)
-* **Music Automation**: Chrome browser + automation extension, Codex / Claude coding assistants, and the Suno web app.
+  * `MOSS-SoundEffect` (4-bit MLX version for Mac, standard PyTorch weights for PC)
+  * `Stable Audio Open` (cross-platform support for longer ambient soundscapes)
+* **Music Automation**: Chrome browser + automation extension, Codex / Claude coding assistants, and the Suno platform.
 
 ---
 
@@ -55,12 +58,12 @@ Games require dozens of short, tactile sound effects: UI clicks, inventory sorti
 ### Why Run SFX Locally?
 Sound effects typically require generating 10 to 20 variations to audition and find the right feel. Cloud APIs introduce latency, recurring token fees, and rate limits.
 
-Running models locally from an external SSD provides:
+Running models locally provides:
 * **Zero Cost & Unlimited Generations**: Tweak and regenerate as many candidates as needed.
-* **Fast Inference**: Running 4-bit quantized models on Apple Silicon generates a clean sound effect in 2 to 3 seconds.
+* **Fast Inference**: Running quantized or CUDA-accelerated models generates a clean sound effect in 2 to 3 seconds.
 
 ### Prompt Syntax & Real-World Recipes
-The primary model used for interactive SFX is **`moss-soundeffect-mlx` (4-bit quantized)**.
+The primary model used for interactive SFX is **MOSS-SoundEffect** (MLX 4-bit on Mac or PyTorch on PC).
 
 A reliable prompt syntax formula: **Action + Material + Acoustic Characteristics**.
 
@@ -134,8 +137,8 @@ Benefits of this approach:
 ## Summary
 
 This modular audio pipeline breaks down into clear roles:
-1. **Hardware Base**: Apple Silicon Mac + External SSD (`ai-model-cache`) for free, unrestricted local inference.
-2. **Interactive SFX**: Local `MOSS-SoundEffect-MLX` for rapid batch generation and tactile sound exploration.
+1. **Hardware Base**: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD for free, unrestricted local inference.
+2. **Interactive SFX**: Local `MOSS-SoundEffect` for rapid batch generation and tactile sound exploration.
 3. **BGM Composition**: Codex reading level context and automating Suno generation, finalized with a quick crossfade loop.
 4. **Asset Organization**: Preserving prompt JSON files, using WAV for zero-latency SFX, and streaming OGG/MP3 for music.
 

@@ -29,7 +29,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/06/18/claude-codex-usage-limits-guide/</loc>
 
     <lastmod>2026-08-27</lastmod>
 
@@ -38,7 +38,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/06/18/claude-codex-usage-limits-guide/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/</loc>
 
     <lastmod>2026-08-27</lastmod>
 
@@ -93,6 +93,20 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/en/tags/TypeScript/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/JavaScript/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/en/tags/Aseprite/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -115,41 +129,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/en/tags/Game-Development/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/TypeScript/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/JavaScript/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/AI-Agent/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Developer-Tools/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Parallel-Work/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -190,6 +169,27 @@
     <priority>0.2</priority>
   </url>
 
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/AI-Agent/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Developer-Tools/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Parallel-Work/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
 
 
   <url>
@@ -200,14 +200,14 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/categories/Game-Development/</loc>
+    <loc>https://blog.6yuwei.com/en/categories/Frontend-Development/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/categories/Frontend-Development/</loc>
+    <loc>https://blog.6yuwei.com/en/categories/Game-Development/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

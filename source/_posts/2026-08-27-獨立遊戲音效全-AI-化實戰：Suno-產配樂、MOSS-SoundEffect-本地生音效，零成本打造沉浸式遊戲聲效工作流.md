@@ -1,7 +1,7 @@
 ---
 title: 獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流
 date: 2026-08-27 16:07:15
-description: 獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與外接硬碟的前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。
+description: 獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。
 translation_key: indie-game-ai-audio-workflow
 translations:
   en: /en/2026/08/27/indie-game-ai-audio-workflow/
@@ -20,8 +20,8 @@ tags:
 獨立遊戲開發到後期，音效和配樂通常是最耗時的一塊。去免費音效庫找，音質和風格往往很難統一，而且大量重複；找人委託配樂，對個人專案或小型 Game Jam 來說成本又偏高。
 
 這篇文章記錄我目前在專案中實際使用的聲音製作流程：
-* **前置設備需求**：Mac Apple Silicon + 高速外接 SSD，存放並執行開源模型。
-* **短音效（SFX）**：外接硬碟放開源模型（`MOSS-SoundEffect` / `Stable Audio`），在 Mac 本地直接推論生成。
+* **前置設備需求**：無論是 Mac（Apple Silicon）或 PC（NVIDIA 顯卡），搭配外接 SSD 即可在本地執行開源模型。
+* **短音效（SFX）**：外接硬碟放開源模型（`MOSS-SoundEffect` / `Stable Audio`），在本地直接推論生成。
 * **背景音樂（BGM）**：用 Codex 讀取當前關卡設定，透過 Chrome 擴充套件自動在 Suno 生成對應曲風。
 * **資產管理與實測**：建立候選音效池（Candidate Pool），在遊戲中直接實測挑選最合適的版本。
 
@@ -32,15 +32,18 @@ tags:
 在開始生成音效與音樂前，先確認這套工作流的硬體與軟體環境配置：
 
 ### 1. 硬體設備（Hardware）
-* **電腦主機**：Mac（Apple Silicon 晶片：M1 / M2 / M3 / M4 系列），建議配置 16GB 以上統一記憶體（Unified Memory），能確保 4-bit 量化模型在本地推論時順暢無延遲。
-* **外接儲存（SSD）**：高速外接硬碟（建議 1TB 以上 NVMe / USB-C SSD），專門用來存放開源模型權重快取（`ai-model-cache`）與生成的音訊候選檔案，不佔用 Mac 內建磁碟空間。
+* **Mac 平台**：Apple Silicon 晶片機種（如 Mac mini、MacBook Pro、Mac Studio 等 M 系列，包含 M4、M5、M6 等新世代晶片），建議配置 16GB 以上統一記憶體（Unified Memory），能確保 4-bit 量化模型在本地推論時順暢無延遲。
+* **PC 平台（Windows / Linux）**：具備 NVIDIA 獨立顯卡（建議 RTX 3060 / 4060 / 5060 或以上等級，顯存 8GB VRAM 以上），透過 CUDA 即可高速推論 PyTorch 音效模型。
+* **外接儲存（SSD）**：高速外接硬碟（建議 1TB 以上 NVMe / USB-C SSD），專門用來存放開源模型權重檔案與生成的音訊候選檔，不佔用本機內建磁碟空間。
 
 ### 2. 軟體與工具鏈（Software & Tools）
 * **Python 環境**：Python 3.10+，建議使用 `uv` 管理虛擬環境與套件依賴。
-* **推論框架**：Apple MLX 框架（`mlx`, `mlx-lm`），專為 Apple Silicon 晶片架構深度優化。
+* **推論框架**：
+  * **Mac 平台**：Apple MLX 框架（`mlx`, `mlx-lm`），專為 Apple Silicon 晶片架構深度優化。
+  * **PC 平台**：PyTorch (CUDA) / Transformers / Diffusers 或 WebUI 工具。
 * **開源音訊模型**：
-  * `moss-soundeffect-mlx`（4-bit 量化版，負責高頻互動短音效）
-  * `Stable Audio Open`（負責長環境氛圍音）
+  * `MOSS-SoundEffect`（Mac 可使用社群優化的 `moss-soundeffect-mlx` 4-bit 量化版，PC 可直接跑 PyTorch 權重，負責高頻互動短音效）
+  * `Stable Audio Open`（跨平台支援，負責長環境氛圍音）
 * **配樂自動化工具**：Chrome 瀏覽器 + 搭配操作的擴充套件、Codex / Claude 等 AI 程式助理、Suno 平台。
 
 ---
@@ -54,12 +57,12 @@ tags:
 ### 1. 為什麼短音效放本地跑？
 短音效通常需要一次生 10 到 20 個候選檔案來挑選最合適的質感。如果用線上 API，不僅有網路延遲、需要計費，還容易遇到速率限制。
 
-把模型放在外接硬碟（例如 `ai-model-cache`）的好處：
+把模型放在外接硬碟的好處：
 * **零成本、無次數限制**：隨時依需求大量生成與微調。
-* **推論速度快**：在 Apple Silicon Mac 上跑 4-bit 量化版，單個音效約 2 到 3 秒完成。
+* **推論速度快**：在本地端跑量化或 CUDA 加速版本，單個音效約 2 到 3 秒完成。
 
-### 2. MOSS-SoundEffect-MLX 實戰與 Prompt 公式
-短音效主力使用 **`moss-soundeffect-mlx`（4-bit 量化版）**，推論資源佔用低且反應快。
+### 2. MOSS-SoundEffect 實戰與 Prompt 公式
+短音效主力使用 **MOSS-SoundEffect**（Mac 上可跑 MLX 4-bit 量化版，PC 上跑 PyTorch），推論資源佔用低且反應快。
 
 提示詞基本結構：**動作（Action）+ 物理材質（Material）+ 聲音特性（Acoustics）**。
 
@@ -135,8 +138,8 @@ Suno 生成的音樂通常有開頭與結尾淡出，直接放進遊戲循環播
 ## 五、 總結
 
 這套工作流程的核心分工：
-1. **硬體基底**：Mac Apple Silicon + 外接 SSD 存放模型權重，實現 0 成本、無限制的本地推論環境。
-2. **短音效**：外接硬碟本地跑 `MOSS-SoundEffect-MLX`，批次產出多個候選版本，在遊戲裡直接挑選。
+1. **硬體基底**：Mac（Apple Silicon）或 PC（NVIDIA 顯卡）搭配外接 SSD 存放模型權重，實現 0 成本、無限制的本地推論環境。
+2. **短音效**：本地跑 `MOSS-SoundEffect`，批次產出多個候選版本，在遊戲裡直接挑選。
 3. **背景音樂**：Codex 結合專案情境生成提示詞，透過瀏覽器外掛叫 Suno 出歌，再用 Crossfade 處理成無縫循環。
 4. **資產整理**：保留提示詞 JSON 作為紀錄，短音效用 WAV 確保零延遲，BGM 用 OGG/MP3 串流載入。
 

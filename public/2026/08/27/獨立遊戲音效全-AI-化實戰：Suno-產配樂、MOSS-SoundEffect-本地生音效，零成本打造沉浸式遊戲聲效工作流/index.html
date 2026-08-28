@@ -5,7 +5,7 @@
   
   <title>獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與外接硬碟的前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。">
+  <meta name="description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/">
   
@@ -17,7 +17,7 @@
   
 
   <meta property="og:title" content="獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流"/>
-  <meta property="og:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與外接硬碟的前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。"/>
+  <meta property="og:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
@@ -28,10 +28,10 @@
   <meta property="og:image" content="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg?v=049f9420" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流">
-  <meta name="twitter:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與外接硬碟的前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。">
+  <meta name="twitter:description" content="獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg?v=049f9420">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","url":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","headline":"獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流","description":"獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與外接硬碟的前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。","datePublished":"2026-08-27T08:07:15.000Z","dateModified":"2026-08-28T05:23:09.187Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","url":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/","headline":"獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流","description":"獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。","datePublished":"2026-08-27T08:07:15.000Z","dateModified":"2026-08-28T06:51:49.390Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"遊戲開發","item":"https://blog.6yuwei.com/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流","item":"https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/"}]}</script>
   
@@ -196,8 +196,8 @@
 <p>獨立遊戲開發到後期，音效和配樂通常是最耗時的一塊。去免費音效庫找，音質和風格往往很難統一，而且大量重複；找人委託配樂，對個人專案或小型 Game Jam 來說成本又偏高。</p>
 <p>這篇文章記錄我目前在專案中實際使用的聲音製作流程：</p>
 <ul>
-<li><strong>前置設備需求</strong>：Mac Apple Silicon + 高速外接 SSD，存放並執行開源模型。</li>
-<li><strong>短音效（SFX）</strong>：外接硬碟放開源模型（<code>MOSS-SoundEffect</code> &#x2F; <code>Stable Audio</code>），在 Mac 本地直接推論生成。</li>
+<li><strong>前置設備需求</strong>：無論是 Mac（Apple Silicon）或 PC（NVIDIA 顯卡），搭配外接 SSD 即可在本地執行開源模型。</li>
+<li><strong>短音效（SFX）</strong>：外接硬碟放開源模型（<code>MOSS-SoundEffect</code> &#x2F; <code>Stable Audio</code>），在本地直接推論生成。</li>
 <li><strong>背景音樂（BGM）</strong>：用 Codex 讀取當前關卡設定，透過 Chrome 擴充套件自動在 Suno 生成對應曲風。</li>
 <li><strong>資產管理與實測</strong>：建立候選音效池（Candidate Pool），在遊戲中直接實測挑選最合適的版本。</li>
 </ul>
@@ -205,15 +205,20 @@
 
 <h2 id="一、-前提設備需求與環境配置"><a href="#一、-前提設備需求與環境配置" class="headerlink" title="一、 前提設備需求與環境配置"></a>一、 前提設備需求與環境配置</h2><p>在開始生成音效與音樂前，先確認這套工作流的硬體與軟體環境配置：</p>
 <h3 id="1-硬體設備（Hardware）"><a href="#1-硬體設備（Hardware）" class="headerlink" title="1. 硬體設備（Hardware）"></a>1. 硬體設備（Hardware）</h3><ul>
-<li><strong>電腦主機</strong>：Mac（Apple Silicon 晶片：M1 &#x2F; M2 &#x2F; M3 &#x2F; M4 系列），建議配置 16GB 以上統一記憶體（Unified Memory），能確保 4-bit 量化模型在本地推論時順暢無延遲。</li>
-<li><strong>外接儲存（SSD）</strong>：高速外接硬碟（建議 1TB 以上 NVMe &#x2F; USB-C SSD），專門用來存放開源模型權重快取（<code>ai-model-cache</code>）與生成的音訊候選檔案，不佔用 Mac 內建磁碟空間。</li>
+<li><strong>Mac 平台</strong>：Apple Silicon 晶片機種（如 Mac mini、MacBook Pro、Mac Studio 等 M 系列，包含 M4、M5、M6 等新世代晶片），建議配置 16GB 以上統一記憶體（Unified Memory），能確保 4-bit 量化模型在本地推論時順暢無延遲。</li>
+<li><strong>PC 平台（Windows &#x2F; Linux）</strong>：具備 NVIDIA 獨立顯卡（建議 RTX 3060 &#x2F; 4060 &#x2F; 5060 或以上等級，顯存 8GB VRAM 以上），透過 CUDA 即可高速推論 PyTorch 音效模型。</li>
+<li><strong>外接儲存（SSD）</strong>：高速外接硬碟（建議 1TB 以上 NVMe &#x2F; USB-C SSD），專門用來存放開源模型權重檔案與生成的音訊候選檔，不佔用本機內建磁碟空間。</li>
 </ul>
 <h3 id="2-軟體與工具鏈（Software-amp-Tools）"><a href="#2-軟體與工具鏈（Software-amp-Tools）" class="headerlink" title="2. 軟體與工具鏈（Software &amp; Tools）"></a>2. 軟體與工具鏈（Software &amp; Tools）</h3><ul>
 <li><strong>Python 環境</strong>：Python 3.10+，建議使用 <code>uv</code> 管理虛擬環境與套件依賴。</li>
-<li><strong>推論框架</strong>：Apple MLX 框架（<code>mlx</code>, <code>mlx-lm</code>），專為 Apple Silicon 晶片架構深度優化。</li>
+<li><strong>推論框架</strong>：<ul>
+<li><strong>Mac 平台</strong>：Apple MLX 框架（<code>mlx</code>, <code>mlx-lm</code>），專為 Apple Silicon 晶片架構深度優化。</li>
+<li><strong>PC 平台</strong>：PyTorch (CUDA) &#x2F; Transformers &#x2F; Diffusers 或 WebUI 工具。</li>
+</ul>
+</li>
 <li><strong>開源音訊模型</strong>：<ul>
-<li><code>moss-soundeffect-mlx</code>（4-bit 量化版，負責高頻互動短音效）</li>
-<li><code>Stable Audio Open</code>（負責長環境氛圍音）</li>
+<li><code>MOSS-SoundEffect</code>（Mac 可使用社群優化的 <code>moss-soundeffect-mlx</code> 4-bit 量化版，PC 可直接跑 PyTorch 權重，負責高頻互動短音效）</li>
+<li><code>Stable Audio Open</code>（跨平台支援，負責長環境氛圍音）</li>
 </ul>
 </li>
 <li><strong>配樂自動化工具</strong>：Chrome 瀏覽器 + 搭配操作的擴充套件、Codex &#x2F; Claude 等 AI 程式助理、Suno 平台。</li>
@@ -222,12 +227,12 @@
 <h2 id="二、-本地生成短音效：MOSS-SoundEffect-與-Stable-Audio"><a href="#二、-本地生成短音效：MOSS-SoundEffect-與-Stable-Audio" class="headerlink" title="二、 本地生成短音效：MOSS-SoundEffect 與 Stable Audio"></a>二、 本地生成短音效：MOSS-SoundEffect 與 Stable Audio</h2><p>遊戲裡需要大量細碎的互動音效，例如按鈕點擊、背包操作、撕開包裝、釣魚咬鉤或踩地雷翻牌。</p>
 <p><img src="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/local-sfx-model.jpg?v=6d5ca1d9" alt="外接硬碟本地部署 MOSS-SoundEffect 與 Stable Audio 開源模型極速推論各類遊戲短音效示意圖"></p>
 <h3 id="1-為什麼短音效放本地跑？"><a href="#1-為什麼短音效放本地跑？" class="headerlink" title="1. 為什麼短音效放本地跑？"></a>1. 為什麼短音效放本地跑？</h3><p>短音效通常需要一次生 10 到 20 個候選檔案來挑選最合適的質感。如果用線上 API，不僅有網路延遲、需要計費，還容易遇到速率限制。</p>
-<p>把模型放在外接硬碟（例如 <code>ai-model-cache</code>）的好處：</p>
+<p>把模型放在外接硬碟的好處：</p>
 <ul>
 <li><strong>零成本、無次數限制</strong>：隨時依需求大量生成與微調。</li>
-<li><strong>推論速度快</strong>：在 Apple Silicon Mac 上跑 4-bit 量化版，單個音效約 2 到 3 秒完成。</li>
+<li><strong>推論速度快</strong>：在本地端跑量化或 CUDA 加速版本，單個音效約 2 到 3 秒完成。</li>
 </ul>
-<h3 id="2-MOSS-SoundEffect-MLX-實戰與-Prompt-公式"><a href="#2-MOSS-SoundEffect-MLX-實戰與-Prompt-公式" class="headerlink" title="2. MOSS-SoundEffect-MLX 實戰與 Prompt 公式"></a>2. MOSS-SoundEffect-MLX 實戰與 Prompt 公式</h3><p>短音效主力使用 <strong><code>moss-soundeffect-mlx</code>（4-bit 量化版）</strong>，推論資源佔用低且反應快。</p>
+<h3 id="2-MOSS-SoundEffect-實戰與-Prompt-公式"><a href="#2-MOSS-SoundEffect-實戰與-Prompt-公式" class="headerlink" title="2. MOSS-SoundEffect 實戰與 Prompt 公式"></a>2. MOSS-SoundEffect 實戰與 Prompt 公式</h3><p>短音效主力使用 <strong>MOSS-SoundEffect</strong>（Mac 上可跑 MLX 4-bit 量化版，PC 上跑 PyTorch），推論資源佔用低且反應快。</p>
 <p>提示詞基本結構：<strong>動作（Action）+ 物理材質（Material）+ 聲音特性（Acoustics）</strong>。</p>
 <p>專案常用範例：</p>
 <ul>
@@ -300,8 +305,8 @@
 <hr>
 <h2 id="五、-總結"><a href="#五、-總結" class="headerlink" title="五、 總結"></a>五、 總結</h2><p>這套工作流程的核心分工：</p>
 <ol>
-<li><strong>硬體基底</strong>：Mac Apple Silicon + 外接 SSD 存放模型權重，實現 0 成本、無限制的本地推論環境。</li>
-<li><strong>短音效</strong>：外接硬碟本地跑 <code>MOSS-SoundEffect-MLX</code>，批次產出多個候選版本，在遊戲裡直接挑選。</li>
+<li><strong>硬體基底</strong>：Mac（Apple Silicon）或 PC（NVIDIA 顯卡）搭配外接 SSD 存放模型權重，實現 0 成本、無限制的本地推論環境。</li>
+<li><strong>短音效</strong>：本地跑 <code>MOSS-SoundEffect</code>，批次產出多個候選版本，在遊戲裡直接挑選。</li>
 <li><strong>背景音樂</strong>：Codex 結合專案情境生成提示詞，透過瀏覽器外掛叫 Suno 出歌，再用 Crossfade 處理成無縫循環。</li>
 <li><strong>資產整理</strong>：保留提示詞 JSON 作為紀錄，短音效用 WAV 確保零延遲，BGM 用 OGG&#x2F;MP3 串流載入。</li>
 </ol>
