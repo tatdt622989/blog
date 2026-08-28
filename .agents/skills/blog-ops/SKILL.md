@@ -73,6 +73,46 @@ node cli.js whoami           # 列出可用的 GA4/AdSense/GSC 帳號 id
    若 `git status` 發現夾帶無關變更,不要直接 `npm run deploy`,改成只 `git add` 這次要發的檔案再手動 commit/push。
    commit message **不要**加 `Co-Authored-By: Claude ...` 這行。
 
+## 🌐 多語系文章（Multilingual / i18n）標準發布 SOP
+
+本站支援中英文雙語系站台（中文在根目錄 `/`，英文在 `/en/`）。每次建立新文章或優化文章時，**必須同步維護中文與英文版本**：
+
+### 1. 中文版文章配置 (`source/_posts/`)
+- 檔案：`source/_posts/YYYY-MM-DD-中文標題.md`
+- 資產目錄：`source/_posts/YYYY-MM-DD-中文標題/cover.jpg`
+- front-matter 必須包含雙向關聯欄位：
+  ```yaml
+  translation_key: <語意明確的英文短句，如 grok-bot-cloud-vm-autonomous-agent-guide>
+  translations:
+    en: /en/YYYY/MM/DD/<英文slug>/
+  ```
+
+### 2. 英文版文章配置 (`source/en/_posts/`)
+- 檔案：`source/en/_posts/YYYY-MM-DD-<英文slug>.md`
+- 資產目錄：`source/en/_posts/YYYY-MM-DD-<英文slug>/cover.jpg`（直接共用/複製同名封面與插圖）
+- front-matter 必須包含：
+  ```yaml
+  ---
+  title: "英文文章標題（純文字無 Emoji）"
+  date: YYYY-MM-DD HH:mm:ss（與中文版一致）
+  description: 英文 Meta Description（約 100-160 字元）
+  permalink: YYYY/MM/DD/<英文slug>/
+  translation_key: <與中文版完全相同的 key>
+  translations:
+    zh-TW: /YYYY/MM/DD/<中文文章標題URL>/
+  categories:
+  - AI Tools（或對應英文分類）
+  tags:
+  - AI
+  - Grok
+  ---
+  ```
+- **撰寫標準**：英文內容必須道地自然、排版優美、符合母語者閱讀習慣，同樣嚴禁 Emoji、使用無空格 `<!--more-->`、粗體強調。
+
+### 3. 多語系建置與驗證
+- 執行 `npm run build` 時，系統會透過 `scripts/build-multilingual.js` 自動編譯中文與英文兩個站台，並產出 `/sitemap-zh-TW.xml`、`/en/sitemap.xml` 與統一的 `sitemap.xml` 索引檔。
+
+
 ## 改既有文章(SEO 優化/補內容)與新鮮度優化
 
 `automation/data/optimize-queue-*.json` 是流量差、值得優化的候選文章佇列,格式:

@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
+    <loc>https://blog.6yuwei.com/en/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/</loc>
+
+    <lastmod>2026-08-28</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/</loc>
 
     <lastmod>2026-08-28</lastmod>
@@ -135,6 +144,27 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/en/tags/Indie-Developer/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/AI/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Suno/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/en/tags/Usage-Limits/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -170,21 +200,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/tags/Indie-Developer/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/AI/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Suno/</loc>
+    <loc>https://blog.6yuwei.com/en/tags/Grok/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
