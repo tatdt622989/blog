@@ -14,7 +14,7 @@ tags:
 - Claude
 ---
 
-![Claude Code、Codex、Cursor 三款 AI coding 工具比較封面](cover.webp)
+![Claude Code、Codex、Cursor 三款 AI coding 工具比較封面](cover-v2.jpg)
 
 ## 前言
 
