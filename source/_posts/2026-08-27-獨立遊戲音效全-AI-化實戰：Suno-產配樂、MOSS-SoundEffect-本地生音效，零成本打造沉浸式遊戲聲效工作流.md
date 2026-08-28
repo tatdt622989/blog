@@ -1,7 +1,7 @@
 ---
 title: 獨立遊戲音效全 AI 化實戰：本地開源模型秒生音效、Codex 串接 Suno 產配樂，零成本打造沉浸式聲音工作流
 date: 2026-08-27 16:07:15
-description: 獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用開源 MOSS-SoundEffect 本地生成遊戲短音效，再用 Codex 讀專案脈絡叫 Suno 生成 BGM，最後說明候選音效池管理。
+description: 獨立遊戲開發中，聲音通常是最耗時的一塊。本文記錄實際開發流程：說明 Mac 與 PC 設備前置需求，用終端機與本地模型秒生短音效（免瀏覽器），再用 Codex 串接 Suno 產出 BGM 與候選音效池管理。
 translation_key: indie-game-ai-audio-workflow
 translations:
   en: /en/2026/08/27/indie-game-ai-audio-workflow/
@@ -21,8 +21,8 @@ tags:
 
 這篇文章記錄我目前在專案中實際使用的聲音製作流程：
 * **前置設備需求**：無論是 Mac（Apple Silicon）或 PC（NVIDIA 顯卡），搭配外接 SSD 即可在本地執行開源模型。
-* **短音效（SFX）**：外接硬碟放開源模型（`MOSS-SoundEffect` / `Stable Audio`），在本地直接推論生成。
-* **背景音樂（BGM）**：用 Codex 讀取當前關卡設定，透過 Chrome 擴充套件自動在 Suno 生成對應曲風。
+* **短音效（SFX）**：純本地 Python / CLI 終端機推論（完全不用瀏覽器），幾秒鐘無痛批次生成。
+* **背景音樂（BGM）**：用 Codex 讀取當前關卡設定，透過 Chrome 擴充套件自動在 Suno 網頁端生成對應曲風。
 * **資產管理與實測**：建立候選音效池（Candidate Pool），在遊戲中直接實測挑選最合適的版本。
 
 <!--more-->
@@ -32,37 +32,37 @@ tags:
 在開始生成音效與音樂前，先確認這套工作流的硬體與軟體環境配置：
 
 ### 1. 硬體設備（Hardware）
-* **Mac 平台**：Apple Silicon 晶片機種（如 Mac mini、MacBook Pro、Mac Studio 等 M 系列，包含 M4、M5、M6 等新世代晶片），建議配置 16GB 以上統一記憶體（Unified Memory），能確保 4-bit 量化模型在本地推論時順暢無延遲。
+* **Mac 平台**：Apple Silicon 晶片機種（如 Mac mini、MacBook Pro、Mac Studio 等 M 系列，包含 M4、M5、M6 等晶片機種），建議配置 16GB 以上統一記憶體（Unified Memory），能確保 4-bit 量化模型在本地推論時順暢無延遲。
 * **PC 平台（Windows / Linux）**：具備 NVIDIA 獨立顯卡（建議 RTX 3060 / 4060 / 5060 或以上等級，顯存 8GB VRAM 以上），透過 CUDA 即可高速推論 PyTorch 音效模型。
 * **外接儲存（SSD）**：高速外接硬碟（建議 1TB 以上 NVMe / USB-C SSD），專門用來存放開源模型權重檔案與生成的音訊候選檔，不佔用本機內建磁碟空間。
 
-### 2. 軟體與工具鏈（Software & Tools）
-* **Python 環境**：Python 3.10+，建議使用 `uv` 管理虛擬環境與套件依賴。
-* **推論框架**：
-  * **Mac 平台**：Apple MLX 框架（`mlx`, `mlx-lm`），專為 Apple Silicon 晶片架構深度優化。
-  * **PC 平台**：PyTorch (CUDA) / Transformers / Diffusers 或 WebUI 工具。
-* **開源音訊模型**：
-  * `MOSS-SoundEffect`（Mac 可使用社群優化的 `moss-soundeffect-mlx` 4-bit 量化版，PC 可直接跑 PyTorch 權重，負責高頻互動短音效）
-  * `Stable Audio Open`（跨平台支援，負責長環境氛圍音）
-* **配樂自動化工具**：Chrome 瀏覽器 + 搭配操作的擴充套件、Codex / Claude 等 AI 程式助理、Suno 平台。
+### 2. 軟體與工具鏈（分工明確）
+* **本地短音效生成（純本機 CLI 腳本，完全不依賴瀏覽器）**：
+  * Python 3.10+（建議搭配 `uv` 管理環境）
+  * 推論框架：Mac 使用 Apple MLX 框架（`mlx`, `mlx-lm`），PC 使用 PyTorch (CUDA)
+  * 開源模型：`MOSS-SoundEffect`（Mac 4-bit MLX 版 / PC PyTorch 版）與 `Stable Audio Open`
+  * AI 助理（Codex / Claude 等）可直接在終端機呼叫 Python 腳本批次生成音效。
+* **雲端背景配樂生成（網頁自動化）**：
+  * Chrome 瀏覽器 + 擴充套件（負責自動將 Codex 產生的 Prompt 填入 Suno 網頁端並觸發生成）
+  * Suno 平台
 
 ---
 
-## 二、 本地生成短音效：MOSS-SoundEffect 與 Stable Audio
+## 二、 本地生成短音效：MOSS-SoundEffect 與 Stable Audio（免開瀏覽器）
 
 遊戲裡需要大量細碎的互動音效，例如按鈕點擊、背包操作、撕開包裝、釣魚咬鉤或踩地雷翻牌。
 
 ![外接硬碟本地部署 MOSS-SoundEffect 與 Stable Audio 開源模型極速推論各類遊戲短音效示意圖](local-sfx-model.jpg)
 
-### 1. 為什麼短音效放本地跑？
-短音效通常需要一次生 10 到 20 個候選檔案來挑選最合適的質感。如果用線上 API，不僅有網路延遲、需要計費，還容易遇到速率限制。
+### 1. 為什麼短音效一定要在「本地端」跑？
+短音效通常需要一次生 10 到 20 個候選檔案來挑選最合適的質感。
 
-把模型放在外接硬碟的好處：
+在本地端生成，**完全不需要打開任何瀏覽器**，直接在終端機跑 Python 腳本或讓 Codex 直接執行 CLI 指令：
 * **零成本、無次數限制**：隨時依需求大量生成與微調。
-* **推論速度快**：在本地端跑量化或 CUDA 加速版本，單個音效約 2 到 3 秒完成。
+* **推論速度快**：在本地端跑量化或 CUDA 加速版本，單個音效約 2 到 3 秒完成，完全沒有 API 網路延遲。
 
 ### 2. MOSS-SoundEffect 實戰與 Prompt 公式
-短音效主力使用 **MOSS-SoundEffect**（Mac 上可跑 MLX 4-bit 量化版，PC 上跑 PyTorch），推論資源佔用低且反應快。
+短音效主力使用 **MOSS-SoundEffect**（Mac 上跑 MLX 4-bit 量化版，PC 上跑 PyTorch），終端機輸入一行指令就能生成。
 
 提示詞基本結構：**動作（Action）+ 物理材質（Material）+ 聲音特性（Acoustics）**。
 
@@ -79,13 +79,15 @@ tags:
   * 踩地雷翻牌：`Mechanical tile flip, gentle stone block slide click, crisp tactile grid uncover`
 
 ### 3. 環境音使用 Stable Audio Open
-若需要 5 到 10 秒的環境底噪（例如洞穴滴水、地牢火把、微風樹葉聲），則改用 **Stable Audio Open** 生成，與短音效互補。
+若需要 5 到 10 秒的環境底噪（例如洞穴滴水、地牢火把、微風樹葉聲），同樣在本機切換至 **Stable Audio Open** 腳本生成，與短音效互補。
 
 ---
 
 ## 三、 遊戲背景音樂：Codex 讀專案脈絡 + Suno 自動生成
 
-背景音樂方面，**Suno** 的旋律性與編曲完整度依然是首選。為了避免每次切換視窗手動想提示詞，我將其串接進開發流程。
+相較於短音效在本地推論，背景音樂（BGM）因為追求極高的旋律性與編曲完整度，目前首選依然是雲端的 **Suno**。
+
+為了避免每次切換視窗手動想提示詞，我才利用 Chrome 擴充套件將 Suno 網頁端串接進開發流程。
 
 ![透過 Codex 分析遊戲關卡情境並結合瀏覽器擴充套件自動生成 Suno 遊戲配樂的工作流程示意圖](suno-bgm-workflow.jpg)
 
@@ -139,8 +141,8 @@ Suno 生成的音樂通常有開頭與結尾淡出，直接放進遊戲循環播
 
 這套工作流程的核心分工：
 1. **硬體基底**：Mac（Apple Silicon）或 PC（NVIDIA 顯卡）搭配外接 SSD 存放模型權重，實現 0 成本、無限制的本地推論環境。
-2. **短音效**：本地跑 `MOSS-SoundEffect`，批次產出多個候選版本，在遊戲裡直接挑選。
-3. **背景音樂**：Codex 結合專案情境生成提示詞，透過瀏覽器外掛叫 Suno 出歌，再用 Crossfade 處理成無縫循環。
+2. **短音效（純本地）**：完全不依賴瀏覽器，終端機本地跑 `MOSS-SoundEffect` 批次產出多個候選版本，在遊戲裡直接挑選。
+3. **背景音樂（雲端自動化）**：Codex 結合專案情境生成提示詞，透過 Chrome 擴充套件叫 Suno 出歌，再用 Crossfade 處理成無縫循環。
 4. **資產整理**：保留提示詞 JSON 作為紀錄，短音效用 WAV 確保零延遲，BGM 用 OGG/MP3 串流載入。
 
 透過本地模型與 AI 工具的搭配，獨立開發者可以在不依賴外部資源與高額成本的情況下，快速建立完整且風格一致的遊戲聲音系統。
