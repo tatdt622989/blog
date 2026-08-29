@@ -1,7 +1,8 @@
 ---
 title: "Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks"
 date: 2026-08-24 14:10:32
-description: A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws.
+updated: 2026-08-29 19:08:22
+description: A practical guide to Agentic SDLC architecture, covering hooks, skills, MCP, orchestration, state machines, verification gates, and open-source tools.
 permalink: 2026/08/24/agentic-sdlc-architecture-guide/
 translation_key: agentic-sdlc-architecture-guide
 translations:

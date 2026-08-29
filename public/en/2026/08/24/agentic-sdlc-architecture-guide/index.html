@@ -5,7 +5,7 @@
   
   <title>Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws.">
+  <meta name="description" content="A practical guide to Agentic SDLC architecture, covering hooks, skills, MCP, orchestration, state machines, verification gates, and open-source tools.">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/">
   
@@ -17,7 +17,7 @@
   
 
   <meta property="og:title" content="Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks"/>
-  <meta property="og:description" content="A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws."/>
+  <meta property="og:description" content="A practical guide to Agentic SDLC architecture, covering hooks, skills, MCP, orchestration, state machines, verification gates, and open-source tools."/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/"/>
@@ -28,10 +28,10 @@
   <meta property="og:image" content="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks">
-  <meta name="twitter:description" content="A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws.">
+  <meta name="twitter:description" content="A practical guide to Agentic SDLC architecture, covering hooks, skills, MCP, orchestration, state machines, verification gates, and open-source tools.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/","url":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/","headline":"Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks","description":"A comprehensive deep dive into the Agentic SDLC architecture—from the 4-layer taxonomy (Hook, Skill, MCP, Orchestrator) to a 13-stage state machine, practical open-source stacks (LangGraph, OpenHands, E2B, Mem0, PR-Agent, OPA), and non-negotiable verification laws.","datePublished":"2026-08-24T06:10:32.000Z","dateModified":"2026-08-28T15:27:18.276Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/","url":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/","headline":"Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks","description":"A practical guide to Agentic SDLC architecture, covering hooks, skills, MCP, orchestration, state machines, verification gates, and open-source tools.","datePublished":"2026-08-24T06:10:32.000Z","dateModified":"2026-08-29T11:08:22.000Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Software Engineering","item":"https://blog.6yuwei.com/en/categories/Software-Engineering/"},{"@type":"ListItem","position":3,"name":"Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks","item":"https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/"}]}</script>
   
@@ -192,7 +192,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5" alt="Comprehensive Agentic SDLC Software Development Lifecycle Architecture Diagram" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-480.jpg?v=2036c8dc 480w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5 720w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-960.jpg?v=880dde98 960w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-1280.jpg?v=9e3791f4 1280w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=a970ade5" alt="Comprehensive Agentic SDLC Software Development Lifecycle Architecture Diagram" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-480.jpg?v=8292f70b 480w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=a970ade5 720w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-960.jpg?v=55c7af77 960w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover-card-1280.jpg?v=fc8ff5cd 1280w, /en/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>Over the past year, AI-assisted software engineering transitioned from code completion tools to the high-energy excitement of <strong>Vibe Coding</strong>. Many developers grew accustomed to the intuitive loop: “Write a quick prompt -&gt; Let AI generate code -&gt; Run tests.” In toy projects with a few dozen lines of code, this intuitive mode feels magical. But once applied to complex production codebases with tens of thousands of lines and tightly coupled modules, vibe coding collapses rapidly.</p>
 <p>You have likely encountered this frustrating scenario: the AI confidently claims a bug is fixed, but modifying module A silently breaks module B; five top-tier models review the code and declare it clean, yet production hits an immediate race condition; or the AI records “historical learnings” that pollute the knowledge base with hallucinated conventions after a single month of autonomous runs.</p>
 <p>In software engineering, the real bottleneck has never been <strong>“code generation velocity”</strong>; it has always been <strong>“verification and delivery confidence.”</strong> To bridge the gap where generation speed vastly outpaces verification capability (the GenAI Divide), the only viable path is to establish an industrial-grade <strong>Agentic SDLC (Agent Software Development Life Cycle)</strong>.</p>
@@ -557,15 +557,19 @@ flowchart TD
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>2</small></li>
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>3</small></li>
   
     <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>4</small></li>
+  
+    <li><a href="/en/categories/Japan-Travel/Anime-Culture/">Anime Culture</a><small>1</small></li>
   
     <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
   
     <li><a href="/en/categories/Game-Development/">Game Development</a><small>2</small></li>
   
-    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>1</small></li>
+    <li><a href="/en/categories/Japan-Travel/">Japan Travel</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>2</small></li>
   
   </ul>
 </div>
@@ -576,11 +580,21 @@ flowchart TD
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/en/tags/AI/">AI</a><small>4</small></li>
+    <li><a href="/en/tags/AI/">AI</a><small>5</small></li>
   
     <li><a href="/en/tags/AI-Agent/">AI Agent</a><small>2</small></li>
   
-    <li><a href="/en/tags/AI-Coding/">AI Coding</a><small>1</small></li>
+    <li><a href="/en/tags/AI-Coding/">AI Coding</a><small>2</small></li>
+  
+    <li><a href="/en/tags/AI-Image-Generation/">AI Image Generation</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Tools/">AI Tools</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Video/">AI Video</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Anime-Pilgrimage/">Anime Pilgrimage</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Anime-Tourism/">Anime Tourism</a><small>1</small></li>
   
     <li><a href="/en/tags/Aseprite/">Aseprite</a><small>1</small></li>
   
@@ -594,7 +608,7 @@ flowchart TD
   
     <li><a href="/en/tags/Cursor/">Cursor</a><small>1</small></li>
   
-    <li><a href="/en/tags/Developer-Tools/">Developer Tools</a><small>1</small></li>
+    <li><a href="/en/tags/Developer-Tools/">Developer Tools</a><small>2</small></li>
   
     <li><a href="/en/tags/Frontend-Development/">Frontend Development</a><small>1</small></li>
   
@@ -602,7 +616,11 @@ flowchart TD
   
     <li><a href="/en/tags/Grok/">Grok</a><small>2</small></li>
   
+    <li><a href="/en/tags/Independent-Travel/">Independent Travel</a><small>1</small></li>
+  
     <li><a href="/en/tags/Indie-Developer/">Indie Developer</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Japan-Travel/">Japan Travel</a><small>1</small></li>
   
     <li><a href="/en/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
@@ -614,7 +632,7 @@ flowchart TD
   
     <li><a href="/en/tags/PixelLab/">PixelLab</a><small>1</small></li>
   
-    <li><a href="/en/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+    <li><a href="/en/tags/Software-Engineering/">Software Engineering</a><small>2</small></li>
   
     <li><a href="/en/tags/Suno/">Suno</a><small>1</small></li>
   

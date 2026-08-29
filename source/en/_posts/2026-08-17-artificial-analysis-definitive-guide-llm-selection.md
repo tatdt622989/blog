@@ -1,8 +1,8 @@
 ---
 title: "Stop Guessing LLMs: The Definitive Guide to Artificial Analysis for Balancing Quality, Latency, and Cost"
 date: 2026-08-17 14:13:06
-updated: 2026-08-17 15:20:00
-description: A practical, in-depth guide to using Artificial Analysis, the leading independent AI benchmarking platform. Learn how to interpret the Intelligence Index, inference speed (Tokens/s, TTFT), true task costs, and the Pareto frontier to choose the best LLMs for your production stack.
+updated: 2026-08-29 19:08:22
+description: Use Artificial Analysis to compare AI models by quality, response speed, latency, cost, and the Pareto frontier before choosing a production model.
 permalink: 2026/08/17/artificial-analysis-definitive-guide-llm-selection/
 translation_key: artificial-analysis-definitive-guide-llm-selection
 translations:

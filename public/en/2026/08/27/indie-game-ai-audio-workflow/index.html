@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX &amp; Suno BGM Automation | 6yuwei</title>
+  <title>A Practical AI Game Audio Workflow: Local SFX and Suno BGM | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="A practical guide for indie game developers on running open-source MOSS-SoundEffect-v2.0 (48kHz DiT) locally via CLI for SFX, Suno Pro plans ($8/mo for 500 songs with commercial license), and BGM workflow.">
+  <meta name="description" content="A practical indie game audio workflow covering MOSS-SoundEffect, Stable Audio Open, Suno rights and download limits, prompts, loops, and file formats.">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/">
   
@@ -16,8 +16,8 @@
   <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/">
   
 
-  <meta property="og:title" content="Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX &amp; Suno BGM Automation"/>
-  <meta property="og:description" content="A practical guide for indie game developers on running open-source MOSS-SoundEffect-v2.0 (48kHz DiT) locally via CLI for SFX, Suno Pro plans ($8/mo for 500 songs with commercial license), and BGM workflow."/>
+  <meta property="og:title" content="A Practical AI Game Audio Workflow: Local SFX and Suno BGM"/>
+  <meta property="og:description" content="A practical indie game audio workflow covering MOSS-SoundEffect, Stable Audio Open, Suno rights and download limits, prompts, loops, and file formats."/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/"/>
@@ -27,13 +27,13 @@
   
   <meta property="og:image" content="https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/cover.jpg?v=049f9420" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX &amp; Suno BGM Automation">
-  <meta name="twitter:description" content="A practical guide for indie game developers on running open-source MOSS-SoundEffect-v2.0 (48kHz DiT) locally via CLI for SFX, Suno Pro plans ($8/mo for 500 songs with commercial license), and BGM workflow.">
+  <meta name="twitter:title" content="A Practical AI Game Audio Workflow: Local SFX and Suno BGM">
+  <meta name="twitter:description" content="A practical indie game audio workflow covering MOSS-SoundEffect, Stable Audio Open, Suno rights and download limits, prompts, loops, and file formats.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/cover.jpg?v=049f9420">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/","url":"https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/","headline":"Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX & Suno BGM Automation","description":"A practical guide for indie game developers on running open-source MOSS-SoundEffect-v2.0 (48kHz DiT) locally via CLI for SFX, Suno Pro plans ($8/mo for 500 songs with commercial license), and BGM workflow.","datePublished":"2026-08-27T08:07:15.000Z","dateModified":"2026-08-28T07:14:53.226Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/","url":"https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/","headline":"A Practical AI Game Audio Workflow: Local SFX and Suno BGM","description":"A practical indie game audio workflow covering MOSS-SoundEffect, Stable Audio Open, Suno rights and download limits, prompts, loops, and file formats.","datePublished":"2026-08-27T08:07:15.000Z","dateModified":"2026-08-29T10:50:35.000Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/cover.jpg"]}</script>
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Game Development","item":"https://blog.6yuwei.com/en/categories/Game-Development/"},{"@type":"ListItem","position":3,"name":"Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX & Suno BGM Automation","item":"https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Game Development","item":"https://blog.6yuwei.com/en/categories/Game-Development/"},{"@type":"ListItem","position":3,"name":"A Practical AI Game Audio Workflow: Local SFX and Suno BGM","item":"https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/"}]}</script>
   
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,36 +186,36 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">Building an AI-Powered Game Audio Pipeline: Local Open-Source SFX &amp; Suno BGM Automation</h1>
+    <h1 class="p-name title" itemprop="headline name">A Practical AI Game Audio Workflow: Local SFX and Suno BGM</h1>
   
 
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/en/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=b69234b7" alt="AI-Powered Game Audio Pipeline Cover" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/08/27/indie-game-ai-audio-workflow/cover-card-480.jpg?v=aff82f33 480w, /en/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=b69234b7 720w, /en/2026/08/27/indie-game-ai-audio-workflow/cover-card-960.jpg?v=8e711da3 960w, /en/2026/08/27/indie-game-ai-audio-workflow/cover-card-1280.jpg?v=4d664a3b 1280w, /en/2026/08/27/indie-game-ai-audio-workflow/cover.jpg?v=049f9420 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/en/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=3982de92" alt="AI-Powered Game Audio Pipeline Cover" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/08/27/indie-game-ai-audio-workflow/cover-card-480.jpg?v=ced173b0 480w, /en/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=3982de92 720w, /en/2026/08/27/indie-game-ai-audio-workflow/cover-card-960.jpg?v=18ddd21c 960w, /en/2026/08/27/indie-game-ai-audio-workflow/cover-card-1280.jpg?v=46fed19d 1280w, /en/2026/08/27/indie-game-ai-audio-workflow/cover.jpg?v=049f9420 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>In indie game development, audio is often one of the most time-consuming hurdles. Free sound libraries suffer from inconsistent quality, licensing risks, and overused clips. On the other hand, hiring a composer is rarely feasible for solo creators or game jam prototypes.</p>
-<p>This article documents the practical audio pipeline I use in my own projects:</p>
+<p>This article presents a practical audio pipeline for indie projects:</p>
 <ul>
-<li><strong>Prerequisites &amp; Hardware</strong>: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD to store and execute local open-source models.</li>
-<li><strong>Sound Effects (SFX)</strong>: Pure local CLI &#x2F; Python script inference (zero browser dependency) using Apache 2.0 licensed <code>MOSS-SoundEffect-v2.0</code> (48 kHz audio) and <code>Stable Audio Open 1.0</code>.</li>
-<li><strong>Background Music (BGM)</strong>: Using Codex to read project context and automating Suno generation in the web app via a Chrome extension, paired with an affordable Suno Pro plan for commercial rights.</li>
+<li><strong>Prerequisites &amp; Hardware</strong>: The official MOSS-SoundEffect-v2.0 path currently targets NVIDIA CUDA. Mac users relying on community ports must verify the source, license, compatibility, and actual performance separately.</li>
+<li><strong>Sound Effects (SFX)</strong>: Local CLI &#x2F; Python inference with Apache 2.0 licensed <code>MOSS-SoundEffect-v2.0</code> (48 kHz) and <code>Stable Audio Open 1.0</code>, avoiding a per-generation cloud fee.</li>
+<li><strong>Background Music (BGM)</strong>: Using Codex to structure the level brief, then taking the prompt into Suno. Commercial use requires songs created under a paid plan and compliance with the current terms.</li>
 <li><strong>Asset Management &amp; In-Engine Testing</strong>: Building candidate pools and auditioning sound variants directly in the game engine.</li>
 </ul>
 <span id="more"></span>
 
 <h2 id="Prerequisites-and-Hardware-Setup"><a href="#Prerequisites-and-Hardware-Setup" class="headerlink" title="Prerequisites and Hardware Setup"></a>Prerequisites and Hardware Setup</h2><p>Before generating sound effects and music, here is the hardware and software breakdown:</p>
 <h3 id="1-Hardware-Requirements"><a href="#1-Hardware-Requirements" class="headerlink" title="1. Hardware Requirements"></a>1. Hardware Requirements</h3><ul>
-<li><strong>Mac Platform</strong>: Apple Silicon models (such as Mac mini, MacBook Pro, Mac Studio across M-series chips including M4, M5, and M6). 16GB or more Unified Memory is recommended to run 4-bit quantized audio models smoothly without throttling.</li>
-<li><strong>PC Platform (Windows &#x2F; Linux)</strong>: NVIDIA dedicated GPU (RTX 3060 &#x2F; 4060 &#x2F; 5060 or higher with at least 8GB VRAM) for accelerated PyTorch &#x2F; CUDA inference.</li>
+<li><strong>Official MOSS-SoundEffect-v2.0 Path</strong>: The current documentation provides a PyTorch and NVIDIA CUDA setup. Memory requirements and speed vary with clip length, precision, and inference settings, so a single GPU model cannot guarantee a result.</li>
+<li><strong>Mac Platform</strong>: The official repository does not document an Apple MLX build. If you use a community port such as <code>moss-soundeffect-mlx</code>, record its repository, model version, license, and tested hardware instead of presenting it as official support.</li>
 <li><strong>External Storage (SSD)</strong>: High-speed external drive (1TB+ NVMe &#x2F; USB-C SSD) dedicated to storing model weights and audio candidate files, preserving internal disk space.</li>
 </ul>
 <h3 id="2-Software-amp-Toolchain-Clear-Tool-Division"><a href="#2-Software-amp-Toolchain-Clear-Tool-Division" class="headerlink" title="2. Software &amp; Toolchain (Clear Tool Division)"></a>2. Software &amp; Toolchain (Clear Tool Division)</h3><ul>
 <li><strong>Local SFX Generation (Pure Local CLI, No Browser Needed)</strong>:<ul>
-<li>Python 3.10+ (managed with <code>uv</code> for fast virtual environments)</li>
-<li>Inference Frameworks: Apple MLX (<code>mlx</code>, <code>mlx-lm</code>) on Mac, PyTorch &#x2F; <code>diffusers</code> (CUDA) on PC</li>
+<li>MOSS-SoundEffect-v2.0 officially recommends a clean Python 3.12 environment.</li>
+<li>The documented inference path uses PyTorch and CUDA; the first run may spend several minutes compiling.</li>
 <li>Open-Source Models:<ul>
 <li><strong><code>MOSS-SoundEffect-v2.0</code></strong> (Developed by OpenMOSS team, DiT + Flow Matching architecture with Qwen text encoder and DAC VAE, 48 kHz output, Apache 2.0 commercial license)</li>
-<li><strong><code>Stable Audio Open 1.0</code></strong> (Stability AI open 1.2B DiT model, 44.1 kHz stereo output for longer ambient soundscapes)</li>
+<li><strong><code>Stable Audio Open 1.0</code></strong> (44.1 kHz stereo up to 47 seconds, useful for ambience; the model uses the Stability AI Community License. Its CC-licensed training data does not make the model itself a Creative Commons release.)</li>
 </ul>
 </li>
 <li>AI assistants (Codex &#x2F; Claude) can execute Python CLI scripts directly in the terminal to batch-generate SFX clips.</li>
@@ -233,11 +233,11 @@
 <h3 id="Why-Run-SFX-Locally"><a href="#Why-Run-SFX-Locally" class="headerlink" title="Why Run SFX Locally?"></a>Why Run SFX Locally?</h3><p>Sound effects typically require generating 10 to 20 variations to audition and find the right feel.</p>
 <p>Running models locally via terminal scripts <strong>requires zero browser interaction</strong>:</p>
 <ul>
-<li><strong>Zero Cost &amp; Unlimited Generations</strong>: Tweak and regenerate as many candidates as needed.</li>
-<li><strong>Fast Inference</strong>: Running quantized or CUDA-accelerated models generates a clean sound effect in 2 to 3 seconds, without network latency.</li>
-<li><strong>High-Fidelity 48 kHz Quality</strong>: MOSS-SoundEffect-v2.0 paired with DAC VAE ensures crisp transients without compression artifacts.</li>
+<li><strong>No Per-Generation Fee</strong>: Once the model and environment are installed, you can batch candidates without paying for every request, though hardware, storage, and electricity still cost money.</li>
+<li><strong>Hardware-Dependent Speed</strong>: CUDA can reduce waiting time, but there is no universal two-to-three-second benchmark. The first run may also spend several minutes compiling.</li>
+<li><strong>Up to 48 kHz Output</strong>: MOSS-SoundEffect-v2.0 uses a DAC VAE and can produce high-sample-rate candidates, but every result still needs listening tests for artifacts and awkward tails.</li>
 </ul>
-<h3 id="Prompt-Syntax-amp-Real-World-Recipes"><a href="#Prompt-Syntax-amp-Real-World-Recipes" class="headerlink" title="Prompt Syntax &amp; Real-World Recipes"></a>Prompt Syntax &amp; Real-World Recipes</h3><p>The primary model used for interactive SFX is <strong>MOSS-SoundEffect-v2.0</strong> (MLX 4-bit on Mac or PyTorch on PC), triggered directly via command line.</p>
+<h3 id="Prompt-Syntax-amp-Real-World-Recipes"><a href="#Prompt-Syntax-amp-Real-World-Recipes" class="headerlink" title="Prompt Syntax &amp; Real-World Recipes"></a>Prompt Syntax &amp; Real-World Recipes</h3><p>The primary model used for interactive SFX is <strong>MOSS-SoundEffect-v2.0</strong> through its documented PyTorch&#x2F;CUDA path. A Mac community conversion should be treated as a separate implementation and tested on its own merits.</p>
 <p>A reliable prompt syntax formula: <strong>Action + Material + Acoustic Characteristics</strong>.</p>
 <p>Examples from actual project builds:</p>
 <ul>
@@ -257,56 +257,60 @@
 </ul>
 </li>
 </ul>
-<h3 id="Ambient-Sounds-with-Stable-Audio-Open"><a href="#Ambient-Sounds-with-Stable-Audio-Open" class="headerlink" title="Ambient Sounds with Stable Audio Open"></a>Ambient Sounds with Stable Audio Open</h3><p>For longer 5 to 10 second ambient soundscapes (such as cave water drips, dungeon torches, or gentle forest wind), <strong>Stable Audio Open 1.0</strong> provides 44.1 kHz stereo atmospheric textures to complement the short SFX clips.</p>
+<h3 id="Ambient-Sounds-with-Stable-Audio-Open"><a href="#Ambient-Sounds-with-Stable-Audio-Open" class="headerlink" title="Ambient Sounds with Stable Audio Open"></a>Ambient Sounds with Stable Audio Open</h3><p>For longer 5 to 10 second ambient soundscapes, <strong>Stable Audio Open 1.0</strong> can provide 44.1 kHz stereo textures. Before shipping it in a commercial game, review the current Stability AI license rather than assuming the training-data license applies to the model.</p>
 <hr>
-<h2 id="2-Game-BGM-Suno-Plans-amp-Context-Aware-Automation-with-Codex"><a href="#2-Game-BGM-Suno-Plans-amp-Context-Aware-Automation-with-Codex" class="headerlink" title="2. Game BGM: Suno Plans &amp; Context-Aware Automation with Codex"></a>2. Game BGM: Suno Plans &amp; Context-Aware Automation with Codex</h2><p>Unlike short SFX, background music demands melodic composition and full arrangement. For this, <strong>Suno</strong>‘s cloud engine remains the preferred choice.</p>
+<h2 id="2-Game-BGM-Suno-Plans-amp-Context-Aware-Automation-with-Codex"><a href="#2-Game-BGM-Suno-Plans-amp-Context-Aware-Automation-with-Codex" class="headerlink" title="2. Game BGM: Suno Plans &amp; Context-Aware Automation with Codex"></a>2. Game BGM: Suno Plans &amp; Context-Aware Automation with Codex</h2><p>Unlike short SFX, background music demands melodic composition and full arrangement. <strong>Suno</strong> is one practical cloud option for generating candidates.</p>
 <p><img src="/en/2026/08/27/indie-game-ai-audio-workflow/suno-bgm-workflow.jpg?v=63ae5fc3" alt="Automating Suno Game BGM with Codex Context Analysis and Chrome Extension"></p>
-<h3 id="1-Suno-Pricing-amp-Commercial-Rights-for-Indie-Devs"><a href="#1-Suno-Pricing-amp-Commercial-Rights-for-Indie-Devs" class="headerlink" title="1. Suno Pricing &amp; Commercial Rights for Indie Devs"></a>1. Suno Pricing &amp; Commercial Rights for Indie Devs</h3><p>Commercial games must not use the Free Basic plan (no commercial rights, limited to 50 credits&#x2F;day). The most cost-effective tier for indie creators is <strong>Suno Pro</strong>:</p>
+<h3 id="1-Suno-Pricing-amp-Commercial-Rights-for-Indie-Devs"><a href="#1-Suno-Pricing-amp-Commercial-Rights-for-Indie-Devs" class="headerlink" title="1. Suno Pricing &amp; Commercial Rights for Indie Devs"></a>1. Suno Pricing &amp; Commercial Rights for Indie Devs</h3><p>Music created on the Free Basic plan cannot be used commercially. If you plan to ship a paid game, compare <strong>Suno Pro</strong> and Premier by credits, download limits, and commercial-use terms:</p>
 <table>
 <thead>
 <tr>
 <th align="left">Plan</th>
 <th align="left">Monthly Price</th>
-<th align="left">Annual Price (Billed Monthly)</th>
-<th align="left">Monthly Credits</th>
-<th align="left">Estimated Songs</th>
-<th align="left">Commercial Rights</th>
+<th align="left">Annual Equivalent</th>
+<th align="left">Credits</th>
+<th align="left">Estimated Generations</th>
+<th align="left">Downloads from Sep. 3, 2026</th>
+<th align="left">Commercial Use</th>
 </tr>
 </thead>
 <tbody><tr>
 <td align="left"><strong>Basic (Free)</strong></td>
 <td align="left"><strong>$0</strong></td>
 <td align="left"><strong>$0</strong></td>
-<td align="left">50 credits &#x2F; day</td>
+<td align="left">50 &#x2F; day</td>
 <td align="left">~5 songs &#x2F; day</td>
-<td align="left">No Commercial Rights</td>
+<td align="left">Up to 7 lifetime trial downloads</td>
+<td align="left">No commercial rights</td>
 </tr>
 <tr>
 <td align="left"><strong>Pro (Recommended)</strong></td>
 <td align="left"><strong>$10 &#x2F; mo</strong></td>
 <td align="left"><strong>$8 &#x2F; mo</strong></td>
-<td align="left"><strong>2,500 credits &#x2F; mo</strong></td>
+<td align="left"><strong>2,500 &#x2F; mo</strong></td>
 <td align="left"><strong>~500 songs</strong></td>
-<td align="left"><strong>Full Commercial Rights</strong></td>
+<td align="left"><strong>20 &#x2F; month</strong></td>
+<td align="left">Eligible paid-plan songs may be monetized</td>
 </tr>
 <tr>
 <td align="left"><strong>Premier</strong></td>
 <td align="left"><strong>$30 &#x2F; mo</strong></td>
 <td align="left"><strong>$24 &#x2F; mo</strong></td>
-<td align="left"><strong>10,000 credits &#x2F; mo</strong></td>
+<td align="left"><strong>10,000 &#x2F; mo</strong></td>
 <td align="left"><strong>~2,000 songs</strong></td>
-<td align="left"><strong>Full Commercial Rights</strong></td>
+<td align="left"><strong>60 &#x2F; month</strong></td>
+<td align="left">Eligible paid-plan songs may be monetized</td>
 </tr>
 </tbody></table>
 <ul>
 <li><strong>Affordable</strong>: At only <strong>$8&#x2F;month (billed annually)</strong> or $10&#x2F;month, it is cheaper than a coffee run.</li>
-<li><strong>500 Songs per Month</strong>: 2,500 credits provide roughly 500 generation candidates (10 credits per generation of 2 songs), providing plenty of variations for a solo developer.</li>
-<li><strong>Commercial Protection</strong>: All tracks generated during an active Pro subscription carry full commercial ownership for publishing on Steam, App Store, or Google Play.</li>
+<li><strong>Generation and Download Limits Are Different</strong>: Pro credits may produce roughly 500 candidates, but beginning September 3, 2026, the standard Suno interface allows 20 downloads per month on Pro and 60 on Premier. Additional downloads may require a separate purchase.</li>
+<li><strong>Commercial Use Is Not a Copyright Guarantee</strong>: Eligible songs created under a paid plan can be monetized in games, but Suno explicitly says copyright protection depends on local law and the relevant copyright office.</li>
 </ul>
 <h3 id="2-Automating-the-Prompt-Pipeline-with-Codex"><a href="#2-Automating-the-Prompt-Pipeline-with-Codex" class="headerlink" title="2. Automating the Prompt Pipeline with Codex"></a>2. Automating the Prompt Pipeline with Codex</h3><ol>
 <li><strong>Reading Project Context</strong>: Codex reads the active level design file or script (e.g., “an early-morning, cozy pixel-art lake fishing level with relaxed tempo and nostalgic mood”).</li>
 <li><strong>Generating Structured Suno Prompts</strong>:<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Genre: Cozy Lofi / Ambient Game BGM]</span><br><span class="line">[Instruments: Soft Electric Piano, Acoustic Guitar, Gentle Sub Bass, Subtle Vinyl Crackle]</span><br><span class="line">[Mood: Peaceful, Relaxing, Nostalgic, Early Morning Fishing]</span><br><span class="line">[Tempo: 75 BPM, Slow, Steady Groove]</span><br><span class="line">[Structure: Instrumental Loopable Track, No Vocals]</span><br></pre></td></tr></table></figure></li>
-<li><strong>Dispatching via Browser Extension</strong>: A Chrome extension automatically inputs the prompt into the Suno web app and triggers generation while you continue coding in your IDE.</li>
+<li><strong>Reviewing Before Submission</strong>: A browser helper can fill the prompt, but the user should confirm the account, plan, credits, and content before submission. Automation must not bypass login, CAPTCHA, download limits, or platform terms.</li>
 </ol>
 <h3 id="3-Seamless-Loop-Editing-in-30-Seconds"><a href="#3-Seamless-Loop-Editing-in-30-Seconds" class="headerlink" title="3. Seamless Loop Editing in 30 Seconds"></a>3. Seamless Loop Editing in 30 Seconds</h3><p>AI-generated tracks naturally include intro and outro fadeouts. To turn a raw generation into a seamless game loop:</p>
 <ol>
@@ -335,7 +339,7 @@
 <tbody><tr>
 <td align="left"><strong>Short SFX (&lt; 1s)</strong></td>
 <td align="left"><strong>WAV (PCM 16-bit)</strong></td>
-<td align="left">Zero decompression overhead, instant response on button presses.</td>
+<td align="left">Avoids real-time decompression and can reduce input-response latency.</td>
 </tr>
 <tr>
 <td align="left"><strong>Ambience (3–10s)</strong></td>
@@ -351,12 +355,20 @@
 <hr>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>This modular audio pipeline breaks down into clear roles:</p>
 <ol>
-<li><strong>Hardware Base</strong>: Mac (Apple Silicon) or PC (NVIDIA GPU) paired with an external SSD for free, unrestricted local inference.</li>
-<li><strong>Interactive SFX (Pure Local)</strong>: Zero browser dependency, running <code>MOSS-SoundEffect-v2.0</code> (48 kHz) via CLI for rapid batch generation and tactile sound exploration.</li>
-<li><strong>BGM Composition (Cloud Automation)</strong>: Subscribing to Suno Pro ($8–$10&#x2F;mo for 500 songs + commercial rights), automating prompts with Codex and Chrome extension, and creating seamless crossfade loops.</li>
-<li><strong>Asset Organization</strong>: Preserving prompt JSON files, using WAV for zero-latency SFX, and streaming OGG&#x2F;MP3 for music.</li>
+<li><strong>Hardware Base</strong>: The official MOSS-SoundEffect-v2.0 route targets NVIDIA CUDA; Mac community ports require separate verification. An external SSD can hold model weights and candidates.</li>
+<li><strong>Interactive SFX (Local)</strong>: Batch-generate candidates without a per-request API fee, while recognizing that speed depends on hardware and settings.</li>
+<li><strong>BGM Composition (Cloud)</strong>: Suno Pro may generate roughly 500 candidates, but the standard interface is limited to 20 monthly downloads from September 2026. Commercial use rights do not guarantee copyright protection.</li>
+<li><strong>Asset Organization</strong>: Preserve prompt JSON files, use WAV to reduce SFX decoding overhead, and stream OGG&#x2F;MP3 music where the engine supports it.</li>
 </ol>
-<p>By combining local open-source models with browser-driven music generation, solo developers can build a cohesive, immersive soundscape for their games without licensing friction or high production costs.</p>
+<p>By splitting local sound design from cloud music generation, solo developers can lower iteration costs while keeping clear records of sources, licenses, prompts, and in-game test results.</p>
+<h2 id="Official-Sources"><a href="#Official-Sources" class="headerlink" title="Official Sources"></a>Official Sources</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenMOSS/MOSS-TTS/blob/main/moss_soundeffect_v2/README.md">OpenMOSS: MOSS-SoundEffect-v2.0 setup and inference</a></li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/OpenMOSS-Team/MOSS-SoundEffect-v2.0">Hugging Face: MOSS-SoundEffect-v2.0 model page</a></li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/stabilityai/stable-audio-open-1.0">Hugging Face: Stable Audio Open 1.0 model and license</a></li>
+<li><a target="_blank" rel="noopener" href="https://suno.com/pricing">Suno pricing and plan features</a></li>
+<li><a target="_blank" rel="noopener" href="https://help.suno.com/en/articles/13614785">Suno’s September 2026 download limits</a></li>
+<li><a target="_blank" rel="noopener" href="https://help.suno.com/en/articles/9601665">Suno commercial rights and copyright guidance</a></li>
+</ul>
 
       
     </div>
@@ -415,15 +427,19 @@
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>2</small></li>
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>3</small></li>
   
     <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>4</small></li>
+  
+    <li><a href="/en/categories/Japan-Travel/Anime-Culture/">Anime Culture</a><small>1</small></li>
   
     <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
   
     <li><a href="/en/categories/Game-Development/">Game Development</a><small>2</small></li>
   
-    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>1</small></li>
+    <li><a href="/en/categories/Japan-Travel/">Japan Travel</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>2</small></li>
   
   </ul>
 </div>
@@ -434,11 +450,21 @@
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/en/tags/AI/">AI</a><small>4</small></li>
+    <li><a href="/en/tags/AI/">AI</a><small>5</small></li>
   
     <li><a href="/en/tags/AI-Agent/">AI Agent</a><small>2</small></li>
   
-    <li><a href="/en/tags/AI-Coding/">AI Coding</a><small>1</small></li>
+    <li><a href="/en/tags/AI-Coding/">AI Coding</a><small>2</small></li>
+  
+    <li><a href="/en/tags/AI-Image-Generation/">AI Image Generation</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Tools/">AI Tools</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Video/">AI Video</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Anime-Pilgrimage/">Anime Pilgrimage</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Anime-Tourism/">Anime Tourism</a><small>1</small></li>
   
     <li><a href="/en/tags/Aseprite/">Aseprite</a><small>1</small></li>
   
@@ -452,7 +478,7 @@
   
     <li><a href="/en/tags/Cursor/">Cursor</a><small>1</small></li>
   
-    <li><a href="/en/tags/Developer-Tools/">Developer Tools</a><small>1</small></li>
+    <li><a href="/en/tags/Developer-Tools/">Developer Tools</a><small>2</small></li>
   
     <li><a href="/en/tags/Frontend-Development/">Frontend Development</a><small>1</small></li>
   
@@ -460,7 +486,11 @@
   
     <li><a href="/en/tags/Grok/">Grok</a><small>2</small></li>
   
+    <li><a href="/en/tags/Independent-Travel/">Independent Travel</a><small>1</small></li>
+  
     <li><a href="/en/tags/Indie-Developer/">Indie Developer</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Japan-Travel/">Japan Travel</a><small>1</small></li>
   
     <li><a href="/en/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
@@ -472,7 +502,7 @@
   
     <li><a href="/en/tags/PixelLab/">PixelLab</a><small>1</small></li>
   
-    <li><a href="/en/tags/Software-Engineering/">Software Engineering</a><small>1</small></li>
+    <li><a href="/en/tags/Software-Engineering/">Software Engineering</a><small>2</small></li>
   
     <li><a href="/en/tags/Suno/">Suno</a><small>1</small></li>
   

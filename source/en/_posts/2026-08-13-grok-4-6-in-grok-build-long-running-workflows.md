@@ -1,8 +1,8 @@
 ---
 title: "Grok 4.6 Powers Grok Build: What Changes for Long-Running AI Developer Workflows?"
 date: 2026-08-13 10:25:34
-updated: 2026-08-17 15:20:00
-description: Grok 4.6 is now the core engine behind Grok Build. This guide clarifies the differences between Grok 4.6, Grok Build, grok-build-0.1, and Build Mode, analyzing how long-running tasks, parallel subagents, Plan mode, 500K context, and API costs reshape real-world software engineering.
+updated: 2026-08-29 19:08:22
+description: A practical guide to Grok 4.6 and Grok Build, covering long tasks, parallel subagents, Plan mode, context limits, API pricing, and workflow tradeoffs.
 permalink: 2026/08/13/grok-4-6-in-grok-build-long-running-workflows/
 translation_key: grok-4-6-in-grok-build-long-running-workflows
 translations:
