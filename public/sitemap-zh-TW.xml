@@ -38,15 +38,6 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/2026/08/29/2026-%E6%97%A5%E6%9C%AC%E5%8B%95%E6%BC%AB%E8%81%96%E5%9C%B0%E5%B7%A1%E7%A6%AE%E6%94%BB%E7%95%A5%EF%BC%9A%E5%AE%98%E6%96%B9-88-%E9%81%B8%E7%B2%BE%E9%81%B8%E3%80%81%E4%BA%A4%E9%80%9A%E8%A6%8F%E5%8A%83%E8%88%87%E6%8B%8D%E7%85%A7%E7%A6%AE%E5%84%80/</loc>
-
-    <lastmod>2026-08-29</lastmod>
-
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/</loc>
 
     <lastmod>2026-08-28</lastmod>
@@ -461,6 +452,15 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/2026/07/05/%E7%AE%97%E5%8A%9B%E6%A5%B5%E9%99%90%E8%88%87%E4%BB%98%E8%B2%BB%E7%89%86%E7%9A%84%E7%B5%82%E5%B1%80%EF%BC%9A%E5%BE%9E-Claude-7-%E6%9C%88%E9%99%90%E9%A1%8D%E7%9C%8B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A8%82%E9%96%B1%E5%88%B6%E7%9A%84%E8%AE%8A%E9%9D%A9%E8%88%87%E6%9C%AA%E4%BE%86/</loc>
+
+    <lastmod>2026-08-17</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/2026/07/08/gpt-5-6-tomorrow-release-guide/</loc>
 
     <lastmod>2026-08-17</lastmod>
@@ -497,25 +497,16 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/</loc>
-
-    <lastmod>2026-08-17</lastmod>
-
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/2026/07/05/%E7%AE%97%E5%8A%9B%E6%A5%B5%E9%99%90%E8%88%87%E4%BB%98%E8%B2%BB%E7%89%86%E7%9A%84%E7%B5%82%E5%B1%80%EF%BC%9A%E5%BE%9E-Claude-7-%E6%9C%88%E9%99%90%E9%A1%8D%E7%9C%8B%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A8%82%E9%96%B1%E5%88%B6%E7%9A%84%E8%AE%8A%E9%9D%A9%E8%88%87%E6%9C%AA%E4%BE%86/</loc>
-
-    <lastmod>2026-08-17</lastmod>
-
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/2026/07/26/%E8%B6%85%E8%B6%8A%E5%82%B3%E7%B5%B1-RAG%EF%BC%9A2026-%E5%B9%B4-AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%B5%90%E5%90%88%E5%90%91%E9%87%8F%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%9B%9B%E5%A4%A7%E8%90%BD%E5%9C%B0%E6%87%89%E7%94%A8%E8%88%87%E5%AF%A6%E6%88%B0%E6%9E%B6%E6%A7%8B/</loc>
+
+    <lastmod>2026-08-17</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/</loc>
 
     <lastmod>2026-08-17</lastmod>
 
@@ -761,6 +752,13 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/tags/RAG/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/tags/MCP/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -769,13 +767,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/tags/RAG/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -818,34 +809,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/tags/AI-%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/tags/%E6%97%A5%E6%9C%AC%E6%97%85%E9%81%8A/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/tags/%E8%81%96%E5%9C%B0%E5%B7%A1%E7%A6%AE/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/tags/%E5%8B%95%E6%BC%AB/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/tags/%E8%87%AA%E7%94%B1%E8%A1%8C/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -918,20 +881,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/categories/%E6%97%A5%E6%9C%AC%E6%97%85%E9%81%8A/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/categories/%E6%97%A5%E6%9C%AC%E6%97%85%E9%81%8A/%E5%8B%95%E6%BC%AB%E6%96%87%E5%8C%96/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
