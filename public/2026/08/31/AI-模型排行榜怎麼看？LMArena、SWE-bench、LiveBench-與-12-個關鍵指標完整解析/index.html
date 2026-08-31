@@ -1,0 +1,633 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">
+  
+
+  <meta property="og:title" content="AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析"/>
+  <meta property="og:description" content="AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg?v=330a3459" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析">
+  <meta name="twitter:description" content="AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg?v=330a3459">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/","url":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/","headline":"AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析","description":"AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。","datePublished":"2026-08-31T06:41:53.000Z","dateModified":"2026-08-30T07:14:35.854Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析","item":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=5078c7cfdc">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">ZH</span>
+      </a>
+      <a
+        href="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-AI-模型排行榜怎麼看？LMArena、SWE-bench、LiveBench-與-12-個關鍵指標完整解析" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-08-31T06:41:53.000Z"><a href="/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">2026-08-31</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=df5522b0" alt="五種 AI 模型評測方法連接中央處理器的概念封面" width="1600" height="900" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover-card-480.jpg?v=34ae17db 480w, /2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=df5522b0 720w, /2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover-card-960.jpg?v=8878a153 960w, /2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover-card-1280.jpg?v=ecc52af3 1280w, /2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg?v=330a3459 1600w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>AI 模型排行榜常把不同能力濃縮成一個名次，但「第一名」只有放回評測方法、日期、版本與使用情境後才有意義。偏好票選、程式修復、推理正確率、回應速度與 API 成本，本來就在回答不同問題。</p>
+<p>這篇文章比較五個目前值得交叉參考的 AI 評測平台，並拆解 12 個常見指標。讀完後，你不只會看誰排在前面，也能判斷那個分數是否真的適合自己的任務。</p>
+<span id="more"></span>
+
+<h2 id="先別問誰第一名：先問你想衡量什麼"><a href="#先別問誰第一名：先問你想衡量什麼" class="headerlink" title="先別問誰第一名：先問你想衡量什麼"></a>先別問誰第一名：先問你想衡量什麼</h2><p>選模型之前，最好先把問題歸到以下四類：</p>
+<ul>
+<li><strong>人類偏好</strong>：回答是否自然、清楚、有幫助，使用者會不會比較喜歡。</li>
+<li><strong>任務能力</strong>：數學、科學、程式、指令遵循或 Agent 任務究竟做對多少。</li>
+<li><strong>系統效能</strong>：多久開始回應、輸出多快、整個任務要等多久。</li>
+<li><strong>經濟性</strong>：完成一次真實任務要付多少錢，而不只是每百萬 Token 的牌價。</li>
+</ul>
+<p>沒有一個排行榜能同時把這四類測得完美。對話產品可能重視偏好與首字延遲；Coding Agent 更在意問題解決率、整體耗時與每題成本；本地部署則還要加入模型大小、記憶體與授權條款。</p>
+<p>所以真正有用的問題不是「哪個模型最強」，而是「哪個模型在我的任務、預算與延遲限制下最合適」。</p>
+<h2 id="12-個-AI-評測指標白話拆解"><a href="#12-個-AI-評測指標白話拆解" class="headerlink" title="12 個 AI 評測指標白話拆解"></a>12 個 AI 評測指標白話拆解</h2><h3 id="1-Arena-Score"><a href="#1-Arena-Score" class="headerlink" title="1. Arena Score"></a>1. Arena Score</h3><p>Arena Score 由大量兩兩比較的偏好結果估算模型相對位置。它適合回答「多數評審比較喜歡哪一個回答」，卻不是智力、事實正確率或任務完成率的絕對分數。</p>
+<p>分數只在同一榜單、同一段時間與同一計算方法下具有可比性。不同平台即使都使用類似 Elo 的概念，也不能直接把數字放在一起比。</p>
+<h3 id="2-Pairwise-Win-Rate"><a href="#2-Pairwise-Win-Rate" class="headerlink" title="2. Pairwise Win Rate"></a>2. Pairwise Win Rate</h3><p>Pairwise Win Rate 是模型在一對一比較中勝出的比例，通常還要處理平手、對手強弱與樣本分布。它比單一平均分更接近真實選擇情境，但也可能受到回答長度、語氣、排版與評審族群影響。</p>
+<h3 id="3-Confidence-Interval-與-Rank-Spread"><a href="#3-Confidence-Interval-與-Rank-Spread" class="headerlink" title="3. Confidence Interval 與 Rank Spread"></a>3. Confidence Interval 與 Rank Spread</h3><p>排行榜顯示的名次不是毫無誤差的定論。<strong>Confidence Interval</strong> 描述估計分數的不確定範圍；<strong>Rank Spread</strong> 則讓你看到模型可能落在哪一段名次。</p>
+<p>如果兩個模型的區間高度重疊，把第二名說成「明顯打敗」第三名通常言過其實。此時投票數與日期往往比名次差一格更重要。</p>
+<h3 id="4-Accuracy-與-Composite-Index"><a href="#4-Accuracy-與-Composite-Index" class="headerlink" title="4. Accuracy 與 Composite Index"></a>4. Accuracy 與 Composite Index</h3><p>Accuracy 是答對題目的比例，最容易理解；Composite Index 則把數個測試依特定權重合成總分。綜合指數方便快速篩選，但權重本身就是平台對「重要能力」的選擇。</p>
+<p>因此看綜合分數時，至少要確認包含哪些題型、各自占比、是否使用工具，以及推理預算是否一致。</p>
+<h3 id="5-pass-1"><a href="#5-pass-1" class="headerlink" title="5. pass@1"></a>5. pass@1</h3><p>pass@1 表示第一次生成的答案或程式通過測試的機率。它最接近日常只接受一次回答的情境，也是比較模型穩定度時很實用的數字。</p>
+<p>不過它仍會受到採樣溫度、提示詞、執行環境與評測框架影響，不能脫離測試設定單獨引用。</p>
+<h3 id="6-pass-k"><a href="#6-pass-k" class="headerlink" title="6. pass@k"></a>6. pass@k</h3><p>pass@k 衡量產生 k 個候選答案時，至少有一個通過的機率。當產品允許多次嘗試、平行生成或自動挑選答案時，這個指標很有價值。</p>
+<p>但 k 越大通常代表更多 Token、時間與費用。高 pass@k 不等於使用者第一次就能拿到正確答案，也不能與 pass@1 混為一談。</p>
+<h3 id="7-Resolve-Rate"><a href="#7-Resolve-Rate" class="headerlink" title="7. Resolve Rate"></a>7. Resolve Rate</h3><p>Resolve Rate 常見於 SWE-bench 一類的軟體工程評測，代表在指定工具、環境與時間限制下，成功解決多少真實問題。它衡量的不只是寫出一小段函式，而是理解程式庫、修改檔案並通過測試的完整能力。</p>
+<p>比較 Resolve Rate 時，必須一起確認資料集版本、Agent 框架、是否允許多次嘗試，以及運算預算。相同模型搭配不同 Agent，結果可能差很多。</p>
+<h3 id="8-Time-to-First-Token"><a href="#8-Time-to-First-Token" class="headerlink" title="8. Time to First Token"></a>8. Time to First Token</h3><p><strong>Time to First Token，TTFT</strong> 是送出請求到收到第一個輸出 Token 的時間。聊天產品很重視它，因為使用者會直接感受到「系統有沒有開始回應」。</p>
+<p>但對會先進行內部推理的模型來說，第一個串流 Token 不一定是第一個真正可見的答案。</p>
+<h3 id="9-Time-to-First-Answer-Token"><a href="#9-Time-to-First-Answer-Token" class="headerlink" title="9. Time to First Answer Token"></a>9. Time to First Answer Token</h3><p><strong>Time to First Answer Token，TTFA</strong> 專門衡量第一個可見答案 Token 出現前的等待時間。它把推理階段納入等待，因此比較 reasoning model 時，往往比 TTFT 更貼近使用者體感。</p>
+<h3 id="10-Output-Speed"><a href="#10-Output-Speed" class="headerlink" title="10. Output Speed"></a>10. Output Speed</h3><p>Output Speed 通常以每秒輸出的 Token 數表示，也常被寫成 tokens&#x2F;s 或 TPS。它描述模型開始回答後的生成速度，但沒有包含前面的等待時間。</p>
+<p>一個模型可能 TTFA 很慢、開始回答後卻很快；另一個則立即開始但逐字輸出較慢。只看 TPS 會漏掉一半體驗。</p>
+<h3 id="11-End-to-End-Response-Time"><a href="#11-End-to-End-Response-Time" class="headerlink" title="11. End-to-End Response Time"></a>11. End-to-End Response Time</h3><p>End-to-End Response Time 從請求送出一路算到完整答案結束。它同時受到輸入長度、思考時間、輸出長度、工具呼叫與網路影響，最接近使用者完成一次任務真正等待多久。</p>
+<p>報告這個數字時，應註明輸出長度或任務類型，否則短回答與長篇報告不能公平比較。</p>
+<h3 id="12-Cost-per-Task"><a href="#12-Cost-per-Task" class="headerlink" title="12. Cost per Task"></a>12. Cost per Task</h3><p>Cost per Task 是完成一個固定任務的平均成本。它比單看每百萬 Token 價格更適合比較推理模型與 Agent，因為便宜的 Token 不代表整題便宜：模型可能思考更久、產生更多內容，或必須重試數次。</p>
+<p>每百萬輸入與輸出 Token 的牌價仍然重要，但應搭配實際 Token 用量、快取價格、工具費用、成功率與重試成本一起看。</p>
+<h2 id="五個主流-AI-評測平台各自在回答什麼"><a href="#五個主流-AI-評測平台各自在回答什麼" class="headerlink" title="五個主流 AI 評測平台各自在回答什麼"></a>五個主流 AI 評測平台各自在回答什麼</h2><h3 id="LMArena：真實使用者偏好與盲測比較"><a href="#LMArena：真實使用者偏好與盲測比較" class="headerlink" title="LMArena：真實使用者偏好與盲測比較"></a>LMArena：真實使用者偏好與盲測比較</h3><p><a target="_blank" rel="noopener" href="https://arena.ai/leaderboard/text">LMArena</a> 起源於 UC Berkeley 的 LMSYS Chatbot Arena。使用者向兩個匿名模型送出相同問題，閱讀回答後選擇較佳者或平手，平台再根據大量成對偏好計算 Arena Score。</p>
+<p>它的優勢是題目來自真實使用者，不完全依賴固定考古題；匿名比較也能降低品牌先入為主的影響。現在的文字榜單除了 Overall，還可查看 Expert、Coding、Math、Instruction Following、Multi-Turn、Creative Writing 與 Hard Prompts 等分類。</p>
+<p>閱讀時不要只抄第一名。更值得一起看的欄位包括分數不確定性、Rank Spread、投票數、日期與分項結果。它的主要盲點是人類偏好可能受到長度、語氣與版面影響，也不適合單靠短時間票選驗證需要執行、查證或長流程操作的任務。</p>
+<h3 id="Artificial-Analysis：能力、速度與成本放在同一張選型地圖"><a href="#Artificial-Analysis：能力、速度與成本放在同一張選型地圖" class="headerlink" title="Artificial Analysis：能力、速度與成本放在同一張選型地圖"></a>Artificial Analysis：能力、速度與成本放在同一張選型地圖</h3><p><a target="_blank" rel="noopener" href="https://artificialanalysis.ai/">Artificial Analysis</a> 適合開發者與企業做模型選型。它把模型能力、輸出速度、TTFT、TTFA、整體回應時間與 API 價格放在可篩選的資料中，也能比較同一模型由不同供應商提供時的效能差異。</p>
+<p>它的 Intelligence Index 是多項評測依權重組成的綜合指數，而不是一張神祕的單科考卷。平台也有獨立的 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/agents/coding-agents">Coding Agents</a> 評測，將任務成功率、成本、時間與 Token 使用量並列，適合評估 Agent 的工程落地表現。</p>
+<p>需要注意的是，平台的方法與指數版本會更新，引用時應寫明版本與日期。綜合指數目前仍以英文文字能力為主，多語、影像與語音要查看各自的獨立評測。若想深入理解操作方式，可以再看本站的 <a href="/2026/08/17/%E9%81%B8%E6%A8%A1%E5%9E%8B%E5%88%A5%E5%86%8D%E6%86%91%E6%84%9F%E8%A6%BA%EF%BC%81Artificial-Analysis-%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97%EF%BC%9A%E5%BE%9E%E5%93%81%E8%B3%AA%E3%80%81%E9%80%9F%E5%BA%A6%E5%88%B0%E6%88%90%E6%9C%AC%EF%BC%8C%E6%83%85%E5%A2%83%E5%8C%96%E6%8C%91%E5%87%BA%E6%9C%80%E9%81%A9%E5%90%88%E4%BD%A0%E7%9A%84-AI/">Artificial Analysis 完整指南</a>。</p>
+<h3 id="SWE-bench：讓-AI-修復真實-GitHub-專案"><a href="#SWE-bench：讓-AI-修復真實-GitHub-專案" class="headerlink" title="SWE-bench：讓 AI 修復真實 GitHub 專案"></a>SWE-bench：讓 AI 修復真實 GitHub 專案</h3><p><a target="_blank" rel="noopener" href="https://www.swebench.com/">SWE-bench</a> 取材自真實開源專案的 Issue 與 Pull Request。評測系統建立可重現的 Docker 環境，套用模型或 Agent 產生的修補程式，再執行測試確認問題是否解決，以及原本應通過的功能有沒有被破壞。</p>
+<p>常見版本包括完整集、Lite，以及由專業工程師逐題驗證的 <a target="_blank" rel="noopener" href="https://www.swebench.com/verified.html">SWE-bench Verified</a>。Verified 共有 500 個經人工確認、較少歧義的案例，是 SWE-bench 團隊與 OpenAI 合作整理的子集。後來的家族也擴展到多模態與多語版本。</p>
+<p>這裡有一個常見誤解需要更正：SWE-bench 的重點不是籠統宣稱「使用完全未公開的單元測試」，而是用標準化環境、測試修補與明確的 FAIL_TO_PASS、PASS_TO_PASS 條件判定修復是否成立。它比單一函式題更接近真實工程，但得分仍屬於「模型、Agent 框架、工具、預算與資料集版本」的組合，不是模型名稱本身的永久能力。</p>
+<p>若你正在比較開發工具，可以把成績與本站的 <a href="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/">Claude Code、Codex、Cursor 選型比較</a> 一起閱讀。</p>
+<h3 id="Scale-Labs-Leaderboards：從-SEAL-延伸的專家評測"><a href="#Scale-Labs-Leaderboards：從-SEAL-延伸的專家評測" class="headerlink" title="Scale Labs Leaderboards：從 SEAL 延伸的專家評測"></a>Scale Labs Leaderboards：從 SEAL 延伸的專家評測</h3><p><a target="_blank" rel="noopener" href="https://labs.scale.com/leaderboard">Scale Labs Leaderboards</a> 延續早期 SEAL Leaderboards 強調的專家設計與防止題庫污染方向，但現在已經擴展成更廣的評測集合，涵蓋前沿能力、Agentic 任務與安全等領域。</p>
+<p>平台同時使用私有與開放資料集，由人類設計評分標準，再視規模搭配模型輔助評分。私有測試能降低廠商針對公開題庫過度調校的空間，專家規範則適合處理指令遵循、領域推理與較複雜的工作品質。</p>
+<p>因此，今天不宜再把 Scale 的整個體系簡化成一張固定的「SEAL 五領域排行榜」。閱讀每個子榜時，應分別確認資料集是否公開、評分者是人類還是模型、題目領域、提交條件與更新日期。</p>
+<h3 id="LiveBench：用新題目與客觀答案降低污染"><a href="#LiveBench：用新題目與客觀答案降低污染" class="headerlink" title="LiveBench：用新題目與客觀答案降低污染"></a>LiveBench：用新題目與客觀答案降低污染</h3><p><a target="_blank" rel="noopener" href="https://livebench.ai/">LiveBench</a> 的核心設計是定期加入來自近期資訊來源的新題目，降低模型在訓練階段看過題庫的機率。它涵蓋數學、程式、推理、語言、指令遵循與資料分析，並盡量使用可自動驗證的客觀答案。</p>
+<p>與人類偏好票選或 LLM-as-a-Judge 不同，LiveBench 優先用 ground truth 自動評分，讓結果更容易重現，也減少評審模型偏好自己的回答風格。它適合觀察模型面對新問題的能力，但客觀評分較難完整捕捉創意、溝通品質與開放式任務價值，所以仍要與 LMArena 等偏好型資料互補。</p>
+<h2 id="Hugging-Face-Open-LLM-Leaderboard-為什麼不再列入"><a href="#Hugging-Face-Open-LLM-Leaderboard-為什麼不再列入" class="headerlink" title="Hugging Face Open LLM Leaderboard 為什麼不再列入"></a>Hugging Face Open LLM Leaderboard 為什麼不再列入</h2><p>Hugging Face Open LLM Leaderboard 曾是搜尋開源模型的重要入口，v2 使用 MMLU-Pro、GPQA、IFEval、MATH、MuSR 等標準測試，並讓社群模型以透明方式排隊評測。</p>
+<p>不過官方已在 <strong>2025 年 3 月 13 日</strong><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard/discussions/1135">宣布排行榜退役</a>。原因包括模型能力與推理方式快速變化，原有評測組合逐漸無法提供足夠鑑別度。它評估過超過 13,000 個模型，仍是重要的歷史資料，但不應再被寫成持續更新的當代五大平台之一。</p>
+<p>現在要挑選開源模型，除了參考歷史紀錄，也要查看模型卡、授權、上下文長度、量化版本、記憶體需求，以及在自己硬體與任務上的實測。</p>
+<h2 id="多平台比較表"><a href="#多平台比較表" class="headerlink" title="多平台比較表"></a>多平台比較表</h2><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>主要回答的問題</th>
+<th>核心方法</th>
+<th>最值得看的指標</th>
+<th>主要盲點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LMArena</strong></td>
+<td>使用者比較喜歡誰的回答</td>
+<td>匿名成對比較與社群投票</td>
+<td>Arena Score、Rank Spread、投票數、分項榜</td>
+<td>長度與風格偏誤，難驗證長流程任務</td>
+</tr>
+<tr>
+<td><strong>Artificial Analysis</strong></td>
+<td>哪個模型符合能力、速度與預算</td>
+<td>標準測試加 API 效能與價格實測</td>
+<td>Intelligence Index、TTFA、TPS、E2E、Cost per Task</td>
+<td>指數權重與方法版本會改變</td>
+</tr>
+<tr>
+<td><strong>SWE-bench</strong></td>
+<td>AI 能否修好真實軟體問題</td>
+<td>重現專案環境、套用 Patch、執行測試</td>
+<td>Resolve Rate、pass@1、成本、時間</td>
+<td>高度依賴 Agent 框架與運算預算</td>
+</tr>
+<tr>
+<td><strong>Scale Labs</strong></td>
+<td>模型在專家規範與新任務下表現如何</td>
+<td>私有或開放資料集、人類設計標準</td>
+<td>各子榜能力分數與評分方法</td>
+<td>不同子榜不能視為同一套固定規則</td>
+</tr>
+<tr>
+<td><strong>LiveBench</strong></td>
+<td>模型能否回答近期且可客觀驗證的新題</td>
+<td>定期更新題目與 ground truth 自動評分</td>
+<td>分領域正確率、平均分、更新日期</td>
+<td>較難衡量創意與主觀溝通品質</td>
+</tr>
+</tbody></table>
+<h2 id="依照使用情境選平台"><a href="#依照使用情境選平台" class="headerlink" title="依照使用情境選平台"></a>依照使用情境選平台</h2><h3 id="聊天機器人與內容助理"><a href="#聊天機器人與內容助理" class="headerlink" title="聊天機器人與內容助理"></a>聊天機器人與內容助理</h3><p>先看 LMArena 的 Overall、Instruction Following、Multi-Turn 與對應語言表現，再用自己的品牌語氣、正確性與拒答案例做小型盲測。偏好高不代表內容一定正確，事實查核仍不可省略。</p>
+<h3 id="API-產品與大量推論服務"><a href="#API-產品與大量推論服務" class="headerlink" title="API 產品與大量推論服務"></a>API 產品與大量推論服務</h3><p>先用 Artificial Analysis 篩選能力、TTFA、TPS、端到端時間與價格，再以真實流量測試尖峰延遲、錯誤率、速率限制與供應商穩定性。標示價格不能取代實際帳單。</p>
+<h3 id="Coding-Agent-與自動化開發"><a href="#Coding-Agent-與自動化開發" class="headerlink" title="Coding Agent 與自動化開發"></a>Coding Agent 與自動化開發</h3><p>查看 SWE-bench Verified 與其他終端、程式庫知識評測，同時記錄 Agent 框架、工具權限、嘗試次數、Cost per Task 與 End-to-End Time。若要設計完整開發流程，也可參考 <a href="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/">Agentic SDLC 架構指南</a>。</p>
+<h3 id="高風險或專業領域"><a href="#高風險或專業領域" class="headerlink" title="高風險或專業領域"></a>高風險或專業領域</h3><p>優先查看 Scale Labs 等專家設計評測，並自行建立含邊界案例、拒答政策與人工覆核的私有測試集。醫療、法律與財務情境不能只憑公開總榜上線。</p>
+<h3 id="追蹤新模型與資料污染風險"><a href="#追蹤新模型與資料污染風險" class="headerlink" title="追蹤新模型與資料污染風險"></a>追蹤新模型與資料污染風險</h3><p>用 LiveBench 觀察新題表現，再與偏好型和專家型評測交叉驗證。若一個模型只在多年不變的靜態題庫突然大幅領先，應先檢查資料污染與測試設定，而不是立刻下結論。</p>
+<h2 id="看排行榜時一定要記錄的六個欄位"><a href="#看排行榜時一定要記錄的六個欄位" class="headerlink" title="看排行榜時一定要記錄的六個欄位"></a>看排行榜時一定要記錄的六個欄位</h2><p>分享任何 AI 跑分時，至少把以下資訊一起保存：</p>
+<ol>
+<li><strong>模型的完整版本與日期</strong>：不要只寫產品家族名稱。</li>
+<li><strong>資料集與版本</strong>：例如 SWE-bench Verified，而不是只寫 Coding Benchmark。</li>
+<li><strong>評測框架與工具</strong>：模型裸跑和 Agent 使用終端、搜尋、重試不是同一條件。</li>
+<li><strong>推理與採樣設定</strong>：包含 reasoning effort、溫度、輸出上限與嘗試次數。</li>
+<li><strong>成本與時間</strong>：同樣成功率下，便宜十倍或快十倍可能更有商業價值。</li>
+<li><strong>不確定性與樣本數</strong>：分數差距若落在誤差範圍內，就不應宣稱有確定勝負。</li>
+</ol>
+<p>最後，最好再用 20 到 100 個自己的真實案例做驗收。公開排行榜適合縮小候選名單，產品資料才能決定最後選擇。</p>
+<h2 id="結語：把排行榜當地圖，不要當判決書"><a href="#結語：把排行榜當地圖，不要當判決書" class="headerlink" title="結語：把排行榜當地圖，不要當判決書"></a>結語：把排行榜當地圖，不要當判決書</h2><p>LMArena 告訴你人們偏好什麼，Artificial Analysis 幫你平衡能力、速度與成本，SWE-bench 檢查真實軟體修復，Scale Labs 提供專家規範與較難針對性準備的測試，LiveBench 則用持續更新的客觀題目降低污染。</p>
+<p>它們不是互相取代，而是五張比例尺不同的地圖。先定義任務，再挑對平台與指標，最後用自己的資料驗證，才是選 AI 模型最可靠的方法。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/LLM/">LLM</a>, <a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a>, <a href="/tags/Benchmark/">Benchmark</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>1</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>27</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>34</small></li>
+  
+    <li><a href="/tags/AI-Agent/">AI Agent</a><small>8</small></li>
+  
+    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+  
+    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>8</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>10</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>4</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>8</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
+  
+    <li><a href="/tags/Suno/">Suno</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>10</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>8</small></li>
+  
+    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>4</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>6</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
