@@ -1,0 +1,951 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="AI generates code, tests, and fixes. This article focuses on an AI-native E2E harness: black-box tests, CI gates, agentic exploration, and regression evidence.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/">
+  
+
+  <meta property="og:title" content="How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness"/>
+  <meta property="og:description" content="AI generates code, tests, and fixes. This article focuses on an AI-native E2E harness: black-box tests, CI gates, agentic exploration, and regression evidence."/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg?v=de8aafbd" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness">
+  <meta name="twitter:description" content="AI generates code, tests, and fixes. This article focuses on an AI-native E2E harness: black-box tests, CI gates, agentic exploration, and regression evidence.">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg?v=de8aafbd">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/","url":"https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/","headline":"How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness","description":"AI generates code, tests, and fixes. This article focuses on an AI-native E2E harness: black-box tests, CI gates, agentic exploration, and regression evidence.","datePublished":"2026-09-01T02:30:24.000Z","dateModified":"2026-09-01T12:24:39.000Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Software Engineering","item":"https://blog.6yuwei.com/en/categories/Software-Engineering/"},{"@type":"ListItem","position":3,"name":"How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness","item":"https://blog.6yuwei.com/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/en/css/style.css?v=5078c7cfdc">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/en/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/en/">
+      <img src="/en/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+  <h2><a href="/en/">Practical notes on AI, frontend engineering, game development, Japanese learning, and tested tools</a></h2>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="Switch language">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">English</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/01/AI-時代，E2E-測試要怎麼升級？從固定腳本到-AI-native-Harness/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>Traditional Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">ZH</span>
+      </a>
+      <a
+        href="/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/en/">Home</a></li>
+    
+      <li><a href="/en/archives">Archives</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-e2e-testing-agentic-sdlc-ground-truth" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-01T02:30:24.000Z"><a href="/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/">2026-09-01</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-720.jpg?v=ca69ca85" alt="A technical illustration of an AI-era E2E acceptance system connecting a product build, fixed tests, AI exploration, and test records" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-480.jpg?v=8c117004 480w, /en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-720.jpg?v=ca69ca85 720w, /en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-960.jpg?v=011028d8 960w, /en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg?v=de8aafbd 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>The short answer is this: <strong>in the AI era, E2E is not about asking AI to write more tests. It is about building an E2E harness that receives a build, executes a real user journey, preserves complete evidence, classifies failures, and turns new defects into regression protection.</strong></p>
+<p>A single E2E test case answers whether one scenario passes. An E2E harness owns the specification, test data, execution environments, runner adapters, observability, CI gates, and the protocols that tell agents how to explore and repair. AI makes product changes faster, but it also increases the volume of defects, maintenance work, and changes. The upgrade is therefore not more scripts. It is better <strong>boundaries, observability, and feedback loops</strong>.</p>
+<p>This article focuses on one question: when a Builder can continuously produce product changes, how should an AI-native E2E harness be designed so that fixed tests protect CI, agents explore unknown paths, and every result returns to development as useful evidence? Browser, mobile, API, and hybrid systems may use different adapters and folders; the architecture below is a general reference model, while Appium and WebView appear only as optional examples. The invariants are the black-box boundary, observable evidence, fixed acceptance, and exploratory feedback.</p>
+<span id="more"></span>
+
+<h2 id="1-Start-with-the-Definition-an-E2E-Test-Is-a-Case-an-E2E-Harness-Is-the-Quality-Control-Plane"><a href="#1-Start-with-the-Definition-an-E2E-Test-Is-a-Case-an-E2E-Harness-Is-the-Quality-Control-Plane" class="headerlink" title="1. Start with the Definition: an E2E Test Is a Case; an E2E Harness Is the Quality Control Plane"></a>1. Start with the Definition: an E2E Test Is a Case; an E2E Harness Is the Quality Control Plane</h2><p>In one sentence: <strong>an E2E test case is the scenario to run; an E2E harness is the complete acceptance system that executes that scenario against the real product, judges it, diagnoses failures, and turns confirmed defects into regression protection.</strong> It is not a new package, and it is not the same thing as Playwright, a WebDriver client, or Appium.</p>
+<h3 id="Why-generating-more-tests-is-not-the-answer"><a href="#Why-generating-more-tests-is-not-the-answer" class="headerlink" title="Why generating more tests is not the answer"></a>Why generating more tests is not the answer</h3><p>Traditional E2E projects are often treated as folders of test files: a few specs, some Page Objects, and several CI commands. That structure can survive while humans make changes at a limited rate. Once coding agents continuously produce pull requests, it exposes three problems:</p>
+<ul>
+<li>tests and product code share context and can copy the same faulty assumption;</li>
+<li>a test returns only green or red, leaving an agent without enough evidence to distinguish a product defect, data problem, environment failure, or test defect;</li>
+<li>a newly discovered bug has no path back into regression coverage, so people must rediscover it later.</li>
+</ul>
+<p>This is <strong>AI Test Theater</strong>: the same Builder Agent writes the product, writes tests from its own assumptions, and then treats a green run as proof that the change is done. Coverage can rise while the real defect remains because the product, test, and expected result share one faulty assumption. Unit tests still matter, but they are the Builder’s fast local check, not independent product acceptance. The Validator must take the build, exercise the real product from the outside, and compare it with a separate fixed rule.</p>
+<p>Three layers make the distinction clearer:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+<th>Typical contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E2E test case</td>
+<td>Verify one fixed product scenario</td>
+<td>Fixed inputs, actions, and assertions</td>
+</tr>
+<tr>
+<td>Test runner&#x2F;framework</td>
+<td>Send test code through the product interface</td>
+<td>Playwright Test, WebDriver clients, API runners, fixtures</td>
+</tr>
+<tr>
+<td>E2E harness</td>
+<td>Manage the whole acceptance process</td>
+<td>Product build, environment, data, evidence, verdict, CI, and agent rules</td>
+</tr>
+</tbody></table>
+<p>So when a team says “we use Playwright,” that only proves it has an automation tool. It has an E2E harness when the toolchain can receive a specified build, prepare isolated data, keep replayable records, make a fixed verdict, and add confirmed defects to regression tests.</p>
+<p>“Harness” is not a term invented for AI. The ISTQB glossary defined a test harness in 2019 as the test environment, including stubs and drivers, needed to execute a test suite. An earlier FDA／IEEE software glossary described the related test driver／test harness as the component that invokes the test item, provides inputs, monitors execution, and reports results. <a target="_blank" rel="noopener" href="https://api.glossary.istqb.org/storage/help/R0uz58NqLzUz48LVUuyGSF76NFj4LHQazSs0GlNS.pdf">ISTQB Glossary</a>, <a target="_blank" rel="noopener" href="https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-guides/glossary-computer-system-software-development-terminology-895">FDA／IEEE Software Glossary</a></p>
+<p>What has become popular recently is <strong>AI-native harness</strong>. When an agent reads specifications, edits the product, runs tests, analyzes failures, and proposes repairs, the harness becomes more than a test runner: it provides the agent with tools, context, constraints, evidence, and a definition of done. OpenAI’s discussion of Harness Engineering makes this shift explicit by focusing on the environment and feedback loops that let agents work reliably, rather than only on better prompts. <a target="_blank" rel="noopener" href="https://openai.com/index/harness-engineering/">Harness engineering</a></p>
+<h3 id="How-the-harness-works"><a href="#How-the-harness-works" class="headerlink" title="How the harness works"></a>How the harness works</h3><pre class="mermaid">
+flowchart TD
+    classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef patch fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+    classDef review fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
+    classDef mem fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    A["Product repository<br/>produces a build artifact"]:::dev
+    B["E2E harness<br/>reads specs, fixtures, and environment"]:::plan
+    C["Deterministic runner<br/>browser / mobile / API adapter"]:::test
+    D["Real product surface<br/>browser / native / API"]:::dev
+    E["Evidence layer<br/>UI tree / trace / logs / database"]:::mem
+    F["Validator<br/>fixed oracle + failure classification"]:::review
+    G["CI gate<br/>pass / fail / promote"]:::gate
+    H["Repair or create regression"]:::patch
+    I(["Replayable acceptance result<br/>task complete"]):::done
+
+    A --> B --> C --> D --> E --> F --> G
+    G -->|meets contract| I
+    F -.->|failure| H
+    H --> B
+</pre>
+
+<p>That is the subject of this article. The harness does not ask AI to guess the answer. It connects <strong>the specification, the real product, execution evidence, and the next action</strong> into a replayable chain. Ground truth here does not mean a model saying “looks good.” It means comparing a fixed oracle with real product behavior, runtime, and data state.</p>
+<h2 id="2-Keep-the-Harness-Separate-from-the-Product"><a href="#2-Keep-the-Harness-Separate-from-the-Product" class="headerlink" title="2. Keep the Harness Separate from the Product"></a>2. Keep the Harness Separate from the Product</h2><h3 id="E2E-must-not-import-product-source"><a href="#E2E-must-not-import-product-source" class="headerlink" title="E2E must not import product source"></a>E2E must not import product source</h3><p>Regardless of whether the product is web, mobile, desktop, API, or hybrid, one rule comes first: <strong>E2E tests the product from the outside; it does not call the product from the inside.</strong> The runner and folders can change by product shape; this boundary stays.</p>
+<p>The repository relationship should look like this:</p>
+<pre class="mermaid">
+flowchart TD
+    classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef patch fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+    classDef review fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
+    classDef mem fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    A["Product repository<br/>RD development and merge"]:::dev
+    B["Build artifact<br/>web build / container / mobile package"]:::plan
+    C["E2E harness repository<br/>Specs / Flows / Fixtures / Agents"]:::mem
+    D["Execution environment<br/>browser / device / service"]:::test
+    E["Runner adapter<br/>browser / mobile / API client"]:::test
+    F["Real product behavior<br/>UI / API / persistence"]:::dev
+    G(["Acceptance evidence<br/>traceable result"]):::done
+
+    A --> B --> C --> D --> E --> F --> G
+</pre>
+
+<p>The E2E repository must not contain dependencies such as:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> productStore <span class="keyword">from</span> <span class="string">&#x27;product&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> productService <span class="keyword">from</span> <span class="string">&#x27;product&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>It may consume:</p>
+<ul>
+<li>a web build, container image, mobile package, or other deployable artifact;</li>
+<li>test identities, test data, and versioned fixtures;</li>
+<li>a QA backend, sandbox, and seed&#x2F;reset API;</li>
+<li>a DOM, accessibility tree, native UI tree, service log, or runner log;</li>
+<li>backend and database queries constrained by read-only permission or an allowlist.</li>
+</ul>
+<p>This is not black-box testing for the sake of a slogan. It stops tests from depending on components, state managers, services, or internal functions. E2E should verify what a user or external client sees after receiving a deployable version, not whether an internal function can be called directly.</p>
+<h3 id="What-the-Product-Must-Expose-for-Testing"><a href="#What-the-Product-Must-Expose-for-Testing" class="headerlink" title="What the Product Must Expose for Testing"></a>What the Product Must Expose for Testing</h3><p>Black-box testing does not mean the product team provides nothing. Without stable locators, resettable data, or traceable request IDs, the tests will need fragile workarounds. Put the requirements in <strong>TESTABILITY_REQUIREMENTS.md</strong>, selecting what the product needs:</p>
+<ul>
+<li>accessibility identifiers, Android resource IDs, or iOS accessibility IDs for native controls;</li>
+<li>semantic locators and necessary <code>data-testid</code> rules for web interfaces;</li>
+<li>API schemas, error codes, idempotency behavior, and test endpoints when applicable;</li>
+<li>test-support APIs for creating, querying, and clearing test data;</li>
+<li>controllable login, permissions, lifecycle, refresh, and session behavior when applicable;</li>
+<li>the product commit SHA, version, and environment metadata for every artifact;</li>
+<li>correlation IDs that connect a user action to API, queue, service, and database events.</li>
+</ul>
+<p>When an element cannot be found, an agent should not generate a longer XPath. A missing test interface is a product requirement for the team that owns that surface.</p>
+<h2 id="3-How-to-Structure-the-Harness"><a href="#3-How-to-Structure-the-Harness" class="headerlink" title="3. How to Structure the Harness"></a>3. How to Structure the Harness</h2><h3 id="A-Directory-an-Agent-Can-Navigate"><a href="#A-Directory-an-Agent-Can-Navigate" class="headerlink" title="A Directory an Agent Can Navigate"></a>A Directory an Agent Can Navigate</h3><p>The folders should make it obvious where an agent finds specifications, data, runners, and test records. The following is a cross-product reference structure; do not create folders a product does not need:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">e2e-harness/</span><br><span class="line">├── AGENTS.md</span><br><span class="line">├── docs/</span><br><span class="line">│   ├── product-map.md</span><br><span class="line">│   ├── test-strategy.md</span><br><span class="line">│   ├── environments.md</span><br><span class="line">│   ├── selector-contract.md</span><br><span class="line">│   └── known-issues.md</span><br><span class="line">├── specs/</span><br><span class="line">│   ├── smoke/</span><br><span class="line">│   ├── critical/</span><br><span class="line">│   └── regression/</span><br><span class="line">├── pages/                 # Web UI, optional</span><br><span class="line">├── screens/               # Other UI surfaces, optional</span><br><span class="line">├── components/            # Shared UI, optional</span><br><span class="line">├── flows/</span><br><span class="line">├── assertions/</span><br><span class="line">├── fixtures/</span><br><span class="line">├── support/</span><br><span class="line">├── adapters/</span><br><span class="line">│   ├── browser/           # Playwright</span><br><span class="line">│   ├── mobile/            # Appium, optional</span><br><span class="line">│   └── api/               # API client/contract, optional</span><br><span class="line">├── observability/</span><br><span class="line">├── agent/</span><br><span class="line">│   ├── exploratory/</span><br><span class="line">│   ├── failure-analysis/</span><br><span class="line">│   ├── test-generation/</span><br><span class="line">│   └── maintenance/</span><br><span class="line">├── config/</span><br><span class="line">└── scripts/</span><br></pre></td></tr></table></figure>
+
+<p>Each folder should have one job:</p>
+<table>
+<thead>
+<tr>
+<th>Folder</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>specs/</code></td>
+<td>Describe what must be verified, without low-level driver calls</td>
+</tr>
+<tr>
+<td><code>flows/</code></td>
+<td>Describe cross-page, cross-screen, or cross-API business actions such as login, checkout, and cancellation</td>
+</tr>
+<tr>
+<td><code>pages/</code> &#x2F; <code>screens/</code></td>
+<td>Encapsulate the UI surface that exists for the product: page or screen locators, input, clicks, and state waits</td>
+</tr>
+<tr>
+<td><code>components/</code></td>
+<td>Encapsulate shared UI such as modals, filter panels, date pickers, and checkout forms when needed</td>
+</tr>
+<tr>
+<td><code>fixtures/</code> &#x2F; <code>support/</code></td>
+<td>Accounts, data seeds, payment data, reset, and cleanup</td>
+</tr>
+<tr>
+<td><code>adapters/</code></td>
+<td>Hide browser, mobile, API, or other product-interface differences</td>
+</tr>
+<tr>
+<td><code>observability/</code></td>
+<td>Screenshots, DOM&#x2F;UI trees, traces, network, service logs, and database diffs</td>
+</tr>
+<tr>
+<td><code>agent/</code></td>
+<td>Exploration, failure analysis, case generation, and low-risk maintenance</td>
+</tr>
+</tbody></table>
+<h3 id="Describe-What-to-Verify-Before-How-to-Operate"><a href="#Describe-What-to-Verify-Before-How-to-Operate" class="headerlink" title="Describe What to Verify Before How to Operate"></a>Describe What to Verify Before How to Operate</h3><p>The spec should describe preconditions, user intent, observable outcomes, and failure boundaries—not a selector list. Flows, Pages&#x2F;Screens, and Runner Adapters translate that intent into semantic locators and stable waits: roles, labels, semantic text, or explicit test IDs on the web; equivalent accessibility IDs, resource IDs, or service contracts on other surfaces. An agent may complete these layers, but it must not turn “the element is temporarily missing” into “anything visible counts as success.”</p>
+<p>For example:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> checkoutFlow.<span class="title function_">placeOrder</span>(&#123;</span><br><span class="line">  <span class="attr">product</span>: catalog.<span class="property">inStockItem</span>,</span><br><span class="line">  <span class="attr">account</span>: users.<span class="property">standard</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> checkoutAssertions.<span class="title function_">expectCreatedOnce</span>();</span><br></pre></td></tr></table></figure>
+
+<p>A flow may cross pages, screens, or APIs, but a page object should not contain the whole business journey. This lets an agent repair one locator or runner without relearning the product.</p>
+<h3 id="Three-Test-Groups-with-Different-Responsibilities"><a href="#Three-Test-Groups-with-Different-Responsibilities" class="headerlink" title="Three Test Groups, with Different Responsibilities"></a>Three Test Groups, with Different Responsibilities</h3><table>
+<thead>
+<tr>
+<th>Suite</th>
+<th>Purpose</th>
+<th>Frequency</th>
+<th>Blocks CI?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Smoke</td>
+<td>Confirm that the build launches and completes the shortest Critical Journey</td>
+<td>Every PR or build</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>Cover business journeys that cannot break before release</td>
+<td>PR, QA, release candidate</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Regression</td>
+<td>Preserve fixed bugs, permissions, lifecycle, error states, and edge cases</td>
+<td>Post-merge, nightly</td>
+<td>Risk-based</td>
+</tr>
+</tbody></table>
+<p>The practical split is simple: fast checks stay local, fixed E2E protects important journeys, and AI exploration does not decide whether CI passes. A product may have no <code>pages/</code>, <code>screens/</code>, or mobile adapter. The key rule is that <strong>only the fixed runner decides whether fixed acceptance passes</strong>.</p>
+<h2 id="4-Fixed-Tests-and-AI-Exploration-Have-Different-Jobs"><a href="#4-Fixed-Tests-and-AI-Exploration-Have-Different-Jobs" class="headerlink" title="4. Fixed Tests and AI Exploration Have Different Jobs"></a>4. Fixed Tests and AI Exploration Have Different Jobs</h2><h3 id="Share-Records-Not-Release-Authority"><a href="#Share-Records-Not-Release-Authority" class="headerlink" title="Share Records, Not Release Authority"></a>Share Records, Not Release Authority</h3><pre class="mermaid">
+flowchart TD
+    classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef patch fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+    classDef review fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
+    classDef mem fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    I["One intent<br/>product behavior and oracle"]:::intake
+    C["Deterministic E2E<br/>fixed inputs and assertions"]:::test
+    A["Agentic QA<br/>autonomous exploration and decisions"]:::dev
+    E["Evidence Layer<br/>UI tree / trace / logs / state"]:::mem
+    G["CI Gate<br/>fixed pass / fail"]:::gate
+    R["Reproduce<br/>classify and make replayable"]:::review
+    D(["Regression Suite<br/>permanent protection"]):::done
+
+    I --> C
+    I --> A
+    C --> G
+    C --> E
+    A --> E
+    A --> R
+    E --> R
+    R --> D --> C
+</pre>
+
+<h3 id="Fixed-E2E-the-CI-Gate"><a href="#Fixed-E2E-the-CI-Gate" class="headerlink" title="Fixed E2E: the CI Gate"></a>Fixed E2E: the CI Gate</h3><p>Fixed E2E must have:</p>
+<ul>
+<li>fixed inputs, test data, expected results, and a resettable environment;</li>
+<li>independent execution without relying on the previous test’s state;</li>
+<li>no LLM deciding pass or fail;</li>
+<li>no automatic relaxation of expected results after a UI change;</li>
+<li>complete records on failure so the next agent can replay it.</li>
+</ul>
+<p>AI may generate a draft, but before it enters <code>specs/smoke/</code>, <code>specs/critical/</code>, or <code>specs/regression/</code>, confirm that it describes product behavior rather than an accidental DOM or native-tree shape.</p>
+<h3 id="AI-Exploration-Find-Problems-the-Fixed-Cases-Miss"><a href="#AI-Exploration-Find-Problems-the-Fixed-Cases-Miss" class="headerlink" title="AI Exploration: Find Problems the Fixed Cases Miss"></a>AI Exploration: Find Problems the Fixed Cases Miss</h3><p>AI exploration does not replace fixed E2E. It searches for behavior that has not yet been written into a specification:</p>
+<ul>
+<li>rapidly click, go back, or reload while an order or other state-changing action is being submitted;</li>
+<li>move a lifecycle-aware client to the background during loading and bring it back to the foreground;</li>
+<li>reject location, notification, or other permissions when the product has them;</li>
+<li>reload a WebView, fail a Native&#x2F;WebView context switch, or let the keyboard cover a button when the product is hybrid;</li>
+<li>inject API latency, network loss, a 409 response, partial success, or timeout;</li>
+<li>let two isolated users update the same order concurrently.</li>
+</ul>
+<p>Exploration belongs in resettable staging, a seeded database, or a network mock. Limit the agent’s accounts, data, tools, and external writes. An exploration result is a candidate problem, not a CI green light.</p>
+<p>The useful loop is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Explore</span><br><span class="line">  → Record</span><br><span class="line">  → Analyze</span><br><span class="line">  → Reproduce</span><br><span class="line">  → create a fixed regression test</span><br><span class="line">  → Run again</span><br></pre></td></tr></table></figure>
+
+<p>If the issue is reproducible, add it to <code>specs/regression/</code>. Every captured unknown then becomes permanent protection.</p>
+<h3 id="Separate-the-Builder-from-the-Validator"><a href="#Separate-the-Builder-from-the-Validator" class="headerlink" title="Separate the Builder from the Validator"></a>Separate the Builder from the Validator</h3><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Primary work</th>
+<th>Must not decide alone</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Builder Agent</td>
+<td>Modify the product or harness and run local checks</td>
+<td>That its own green tests mean product acceptance is complete</td>
+</tr>
+<tr>
+<td>Validator Agent</td>
+<td>Obtain the build, run black-box E2E, read evidence, and classify failures</td>
+<td>To change assertions first to remove a red result</td>
+</tr>
+<tr>
+<td>QA &#x2F; RD &#x2F; human Judge</td>
+<td>Define intent, confirm product changes, and accept risk exceptions</td>
+<td>To skip raw evidence and trust a model summary</td>
+</tr>
+</tbody></table>
+<p>The model brand is not the point. Keep roles, context, environment, and decision rights separate. In one 2026 study, tests generated after faulty code had weaker fault detection than independently generated tests in that experiment. That is another reason to keep Builder assumptions out of the Validator’s acceptance context. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05139">On the risk of coding before testing</a></p>
+<h2 id="5-Keep-Test-Records-So-Agents-Can-Diagnose-Problems"><a href="#5-Keep-Test-Records-So-Agents-Can-Diagnose-Problems" class="headerlink" title="5. Keep Test Records So Agents Can Diagnose Problems"></a>5. Keep Test Records So Agents Can Diagnose Problems</h2><h3 id="Do-Not-Leave-Only-an-Error-Message"><a href="#Do-Not-Leave-Only-an-Error-Message" class="headerlink" title="Do Not Leave Only an Error Message"></a>Do Not Leave Only an Error Message</h3><p><code>Expected visible, received hidden</code> is not enough to find the cause. On failure, the harness should keep at least:</p>
+<ul>
+<li>the DOM snapshot, ARIA snapshot, or native UI tree before and after the failed step;</li>
+<li>screenshots, video when needed, traces, and execution logs;</li>
+<li>console output, request URL, HTTP status, and response summaries;</li>
+<li>product commit, E2E commit, build number, OS&#x2F;browser&#x2F;runtime, locale, and environment;</li>
+<li>test-data seed, account, correlation ID, backend logs, and the before&#x2F;after database difference.</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://playwright.dev/docs/trace-viewer">Playwright Trace Viewer</a> can replay actions and inspect the DOM, network, and console. <a target="_blank" rel="noopener" href="https://playwright.dev/docs/browser-contexts">Test Isolation</a> gives each web test a clean Browser Context. Other runners should provide comparable records and isolation.</p>
+<h3 id="Classify-the-Problem-Before-Repairing-the-Test"><a href="#Classify-the-Problem-Before-Repairing-the-Test" class="headerlink" title="Classify the Problem Before Repairing the Test"></a>Classify the Problem Before Repairing the Test</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scenario&quot;</span><span class="punctuation">:</span> <span class="string">&quot;checkout-with-expired-session&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;failed&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;classification&quot;</span><span class="punctuation">:</span> <span class="string">&quot;product-regression&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;observed&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;result&quot;</span><span class="punctuation">:</span> <span class="string">&quot;order-confirmed&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;httpStatus&quot;</span><span class="punctuation">:</span> <span class="number">201</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;orderCountDelta&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;runtime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;browser&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;expected&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;result&quot;</span><span class="punctuation">:</span> <span class="string">&quot;login-required&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;httpStatus&quot;</span><span class="punctuation">:</span> <span class="number">401</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;orderCountDelta&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;evidence&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;trace.zip&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;accessibility-snapshot.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;runner.log&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;network.ndjson&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;database-diff.json&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;nextAction&quot;</span><span class="punctuation">:</span> <span class="string">&quot;send-to-builder&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Classify every failure as one of at least six types: product regression, intentional product change, test framework problem, test-data problem, environment problem, or intermittent&#x2F;timing problem. Until the classification is complete, an agent should not change a locator or expected result.</p>
+<h3 id="Automatic-Repair-May-Change-the-Test-Not-the-Product-Answer"><a href="#Automatic-Repair-May-Change-the-Test-Not-the-Product-Answer" class="headerlink" title="Automatic Repair May Change the Test, Not the Product Answer"></a>Automatic Repair May Change the Test, Not the Product Answer</h3><p>A test-repair PR may change a locator, wait condition, or fixture setup, but it must prove:</p>
+<ol>
+<li>the new locator matches exactly one element in the correct container;</li>
+<li>the original business check remains intact;</li>
+<li>the original case, a neighboring scenario, and one negative case all pass again;</li>
+<li>the PR includes the old and new locator, trace, and rerun result;</li>
+<li>no check is deleted, timeout is inflated, retry is made unlimited, or error state is turned into success.</li>
+</ol>
+<p>Playwright’s official <a target="_blank" rel="noopener" href="https://playwright.dev/docs/test-agents">Test Agents</a> include planner, generator, and healer capabilities. They can help maintain tests, but must not have permission to change the product’s expected answer.</p>
+<h2 id="6-Connect-Product-Interfaces-to-the-Harness"><a href="#6-Connect-Product-Interfaces-to-the-Harness" class="headerlink" title="6. Connect Product Interfaces to the Harness"></a>6. Connect Product Interfaces to the Harness</h2><h3 id="Playwright-and-Similar-Tools-Are-Runners"><a href="#Playwright-and-Similar-Tools-Are-Runners" class="headerlink" title="Playwright and Similar Tools Are Runners"></a>Playwright and Similar Tools Are Runners</h3><p>Choose the runner adapter based on the product surface rather than coupling the whole harness to one tool:</p>
+<ul>
+<li>Use Playwright for web interfaces, including browser actions, semantic locators, network inspection, traces, and DOM assertions.</li>
+<li>Use an HTTP client, contract runner, or service-specific adapter for API products.</li>
+<li>If the product includes a native or hybrid mobile app, add TypeScript, WebdriverIO, Appium 2, Android UiAutomator2, and iOS XCUITest. Appium drivers map WebDriver commands to platform-specific automation APIs. <a target="_blank" rel="noopener" href="https://appium.io/docs/en/2.3/ecosystem/drivers/">Appium Drivers</a></li>
+<li>For desktop, CLI, IoT, or other surfaces, add an adapter around the observable external interface. The tool may change; the intent, evidence, and validator contracts should not.</li>
+</ul>
+<p>Appium is not the harness. It is one optional adapter for a native or hybrid mobile surface, and another runner can occupy the same boundary.</p>
+<p>If the product is a hybrid app, treat Native and WebView as different contexts. Keep context switching in <code>adapters/mobile/webview/</code> rather than scattering it across every spec. <a target="_blank" rel="noopener" href="https://appium.io/docs/en/2.11/guides/context/">Appium Managing Contexts</a></p>
+<p>For the web, Playwright handles the browser, semantic locators, network, traces, and DOM assertions. Prefer roles, labels, semantic text, or an explicit test ID over CSS <code>nth-child</code> or XPath. <a target="_blank" rel="noopener" href="https://playwright.dev/docs/locators">Playwright Locators</a></p>
+<p>MCP is the agent’s I&#x2F;O boundary, not the test runner or the judge. It can expose specification resources, browser&#x2F;mobile&#x2F;API runner tools, log readers, backend queries, and read-only database queries. The MCP specification separates prompts, resources, and tools by control responsibility; implementations still need allowlists, least privilege, and audit logs. <a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/specification/2025-06-18/server/index">MCP Server Features</a></p>
+<pre class="mermaid">
+flowchart TD
+    classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef patch fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+    classDef review fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
+    classDef mem fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    S["Specification resource<br/>intent + preconditions + oracle"]:::plan
+    M["MCP boundary<br/>controlled resources / tools / audit"]:::gate
+    R["Runner adapters<br/>browser / mobile / API"]:::test
+    U["Real product surface<br/>browser / native / API"]:::dev
+    E["Evidence layer<br/>snapshot / trace / network / logs"]:::mem
+    Q["Backend + database<br/>correlation ID / read-only query"]:::test
+    V["Validator<br/>observed vs expected"]:::review
+    P["Builder repair<br/>or human decision"]:::patch
+    D(["Harness Ground Truth<br/>replayable acceptance result"]):::done
+
+    S --> M --> R --> U --> E --> Q --> V --> D
+    E --> V
+    V -.->|failure| P
+    P -.->|re-verify| M
+</pre>
+
+<h3 id="How-to-Schedule-Tests-in-CI"><a href="#How-to-Schedule-Tests-in-CI" class="headerlink" title="How to Schedule Tests in CI"></a>How to Schedule Tests in CI</h3><p>The Product Repo and E2E Repo can be connected by build artifacts:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Harness action</th>
+<th>Gate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product Build</td>
+<td>Build and publish the specified web build, container, APK, or IPA with product commit and version</td>
+<td>Artifact is deployable</td>
+</tr>
+<tr>
+<td>Smoke</td>
+<td>Start the browser or required device&#x2F;runtime and run the shortest Critical Journey</td>
+<td>Failure blocks merge or promotion</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>Run core flows, permissions, and the required platform matrix</td>
+<td>Failure blocks the release candidate</td>
+</tr>
+<tr>
+<td>Nightly Regression</td>
+<td>Run fixed bugs, lifecycle, hybrid-interface, error-state, and network-fault cases</td>
+<td>Produce repair and new-case candidates</td>
+</tr>
+<tr>
+<td>Agentic Exploration</td>
+<td>Explore unknown combinations in an isolated environment and preserve replayable steps</td>
+<td>Never edit <code>main</code> directly</td>
+</tr>
+</tbody></table>
+<p>Every report must identify the product commit SHA, E2E commit SHA, build number or version, OS&#x2F;browser&#x2F;runtime, environment, data seed, and test account. Without this metadata, an agent can easily misclassify an environment problem as a product defect.</p>
+<h3 id="How-to-Tell-Whether-Testing-Is-Sufficient"><a href="#How-to-Tell-Whether-Testing-Is-Sufficient" class="headerlink" title="How to Tell Whether Testing Is Sufficient"></a>How to Tell Whether Testing Is Sufficient</h3><p>For an E2E harness, coverage should not answer only “how many lines of code ran?” It should answer: “how much of the known high-risk product behavior can be verified and replayed with fixed inputs, the real interface, and a reliable oracle?” A coverage item can therefore be represented as:</p>
+<p><code>Intent × State × Data × Surface</code></p>
+<p>For example, “checkout × expired session × standard account × web／Chrome” is one coverage item; “submit payment × duplicate click × existing order × API＋web” is another. The item is covered only when a runner executes that combination and checks the product outcome plus any required side effects. An agent exploring randomly once and seeing no visible error does not count as coverage.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>How to judge it</th>
+<th>Question it answers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Intent／Requirement coverage</td>
+<td>Verified intents ÷ approved intents, preferably risk-weighted</td>
+<td>Does every important requirement have an acceptance case?</td>
+</tr>
+<tr>
+<td>State／Transition coverage</td>
+<td>Verified state transitions ÷ transitions in the behavior model</td>
+<td>Are we testing only success, while missing expiry, retry, timeout, or rollback?</td>
+</tr>
+<tr>
+<td>Data／Boundary coverage</td>
+<td>Verified data partitions and boundaries ÷ risk-listed partitions</td>
+<td>Are empty values, limits, duplicate data, and roles covered?</td>
+</tr>
+<tr>
+<td>Surface／Environment coverage</td>
+<td>Passing required surfaces and runtimes ÷ the declared required matrix</td>
+<td>Did the browser, API, device, OS, or deployment environment actually run?</td>
+</tr>
+<tr>
+<td>Oracle／Evidence coverage</td>
+<td>Critical cases with business results, required side effects, and replayable evidence ÷ all Critical cases</td>
+<td>Can the test judge the product, or did it merely click through the UI?</td>
+</tr>
+<tr>
+<td>Fault-detection coverage</td>
+<td>Valid mutants detected by tests ÷ total valid mutants</td>
+<td>Can the suite catch deliberately injected defects?</td>
+</tr>
+</tbody></table>
+<p>Line, function, and branch coverage remain useful, but they only show that code executed. They do not prove that an assertion is correct or that product behavior meets the requirement. ISTQB distinguishes statement coverage from decision／condition coverage; these are structural coverage measures, not a total product-quality score. <a target="_blank" rel="noopener" href="https://api.glossary.istqb.org/storage/help/R0uz58NqLzUz48LVUuyGSF76NFj4LHQazSs0GlNS.pdf">ISTQB Testing Glossary</a></p>
+<p>CI should therefore avoid an isolated “80% means pass” rule. More useful gates are:</p>
+<ul>
+<li>PR: every changed intent, risk state, and required runtime has deterministic E2E coverage; a Critical case without an oracle or evidence blocks the change.</li>
+<li>Release: every Critical Journey passes across the declared required matrix, no failure remains unclassified, and targeted mutation runs against high-risk rules.</li>
+<li>Nightly: expand data, state, platform, and agent exploration; an exploration result counts as formal coverage only after it is reproduced and promoted to deterministic Regression.</li>
+</ul>
+<p>If the team needs one summary number, define a local risk-weighted score: <code>Σ(risk weight × coverage item pass × oracle／evidence quality) ÷ Σ risk weight</code>. This is a management signal, not an industry standard. The real completion condition is replayable verification of high-risk behavior and mutants being detected by tests. Stryker defines mutation score as the percentage of mutants killed by tests, which reinforces the distinction between “executed” and “able to detect a fault.” <a target="_blank" rel="noopener" href="https://stryker-mutator.io/docs/General/faq/">Stryker Mutation Score</a></p>
+<h3 id="Keep-Tests-Fast-Stable-and-Able-to-Catch-Real-Bugs"><a href="#Keep-Tests-Fast-Stable-and-Able-to-Catch-Real-Bugs" class="headerlink" title="Keep Tests Fast, Stable, and Able to Catch Real Bugs"></a>Keep Tests Fast, Stable, and Able to Catch Real Bugs</h3><ul>
+<li>The local fast loop runs lint, types, unit, component, and contract tests.</li>
+<li>Pull requests run impacted Smoke&#x2F;Critical E2E; an agent investigates only when a run fails.</li>
+<li>Nightly runs the full regression suite and AI exploration.</li>
+<li>A test that passes and fails on the same build must be labeled as unstable; rerunning it cannot turn a red result into a normal pass.</li>
+<li>Every test prepares its own data, cleans up, and supports parallel execution.</li>
+<li>Deliberately introduce small mistakes into high-risk rules such as permissions, order state, payment, retries, and migrations. If the tests still pass, they did not catch the mistake. This is mutation testing; <a target="_blank" rel="noopener" href="https://stryker-mutator.io/docs/">Stryker Mutation Testing</a> and the <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.02954">MUTGEN study</a> both show why coverage alone is not fault detection.</li>
+</ul>
+<p>Do not make the agent read the entire repository. Give it the relevant snapshot, trace summary, state difference, and correlation ID. <strong>Fixed tools decide pass or fail; AI helps find causes and maintain tests.</strong></p>
+<h2 id="7-Conclusion-E2E-Is-the-Acceptance-System-in-the-AI-Era"><a href="#7-Conclusion-E2E-Is-the-Acceptance-System-in-the-AI-Era" class="headerlink" title="7. Conclusion: E2E Is the Acceptance System in the AI Era"></a>7. Conclusion: E2E Is the Acceptance System in the AI Era</h2><p>When AI only generates code, E2E is mainly a pre-release test tool. When AI can change, test, and repair the product, E2E must become the complete acceptance system:</p>
+<ul>
+<li>keep the product and tests in separate repositories;</li>
+<li>keep specifications, flows, test data, runners, and records in separate layers;</li>
+<li>use fixed E2E tests to protect the CI release line;</li>
+<li>use AI exploration to find problems that fixed cases miss;</li>
+<li>keep enough records to investigate, classify, and replay every failure;</li>
+<li>turn confirmed bugs into fixed regression tests.</li>
+</ul>
+<p>Engineers should provide a testable product and a traceable build. QA should define important journeys and risks. Agents should execute, explore, analyze, and suggest repairs. <strong>Agents may operate the acceptance system, but they must not lower its standard.</strong></p>
+<p>That is the real E2E change in the AI era: it is no longer just a pile of scripts to maintain. It is a system that lets AI keep working, gives people and tools evidence to judge, and turns unknown problems into lasting regression protection.</p>
+<h2 id="References-and-Further-Reading"><a href="#References-and-Further-Reading" class="headerlink" title="References and Further Reading"></a>References and Further Reading</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://openai.com/index/harness-engineering/">Harness engineering: leveraging Codex in an agent-first world</a></li>
+<li><a target="_blank" rel="noopener" href="https://api.glossary.istqb.org/storage/help/R0uz58NqLzUz48LVUuyGSF76NFj4LHQazSs0GlNS.pdf">ISTQB Standard Glossary of Terms Used in Software Testing</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-guides/glossary-computer-system-software-development-terminology-895">FDA／IEEE Glossary of Computer System Software Development Terminology</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05139">On the risk of coding before testing: An empirical study on LLM-based test generation workflow</a></li>
+<li><a target="_blank" rel="noopener" href="https://playwright.dev/docs/locators">Playwright Locators</a></li>
+<li><a target="_blank" rel="noopener" href="https://playwright.dev/docs/trace-viewer">Playwright Trace Viewer</a></li>
+<li><a target="_blank" rel="noopener" href="https://playwright.dev/docs/browser-contexts">Playwright Test Isolation</a></li>
+<li><a target="_blank" rel="noopener" href="https://playwright.dev/docs/test-agents">Playwright Test Agents</a></li>
+<li><a target="_blank" rel="noopener" href="https://playwright.dev/mcp/introduction">Playwright MCP</a></li>
+<li><a target="_blank" rel="noopener" href="https://appium.io/docs/en/2.3/ecosystem/drivers/">Appium Drivers</a></li>
+<li><a target="_blank" rel="noopener" href="https://appium.io/docs/en/2.11/guides/context/">Appium Managing Contexts</a></li>
+<li><a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/specification/2025-06-18/server/index">Model Context Protocol Server Features</a></li>
+<li><a target="_blank" rel="noopener" href="https://stryker-mutator.io/docs/">Stryker Mutation Testing</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.02954">Towards More Effective Fault Detection in LLM-Based Unit Test Generation</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/en/categories/Software-Engineering/">Software Engineering</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/E2E-Testing/">E2E Testing</a>, <a href="/en/tags/E2E-Harness/">E2E Harness</a>, <a href="/en/tags/Playwright/">Playwright</a>, <a href="/en/tags/AI-Agents/">AI Agents</a>, <a href="/en/tags/Agentic-SDLC/">Agentic SDLC</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com/en">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/categories/AI/">AI</a><small>1</small></li>
+  
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>5</small></li>
+  
+    <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>4</small></li>
+  
+    <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Game-Development/">Game Development</a><small>2</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/tags/AI/">AI</a><small>9</small></li>
+  
+    <li><a href="/en/tags/AI-Agent/">AI Agent</a><small>2</small></li>
+  
+    <li><a href="/en/tags/AI-Agents/">AI Agents</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Coding/">AI Coding</a><small>2</small></li>
+  
+    <li><a href="/en/tags/AI-Evaluation/">AI Evaluation</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Image-Generation/">AI Image Generation</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Tools/">AI Tools</a><small>1</small></li>
+  
+    <li><a href="/en/tags/AI-Video/">AI Video</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Aseprite/">Aseprite</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Benchmarks/">Benchmarks</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Claude/">Claude</a><small>2</small></li>
+  
+    <li><a href="/en/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/en/tags/Codex/">Codex</a><small>5</small></li>
+  
+    <li><a href="/en/tags/CodexBar/">CodexBar</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Developer-Tools/">Developer Tools</a><small>2</small></li>
+  
+    <li><a href="/en/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/en/tags/E2E-Testing/">E2E Testing</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Game-Development/">Game Development</a><small>2</small></li>
+  
+    <li><a href="/en/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/en/tags/Indie-Developer/">Indie Developer</a><small>1</small></li>
+  
+    <li><a href="/en/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/en/tags/LLM/">LLM</a><small>2</small></li>
+  
+    <li><a href="/en/tags/Open-Source/">Open Source</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Parallel-Work/">Parallel Work</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
+  
+    <li><a href="/en/tags/PixelLab/">PixelLab</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Software-Engineering/">Software Engineering</a><small>2</small></li>
+  
+    <li><a href="/en/tags/Suno/">Suno</a><small>1</small></li>
+  
+    <li><a href="/en/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/en/tags/Usage-Limits/">Usage Limits</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script defer src="/en/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/en/js/jquery-3.4.1.min.js"></script>
+<script defer src="/en/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/en/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/en/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
