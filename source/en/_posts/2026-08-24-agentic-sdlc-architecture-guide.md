@@ -1,19 +1,23 @@
----
-title: "Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, Verification Gates, and Open-Source Frameworks"
-date: 2026-08-24 14:10:32
-updated: 2026-08-29 19:08:22
-description: A practical guide to Agentic SDLC architecture, covering hooks, skills, MCP, orchestration, state machines, verification gates, and open-source tools.
+title: >-
+  Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines,
+  Verification Gates, and Open-Source Frameworks
+description: >-
+  A practical guide to Agentic SDLC architecture, covering hooks, skills, MCP,
+  orchestration, state machines, verification gates, and open-source tools.
 permalink: 2026/08/24/agentic-sdlc-architecture-guide/
 translation_key: agentic-sdlc-architecture-guide
 translations:
   zh-TW: /2026/08/24/告別-Vibe-Coding！Agentic-SDLC-完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰/
+  zh-CN: /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/
 categories:
-- Software Engineering
+  - Software Engineering
 tags:
-- AI
-- Claude
-- Codex
-- Frontend Development
+  - AI
+  - Claude
+  - Codex
+  - Frontend Development
+date: 2026-08-24 14:10:32
+updated: 2026-08-29 19:08:22
 ---
 
 ![Comprehensive Agentic SDLC Software Development Lifecycle Architecture Diagram](cover.jpg)

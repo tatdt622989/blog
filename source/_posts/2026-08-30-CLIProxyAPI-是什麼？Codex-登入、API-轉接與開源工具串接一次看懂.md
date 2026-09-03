@@ -1,17 +1,19 @@
----
 title: CLIProxyAPI 是什麼？Codex 登入、API 轉接與開源工具串接一次看懂
-date: 2026-08-30 01:06:38
-updated: 2026-08-30 01:19:28
-description: 用白話介紹 CLIProxyAPI 如何將 Codex 登入轉成常見的 API 入口，包含安裝概念、OpenCode 等開源工具用例、OpenAI 公開說明與安全界線。
+description: >-
+  用白話介紹 CLIProxyAPI 如何將 Codex 登入轉成常見的 API 入口，包含安裝概念、OpenCode 等開源工具用例、OpenAI
+  公開說明與安全界線。
 translation_key: cliproxyapi-codex-open-source-tools
 translations:
   en: /en/2026/08/30/cliproxyapi-codex-open-source-tools/
+  zh-CN: /zh-cn/2026/08/30/cliproxyapi-codex-open-source-tools/
 categories:
-- AI 科技
+  - AI 科技
 tags:
-- AI
-- Codex
-- 開源工具
+  - AI
+  - Codex
+  - 開源工具
+date: 2026-08-30 01:06:38
+updated: 2026-08-30 01:19:28
 ---
 
 ![CLIProxyAPI 將 Codex 連接到程式開發、網頁介面、工作流、文件與記憶工具](cover.jpg)

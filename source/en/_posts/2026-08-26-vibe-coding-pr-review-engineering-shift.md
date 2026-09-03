@@ -1,19 +1,23 @@
----
-title: "From Vibe Coding to PR Review Bottlenecks: What Changed in Software Engineering?"
-date: 2026-08-26 22:08:22
-updated: 2026-08-29 18:50:35
-description: AI can generate code quickly, but review remains expensive. This guide examines vibe coding, stable technology, verification, and testing.
+title: >-
+  From Vibe Coding to PR Review Bottlenecks: What Changed in Software
+  Engineering?
+description: >-
+  AI can generate code quickly, but review remains expensive. This guide
+  examines vibe coding, stable technology, verification, and testing.
 permalink: 2026/08/26/vibe-coding-pr-review-engineering-shift/
 translation_key: vibe-coding-pr-review-engineering-shift
 translations:
   zh-TW: /2026/08/26/從-Vibe-Coding-狂歡到-PR-審查地獄：這幾年軟體工程界到底發生了什麼事？/
+  zh-CN: /zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/
 categories:
-- Software Engineering
+  - Software Engineering
 tags:
-- AI
-- AI Coding
-- Software Engineering
-- Developer Tools
+  - AI
+  - AI Coding
+  - Software Engineering
+  - Developer Tools
+date: 2026-08-26 22:08:22
+updated: 2026-08-29 18:50:35
 ---
 
 ![Software engineering shifting from fast AI code generation to review, testing, and architecture discipline](cover.jpg)

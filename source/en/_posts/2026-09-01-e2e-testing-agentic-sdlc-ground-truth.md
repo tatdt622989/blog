@@ -1,21 +1,25 @@
----
-title: "How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness"
-date: 2026-09-01 10:30:24
-updated: 2026-09-01 20:24:39
-description: "Learn how to build an AI-native E2E test harness with black-box tests, reliable CI gates, agentic exploration, and reproducible regression evidence."
+title: >-
+  How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an
+  AI-Native Harness
+description: >-
+  Learn how to build an AI-native E2E test harness with black-box tests,
+  reliable CI gates, agentic exploration, and reproducible regression evidence.
 permalink: 2026/09/01/e2e-testing-agentic-sdlc-ground-truth/
 translation_key: e2e-testing-agentic-sdlc-ground-truth
 translations:
   zh-TW: /2026/09/01/AI-時代，E2E-測試要怎麼升級？從固定腳本到-AI-native-Harness/
+  zh-CN: /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/
 categories:
-- Software Engineering
+  - Software Engineering
 tags:
-- AI
-- E2E Testing
-- E2E Harness
-- Playwright
-- AI Agents
-- Agentic SDLC
+  - AI
+  - E2E Testing
+  - E2E Harness
+  - Playwright
+  - AI Agents
+  - Agentic SDLC
+date: 2026-09-01 10:30:24
+updated: 2026-09-01 20:24:39
 ---
 
 ![A technical illustration of an AI-era E2E acceptance system connecting a product build, fixed tests, AI exploration, and test records](cover.jpg)

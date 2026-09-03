@@ -1,18 +1,22 @@
----
-title: "Claude Fable 5.1 Unleashed — 75% Cheaper Cache Reads and the Future of Long-Horizon Coding Agents"
-date: 2026-09-02 09:00:00
-updated: 2026-09-02 09:00:00
-description: "A guide to Claude Fable 5.1 with 1M context, 75% cheaper cache reads, per-message effort scaling, and essential breaking changes for agents."
+title: >-
+  Claude Fable 5.1 Unleashed — 75% Cheaper Cache Reads and the Future of
+  Long-Horizon Coding Agents
+description: >-
+  A guide to Claude Fable 5.1 with 1M context, 75% cheaper cache reads,
+  per-message effort scaling, and essential breaking changes for agents.
 permalink: 2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/
 translation_key: claude-fable-5-1-deep-dive-long-horizon-agentic-guide
 translations:
   zh-TW: /2026/09/02/Claude-Fable-5-1-旗艦發表！快取狂降-75-與長時程代理開發的核心變革/
+  zh-CN: /zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/
 categories:
-- AI
+  - AI
 tags:
-- AI
-- Claude
-- Anthropic
+  - AI
+  - Claude
+  - Anthropic
+date: 2026-09-02 09:00:00
+updated: 2026-09-02 09:00:00
 ---
 
 ![Claude Fable 5.1 Flagship Model Architecture and Long-Horizon Agent Flow](cover.jpg)

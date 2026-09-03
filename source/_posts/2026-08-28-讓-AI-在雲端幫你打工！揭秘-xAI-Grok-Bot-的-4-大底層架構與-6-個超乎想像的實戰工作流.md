@@ -1,16 +1,19 @@
----
 title: xAI Grok Bot 是什麼？共用雲端電腦、排程、審核與 6 種工作流
-date: 2026-08-28 23:02:20
-updated: 2026-08-29 18:50:35
-description: xAI Grok Bot 將 AI 從單次問答推向可在雲端持續執行工作的虛擬隊友。本文整理共用雲端電腦、瀏覽器操作、技能與排程、審核規則，以及六種適合先小規模測試的工作流程。
+description: >-
+  xAI Grok Bot 將 AI
+  從單次問答推向可在雲端持續執行工作的虛擬隊友。本文整理共用雲端電腦、瀏覽器操作、技能與排程、審核規則，以及六種適合先小規模測試的工作流程。
 translation_key: grok-bot-cloud-vm-autonomous-agent-guide
 translations:
   en: /en/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/
+  zh-CN: /zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/
 categories:
-- [AI, 效率工具]
+  - - AI
+    - 效率工具
 tags:
-- AI
-- Grok
+  - AI
+  - Grok
+date: 2026-08-28 23:02:20
+updated: 2026-08-29 18:50:35
 ---
 
 ![xAI Grok Bot 雲端虛擬機與自主自動化工作流示意圖](cover.jpg)

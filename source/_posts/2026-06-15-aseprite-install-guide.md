@@ -1,20 +1,22 @@
----
 title: Aseprite 安裝教學：踏進 AI Pixel Art 的第一步
-date: 2026-06-15 00:18:00
-updated: 2026-08-27 19:00:00
-description: Aseprite 像素繪圖軟體安裝與 PixelLab AI 像素外掛串接教學。本文為你整理 Steam 正式版購買、免費編譯原始碼等三種取得管道，並帶你一步步完成外掛授權，快速解決遊戲美術素材短缺痛點。
+description: >-
+  Aseprite 像素繪圖軟體安裝與 PixelLab AI 像素外掛串接教學。本文為你整理 Steam
+  正式版購買、免費編譯原始碼等三種取得管道，並帶你一步步完成外掛授權，快速解決遊戲美術素材短缺痛點。
 cover: cover-v2.png
 translation_key: aseprite-install-guide
 translations:
   en: /en/2026/06/15/how-to-install-aseprite/
+  zh-CN: /zh-cn/2026/06/15/how-to-install-aseprite/
 categories:
-- 遊戲開發
+  - 遊戲開發
 tags:
-- Aseprite
-- Pixel Art
-- PixelLab
-- 遊戲開發
-- AI
+  - Aseprite
+  - Pixel Art
+  - PixelLab
+  - 遊戲開發
+  - AI
+date: 2026-06-15 00:18:00
+updated: 2026-08-27 19:00:00
 ---
 
 ![Aseprite 安裝與 PixelLab 外掛串接教學封面](cover-v2.png)

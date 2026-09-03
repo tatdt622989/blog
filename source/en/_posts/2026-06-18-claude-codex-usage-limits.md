@@ -1,19 +1,21 @@
----
-title: "Claude Code and Codex Usage Limits: Resets, Credits, and Practical Strategies"
-date: 2026-06-18 14:34:36
-updated: 2026-08-27 19:00:00
-description: Understand Claude Code and Codex limits, five-hour and weekly windows, banked resets, paid credits, CodexBar, and practical ways to preserve usage.
+title: 'Claude Code and Codex Usage Limits: Resets, Credits, and Practical Strategies'
+description: >-
+  Understand Claude Code and Codex limits, five-hour and weekly windows, banked
+  resets, paid credits, CodexBar, and practical ways to preserve usage.
 permalink: 2026/06/18/claude-codex-usage-limits-guide/
 translation_key: claude-codex-usage-limits
 translations:
   zh-TW: /2026/06/18/claude-codex-quota-guide/
+  zh-CN: /zh-cn/2026/06/18/claude-codex-usage-limits-guide/
 categories:
-- AI Tools
+  - AI Tools
 tags:
-- Claude Code
-- Codex
-- Usage Limits
-- CodexBar
+  - Claude Code
+  - Codex
+  - Usage Limits
+  - CodexBar
+date: 2026-06-18 14:34:36
+updated: 2026-08-27 19:00:00
 ---
 
 ![Claude Code and Codex usage limit management guide](cover.webp)

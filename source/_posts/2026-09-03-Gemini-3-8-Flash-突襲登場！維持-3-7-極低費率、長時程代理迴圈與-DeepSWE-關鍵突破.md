@@ -1,17 +1,21 @@
----
 title: Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破
-date: 2026-09-03 09:00:00
-description: Google 正式發表 Gemini 3.8 Flash！本文以第一線代理大腦視角深度剖析底層架構：1M 上下文、長時程自省代理迴圈、DeepSWE 基準突破與極限性價比，帶你掌握下一代 AI 軟體工程工作流。
+description: >-
+  Google 正式發表 Gemini 3.8 Flash！本文以第一線代理大腦視角深度剖析底層架構：1M 上下文、長時程自省代理迴圈、DeepSWE
+  基準突破與極限性價比，帶你掌握下一代 AI 軟體工程工作流。
 translation_key: gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe
 translations:
-  en: /en/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/
+  en: >-
+    /en/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/
+  zh-CN: >-
+    /zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/
 categories:
-- AI 科技
+  - AI 科技
 tags:
-- AI
-- AI Agent
-- 開發工具
-- 軟體工程
+  - AI
+  - AI Agent
+  - 開發工具
+  - 軟體工程
+date: 2026-09-03 09:00:00
 ---
 
 ![Gemini 3.8 Flash 智慧工作馬與長時程自主代理架構示意圖](cover.jpg)

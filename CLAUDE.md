@@ -84,6 +84,13 @@ tags:
 5. **文章與標題（目次）一律禁止使用表情符號（Emoji）**
    - 不論是文章大標題、副標題（H2、H3、H4 等，即目錄/目次中會出現的標題）或內文，一律禁止使用 Emoji 表情符號，以維持部落格的專業與簡潔排版。
 
+6. **多語系文章（繁中/簡中/英文 i18n）三向配置規範**
+   - 本站支援三語系站台（繁體中文在根目錄 `/`、簡體中文在 `/zh-cn/`、英文在 `/en/`）。**發布新文章或優化既有文章時，必須同步維護繁中、簡中與英文三份文章**。
+   - **繁體中文文章**：`source/_posts/YYYY-MM-DD-中文標題.md`，front-matter 須包含 `translation_key`、`translations.zh-CN: /zh-cn/YYYY/MM/DD/<英文slug>/` 與 `translations.en: /en/YYYY/MM/DD/<英文slug>/`。
+   - **簡體中文文章**：`source/zh-cn/_posts/YYYY-MM-DD-<英文slug>.md`，front-matter 須包含 `permalink: YYYY/MM/DD/<英文slug>/`、相同 `translation_key`、`translations.zh-TW: /YYYY/MM/DD/<繁中標題URL>/` 與 `translations.en: /en/YYYY/MM/DD/<英文slug>/`。**注意：簡體中文內容必須由 AI 進行專業技術用語在地化重寫（使用大陸技術慣用語），嚴禁機械式字元繁簡替換**。
+   - **英文文章**：`source/en/_posts/YYYY-MM-DD-<英文slug>.md`，front-matter 須包含 `permalink: YYYY/MM/DD/<英文slug>/`、相同 `translation_key`、`translations.zh-TW: /YYYY/MM/DD/<繁中標題URL>/` 與 `translations.zh-CN: /zh-cn/YYYY/MM/DD/<英文slug>/`。
+   - **資源目錄**：簡中與英文文章資產目錄 `source/zh-cn/_posts/YYYY-MM-DD-<英文slug>/` 及 `source/en/_posts/YYYY-MM-DD-<英文slug>/` 須放置同名 `cover.jpg` 與相關插圖。
+
 ### 3. 本機預覽
 
 ```bash

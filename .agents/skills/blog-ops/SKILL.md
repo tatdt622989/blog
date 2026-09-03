@@ -75,31 +75,57 @@ node cli.js whoami           # 列出可用的 GA4/AdSense/GSC 帳號 id
 
 ## 🌐 多語系文章（Multilingual / i18n）標準發布 SOP
 
-本站支援中英文雙語系站台（中文在根目錄 `/`，英文在 `/en/`）。每次建立新文章或優化文章時，**必須同步維護中文與英文版本**：
+本站支援繁中、簡中與英文三語系站台（繁體中文在根目錄 `/`、簡體中文在 `/zh-cn/`、英文在 `/en/`）。每次建立新文章或優化文章時，**必須同步維護繁中、簡中與英文三個版本**：
 
-### 1. 中文版文章配置 (`source/_posts/`)
+### 1. 繁體中文版文章配置 (`source/_posts/`)
 - 檔案：`source/_posts/YYYY-MM-DD-中文標題.md`
 - 資產目錄：`source/_posts/YYYY-MM-DD-中文標題/cover.jpg`
-- front-matter 必須包含雙向關聯欄位：
+- front-matter 必須包含三向關聯欄位：
   ```yaml
   translation_key: <語意明確的英文短句，如 grok-bot-cloud-vm-autonomous-agent-guide>
   translations:
+    zh-CN: /zh-cn/YYYY/MM/DD/<英文slug>/
     en: /en/YYYY/MM/DD/<英文slug>/
   ```
 
-### 2. 英文版文章配置 (`source/en/_posts/`)
+### 2. 簡體中文版文章配置 (`source/zh-cn/_posts/`)
+- 檔案：`source/zh-cn/_posts/YYYY-MM-DD-<英文slug>.md`
+- 資產目錄：`source/zh-cn/_posts/YYYY-MM-DD-<英文slug>/cover.jpg`（直接共用/複製同名封面與插圖）
+- front-matter 必須包含：
+  ```yaml
+  ---
+  title: "地道簡體中文標題（純文字無 Emoji）"
+  date: YYYY-MM-DD HH:mm:ss（與繁中版一致）
+  updated: YYYY-MM-DD HH:mm:ss（與繁中版一致）
+  description: 簡體 Meta Description（純文字無 Markdown，約 80-150 字元）
+  permalink: YYYY/MM/DD/<英文slug>/
+  translation_key: <與繁中/英文版完全相同的 key>
+  translations:
+    zh-TW: /YYYY/MM/DD/<繁中文章標題URL>/
+    en: /en/YYYY/MM/DD/<英文slug>/
+  categories:
+  - 分類（簡體）
+  tags:
+  - 標籤（簡體）
+  ---
+  ```
+- **撰寫標準**：**簡體中文內容必須由 AI 進行專業技術用語在地化重寫**（代碼、程序、服務器、緩存、內存、項目、模塊、算法、數組、對象、線程、終端、跨會話、插件、默認、屏幕、視頻、網絡、鏈接、鼠標、分辨率、部署、登錄等），絕不可使用生硬正則或機械字元替換，同樣嚴禁 Emoji、使用無空格 `<!--more-->`、粗體強調。
+
+### 3. 英文版文章配置 (`source/en/_posts/`)
 - 檔案：`source/en/_posts/YYYY-MM-DD-<英文slug>.md`
 - 資產目錄：`source/en/_posts/YYYY-MM-DD-<英文slug>/cover.jpg`（直接共用/複製同名封面與插圖）
 - front-matter 必須包含：
   ```yaml
   ---
   title: "英文文章標題（純文字無 Emoji）"
-  date: YYYY-MM-DD HH:mm:ss（與中文版一致）
+  date: YYYY-MM-DD HH:mm:ss（與繁中版一致）
+  updated: YYYY-MM-DD HH:mm:ss（與繁中版一致）
   description: 英文 Meta Description（約 100-160 字元）
   permalink: YYYY/MM/DD/<英文slug>/
-  translation_key: <與中文版完全相同的 key>
+  translation_key: <與繁中/簡中版完全相同的 key>
   translations:
-    zh-TW: /YYYY/MM/DD/<中文文章標題URL>/
+    zh-TW: /YYYY/MM/DD/<繁中文章標題URL>/
+    zh-CN: /zh-cn/YYYY/MM/DD/<英文slug>/
   categories:
   - AI Tools（或對應英文分類）
   tags:
@@ -109,8 +135,8 @@ node cli.js whoami           # 列出可用的 GA4/AdSense/GSC 帳號 id
   ```
 - **撰寫標準**：英文內容必須道地自然、排版優美、符合母語者閱讀習慣，同樣嚴禁 Emoji、使用無空格 `<!--more-->`、粗體強調。
 
-### 3. 多語系建置與驗證
-- 執行 `npm run build` 時，系統會透過 `scripts/build-multilingual.js` 自動編譯中文與英文兩個站台，並產出 `/sitemap-zh-TW.xml`、`/en/sitemap.xml` 與統一的 `sitemap.xml` 索引檔。
+### 4. 多語系建置與驗證
+- 執行 `npm run build` 時，系統會透過 `scripts/build-multilingual.js` 自動編譯繁中、簡中與英文三個站台，並產出 `/sitemap-zh-TW.xml`、`/zh-cn/sitemap.xml`、`/en/sitemap.xml` 與統一的 `sitemap.xml` 索引檔。
 
 
 ## 改既有文章(SEO 優化/補內容)與新鮮度優化

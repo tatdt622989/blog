@@ -1,17 +1,21 @@
----
-title: "What Is xAI Grok Bot? Shared Cloud Computer, Routines, Approvals, and Six Workflows"
-date: 2026-08-28 23:02:20
-updated: 2026-08-29 18:50:35
-description: A practical guide to Grok Bot's shared cloud computer, browser actions, skills, routines, approval controls, and six workflows to test carefully.
+title: >-
+  What Is xAI Grok Bot? Shared Cloud Computer, Routines, Approvals, and Six
+  Workflows
+description: >-
+  A practical guide to Grok Bot's shared cloud computer, browser actions,
+  skills, routines, approval controls, and six workflows to test carefully.
 permalink: 2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/
 translation_key: grok-bot-cloud-vm-autonomous-agent-guide
 translations:
   zh-TW: /2026/08/28/讓-AI-在雲端幫你打工！揭秘-xAI-Grok-Bot-的-4-大底層架構與-6-個超乎想像的實戰工作流/
+  zh-CN: /zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/
 categories:
-- AI Tools
+  - AI Tools
 tags:
-- AI
-- Grok
+  - AI
+  - Grok
+date: 2026-08-28 23:02:20
+updated: 2026-08-29 18:50:35
 ---
 
 ![xAI Grok Bot Cloud VM and Autonomous Workflow Architecture Diagram](cover.jpg)

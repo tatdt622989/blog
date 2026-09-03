@@ -90,11 +90,12 @@ tags:
    - **一律採用由上至下垂直流向（`flowchart TD`）**：保證在手機直向螢幕上不溢出、不縮小，單一主軸一氣呵成。
    - **統一套用現代科技色彩系統**：天藍（規劃）、金黃（閘門）、靛紫（實作）、翡翠綠（測試）、珊瑚紅（修復）、夕陽橙（評審）、霧灰（記憶）、深綠（交付）。
 
-7. **多語系文章（中英文 i18n）雙向配置規範**
-   - 本站支援中英文雙語系站台（中文在根目錄 `/`，英文在 `/en/`）。**發布新文章或優化既有文章時，必須同步維護中文與英文兩份文章**。
-   - **中文文章**：`source/_posts/YYYY-MM-DD-中文標題.md`，front-matter 須包含 `translation_key` 與 `translations.en: /en/YYYY/MM/DD/<英文slug>/`。
-   - **英文文章**：`source/en/_posts/YYYY-MM-DD-<英文slug>.md`，front-matter 須包含 `permalink: YYYY/MM/DD/<英文slug>/`、相同 `translation_key` 與 `translations.zh-TW: /YYYY/MM/DD/<中文標題URL>/`。
-   - **資源目錄**：英文文章資產目錄 `source/en/_posts/YYYY-MM-DD-<英文slug>/` 須放置同名 `cover.jpg` 與相關插圖。
+7. **多語系文章（繁中/簡中/英文 i18n）三向配置規範**
+   - 本站支援三語系站台（繁體中文在根目錄 `/`、簡體中文在 `/zh-cn/`、英文在 `/en/`）。**發布新文章或優化既有文章時，必須同步維護繁中、簡中與英文三份文章**。
+   - **繁體中文文章**：`source/_posts/YYYY-MM-DD-中文標題.md`，front-matter 須包含 `translation_key`、`translations.zh-CN: /zh-cn/YYYY/MM/DD/<英文slug>/` 與 `translations.en: /en/YYYY/MM/DD/<英文slug>/`。
+   - **簡體中文文章**：`source/zh-cn/_posts/YYYY-MM-DD-<英文slug>.md`，front-matter 須包含 `permalink: YYYY/MM/DD/<英文slug>/`、相同 `translation_key`、`translations.zh-TW: /YYYY/MM/DD/<繁中標題URL>/` 與 `translations.en: /en/YYYY/MM/DD/<英文slug>/`。**注意：簡體中文內容必須由 AI 進行專業技術用語在地化重寫（使用大陸技術慣用語），嚴禁機械式字元繁簡替換**。
+   - **英文文章**：`source/en/_posts/YYYY-MM-DD-<英文slug>.md`，front-matter 須包含 `permalink: YYYY/MM/DD/<英文slug>/`、相同 `translation_key`、`translations.zh-TW: /YYYY/MM/DD/<繁中標題URL>/` 與 `translations.zh-CN: /zh-cn/YYYY/MM/DD/<英文slug>/`。
+   - **資源目錄**：簡中與英文文章資產目錄 `source/zh-cn/_posts/YYYY-MM-DD-<英文slug>/` 及 `source/en/_posts/YYYY-MM-DD-<英文slug>/` 須放置同名 `cover.jpg` 與相關插圖。
 
 ### 3. 本機預覽
 

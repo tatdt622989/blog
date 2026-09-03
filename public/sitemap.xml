@@ -4,6 +4,9 @@
     <loc>https://blog.6yuwei.com/sitemap-zh-TW.xml</loc>
   </sitemap>
   <sitemap>
+    <loc>https://blog.6yuwei.com/zh-cn/sitemap.xml</loc>
+  </sitemap>
+  <sitemap>
     <loc>https://blog.6yuwei.com/en/sitemap.xml</loc>
   </sitemap>
 </sitemapindex>

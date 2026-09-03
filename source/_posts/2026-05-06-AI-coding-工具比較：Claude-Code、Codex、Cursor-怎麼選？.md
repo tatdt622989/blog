@@ -1,17 +1,19 @@
----
 title: Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南
-date: 2026-05-06 21:30:00
-updated: 2026-08-30 09:30:00
-description: Cursor vs Codex 該怎麼選？本文比較 Claude Code、Codex、Cursor 的價格、額度、IDE、CLI 與雲端代理工作流，整理 2026 適用情境，幫你依專案規模與預算挑選 AI coding 工具。
+description: >-
+  Cursor vs Codex 該怎麼選？本文比較 Claude Code、Codex、Cursor 的價格、額度、IDE、CLI 與雲端代理工作流，整理
+  2026 適用情境，幫你依專案規模與預算挑選 AI coding 工具。
 translation_key: ai-coding-tools-comparison
 translations:
   en: /en/2026/05/06/claude-code-vs-codex-vs-cursor/
+  zh-CN: /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/
 categories:
-- AI 科技
+  - AI 科技
 tags:
-- AI
-- OpenAI
-- Claude
+  - AI
+  - OpenAI
+  - Claude
+date: 2026-05-06 21:30:00
+updated: 2026-08-30 09:30:00
 ---
 
 ![Claude Code、Codex、Cursor 三款 AI coding 工具比較封面](cover-v2.jpg)

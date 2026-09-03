@@ -1,17 +1,20 @@
----
 title: AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析
-date: 2026-08-31 14:41:53
-description: AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。
+description: >-
+  AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與
+  LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12
+  個關鍵指標，教你依任務選對評測平台。
 translation_key: ai-model-leaderboards-benchmark-metrics-guide
 translations:
   en: /en/2026/08/31/ai-model-leaderboards-benchmark-metrics/
+  zh-CN: /zh-cn/2026/08/31/ai-model-leaderboards-benchmark-metrics/
 categories:
-- AI 科技
+  - AI 科技
 tags:
-- AI
-- LLM
-- AI 評測
-- Benchmark
+  - AI
+  - LLM
+  - AI 評測
+  - Benchmark
+date: 2026-08-31 14:41:53
 ---
 
 ![五種 AI 模型評測方法連接中央處理器的概念封面](cover.jpg)

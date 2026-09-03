@@ -1,16 +1,18 @@
----
 title: TypeScript入門：什麼是TypeScript？
-date: 2023-03-05 23:45:21
-updated: 2026-08-27 18:25:00
-description: 這篇 TypeScript 入門文章介紹它與 JavaScript 的關係、靜態型別帶來的好處，以及型別推斷、介面、泛型與列舉等核心能力，並透過一個具型別限制的計算機範例，協助前端開發者掌握基本語法與實際用途。
+description: >-
+  這篇 TypeScript 入門文章介紹它與 JavaScript
+  的關係、靜態型別帶來的好處，以及型別推斷、介面、泛型與列舉等核心能力，並透過一個具型別限制的計算機範例，協助前端開發者掌握基本語法與實際用途。
 translation_key: typescript-introduction
 translations:
   en: /en/2023/03/05/what-is-typescript/
+  zh-CN: /zh-cn/2023/03/05/what-is-typescript/
 categories:
-- 前端開發
+  - 前端開發
 tags:
-- TypeScript
-- JavaScript
+  - TypeScript
+  - JavaScript
+date: 2023-03-05 23:45:21
+updated: 2026-08-27 18:25:00
 ---
 
 ![TypeScript 與 JavaScript 靜態型別入門封面](cover.webp)

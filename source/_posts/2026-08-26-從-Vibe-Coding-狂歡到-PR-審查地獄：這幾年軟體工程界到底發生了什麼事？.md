@@ -1,17 +1,19 @@
----
 title: 從 Vibe Coding 狂歡到 PR 審查地獄：這幾年軟體工程界到底發生了什麼事？
-date: 2026-08-26 22:08:22
-updated: 2026-08-29 18:50:35
-description: AI 能快速產生大量程式碼，為什麼 PR 審查與驗證反而成為新瓶頸？本文整理 Vibe Coding、AI Slop、初階工程師培養、無聊技術與測試紀律等趨勢，並以調查和實驗資料區分事實與觀點。
+description: >-
+  AI 能快速產生大量程式碼，為什麼 PR 審查與驗證反而成為新瓶頸？本文整理 Vibe Coding、AI
+  Slop、初階工程師培養、無聊技術與測試紀律等趨勢，並以調查和實驗資料區分事實與觀點。
 translation_key: vibe-coding-pr-review-engineering-shift
 translations:
   en: /en/2026/08/26/vibe-coding-pr-review-engineering-shift/
+  zh-CN: /zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/
 tags:
   - AI
   - 獨立開發者
   - 前端開發
 categories:
   - 觀點與思維
+date: 2026-08-26 22:08:22
+updated: 2026-08-29 18:50:35
 ---
 
 ![軟體工程界在 AI 浪潮下經歷從生成狂歡到架構審查與工程紀律重構的演進圖](cover.jpg)

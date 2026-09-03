@@ -11,6 +11,8 @@
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/">
   
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/">
+  
   <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/">
   
   <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/">
@@ -23,6 +25,8 @@
   <meta property="og:url" content="https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/"/>
   <meta property="og:locale" content="zh_TW"/>
   
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
   <meta property="og:locale:alternate" content="en_US"/>
   
   <meta property="og:image" content="https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/cover.jpg?v=1a81b644" />
@@ -31,7 +35,7 @@
   <meta name="twitter:description" content="Google 正式發表 Gemini 3.8 Flash！本文以第一線代理大腦視角深度剖析底層架構：1M 上下文、長時程自省代理迴圈、DeepSWE 基準突破與極限性價比，帶你掌握下一代 AI 軟體工程工作流。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/cover.jpg?v=1a81b644">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/","url":"https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/","headline":"Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破","description":"Google 正式發表 Gemini 3.8 Flash！本文以第一線代理大腦視角深度剖析底層架構：1M 上下文、長時程自省代理迴圈、DeepSWE 基準突破與極限性價比，帶你掌握下一代 AI 軟體工程工作流。","datePublished":"2026-09-03T01:00:00.000Z","dateModified":"2026-09-02T17:20:31.396Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/","url":"https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/","headline":"Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破","description":"Google 正式發表 Gemini 3.8 Flash！本文以第一線代理大腦視角深度剖析底層架構：1M 上下文、長時程自省代理迴圈、DeepSWE 基準突破與極限性價比，帶你掌握下一代 AI 軟體工程工作流。","datePublished":"2026-09-03T01:00:00.000Z","dateModified":"2026-09-03T12:05:22.525Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破","item":"https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/"}]}</script>
   
@@ -94,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=aa8042acbd">
+  <link rel="stylesheet" href="/css/style.css?v=008ffbd35d">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -147,7 +151,17 @@
         aria-current="page"
       >
         <span>繁體中文</span>
-        <span class="language-switcher__code" aria-hidden="true">ZH</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
       </a>
       <a
         href="/en/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/"

@@ -1,19 +1,21 @@
----
-title: "Claude Code Cross-Session Messaging: How Independent Sessions Communicate"
-date: 2026-08-09 14:10:00
-updated: 2026-08-27 19:00:00
-description: Use Claude Code cross-session messaging to exchange progress between terminals, worktrees, and machines without merging context or files.
+title: 'Claude Code Cross-Session Messaging: How Independent Sessions Communicate'
+description: >-
+  Use Claude Code cross-session messaging to exchange progress between
+  terminals, worktrees, and machines without merging context or files.
 permalink: 2026/08/09/claude-code-cross-session-messaging/
 translation_key: claude-code-cross-session-messaging
 translations:
   zh-TW: /2026/08/09/Claude-Code-跨工作階段訊息：讓不同-Session-互相傳話的完整用法/
+  zh-CN: /zh-cn/2026/08/09/claude-code-cross-session-messaging/
 categories:
-- AI Tools
+  - AI Tools
 tags:
-- Claude Code
-- AI Agent
-- Developer Tools
-- Parallel Work
+  - Claude Code
+  - AI Agent
+  - Developer Tools
+  - Parallel Work
+date: 2026-08-09 14:10:00
+updated: 2026-08-27 19:00:00
 ---
 
 ![Claude Code cross-session messaging between independent development sessions](cover.jpg)

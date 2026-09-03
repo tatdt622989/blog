@@ -1,17 +1,19 @@
----
 title: What Is TypeScript? A Beginner's Introduction
-date: 2023-03-05 23:45:21
-updated: 2026-08-27 18:25:00
-description: Learn TypeScript fundamentals, including static types, inference, interfaces, generics, enums, and a calculator example for JavaScript developers.
+description: >-
+  Learn TypeScript fundamentals, including static types, inference, interfaces,
+  generics, enums, and a calculator example for JavaScript developers.
 permalink: 2023/03/05/what-is-typescript/
 translation_key: typescript-introduction
 translations:
   zh-TW: /2023/03/05/TypeScript入門：什麼是TypeScript？/
+  zh-CN: /zh-cn/2023/03/05/what-is-typescript/
 categories:
-- Frontend Development
+  - Frontend Development
 tags:
-- TypeScript
-- JavaScript
+  - TypeScript
+  - JavaScript
+date: 2023-03-05 23:45:21
+updated: 2026-08-27 18:25:00
 ---
 
 ![TypeScript and JavaScript static typing introduction cover](cover.webp)

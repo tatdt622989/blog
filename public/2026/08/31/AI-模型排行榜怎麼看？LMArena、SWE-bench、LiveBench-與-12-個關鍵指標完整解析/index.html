@@ -11,6 +11,8 @@
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">
   
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/08/31/ai-model-leaderboards-benchmark-metrics/">
+  
   <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/">
   
   <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">
@@ -23,6 +25,8 @@
   <meta property="og:url" content="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/"/>
   <meta property="og:locale" content="zh_TW"/>
   
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
   <meta property="og:locale:alternate" content="en_US"/>
   
   <meta property="og:image" content="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg?v=330a3459" />
@@ -31,7 +35,7 @@
   <meta name="twitter:description" content="AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg?v=330a3459">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/","url":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/","headline":"AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析","description":"AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。","datePublished":"2026-08-31T06:41:53.000Z","dateModified":"2026-08-30T07:14:35.854Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/","url":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/","headline":"AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析","description":"AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。","datePublished":"2026-08-31T06:41:53.000Z","dateModified":"2026-09-03T12:05:22.506Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析","item":"https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/"}]}</script>
   
@@ -94,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=aa8042acbd">
+  <link rel="stylesheet" href="/css/style.css?v=008ffbd35d">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -147,7 +151,17 @@
         aria-current="page"
       >
         <span>繁體中文</span>
-        <span class="language-switcher__code" aria-hidden="true">ZH</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/08/31/ai-model-leaderboards-benchmark-metrics/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
       </a>
       <a
         href="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/"

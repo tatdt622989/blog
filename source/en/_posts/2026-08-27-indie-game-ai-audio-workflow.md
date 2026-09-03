@@ -1,20 +1,22 @@
----
-title: "A Practical AI Game Audio Workflow: Local SFX and Suno BGM"
-date: 2026-08-27 16:07:15
-updated: 2026-08-29 18:50:35
-description: A practical indie game audio workflow covering MOSS-SoundEffect, Stable Audio Open, Suno rights and download limits, prompts, loops, and file formats.
+title: 'A Practical AI Game Audio Workflow: Local SFX and Suno BGM'
+description: >-
+  A practical indie game audio workflow covering MOSS-SoundEffect, Stable Audio
+  Open, Suno rights and download limits, prompts, loops, and file formats.
 permalink: 2026/08/27/indie-game-ai-audio-workflow/
 translation_key: indie-game-ai-audio-workflow
 translations:
   zh-TW: /2026/08/27/獨立遊戲音效全-AI-化實戰：Suno-產配樂、MOSS-SoundEffect-本地生音效，零成本打造沉浸式遊戲聲效工作流/
+  zh-CN: /zh-cn/2026/08/27/indie-game-ai-audio-workflow/
 categories:
-- Game Development
+  - Game Development
 tags:
-- Game Development
-- Indie Developer
-- AI
-- Codex
-- Suno
+  - Game Development
+  - Indie Developer
+  - AI
+  - Codex
+  - Suno
+date: 2026-08-27 16:07:15
+updated: 2026-08-29 18:50:35
 ---
 
 ![AI-Powered Game Audio Pipeline Cover](cover.jpg)

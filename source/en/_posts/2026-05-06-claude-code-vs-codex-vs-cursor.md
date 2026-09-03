@@ -1,19 +1,23 @@
----
-title: "Claude Code vs Codex vs Cursor: Which AI Coding Tool Should You Choose in 2026?"
-date: 2026-05-06 21:30:00
-updated: 2026-08-30 09:30:00
-description: Compare Claude Code, Codex, and Cursor by pricing, usage limits, IDE, CLI, and cloud-agent workflows, plus which development tasks each handles best.
+title: >-
+  Claude Code vs Codex vs Cursor: Which AI Coding Tool Should You Choose in
+  2026?
+description: >-
+  Compare Claude Code, Codex, and Cursor by pricing, usage limits, IDE, CLI, and
+  cloud-agent workflows, plus which development tasks each handles best.
 permalink: 2026/05/06/claude-code-vs-codex-vs-cursor/
 translation_key: ai-coding-tools-comparison
 translations:
   zh-TW: /2026/05/06/AI-coding-工具比較：Claude-Code、Codex、Cursor-怎麼選？/
+  zh-CN: /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/
 categories:
-- AI Tools
+  - AI Tools
 tags:
-- AI Coding
-- Claude Code
-- Codex
-- Cursor
+  - AI Coding
+  - Claude Code
+  - Codex
+  - Cursor
+date: 2026-05-06 21:30:00
+updated: 2026-08-30 09:30:00
 ---
 
 ![Claude Code, Codex, and Cursor AI coding workflow comparison](cover-v2.jpg)

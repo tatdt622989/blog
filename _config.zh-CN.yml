@@ -1,0 +1,15 @@
+# Simplified Chinese locale overrides. This file is merged after _config.yml.
+subtitle: AI、前端、游戏开发、日语学习与实测
+description: 6yuwei 的技术与数字生活博客，分享 AI、前端开发、游戏开发、日语学习、VPS 与工具实测心得。
+keywords: AI, 前端开发, 游戏开发, 日语学习, VPS, Codex, Claude Code, Aseprite
+language: zh-CN
+url: https://blog.6yuwei.com/zh-cn
+root: /zh-cn/
+
+source_dir: source/zh-cn
+public_dir: public/zh-cn
+
+sitemap:
+  path: sitemap.xml
+  tag: true
+  category: true

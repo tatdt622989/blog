@@ -1,17 +1,19 @@
----
 title: Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法
-date: 2026-06-18 14:34:36
-updated: 2026-08-28 11:00:00
-description: Codex 額度怎麼計算、5 小時限制何時重設？本文整理 2026 最新用量面板、週期限制、Credits、手動重設與 CodexBar 監控方式，並說明哪些做法真能延長可用時間、哪些傳聞沒有官方依據。
+description: >-
+  Codex 額度怎麼計算、5 小時限制何時重設？本文整理 2026 最新用量面板、週期限制、Credits、手動重設與 CodexBar
+  監控方式，並說明哪些做法真能延長可用時間、哪些傳聞沒有官方依據。
 translation_key: claude-codex-usage-limits
 translations:
   en: /en/2026/06/18/claude-codex-usage-limits-guide/
+  zh-CN: /zh-cn/2026/06/18/claude-codex-usage-limits-guide/
 categories:
-- AI 科技
+  - AI 科技
 tags:
-- AI
-- Codex
-- Claude
+  - AI
+  - Codex
+  - Claude
+date: 2026-06-18 14:34:36
+updated: 2026-08-28 11:00:00
 ---
 
 ![Codex 額度與用量管理指南封面](cover.webp)

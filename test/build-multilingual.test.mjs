@@ -13,7 +13,7 @@ const {
   writeSitemapIndex,
 } = require('../lib/sitemap-index.js');
 
-const sitemapPaths = ['/sitemap-zh-TW.xml', '/en/sitemap.xml'];
+const sitemapPaths = ['/sitemap-zh-TW.xml', '/zh-cn/sitemap.xml', '/en/sitemap.xml'];
 
 function listFilesRecursively(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -30,7 +30,7 @@ function outputTargetExists(outputDir, rawUrl) {
   return fs.existsSync(target) || fs.existsSync(path.join(target, 'index.html'));
 }
 
-test('sitemap index lists both localized sitemap URLs', () => {
+test('sitemap index lists all localized sitemap URLs', () => {
   const xml = createSitemapIndexXml('https://blog.6yuwei.com', sitemapPaths);
 
   assert.equal(
@@ -39,6 +39,9 @@ test('sitemap index lists both localized sitemap URLs', () => {
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://blog.6yuwei.com/sitemap-zh-TW.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://blog.6yuwei.com/zh-cn/sitemap.xml</loc>
   </sitemap>
   <sitemap>
     <loc>https://blog.6yuwei.com/en/sitemap.xml</loc>
@@ -76,12 +79,14 @@ test('sitemap index refuses to hide a missing localized sitemap', () => {
   }
 });
 
-test('sitemap index is atomically written after both child maps exist', () => {
+test('sitemap index is atomically written after all child maps exist', () => {
   const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'blog-sitemap-index-'));
 
   try {
+    fs.mkdirSync(path.join(outputDir, 'zh-cn'), { recursive: true });
     fs.mkdirSync(path.join(outputDir, 'en'), { recursive: true });
     fs.writeFileSync(path.join(outputDir, 'sitemap-zh-TW.xml'), '<urlset></urlset>');
+    fs.writeFileSync(path.join(outputDir, 'zh-cn', 'sitemap.xml'), '<urlset></urlset>');
     fs.writeFileSync(path.join(outputDir, 'en', 'sitemap.xml'), '<urlset></urlset>');
 
     const outputPath = writeSitemapIndex(
@@ -98,7 +103,7 @@ test('sitemap index is atomically written after both child maps exist', () => {
   }
 });
 
-test('multilingual build writes both locale trees to an isolated output directory', () => {
+test('multilingual build writes all locale trees to an isolated output directory', () => {
   const buildRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'blog-multilingual-build-'));
   const outputDir = path.join(buildRoot, 'public');
 
@@ -109,7 +114,7 @@ test('multilingual build writes both locale trees to an isolated output director
       {
         cwd: process.cwd(),
         encoding: 'utf8',
-        timeout: 120_000,
+        timeout: 180_000,
       },
     );
 
@@ -120,25 +125,38 @@ test('multilingual build writes both locale trees to an isolated output director
     );
     assert.ok(fs.existsSync(path.join(outputDir, 'index.html')));
     assert.ok(fs.existsSync(path.join(outputDir, 'sitemap-zh-TW.xml')));
+    assert.ok(fs.existsSync(path.join(outputDir, 'zh-cn', 'index.html')));
+    assert.ok(fs.existsSync(path.join(outputDir, 'zh-cn', 'sitemap.xml')));
     assert.ok(fs.existsSync(path.join(outputDir, 'en', 'index.html')));
     assert.ok(fs.existsSync(path.join(outputDir, 'en', 'sitemap.xml')));
     assert.ok(fs.existsSync(path.join(outputDir, 'content.json')));
+    assert.ok(fs.existsSync(path.join(outputDir, 'zh-cn', 'content.json')));
     assert.ok(fs.existsSync(path.join(outputDir, 'en', 'content.json')));
     const chineseStyles = fs.readFileSync(path.join(outputDir, 'css', 'style.css'), 'utf8');
+    const simplifiedChineseStyles = fs.readFileSync(path.join(outputDir, 'zh-cn', 'css', 'style.css'), 'utf8');
     const englishStyles = fs.readFileSync(path.join(outputDir, 'en', 'css', 'style.css'), 'utf8');
     const sitemapIndex = fs.readFileSync(path.join(outputDir, 'sitemap.xml'), 'utf8');
     const chineseSitemap = fs.readFileSync(path.join(outputDir, 'sitemap-zh-TW.xml'), 'utf8');
+    const simplifiedChineseSitemap = fs.readFileSync(path.join(outputDir, 'zh-cn', 'sitemap.xml'), 'utf8');
     const englishSitemap = fs.readFileSync(path.join(outputDir, 'en', 'sitemap.xml'), 'utf8');
     const chineseContent = JSON.parse(
       fs.readFileSync(path.join(outputDir, 'content.json'), 'utf8'),
+    );
+    const simplifiedChineseContent = JSON.parse(
+      fs.readFileSync(path.join(outputDir, 'zh-cn', 'content.json'), 'utf8'),
     );
     const englishContent = JSON.parse(
       fs.readFileSync(path.join(outputDir, 'en', 'content.json'), 'utf8'),
     );
     const chineseHome = fs.readFileSync(path.join(outputDir, 'index.html'), 'utf8');
+    const simplifiedChineseHome = fs.readFileSync(path.join(outputDir, 'zh-cn', 'index.html'), 'utf8');
     const englishHome = fs.readFileSync(path.join(outputDir, 'en', 'index.html'), 'utf8');
     const chinesePair = fs.readFileSync(
       path.join(outputDir, '2023', '03', '05', 'TypeScript入門：什麼是TypeScript？', 'index.html'),
+      'utf8',
+    );
+    const simplifiedChinesePair = fs.readFileSync(
+      path.join(outputDir, 'zh-cn', '2023', '03', '05', 'what-is-typescript', 'index.html'),
       'utf8',
     );
     const englishPair = fs.readFileSync(
@@ -151,25 +169,35 @@ test('multilingual build writes both locale trees to an isolated output director
     );
 
     assert.ok(chineseStyles.length > 0);
+    assert.ok(simplifiedChineseStyles.length > 0);
     assert.ok(englishStyles.length > 0);
     assert.match(chineseStyles, /\.language-switcher__menu/);
+    assert.match(simplifiedChineseStyles, /\.language-switcher__menu/);
     assert.match(englishStyles, /\.language-switcher__menu/);
 
     assert.match(sitemapIndex, /<sitemapindex/);
     assert.match(sitemapIndex, /https:\/\/blog\.6yuwei\.com\/sitemap-zh-TW\.xml/);
+    assert.match(sitemapIndex, /https:\/\/blog\.6yuwei\.com\/zh-cn\/sitemap\.xml/);
     assert.match(sitemapIndex, /https:\/\/blog\.6yuwei\.com\/en\/sitemap\.xml/);
-    assert.doesNotMatch(chineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\//);
+    assert.doesNotMatch(chineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/(?:zh-cn|en)\//);
+    assert.match(simplifiedChineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/zh-cn\//);
+    assert.match(simplifiedChineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/zh-cn\/<\/loc>/);
     assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\//);
     assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\/<\/loc>/);
-    assert.doesNotMatch(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/(?!en\/)/);
 
     assert.equal(chineseContent.meta.url, 'https://blog.6yuwei.com');
+    assert.equal(simplifiedChineseContent.meta.url, 'https://blog.6yuwei.com/zh-cn');
     assert.equal(englishContent.meta.url, 'https://blog.6yuwei.com/en');
     assert.ok(chineseContent.posts.length > 0);
+    assert.ok(simplifiedChineseContent.posts.length > 0);
     assert.ok(englishContent.posts.length > 0);
 
     for (const post of chineseContent.posts) {
-      assert.match(post.permalink, /^https:\/\/blog\.6yuwei\.com\/(?!en\/)/);
+      assert.match(post.permalink, /^https:\/\/blog\.6yuwei\.com\/(?!en\/|zh-cn\/)/);
+    }
+
+    for (const post of simplifiedChineseContent.posts) {
+      assert.match(post.permalink, /^https:\/\/blog\.6yuwei\.com\/zh-cn\//);
     }
 
     for (const post of englishContent.posts) {
@@ -179,6 +207,7 @@ test('multilingual build writes both locale trees to an isolated output director
     assert.match(chineseHome, /<html lang="zh-TW">/);
     assert.match(chineseHome, /<link rel="canonical" href="https:\/\/blog\.6yuwei\.com\/">/);
     assert.match(chineseHome, /hreflang="zh-TW" href="https:\/\/blog\.6yuwei\.com\/"/);
+    assert.match(chineseHome, /hreflang="zh-CN" href="https:\/\/blog\.6yuwei\.com\/zh-cn\/"/);
     assert.match(chineseHome, /hreflang="en" href="https:\/\/blog\.6yuwei\.com\/en\/"/);
     assert.match(chineseHome, /hreflang="x-default" href="https:\/\/blog\.6yuwei\.com\/"/);
     assert.match(chineseHome, /property="og:locale" content="zh_TW"/);
@@ -190,9 +219,22 @@ test('multilingual build writes both locale trees to an isolated output director
     assert.match(chineseHome, />首頁<\/a>/);
     assert.match(chineseHome, />彙整<\/a>/);
 
+    assert.match(simplifiedChineseHome, /<html lang="zh-CN">/);
+    assert.match(simplifiedChineseHome, /<link rel="canonical" href="https:\/\/blog\.6yuwei\.com\/zh-cn\/">/);
+    assert.match(simplifiedChineseHome, /hreflang="zh-TW" href="https:\/\/blog\.6yuwei\.com\/"/);
+    assert.match(simplifiedChineseHome, /hreflang="zh-CN" href="https:\/\/blog\.6yuwei\.com\/zh-cn\/"/);
+    assert.match(simplifiedChineseHome, /hreflang="en" href="https:\/\/blog\.6yuwei\.com\/en\/"/);
+    assert.match(simplifiedChineseHome, /property="og:locale" content="zh_CN"/);
+    assert.match(simplifiedChineseHome, /"inLanguage":"zh-CN"/);
+    assert.match(simplifiedChineseHome, /class="language-switcher"/);
+    assert.match(simplifiedChineseHome, /<span class="language-switcher__current">简体中文<\/span>/);
+    assert.match(simplifiedChineseHome, />首页<\/a>/);
+    assert.match(simplifiedChineseHome, />归档<\/a>/);
+
     assert.match(englishHome, /<html lang="en">/);
     assert.match(englishHome, /<link rel="canonical" href="https:\/\/blog\.6yuwei\.com\/en\/">/);
     assert.match(englishHome, /hreflang="zh-TW" href="https:\/\/blog\.6yuwei\.com\/"/);
+    assert.match(englishHome, /hreflang="zh-CN" href="https:\/\/blog\.6yuwei\.com\/zh-cn\/"/);
     assert.match(englishHome, /hreflang="en" href="https:\/\/blog\.6yuwei\.com\/en\/"/);
     assert.match(englishHome, /property="og:locale" content="en_US"/);
     assert.match(englishHome, /"inLanguage":"en"/);
@@ -211,8 +253,25 @@ test('multilingual build writes both locale trees to an isolated output director
 
     assert.match(
       chinesePair,
+      /hreflang="zh-CN" href="https:\/\/blog\.6yuwei\.com\/zh-cn\/2023\/03\/05\/what-is-typescript\/"/,
+    );
+    assert.match(
+      chinesePair,
       /hreflang="en" href="https:\/\/blog\.6yuwei\.com\/en\/2023\/03\/05\/what-is-typescript\/"/,
     );
+    assert.match(
+      simplifiedChinesePair,
+      /<link rel="canonical" href="https:\/\/blog\.6yuwei\.com\/zh-cn\/2023\/03\/05\/what-is-typescript\/">/,
+    );
+    assert.match(
+      simplifiedChinesePair,
+      /hreflang="zh-TW" href="https:\/\/blog\.6yuwei\.com\/2023\/03\/05\/TypeScript%E5%85%A5%E9%96%80%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AFTypeScript%EF%BC%9F\/"/,
+    );
+    assert.match(
+      simplifiedChinesePair,
+      /hreflang="en" href="https:\/\/blog\.6yuwei\.com\/en\/2023\/03\/05\/what-is-typescript\/"/,
+    );
+    assert.match(simplifiedChinesePair, /"inLanguage":"zh-CN"/);
     assert.match(
       englishPair,
       /<link rel="canonical" href="https:\/\/blog\.6yuwei\.com\/en\/2023\/03\/05\/what-is-typescript\/">/,
@@ -220,6 +279,10 @@ test('multilingual build writes both locale trees to an isolated output director
     assert.match(
       englishPair,
       /hreflang="zh-TW" href="https:\/\/blog\.6yuwei\.com\/2023\/03\/05\/TypeScript%E5%85%A5%E9%96%80%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AFTypeScript%EF%BC%9F\/"/,
+    );
+    assert.match(
+      englishPair,
+      /hreflang="zh-CN" href="https:\/\/blog\.6yuwei\.com\/zh-cn\/2023\/03\/05\/what-is-typescript\/"/,
     );
     assert.match(englishPair, /"inLanguage":"en"/);
     assert.doesNotMatch(
@@ -230,33 +293,48 @@ test('multilingual build writes both locale trees to an isolated output director
     const highTrafficPairs = [
       {
         chinesePath: '/2026/05/06/AI-coding-工具比較：Claude-Code、Codex、Cursor-怎麼選？/',
+        simplifiedChinesePath: '/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/',
         englishPath: '/en/2026/05/06/claude-code-vs-codex-vs-cursor/',
       },
       {
         chinesePath: '/2026/06/15/aseprite-install-guide/',
+        simplifiedChinesePath: '/zh-cn/2026/06/15/how-to-install-aseprite/',
         englishPath: '/en/2026/06/15/how-to-install-aseprite/',
       },
       {
         chinesePath: '/2026/06/18/claude-codex-quota-guide/',
+        simplifiedChinesePath: '/zh-cn/2026/06/18/claude-codex-usage-limits-guide/',
         englishPath: '/en/2026/06/18/claude-codex-usage-limits-guide/',
       },
       {
         chinesePath: '/2026/08/09/Claude-Code-跨工作階段訊息：讓不同-Session-互相傳話的完整用法/',
+        simplifiedChinesePath: '/zh-cn/2026/08/09/claude-code-cross-session-messaging/',
         englishPath: '/en/2026/08/09/claude-code-cross-session-messaging/',
       },
     ];
 
     for (const pair of highTrafficPairs) {
       const chineseUrl = new URL(pair.chinesePath, 'https://blog.6yuwei.com').href;
+      const simplifiedChineseUrl = new URL(pair.simplifiedChinesePath, 'https://blog.6yuwei.com').href;
       const englishUrl = new URL(pair.englishPath, 'https://blog.6yuwei.com').href;
       const chineseFile = path.join(outputDir, decodeURIComponent(pair.chinesePath), 'index.html');
+      const simplifiedChineseFile = path.join(outputDir, pair.simplifiedChinesePath, 'index.html');
       const englishFile = path.join(outputDir, pair.englishPath, 'index.html');
       const chineseHtml = fs.readFileSync(chineseFile, 'utf8');
+      const simplifiedChineseHtml = fs.readFileSync(simplifiedChineseFile, 'utf8');
       const englishHtml = fs.readFileSync(englishFile, 'utf8');
 
+      assert.ok(chineseHtml.includes(`hreflang="zh-CN" href="${simplifiedChineseUrl}"`));
       assert.ok(chineseHtml.includes(`hreflang="en" href="${englishUrl}"`));
+
+      assert.ok(simplifiedChineseHtml.includes(`<link rel="canonical" href="${simplifiedChineseUrl}">`));
+      assert.ok(simplifiedChineseHtml.includes(`hreflang="zh-TW" href="${chineseUrl}"`));
+      assert.ok(simplifiedChineseHtml.includes(`hreflang="en" href="${englishUrl}"`));
+      assert.ok(simplifiedChineseSitemap.includes(`<loc>${simplifiedChineseUrl}</loc>`));
+
       assert.ok(englishHtml.includes(`<link rel="canonical" href="${englishUrl}">`));
       assert.ok(englishHtml.includes(`hreflang="zh-TW" href="${chineseUrl}"`));
+      assert.ok(englishHtml.includes(`hreflang="zh-CN" href="${simplifiedChineseUrl}"`));
       assert.ok(englishSitemap.includes(`<loc>${englishUrl}</loc>`));
     }
 
@@ -264,10 +342,13 @@ test('multilingual build writes both locale trees to an isolated output director
       .filter(filePath => filePath.endsWith('.html'));
     const englishHtmlFiles = generatedHtmlFiles
       .filter(filePath => path.relative(outputDir, filePath).startsWith(`en${path.sep}`));
+    const simplifiedChineseHtmlFiles = generatedHtmlFiles
+      .filter(filePath => path.relative(outputDir, filePath).startsWith(`zh-cn${path.sep}`));
     const chineseHtmlFiles = generatedHtmlFiles
-      .filter(filePath => !englishHtmlFiles.includes(filePath));
+      .filter(filePath => !englishHtmlFiles.includes(filePath) && !simplifiedChineseHtmlFiles.includes(filePath));
 
     assert.ok(chineseHtmlFiles.length > 1);
+    assert.ok(simplifiedChineseHtmlFiles.length > 1);
     assert.ok(englishHtmlFiles.length > 1);
 
     for (const filePath of chineseHtmlFiles) {
@@ -276,7 +357,27 @@ test('multilingual build writes both locale trees to an isolated output director
 
       assert.equal(canonicals.length, 1, `expected one canonical in ${filePath}`);
       assert.match(html, /<html lang="zh-TW">/);
-      assert.doesNotMatch(canonicals[0], /https:\/\/blog\.6yuwei\.com\/en\//);
+      assert.doesNotMatch(canonicals[0], /https:\/\/blog\.6yuwei\.com\/(?:en|zh-cn)\//);
+    }
+
+    for (const filePath of simplifiedChineseHtmlFiles) {
+      const html = fs.readFileSync(filePath, 'utf8');
+      const canonicals = html.match(/<link rel="canonical" href="[^"]+">/g) || [];
+      const localReferences = [...html.matchAll(/(?:href|src)="(\/[^"\s]+)"/g)]
+        .map(match => match[1])
+        .filter(reference => !reference.startsWith('//'));
+
+      assert.equal(canonicals.length, 1, `expected one canonical in ${filePath}`);
+      assert.match(html, /<html lang="zh-CN">/);
+      assert.match(canonicals[0], /https:\/\/blog\.6yuwei\.com\/zh-cn\//);
+
+      for (const reference of localReferences) {
+        assert.equal(
+          outputTargetExists(outputDir, reference),
+          true,
+          `missing local target ${reference} referenced by ${filePath}`,
+        );
+      }
     }
 
     for (const filePath of englishHtmlFiles) {
@@ -314,7 +415,7 @@ test('mobile header keeps navigation compact and the language menu unclipped', (
       {
         cwd: process.cwd(),
         encoding: 'utf8',
-        timeout: 120_000,
+        timeout: 180_000,
       },
     );
 

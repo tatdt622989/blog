@@ -10,7 +10,7 @@ const {
   writeSitemapIndex,
 } = require('../lib/sitemap-index');
 
-const SITEMAP_PATHS = ['/sitemap-zh-TW.xml', '/en/sitemap.xml'];
+const SITEMAP_PATHS = ['/sitemap-zh-TW.xml', '/zh-cn/sitemap.xml', '/en/sitemap.xml'];
 
 function parseArguments(argv) {
   const options = {
@@ -64,9 +64,11 @@ async function buildMultilingualSite(options = {}) {
   const outputDir = path.resolve(baseDir, options.output || 'public');
   const stateRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'blog-hexo-state-'));
   const chineseOverride = path.join(stateRoot, 'zh-TW-output.json');
+  const simplifiedChineseOverride = path.join(stateRoot, 'zh-CN-output.json');
   const englishOverride = path.join(stateRoot, 'en-output.json');
 
   writeOutputOverride(chineseOverride, outputDir);
+  writeOutputOverride(simplifiedChineseOverride, path.join(outputDir, 'zh-cn'));
   writeOutputOverride(englishOverride, path.join(outputDir, 'en'));
 
   try {
@@ -74,6 +76,12 @@ async function buildMultilingualSite(options = {}) {
       baseDir,
       [path.join(baseDir, '_config.yml'), chineseOverride],
       path.join(stateRoot, 'zh-TW-state'),
+      options.silent,
+    );
+    await generateSite(
+      baseDir,
+      [path.join(baseDir, '_config.yml'), path.join(baseDir, '_config.zh-CN.yml'), simplifiedChineseOverride],
+      path.join(stateRoot, 'zh-CN-state'),
       options.silent,
     );
     await generateSite(
@@ -88,6 +96,15 @@ async function buildMultilingualSite(options = {}) {
     fs.writeFileSync(
       chineseSitemapPath,
       normalizeSitemapCanonicalUrls(chineseSitemap),
+    );
+
+    const simplifiedChineseSitemapPath = path.join(outputDir, 'zh-cn', 'sitemap.xml');
+    const simplifiedChineseSitemap = fs.readFileSync(simplifiedChineseSitemapPath, 'utf8');
+    fs.writeFileSync(
+      simplifiedChineseSitemapPath,
+      normalizeSitemapCanonicalUrls(
+        normalizeSitemapHomeXml(simplifiedChineseSitemap, 'https://blog.6yuwei.com/zh-cn/'),
+      ),
     );
 
     const englishSitemapPath = path.join(outputDir, 'en', 'sitemap.xml');

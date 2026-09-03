@@ -1,20 +1,25 @@
----
-title: "2026 Japan Anime Pilgrimage Guide: Six Routes, Transport Tips, and Photo Etiquette"
-date: 2026-08-29 15:30:00
-updated: 2026-08-29 23:08:27
+title: >-
+  2026 Japan Anime Pilgrimage Guide: Six Routes, Transport Tips, and Photo
+  Etiquette
 published: false
-description: Plan a 2026 anime pilgrimage in Japan with six practical routes, official sources, transport advice, trip lengths, and respectful photo etiquette.
+description: >-
+  Plan a 2026 anime pilgrimage in Japan with six practical routes, official
+  sources, transport advice, trip lengths, and respectful photo etiquette.
 permalink: 2026/08/29/japan-anime-pilgrimage-guide-2026/
 translation_key: japan-anime-pilgrimage-guide-2026
 translations:
   zh-TW: /2026/08/29/2026-日本動漫聖地巡禮攻略：官方-88-選精選、交通規劃與拍照禮儀/
+  zh-CN: /zh-cn/2026/08/29/japan-anime-pilgrimage-guide-2026/
 categories:
-- [Japan Travel, Anime Culture]
+  - - Japan Travel
+    - Anime Culture
 tags:
-- Japan Travel
-- Anime Pilgrimage
-- Anime Tourism
-- Independent Travel
+  - Japan Travel
+  - Anime Pilgrimage
+  - Anime Tourism
+  - Independent Travel
+date: 2026-08-29 15:30:00
+updated: 2026-08-29 23:08:27
 ---
 
 ![Illustration of a 2026 Japan anime pilgrimage by train](cover.jpg)

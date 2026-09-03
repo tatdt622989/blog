@@ -1,19 +1,21 @@
----
 title: 獨立遊戲音效 AI 工作流：Suno 產配樂、MOSS-SoundEffect 本地生音效，低成本打造遊戲聲音
-date: 2026-08-27 16:07:15
-updated: 2026-08-29 18:50:35
-description: 本文整理獨立遊戲 AI 聲音工作流：以 MOSS-SoundEffect-v2.0 與 Stable Audio Open 產生短音效，再用 Suno 製作背景配樂，並說明官方環境、授權、下載限制、提示詞、無縫循環及遊戲格式選擇。
+description: >-
+  本文整理獨立遊戲 AI 聲音工作流：以 MOSS-SoundEffect-v2.0 與 Stable Audio Open 產生短音效，再用 Suno
+  製作背景配樂，並說明官方環境、授權、下載限制、提示詞、無縫循環及遊戲格式選擇。
 translation_key: indie-game-ai-audio-workflow
 translations:
   en: /en/2026/08/27/indie-game-ai-audio-workflow/
+  zh-CN: /zh-cn/2026/08/27/indie-game-ai-audio-workflow/
 categories:
-- 遊戲開發
+  - 遊戲開發
 tags:
-- 獨立開發者
-- 遊戲開發
-- AI
-- Codex
-- Suno
+  - 獨立開發者
+  - 遊戲開發
+  - AI
+  - Codex
+  - Suno
+date: 2026-08-27 16:07:15
+updated: 2026-08-29 18:50:35
 ---
 
 ![獨立遊戲 AI 音效工作流：本地模型生成音效與 Suno 製作配樂封面](cover.jpg)

@@ -1,17 +1,21 @@
----
-title: "Grok 4.6 Powers Grok Build: What Changes for Long-Running AI Developer Workflows?"
-date: 2026-08-13 10:25:34
-updated: 2026-08-29 19:08:22
-description: A practical guide to Grok 4.6 and Grok Build, covering long tasks, parallel subagents, Plan mode, context limits, API pricing, and workflow tradeoffs.
+title: >-
+  Grok 4.6 Powers Grok Build: What Changes for Long-Running AI Developer
+  Workflows?
+description: >-
+  A practical guide to Grok 4.6 and Grok Build, covering long tasks, parallel
+  subagents, Plan mode, context limits, API pricing, and workflow tradeoffs.
 permalink: 2026/08/13/grok-4-6-in-grok-build-long-running-workflows/
 translation_key: grok-4-6-in-grok-build-long-running-workflows
 translations:
   zh-TW: /2026/08/13/Grok-4-6-進入-Grok-Build：長時間開發工作流有什麼改變？/
+  zh-CN: /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/
 categories:
-- AI Technology
+  - AI Technology
 tags:
-- Grok
-- AI Agent
+  - Grok
+  - AI Agent
+date: 2026-08-13 10:25:34
+updated: 2026-08-29 19:08:22
 ---
 
 ![Grok 4.6 driving Grok Build for long-running autonomous development and parallel agent workflows](cover.jpg)

@@ -1,20 +1,22 @@
----
 title: AI 時代，E2E 測試要怎麼升級？從固定腳本到 AI-native Harness
-date: 2026-09-01 10:30:24
-updated: 2026-09-01 20:24:39
-description: AI 讓產品更快被寫出，也讓驗收成為新瓶頸。本文用通用 E2E Harness 架構說明如何隔離產品、固定驗收、讓 Agent 探索，並把每次失敗變成可重播的回歸測試。
+description: >-
+  AI 讓產品更快被寫出，也讓驗收成為新瓶頸。本文用通用 E2E Harness 架構說明如何隔離產品、固定驗收、讓 Agent
+  探索，並把每次失敗變成可重播的回歸測試。
 translation_key: e2e-testing-agentic-sdlc-ground-truth
 translations:
   en: /en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/
+  zh-CN: /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/
 categories:
-- 軟體工程
+  - 軟體工程
 tags:
-- AI
-- E2E 測試
-- E2E Harness
-- Playwright
-- AI Agent
-- Agentic SDLC
+  - AI
+  - E2E 測試
+  - E2E Harness
+  - Playwright
+  - AI Agent
+  - Agentic SDLC
+date: 2026-09-01 10:30:24
+updated: 2026-09-01 20:24:39
 ---
 
 ![AI 時代的 E2E 驗收系統把產品版本、固定測試、AI 探索與測試紀錄串在一起的技術插圖](cover.jpg)

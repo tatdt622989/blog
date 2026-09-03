@@ -10,3 +10,18 @@ archive_a: 归档
 archive_b: 归档：%s
 page: 第 %d 页
 recent_posts: 最新文章
+nav_home: 首页
+nav_archives: 归档
+nav_works: 作品
+read_more: 阅读全文
+breadcrumb_home: 首页
+breadcrumb_categories: 分类
+breadcrumb_tags: 标签
+breadcrumb_archives: 归档
+language_switcher: 切换语言
+language_zh_tw: 中文
+language_zh_tw_full: 繁体中文
+language_zh_cn: 简体
+language_zh_cn_full: 简体中文
+language_en: English
+related_posts: 相关文章

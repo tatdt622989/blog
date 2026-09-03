@@ -1,18 +1,20 @@
----
-title: "What Is CLIProxyAPI? Codex Login and Open-Source Integrations Explained"
-date: 2026-08-30 01:06:38
-updated: 2026-08-30 01:19:28
-description: A plain-language CLIProxyAPI guide to Codex login, compatible APIs, open-source integrations, policy boundaries, and local security.
+title: What Is CLIProxyAPI? Codex Login and Open-Source Integrations Explained
+description: >-
+  A plain-language CLIProxyAPI guide to Codex login, compatible APIs,
+  open-source integrations, policy boundaries, and local security.
 permalink: 2026/08/30/cliproxyapi-codex-open-source-tools/
 translation_key: cliproxyapi-codex-open-source-tools
 translations:
   zh-TW: /2026/08/30/CLIProxyAPI-是什麼？Codex-登入、API-轉接與開源工具串接一次看懂/
+  zh-CN: /zh-cn/2026/08/30/cliproxyapi-codex-open-source-tools/
 categories:
-- AI Technology
+  - AI Technology
 tags:
-- AI
-- Codex
-- Open Source
+  - AI
+  - Codex
+  - Open Source
+date: 2026-08-30 01:06:38
+updated: 2026-08-30 01:19:28
 ---
 
 ![CLIProxyAPI connecting Codex to open-source AI tools](cover.jpg)

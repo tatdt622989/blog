@@ -17,7 +17,7 @@
           <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
         </svg>
       </span>
-      <span class="language-switcher__current"><%= activeLocale === 'en' ? __('language_en') : __('language_zh_tw') %></span>
+      <span class="language-switcher__current"><%= activeLocale === 'en' ? __('language_en') : (activeLocale === 'zh-CN' ? __('language_zh_cn_full') : __('language_zh_tw')) %></span>
       <span class="language-switcher__chevron" aria-hidden="true"></span>
     </summary>
     <div class="language-switcher__panel">
@@ -29,7 +29,17 @@
         <% if (activeLocale === 'zh-TW') { %>aria-current="page"<% } %>
       >
         <span><%= __('language_zh_tw_full') %></span>
-        <span class="language-switcher__code" aria-hidden="true">ZH</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="<%- language_switch_url(page, 'zh-CN') %>"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option <%= activeLocale === 'zh-CN' ? 'is-active' : '' %>"
+        <% if (activeLocale === 'zh-CN') { %>aria-current="page"<% } %>
+      >
+        <span><%= __('language_zh_cn_full') %></span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
       </a>
       <a
         href="<%- language_switch_url(page, 'en') %>"

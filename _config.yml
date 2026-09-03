@@ -17,6 +17,7 @@ i18n:
   default_locale: zh-TW
   locales:
     zh-TW: /
+    zh-CN: /zh-cn/
     en: /en/
 
 # URL

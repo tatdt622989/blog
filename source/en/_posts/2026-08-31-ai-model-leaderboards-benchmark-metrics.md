@@ -1,19 +1,23 @@
----
-title: "How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter"
-date: 2026-08-31 14:41:53
-updated: 2026-08-31 14:41:53
-description: Compare LMArena, Artificial Analysis, SWE-bench, Scale Labs, and LiveBench while learning 12 metrics for choosing the right AI model.
+title: >-
+  How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12
+  Metrics That Matter
+description: >-
+  Compare LMArena, Artificial Analysis, SWE-bench, Scale Labs, and LiveBench
+  while learning 12 metrics for choosing the right AI model.
 permalink: 2026/08/31/ai-model-leaderboards-benchmark-metrics/
 translation_key: ai-model-leaderboards-benchmark-metrics-guide
 translations:
   zh-TW: /2026/08/31/AI-模型排行榜怎麼看？LMArena、SWE-bench、LiveBench-與-12-個關鍵指標完整解析/
+  zh-CN: /zh-cn/2026/08/31/ai-model-leaderboards-benchmark-metrics/
 categories:
-- AI Technology
+  - AI Technology
 tags:
-- AI
-- LLM
-- AI Evaluation
-- Benchmarks
+  - AI
+  - LLM
+  - AI Evaluation
+  - Benchmarks
+date: 2026-08-31 14:41:53
+updated: 2026-08-31 14:41:53
 ---
 
 ![Five AI evaluation methods connected to a central processor](cover.jpg)

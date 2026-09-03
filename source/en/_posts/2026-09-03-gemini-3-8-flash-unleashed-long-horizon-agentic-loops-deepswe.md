@@ -1,19 +1,24 @@
----
-title: "Gemini 3.8 Flash Unleashed: Frontier-Tier Agentic Loops, DeepSWE Breakthroughs, and Ultra-Low Pricing"
-date: 2026-09-03 09:00:00
-updated: 2026-09-03 09:00:00
-description: "A deep dive into Google Gemini 3.8 Flash, featuring 1M context, recursive agentic loops, DeepSWE breakthroughs, and cost-efficient coding."
+title: >-
+  Gemini 3.8 Flash Unleashed: Frontier-Tier Agentic Loops, DeepSWE
+  Breakthroughs, and Ultra-Low Pricing
+description: >-
+  A deep dive into Google Gemini 3.8 Flash, featuring 1M context, recursive
+  agentic loops, DeepSWE breakthroughs, and cost-efficient coding.
 permalink: 2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/
 translation_key: gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe
 translations:
   zh-TW: /2026/09/03/Gemini-3-8-Flash-突襲登場！維持-3-7-極低費率、長時程代理迴圈與-DeepSWE-關鍵突破/
+  zh-CN: >-
+    /zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/
 categories:
-- AI
+  - AI
 tags:
-- AI
-- AI Agent
-- Development Tools
-- Software Engineering
+  - AI
+  - AI Agent
+  - Development Tools
+  - Software Engineering
+date: 2026-09-03 09:00:00
+updated: 2026-09-03 09:00:00
 ---
 
 ![Gemini 3.8 Flash Intelligent Workhorse Model Architecture and Long-Horizon Agent Flow](cover.jpg)
