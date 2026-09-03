@@ -143,6 +143,11 @@ test('public post pages render localized related posts and list pages omit them'
     assert.match(zhPost, /class="related-posts"/, 'Chinese post should contain related-posts');
     assert.match(zhPost, /<h3 class="related-posts-title">相關文章<\/h3>/, 'Chinese post should have 相關文章 title');
     assert.match(zhPost, /class="related-post-card"/, 'Chinese post should render cards');
+    assert.match(zhPost, /data-rel-source="\/2026\/06\/18\/claude-codex-quota-guide\/"/, 'Chinese post should set data-rel-source');
+    assert.match(zhPost, /data-rel-title="/, 'cards should expose data-rel-title');
+    assert.match(zhPost, /data-rel-path="/, 'cards should expose data-rel-path');
+    assert.match(zhPost, /data-rel-tag="/, 'cards should expose data-rel-tag');
+    assert.match(zhPost, /data-rel-position="1"/, 'cards should expose data-rel-position');
     assert.doesNotMatch(
       zhPost,
       /<a href="\/2026\/06\/18\/claude-codex-quota-guide\/" class="related-post-link">/,

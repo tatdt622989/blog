@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (articles.length === 1) {
     createTOC(articles[0]);
+    initRelatedPostsTracking();
   }
 
   window.setTimeout(scrollToAnchor, 10);
@@ -120,3 +121,63 @@ function scrollToAnchor() {
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
+
+function initRelatedPostsTracking() {
+  var container = document.querySelector('.related-posts');
+  if (!container) return;
+
+  var sourcePath = container.getAttribute('data-rel-source') || window.location.pathname;
+
+  // 1. 曝光追蹤（Impression Tracking via IntersectionObserver）
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var items = [];
+          container.querySelectorAll('.related-post-link').forEach(function (link) {
+            items.push({
+              item_id: link.getAttribute('data-rel-path') || link.getAttribute('href') || '',
+              item_name: link.getAttribute('data-rel-title') || '',
+              item_category: link.getAttribute('data-rel-tag') || '',
+              index: Number(link.getAttribute('data-rel-position')) || 1,
+            });
+          });
+
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'view_related_posts', {
+              item_list_name: 'related_posts',
+              source_path: sourcePath,
+              items: items,
+            });
+          }
+          observer.unobserve(container);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(container);
+  }
+
+  // 2. 點擊追蹤（Click Tracking）
+  container.addEventListener('click', function (event) {
+    var link = event.target.closest('.related-post-link');
+    if (!link) return;
+
+    var title = link.getAttribute('data-rel-title') || '';
+    var targetPath = link.getAttribute('data-rel-path') || link.getAttribute('href') || '';
+    var tag = link.getAttribute('data-rel-tag') || '';
+    var position = Number(link.getAttribute('data-rel-position')) || 1;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'click_related_post', {
+        item_id: targetPath,
+        item_name: title,
+        item_category: tag,
+        item_list_name: 'related_posts',
+        index: position,
+        source_path: sourcePath,
+      });
+    }
+  });
+}
+

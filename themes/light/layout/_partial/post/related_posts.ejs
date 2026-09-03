@@ -2,12 +2,16 @@
   const relatedPosts = get_related_posts(item, 3);
 %>
 <% if (relatedPosts && relatedPosts.length > 0) { %>
-<div class="related-posts">
+<div class="related-posts" data-rel-source="<%- url_for(item.path) %>">
   <h3 class="related-posts-title"><%= __('related_posts') %></h3>
   <div class="related-posts-grid">
-    <% relatedPosts.forEach(function(post) { %>
+    <% relatedPosts.forEach(function(post, index) { %>
       <div class="related-post-card">
-        <a href="<%- url_for(post.path) %>" class="related-post-link">
+        <a href="<%- url_for(post.path) %>" class="related-post-link"
+           data-rel-title="<%= post.title %>"
+           data-rel-path="<%- url_for(post.path) %>"
+           data-rel-tag="<%= post.displayTag %>"
+           data-rel-position="<%= index + 1 %>">
           <div class="related-post-cover">
             <% if (post.cover) { %>
               <img src="<%- post.cover %>" alt="<%= post.title %>" loading="lazy" decoding="async">
