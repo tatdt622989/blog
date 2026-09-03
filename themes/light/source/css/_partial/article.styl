@@ -520,3 +520,120 @@ article
       margin-top 15px
       iframe
         margin-top 0
+
+  .related-posts
+    margin-top 35px
+    padding-top 25px
+    border-top 1px solid color-border
+
+    .related-posts-title
+      font-size 18px
+      font-weight 600
+      color color-dark
+      margin 0 0 18px 0
+      padding-left 12px
+      border-left 4px solid color-link
+      line-height 1.3
+
+    .related-posts-grid
+      display grid
+      grid-template-columns repeat(3, 1fr)
+      gap 16px
+
+      @media screen and (max-width: 640px)
+        grid-template-columns 1fr
+        gap 12px
+
+    .related-post-card
+      background #fff
+      border 1px solid #e8e8e8
+      border-radius 8px
+      overflow hidden
+      transition transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease
+      display flex
+      flex-direction column
+
+      &:hover
+        transform translateY(-3px)
+        box-shadow 0 6px 16px rgba(0, 0, 0, 0.08)
+        border-color lighten(color-link, 30%)
+
+        .related-post-cover img
+          transform scale(1.05)
+
+        .related-post-item-title
+          color color-link
+
+    .related-post-link
+      display flex
+      flex-direction column
+      width 100%
+      height 100%
+      text-decoration none
+      color inherit
+
+    .related-post-cover
+      position relative
+      width 100%
+      aspect-ratio 16 / 9
+      background #f3f4f6
+      overflow hidden
+
+      img
+        width 100%
+        height 100%
+        object-fit cover
+        margin 0
+        border-radius 0
+        display block
+        transition transform 0.3s ease
+
+      .related-post-placeholder
+        width 100%
+        height 100%
+        display flex
+        align-items center
+        justify-content center
+        background linear-gradient(135deg, #eaf5f1 0%, #d8eee7 100%)
+        color color-link
+        font-size 13px
+        font-weight 600
+        padding 10px
+        text-align center
+        box-sizing border-box
+
+    .related-post-info
+      padding 12px
+      display flex
+      flex-direction column
+      flex 1
+
+      .related-post-tag
+        font-size 11px
+        color color-link
+        font-weight 600
+        text-transform uppercase
+        margin-bottom 6px
+        letter-spacing 0.5px
+        line-height 1.2
+
+      .related-post-item-title
+        font-size 14px
+        font-weight 600
+        line-height 1.45
+        color color-font
+        margin 0 0 8px 0
+        padding 0
+        border none
+        display -webkit-box
+        -webkit-line-clamp 2
+        -webkit-box-orient vertical
+        overflow hidden
+        transition color 0.2s ease
+
+      .related-post-date
+        font-size 12px
+        color color-meta
+        margin-top auto
+        line-height 1
+

@@ -1,6 +1,7 @@
 ---
 title: "How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter"
 date: 2026-08-31 14:41:53
+updated: 2026-08-31 14:41:53
 description: Compare LMArena, Artificial Analysis, SWE-bench, Scale Labs, and LiveBench while learning 12 metrics for choosing the right AI model.
 permalink: 2026/08/31/ai-model-leaderboards-benchmark-metrics/
 translation_key: ai-model-leaderboards-benchmark-metrics-guide

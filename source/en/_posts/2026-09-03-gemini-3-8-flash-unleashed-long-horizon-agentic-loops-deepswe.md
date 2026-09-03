@@ -1,7 +1,8 @@
 ---
 title: "Gemini 3.8 Flash Unleashed: Frontier-Tier Agentic Loops, DeepSWE Breakthroughs, and Ultra-Low Pricing"
 date: 2026-09-03 09:00:00
-description: "Google debuts Gemini 3.8 Flash. A technical deep dive into 1M context, recursive agentic loops, DeepSWE breakthroughs, and ultra-cost-efficient software engineering."
+updated: 2026-09-03 09:00:00
+description: "A deep dive into Google Gemini 3.8 Flash, featuring 1M context, recursive agentic loops, DeepSWE breakthroughs, and cost-efficient coding."
 permalink: 2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/
 translation_key: gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe
 translations:

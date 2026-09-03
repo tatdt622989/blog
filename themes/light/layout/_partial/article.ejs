@@ -36,6 +36,9 @@
       <% } %>
       <div class="clearfix"></div>
     </footer>
+    <% if (!index && item.layout !== 'page'){ %>
+      <%- partial('post/related_posts', {item: item}) %>
+    <% } %>
   </div>
 </article>
 

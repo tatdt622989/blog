@@ -1,0 +1,38 @@
+<%
+  const relatedPosts = get_related_posts(item, 3);
+%>
+<% if (relatedPosts && relatedPosts.length > 0) { %>
+<div class="related-posts">
+  <h3 class="related-posts-title"><%= __('related_posts') %></h3>
+  <div class="related-posts-grid">
+    <% relatedPosts.forEach(function(post) { %>
+      <div class="related-post-card">
+        <a href="<%- url_for(post.path) %>" class="related-post-link">
+          <div class="related-post-cover">
+            <% if (post.cover) { %>
+              <img src="<%- post.cover %>" alt="<%= post.title %>" loading="lazy" decoding="async">
+            <% } else { %>
+              <div class="related-post-placeholder">
+                <span><%= (post.categories && post.categories[0]) || (post.tags && post.tags[0]) || config.title %></span>
+              </div>
+            <% } %>
+          </div>
+          <div class="related-post-info">
+            <% if (post.displayTag) { %>
+              <span class="related-post-tag"><%= post.displayTag %></span>
+            <% } else if (post.tags && post.tags.length > 0) { %>
+              <span class="related-post-tag"><%= post.tags[0] %></span>
+            <% } else if (post.categories && post.categories.length > 0) { %>
+              <span class="related-post-tag"><%= post.categories[0] %></span>
+            <% } %>
+            <h4 class="related-post-item-title"><%= post.title %></h4>
+            <% if (post.date) { %>
+              <time class="related-post-date"><%= post.date.format(config.date_format) %></time>
+            <% } %>
+          </div>
+        </a>
+      </div>
+    <% }); %>
+  </div>
+</div>
+<% } %>

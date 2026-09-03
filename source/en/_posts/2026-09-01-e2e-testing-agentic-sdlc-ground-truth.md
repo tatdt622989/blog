@@ -2,7 +2,7 @@
 title: "How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness"
 date: 2026-09-01 10:30:24
 updated: 2026-09-01 20:24:39
-description: "AI generates code, tests, and fixes. This article focuses on an AI-native E2E harness: black-box tests, CI gates, agentic exploration, and regression evidence."
+description: "Learn how to build an AI-native E2E test harness with black-box tests, reliable CI gates, agentic exploration, and reproducible regression evidence."
 permalink: 2026/09/01/e2e-testing-agentic-sdlc-ground-truth/
 translation_key: e2e-testing-agentic-sdlc-ground-truth
 translations:
