@@ -8,7 +8,7 @@ description: >-
 permalink: 2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/
 translation_key: open-source-ai-image-generation-pipeline-comfyui-guide
 translations:
-  zh-TW: /2026/09/04/告別抽卡！開源-AI-繪圖精準控制全解析：從-Checkpoint、LoRA-到-ComfyUI-工業級流水線/
+  zh-TW: /2026/09/04/開源-AI-繪圖精準控制全解析：從-Checkpoint、LoRA-到-ComfyUI-工業級流水線/
   zh-CN: /zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/
 categories:
   - AI

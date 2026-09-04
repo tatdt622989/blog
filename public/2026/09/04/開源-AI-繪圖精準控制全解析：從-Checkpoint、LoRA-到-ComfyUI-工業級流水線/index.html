@@ -3,41 +3,41 @@
 <head>
   <meta charset="utf-8">
   
-  <title>告別抽卡！開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線 | 6yuwei</title>
+  <title>開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別抽卡隨機性。">
+  <meta name="description" content="深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別隨機盲試。">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
   
-  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
   
   <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/">
   
   <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/">
   
-  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
   
 
-  <meta property="og:title" content="告別抽卡！開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線"/>
-  <meta property="og:description" content="深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別抽卡隨機性。"/>
+  <meta property="og:title" content="開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線"/>
+  <meta property="og:description" content="深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別隨機盲試。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/"/>
   <meta property="og:locale" content="zh_TW"/>
   
   <meta property="og:locale:alternate" content="zh_CN"/>
   
   <meta property="og:locale:alternate" content="en_US"/>
   
-  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg?v=b2985914" />
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg?v=b2985914" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="告別抽卡！開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線">
-  <meta name="twitter:description" content="深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別抽卡隨機性。">
-  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg?v=b2985914">
+  <meta name="twitter:title" content="開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線">
+  <meta name="twitter:description" content="深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別隨機盲試。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg?v=b2985914">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/","url":"https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/","headline":"告別抽卡！開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線","description":"深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別抽卡隨機性。","datePublished":"2026-09-04T08:00:00.000Z","dateModified":"2026-09-04T08:00:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/","url":"https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/","headline":"開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線","description":"深入解析開源 AI 繪圖精準控制架構：從 Checkpoint、LoRA、ControlNet 到 ADetailer，解密專業創作者保持角色一致性與 ComfyUI 五層工業級流水線，告別隨機盲試。","datePublished":"2026-09-04T08:00:00.000Z","dateModified":"2026-09-04T08:00:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg"]}</script>
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"告別抽卡！開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線","item":"https://blog.6yuwei.com/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線","item":"https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/"}]}</script>
   
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,7 +144,7 @@
     </summary>
     <div class="language-switcher__panel">
       <a
-        href="/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/"
+        href="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/"
         lang="zh-TW"
         hreflang="zh-TW"
         class="language-switcher__option is-active"
@@ -190,25 +190,25 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-告別抽卡！開源-AI-繪圖精準控制全解析：從-Checkpoint、LoRA-到-ComfyUI-工業級流水線" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-開源-AI-繪圖精準控制全解析：從-Checkpoint、LoRA-到-ComfyUI-工業級流水線" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
     <header>
       
         <div class="icon" style="display: none"></div>
-        <time class="dt-published" datetime="2026-09-04T08:00:00.000Z"><a href="/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">2026-09-04</a></time>
+        <time class="dt-published" datetime="2026-09-04T08:00:00.000Z"><a href="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">2026-09-04</a></time>
       
       
   
-    <h1 class="p-name title" itemprop="headline name">告別抽卡！開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線</h1>
+    <h1 class="p-name title" itemprop="headline name">開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線</h1>
   
 
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-720.jpg?v=e6586c7b" alt="開源 AI 繪圖精準控制與 ComfyUI 節點流水線全景" width="1200" height="669" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-480.jpg?v=a2e70098 480w, /2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-720.jpg?v=e6586c7b 720w, /2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-960.jpg?v=781d3e57 960w, /2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg?v=b2985914 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p>許多剛接觸開源 AI 繪圖的開發者與創作者，最初都會經歷一段痛苦的抽卡時期：寫了一長串精美的提示詞，按下生成按鈕，結果角色不是手指多了一根、肢體怪異抽筋，就是換個場景與角度直接換了一張臉。</p>
-<p>在真正的商業級插畫、遊戲美術資產與動畫製作中，沒有人依靠運氣抽卡。專業創作者的出圖成功率往往在九成以上，因為他們早已將生圖視為一條高度工程化的<strong>確定性資料管線（Deterministic Pipeline）</strong>。本文將從軟體工程與架構視角，徹底拆解開源繪圖生態的核心模組，帶你搞懂 Checkpoint、LoRA、ControlNet 與 ADetailer 的本質，並揭秘 ComfyUI 的五層工業級微調流水線。</p>
+        <p class="post-cover-frame"><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-720.jpg?v=e6586c7b" alt="開源 AI 繪圖精準控制與 ComfyUI 節點流水線全景" width="1200" height="669" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-480.jpg?v=a2e70098 480w, /2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-720.jpg?v=e6586c7b 720w, /2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover-card-960.jpg?v=781d3e57 960w, /2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg?v=b2985914 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>許多剛接觸開源 AI 繪圖的開發者與創作者，最初都會經歷一段反覆盲試的挫折期：寫了一長串精美的提示詞，按下生成按鈕，結果角色不是手指多了一根、肢體怪異抽筋，就是換個場景與角度直接換了一張臉。</p>
+<p>在真正的商業級插畫、遊戲美術資產與動畫製作中，沒有人依靠隨機碰運氣。專業創作者的出圖成功率往往在九成以上，因為他們早已將生圖視為一條高度工程化的<strong>確定性資料管線（Deterministic Pipeline）</strong>。本文將從軟體工程與架構視角，徹底拆解開源繪圖生態的核心模組，帶你搞懂 Checkpoint、LoRA、ControlNet 與 ADetailer 的本質，並揭秘 ComfyUI 的五層工業級微調流水線。</p>
 <span id="more"></span>
 
 <h2 id="核心名詞白話拆解：大腦、外掛、眼鏡與枷鎖"><a href="#核心名詞白話拆解：大腦、外掛、眼鏡與枷鎖" class="headerlink" title="核心名詞白話拆解：大腦、外掛、眼鏡與枷鎖"></a>核心名詞白話拆解：大腦、外掛、眼鏡與枷鎖</h2><p>開源 AI 繪圖生態（如 Stable Diffusion、Flux）充滿了各類學術黑話。如果用現代軟體工程或工廠流水線的視角來分類，它們的角色邊界非常清晰：</p>
@@ -293,11 +293,11 @@ flowchart TD
 <h3 id="4-切片超分層（Tile-Upscale，突破顯卡記憶體極限）"><a href="#4-切片超分層（Tile-Upscale，突破顯卡記憶體極限）" class="headerlink" title="4. 切片超分層（Tile Upscale，突破顯卡記憶體極限）"></a>4. 切片超分層（Tile Upscale，突破顯卡記憶體極限）</h3><p>若需要輸出 4K 或 8K 的超高解析度遊戲海報，直接全圖渲染會瞬間耗盡顯示卡記憶體。流水線在此會啟動 <strong>ControlNet Tile</strong>，將大圖切割成數十個重疊的小磁磚（Tiles）分別精算，並在接縫處嚴格鎖定邊界特徵，最後完美縫合。即便在消費級顯卡上，也能穩定輸出極致細節。</p>
 <h3 id="5-資產落地層（Post-Processing-amp-Rembg）"><a href="#5-資產落地層（Post-Processing-amp-Rembg）" class="headerlink" title="5. 資產落地層（Post-Processing &amp; Rembg）"></a>5. 資產落地層（Post-Processing &amp; Rembg）</h3><p>在管線最末端，串接 <strong>LayerDiffuse</strong> 或 <strong>Rembg</strong> 節點，自動識別主體邊緣並剔除背景，輸出具備 Alpha 透明通道的 PNG 人物立繪。同時可串接調色節點校準色彩飽和度，直接交付遊戲引擎使用。</p>
 <hr>
-<h2 id="結論：從隨機抽卡到工程化交付的思維躍遷"><a href="#結論：從隨機抽卡到工程化交付的思維躍遷" class="headerlink" title="結論：從隨機抽卡到工程化交付的思維躍遷"></a>結論：從隨機抽卡到工程化交付的思維躍遷</h2><table>
+<h2 id="結論：從隨機碰運氣到確定性工程交付的思維躍遷"><a href="#結論：從隨機碰運氣到確定性工程交付的思維躍遷" class="headerlink" title="結論：從隨機碰運氣到確定性工程交付的思維躍遷"></a>結論：從隨機碰運氣到確定性工程交付的思維躍遷</h2><table>
 <thead>
 <tr>
 <th align="left">評估維度</th>
-<th align="left">傳統抽卡思維</th>
+<th align="left">純提示詞盲試思維</th>
 <th align="left">工業級管線思維</th>
 </tr>
 </thead>
@@ -313,7 +313,7 @@ flowchart TD
 </tr>
 <tr>
 <td align="left"><strong>一致性保障</strong></td>
-<td align="left">頻繁更換隨機種子抽卡</td>
+<td align="left">頻繁更換隨機種子碰運氣</td>
 <td align="left">鎖定 Seed 並以專屬 LoRA 與參考特徵雙重錨定</td>
 </tr>
 <tr>
@@ -364,7 +364,7 @@ flowchart TD
     
       
 
-<div class="related-posts" data-rel-source="/2026/09/04/%E5%91%8A%E5%88%A5%E6%8A%BD%E5%8D%A1%EF%BC%81%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
+<div class="related-posts" data-rel-source="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
   <h3 class="related-posts-title">相關文章</h3>
   <div class="related-posts-grid">
     
