@@ -127,8 +127,8 @@ At the end of the node graph, automated segmentation nodes such as **LayerDiffus
 To see how these abstract concepts connect in practice, let us walk through building a deterministic production pipeline for an indie game character:
 
 ### Project Goals and Acceptance Criteria
-- **Character Specifications**: Silver hair, crimson eyes, dark leather cloak, dual daggers.
-- **Pose Requirements**: A dynamic forward dash while unsheathing daggers from a slight low-angle perspective, with anatomically sound grip geometry.
+- **Character Specifications**: Silver hair, crimson eyes, dark leather cloak, longsword.
+- **Pose Requirements**: A dynamic two-handed sword stance from a slight low-angle perspective, with anatomically sound grip geometry.
 - **Asset Deliverable**: A 1536x1536 PNG sprite with a transparent alpha channel, ready for immediate engine import.
 
 ### Five-Step Pipeline Implementation
@@ -136,12 +136,12 @@ To see how these abstract concepts connect in practice, let us walk through buil
 #### Step 1: Enforce Pose Geometry (3D Staging & ControlNet)
 Avoid guessing complex dynamic anatomy through text alone. Pose a 3D mannequin in a posing utility, export the **OpenPose skeleton map**, and feed it into a **ControlNet (OpenPose)** node with a weight of **0.8**. This imposes hard geometric constraints on limb angles, torso lean, and sword grip orientations. Additionally, hook up an **IP-Adapter** node with the reference face (weight **0.6**) to lock facial features.
 
-![OpenPose 3D Skeleton Pose Geometric Constraint Map](pipeline_stage1_openpose_v2.jpg)
+![OpenPose 3D Skeleton Pose Geometric Constraint Map (Schematic Diagram)](pipeline_stage1_openpose_v2.jpg)
 
 #### Step 2: Fast Composition Draft and Seed Freezing (Low-Res Draft Pass)
 Keep the positive prompt focused on primary visual keys (**silver hair, red eyes, hooded cloak, longsword, dynamic combat pose**) and run a rapid draft pass at low denoising step counts (6 to 8 steps). This validation step takes only seconds to verify overall silhouette, perspective, and lighting dynamics.
 
-![Fast Composition Base Draft Pass with Frozen Seed](pipeline_stage2_draft_v2.jpg)
+![Fast Composition Base Draft Pass with Frozen Seed (Process Schematic)](pipeline_stage2_draft_v2.jpg)
 
 **Once the composition is approved, immediately toggle the random Seed to Fixed** to lock in the underlying spatial canvas. Looking closely at this draft: while the dynamic posture is established, facial features remain unrefined and finger edges around the sword hilt are slightly merged.
 
@@ -150,7 +150,7 @@ Route the base render into an **ADetailer** node:
 - Enable the **Face Detector** with a denoising strength of **0.35** to sharpen iris reflections and lash definition.
 - Enable the **Hand Detector** with a denoising strength of **0.40** to run a localized micro-pass on the sword grips, resolving finger count and knuckle geometry automatically.
 
-![ADetailer Inpaint Comparison for Face and Hand Geometry](pipeline_stage3_adetailer_v2.jpg)
+![ADetailer Inpaint Comparison for Face and Hand Geometry (Effect Schematic)](pipeline_stage3_adetailer_v2.jpg)
 
 The crop comparison highlights the transformation: on the left (base draft), the eyes are loosely structured and finger definition is hazy; on the right (after ADetailer inpainting), the crimson irises exhibit sharp highlights and five articulated fingers grip the hilt firmly.
 
@@ -165,6 +165,8 @@ Finally, route the decoded high-resolution render through a **Rembg** node to au
 ![Alpha Cutout Transparent Game Character Sprite Deliverable](pipeline_stage5_delivery_v2.png)
 
 Queuing the prompt executes the entire multi-pass graph automatically, outputting an engine-ready transparent combat sprite in a single unified execution.
+
+> Note: To clearly explain the underlying mechanics across each pipeline stage, Steps 1 to 3 provide process schematics and comparative inpaint visualizations. Steps 4 and 5 represent production deliverables generated with RTX 4090 compute and RMBG 2.0 background segmentation.
 
 ---
 

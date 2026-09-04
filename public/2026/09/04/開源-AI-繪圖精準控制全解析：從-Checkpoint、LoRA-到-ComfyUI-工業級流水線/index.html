@@ -295,27 +295,30 @@ flowchart TD
 <hr>
 <h2 id="手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪"><a href="#手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪" class="headerlink" title="手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪"></a>手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪</h2><p>為了讓抽象的理論真正落地，我們以一個真實的獨立遊戲美術需求為例，從零搭建一條確定性生產管線：</p>
 <h3 id="任務目標與交付標準"><a href="#任務目標與交付標準" class="headerlink" title="任務目標與交付標準"></a>任務目標與交付標準</h3><ul>
-<li><strong>角色設定</strong>：銀髮、深紅瞳孔、黑色皮質斗篷、手握雙匕首。</li>
-<li><strong>動作要求</strong>：低身拔刀衝刺的動態姿態，透視為微仰角，五指抓握匕首刀柄必須嚴格符合人體工學。</li>
+<li><strong>角色設定</strong>：銀髮、深紅瞳孔、黑色皮質斗篷、手握長劍。</li>
+<li><strong>動作要求</strong>：雙手執劍迎戰的動態姿態，透視為微仰角，五指抓握劍柄必須嚴格符合人體工學。</li>
 <li><strong>交付格式</strong>：解析度 1536x1536、帶有透明背景（Alpha 通道）的 PNG 精靈圖，可直接匯入遊戲引擎。</li>
 </ul>
 <h3 id="五步管線搭建流程"><a href="#五步管線搭建流程" class="headerlink" title="五步管線搭建流程"></a>五步管線搭建流程</h3><h4 id="第一步：鎖定空間動作（3D-姿態與-ControlNet）"><a href="#第一步：鎖定空間動作（3D-姿態與-ControlNet）" class="headerlink" title="第一步：鎖定空間動作（3D 姿態與 ControlNet）"></a>第一步：鎖定空間動作（3D 姿態與 ControlNet）</h4><p>不透過文字憑空猜測肢體。打開 3D 人偶工具拖曳出雙手執劍的戰鬥骨架姿態，匯出 <strong>OpenPose 骨骼圖</strong>，並接入 <strong>ControlNet (OpenPose)</strong> 節點，權重設定為 <strong>0.8</strong>。這為模型施加了剛性物理枷鎖，確保四肢角度與刀柄方位分毫不差。同時可串接 <strong>IP-Adapter</strong> 節點注入角色臉型參考圖（權重 <strong>0.6</strong>），徹底鎖定五官特徵。</p>
-<p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage1_openpose_v2.jpg?v=8fef48c1" alt="OpenPose 空間骨骼姿態約束圖"></p>
+<p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage1_openpose_v2.jpg?v=8fef48c1" alt="OpenPose 空間骨骼姿態約束（流程示意圖）"></p>
 <h4 id="第二步：快速產出構圖粗胚並鎖定隨機種子（Low-Res-Draft-Pass）"><a href="#第二步：快速產出構圖粗胚並鎖定隨機種子（Low-Res-Draft-Pass）" class="headerlink" title="第二步：快速產出構圖粗胚並鎖定隨機種子（Low-Res Draft Pass）"></a>第二步：快速產出構圖粗胚並鎖定隨機種子（Low-Res Draft Pass）</h4><p>提示詞保留核心視覺要素（<strong>silver hair, red eyes, hooded cloak, longsword, dynamic combat pose</strong>），以極低步數（如 6 步至 8 步）進行單次快速採樣。這一步只需花費數秒驗證整體構圖與動態透視。</p>
-<p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage2_draft_v2.jpg?v=0bcd8de4" alt="初版構圖粗胚採樣圖（鎖定隨機種子）"></p>
+<p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage2_draft_v2.jpg?v=0bcd8de4" alt="初版構圖粗胚採樣（流程示意圖，鎖定隨機種子）"></p>
 <p><strong>一旦構圖與光影符合預期，立即將隨機種子（Seed）由隨機切換為固定（Fixed）</strong>，將當前的空間幾何與潛在特徵徹底封存。仔細觀察粗胚：雖然動態完整，但五官細節粗糙，握刀手指邊緣存在模糊與沾黏。</p>
 <h4 id="第三步：自動切片修手修臉（ADetailer-Inpaint-Pipeline）"><a href="#第三步：自動切片修手修臉（ADetailer-Inpaint-Pipeline）" class="headerlink" title="第三步：自動切片修手修臉（ADetailer Inpaint Pipeline）"></a>第三步：自動切片修手修臉（ADetailer Inpaint Pipeline）</h4><p>在粗胚輸出端串接 <strong>ADetailer</strong> 節點：</p>
 <ul>
 <li>啟用 <strong>Face Detector</strong>（臉部檢測器），重繪幅度設為 <strong>0.35</strong>，為紅瞳注入細緻的高光與睫毛細節。</li>
 <li>啟用 <strong>Hand Detector</strong>（手部檢測器），重繪幅度設為 <strong>0.40</strong>，針對長劍握柄處的指節進行局部高解析度重繪，自動消除黏連與多指缺陷。</li>
 </ul>
-<p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage3_adetailer_v2.jpg?v=31b06194" alt="ADetailer 局部修手修臉器官前後對比圖"></p>
+<p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage3_adetailer_v2.jpg?v=31b06194" alt="ADetailer 局部修手修臉器官前後對比（效果示意圖）"></p>
 <p>從局部對比圖可以清晰看見：左側粗胚的眼睛結構鬆散且手指關節曖昧；右側經由 ADetailer 局部重繪後，紅瞳折射出清晰高光，五指分明且緊密貼合刀柄。</p>
 <h4 id="第四步：潛在二次渲染與紋理生長（Latent-Upscale-Pass）"><a href="#第四步：潛在二次渲染與紋理生長（Latent-Upscale-Pass）" class="headerlink" title="第四步：潛在二次渲染與紋理生長（Latent Upscale Pass）"></a>第四步：潛在二次渲染與紋理生長（Latent Upscale Pass）</h4><p>完成局部微調後，影像送入 <strong>Latent Upscale</strong> 節點，以 <strong>1.5 倍</strong> 放大並配合 <strong>0.30</strong> 的淺層降噪步數重新渲染。模型在豐富的計算空間中，使斗篷皮革自然生長出真實的磨損摺痕，金屬刀刃浮現銳利光澤，銀色髮絲更是根根分明。</p>
 <p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage4_upscale_v2.jpg?v=e60862de" alt="潛在二次渲染與紋理生長超分成果圖"></p>
 <h4 id="第五步：邊緣去背與資產落地交付（Rembg-amp-Asset-Delivery）"><a href="#第五步：邊緣去背與資產落地交付（Rembg-amp-Asset-Delivery）" class="headerlink" title="第五步：邊緣去背與資產落地交付（Rembg &amp; Asset Delivery）"></a>第五步：邊緣去背與資產落地交付（Rembg &amp; Asset Delivery）</h4><p>在管線最末端串接 <strong>Rembg</strong> 節點，自動識別主體邊緣並剔除深色背景雜色，輸出具備完整 Alpha 透明通道的 32-bit PNG 人物立繪。</p>
 <p><img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/pipeline_stage5_delivery_v2.png?v=08d863ea" alt="透明去背遊戲戰鬥立繪精靈圖交付品"></p>
 <p>按下佇列生成按鈕後，整條管線全自動運轉，最終直接輸出符合遊戲引擎交付標準的高解析度透明背景戰鬥精靈圖。</p>
+<blockquote>
+<p>註：為直觀解說確定性管線中各節點的演進原理，上方步驟 1 至步驟 3 包含流程原理示意與局部修復對比效果圖；步驟 4 與步驟 5 則為基於 RTX 4090 算力與 RMBG 2.0 模型實測輸出之高解析成果與透明去背交付品。</p>
+</blockquote>
 <hr>
 <h2 id="結論：從隨機碰運氣到確定性工程交付的思維躍遷"><a href="#結論：從隨機碰運氣到確定性工程交付的思維躍遷" class="headerlink" title="結論：從隨機碰運氣到確定性工程交付的思維躍遷"></a>結論：從隨機碰運氣到確定性工程交付的思維躍遷</h2><table>
 <thead>
