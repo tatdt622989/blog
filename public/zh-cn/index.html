@@ -191,6 +191,46 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-open-source-ai-image-generation-pipeline-comfyui-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-04T08:00:00.000Z"><a href="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/">2026-09-04</a></time>
+      
+      
+  
+    <p class="title"><a href="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/">告别抽卡！开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线</a></p>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-720.jpg?v=e6586c7b" alt="开源 AI 绘图精准控制与 ComfyUI 节点工作流全景" width="1200" height="669" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-480.jpg?v=a2e70098 480w, /zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-720.jpg?v=e6586c7b 720w, /zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-960.jpg?v=781d3e57 960w, /zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>很多初涉开源 AI 绘图的开发者和创作者，最开始都会经历一段痛苦的抽卡摸索期：精心编写了一长串提示词，点击生成后，角色要么多出一根手指、关节反人类扭曲，要么换个机位和场景就直接变成了另一个人。</p>
+<p>但在严谨的商业插画、游戏美术资产以及影视分镜制作中，没人会把交付赌在概率上。专业团队的单图可用率普遍在九成以上，核心原因在于他们已将生成过程重构为高度工程化的<strong>确定性数据管线（Deterministic Pipeline）</strong>。本文将从软件工程与架构视角，全面拆解开源生图生态的核心组件，讲透 Checkpoint、LoRA、ControlNet 与 ADetailer 的协同原理，并详解 ComfyUI 工业级五层微调流水线。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+
+
+
   <article id="post-gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -558,47 +598,6 @@
 
 
 
-  <article id="post-agentic-sdlc-architecture-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon" style="display: none"></div>
-        <time class="dt-published" datetime="2026-08-24T06:10:32.000Z"><a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/">2026-08-24</a></time>
-      
-      
-  
-    <p class="title"><a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/">告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战</a></p>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p class="post-cover-frame"><img src="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5" alt="Agentic SDLC 软件开发生命周期架构全景" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-480.jpg?v=2036c8dc 480w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5 720w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-960.jpg?v=880dde98 960w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-1280.jpg?v=9e3791f4 1280w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p>过去一段时间，AI 辅助编程经历了从简单的代码补全到 <strong>Vibe Coding</strong> 的全民狂欢。许多开发者逐渐习惯了“输入 Prompt ➔ AI 吐出代码 ➔ 跑跑看”的直觉操作。在几十行代码的演示 Demo 或练手项目里，这种模式显得轻巧高效；但一旦置身于数万行代码、各业务模块高度耦合的企业级生产项目，这种完全凭感觉的协同方式便会迅速走向崩溃。</p>
-<p>一线工程实践中经常上演这类令人崩溃的场景：AI 言之凿凿地宣称彻底修好了某个 Bug，结果改动了 A 模块却直接带崩了 B 模块；拉来五个当前公认最强的大模型做代码审查，模型们交口称赞代码逻辑非常漂亮，一发布上线却瞬间遭遇严重的并发竞态异常；甚至让 AI 自动记录“过往经验”，跑了一段时间后，整个记忆检索库全被它自己早期生成的幻觉信息深度污染。</p>
-<p>在严肃的软件工程世界里，研发效能的核心瓶颈从来不是“代码生成的绝对速度”，而是<strong>“软件验证与安全交付的系统确定性”</strong>。要跨越生成速度远超验证能力的这道鸿沟（GenAI Divide），唯一的破局之道就是构筑一套工业级的 <strong>Agentic SDLC（Agent 驱动的软件开发生命周期）</strong>。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-    
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -623,7 +622,7 @@
   
     <li><a href="/zh-cn/categories/AI/">AI</a><small>2</small></li>
   
-    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>9</small></li>
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>10</small></li>
   
     <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
   
@@ -644,13 +643,15 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>14</small></li>
+    <li><a href="/zh-cn/tags/AI/">AI</a><small>15</small></li>
   
     <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>4</small></li>
   
     <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
   
     <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>1</small></li>
   
     <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
   
@@ -694,13 +695,13 @@
   
     <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>2</small></li>
   
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>3</small></li>
   
     <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
   
     <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>2</small></li>
   
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>3</small></li>
   
     <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
   
