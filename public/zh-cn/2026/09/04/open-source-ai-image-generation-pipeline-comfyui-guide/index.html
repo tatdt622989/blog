@@ -293,6 +293,23 @@ flowchart TD
 <h3 id="4-切片超分层（Tile-Upscale，低显存攻坚-4K）"><a href="#4-切片超分层（Tile-Upscale，低显存攻坚-4K）" class="headerlink" title="4. 切片超分层（Tile Upscale，低显存攻坚 4K）"></a>4. 切片超分层（Tile Upscale，低显存攻坚 4K）</h3><p>若业务需要交付 4K 或 8K 超精细大图，直接全尺寸推理会导致消费级显卡即刻爆显存（OOM）。工业级方案是在此处激活 <strong>ControlNet Tile</strong>，将大画布切割为数十个重叠的独立磁砖分块（Tiles）按序精算，并由 Tile 节点锁紧边界一致性后无缝拼装，实现平民显卡输出巨幅画作。</p>
 <h3 id="5-资产落地层（Post-Processing-amp-Rembg）"><a href="#5-资产落地层（Post-Processing-amp-Rembg）" class="headerlink" title="5. 资产落地层（Post-Processing &amp; Rembg）"></a>5. 资产落地层（Post-Processing &amp; Rembg）</h3><p>在管线终点串接 <strong>LayerDiffuse</strong> 或 <strong>Rembg</strong> 节点，实现发丝级主体识别并剥离背景，直出具备 Alpha 透明通道的 PNG 格式立绘。同时可串联 LUT 调色节点统一不同资产的色彩倾向，无缝导入游戏引擎。</p>
 <hr>
+<h2 id="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"><a href="#手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘" class="headerlink" title="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"></a>手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘</h2><p>为了让抽象的理论真正落地，我们以一个真实的独立游戏美术需求为例，从零搭建一条确定性生产管线：</p>
+<h3 id="任务目标与交付标准"><a href="#任务目标与交付标准" class="headerlink" title="任务目标与交付标准"></a>任务目标与交付标准</h3><ul>
+<li><strong>角色设定</strong>：银发、深红瞳孔、黑色皮质斗篷、手握双匕首。</li>
+<li><strong>动作要求</strong>：低身拔刀冲刺的动态姿态，透视为微仰角，五指抓握匕首刀柄必须严格符合人体工学。</li>
+<li><strong>交付格式</strong>：分辨率 1536x1536、带有透明背景（Alpha 通道）的 PNG 精灵图，可直接导入游戏引擎。</li>
+</ul>
+<h3 id="五步管线搭建流程"><a href="#五步管线搭建流程" class="headerlink" title="五步管线搭建流程"></a>五步管线搭建流程</h3><h4 id="第一步：锁定角色面貌（IP-Adapter-特征注入）"><a href="#第一步：锁定角色面貌（IP-Adapter-特征注入）" class="headerlink" title="第一步：锁定角色面貌（IP-Adapter 特征注入）"></a>第一步：锁定角色面貌（IP-Adapter 特征注入）</h4><p>在 ComfyUI 画布中加载底模（如 Flux 或 SDXL），并串接 <strong>IP-Adapter</strong> 节点。将一张预先定稿的角色正面半身照喂入参考端口，并将权重设置为 <strong>0.6</strong>。这一步确立了角色的五官与发型锚点，后续变换动作时不会发生换脸漂移。</p>
+<h4 id="第二步：锁定空间动作（3D-姿态与-ControlNet）"><a href="#第二步：锁定空间动作（3D-姿态与-ControlNet）" class="headerlink" title="第二步：锁定空间动作（3D 姿态与 ControlNet）"></a>第二步：锁定空间动作（3D 姿态与 ControlNet）</h4><p>拒绝通过文字凭空猜测肢体。打开免费 3D 人偶工具，花几十秒拖曳出低身冲刺的骨架姿态，导出 <strong>OpenPose 骨骼图</strong>，并接入 <strong>ControlNet (OpenPose)</strong> 节点，权重设置为 <strong>0.8</strong>。这为模型施加了刚性物理锁，确保四肢角度与刀柄方位分毫不差。</p>
+<h4 id="第三步：快速产出粗胚并锁定随机种子（Low-Res-Base）"><a href="#第三步：快速产出粗胚并锁定随机种子（Low-Res-Base）" class="headerlink" title="第三步：快速产出粗胚并锁定随机种子（Low-Res Base）"></a>第三步：快速产出粗胚并锁定随机种子（Low-Res Base）</h4><p>提示词仅保留核心要素（如 <strong>silver hair, red eyes, leather cloak, dual daggers, dynamic combat dash</strong>），分辨率设置为 <strong>1024x1024</strong> 进行单次快速采样。该步骤只需耗时数秒验证斗篷摆动幅度与整体光影。<strong>一旦构图符合预期，立即将随机种子（Seed）由随机切换为固定（Fixed）</strong>，封存当前潜空间特征。</p>
+<h4 id="第四步：自动切片修手修脸（ADetailer-Pipeline）"><a href="#第四步：自动切片修手修脸（ADetailer-Pipeline）" class="headerlink" title="第四步：自动切片修手修脸（ADetailer Pipeline）"></a>第四步：自动切片修手修脸（ADetailer Pipeline）</h4><p>在粗胚输出端串接 <strong>ADetailer</strong> 节点：</p>
+<ul>
+<li>启用 <strong>Face Detector</strong>（面部检测器），重绘幅度设为 <strong>0.35</strong>，为红瞳注入细致的高光与睫毛细节。</li>
+<li>启用 <strong>Hand Detector</strong>（手部检测器），重绘幅度设为 <strong>0.40</strong>，针对匕首握柄处的指节进行局部高分辨率重绘，自动消除粘连与多指缺陷。</li>
+</ul>
+<h4 id="第五步：二次采样长细节与一键透明去背（Latent-Upscale-amp-Rembg）"><a href="#第五步：二次采样长细节与一键透明去背（Latent-Upscale-amp-Rembg）" class="headerlink" title="第五步：二次采样长细节与一键透明去背（Latent Upscale &amp; Rembg）"></a>第五步：二次采样长细节与一键透明去背（Latent Upscale &amp; Rembg）</h4><p>将局部精修后的潜空间张量送入 <strong>Latent Upscale</strong> 节点，以 <strong>1.5 倍</strong> 放大并配合 <strong>0.30</strong> 的浅层降噪步数重新渲染，使斗篷皮革与金属刀刃自然生长出高密度材质纹理。最后接入 <strong>Rembg</strong> 去背节点自动剔除背景杂色。</p>
+<p>点击队列生成按钮后，整条管线全自动运转，最终直接输出符合游戏交付标准的透明背景战斗立绘。</p>
+<hr>
 <h2 id="结语：从盲目试错到工程化交付的思维跃迁"><a href="#结语：从盲目试错到工程化交付的思维跃迁" class="headerlink" title="结语：从盲目试错到工程化交付的思维跃迁"></a>结语：从盲目试错到工程化交付的思维跃迁</h2><table>
 <thead>
 <tr>
@@ -337,7 +354,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a>
   </div>
 
         

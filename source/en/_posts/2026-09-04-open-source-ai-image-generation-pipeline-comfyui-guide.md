@@ -122,6 +122,38 @@ At the end of the node graph, automated segmentation nodes such as **LayerDiffus
 
 ---
 
+## Hands-on Walkthrough: Creating a Production Combat Sprite for an Indie Game
+
+To see how these abstract concepts connect in practice, let us walk through building a deterministic production pipeline for an indie game character:
+
+### Project Goals and Acceptance Criteria
+- **Character Specifications**: Silver hair, crimson eyes, dark leather cloak, dual daggers.
+- **Pose Requirements**: A dynamic forward dash while unsheathing daggers from a slight low-angle perspective, with anatomically sound grip geometry.
+- **Asset Deliverable**: A 1536x1536 PNG sprite with a transparent alpha channel, ready for immediate engine import.
+
+### Five-Step Pipeline Implementation
+
+#### Step 1: Lock Character Identity (IP-Adapter Conditioning)
+Load the base checkpoint (such as Flux or SDXL) into the ComfyUI workspace and connect an **IP-Adapter** node. Feed a pre-approved baseline portrait of the protagonist into the reference port and set the conditioning weight to **0.6**. This locks the character's facial structure and hair silhouette, preventing identity drift across subsequent iterations.
+
+#### Step 2: Enforce Pose Geometry (3D Staging & ControlNet)
+Avoid guessing complex dynamic anatomy through text alone. Pose a simple 3D mannequin in a free posing utility, export the **OpenPose skeleton map**, and feed it into a **ControlNet (OpenPose)** node with a weight of **0.8**. This imposes hard geometric constraints on limb angles, torso lean, and dagger orientations.
+
+#### Step 3: Fast Composition Draft and Seed Freezing (Low-Res Base)
+Keep the positive prompt minimal (e.g., **silver hair, red eyes, leather cloak, dual daggers, dynamic combat dash**) and run an initial generation at **1024x1024**. This validation step takes only seconds to verify the cloak trajectory and primary lighting. **Once the composition is approved, immediately toggle the random Seed to Fixed** to lock in the underlying latent canvas.
+
+#### Step 4: Automated Face and Hand Inpainting (ADetailer)
+Route the base latent render into an **ADetailer** node:
+- Enable the **Face Detector** with a denoising strength of **0.35** to sharpen iris reflections and lash definition.
+- Enable the **Hand Detector** with a denoising strength of **0.40** to run a localized micro-pass on the dagger grips, resolving finger count and knuckle geometry automatically.
+
+#### Step 5: Texture Enrichment and Alpha Cutout (Latent Upscale & Rembg)
+Pass the refined latent tensor to a **Latent Upscale** node, scaling by **1.5x** with a shallow **0.30** denoising step. This second pass synthesizes realistic leather grain and metallic sheen. Finally, route the decoded image through a **Rembg** node to strip the background.
+
+Queuing the prompt executes the entire multi-pass graph automatically, outputting an engine-ready transparent combat sprite in a single unified execution.
+
+---
+
 ## Conclusion: Shifting from Random Guessing to Engineered Pipelines
 
 | Paradigm | Prompt-Centric Lottery | Engineered Pipeline |

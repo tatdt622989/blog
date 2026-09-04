@@ -293,6 +293,23 @@ flowchart TD
 <h3 id="4-切片超分層（Tile-Upscale，突破顯卡記憶體極限）"><a href="#4-切片超分層（Tile-Upscale，突破顯卡記憶體極限）" class="headerlink" title="4. 切片超分層（Tile Upscale，突破顯卡記憶體極限）"></a>4. 切片超分層（Tile Upscale，突破顯卡記憶體極限）</h3><p>若需要輸出 4K 或 8K 的超高解析度遊戲海報，直接全圖渲染會瞬間耗盡顯示卡記憶體。流水線在此會啟動 <strong>ControlNet Tile</strong>，將大圖切割成數十個重疊的小磁磚（Tiles）分別精算，並在接縫處嚴格鎖定邊界特徵，最後完美縫合。即便在消費級顯卡上，也能穩定輸出極致細節。</p>
 <h3 id="5-資產落地層（Post-Processing-amp-Rembg）"><a href="#5-資產落地層（Post-Processing-amp-Rembg）" class="headerlink" title="5. 資產落地層（Post-Processing &amp; Rembg）"></a>5. 資產落地層（Post-Processing &amp; Rembg）</h3><p>在管線最末端，串接 <strong>LayerDiffuse</strong> 或 <strong>Rembg</strong> 節點，自動識別主體邊緣並剔除背景，輸出具備 Alpha 透明通道的 PNG 人物立繪。同時可串接調色節點校準色彩飽和度，直接交付遊戲引擎使用。</p>
 <hr>
+<h2 id="手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪"><a href="#手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪" class="headerlink" title="手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪"></a>手把手實戰演練：製作獨立遊戲主角「銀髮刺客」戰鬥立繪</h2><p>為了讓抽象的理論真正落地，我們以一個真實的獨立遊戲美術需求為例，從零搭建一條確定性生產管線：</p>
+<h3 id="任務目標與交付標準"><a href="#任務目標與交付標準" class="headerlink" title="任務目標與交付標準"></a>任務目標與交付標準</h3><ul>
+<li><strong>角色設定</strong>：銀髮、深紅瞳孔、黑色皮質斗篷、手握雙匕首。</li>
+<li><strong>動作要求</strong>：低身拔刀衝刺的動態姿態，透視為微仰角，五指抓握匕首刀柄必須嚴格符合人體工學。</li>
+<li><strong>交付格式</strong>：解析度 1536x1536、帶有透明背景（Alpha 通道）的 PNG 精靈圖，可直接匯入遊戲引擎。</li>
+</ul>
+<h3 id="五步管線搭建流程"><a href="#五步管線搭建流程" class="headerlink" title="五步管線搭建流程"></a>五步管線搭建流程</h3><h4 id="第一步：鎖定角色外貌（IP-Adapter-特徵注入）"><a href="#第一步：鎖定角色外貌（IP-Adapter-特徵注入）" class="headerlink" title="第一步：鎖定角色外貌（IP-Adapter 特徵注入）"></a>第一步：鎖定角色外貌（IP-Adapter 特徵注入）</h4><p>在 ComfyUI 畫布中載入底模（如 Flux 或 SDXL），並串接 <strong>IP-Adapter</strong> 節點。將一張預先定稿的角色正面半身照餵入參考端口，並將權重設定為 <strong>0.6</strong>。這一步確立了角色的五官與髮型錨點，後續換動作時不會發生換臉漂移。</p>
+<h4 id="第二步：鎖定空間動作（3D-姿態與-ControlNet）"><a href="#第二步：鎖定空間動作（3D-姿態與-ControlNet）" class="headerlink" title="第二步：鎖定空間動作（3D 姿態與 ControlNet）"></a>第二步：鎖定空間動作（3D 姿態與 ControlNet）</h4><p>不透過文字憑空猜測肢體。打開免費 3D 人偶工具，花費一分鐘拖曳出低身衝刺的骨架姿態，匯出 <strong>OpenPose 骨骼圖</strong>，並接入 <strong>ControlNet (OpenPose)</strong> 節點，權重設定為 <strong>0.8</strong>。這為模型施加了剛性物理枷鎖，確保四肢角度與刀柄方位分毫不差。</p>
+<h4 id="第三步：快速產出粗胚並鎖定隨機種子（Low-Res-Base）"><a href="#第三步：快速產出粗胚並鎖定隨機種子（Low-Res-Base）" class="headerlink" title="第三步：快速產出粗胚並鎖定隨機種子（Low-Res Base）"></a>第三步：快速產出粗胚並鎖定隨機種子（Low-Res Base）</h4><p>提示詞僅保留核心要素（如 <strong>silver hair, red eyes, leather cloak, dual daggers, dynamic combat dash</strong>），解析度設定為 <strong>1024x1024</strong> 進行單次快速採樣。該步驟只需花費數秒驗證斗篷擺動幅度與整體光影。<strong>一旦構圖符合預期，立即將隨機種子（Seed）由隨機切換為固定（Fixed）</strong>，封存當前潛在特徵。</p>
+<h4 id="第四步：自動切片修手修臉（ADetailer-Pipeline）"><a href="#第四步：自動切片修手修臉（ADetailer-Pipeline）" class="headerlink" title="第四步：自動切片修手修臉（ADetailer Pipeline）"></a>第四步：自動切片修手修臉（ADetailer Pipeline）</h4><p>在粗胚輸出端串接 <strong>ADetailer</strong> 節點：</p>
+<ul>
+<li>啟用 <strong>Face Detector</strong>（臉部檢測器），重繪幅度設為 <strong>0.35</strong>，為紅瞳注入細緻的高光與睫毛細節。</li>
+<li>啟用 <strong>Hand Detector</strong>（手部檢測器），重繪幅度設為 <strong>0.40</strong>，針對匕首握柄處的指節進行局部高解析度重繪，自動消除黏連與多指缺陷。</li>
+</ul>
+<h4 id="第五步：二次採樣長細節與一鍵透明去背（Latent-Upscale-amp-Rembg）"><a href="#第五步：二次採樣長細節與一鍵透明去背（Latent-Upscale-amp-Rembg）" class="headerlink" title="第五步：二次採樣長細節與一鍵透明去背（Latent Upscale &amp; Rembg）"></a>第五步：二次採樣長細節與一鍵透明去背（Latent Upscale &amp; Rembg）</h4><p>將局部精修後的潛在張量送入 <strong>Latent Upscale</strong> 節點，以 <strong>1.5 倍</strong> 放大並配合 <strong>0.30</strong> 的淺層降噪步數重新渲染，使斗篷皮革與金屬刀刃自然生長出高密度材質紋理。最後接入 <strong>Rembg</strong> 去背節點自動剔除背景雜色。</p>
+<p>按下佇列生成按鈕後，整條管線全自動運轉，最終直接輸出符合遊戲交付標準的透明背景戰鬥立繪。</p>
+<hr>
 <h2 id="結論：從隨機碰運氣到確定性工程交付的思維躍遷"><a href="#結論：從隨機碰運氣到確定性工程交付的思維躍遷" class="headerlink" title="結論：從隨機碰運氣到確定性工程交付的思維躍遷"></a>結論：從隨機碰運氣到確定性工程交付的思維躍遷</h2><table>
 <thead>
 <tr>
