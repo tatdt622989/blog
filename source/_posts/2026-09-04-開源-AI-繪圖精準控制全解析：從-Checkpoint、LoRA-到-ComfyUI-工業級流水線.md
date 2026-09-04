@@ -129,35 +129,35 @@ flowchart TD
 ### 五步管線搭建流程
 
 #### 第一步：鎖定空間動作（3D 姿態與 ControlNet）
-不透過文字憑空猜測肢體。打開 3D 人偶工具拖曳出低身衝刺的骨架姿態，匯出 **OpenPose 骨骼圖**，並接入 **ControlNet (OpenPose)** 節點，權重設定為 **0.8**。這為模型施加了剛性物理枷鎖，確保四肢角度與刀柄方位分毫不差。同時可串接 **IP-Adapter** 節點注入角色臉型參考圖（權重 **0.6**），徹底鎖定五官特徵。
+不透過文字憑空猜測肢體。打開 3D 人偶工具拖曳出雙手執劍的戰鬥骨架姿態，匯出 **OpenPose 骨骼圖**，並接入 **ControlNet (OpenPose)** 節點，權重設定為 **0.8**。這為模型施加了剛性物理枷鎖，確保四肢角度與刀柄方位分毫不差。同時可串接 **IP-Adapter** 節點注入角色臉型參考圖（權重 **0.6**），徹底鎖定五官特徵。
 
-![OpenPose 空間骨骼姿態約束圖](pipeline_stage1_openpose.jpg)
+![OpenPose 空間骨骼姿態約束圖](pipeline_stage1_openpose_v2.jpg)
 
 #### 第二步：快速產出構圖粗胚並鎖定隨機種子（Low-Res Draft Pass）
-提示詞保留核心視覺要素（**silver hair, red eyes, leather cloak, dual daggers, dynamic combat dash**），以極低步數（如 6 步至 8 步）進行單次快速採樣。這一步只需花費數秒驗證整體構圖與動態透視。
+提示詞保留核心視覺要素（**silver hair, red eyes, hooded cloak, longsword, dynamic combat pose**），以極低步數（如 6 步至 8 步）進行單次快速採樣。這一步只需花費數秒驗證整體構圖與動態透視。
 
-![初版構圖粗胚採樣圖（鎖定隨機種子）](pipeline_stage2_draft.jpg)
+![初版構圖粗胚採樣圖（鎖定隨機種子）](pipeline_stage2_draft_v2.jpg)
 
 **一旦構圖與光影符合預期，立即將隨機種子（Seed）由隨機切換為固定（Fixed）**，將當前的空間幾何與潛在特徵徹底封存。仔細觀察粗胚：雖然動態完整，但五官細節粗糙，握刀手指邊緣存在模糊與沾黏。
 
 #### 第三步：自動切片修手修臉（ADetailer Inpaint Pipeline）
 在粗胚輸出端串接 **ADetailer** 節點：
 - 啟用 **Face Detector**（臉部檢測器），重繪幅度設為 **0.35**，為紅瞳注入細緻的高光與睫毛細節。
-- 啟用 **Hand Detector**（手部檢測器），重繪幅度設為 **0.40**，針對匕首握柄處的指節進行局部高解析度重繪，自動消除黏連與多指缺陷。
+- 啟用 **Hand Detector**（手部檢測器），重繪幅度設為 **0.40**，針對長劍握柄處的指節進行局部高解析度重繪，自動消除黏連與多指缺陷。
 
-![ADetailer 局部修手修臉器官前後對比圖](pipeline_stage3_adetailer.jpg)
+![ADetailer 局部修手修臉器官前後對比圖](pipeline_stage3_adetailer_v2.jpg)
 
 從局部對比圖可以清晰看見：左側粗胚的眼睛結構鬆散且手指關節曖昧；右側經由 ADetailer 局部重繪後，紅瞳折射出清晰高光，五指分明且緊密貼合刀柄。
 
 #### 第四步：潛在二次渲染與紋理生長（Latent Upscale Pass）
 完成局部微調後，影像送入 **Latent Upscale** 節點，以 **1.5 倍** 放大並配合 **0.30** 的淺層降噪步數重新渲染。模型在豐富的計算空間中，使斗篷皮革自然生長出真實的磨損摺痕，金屬刀刃浮現銳利光澤，銀色髮絲更是根根分明。
 
-![潛在二次渲染與紋理生長超分成果圖](pipeline_stage4_upscale.jpg)
+![潛在二次渲染與紋理生長超分成果圖](pipeline_stage4_upscale_v2.jpg)
 
 #### 第五步：邊緣去背與資產落地交付（Rembg & Asset Delivery）
 在管線最末端串接 **Rembg** 節點，自動識別主體邊緣並剔除深色背景雜色，輸出具備完整 Alpha 透明通道的 32-bit PNG 人物立繪。
 
-![透明去背遊戲戰鬥立繪精靈圖交付品](pipeline_stage5_delivery.png)
+![透明去背遊戲戰鬥立繪精靈圖交付品](pipeline_stage5_delivery_v2.png)
 
 按下佇列生成按鈕後，整條管線全自動運轉，最終直接輸出符合遊戲引擎交付標準的高解析度透明背景戰鬥精靈圖。
 

@@ -134,35 +134,35 @@ To see how these abstract concepts connect in practice, let us walk through buil
 ### Five-Step Pipeline Implementation
 
 #### Step 1: Enforce Pose Geometry (3D Staging & ControlNet)
-Avoid guessing complex dynamic anatomy through text alone. Pose a 3D mannequin in a posing utility, export the **OpenPose skeleton map**, and feed it into a **ControlNet (OpenPose)** node with a weight of **0.8**. This imposes hard geometric constraints on limb angles, torso lean, and dagger orientations. Additionally, hook up an **IP-Adapter** node with the reference face (weight **0.6**) to lock facial features.
+Avoid guessing complex dynamic anatomy through text alone. Pose a 3D mannequin in a posing utility, export the **OpenPose skeleton map**, and feed it into a **ControlNet (OpenPose)** node with a weight of **0.8**. This imposes hard geometric constraints on limb angles, torso lean, and sword grip orientations. Additionally, hook up an **IP-Adapter** node with the reference face (weight **0.6**) to lock facial features.
 
-![OpenPose 3D Skeleton Pose Geometric Constraint Map](pipeline_stage1_openpose.jpg)
+![OpenPose 3D Skeleton Pose Geometric Constraint Map](pipeline_stage1_openpose_v2.jpg)
 
 #### Step 2: Fast Composition Draft and Seed Freezing (Low-Res Draft Pass)
-Keep the positive prompt focused on primary visual keys (**silver hair, red eyes, leather cloak, dual daggers, dynamic combat dash**) and run a rapid draft pass at low denoising step counts (6 to 8 steps). This validation step takes only seconds to verify overall silhouette, perspective, and lighting dynamics.
+Keep the positive prompt focused on primary visual keys (**silver hair, red eyes, hooded cloak, longsword, dynamic combat pose**) and run a rapid draft pass at low denoising step counts (6 to 8 steps). This validation step takes only seconds to verify overall silhouette, perspective, and lighting dynamics.
 
-![Fast Composition Base Draft Pass with Frozen Seed](pipeline_stage2_draft.jpg)
+![Fast Composition Base Draft Pass with Frozen Seed](pipeline_stage2_draft_v2.jpg)
 
-**Once the composition is approved, immediately toggle the random Seed to Fixed** to lock in the underlying spatial canvas. Looking closely at this draft: while the dynamic posture is established, facial features remain unrefined and finger edges around the dagger hilt are slightly merged.
+**Once the composition is approved, immediately toggle the random Seed to Fixed** to lock in the underlying spatial canvas. Looking closely at this draft: while the dynamic posture is established, facial features remain unrefined and finger edges around the sword hilt are slightly merged.
 
 #### Step 3: Automated Face and Hand Inpainting (ADetailer Inpaint Pipeline)
 Route the base render into an **ADetailer** node:
 - Enable the **Face Detector** with a denoising strength of **0.35** to sharpen iris reflections and lash definition.
-- Enable the **Hand Detector** with a denoising strength of **0.40** to run a localized micro-pass on the dagger grips, resolving finger count and knuckle geometry automatically.
+- Enable the **Hand Detector** with a denoising strength of **0.40** to run a localized micro-pass on the sword grips, resolving finger count and knuckle geometry automatically.
 
-![ADetailer Inpaint Comparison for Face and Hand Geometry](pipeline_stage3_adetailer.jpg)
+![ADetailer Inpaint Comparison for Face and Hand Geometry](pipeline_stage3_adetailer_v2.jpg)
 
 The crop comparison highlights the transformation: on the left (base draft), the eyes are loosely structured and finger definition is hazy; on the right (after ADetailer inpainting), the crimson irises exhibit sharp highlights and five articulated fingers grip the hilt firmly.
 
 #### Step 4: Texture Enrichment and Latent Scaling (Latent Upscale Pass)
-Pass the refined latent tensor to a **Latent Upscale** node, scaling by **1.5x** with a shallow **0.30** denoising step. Working in high-resolution latent space, the model organically synthesizes realistic worn leather folds across the cloak, gleaming polished edges on the daggers, and crisp strands of silver hair.
+Pass the refined latent tensor to a **Latent Upscale** node, scaling by **1.5x** with a shallow **0.30** denoising step. Working in high-resolution latent space, the model organically synthesizes realistic worn leather folds across the cloak, gleaming polished edges on the sword, and crisp strands of silver hair.
 
-![Latent Space Upscale High Resolution Texture Synthesis](pipeline_stage4_upscale.jpg)
+![Latent Space Upscale High Resolution Texture Synthesis](pipeline_stage4_upscale_v2.jpg)
 
 #### Step 5: Background Removal and Asset Delivery (Rembg & Alpha Cutout)
 Finally, route the decoded high-resolution render through a **Rembg** node to automatically segment the subject and remove background darkness, exporting a 32-bit PNG combat sprite with an alpha transparency channel.
 
-![Alpha Cutout Transparent Game Character Sprite Deliverable](pipeline_stage5_delivery.png)
+![Alpha Cutout Transparent Game Character Sprite Deliverable](pipeline_stage5_delivery_v2.png)
 
 Queuing the prompt executes the entire multi-pass graph automatically, outputting an engine-ready transparent combat sprite in a single unified execution.
 

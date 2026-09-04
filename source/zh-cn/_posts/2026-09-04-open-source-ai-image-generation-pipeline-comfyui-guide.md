@@ -130,35 +130,35 @@ flowchart TD
 ### 五步管线搭建流程
 
 #### 第一步：锁定空间动作（3D 姿态与 ControlNet）
-拒绝通过文字凭空猜测肢体。打开 3D 人偶工具拖曳出低身冲刺的骨架姿态，导出 **OpenPose 骨骼图**，并接入 **ControlNet (OpenPose)** 节点，权重设置为 **0.8**。这为模型施加了刚性物理锁，确保四肢角度与刀柄方位分毫不差。同时可串接 **IP-Adapter** 节点注入角色脸型参考图（权重 **0.6**），彻底锁定五官特征。
+拒绝通过文字凭空猜测肢体。打开 3D 人偶工具拖曳出双手执剑的战斗骨架姿态，导出 **OpenPose 骨骼图**，并接入 **ControlNet (OpenPose)** 节点，权重设置为 **0.8**。这为模型施加了刚性物理锁，确保四肢角度与刀柄方位分毫不差。同时可串接 **IP-Adapter** 节点注入角色脸型参考图（权重 **0.6**），彻底锁定五官特征。
 
-![OpenPose 空间骨骼姿态约束图](pipeline_stage1_openpose.jpg)
+![OpenPose 空间骨骼姿态约束图](pipeline_stage1_openpose_v2.jpg)
 
 #### 第二步：快速产出构图粗胚并锁定随机种子（Low-Res Draft Pass）
-提示词保留核心视觉要素（**silver hair, red eyes, leather cloak, dual daggers, dynamic combat dash**），以极低步数（如 6 步至 8 步）进行单次快速采样。这一步只需耗时数秒验证整体构图与动态透视。
+提示词保留核心视觉要素（**silver hair, red eyes, hooded cloak, longsword, dynamic combat pose**），以极低步数（如 6 步至 8 步）进行单次快速采样。这一步只需耗时数秒验证整体构图与动态透视。
 
-![初版构图粗胚采样图（锁定随机种子）](pipeline_stage2_draft.jpg)
+![初版构图粗胚采样图（锁定随机种子）](pipeline_stage2_draft_v2.jpg)
 
 **一旦构图与光影符合预期，立即将随机种子（Seed）由随机切换为固定（Fixed）**，将当前的空间几何与潜空间特征彻底封存。仔细观察粗胚：虽然动态完整，但五官细节粗糙，握刀手指边缘存在模糊与粘连。
 
 #### 第三步：自动切片修手修脸（ADetailer Inpaint Pipeline）
 在粗胚输出端串接 **ADetailer** 节点：
 - 启用 **Face Detector**（面部检测器），重绘幅度设为 **0.35**，为红瞳注入细致的高光与睫毛细节。
-- 启用 **Hand Detector**（手部检测器），重绘幅度设为 **0.40**，针对匕首握柄处的指节进行局部高分辨率重绘，自动消除粘连与多指缺陷。
+- 启用 **Hand Detector**（手部检测器），重绘幅度设为 **0.40**，针对长剑握柄处的指节进行局部高分辨率重绘，自动消除粘连与多指缺陷。
 
-![ADetailer 局部修手修脸器官前后对比图](pipeline_stage3_adetailer.jpg)
+![ADetailer 局部修手修脸器官前后对比图](pipeline_stage3_adetailer_v2.jpg)
 
 从局部对比图可以清晰看见：左侧粗胚的眼部结构松散且手指关节暧昧；右侧经由 ADetailer 局部重绘后，红瞳折射出清晰高光，五指分明且紧密贴合刀柄。
 
 #### 第四步：潜空间二次渲染与纹理生长（Latent Upscale Pass）
 完成局部微调后，图像送入 **Latent Upscale** 节点，以 **1.5 倍** 放大并配合 **0.30** 的浅层降噪步数重新渲染。模型在丰富的计算空间中，使斗篷皮革自然生长出真实的磨损褶皱，金属刀刃浮现锐利光泽，银色发丝更是根根分明。
 
-![潜空间二次渲染与纹理生长超分成果图](pipeline_stage4_upscale.jpg)
+![潜空间二次渲染与纹理生长超分成果图](pipeline_stage4_upscale_v2.jpg)
 
 #### 第五步：边缘抠图去背与资产落地交付（Rembg & Asset Delivery）
 在管线最末端串接 **Rembg** 节点，自动识别主体边缘并剔除深色背景杂色，输出具备完整 Alpha 透明通道的 32-bit PNG 人物立绘。
 
-![透明抠图去背游戏战斗立绘精灵图交付品](pipeline_stage5_delivery.png)
+![透明抠图去背游戏战斗立绘精灵图交付品](pipeline_stage5_delivery_v2.png)
 
 点击队列生成按钮后，整条管线全自动运转，最终直接输出符合游戏引擎交付标准的高分辨率透明背景战斗精灵图。
 
