@@ -1,0 +1,732 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>為什麼 localhost 傳給朋友打不開？讓 AI 網站真正公開發布的關鍵步驟 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="善用 AI 快速做好的網頁專案，把網址傳給朋友卻顯示無法連上？本文以直白實務的視角，完整解析 localhost 的本質、本機預覽與雲端服務的運作差異，並提供現代專案發布上線的關鍵步驟。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/">
+  
+
+  <meta property="og:title" content="為什麼 localhost 傳給朋友打不開？讓 AI 網站真正公開發布的關鍵步驟"/>
+  <meta property="og:description" content="善用 AI 快速做好的網頁專案，把網址傳給朋友卻顯示無法連上？本文以直白實務的視角，完整解析 localhost 的本質、本機預覽與雲端服務的運作差異，並提供現代專案發布上線的關鍵步驟。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover.jpg?v=5d1345e8" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="為什麼 localhost 傳給朋友打不開？讓 AI 網站真正公開發布的關鍵步驟">
+  <meta name="twitter:description" content="善用 AI 快速做好的網頁專案，把網址傳給朋友卻顯示無法連上？本文以直白實務的視角，完整解析 localhost 的本質、本機預覽與雲端服務的運作差異，並提供現代專案發布上線的關鍵步驟。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover.jpg?v=5d1345e8">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/","url":"https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/","headline":"為什麼 localhost 傳給朋友打不開？讓 AI 網站真正公開發布的關鍵步驟","description":"善用 AI 快速做好的網頁專案，把網址傳給朋友卻顯示無法連上？本文以直白實務的視角，完整解析 localhost 的本質、本機預覽與雲端服務的運作差異，並提供現代專案發布上線的關鍵步驟。","datePublished":"2026-09-06T03:30:50.000Z","dateModified":"2026-09-06T03:31:14.815Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"獨立開發者","item":"https://blog.6yuwei.com/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"},{"@type":"ListItem","position":3,"name":"為什麼 localhost 傳給朋友打不開？讓 AI 網站真正公開發布的關鍵步驟","item":"https://blog.6yuwei.com/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=008ffbd35d">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-為什麼-localhost-傳給朋友打不開？讓-AI-網站真正公開發布的關鍵步驟" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-06T03:30:50.000Z"><a href="/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/">2026-09-06</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">為什麼 localhost 傳給朋友打不開？讓 AI 網站真正公開發布的關鍵步驟</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover-card-720.jpg?v=12d753a2" alt="從個人電腦本機走向全世界雲端網路的網站上線架構示意圖" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover-card-480.jpg?v=7295baf8 480w, /2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover-card-720.jpg?v=12d753a2 720w, /2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover-card-960.jpg?v=e6d3733f 960w, /2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/cover.jpg?v=5d1345e8 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>打開 Cursor、Lovable、v0 或 Bolt，輸入幾句清晰的提示詞，看著螢幕上幾秒鐘內建構出一個精緻的記帳工具、個人作品集或 SaaS 原型，那種將想法快速具象化的成就感令人振奮。介面漂亮、按鈕互動流暢，此時你的瀏覽器網址列正顯示著一串熟悉的地址：<code>http://localhost:3000</code>。</p>
+<p>許多創作者在完成原型後的第一件事，就是興奮地把這串網址複製下來，貼到通訊軟體傳給朋友、社群夥伴或潛在用戶，期待第一時間收到回饋。</p>
+<p>然而，對方點開後往往只會傳來一張截圖，上面顯示著冰冷的瀏覽器提示：<strong>無法連上這個網站（This site can’t be reached）</strong>。</p>
+<p>即使你拿起自己的手機連上相同的網址，同樣無法開啟。你可能會感到困惑：<strong>「明明在我的電腦上跑得好好的，為什麼傳給別人就打不開？」</strong></p>
+<span id="more"></span>
+
+<p>這並不是 AI 生成的程式碼有瑕疵，也不是朋友的網路出現故障。這是每位構建者在將點子從個人電腦推向真實世界的過程中，必然會遇到的核心課題：<strong>本機環境與公開網路的本質差異</strong>。</p>
+<p>本文將拋開艱澀的網路通訊協定理論，從實務架構出發，釐清三個關鍵問題：</p>
+<ol>
+<li><strong>為什麼別人的裝置無法連上你的 localhost？</strong></li>
+<li><strong>真正的「線上網站」是如何讓全世界穩定訪問的？</strong></li>
+<li><strong>現代創作者如何以最短路徑將 AI 專案正式發布上線？</strong></li>
+</ol>
+<hr>
+<h2 id="理解-localhost-的運作本質"><a href="#理解-localhost-的運作本質" class="headerlink" title="理解 localhost 的運作本質"></a>理解 localhost 的運作本質</h2><p>要明白朋友為何無法連上該網址，首先要拆解網址列上的兩個核心元素：<strong>localhost</strong> 與通訊埠號碼。</p>
+<h3 id="localhost-代表「這台電腦自己」"><a href="#localhost-代表「這台電腦自己」" class="headerlink" title="localhost 代表「這台電腦自己」"></a>localhost 代表「這台電腦自己」</h3><p>在電腦網路架構中，每一台連網裝置都有專屬的網路識別。而 <strong>localhost</strong> 是全球作業系統共通約定的保留主機名稱，其定義非常純粹：<strong>「當前正在發出請求的本機設備本身」</strong>。</p>
+<p>因此：</p>
+<ul>
+<li>當你在自己的筆電瀏覽器輸入 <strong>localhost</strong>，瀏覽器是在向筆電本機的作業系統索取資料。</li>
+<li>當你把這串網址傳給朋友，朋友點擊後，對方的瀏覽器只會嘗試在「他自己的手機或電腦內部」尋找該專案。</li>
+<li>朋友的設備內部自然沒有運行你的專案，結果必然是連線失敗。</li>
+</ul>
+<p>這就像你在自己書房的桌上放了一本筆記本，然後傳訊息告訴遠處的夥伴：「筆記本就在桌上，你翻開第三頁看一下。」對方在自己的書房桌上，自然找不到你那本筆記本。</p>
+<h3 id="數字-3000-代表的是連接埠"><a href="#數字-3000-代表的是連接埠" class="headerlink" title="數字 3000 代表的是連接埠"></a>數字 3000 代表的是連接埠</h3><p>常見的 <code>:3000</code>、<code>:5173</code> 或 <code>:8080</code>，在網路架構中稱為<strong>連接埠（Port）</strong>。</p>
+<p>你可以把你的電腦想像成一棟建築，而 <strong>Port 3000</strong> 就是該建築裡的 <strong>3000 號特定房門</strong>。AI 工具在你的電腦內部啟動了一個開發伺服器，將做好的網頁暫時陳列在 3000 號房間供你預覽與驗證功能。</p>
+<p>關鍵在於：<strong>這棟建築完全位於你的私人內部網路中，對外並沒有任何一條公共道路直接連通。</strong>一旦你將筆電螢幕蓋上，或是關閉了終端機的運作視窗，這個臨時預覽空間便會立刻終止服務，就連本機瀏覽器也無法再次載入。</p>
+<hr>
+<h2 id="真正的線上網站是如何運作的？"><a href="#真正的線上網站是如何運作的？" class="headerlink" title="真正的線上網站是如何運作的？"></a>真正的線上網站是如何運作的？</h2><p>若要讓全世界的使用者隨時隨地用手機或電腦打開你的作品，專案就必須具備三項基礎設施：<strong>持續運行的雲端主機、清晰的網域名稱，以及安全加密憑證</strong>。</p>
+<pre class="mermaid">
+flowchart TD
+    A["個人本機 (localhost:3000)<br>私人設備：闔上筆電即中斷，外部無路徑訪問"]
+    B["直接傳給他人 (無法連線)<br>對方裝置僅在自身內部尋找，回傳連線失敗"]
+    C["雲端主機 (Hosting 託管服務)<br>24 小時聯網、具備公網 IP 的高可用伺服器"]
+    D["公開網址 (正式上線發布)<br>全球使用者輸入專屬網址，皆可隨時順暢載入"]
+
+    A -. 複製內部網址 .-> B
+    A == 執行專案部署 (發布雲端) ==> C
+    C --> D
+
+    classDef blue fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef red fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#BE123C;
+    classDef purple fill:#EDE9FE,stroke:#6366F1,stroke-width:2px,color:#4338CA;
+    classDef green fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#15803D;
+
+    class A blue;
+    class B red;
+    class C purple;
+    class D green;
+</pre>
+
+<h3 id="1-託管主機（Hosting）"><a href="#1-託管主機（Hosting）" class="headerlink" title="1. 託管主機（Hosting）"></a>1. 託管主機（Hosting）</h3><p>個人電腦無法且不應充當常態運行的網站伺服器。因此，我們需要將專案遷移至專業的雲端機房。這類伺服器具備 24 小時不斷電、高速光纖頻寬與專業冷卻系統，隨時準備響應用戶的請求。</p>
+<p>這項流程稱為<strong>專案託管（Hosting）</strong>。專案在雲端建置並運行後，無論你的個人電腦是否關機，外界的請求都能由雲端伺服器承接並回應。</p>
+<h3 id="2-網域名稱（Domain）"><a href="#2-網域名稱（Domain）" class="headerlink" title="2. 網域名稱（Domain）"></a>2. 網域名稱（Domain）</h3><p>雲端伺服器在公開網路上的原始地址是一串數字（IP 位址，例如 <code>76.76.21.21</code>）。為了讓大眾容易記憶與傳播，我們會為網站配置一個專屬的<strong>網域名稱（Domain）</strong>，例如 <code>myawesomeapp.com</code>。</p>
+<h3 id="3-解析與加密：DNS-與-SSL"><a href="#3-解析與加密：DNS-與-SSL" class="headerlink" title="3. 解析與加密：DNS 與 SSL"></a>3. 解析與加密：DNS 與 SSL</h3><ul>
+<li><strong>DNS（網域名稱系統）</strong>：相當於全球網路的通訊錄。當訪客在瀏覽器輸入網址時，DNS 會在數毫秒內將網域名稱轉換為對應伺服器的 IP 位址，指引用戶前往正確的雲端主機。</li>
+<li><strong>SSL 憑證</strong>：即網址開頭的 <strong>https</strong> 與瀏覽器網址列的小鎖頭圖示。它確保用戶與伺服器之間的所有通訊皆經由加密傳輸，防止資料遭到竊聽或竄改，並避免瀏覽器跳出安全警告。</li>
+</ul>
+<p>將專案從本機推向雲端伺服器的整個過程，就是實務上所稱的<strong>「部署（Deployment）」</strong>。</p>
+<hr>
+<h2 id="專案搬遷到雲端後的常見問題"><a href="#專案搬遷到雲端後的常見問題" class="headerlink" title="專案搬遷到雲端後的常見問題"></a>專案搬遷到雲端後的常見問題</h2><p>不少創作者在首次將專案發布至雲端平台時，會遇到網頁能開啟但功能異常的情況，例如畫面一片空白或點擊特定按鈕沒有反應。這通常源於本機開發環境與正式生產環境的設定差異：</p>
+<h3 id="1-遺漏環境變數（Environment-Variables）"><a href="#1-遺漏環境變數（Environment-Variables）" class="headerlink" title="1. 遺漏環境變數（Environment Variables）"></a>1. 遺漏環境變數（Environment Variables）</h3><p>在本地開發時，AI 通常會將 API 金鑰（如 OpenAI API Key）或資料庫連線字串存放在名為 <strong>.env</strong> 的檔案中。</p>
+<p>基於資安考量，版本控制工具預設會隱藏並忽略此檔案，避免私密金鑰遭到公開外洩。當你將程式碼同步上傳至雲端主機時，該檔案並不會一併送達。雲端伺服器若缺少相應的連線憑證，程式便會中止執行導致畫面空白。</p>
+<p><strong>處理方式</strong>：在託管平台（例如 Vercel 或 Cloudflare Pages）的後台設定中，進入 <strong>Environment Variables</strong> 區塊，手動將對應的變數名稱與數值逐一建立。</p>
+<h3 id="2-開發模式與正式建置（Production-Build）的嚴謹度差異"><a href="#2-開發模式與正式建置（Production-Build）的嚴謹度差異" class="headerlink" title="2. 開發模式與正式建置（Production Build）的嚴謹度差異"></a>2. 開發模式與正式建置（Production Build）的嚴謹度差異</h3><p>在個人電腦運行專案時，系統處於<strong>開發模式（Development Mode）</strong>。開發模式具備高度容錯機制，即使存在型別微調或未引用的變數，仍會盡力將畫面呈現於瀏覽器中。</p>
+<p>但在正式發布至雲端時，系統會執行嚴格的<strong>生產打包（Build）</strong>。這是一道完整的品質與結構檢查程序，若存在語法衝突或套件遺漏，建置程序將會中止並提示錯誤。</p>
+<h3 id="3-單頁應用（SPA）的重新整理-404-錯誤"><a href="#3-單頁應用（SPA）的重新整理-404-錯誤" class="headerlink" title="3. 單頁應用（SPA）的重新整理 404 錯誤"></a>3. 單頁應用（SPA）的重新整理 404 錯誤</h3><p>若你的專案採用前端路由架構，從首頁點擊選單前往次級頁面通常運作良好；但若直接在次級頁面按下瀏覽器的重新整理，可能會收到 <strong>404 Not Found</strong> 錯誤。</p>
+<p>這是因為瀏覽器直接向雲端伺服器索取該子路徑的實體檔案，而雲端伺服器找不到該獨立頁面。</p>
+<p><strong>處理方式</strong>：於託管平台中設定單頁路由重寫規則（Rewrite），引導所有路由請求統一指向首頁入口檔案，交由前端應用程式自行接管渲染。</p>
+<hr>
+<h2 id="現代創作者將網站無痛發布的四大步驟"><a href="#現代創作者將網站無痛發布的四大步驟" class="headerlink" title="現代創作者將網站無痛發布的四大步驟"></a>現代創作者將網站無痛發布的四大步驟</h2><p>在現代雲端架構的支援下，發布網頁專案已不再需要手動租用實體主機或在命令列中繁複配置。透過主流的雲端發布平台（如 <strong>Vercel</strong> 或 <strong>Cloudflare Pages</strong>），只需透過直觀的介面即可完成上線：</p>
+<pre class="mermaid">
+flowchart TD
+    S1["步驟一：將程式碼同步至 GitHub 倉庫<br>利用開發工具或 GitHub Desktop 介面完成提交"]
+    S2["步驟二：授權登入雲端託管平台<br>使用 GitHub 帳號登入 Vercel 或 Cloudflare Pages"]
+    S3["步驟三：匯入專案並確認建置設定<br>平台會自動偵測底層框架並配置相應打包命令"]
+    S4["步驟四：配置環境變數並點擊 Deploy<br>系統自動完成構建，產出具備 SSL 的專屬公開網址"]
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+
+    classDef blue fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef purple fill:#EDE9FE,stroke:#6366F1,stroke-width:2px,color:#4338CA;
+    classDef orange fill:#FFEDD5,stroke:#EA580C,stroke-width:2px,color:#C2410C;
+    classDef green fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#15803D;
+
+    class S1 blue;
+    class S2 purple;
+    class S3 orange;
+    class S4 green;
+</pre>
+
+<ol>
+<li><strong>同步代碼庫</strong>：使用開發編輯器或 GitHub Desktop 的視覺化介面，將本機專案檔案同步推送到個人 GitHub 儲存庫。</li>
+<li><strong>連結雲端平台</strong>：前往 Vercel 或 Cloudflare Pages 官網，直接使用 GitHub 帳號登入整合。</li>
+<li><strong>選取並匯入專案</strong>：在平台專案列表中選取剛才同步的專案，系統將智慧識別前端框架（例如 Next.js、React、Vite 等）並備妥相關建置命令。</li>
+<li><strong>設定變數並執行部署</strong>：若專案需調用外部 API，在後台填入對應的環境變數，最後點擊 <strong>Deploy</strong> 按鈕。</li>
+</ol>
+<p>通常在數分鐘內，平台便會完成打包與全域網路節點分發，並提供一串所有人皆可隨時訪問的正式公開網址。</p>
+<hr>
+<h2 id="結語與後續實踐"><a href="#結語與後續實踐" class="headerlink" title="結語與後續實踐"></a>結語與後續實踐</h2><p>當你的專案成功取得公開網址並在行動裝置上流暢載入時，這代表你的想法已經正式從本機私有環境跨入公共網路，具備了向真實市場驗證價值的基礎。</p>
+<p>然而，當開始有訪客在你的應用程式中填寫表單、嘗試註冊帳號或進行操作時，下一個常見的挑戰將接踵而至：</p>
+<blockquote>
+<p>「為什麼別人在他的手機輸入了資料，重新整理後內容就全部消失了？」<br>「為什麼不同使用者看到的內容無法同步保存？」</p>
+</blockquote>
+<p>這涉及到了資料持久化與後端儲存的架構設計。在下一篇文章中，我們將以同樣平實務實的視角，深入探討<strong>「為什麼重新整理後資料全沒了？網頁前端與資料庫架構解析」</strong>。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>, <a href="/tags/AI/">AI</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/08/26/%E5%BE%9E-Vibe-Coding-%E7%8B%82%E6%AD%A1%E5%88%B0-PR-%E5%AF%A9%E6%9F%A5%E5%9C%B0%E7%8D%84%EF%BC%9A%E9%80%99%E5%B9%BE%E5%B9%B4%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E7%95%8C%E5%88%B0%E5%BA%95%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%E4%BA%8B%EF%BC%9F/" class="related-post-link"
+           data-rel-title="從 Vibe Coding 狂歡到 PR 審查地獄：這幾年軟體工程界到底發生了什麼事？"
+           data-rel-path="/2026/08/26/%E5%BE%9E-Vibe-Coding-%E7%8B%82%E6%AD%A1%E5%88%B0-PR-%E5%AF%A9%E6%9F%A5%E5%9C%B0%E7%8D%84%EF%BC%9A%E9%80%99%E5%B9%BE%E5%B9%B4%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E7%95%8C%E5%88%B0%E5%BA%95%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%E4%BA%8B%EF%BC%9F/"
+           data-rel-tag="前端開發"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/26/%E5%BE%9E-Vibe-Coding-%E7%8B%82%E6%AD%A1%E5%88%B0-PR-%E5%AF%A9%E6%9F%A5%E5%9C%B0%E7%8D%84%EF%BC%9A%E9%80%99%E5%B9%BE%E5%B9%B4%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E7%95%8C%E5%88%B0%E5%BA%95%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%E4%BA%8B%EF%BC%9F/cover.jpg?v=46cc0650" alt="從 Vibe Coding 狂歡到 PR 審查地獄：這幾年軟體工程界到底發生了什麼事？" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">前端開發</span>
+            
+            <h4 class="related-post-item-title">從 Vibe Coding 狂歡到 PR 審查地獄：這幾年軟體工程界到底發生了什麼事？</h4>
+            
+              <time class="related-post-date">2026-08-26</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/" class="related-post-link"
+           data-rel-title="告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰"
+           data-rel-path="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/"
+           data-rel-tag="前端開發"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover.jpg?v=d7bfd9e8" alt="告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">前端開發</span>
+            
+            <h4 class="related-post-item-title">告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰</h4>
+            
+              <time class="related-post-date">2026-08-24</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/" class="related-post-link"
+           data-rel-title="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學"
+           data-rel-path="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/"
+           data-rel-tag="前端開發"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670" alt="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">前端開發</span>
+            
+            <h4 class="related-post-item-title">非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學</h4>
+            
+              <time class="related-post-date">2026-08-22</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>2</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>29</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>39</small></li>
+  
+    <li><a href="/tags/AI-Agent/">AI Agent</a><small>10</small></li>
+  
+    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>2</small></li>
+  
+    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+  
+    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+  
+    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>9</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>10</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>4</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>8</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
+  
+    <li><a href="/tags/Suno/">Suno</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>10</small></li>
+  
+    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>6</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
