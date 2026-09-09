@@ -1,0 +1,740 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>GPT-6 做遊戲用什麼引擎？Godot、Unity、Unreal 與網頁遊戲工具怎麼選 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="想用 GPT-6 做遊戲，該選 Godot、Unity、Unreal，還是 Phaser、PixiJS？本文從網頁分享、獨立開發與 3D 製作需求出發，比較七種工具與 AI 協作的方式、需要自己處理的工作，以及第一個可玩原型該如何開始。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/09/gpt-6-game-engines-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/09/gpt-6-game-engines-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/">
+  
+
+  <meta property="og:title" content="GPT-6 做遊戲用什麼引擎？Godot、Unity、Unreal 與網頁遊戲工具怎麼選"/>
+  <meta property="og:description" content="想用 GPT-6 做遊戲，該選 Godot、Unity、Unreal，還是 Phaser、PixiJS？本文從網頁分享、獨立開發與 3D 製作需求出發，比較七種工具與 AI 協作的方式、需要自己處理的工作，以及第一個可玩原型該如何開始。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover.png?v=198da2fc" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GPT-6 做遊戲用什麼引擎？Godot、Unity、Unreal 與網頁遊戲工具怎麼選">
+  <meta name="twitter:description" content="想用 GPT-6 做遊戲，該選 Godot、Unity、Unreal，還是 Phaser、PixiJS？本文從網頁分享、獨立開發與 3D 製作需求出發，比較七種工具與 AI 協作的方式、需要自己處理的工作，以及第一個可玩原型該如何開始。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover.png?v=198da2fc">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/","url":"https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/","headline":"GPT-6 做遊戲用什麼引擎？Godot、Unity、Unreal 與網頁遊戲工具怎麼選","description":"想用 GPT-6 做遊戲，該選 Godot、Unity、Unreal，還是 Phaser、PixiJS？本文從網頁分享、獨立開發與 3D 製作需求出發，比較七種工具與 AI 協作的方式、需要自己處理的工作，以及第一個可玩原型該如何開始。","datePublished":"2026-09-09T07:00:00.000Z","dateModified":"2026-09-09T07:19:28.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover.png"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"遊戲開發","item":"https://blog.6yuwei.com/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"GPT-6 做遊戲用什麼引擎？Godot、Unity、Unreal 與網頁遊戲工具怎麼選","item":"https://blog.6yuwei.com/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=008ffbd35d">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <!-- <h1><a href="/">6yuwei</a></h1> -->
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/09/gpt-6-game-engines-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/09/gpt-6-game-engines-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-GPT-6-做遊戲用什麼引擎？Godot、Unity、Unreal-與網頁遊戲工具怎麼選" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-09T07:00:00.000Z"><a href="/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/">2026-09-09</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">GPT-6 做遊戲用什麼引擎？Godot、Unity、Unreal 與網頁遊戲工具怎麼選</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover-card-720.jpg?v=18277cba" alt="GPT-6 協助製作 2D 平台、森林冒險與太空探索遊戲的引擎選擇概念圖" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover-card-480.jpg?v=d7cfc965 480w, /2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover-card-720.jpg?v=18277cba 720w, /2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover-card-960.jpg?v=c879e3e1 960w, /2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover-card-1280.jpg?v=b7a46ea0 1280w, /2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/cover.png?v=198da2fc 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>看到 GPT-6 做出遊戲，很容易想直接叫 AI：「幫我做一款。」但如果你沒寫過程式，看到 Godot、Unity、Phaser 這些名字，可能會先困惑：<strong>AI 不是已經會寫程式了，為什麼還需要遊戲引擎？</strong></p>
+<p>先從一個角色撿金幣的小遊戲開始，就能看懂這些工具在幫什麼忙，再決定哪一種適合自己的點子。</p>
+<span id="more"></span>
+
+<h2 id="遊戲引擎是什麼？從角色撿金幣說起"><a href="#遊戲引擎是什麼？從角色撿金幣說起" class="headerlink" title="遊戲引擎是什麼？從角色撿金幣說起"></a>遊戲引擎是什麼？從角色撿金幣說起</h2><p>想像你要做一個小遊戲：按右鍵，角色往右走；碰到牆就停下來；碰到金幣，金幣消失、分數增加，並響起一聲音效。</p>
+<p>玩家只看到幾個簡單動作，但電腦需要知道很多細節：</p>
+<ul>
+<li><strong>把畫面畫出來</strong>：角色、牆壁與金幣各放在哪裡，誰在前面、誰在後面。</li>
+<li><strong>接收你的操作</strong>：按鍵或觸控發生時，要控制哪個角色。</li>
+<li><strong>判斷物件有沒有碰到</strong>：角色不能穿牆，也不能隔著老遠就撿到金幣。</li>
+<li><strong>執行遊戲規則</strong>：拿到金幣後加幾分，收集多少才算過關。</li>
+<li><strong>播放回饋</strong>：讓角色切換動畫、播出音效，並更新畫面上的分數。</li>
+</ul>
+<p><strong>遊戲引擎就是把製作遊戲常用的基礎功能整理成一套工具，讓你不用每次從零打造。</strong>不同引擎提供的功能不一樣，但通常能協助處理畫面、操作、物件與資源。有些還有視覺化編輯器，讓你直接把角色和牆壁擺進關卡。</p>
+<p>不過，引擎不會自動知道你的創意。它可以提供碰撞判斷，你仍要設定什麼東西能碰撞；它可以播放音效，你仍要決定拿到金幣時播哪一聲。<strong>「每枚金幣加 10 分、集滿五枚過關」這些玩法規則，才是你和 AI 要一起完成的部分。</strong></p>
+<h2 id="GPT-6-與遊戲引擎，分別負責什麼"><a href="#GPT-6-與遊戲引擎，分別負責什麼" class="headerlink" title="GPT-6 與遊戲引擎，分別負責什麼"></a>GPT-6 與遊戲引擎，分別負責什麼</h2><p>在這種開發方式裡，<strong>你決定想做的遊戲，GPT-6 協助寫程式與修改設定，引擎在遊戲執行時把畫面和規則運作起來。</strong></p>
+<p>例如，你告訴 AI「角色碰到金幣就加分」，它可以協助寫出對應邏輯，使用引擎提供的碰撞與顯示功能。接著真的啟動遊戲，你才知道角色是否撿得到金幣、分數有沒有重複增加，以及操作起來順不順。</p>
+<p>一般固定規則的小遊戲，<strong>不需要玩家每走一步就呼叫 GPT-6</strong>。AI 可以只參與開發；完成後，由遊戲程式與引擎執行。只有你另外設計了 AI 對話角色等功能，才會涉及遊玩時連接模型。</p>
+<h3 id="一定要用遊戲引擎嗎"><a href="#一定要用遊戲引擎嗎" class="headerlink" title="一定要用遊戲引擎嗎"></a>一定要用遊戲引擎嗎</h3><p>不一定。簡單的猜數字或文字選項遊戲，可以直接用一般網頁程式完成。你也可以選擇只負責部分工作的工具，再自行組合其他功能；只是遊戲越複雜，需要自己安排的事情通常越多。</p>
+<p>所以本文會一起介紹三種工具：<strong>Godot、Unity 這類遊戲引擎，Phaser 這類遊戲框架，以及 PixiJS、Three.js 這類繪圖函式庫</strong>。框架偏向提供程式組織與常用功能；繪圖函式庫則把重點放在畫面，不一定附上完整遊戲系統。</p>
+<p>了解這個差別後，就比較容易選：想先完成能分享的 2D 網頁小遊戲，我會從 Phaser 開始；想持續製作自己的 2D 或小型 3D 作品，我會先看 Godot。已經熟悉其他引擎的人，也可以沿用原本的工具。</p>
+<h2 id="GPT-6-做遊戲，選引擎要看什麼"><a href="#GPT-6-做遊戲，選引擎要看什麼" class="headerlink" title="GPT-6 做遊戲，選引擎要看什麼"></a>GPT-6 做遊戲，選引擎要看什麼</h2><p>OpenAI 在 9 月 4 日公開的 <a target="_blank" rel="noopener" href="https://developers.openai.com/blog/how-to-build-games-with-astra">Astra 遊戲開發案例</a>，使用的是 <strong>TypeScript、Vite 與 Three.js</strong>。這個細節很有意思：做出有吸引力的遊戲，不一定要從最龐大的編輯器開始。</p>
+<p>本文是依官方文件整理的<strong>選型建議，不是七種工具的 GPT-6 同條件實測排名</strong>，資料核對至 2026 年 9 月 9 日。「適合 GPT-6」指的是工作流程容易協作，不代表引擎內建 GPT-6。以下以能讀寫專案、執行工具的 Codex 類開發代理為情境；只在聊天視窗取得程式碼，仍需要自己建立專案、執行與回報錯誤。</p>
+<p>我會先問三個問題：AI 能不能看懂並修改專案？改完能不能快速執行？失敗時能不能取得錯誤與畫面？這三件事，往往比提示詞寫得多華麗更影響開發進度。</p>
+<h2 id="七種工具怎麼選"><a href="#七種工具怎麼選" class="headerlink" title="七種工具怎麼選"></a>七種工具怎麼選</h2><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>我會拿來做什麼</th>
+<th>交給 AI 的切入點</th>
+<th>自己要留意什麼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Phaser</td>
+<td>2D 網頁、解謎、打磚塊</td>
+<td>JavaScript／TypeScript 遊戲邏輯</td>
+<td>觸控、畫面縮放與瀏覽器實測</td>
+</tr>
+<tr>
+<td>PixiJS</td>
+<td>自訂 2D 畫面、卡牌展示、互動特效</td>
+<td>渲染與互動程式</td>
+<td>遊戲狀態、碰撞與畫面切換需自行安排</td>
+</tr>
+<tr>
+<td>Godot</td>
+<td>2D 獨立遊戲、小型 3D 冒險</td>
+<td>腳本與文字場景檔</td>
+<td>節點、資源關聯與操作手感</td>
+</tr>
+<tr>
+<td>Unity</td>
+<td>已有 C# 基礎的手機或 3D 專案</td>
+<td>C# 邏輯與編輯器工具</td>
+<td>場景設定、套件版本與裝置驗證</td>
+</tr>
+<tr>
+<td>Unreal Engine</td>
+<td>重視 3D 畫面與場景製作的專案</td>
+<td>C++ 與編輯器自動化</td>
+<td>Blueprint 接線、素材整合與效能</td>
+</tr>
+<tr>
+<td>GDevelop</td>
+<td>想用事件規則入門的小遊戲</td>
+<td>把玩法拆成條件與動作</td>
+<td>在編輯器裡實作並檢查事件順序</td>
+</tr>
+<tr>
+<td>Three.js</td>
+<td>自訂 3D 網頁體驗</td>
+<td>以程式描述場景與互動</td>
+<td>遊戲系統需要另外組裝</td>
+</tr>
+</tbody></table>
+<p>這張表是起點，不是能力上限。先選你最容易完成第一個作品的路線，不必為了未來可能出現的大作需求，現在就背上整套複雜工具。</p>
+<h2 id="Phaser：想先做一款能分享的-2D-小遊戲"><a href="#Phaser：想先做一款能分享的-2D-小遊戲" class="headerlink" title="Phaser：想先做一款能分享的 2D 小遊戲"></a>Phaser：想先做一款能分享的 2D 小遊戲</h2><p>如果你的點子是打磚塊、翻牌、簡單塔防或躲障礙，Phaser 是我會優先考慮的方向。它是面向網頁遊戲的框架，官方提供 <a target="_blank" rel="noopener" href="https://phaser.io/tutorials/create-game-app">JavaScript 與 TypeScript 專案範本</a>，能讓開發從既有結構開始。</p>
+<p>對 AI 協作來說，我看重的是「改程式、執行、看畫面」這條回饋路線。第一次可以只做一個角色、一種障礙與重新開始按鈕；跑順後再加音效、關卡和觸控。</p>
+<p><strong>網頁版做好不等於手機 App 已完成。</strong>即使目標只是瀏覽器，也要確認手機直向時按鈕是否擋住角色、觸控能不能玩，以及重新開始是否真的清掉上一局狀態。</p>
+<h2 id="PixiJS-還是-Phaser？先分清楚渲染與遊戲框架"><a href="#PixiJS-還是-Phaser？先分清楚渲染與遊戲框架" class="headerlink" title="PixiJS 還是 Phaser？先分清楚渲染與遊戲框架"></a>PixiJS 還是 Phaser？先分清楚渲染與遊戲框架</h2><p>PixiJS（常寫成 pixi.js）也很值得放進 GPT-6 的選型清單。它偏向 <strong>2D 渲染函式庫</strong>；<a target="_blank" rel="noopener" href="https://pixijs.com/faq/FAQPage">官方 FAQ</a>明確說明，它並不是完整遊戲引擎。你可以拿它做遊戲，但遊戲規則與系統仍需要自己安排。</p>
+<p>相較之下，<a target="_blank" rel="noopener" href="https://docs.phaser.io/phaser/concepts/scenes">Phaser 的場景系統</a>整合了相機、資源載入，以及輸入、時間與可配置的物理外掛。對希望盡快做完第一款遊戲的人，這種既有結構通常比較容易起步。</p>
+<p>我的選法是：<strong>想讓 GPT-6 協助完成打磚塊、平台跳躍或躲障礙遊戲，先選 Phaser；重點是自訂 2D 畫面、卡牌展示或互動特效，而且願意自己組織遊戲系統，再考慮 PixiJS。</strong>這是工作流程上的建議，不是效能高低或 AI 成功率的排名。</p>
+<p>兩者都值得把版本與專案結構交代清楚。使用 PixiJS 時，尤其要先和 AI 約定畫面切換、遊戲狀態及碰撞由誰負責，避免做到一半才發現只完成了渲染。它也可以與其他工具搭配，不需要把所有功能從零重寫。</p>
+<h2 id="Godot：想把原型慢慢做成自己的作品"><a href="#Godot：想把原型慢慢做成自己的作品" class="headerlink" title="Godot：想把原型慢慢做成自己的作品"></a>Godot：想把原型慢慢做成自己的作品</h2><p>如果你想做像素冒險、採集經營或小型 3D 遊戲，我會把 Godot 放在很前面。它的 <a target="_blank" rel="noopener" href="https://docs.godotengine.org/en/stable/engine_details/file_formats/tscn.html">TSCN 場景格式</a>以文字描述場景，配合腳本，讓檔案型 AI 代理有機會直接理解並修改專案結構。</p>
+<p>Godot 也提供<a target="_blank" rel="noopener" href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html">命令列操作</a>，可用於執行與匯出等流程。不過，<strong>沒有開啟畫面的檢查通過，不代表遊戲好玩</strong>：角色碰撞、鏡頭跟隨與 UI 遮擋，仍要進遊戲確認。</p>
+<p>我的起手式會是「走到一棵樹旁，按一下採集，背包數量增加」。先完成這個小循環，再加商店與升級。也要把引擎版本告訴 AI，避免它混用不同版本的節點或 API。</p>
+<h2 id="Unity：你有-C-基礎或既有專案時很合理"><a href="#Unity：你有-C-基礎或既有專案時很合理" class="headerlink" title="Unity：你有 C# 基礎或既有專案時很合理"></a>Unity：你有 C# 基礎或既有專案時很合理</h2><p>Unity 的 C# 邏輯適合拆成明確任務：角色控制、物品資料、存檔讀寫，分開修改比一次改整個遊戲容易檢查。它也有<a target="_blank" rel="noopener" href="https://docs.unity3d.com/6000.0/Documentation/Manual/EditorCommandLineArguments.html">批次模式與執行編輯器方法的命令列入口</a>，能協助建立可重複的工作流程。</p>
+<p>但腳本編譯成功，只證明其中一部分。場景是否掛上元件、Prefab 引用有沒有接對，仍可能讓角色完全不動。我會要求 AI 說明「改了哪個腳本、需要哪些場景設定、怎麼確認成功」，而不是只交付一份程式碼。</p>
+<p>如果你已經有 Unity 專案，不需要因為 GPT-6 正熱就重做一遍。先讓 AI 完成一個清楚的小任務，再決定要擴大到哪裡。</p>
+<h2 id="Unreal-Engine：畫面需求明確，再承擔製作成本"><a href="#Unreal-Engine：畫面需求明確，再承擔製作成本" class="headerlink" title="Unreal Engine：畫面需求明確，再承擔製作成本"></a>Unreal Engine：畫面需求明確，再承擔製作成本</h2><p>Unreal 的 <a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/unreal-engine/coding-in-unreal-engine-blueprint-vs-cplusplus?lang=en-US">Blueprint 與 C++</a>可以搭配使用。對重視 3D 場景的作品，它值得考慮；但若你從沒碰過遊戲編輯器，第一個目標只是做翻牌遊戲，我不會從這裡開始。</p>
+<p>AI 可以協助整理 C++ 邏輯、拆解 Blueprint 操作步驟，或撰寫編輯器工具。要特別分清楚：<a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/unreal-engine/scripting-the-unreal-editor-using-python">Unreal 的 Python 腳本主要用在編輯器環境</a>，不能把它直接當成打包後遊戲的玩法執行語言。</p>
+<p>讓 AI 寫一個互動機關是合理起點；要求它一次交出完整開放世界，會把關卡、美術、效能和玩法問題全部混在一起。</p>
+<h2 id="GDevelop-與-Three-js：兩種很不一樣的替代路線"><a href="#GDevelop-與-Three-js：兩種很不一樣的替代路線" class="headerlink" title="GDevelop 與 Three.js：兩種很不一樣的替代路線"></a>GDevelop 與 Three.js：兩種很不一樣的替代路線</h2><p><strong>不想先學大量程式語法，可以看看 GDevelop。</strong>它的<a target="_blank" rel="noopener" href="https://wiki.gdevelop.io/gdevelop5/events/">事件系統</a>用條件與動作描述邏輯，例如「角色碰到金幣，就增加分數並刪除金幣」。GPT-6 可以協助把點子拆成事件清單；實際修改方式則取決於你使用的工具連接，不能預設外部 AI 已能操作編輯器。也不要把產品自己的 AI 功能與 GPT-6 支援畫上等號。</p>
+<p><strong>想自己打造 3D 網頁世界，則可以考慮 Three.js。</strong>不過，<a target="_blank" rel="noopener" href="https://threejs.org/manual/en/game.html">Three.js 官方也明確說明它是 3D 函式庫，並非完整遊戲引擎</a>。碰撞、物理與其他遊戲系統需要額外安排。我的建議是：有網頁開發基礎、願意自己組架構的人再選；第一次做遊戲，別只因為官方展示用了它就照抄技術組合。</p>
+<h2 id="第一個任務，請縮到真的能玩完"><a href="#第一個任務，請縮到真的能玩完" class="headerlink" title="第一個任務，請縮到真的能玩完"></a>第一個任務，請縮到真的能玩完</h2><p>與其要求「做一款像某款大作的遊戲」，我更建議先給 GPT-6 這樣的任務：</p>
+<blockquote>
+<p>使用我指定的引擎與版本，製作單一關卡的採集小遊戲。玩家能移動、採集一種資源，收集滿五個後顯示成功，並能重新開始。先用占位素材，不加入登入、商城或多人連線。開始前列出會修改的檔案；完成後說明啟動方式、實際驗證的操作，以及還沒確認的部分。</p>
+</blockquote>
+<p>這段提示詞是起手範例，不是已實測的通關公式。你仍要實際走完「開始、操作、成功、重玩」，確認遊戲不只顯示一張漂亮畫面。</p>
+<p>等這一輪順了，再沿用本站的 <a href="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/">AI 音效製作流程</a>補上聲音。網頁遊戲準備分享時，也可以接著看 <a href="/2026/09/06/%E7%82%BA%E4%BB%80%E9%BA%BC-localhost-%E5%82%B3%E7%B5%A6%E6%9C%8B%E5%8F%8B%E6%89%93%E4%B8%8D%E9%96%8B%EF%BC%9F%E8%AE%93-AI-%E7%B6%B2%E7%AB%99%E7%9C%9F%E6%AD%A3%E5%85%AC%E9%96%8B%E7%99%BC%E5%B8%83%E7%9A%84%E9%97%9C%E9%8D%B5%E6%AD%A5%E9%A9%9F/">為什麼 localhost 傳給朋友打不開</a>。</p>
+<p>對第一個作品而言，<strong>能夠持續修改、測試並完成的小遊戲，比選中一套看起來最強的引擎更有價值。</strong>我會先用 Phaser 驗證 2D 網頁點子，用 Godot 經營獨立遊戲；已有成熟工具經驗，就從那裡讓 GPT-6 加入。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Codex/">Codex</a>, <a href="/tags/GPT-6/">GPT-6</a>, <a href="/tags/Godot/">Godot</a>, <a href="/tags/Unity/">Unity</a>, <a href="/tags/Unreal-Engine/">Unreal Engine</a>, <a href="/tags/Phaser/">Phaser</a>, <a href="/tags/PixiJS/">PixiJS</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/09/09/GPT-6-%E5%81%9A%E9%81%8A%E6%88%B2%E7%94%A8%E4%BB%80%E9%BA%BC%E5%BC%95%E6%93%8E%EF%BC%9FGodot%E3%80%81Unity%E3%80%81Unreal-%E8%88%87%E7%B6%B2%E9%A0%81%E9%81%8A%E6%88%B2%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/06/18/claude-codex-quota-guide/" class="related-post-link"
+           data-rel-title="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法"
+           data-rel-path="/2026/06/18/claude-codex-quota-guide/"
+           data-rel-tag="Codex"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/06/18/claude-codex-quota-guide/cover.webp?v=fa6a9f8f" alt="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Codex</span>
+            
+            <h4 class="related-post-item-title">Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/" class="related-post-link"
+           data-rel-title="告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰"
+           data-rel-path="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/"
+           data-rel-tag="Codex"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover.jpg?v=d7bfd9e8" alt="告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Codex</span>
+            
+            <h4 class="related-post-item-title">告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰</h4>
+            
+              <time class="related-post-date">2026-08-24</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/06/15/aseprite-install-guide/" class="related-post-link"
+           data-rel-title="Aseprite 安裝教學：踏進 AI Pixel Art 的第一步"
+           data-rel-path="/2026/06/15/aseprite-install-guide/"
+           data-rel-tag="遊戲開發"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/06/15/aseprite-install-guide/cover-v2.png?v=0d1ef863" alt="Aseprite 安裝教學：踏進 AI Pixel Art 的第一步" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">遊戲開發</span>
+            
+            <h4 class="related-post-item-title">Aseprite 安裝教學：踏進 AI Pixel Art 的第一步</h4>
+            
+              <time class="related-post-date">2026-06-15</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>2</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>29</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>39</small></li>
+  
+    <li><a href="/tags/AI-Agent/">AI Agent</a><small>10</small></li>
+  
+    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>2</small></li>
+  
+    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+  
+    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+  
+    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>9</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>11</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT-6/">GPT-6</a><small>1</small></li>
+  
+    <li><a href="/tags/Godot/">Godot</a><small>1</small></li>
+  
+    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>4</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>8</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
+  
+    <li><a href="/tags/Suno/">Suno</a><small>1</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>1</small></li>
+  
+    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
+  
+    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>10</small></li>
+  
+    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>6</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
