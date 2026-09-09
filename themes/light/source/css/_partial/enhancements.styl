@@ -576,3 +576,29 @@ figure.highlight
       border-color color-link
       color #ffffff
 
+/* -------------------------------------------------------------
+ * 7. 標題錨點按鈕優化 (Heading Anchor Link Button)
+ * ------------------------------------------------------------- */
+article .entry h2,
+article .entry h3
+  .link-button
+    color #22a779 !important
+    margin-right 8px !important
+    margin-left 0 !important
+    font-weight 600 !important
+    font-size 0.9em !important
+    text-decoration none !important
+    display inline-block !important
+    opacity 0.6
+    transition opacity 0.2s ease, color 0.2s ease
+    user-select none
+    vertical-align baseline
+
+    &:hover
+      color #177c5d !important
+      opacity 1 !important
+      text-decoration none !important
+
+  &:hover .link-button
+    opacity 1
+

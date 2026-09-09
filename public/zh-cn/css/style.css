@@ -700,7 +700,7 @@ article.page .icon {
 article.post .icon:before {
   content: '\f016';
 }
-article.photo .icon:beforeheaderlink {
+article.photo .icon:before {
   content: '\f030';
 }
 article.link .icon:before {
@@ -731,9 +731,6 @@ article .post-content header>.title {
   article .post-content header>.title {
     font-size: 24px;
   }
-}
-article .post-content .link-button {
-  margin-left: 10px;
 }
 article .post-content img {
   border-radius: 10px;
@@ -2823,4 +2820,41 @@ figure.highlight .btn-copy-code.is-copied {
   background: #22a779;
   border-color: #22a779;
   color: #fff;
+}
+article .entry h2 .link-button,
+article .entry h3 .link-button {
+  color: #22a779 !important;
+  margin-right: 8px !important;
+  margin-left: 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.9em !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  opacity: 0.6;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
+  -webkit-transition: opacity 0.2s ease, color 0.2s ease;
+  -moz-transition: opacity 0.2s ease, color 0.2s ease;
+  -o-transition: opacity 0.2s ease, color 0.2s ease;
+  -ms-transition: opacity 0.2s ease, color 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: baseline;
+}
+article .entry h2 .link-button:hover,
+article .entry h3 .link-button:hover {
+  color: #177c5d !important;
+  opacity: 1 !important;
+  -ms-filter: none !important;
+  filter: none !important;
+  text-decoration: none !important;
+}
+article .entry h2:hover .link-button,
+article .entry h3:hover .link-button {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }

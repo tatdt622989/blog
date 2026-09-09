@@ -202,17 +202,19 @@ function createTOC(article) {
   headings.forEach(function (heading) {
     if (!heading.id) return;
 
+    var cleanTitle = heading.textContent.replace(/^[#\s]+|[#\s]+$/g, '').trim();
+
     var item = document.createElement('li');
     item.className = heading.tagName.toLowerCase() === 'h3' ? 'toc-level-3' : 'toc-level-2';
 
     var link = document.createElement('a');
     link.href = '#' + encodeURIComponent(heading.id);
-    link.textContent = heading.textContent.replace('#', '').trim();
+    link.textContent = cleanTitle;
     link.addEventListener('click', function () {
       trackGAEvent('select_content', {
         content_type: 'toc_heading',
         item_id: heading.id,
-        item_name: heading.textContent.replace('#', '').trim(),
+        item_name: cleanTitle,
         heading_level: heading.tagName.toLowerCase(),
         source_path: window.location.pathname
       });
@@ -220,11 +222,18 @@ function createTOC(article) {
     item.appendChild(link);
     tocList.appendChild(item);
 
+    // 移除 Hexo marked 預設產生的空 .headerlink 避免重複錨點
+    var existingHeaderlink = heading.querySelector('.headerlink');
+    if (existingHeaderlink) {
+      existingHeaderlink.remove();
+    }
+
     var copyLink = document.createElement('a');
     copyLink.href = '#' + encodeURIComponent(heading.id);
     copyLink.className = 'link-button';
     copyLink.textContent = '#';
     copyLink.title = BLOG_STRINGS.copyLinkLabel;
+    copyLink.setAttribute('aria-label', BLOG_STRINGS.copyLinkLabel);
     copyLink.addEventListener('click', function (e) {
       e.preventDefault();
       var targetUrl = window.location.href.replace(/#.*/, '') + this.getAttribute('href');
@@ -232,12 +241,12 @@ function createTOC(article) {
         showToast(BLOG_STRINGS.headingCopied);
         trackGAEvent('copy_heading_link', {
           item_id: heading.id,
-          item_name: heading.textContent.replace('#', '').trim(),
+          item_name: cleanTitle,
           source_path: window.location.pathname
         });
       });
     });
-    heading.appendChild(copyLink);
+    heading.insertBefore(copyLink, heading.firstChild);
   });
 
   headings[0].parentNode.insertBefore(toc, headings[0]);
