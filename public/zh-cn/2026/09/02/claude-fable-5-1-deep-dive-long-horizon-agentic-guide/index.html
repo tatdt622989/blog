@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=008ffbd35d">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=dba9e05698">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -121,13 +121,22 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <!-- <h1><a href="/zh-cn/">6yuwei</a></h1> -->
   <div class="logo">
     <a href="/zh-cn/">
       <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
     </a>
   </div>
-  <h2><a href="/zh-cn/">AI、前端、游戏开发、日语学习与实测</a></h2>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
 </div>
 
 <div class="language-switcher">
@@ -189,6 +198,17 @@
 </nav>
 <div class="clearfix"></div>
 </header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-claude-fable-5-1-deep-dive-long-horizon-agentic-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -377,23 +397,59 @@ flowchart TD
   </div>
 
         
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
 
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Claude Fable 5.1 旗舰发布！缓存读取狂降 75% 与长时程智能体开发的核心变革" data-url="https://blog.6yuwei.com/zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F02%2Fclaude-fable-5-1-deep-dive-long-horizon-agentic-guide%2F&title=Claude%20Fable%205.1%20%E6%97%97%E8%88%B0%E5%8F%91%E5%B8%83%EF%BC%81%E7%BC%93%E5%AD%98%E8%AF%BB%E5%8F%96%E7%8B%82%E9%99%8D%2075%25%20%E4%B8%8E%E9%95%BF%E6%97%B6%E7%A8%8B%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8F%98%E9%9D%A9" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F02%2Fclaude-fable-5-1-deep-dive-long-horizon-agentic-guide%2F&title=Claude%20Fable%205.1%20%E6%97%97%E8%88%B0%E5%8F%91%E5%B8%83%EF%BC%81%E7%BC%93%E5%AD%98%E8%AF%BB%E5%8F%96%E7%8B%82%E9%99%8D%2075%25%20%E4%B8%8E%E9%95%BF%E6%97%B6%E7%A8%8B%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8F%98%E9%9D%A9" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Claude%20Fable%205.1%20%E6%97%97%E8%88%B0%E5%8F%91%E5%B8%83%EF%BC%81%E7%BC%93%E5%AD%98%E8%AF%BB%E5%8F%96%E7%8B%82%E9%99%8D%2075%25%20%E4%B8%8E%E9%95%BF%E6%97%B6%E7%A8%8B%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8F%98%E9%9D%A9&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F02%2Fclaude-fable-5-1-deep-dive-long-horizon-agentic-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Claude Fable 5.1 旗舰发布！缓存读取狂降 75% 与长时程智能体开发的核心变革" data-url="https://blog.6yuwei.com/zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
       
       <div class="clearfix"></div>
     </footer>
@@ -486,10 +542,16 @@ flowchart TD
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com/zh-cn">
-  </form>
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
 </div>
 
 
@@ -609,6 +671,48 @@ flowchart TD
   
 </div>
 <div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
   <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
 
 

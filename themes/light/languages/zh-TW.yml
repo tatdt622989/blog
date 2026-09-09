@@ -25,3 +25,16 @@ language_zh_cn: 簡體
 language_zh_cn_full: 簡體中文
 language_en: English
 related_posts: 相關文章
+search_placeholder: "搜尋文章標題、標籤或關鍵字..."
+search_hint: "按 ESC 關閉，↑↓ 選擇，Enter 開啟"
+search_no_results: "找不到符合「%s」的相關文章"
+search_empty: "輸入關鍵字開始搜尋..."
+copy_code: "複製"
+code_copied: "已複製"
+toast_code_copied: "已複製程式碼至剪貼簿"
+search_loading: "載入中..."
+share_title: "分享文章"
+copy_link: "複製連結"
+link_copied: "已複製文章連結"
+heading_copied: "已複製章節連結"
+toc_title: "目次"

@@ -92,15 +92,6 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/</loc>
-
-    <lastmod>2026-08-29</lastmod>
-
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/en/2026/08/17/artificial-analysis-definitive-guide-llm-selection/</loc>
 
     <lastmod>2026-08-29</lastmod>
@@ -110,7 +101,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/08/24/agentic-sdlc-architecture-guide/</loc>
 
     <lastmod>2026-08-29</lastmod>
 
@@ -120,6 +111,15 @@
 
   <url>
     <loc>https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/</loc>
+
+    <lastmod>2026-08-29</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/</loc>
 
     <lastmod>2026-08-29</lastmod>
 
@@ -146,7 +146,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/06/15/how-to-install-aseprite/</loc>
 
     <lastmod>2026-08-27</lastmod>
 
@@ -155,7 +155,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/06/15/how-to-install-aseprite/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/</loc>
 
     <lastmod>2026-08-27</lastmod>
 
@@ -191,69 +191,6 @@
 
 
   <url>
-    <loc>https://blog.6yuwei.com/en/tags/TypeScript/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/JavaScript/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/AI-Coding/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Claude-Code/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Codex/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Cursor/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/AI-Agent/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Developer-Tools/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Parallel-Work/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/en/tags/Aseprite/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -282,6 +219,76 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/en/tags/TypeScript/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/JavaScript/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Claude-Code/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/AI-Agent/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Developer-Tools/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Parallel-Work/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/AI-Coding/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Codex/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Cursor/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Grok/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/en/tags/Usage-Limits/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -296,28 +303,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/tags/Grok/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/en/tags/AI/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Claude/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Frontend-Development/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -338,6 +324,20 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/en/tags/Claude/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/Frontend-Development/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/en/tags/Indie-Developer/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -352,21 +352,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/tags/AI-Image-Generation/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/AI-Video/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/AI-Tools/</loc>
+    <loc>https://blog.6yuwei.com/en/tags/Open-Source/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -387,7 +373,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/tags/Open-Source/</loc>
+    <loc>https://blog.6yuwei.com/en/tags/Anthropic/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -436,6 +422,27 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/en/tags/AI-Image-Generation/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/AI-Video/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/tags/AI-Tools/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/en/tags/Indie-Hacker/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -444,13 +451,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/en/tags/Web-Development/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/tags/Anthropic/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -501,6 +501,13 @@
 
 
   <url>
+    <loc>https://blog.6yuwei.com/en/categories/Game-Development/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/en/categories/Frontend-Development/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -509,13 +516,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/en/categories/AI-Tools/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/en/categories/Game-Development/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

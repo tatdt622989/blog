@@ -1,0 +1,578 @@
+/* =============================================================
+ * 本檔集中管理新增的互動元件樣式，配色錨定網站品牌系統：
+ *   品牌綠 color-link = #22a779 / 頁面背景 #dfeeea / 白卡圓角 10px
+ * 圓角階層：控件與彈出面板 12px / 白卡與列表項 10px / 小按钮 8px / 徽章 6px（標籤與 Toast 刻意維持膠囊）
+ * 衍生色票：
+ *   綠暈底   #eaf5f1（related-posts 已使用） / 更淺 #f4faf7
+ *   綠調邊框 #e0ece6 / #d7e7df
+ *   綠灰文字 #7d948a（meta） / #93a89f（placeholder）
+ * ============================================================= */
+
+/* -------------------------------------------------------------
+ * 1. 程式碼一鍵複製按鈕 (Code Copy Button)
+ * ------------------------------------------------------------- */
+figure.highlight
+  position relative
+  .btn-copy-code
+    position absolute
+    top 8px
+    right 10px
+    display inline-flex
+    align-items center
+    gap 5px
+    padding 4px 9px
+    background rgba(255, 255, 255, 0.1)
+    border 1px solid rgba(255, 255, 255, 0.16)
+    border-radius 8px
+    color #9fb3ab
+    font-family font-default
+    font-size 12px
+    line-height 1
+    cursor pointer
+    user-select none
+    opacity 0.55
+    transition all 0.2s ease
+    z-index 5
+    &:hover
+      opacity 1
+      background rgba(255, 255, 255, 0.18)
+      color #eef7f3
+    svg
+      display block
+      width 13px
+      height 13px
+    &.is-copied
+      opacity 1
+      color #3fd699
+      border-color rgba(63, 214, 153, 0.45)
+      background rgba(63, 214, 153, 0.14)
+
+/* -------------------------------------------------------------
+ * 2. 全站浮動 Toast 通知 (Blog Toast)
+ * ------------------------------------------------------------- */
+.blog-toast
+  position fixed
+  bottom 28px
+  left 50%
+  transform translateX(-50%) translateY(16px)
+  background rgba(23, 40, 34, 0.94)
+  backdrop-filter blur(10px)
+  -webkit-backdrop-filter blur(10px)
+  border 1px solid rgba(255, 255, 255, 0.09)
+  color #f2faf6
+  padding 10px 20px
+  border-radius 9999px
+  font-size 14px
+  font-weight 500
+  line-height 1.4
+  box-shadow 0 12px 28px -8px rgba(10, 31, 24, 0.45)
+  pointer-events none
+  opacity 0
+  transition opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1)
+  z-index 9999
+  display flex
+  align-items center
+  gap 8px
+  &.is-visible
+    opacity 1
+    transform translateX(-50%) translateY(0)
+
+/* -------------------------------------------------------------
+ * 3. Command Palette 搜尋彈窗 (Search Modal)
+ * ------------------------------------------------------------- */
+.search-modal
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  z-index 9990
+  display flex
+  align-items flex-start
+  justify-content center
+  padding 60px 16px 20px
+  opacity 0
+  visibility hidden
+  transition opacity 0.18s ease, visibility 0.18s ease
+  box-sizing border-box
+
+  &.is-active
+    opacity 1
+    visibility visible
+    .search-modal__card
+      transform translateY(0) scale(1)
+
+  &__backdrop
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background rgba(16, 33, 27, 0.55)
+    backdrop-filter blur(6px)
+    -webkit-backdrop-filter blur(6px)
+
+  &__card
+    position relative
+    width 100%
+    max-width 640px
+    background #ffffff
+    border 1px solid #e2eee8
+    border-radius 12px
+    box-shadow 0 24px 64px -16px rgba(15, 56, 42, 0.28), 0 2px 8px rgba(15, 56, 42, 0.06)
+    overflow hidden
+    transform translateY(-12px) scale(0.98)
+    transition transform 0.18s cubic-bezier(0.16, 1, 0.3, 1)
+    z-index 1
+    display flex
+    flex-direction column
+    max-height calc(85vh - 80px)
+
+  &__header
+    display flex
+    align-items center
+    padding 14px 18px
+    border-bottom 1px solid #edf5f1
+    gap 12px
+
+  &__icon
+    width 34px
+    height 34px
+    flex-shrink 0
+    display flex
+    align-items center
+    justify-content center
+    background #eaf5f1
+    border-radius 10px
+    color color-link
+
+  &__input
+    flex 1
+    border none
+    outline none
+    background transparent
+    font-size 16px
+    color #2f3d38
+    font-family inherit
+    padding 4px 0
+    caret-color color-link
+    &::placeholder
+      color #93a89f
+
+  &__close
+    border none
+    background transparent
+    padding 0
+    cursor pointer
+    outline none
+    &:focus-visible
+      outline 2px solid rgba(34, 167, 121, 0.4)
+      outline-offset 2px
+
+  &__kbd-esc
+    display inline-block
+    padding 3px 7px
+    background #f2f8f5
+    border 1px solid #d7e7df
+    border-radius 6px
+    font-size 11px
+    color #7d948a
+    font-family font-mono
+    transition all 0.15s ease
+
+  &__close:hover &__kbd-esc
+    border-color #bcd8cb
+    color color-link
+
+  &__body
+    flex 1
+    overflow-y auto
+    padding 10px 12px
+    min-height 120px
+
+  &__empty-hint
+    padding 44px 16px
+    text-align center
+    color #93a89f
+    font-size 14px
+
+  &__footer
+    display flex
+    align-items center
+    justify-content space-between
+    padding 10px 18px
+    border-top 1px solid #edf5f1
+    background #f4faf7
+    font-size 12px
+    color #8aa29a
+
+  &__shortcuts
+    display flex
+    align-items center
+    gap 10px
+    kbd
+      display inline-block
+      padding 1px 6px
+      background #ffffff
+      border 1px solid #d7e7df
+      border-radius 4px
+      font-size 11px
+      color #5c7368
+      font-family font-mono
+
+  &__hint-text
+    color #93a89f
+
+/* 搜尋結果條目 */
+.search-result-item
+  display block
+  padding 10px 14px
+  border 1px solid transparent
+  border-radius 10px
+  text-decoration none
+  margin-bottom 4px
+  transition background 0.15s ease, border-color 0.15s ease
+  outline none
+  &.is-selected, &:hover
+    background #eef8f3
+    border-color #d9eee4
+    .search-result-title
+      color #17805d
+  &__header
+    display flex
+    align-items center
+    justify-content space-between
+    gap 8px
+    margin-bottom 4px
+
+.search-result-title
+  font-size 15px
+  font-weight 600
+  color #33413c
+  transition color 0.15s ease
+  mark
+    background #c9ecd9
+    color #0e6b4d
+    padding 0 2px
+    border-radius 3px
+
+.search-result-meta
+  font-size 12px
+  color #93a89f
+  white-space nowrap
+  font-variant-numeric tabular-nums
+
+.search-result-tag
+  display inline-block
+  padding 1px 7px
+  background #e3f3eb
+  color #1c8a65
+  border-radius 9999px
+  font-size 11px
+  font-weight 500
+  margin-right 6px
+
+.search-result-excerpt
+  font-size 13px
+  color #6d8179
+  line-height 1.5
+  overflow hidden
+  text-overflow ellipsis
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+  mark
+    background #c9ecd9
+    color #0e6b4d
+    padding 0 2px
+    border-radius 3px
+
+/* -------------------------------------------------------------
+ * 4. 側欄搜尋觸發器 (Sidebar Search Trigger)
+ *    取代舊的假輸入框，做成精緻的搜尋按鈕卡片
+ * ------------------------------------------------------------- */
+.search
+  margin-bottom 30px
+
+.search-trigger
+  display flex
+  align-items center
+  gap 10px
+  width 100%
+  box-sizing border-box
+  background #ffffff
+  border 1px solid #e0ece6
+  border-radius 12px
+  padding 12px 16px
+  cursor pointer
+  color #93a89f
+  font-family font-title
+  font-size 0.95em
+  line-height 1
+  text-align left
+  transition border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease
+  &:hover
+    border-color #8ecdb3
+    box-shadow 0 6px 16px -6px rgba(34, 167, 121, 0.35)
+    color #6f8d81
+    .search-trigger__icon
+      color #1d8f68
+  &:focus-visible
+    outline 2px solid rgba(34, 167, 121, 0.45)
+    outline-offset 2px
+  &:active
+    transform translateY(0.5px)
+
+.search-trigger__icon
+  flex-shrink 0
+  display flex
+  color color-link
+  transition color 0.2s ease
+
+.search-trigger__label
+  flex 1
+
+.search-trigger__kbd
+  flex-shrink 0
+  display inline-block
+  padding 3px 7px
+  background #f2f8f5
+  border 1px solid #d7e7df
+  border-radius 6px
+  font-size 11px
+  color #7d948a
+  font-family font-mono
+  line-height 1
+
+/* 導覽列下方搜尋列：≤900px 時側欄會掉到文章之後，改由這條列担任搜尋入口 */
+.mobile-search
+  display none
+
+/* 列内搜尋膠囊：僅手機版出現，取代獨立搜尋列以省下垂直空間 */
+.header-search
+  display none
+
+@media screen and (max-width: 900px)
+  .mobile-search
+    display block
+    margin-bottom 18px
+  #sidebar .search
+    display none
+
+/* 手機端搜尋彈窗專屬適配 */
+@media (max-width: 480px)
+  .mobile-search
+    display none
+
+  .header-search
+    display block
+
+    .search-trigger
+      padding 10px 12px
+      gap 8px
+      font-size 14px
+
+  .search-modal
+    padding 12px 10px 10px
+    &__card
+      max-height calc(92vh - 20px)
+    &__header
+      padding 12px 14px
+      gap 8px
+    &__shortcuts
+      display none
+    &__footer
+      justify-content center
+      padding 8px 14px
+  .search-trigger__kbd
+    display none
+
+/* -------------------------------------------------------------
+ * 5. 目錄 (TOC) 階層美化
+ * ------------------------------------------------------------- */
+.entry .toc,
+.toc
+  background #f8fbf9 !important
+  border 1px solid #e1efe8 !important
+  border-radius 12px !important
+  padding 14px 18px !important
+
+  .toc-title
+    font-size 15px !important
+    font-weight 700 !important
+    color #2a3c35 !important
+    letter-spacing 0.05em !important
+    margin-bottom 8px !important
+
+  ul
+    list-style none !important
+    padding-left 0 !important
+    margin 0 !important
+
+    li
+      list-style none !important
+      list-style-type none !important
+      position relative
+      padding-left 16px !important
+      line-height 1.6
+      margin 4px 0
+
+      a
+        color #22a779
+        text-decoration none
+        transition color 0.15s ease
+        &:hover
+          color #177c5d
+          text-decoration underline
+
+      &.toc-level-2
+        font-weight 500
+        &:before
+          content ''
+          background #22a779 !important
+          border none !important
+          border-radius 50% !important
+          width 5px !important
+          height 5px !important
+          position absolute
+          left 0
+          top 10px
+
+      &.toc-level-3
+        list-style none !important
+        list-style-type none !important
+        margin-left 20px !important
+        font-size 0.92em
+        font-weight normal
+        color #496357
+
+        a
+          color #496357
+          &:hover
+            color #177c5d
+
+        &:before
+          content ''
+          background transparent !important
+          border 1.5px solid #22a779 !important
+          border-radius 50% !important
+          box-sizing border-box !important
+          width 5px !important
+          height 5px !important
+          position absolute
+          left 0
+          top 10px
+
+/* -------------------------------------------------------------
+ * 6. 現代文章分享列 (Modern Article Share)
+ * ------------------------------------------------------------- */
+.article-share
+  margin 24px 0 10px
+  padding 14px 16px
+  background #f4faf7
+  border 1px solid #e1efe8
+  border-radius 12px
+  display flex
+  flex-wrap wrap
+  align-items center
+  gap 12px
+
+  &-title
+    font-size 13px
+    font-weight 600
+    color #7d948a
+    text-transform uppercase
+    letter-spacing 0.06em
+
+  &-buttons
+    display flex
+    flex-wrap wrap
+    align-items center
+    gap 8px
+
+  .share-btn
+    display inline-flex
+    align-items center
+    gap 6px
+    padding 7px 13px
+    border-radius 8px
+    font-size 13px
+    font-weight 500
+    line-height 1
+    text-decoration none
+    border 1px solid #dfe9e4
+    background #ffffff
+    color #4a5a54
+    cursor pointer
+    transition all 0.15s ease
+    user-select none
+
+    &:hover
+      transform translateY(-1px)
+      box-shadow 0 3px 8px rgba(15, 56, 42, 0.08)
+      border-color #cfe3da
+
+    &:focus-visible
+      outline 2px solid rgba(34, 167, 121, 0.45)
+      outline-offset 2px
+
+    &-copy:hover
+      border-color color-link
+      color #17805d
+      background #f2faf7
+
+    &-twitter:hover
+      background #000000
+      border-color #000000
+      color #ffffff
+
+    &-facebook:hover
+      background #1877f2
+      border-color #1877f2
+      color #ffffff
+
+    &-line:hover
+      background #06c755
+      border-color #06c755
+      color #ffffff
+
+    &-threads:hover
+      background #000000
+      border-color #000000
+      color #ffffff
+
+    &-wechat:hover
+      background #07c160
+      border-color #07c160
+      color #ffffff
+
+    &-weibo:hover
+      background #e6162d
+      border-color #e6162d
+      color #ffffff
+
+    &-zhihu:hover
+      background #0084ff
+      border-color #0084ff
+      color #ffffff
+
+    &-linkedin:hover
+      background #0a66c2
+      border-color #0a66c2
+      color #ffffff
+
+    &-reddit:hover
+      background #ff4500
+      border-color #ff4500
+      color #ffffff
+
+    &-hn:hover
+      background #ff6600
+      border-color #ff6600
+      color #ffffff
+
+    &-native:hover
+      background color-link
+      border-color color-link
+      color #ffffff
+

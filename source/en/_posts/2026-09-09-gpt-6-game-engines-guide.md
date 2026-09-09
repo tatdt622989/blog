@@ -2,7 +2,7 @@
 title: "Making Games with GPT-6: Choosing Godot, Unity, Unreal, or Web Tools"
 date: 2026-09-09 15:00:00
 updated: 2026-09-09 15:19:28
-description: "Compare Godot, Unity, Unreal, Phaser, PixiJS, GDevelop, and Three.js for GPT-6 game development, with practical tradeoffs and a small first-project brief."
+description: "Compare Godot, Unity, Unreal, Phaser, PixiJS, GDevelop, and Three.js for GPT-6 game dev, with practical tradeoffs and a small first-project brief."
 translation_key: gpt-6-game-engines-guide
 permalink: 2026/09/09/gpt-6-game-engines-guide/
 translations:
@@ -20,7 +20,7 @@ tags:
 - PixiJS
 ---
 
-![Concept illustration of GPT-6 helping build a platformer, a forest adventure, and a space exploration game](cover.png)
+![Concept illustration of GPT-6 helping build a platformer, a forest adventure, and a space exploration game](cover.jpg)
 
 Watching GPT-6 build a game makes it tempting to ask for one of your own. But if you have never written code, names like Godot, Unity, and Phaser raise an earlier question: **if AI can write the code, why do you need a game engine?**
 

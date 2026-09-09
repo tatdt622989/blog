@@ -1,0 +1,52 @@
+<script>window.BLOG_I18N = <%- JSON.stringify({
+  copyCode: __('copy_code'),
+  codeCopied: __('code_copied'),
+  toastCodeCopied: __('toast_code_copied'),
+  copyLinkLabel: __('copy_link'),
+  linkCopied: __('link_copied'),
+  headingCopied: __('heading_copied'),
+  tocTitle: __('toc_title'),
+  searchLoading: __('search_loading'),
+  searchEmpty: __('search_empty'),
+  searchNoResults: __('search_no_results', '%s')
+}) %>;</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="<%= __('search_placeholder') %>"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint"><%= __('search_empty') %></div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text"><%= __('search_hint') %></div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>

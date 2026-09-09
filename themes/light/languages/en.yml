@@ -25,3 +25,16 @@ language_zh_cn: 简体
 language_zh_cn_full: Simplified Chinese
 language_en: English
 related_posts: Related Posts
+search_placeholder: "Search articles, tags, or keywords..."
+search_hint: "ESC to close, ↑↓ to navigate, Enter to open"
+search_no_results: "No articles matching \"%s\""
+search_empty: "Type keywords to start searching..."
+copy_code: "Copy"
+code_copied: "Copied"
+toast_code_copied: "Code copied to clipboard"
+toc_title: "Table of Contents"
+search_loading: "Loading..."
+share_title: "Share"
+copy_link: "Copy Link"
+link_copied: "Article link copied"
+heading_copied: "Section link copied"

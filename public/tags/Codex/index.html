@@ -84,7 +84,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=008ffbd35d">
+  <link rel="stylesheet" href="/css/style.css?v=dba9e05698">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -107,13 +107,22 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <!-- <h1><a href="/">6yuwei</a></h1> -->
   <div class="logo">
     <a href="/">
       <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
     </a>
   </div>
-  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
 </div>
 
 <div class="language-switcher">
@@ -175,6 +184,17 @@
 </nav>
 <div class="clearfix"></div>
 </header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
 <h2 class="archive-title tag">Codex</h2>
@@ -306,10 +326,16 @@
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜尋">
-    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
-  </form>
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
 </div>
 
 
@@ -469,6 +495,48 @@
   
 </div>
 <div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
   <script defer src="/js/custom.js?v=260623-1"></script>
 
 

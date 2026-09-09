@@ -1,7 +1,8 @@
 ---
 title: Why localhost Cannot Be Shared with Friends and How to Deploy Your AI Project Online
 date: 2026-09-06 11:30:50
-description: Wondering why the URL of your AI-built web project fails when shared with others? This guide explains the nature of localhost, how production hosting works, and four steps to launch your web project online.
+updated: 2026-09-06 11:31:14
+description: Wondering why your localhost URL fails when shared? Learn why localhost cannot be shared and the exact steps to deploy your AI web app to production.
 permalink: 2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/
 translation_key: why-localhost-cannot-be-shared-web-deployment-101
 translations:

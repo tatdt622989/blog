@@ -84,7 +84,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=008ffbd35d">
+  <link rel="stylesheet" href="/css/style.css?v=dba9e05698">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -107,13 +107,22 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <!-- <h1><a href="/">6yuwei</a></h1> -->
   <div class="logo">
     <a href="/">
       <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
     </a>
   </div>
-  <h2><a href="/">AI、前端、遊戲開發、日語學習與實測</a></h2>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
 </div>
 
 <div class="language-switcher">
@@ -175,6 +184,17 @@
 </nav>
 <div class="clearfix"></div>
 </header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
   <article id="post-獨立遊戲音效全-AI-化實戰：Suno-產配樂、MOSS-SoundEffect-本地生音效，零成本打造沉浸式遊戲聲效工作流" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -193,7 +213,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-720.jpg?v=3982de92" alt="獨立遊戲 AI 音效工作流：本地模型生成音效與 Suno 製作配樂封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-480.jpg?v=ced173b0 480w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-720.jpg?v=3982de92 720w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-960.jpg?v=18ddd21c 960w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-1280.jpg?v=46fed19d 1280w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg?v=049f9420 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-720.jpg?v=b69234b7" alt="獨立遊戲 AI 音效工作流：本地模型生成音效與 Suno 製作配樂封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-480.jpg?v=aff82f33 480w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-720.jpg?v=b69234b7 720w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-960.jpg?v=8e711da3 960w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover-card-1280.jpg?v=4d664a3b 1280w, /2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg?v=049f9420 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>獨立遊戲開發到後期，音效和配樂通常是最耗時的一塊。去免費音效庫找，音質和風格往往很難統一，而且大量重複；找人委託配樂，對個人專案或小型 Game Jam 來說成本又偏高。</p>
 <p>這篇文章整理一套適合獨立開發者的聲音製作流程：</p>
 <ul>
@@ -280,7 +300,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-720.jpg?v=f9551b58" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-480.jpg?v=4362e8a9 480w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-720.jpg?v=f9551b58 720w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-960.jpg?v=99b868f7 960w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-1280.jpg?v=b803ad6f 1280w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover.jpg?v=163005b1 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-720.jpg?v=7b56c7ee" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-480.jpg?v=efce5458 480w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-720.jpg?v=7b56c7ee 720w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-960.jpg?v=9b091821 960w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover-card-1280.jpg?v=43f4aca5 1280w, /2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/cover.jpg?v=163005b1 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>在 AI 輔助編程讓產品開發速度提升數倍的時代，寫出一個流暢穩定的 App 已經不再是最大的護城河。「如何讓目標使用者在茫茫應用海中找到你、下載你，甚至願意持續付費」，才是決定獨立開發者能否持續生存的核心關鍵。</p>
 <p>許多初次上架 App 的開發者往往把所有心力放在功能實作上，直到提審通過當天才匆忙填寫商店資料，結果上架後每天只有零星的個位數下載，甚至連身邊朋友搜尋 App 名稱都找不到。這篇文章整理了從產品開發完成、商店元數據佈局、視覺資產設計到上架後冷啟動的完整 ASO（App Store Optimization）實戰流程，並在每個階段具體導入 AI 工具與自動化工作流，協助你以最高效率避開常見地雷，打造可持續獲客的增長飛輪。</p>
       
@@ -320,7 +340,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-720.jpg?v=a970ade5" alt="Agentic SDLC 軟體開發生命週期架構全景" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-480.jpg?v=8292f70b 480w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-720.jpg?v=a970ade5 720w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-960.jpg?v=55c7af77 960w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-1280.jpg?v=fc8ff5cd 1280w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-720.jpg?v=c84439d5" alt="Agentic SDLC 軟體開發生命週期架構全景" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-480.jpg?v=2036c8dc 480w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-720.jpg?v=c84439d5 720w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-960.jpg?v=880dde98 960w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover-card-1280.jpg?v=9e3791f4 1280w, /2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>過去一年，AI 寫程式經歷了從 Copilot 代碼補全到 <strong>Vibe Coding</strong> 的狂歡。許多人習慣了「下 Prompt → AI 生成代碼 → 跑測試」的直覺模式。在幾十行的玩具專案裡，這種模式看起來無所不能；但一旦進入數萬行、模組高度耦合的正式專案，這套憑感覺的模式就會迅速崩潰。</p>
 <p>你一定遇過這種絕望場景：AI 信心滿滿地宣稱修好了 Bug，結果改了 A 模組卻炸了 B 模組；叫五個最強模型做 Code Review，大家都說程式碼看起來很漂亮，一上線卻立刻遇到 Race Condition；甚至讓 AI 自動記錄「經驗」，跑了一個月後，整個系統被它自己過去產生的歷史幻覺徹底污染。</p>
 <p>在軟體工程中，瓶頸從來不是「程式碼生成的速度」，而是<strong>「驗證與交付的信心」</strong>。要跨越生成速度遠大於驗證能力的鴻溝（GenAI Divide），唯一的出路是建立一套工業級的 <strong>Agentic SDLC（Agent 軟體開發生命週期）</strong>。</p>
@@ -361,7 +381,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720.jpg?v=53f8a5cd" alt="非工程師透過 AI 生成網站並免費安全發布至全球雲端流程示意圖" width="1600" height="893" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-480.jpg?v=2dcb3165 480w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720.jpg?v=53f8a5cd 720w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-960.jpg?v=3303105b 960w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-1280.jpg?v=e5300885 1280w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670 1600w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720.jpg?v=64acf178" alt="非工程師透過 AI 生成網站並免費安全發布至全球雲端流程示意圖" width="1600" height="893" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-480.jpg?v=685aec91 480w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-720.jpg?v=64acf178 720w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-960.jpg?v=11c12182 960w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover-card-1280.jpg?v=02780c0d 1280w, /2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670 1600w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>用 ChatGPT、Claude 或 Cursor 寫出網頁後，很多人會卡在「只有自己電腦看得見，不知道怎麼發布給別人用」。</p>
 <p>其實現在完全不需要租主機、不用學 Linux 指令、也不用花任何一毛錢。這篇直接整理最精簡、免費且安全的上線路徑，只要照著做，幾分鐘內就能拿到一組全世界都能瀏覽的專屬網址。</p>
       
@@ -598,10 +618,16 @@
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜尋">
-    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com">
-  </form>
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
 </div>
 
 
@@ -761,6 +787,48 @@
   
 </div>
 <div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
   <script defer src="/js/custom.js?v=260623-1"></script>
 
 

@@ -1,6 +1,7 @@
 ---
 title: 为什么 localhost 发给朋友打不开？让 AI 网站真正公开上线的关键步骤
 date: 2026-09-06 11:30:50
+updated: 2026-09-06 11:31:14
 description: 借助 AI 快速完成的网页项目，将网址发给朋友却提示无法访问？本文以务实专业的视角，完整解析 localhost 的本质、本地预览与云端服务的运行差异，并提供将现代 AI 网页项目正式发布上线的关键路径。
 permalink: 2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/
 translation_key: why-localhost-cannot-be-shared-web-deployment-101

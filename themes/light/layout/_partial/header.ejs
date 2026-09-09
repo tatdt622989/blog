@@ -1,11 +1,20 @@
 <div class="alignleft">
-  <!-- <h1><a href="<%- config.root %>"><%= config.title %></a></h1> -->
   <div class="logo">
     <a href="<%- config.root %>">
       <img src="<%- config.root %>img/logo.svg" alt="<%= config.title %>" width="298" height="115">
     </a>
   </div>
-  <h2><a href="<%- config.root %>"><% if (config.subtitle){ %><%= config.subtitle %><% } %></a></h2>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="<%= __('search') %>">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label"><%= __('search') %></span>
+  </button>
 </div>
 <% var activeLocale = current_locale(); %>
 <div class="language-switcher">

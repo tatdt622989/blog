@@ -1,6 +1,12 @@
 <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="<%= __('search') %>">
-    <input type="hidden" name="as_sitesearch" value="<%- config.url.replace(/^https?:\/\//, '') %>">
-  </form>
+  <button type="button" class="search-trigger" aria-label="<%= __('search') %>">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label"><%= __('search') %></span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
 </div>

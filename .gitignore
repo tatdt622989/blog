@@ -14,3 +14,6 @@ _multiconfig.yml
 
 # 本機隔離開發工作區
 /.worktrees/
+
+# Hexo 資料庫快取
+db.json

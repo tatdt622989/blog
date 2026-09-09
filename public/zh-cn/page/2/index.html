@@ -84,7 +84,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=008ffbd35d">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=dba9e05698">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -107,13 +107,22 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <!-- <h1><a href="/zh-cn/">6yuwei</a></h1> -->
   <div class="logo">
     <a href="/zh-cn/">
       <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
     </a>
   </div>
-  <h2><a href="/zh-cn/">AI、前端、游戏开发、日语学习与实测</a></h2>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
 </div>
 
 <div class="language-switcher">
@@ -175,6 +184,17 @@
 </nav>
 <div class="clearfix"></div>
 </header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
   <article id="post-indie-game-ai-audio-workflow" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -193,7 +213,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=3982de92" alt="独立游戏 AI 音效工作流：本地模型生成音效与 Suno 制作配乐封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-480.jpg?v=ced173b0 480w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=3982de92 720w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-960.jpg?v=18ddd21c 960w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-1280.jpg?v=46fed19d 1280w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover.jpg?v=049f9420 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=b69234b7" alt="独立游戏 AI 音效工作流：本地模型生成音效与 Suno 制作配乐封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-480.jpg?v=aff82f33 480w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-720.jpg?v=b69234b7 720w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-960.jpg?v=8e711da3 960w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover-card-1280.jpg?v=4d664a3b 1280w, /zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover.jpg?v=049f9420 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>在独立游戏开发进程迈入中后期时，音频往往是最令人头疼的重灾区。从免费开源音效库淘金，音质、采样率与整体艺术风格极难统一，且充斥着千篇一律的撞车感；而若是寻找专业配乐师定制委约，对于独立开发者个人或小型 Game Jam 敏捷团队而言，成本又往往难以承受。</p>
 <p>本文梳理并公开一套经过项目实战验证的低成本 AI 音频制作流水线：</p>
 <ul>
@@ -280,7 +300,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=a970ade5" alt="Agentic SDLC 软件开发生命周期架构全景" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-480.jpg?v=8292f70b 480w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=a970ade5 720w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-960.jpg?v=55c7af77 960w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-1280.jpg?v=fc8ff5cd 1280w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5" alt="Agentic SDLC 软件开发生命周期架构全景" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-480.jpg?v=2036c8dc 480w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-720.jpg?v=c84439d5 720w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-960.jpg?v=880dde98 960w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover-card-1280.jpg?v=9e3791f4 1280w, /zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>过去一段时间，AI 辅助编程经历了从简单的代码补全到 <strong>Vibe Coding</strong> 的全民狂欢。许多开发者逐渐习惯了“输入 Prompt ➔ AI 吐出代码 ➔ 跑跑看”的直觉操作。在几十行代码的演示 Demo 或练手项目里，这种模式显得轻巧高效；但一旦置身于数万行代码、各业务模块高度耦合的企业级生产项目，这种完全凭感觉的协同方式便会迅速走向崩溃。</p>
 <p>一线工程实践中经常上演这类令人崩溃的场景：AI 言之凿凿地宣称彻底修好了某个 Bug，结果改动了 A 模块却直接带崩了 B 模块；拉来五个当前公认最强的大模型做代码审查，模型们交口称赞代码逻辑非常漂亮，一发布上线却瞬间遭遇严重的并发竞态异常；甚至让 AI 自动记录“过往经验”，跑了一段时间后，整个记忆检索库全被它自己早期生成的幻觉信息深度污染。</p>
 <p>在严肃的软件工程世界里，研发效能的核心瓶颈从来不是“代码生成的绝对速度”，而是<strong>“软件验证与安全交付的系统确定性”</strong>。要跨越生成速度远超验证能力的这道鸿沟（GenAI Divide），唯一的破局之道就是构筑一套工业级的 <strong>Agentic SDLC（Agent 驱动的软件开发生命周期）</strong>。</p>
@@ -361,7 +381,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=38a4a471" alt="Grok 4.6 驱动 Grok Build 执行长时运行开发与并行代理工作流示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-480.jpg?v=3d11094a 480w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=38a4a471 720w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-960.jpg?v=5935025a 960w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-1280.jpg?v=02800e37 1280w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover.jpg?v=18f0d70b 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=006e5ba9" alt="Grok 4.6 驱动 Grok Build 执行长时运行开发与并行代理工作流示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-480.jpg?v=c2726092 480w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=006e5ba9 720w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-960.jpg?v=7b93e024 960w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-1280.jpg?v=d7a022a3 1280w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover.jpg?v=18f0d70b 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>xAI 在 8 月 12 日正式推出了新一代旗舰模型 <strong>Grok 4.6</strong>，并迅速将其设为终端工具 <strong>Grok Build</strong> 的底层默认核心引擎。这一软硬件协同组合最值得一线技术人关注的，绝非发布会幻灯片上又多出的一长串 Benchmark 跑分，而是 xAI 将一款具备前沿推理能力的新模型，无缝集成进了一个能够自主读取本地仓库、精准修改文件、直接在终端运行命令、灵活调用外部工具，并能统筹调度多个子代理的完整工程环境之中。</p>
 <p>换言之，Grok 4.6 专精于深层逻辑推理与代码决策，而 Grok Build 则负责将模型能力平稳接驳进真实的研发工作流。当开发任务从简单的“写一个工具函数”，延伸为通读整个大型代码库、制定涉及数十个文件的重构方案、并行分流调研子任务、自动运行单元测试并根据报错信息迭代自愈时，模型与代理宿主框架之间能否稳定高效地配合，远比单一题目的理论答题准确率更贴近程序员每日的真实开发痛点。</p>
 <p>先抛出核心结论：<strong>Grok 4.6 问世的核心意义绝非一蹴而就取代所有现存的 AI 编程工具，而是让 Grok Build 在长周期自主 Agent 研发的第一线竞争中，具备了更强劲的系统级续航与工程把控力。</strong>当然，本文所引述的技术细节主要基于 xAI 截至 2026 年 8 月 13 日公开披露的技术文档与官方公告，厂商宣称的基准表现仍应作为技术评估的参考基线。</p>
@@ -402,7 +422,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=877da5a0" alt="Claude Code 跨会话消息让多个 Session 交换任务摘要的示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-480.jpg?v=20a626a1 480w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=877da5a0 720w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-960.jpg?v=a702dbb3 960w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-1280.jpg?v=87291f7d 1280w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c" alt="Claude Code 跨会话消息让多个 Session 交换任务摘要的示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-480.jpg?v=c4ec80f1 480w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c 720w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-960.jpg?v=6b3e647c 960w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-1280.jpg?v=17a867cc 1280w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>Claude Code 近期上线了一项第一眼极易被误读、但在实际工程开发中体验极其舒适的重磅特性：<strong>运行在不同终端窗口中的 Claude Code Session，现在能够直接互相发送消息了</strong>。</p>
 <p>这项功能的日常使用场景非常符合直觉：你在其中一个终端窗口正专注于某项功能的编码，可以随时让当前的 Claude 直接跨窗口去询问另一个正在跑数据迁移的 Session；而另一个 Session 跑完之后，也可以主动将工作摘要原路推回，甚至当它察觉到自己的接口改动可能会破坏对端模块时，能第一时间向对方发起协同提醒。</p>
 <p>不过必须明确，这项机制绝非简单粗暴地将两段原本独立的完整长对话合并为一，更不是在后台自作主张地互相乱改全局工程文件。它本质上传递的是<strong>轻量级的文本消息与结构化业务摘要</strong>，且每个独立的 Session 依然牢牢维系着各自专属的执行工作树、系统权限限制与上下文记忆。只有充分理解这一设计边界，才能避免在日常研发中将它与 <code>--resume</code> 会话恢复、子代理调度或是完整的 Agent Teams 团队模式相互混淆。</p>
@@ -524,7 +544,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-720.jpg?v=3475bc89" alt="Claude Code、Codex、Cursor 三款 AI 编程工具对比封面" width="1920" height="1071" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-480.jpg?v=9f39cf2b 480w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-720.jpg?v=3475bc89 720w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-960.jpg?v=0eab969b 960w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-1280.jpg?v=03d6ac05 1280w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2.jpg?v=4beac131 1920w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-720.jpg?v=38c245e4" alt="Claude Code、Codex、Cursor 三款 AI 编程工具对比封面" width="1920" height="1071" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-480.jpg?v=df8d83bb 480w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-720.jpg?v=38c245e4 720w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-960.jpg?v=58e6000b 960w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2-card-1280.jpg?v=7911b648 1280w, /zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2.jpg?v=4beac131 1920w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>近两年来，AI 编程工具的演进速度令人目不暇接。从最初单纯的代码自动补全，到现在能够直接读取整个代码仓库、跨多文件重构、自动运行测试用例并规划后续实施方案，软件工程的底层研发协作模式正在被深度重构。</p>
 <p>在当前的技术生态中，讨论热度最高的三个代表性方向莫过于 <strong>Claude Code、Codex</strong> 与 <strong>Cursor</strong>。很多开发者都在纠结：Claude Code 的 Pro 与 Max 套餐实际额度差距多大？Codex 究竟值不值得为了它专门订阅 ChatGPT？而习惯了 VS Code 的开发者是否有必要全面迁移到 Cursor？</p>
       
@@ -598,10 +618,16 @@
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="as_sitesearch" value="blog.6yuwei.com/zh-cn">
-  </form>
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
 </div>
 
 
@@ -721,6 +747,48 @@
   
 </div>
 <div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
   <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
 
 
