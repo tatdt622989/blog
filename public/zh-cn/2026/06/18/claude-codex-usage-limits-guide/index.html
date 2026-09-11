@@ -35,7 +35,7 @@
   <meta name="twitter:description" content="深入解析 2026 年 Codex 与 Claude Code 的配额机制，全面拆解 5 小时窗口、每周用量限制、Banked Reset 与付费额度的扣减逻辑。结合状态栏监控与工程实践，分享精准控制上下文、降低无谓重跑与优化选型的实用技巧，彻底告别额度焦虑。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","headline":"Codex 额度与 5 小时限制：重置时间、用量查询与提效降耗实战指南","description":"深入解析 2026 年 Codex 与 Claude Code 的配额机制，全面拆解 5 小时窗口、每周用量限制、Banked Reset 与付费额度的扣减逻辑。结合状态栏监控与工程实践，分享精准控制上下文、降低无谓重跑与优化选型的实用技巧，彻底告别额度焦虑。","datePublished":"2026-06-18T06:34:36.000Z","dateModified":"2026-08-28T03:00:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","headline":"Codex 额度与 5 小时限制：重置时间、用量查询与提效降耗实战指南","description":"深入解析 2026 年 Codex 与 Claude Code 的配额机制，全面拆解 5 小时窗口、每周用量限制、Banked Reset 与付费额度的扣减逻辑。结合状态栏监控与工程实践，分享精准控制上下文、降低无谓重跑与优化选型的实用技巧，彻底告别额度焦虑。","datePublished":"2026-06-18T06:34:36.000Z","dateModified":"2026-09-11T10:30:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Codex 额度与 5 小时限制：重置时间、用量查询与提效降耗实战指南","item":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"}]}</script>
   
@@ -244,7 +244,7 @@
 </li>
 </ol>
 <p>OpenAI 会依据用户的订阅套餐、账号历史、工作区类型及阶段性活动调整可见选项，因此切勿将其他用户的配置截图误当成自己账号的硬性上限。如果发现桌面端、网页端与 CLI 终端显示的数值不一致，首先排查是否登录了同一个账号或工作区，随后手动刷新 <strong>Settings → Usage</strong> 页面确认。</p>
-<h2 id="5-小时限制与每周窗口如何计算"><a href="#5-小时限制与每周窗口如何计算" class="headerlink" title="5 小时限制与每周窗口如何计算"></a>5 小时限制与每周窗口如何计算</h2><p>许多 Codex 账号会同时受到较短的 5 小时滚动窗口与周期较长的每周窗口双重约束。无论哪一个限制被触发耗尽，系统都会阻断后续高阶调用，要求你等待窗口重置、消耗 Credits、手动启用账号内的转存重置，或是降级为套餐允许的基础交互模式。</p>
+<h2 id="5-小时限制与每周窗口如何计算"><a href="#5-小时限制与每周窗口如何计算" class="headerlink" title="5 小时限制与每周窗口如何计算"></a>5 小时限制与每周窗口如何计算</h2><p>许多 Codex 账号会同时受到较短的 5 小时滚动窗口与周期较长的每周窗口双重约束。达到限制后，可用选项取决于账号与套餐。官方说明，正在执行的当前轮次仍可能在合理使用限制内继续完成，因此不能把达到上限理解为任务必然立即中断。</p>
 <p>官方并未将任务简单折算为固定的对话消息条数。实际的资源消耗由以下关键技术变量共同决定：</p>
 <ul>
 <li><strong>模型选型</strong>：不同参数规模与架构的模型，其单位 token 成本及可用配额存在显著差异。</li>
@@ -255,6 +255,8 @@
 </ul>
 <p>在支持企业与团队协作的套餐中，Codex、ChatGPT Work、ChatGPT for Excel 以及 Workspace Agents 可能会共享底层的 Agentic Usage 配额与 Credits 资金池。但普通 ChatGPT 会话中的图片生成、文档解析或实时语音通话，通常走的是另一套独立的配额规则，不可直接套算到 Codex 的消耗中。</p>
 <p>具体规则与数值会随着产品迭代动态微调，请随时以 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan">OpenAI 官方 Codex 套餐说明</a> 以及个人后台用量面板的数据为准。</p>
+<h2 id="5-小时后仍然受限，应该检查什么"><a href="#5-小时后仍然受限，应该检查什么" class="headerlink" title="5 小时后仍然受限，应该检查什么"></a>5 小时后仍然受限，应该检查什么</h2><p>先用 <strong>&#x2F;status</strong> 或用量面板确认耗尽的窗口：<strong>5 小时额度恢复，并不代表每周额度也已恢复</strong>。本地任务和云端任务共享套餐用量，新建会话不能当作重置额度的方法。</p>
+<p>以上排查依据是<a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing">官方用量规则</a>，具体恢复时间请查看账号面板。新会话可以减少无关上下文，但不会返还已经消耗的套餐额度。</p>
 <h2 id="Credits-是什么，在什么时机扣除"><a href="#Credits-是什么，在什么时机扣除" class="headerlink" title="Credits 是什么，在什么时机扣除"></a>Credits 是什么，在什么时机扣除</h2><p>Credits 是一种按量计费的弹性额度，用于在套餐内含配额耗尽后，保障核心功能不中断运行。系统的扣减机制非常明确：<strong>优先使用套餐内含的免费用量，仅在对应窗口达到上限后，才开始从 Credits 余额中扣费</strong>。</p>
 <p>能否自行购买 Credits、支持的单次充值面额、自动充值功能以及适用场景，会因套餐级别、账号信誉及所在地区而有所不同。只有当你的 <strong>Settings → Usage</strong> 或 <strong>Usage &amp; Billing</strong> 界面中明确出现了购买入口时，才代表当前账号具备该权限；未看到入口仅代表当前环境暂未开放，并非配置失误。</p>
 <p>在启用 Credits 前，务必明确以下规则：</p>

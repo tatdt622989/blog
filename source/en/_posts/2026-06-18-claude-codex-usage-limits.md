@@ -15,7 +15,7 @@ tags:
   - Usage Limits
   - CodexBar
 date: 2026-06-18 14:34:36
-updated: 2026-08-27 19:00:00
+updated: 2026-09-11 18:30:00
 ---
 
 ![Claude Code and Codex usage limit management guide](cover.webp)
@@ -35,6 +35,12 @@ For Codex, use `/status` in an active CLI session or open **Settings → Usage**
 For Claude Code, use `/usage` to inspect plan limits or `/status` for session and authentication details. Anthropic also exposes usage information in account settings. The message displayed when a subscription limit is reached normally includes the relevant reset time.
 
 Avoid relying on a screenshot from another user. Limits vary by plan, account, workspace, model, task type, and current product rules.
+
+## Still Limited After Five Hours?
+
+Check **/status** or your dashboard for the exhausted window: **a five-hour reset does not necessarily restore weekly capacity**. Local and cloud work share the plan allowance. Starting a new conversation does not replenish it.
+
+This troubleshooting advice follows the [official usage rules](https://learn.chatgpt.com/docs/pricing). Use your account's displayed reset time. A fresh conversation can reduce unrelated context; it is not a quota reset.
 
 ## Why One Task Can Consume More Than Another
 

@@ -13,7 +13,7 @@ tags:
   - Codex
   - Claude
 date: 2026-06-18 14:34:36
-updated: 2026-08-28 11:00:00
+updated: 2026-09-11 18:30:00
 ---
 
 ![Codex 額度與用量管理指南封面](cover.webp)
@@ -51,6 +51,12 @@ OpenAI 會依方案、帳戶、工作區與活動調整可用選項，所以不�
 Codex、ChatGPT Work、ChatGPT for Excel 與 Workspace Agents 在你的方案支援這些功能時，可能共用 agentic usage 與 Credits。一般 ChatGPT 的圖片、檔案上傳或語音限制則可能是另一套配額，不能直接拿來推算 Codex。
 
 規則與數字會調整，請以 [OpenAI 的 Codex 方案說明](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan) 與帳戶用量面板為準。
+
+## 5 小時到了還不能用，先查哪裡
+
+先查看 **/status** 或用量面板中是哪個視窗耗盡：**5 小時視窗恢復，不代表每週額度也恢復**。本機與雲端工作會共用方案用量，重開對話也不應當成重設額度的方法。
+
+這是依[官方用量規則](https://learn.chatgpt.com/docs/pricing)整理的排查順序；恢復時間以帳戶面板為準。新對話可以減少無關上下文，但不會補回已消耗的方案額度。
 
 ## Credits 是什麼，什麼時候會使用
 
