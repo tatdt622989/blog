@@ -255,8 +255,6 @@
 </ul>
 <p>Codex、ChatGPT Work、ChatGPT for Excel 與 Workspace Agents 在你的方案支援這些功能時，可能共用 agentic usage 與 Credits。一般 ChatGPT 的圖片、檔案上傳或語音限制則可能是另一套配額，不能直接拿來推算 Codex。</p>
 <p>規則與數字會調整，請以 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan">OpenAI 的 Codex 方案說明</a> 與帳戶用量面板為準。</p>
-<h2 id="5-小時到了還不能用，先查哪裡"><a href="#5-小時到了還不能用，先查哪裡" class="headerlink" title="5 小時到了還不能用，先查哪裡"></a>5 小時到了還不能用，先查哪裡</h2><p>先查看 <strong>&#x2F;status</strong> 或用量面板中是哪個視窗耗盡：<strong>5 小時視窗恢復，不代表每週額度也恢復</strong>。本機與雲端工作會共用方案用量，重開對話也不應當成重設額度的方法。</p>
-<p>這是依<a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing">官方用量規則</a>整理的排查順序；恢復時間以帳戶面板為準。新對話可以減少無關上下文，但不會補回已消耗的方案額度。</p>
 <h2 id="Credits-是什麼，什麼時候會使用"><a href="#Credits-是什麼，什麼時候會使用" class="headerlink" title="Credits 是什麼，什麼時候會使用"></a>Credits 是什麼，什麼時候會使用</h2><p>Credits 是超過方案內含額度後，讓支援功能繼續執行的按量付費額度。系統會先使用方案內含用量，達到限制後才從 Credits 餘額扣除。</p>
 <p>是否能購買 Credits、可購買金額、自動加值與支援功能，會依方案、帳戶與地區而異。只有在你的 <strong>Settings → Usage</strong> 或 <strong>Usage &amp; Billing</strong> 顯示相關選項時，才代表目前帳戶可用；沒有看到按鈕不等於操作錯誤。</p>
 <p>使用前應注意：</p>
@@ -282,7 +280,11 @@
 <li>更新後若出現新的權限要求，先確認請求程式與用途再允許。</li>
 </ul>
 <p>若只想確認官方數字，直接查看 <strong>Settings → Usage</strong> 或使用 <strong>&#x2F;status</strong> 即可，不必另外安裝工具。</p>
-<h2 id="真正能節省-Codex-額度的做法"><a href="#真正能節省-Codex-額度的做法" class="headerlink" title="真正能節省 Codex 額度的做法"></a>真正能節省 Codex 額度的做法</h2><h3 id="先縮小任務，再交給-Codex"><a href="#先縮小任務，再交給-Codex" class="headerlink" title="先縮小任務，再交給 Codex"></a>先縮小任務，再交給 Codex</h3><p>不要一開始就要求讀完整個大型 repository。先指出目標模組、錯誤訊息、重現步驟與驗收條件，讓 Codex 少走探索支線。當問題尚未定位時，可先要求只做唯讀診斷，再決定是否實作。</p>
+<h2 id="真正能節省-Codex-額度的做法"><a href="#真正能節省-Codex-額度的做法" class="headerlink" title="真正能節省 Codex 額度的做法"></a>真正能節省 Codex 額度的做法</h2><h3 id="先縮小任務，再交給-Codex"><a href="#先縮小任務，再交給-Codex" class="headerlink" title="先縮小任務，再交給 Codex"></a>先縮小任務，再交給 Codex</h3><p>「幫我檢查整個專案，順便優化」沒有明確的完成條件，容易把一個小問題擴大成全面整理。以修正手機版選單為例，可以這樣交代：</p>
+<blockquote>
+<p>修正手機版選單打開後無法關閉的問題。重現方式：在 390px 寬度打開選單，再點背景。預期是選單關閉，且桌面版操作不受影響。先從選單元件與點擊事件查起，有需要再追相關檔案。完成後驗證這兩個操作，回報修改與結果；其他版面調整留待下一次。</p>
+</blockquote>
+<p>這段指令給了問題、重現方式、預期結果與查找起點，也定義了何時可以收工。不要為了省額度禁止必要的調查或測試；要減少的是與目標無關的工作。這是可套用的任務範例，並非節省比例的實測；實際用量仍受模型、上下文與工具操作影響。</p>
 <h3 id="控制上下文與輸出範圍"><a href="#控制上下文與輸出範圍" class="headerlink" title="控制上下文與輸出範圍"></a>控制上下文與輸出範圍</h3><p>長對話會累積上下文。完成一個主題後，以清楚摘要開新工作階段，通常比讓無關歷史持續膨脹更有效。也應排除 build 產物、依賴目錄、大型媒體與與任務無關的檔案。</p>
 <h3 id="依任務選模型與推理強度"><a href="#依任務選模型與推理強度" class="headerlink" title="依任務選模型與推理強度"></a>依任務選模型與推理強度</h3><p>格式調整、單檔小改與明確測試修正，不一定需要最高成本的模型或推理設定。先用足以完成任務的選項；遇到跨模組設計、難以重現的錯誤或高風險變更，再提高模型能力或推理強度。</p>
 <h3 id="減少沒有資訊增量的重跑"><a href="#減少沒有資訊增量的重跑" class="headerlink" title="減少沒有資訊增量的重跑"></a>減少沒有資訊增量的重跑</h3><p>反覆執行相同測試、重新讀取整個專案或要求多份近似答案，都會消耗額度。把驗證對準變更風險：先跑聚焦測試，確定修改穩定後再跑完整套件。</p>

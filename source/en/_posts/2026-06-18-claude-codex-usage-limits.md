@@ -36,12 +36,6 @@ For Claude Code, use `/usage` to inspect plan limits or `/status` for session an
 
 Avoid relying on a screenshot from another user. Limits vary by plan, account, workspace, model, task type, and current product rules.
 
-## Still Limited After Five Hours?
-
-Check **/status** or your dashboard for the exhausted window: **a five-hour reset does not necessarily restore weekly capacity**. Local and cloud work share the plan allowance. Starting a new conversation does not replenish it.
-
-This troubleshooting advice follows the [official usage rules](https://learn.chatgpt.com/docs/pricing). Use your account's displayed reset time. A fresh conversation can reduce unrelated context; it is not a quota reset.
-
 ## Why One Task Can Consume More Than Another
 
 Neither service can be understood as a fixed number of identical prompts. Usage depends on the work being performed.
@@ -149,7 +143,11 @@ Use the expensive, deep-reasoning option when the task genuinely needs it. Routi
 
 ### Point to Relevant Files
 
-Give the agent a narrow entry point instead of asking it to read the entire repository. Mention the module, function, failing test, or error. Let the agent expand its search when evidence requires it.
+“Check the whole project and optimize it” has no clear stopping point. A small fix can expand into a broad cleanup. For a mobile menu bug, try a bounded request:
+
+> Fix the mobile menu failing to close. To reproduce, open the menu at a 390px viewport width, then click the backdrop. The menu should close, and desktop behavior should still work. Start with the menu component and click handlers; follow related files when necessary. Verify both interactions and report the changes and results. Leave unrelated layout work for another task.
+
+This gives the agent a symptom, reproduction steps, expected behavior, and a starting point. Keep necessary investigation and testing; remove unrelated work. This is an example task brief, not a measured savings claim. Actual usage still depends on the model, context, and tool calls.
 
 ### Ask for a Plan Before a Large Diff
 
