@@ -13,7 +13,7 @@ tags:
   - Codex
   - Claude
 date: 2026-06-18 14:34:36
-updated: 2026-09-12 00:00:45
+updated: 2026-09-12 10:41:42
 ---
 
 ![Codex 額度與用量管理指南封面](cover.webp)
@@ -67,15 +67,19 @@ Credits 是超過方案內含額度後，讓支援功能繼續執行的按量付
 
 詳細規則可查看 [OpenAI Credits 說明](https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans)。
 
-## Banked reset 會重設哪些額度
+## Banked reset 什麼時候用？先看七天週期與 30 天期限
 
-Banked reset 是儲存在合格帳戶中的一次性 Codex 用量重設，不是現金、API credits 或可轉移餘額。若帳戶有可用 reset，可在 **Settings → Usage** 的用量摘要中查看期限並手動套用。
+**使用 full banked reset，會補回 5 小時與每週額度，也會重新安排下一次每週重設時間，進入新一輪約七天的週期。** 所以按下重置前，最重要的是看「原本還要多久自動恢復」，而不只是看剩下幾次 reset。[OpenAI 官方規則](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)已明確說明，每週重設日期會改變；使用後請確認 **Settings → Usage** 顯示的新時間。
 
-使用 full banked reset 時，系統會刷新符合資格的 Codex 用量視窗，包括介面標示的 5 小時與每週視窗；它不會改變原定的每週重設日期。只有成功刷新至少一個符合資格的視窗時，reset 才會被消耗；若目前沒有可重設的用量，它會保留。
+例如，原本週一就會恢復每週額度，如果你在週日使用 banked reset，就不能再把原本週一的恢復時間算進工作安排。若工作可以等到週一，保留這次重置可能更有用；如果週日就有必須完成的工作，則要把新週期一併考慮。
 
-Banked reset 屬於活動權益，資格、數量、適用限制與到期日都可能不同，而且未來不保證再發放。不要根據社群貼文預設自己一定會收到；請以帳戶顯示為準。完整規則見 [OpenAI 的 banked Codex resets 說明](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)。
+這和 [Claude Pro 的固定每週重設時間](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan)不同：Claude Pro 的一般週期由帳戶指定固定時間；Codex 使用 full banked reset 則會改變週期安排。同時使用兩者時，應分別記錄各自的下一次重設時間。
 
-![Codex 用量面板顯示可用重設時，使用者可自行確認並套用](reset-quota.png)
+**另一個要看的日期，是 reset 本身何時到期。** OpenAI 公布的 [30 天重置活動規則](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers)是從發放日起算 30 天內使用，並非按下重置後能連續用 30 天。各次活動的期限可能不同，收到後先看帳戶標示的到期日。
+
+我的建議是把三件事一起看：**距離自動重設還有多久、reset 還剩幾天有效、近期是否真的需要額度。** 快自動恢復且不趕工，可以先等；近期有大量工作、又離恢復時間很遠，重置的價值就比較高。若 reset 即將到期，則在期限內安排原本就要做的工作，避免留到失效。
+
+![使用 banked reset 前，先確認到期日；使用後再核對新的每週重設時間](reset-quota.png)
 
 ## 用 CodexBar 在選單列監控
 

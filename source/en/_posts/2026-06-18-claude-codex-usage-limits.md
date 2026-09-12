@@ -15,7 +15,7 @@ tags:
   - Usage Limits
   - CodexBar
 date: 2026-06-18 14:34:36
-updated: 2026-09-12 00:00:45
+updated: 2026-09-12 10:41:42
 ---
 
 ![Claude Code and Codex usage limit management guide](cover.webp)
@@ -88,23 +88,19 @@ When the included allowance is exhausted, your account may offer one or more of 
 
 The actual options depend on account eligibility, plan, workspace, and region.
 
-## What Is a Banked Codex Reset?
+## When to Use a Banked Reset: The Weekly Clock and the 30-Day Deadline
 
-A [banked reset](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work) is a one-time promotional benefit stored on an eligible account. It is not a cash balance, API credit, or permanent increase to the plan.
+**A full banked reset restores five-hour and weekly capacity and moves your next weekly reset into a new, roughly seven-day cycle.** Before redeeming one, check how close you are to your existing automatic reset. [OpenAI explicitly says the weekly reset date changes](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work); confirm the new time in **Settings → Usage** afterward.
 
-If a reset is available, OpenAI instructs users to open **Settings → Usage**, select the usage summary showing the reset, review its expiration, and confirm the action. A successful reset refreshes at least one eligible usage window. If there is nothing eligible to reset, it should remain available.
+For example, if your weekly allowance was due to recover on Monday and you redeem a reset on Sunday, do not continue planning around that old Monday reset. If the work can wait, saving the reset may be more useful. If Sunday delivery matters, account for the new weekly schedule.
 
-Important details include:
+This differs from [Claude Pro's regular weekly schedule](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan), which uses a fixed day and time assigned to the account. Keep separate reset schedules when using both tools.
 
-- eligibility and expiration depend on the specific promotion;
-- future resets are not guaranteed;
-- a reset cannot be transferred or exchanged for cash;
-- the dashboard may take a short time to refresh after use;
-- support does not provide courtesy replacement resets simply because one expired unused.
+**The reset's expiration is a different clock.** OpenAI's published [30-day promotion terms](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers) count from when the reset is granted, not from redemption. They do not provide 30 days of unlimited use. Expiration can vary by offer, so check the date shown for the reset you received.
 
-Do not press a reset merely because one is visible. Compare its expiration with your next automatic reset and your immediate workload.
+My timing rule is to compare **time until automatic recovery, time until the reset expires, and upcoming workload**. Wait when recovery is close and the task can wait. Redeem when immediate capacity is valuable. If expiration is approaching, schedule work you already need to do within that deadline.
 
-![Codex usage panel showing an available manual reset](reset-quota.png)
+![Check the banked reset expiration before use and the new weekly reset time afterward](reset-quota.png)
 
 ## Banked Resets and Paid Credits Are Different
 
