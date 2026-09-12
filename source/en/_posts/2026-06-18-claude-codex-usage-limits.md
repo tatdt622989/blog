@@ -15,7 +15,7 @@ tags:
   - Usage Limits
   - CodexBar
 date: 2026-06-18 14:34:36
-updated: 2026-09-12 10:41:42
+updated: 2026-09-12 10:52:30
 ---
 
 ![Claude Code and Codex usage limit management guide](cover.webp)
@@ -184,18 +184,17 @@ Search for **Codex usage limit**, **Codex reset**, or **banked reset**. Read rec
 
 Social monitoring helps identify **what to watch and what to check next**. **Settings → Usage** or **/status** confirms the capacity currently available to your account. Use both to make informed work plans.
 
-## A Practical Preflight Checklist
+## Out of Codex Usage: Wait, Reset, or Use Credits?
 
-Before starting a high-consumption task:
+Open **Settings → Usage** or run **/status** to identify the exhausted allowance and its automatic reset time. Then ask: **can the current task wait until that time?**
 
-1. Check `/status`, `/usage`, or the account dashboard.
-2. Confirm which account and billing method are active.
-3. Note the session and weekly reset times.
-4. Decide whether the strongest model is necessary.
-5. Start a clean conversation for an unrelated task.
-6. Point the agent at the smallest useful repository scope.
-7. Define the test or artifact that proves completion.
-8. Keep any banked reset for a moment when it creates more value than waiting.
+| Your task and account situation | What to consider | Check before deciding |
+|---|---|---|
+| The task can wait for automatic recovery | Wait and keep your reset and credits | Whether the reset time fits your deadline |
+| The task cannot wait and you have an unexpired banked reset | Redeem a reset to restore capacity | Its expiration, the old reset time, and how the new seven-day cycle fits your schedule |
+| The task cannot wait, but no reset is available or you want to keep the existing weekly schedule | Check whether your account offers credits | Review the price, balance, and your budget before continuing; reschedule if paying is not worthwhile |
+
+**Consider the effect on next week's schedule and spending as well as today's task.** A reset changes the weekly reset time. Credits pay for additional usage. Evaluate those choices separately.
 
 ## Final Takeaway
 
