@@ -1,7 +1,7 @@
 ---
 title: "AI 寫程式工具怎麼選？2026 年 9 月訂閱方案比較"
 date: 2026-09-14 01:45:00
-updated: 2026-09-14 02:08:10
+updated: 2026-09-14 02:12:30
 translation_key: ai-frontend-coding-subscriptions-value-guide
 description: "AI 前端開發訂閱該選 Claude、ChatGPT 還是 OpenCode？本文依個人整理的當前方案資料，精簡比較月費、API 等值倍率與適合情境，說明高倍率的限制，以及何時值得升級，幫你用合理預算選出真正用得上的工具。"
 translations:
@@ -68,16 +68,6 @@ OpenCode Go 的 $10 月費，適合想控制支出、也願意切換模型的人
 官方文件列有每 5 小時、每週與每月限制。對偶爾寫元件的人，月額度也許足夠；對週末集中趕工的人，較短的使用窗口可能先碰到上限。**要看你怎麼用，不能只看整個月的總量。**
 
 表中較高倍率也包含限時活動情境，因此本文不把活動額度當成長期保證。申請前確認模型、用量與是否開啟額外餘額扣款即可，不必先讀完整張技術規格表。[OpenCode Go 官方文件](https://opencode.ai/docs/go/)
-
-## Qoder 與 WorkBuddy 也值得列入比較
-
-Qoder Pro 的一般月額度是 **2,000 credits／$20**，換算每 credit 約 **$0.01**；WorkBuddy Pro 則是 **1,000 基礎＋1,000 月贈送 credits／$10**，每 credit 約 **$0.005**。但兩家的點數扣法不同，**不能因此認定 WorkBuddy 的使用量是兩倍**。[Qoder 價格](https://docs.qoder.com/account/pricing)、[WorkBuddy 價格](https://www.workbuddy.ai/docs/workbuddy/pricing)
-
-Qoder 另有官方任務耗點中位數可參考：以 Pro 的 2,000 credits、Editor Agent 在 50K 上下文約 7 credits／次估算，約可做 **285 次請求**；任務與上下文改變，次數就會不同。這是情境換算，不是本次實測。[官方耗點說明](https://docs.qoder.com/Credits)
-
-九月符合資格的 Qoder Pro 首購還有 **首月 4,000 credits**；WorkBuddy 的每日活躍贈送則要求有效客戶端任務，不能把「每天都拿到」視為固定月額度。[Qoder 九月活動](https://docs.qoder.com/events/bogo)、[WorkBuddy 活動條件](https://www.workbuddy.ai/docs/workbuddy/Subscription#limited-time-daily-activity-reward-terms)
-
-這兩個工具本期先比較價格與工作流程。缺少可信的模型 token 換算時，保留「尚無可靠 API 等值」，比硬塞進倍率排行更有參考價值。
 
 ## 高倍率值得參考，但別當成現金額度
 
