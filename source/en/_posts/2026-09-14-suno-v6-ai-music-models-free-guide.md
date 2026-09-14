@@ -16,7 +16,7 @@ tags:
 - Indie Game Dev
 ---
 
-![Official Suno v6 launch visual featuring neon liquid sound dynamics](cover-v2.jpg)
+![Generative AI music soundwaves and dynamic audio frequencies](cover-v3.jpg)
 
 On September 9, 2026, Suno officially released its sixth-generation music model: **Suno v6**. This is a major update—Suno completely retired all pre-v5.5 models, replaced them with a family of three distinct v6 models, and introduced practical features like humming voice inputs and in-place song editing.
 
