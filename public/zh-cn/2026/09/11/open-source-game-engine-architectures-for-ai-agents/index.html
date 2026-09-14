@@ -1,0 +1,872 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="为什么叫 AI 制作网页很顺利，做游戏却经常画面穿模或配置崩溃？本文跳过通用的软件周期理论，直接聚焦在游戏引擎架构：为什么 Web 技术常常胜过传统引擎？Godot 该怎么正确桥接？以及 3D 与多人游戏该如何搭配工具。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/11/open-source-game-engine-architectures-for-ai-agents/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/">
+  
+
+  <meta property="og:title" content="适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析"/>
+  <meta property="og:description" content="为什么叫 AI 制作网页很顺利，做游戏却经常画面穿模或配置崩溃？本文跳过通用的软件周期理论，直接聚焦在游戏引擎架构：为什么 Web 技术常常胜过传统引擎？Godot 该怎么正确桥接？以及 3D 与多人游戏该如何搭配工具。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg?v=c7d67a68" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析">
+  <meta name="twitter:description" content="为什么叫 AI 制作网页很顺利，做游戏却经常画面穿模或配置崩溃？本文跳过通用的软件周期理论，直接聚焦在游戏引擎架构：为什么 Web 技术常常胜过传统引擎？Godot 该怎么正确桥接？以及 3D 与多人游戏该如何搭配工具。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg?v=c7d67a68">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/","url":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/","headline":"适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析","description":"为什么叫 AI 制作网页很顺利，做游戏却经常画面穿模或配置崩溃？本文跳过通用的软件周期理论，直接聚焦在游戏引擎架构：为什么 Web 技术常常胜过传统引擎？Godot 该怎么正确桥接？以及 3D 与多人游戏该如何搭配工具。","datePublished":"2026-09-11T04:00:00.000Z","dateModified":"2026-09-11T04:45:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"游戏开发","item":"https://blog.6yuwei.com/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"},{"@type":"ListItem","position":3,"name":"适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析","item":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/11/適合-AI-開發的開源遊戲架構：Web、Editor-Bridge-與自動化驗證閉環全解析/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-open-source-game-engine-architectures-for-ai-agents" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-11T04:00:00.000Z"><a href="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/">2026-09-11</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover-card-720.jpg?v=aa366576" alt="AI Agent 与游戏引擎实时画面检查与代码自动修正概念图" width="1360" height="759" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover-card-480.jpg?v=24212410 480w, /zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover-card-720.jpg?v=aa366576 720w, /zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover-card-960.jpg?v=922182f2 960w, /zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover-card-1280.jpg?v=156dece6 1280w, /zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg?v=c7d67a68 1360w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>我们在之前的 <a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/">告别 Vibe Coding！Agentic SDLC 完整架构解析</a> 中深入探讨过，如何通过状态机与自动化验证闸门，让 AI Coding Agent 稳定交付软件工程。但当你把这套流程搬到<strong>游戏开发</strong>时，很多开发者会立刻碰壁：</p>
+<p>在常规的 Web 或后端项目中，AI 只要跑单元测试、看编译错误或调用 API，就能明确知道自己有没有做对；但游戏完全不同，游戏是<strong>高度依赖画面渲染、空间布局与即时交互反馈</strong>的软件形态。如果你叫 AI 在传统游戏引擎里做一个 3D 场景，它常常只会丢出一堆坐标重叠的基础方块、漏掉贴图，最后整个视口乱成一团。</p>
+<p>这并不是因为 AI 不会写游戏代码，而是因为绝大多数传统游戏引擎，从设计之初就不是为了给 AI Agent 自动化操作而准备的。</p>
+<span id="more"></span>
+
+<h2 id="核心痛点：游戏开发最缺的不是写代码，而是“看不见结果”"><a href="#核心痛点：游戏开发最缺的不是写代码，而是“看不见结果”" class="headerlink" title="核心痛点：游戏开发最缺的不是写代码，而是“看不见结果”"></a>核心痛点：游戏开发最缺的不是写代码，而是“看不见结果”</h2><p>在讨论技术选型时，大家常问：<strong>AI 比较擅长写 C#、GDScript 还是 TypeScript？</strong></p>
+<p>但这个问题完全偏离了重心。在游戏开发中，真正的痛点只有一个：</p>
+<p><strong>AI 写完代码之后，到底能不能看到游戏画面，并确认角色有没有掉出地图？</strong></p>
+<p>如果 AI 写完代码，根本不知道游戏画面长什么样，那它每改一次都只能靠盲猜。相反，如果开发环境能让 AI 自动截屏、读取控制台报错信息、模拟玩家点击，它就能像人类工程师一样自己发现问题并纠偏。</p>
+<p>这也是为什么以 Web 技术为底座的游戏工具，目前在 AI 开发上的体验常常好上一大截。因为浏览器天生就能轻易截屏、检查 DOM 与 Canvas、读取 Console 报错，搭配 <strong>Playwright</strong> 这类端到端自动化工具，AI 就能在几秒钟内自己开启游戏、跑一圈并确认画面渲染。</p>
+<p>接下来，我们直接切入工程实战：在完全开源、可自建私有化掌控的前提下，哪些架构最能解决这个痛点？</p>
+<h2 id="方案一：纯代码-Web-架构（2D-首选-Phaser-4）"><a href="#方案一：纯代码-Web-架构（2D-首选-Phaser-4）" class="headerlink" title="方案一：纯代码 Web 架构（2D 首选 Phaser 4）"></a>方案一：纯代码 Web 架构（2D 首选 Phaser 4）</h2><p>这是目前实测下来，AI 写起来最顺畅、最不容易翻车的一类方案。</p>
+<ul>
+<li><strong>2D 组合</strong>：<strong>Phaser 4</strong> + <strong>TypeScript</strong> + <strong>Vite</strong> + 标准 Web UI + <strong>Playwright</strong></li>
+<li><strong>3D 组合</strong>：<strong>Babylon.js</strong>（或 <strong>Three.js</strong>）+ <strong>TypeScript</strong> + <strong>Vite</strong> + <strong>Playwright</strong></li>
+</ul>
+<h3 id="为什么这套对-AI-特别友好"><a href="#为什么这套对-AI-特别友好" class="headerlink" title="为什么这套对 AI 特别友好"></a>为什么这套对 AI 特别友好</h3><p>原因非常纯粹：<strong>项目里的所有配置与逻辑几乎都是纯文本</strong>。</p>
+<p>游戏逻辑是 TypeScript、界面直接用 HTML&#x2F;CSS 排版、关卡数据是 JSON。AI 修改代码后，开发服务器立即热更新重载；接着 Playwright 自动截屏并检查控制台日志，AI 一看截屏就能立刻确认“按钮有没有被遮挡”、“角色动画有没有正常播放”。</p>
+<p>以 2D 引擎来说，<strong>Phaser 4</strong> 采用完全开放的 <strong>MIT 许可证</strong>，而且官方在设计时就主打 AI-ready，源码仓库里直接内置了专为 AI Agent 打造的技能定义（Agent Skills），涵盖场景切换、物理碰撞、按键输入、动画状态机与摄像机跟随。</p>
+<p>如果你想做的是 2D RPG、农场钓鱼、模拟经营、休闲卡牌、塔防或放置点击游戏，这套方案是目前开发迭代速度最快、反馈最直接的选择。</p>
+<h2 id="方案二：Web-引擎搭配本地编辑器（3D-首选-Babylon-js）"><a href="#方案二：Web-引擎搭配本地编辑器（3D-首选-Babylon-js）" class="headerlink" title="方案二：Web 引擎搭配本地编辑器（3D 首选 Babylon.js）"></a>方案二：Web 引擎搭配本地编辑器（3D 首选 Babylon.js）</h2><p>如果要做 3D 游戏，纯手写代码去配置三维空间，AI 很容易算错坐标。这时最好的解法，是使用带有本地可视化编辑器的开源 3D 引擎。</p>
+<p>代表方案是 <strong>Babylon.js</strong> 搭配 <strong>Babylon Editor 5</strong>。</p>
+<h3 id="澄清一个常见误区：Three-js-与-Babylon-js-定位并不相同"><a href="#澄清一个常见误区：Three-js-与-Babylon-js-定位并不相同" class="headerlink" title="澄清一个常见误区：Three.js 与 Babylon.js 定位并不相同"></a>澄清一个常见误区：Three.js 与 Babylon.js 定位并不相同</h3><p>很多人以为这两者差不多，但本质上有很大区别：</p>
+<ul>
+<li><strong>Three.js</strong> 本质上是一个非常出色的<strong>底层 3D 渲染库</strong>，主要负责把模型绘制出来，但游戏常见的刚体物理、骨骼动画、音频管理等，需要自己手动拼装。</li>
+<li><strong>Babylon.js</strong> 则是功能完备的<strong>开源游戏引擎</strong>（采用 <strong>Apache-2.0 许可证</strong>），内部已经将场景树、物理引擎插件、粒子系统与动画系统完整集成好。</li>
+</ul>
+<p>更出色的是它的桌面编辑器 <strong>Babylon Editor 5</strong>。它不是绑定外部云端的付费服务，而是一款完全开源的跨平台桌面客户端（Windows、macOS、Linux 都能自己从源码编译打包），没有任何商业平台锁定。</p>
+<h3 id="为什么对-AI-很强大"><a href="#为什么对-AI-很强大" class="headerlink" title="为什么对 AI 很强大"></a>为什么对 AI 很强大</h3><p>Babylon Editor 官方直接内置了 <strong>MCP（Model Context Protocol）</strong> 接口与命令行工具（CLI）。这意味着 AI Agent 不仅能直接改写 TypeScript 脚本，还能通过通信协议直接命令编辑器“创建一个模型对象”、“挂载灯光”、“调整空间坐标”，甚至让编辑器截屏回传给 AI 进行视觉复核。</p>
+<p>在构建发布时，它有完全独立的命令行工具 <code>babylonjs-editor-cli</code>，不需要唤起图形窗口即可在后台打包场景与纹理贴图，非常适合在自己的私有 CI 服务器上自动化构建。</p>
+<h2 id="方案三：传统引擎搭配本地桥接插件（Godot-的正确用法）"><a href="#方案三：传统引擎搭配本地桥接插件（Godot-的正确用法）" class="headerlink" title="方案三：传统引擎搭配本地桥接插件（Godot 的正确用法）"></a>方案三：传统引擎搭配本地桥接插件（Godot 的正确用法）</h2><p>很多开发者青睐 <strong>Godot</strong>，因为它是功能全面、体积轻量且完全免费的开源引擎（MIT 许可证），而且它的场景文件（<code>.tscn</code>）本身就是文本格式。</p>
+<h3 id="以前的常见误区：让-AI-盲改场景文件"><a href="#以前的常见误区：让-AI-盲改场景文件" class="headerlink" title="以前的常见误区：让 AI 盲改场景文件"></a>以前的常见误区：让 AI 盲改场景文件</h3><p>很多人尝试让 AI 直接修改 <code>.tscn</code> 文本，结果往往很糟糕。</p>
+<p>因为 <code>.tscn</code> 虽然是文本，但长这样：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[node name=&quot;House&quot; type=&quot;Node3D&quot;]</span><br><span class="line">transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -8.3)</span><br></pre></td></tr></table></figure>
+<p>AI 虽然能改写数字，但它<strong>无法在脑海中预判这个坐标会不会让房子沉入地下穿模、会不会遮挡视野</strong>。缺乏实时渲染画面，AI 只能靠猜。</p>
+<h3 id="现在的解法：为-Godot-装上-AI-桥接器"><a href="#现在的解法：为-Godot-装上-AI-桥接器" class="headerlink" title="现在的解法：为 Godot 装上 AI 桥接器"></a>现在的解法：为 Godot 装上 AI 桥接器</h3><p>开源社区最近推出了专门的桥接工具（例如 <strong>Godot Editor MCP</strong> 或 <strong>Swallowtail</strong>）。这些插件就像在 Godot 内部开了一个通信窗口，AI 可以直接：</p>
+<ul>
+<li>检查场景树里有哪些节点。</li>
+<li>指令 Godot 创建节点或挂载脚本。</li>
+<li>命令游戏启动试玩、模拟手柄输入，并把游戏画面截屏回传给 AI 进行分析。</li>
+</ul>
+<p>这样一来，AI 就不再是闭着眼睛改配置，而是能真正确认游戏跑起来的效果。</p>
+<h3 id="一个至关重要的限制：Godot-4-的-Web-导出"><a href="#一个至关重要的限制：Godot-4-的-Web-导出" class="headerlink" title="一个至关重要的限制：Godot 4 的 Web 导出"></a>一个至关重要的限制：Godot 4 的 Web 导出</h3><p>如果你打算用 Godot 4 做 Web 游戏，**请务必使用 GDScript，不要使用 C#**。因为目前官方 Godot 4 的 C# 运行时仍然无法直接导出为 WebAssembly（移动双端的 C# 导出目前也标为实验性）。原生桌面游戏才适合自由选择 GDScript 或 C#。</p>
+<h2 id="方案四：不要让-AI-从零捏模型，要像拼积木一样摆放"><a href="#方案四：不要让-AI-从零捏模型，要像拼积木一样摆放" class="headerlink" title="方案四：不要让 AI 从零捏模型，要像拼积木一样摆放"></a>方案四：不要让 AI 从零捏模型，要像拼积木一样摆放</h2><p>这是在 3D 游戏开发中几乎所有人都踩过的坑：<strong>千万不要让 AI 在代码中通过堆叠几十个方块和球体去硬拼出一座村庄。</strong></p>
+<p>让 AI 用代码去计算几百个顶点的空间位置，既消耗大量 Token，产出的模型往往又非常粗糙。</p>
+<p>更好的工程分工是<strong>“积木归模型库，拼装归 AI”</strong>：</p>
+<ol>
+<li>模型在 <strong>Blender</strong> 做好，或直接从开源模型库下载，统一导出为标准的 <code>.glb</code>（glTF）文件（例如 <code>house_a.glb</code>、<code>boat_b.glb</code>）。</li>
+<li>让 AI 只负责编写业务规则和放置逻辑，例如调用指令：<code>在港口中心位置生成一艘 boat_b</code>。</li>
+</ol>
+<p>让精细的 3D 模型保持独立完整，AI 只需要负责调度和编写游戏玩法，整体代码与资产管理就会极其干净稳定。</p>
+<h2 id="方案五：想发布移动-App？用-Capacitor-包装"><a href="#方案五：想发布移动-App？用-Capacitor-包装" class="headerlink" title="方案五：想发布移动 App？用 Capacitor 包装"></a>方案五：想发布移动 App？用 Capacitor 包装</h2><p>如果你的游戏主要是 Web 技术开发，但最终需要上架到 <strong>Apple App Store</strong> 和 <strong>Google Play</strong>，目前极力推荐的架构是搭配 <strong>Capacitor</strong>。</p>
+<p>这套方案的核心优势在于：</p>
+<ul>
+<li><strong>平日 95% 的开发时间</strong>：AI 都在最擅长的 TypeScript、浏览器和 Playwright 环境下运行，测试极快，随改随验。</li>
+<li><strong>仅有 5% 的特殊功能</strong>：比如应用内购买（IAP）、商业广告、手机振动或推送通知，才通过 Capacitor 的原生插件进行桥接。</li>
+</ul>
+<p>Capacitor 是完全开源的（MIT 许可证），它生成的 iOS 和 Android 工程就是标准的 Xcode 与 Android Studio 原生工程，所有代码完全掌控在自己手里，不用担心被第三方专有云平台锁死。</p>
+<h2 id="网络多人游戏：后端该怎么选"><a href="#网络多人游戏：后端该怎么选" class="headerlink" title="网络多人游戏：后端该怎么选"></a>网络多人游戏：后端该怎么选</h2><p>如果游戏需要支持多人联机，后端架构也是决定 AI 能否顺利开发的关键：</p>
+<ol>
+<li><strong>小型联机、房间合作类（强烈推荐）</strong>：<ul>
+<li>使用 <strong>Colyseus</strong>（Node.js &#x2F; TypeScript）。</li>
+<li>优势：游戏前端和后端全部使用 TypeScript，通信协议和玩法规则可以直接共用同一套类型定义，AI 修改起来极少出错。</li>
+</ul>
+</li>
+<li><strong>需要完善的账号、排行榜、聊天与公会社交</strong>：<ul>
+<li>直接自建 <strong>Nakama</strong>。</li>
+<li>使用一行 <code>docker compose up</code> 即可在本地跑起包含 PostgreSQL 的完整游戏服务器，开箱即用提供登录、排行榜与匹配功能，免去从零编写后端微服务的庞大工作量。</li>
+</ul>
+</li>
+</ol>
+<h2 id="各架构特色速查表"><a href="#各架构特色速查表" class="headerlink" title="各架构特色速查表"></a>各架构特色速查表</h2><table>
+<thead>
+<tr>
+<th align="left">架构方案</th>
+<th align="left">代表工具</th>
+<th align="left">AI 编写逻辑难度</th>
+<th align="left">AI 检查画面能力</th>
+<th align="left">引擎功能完整度</th>
+<th align="left">适合分发渠道</th>
+<th align="left">最佳适用游戏类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Web 2D 代码导向</strong></td>
+<td align="left">Phaser 4 + TypeScript</td>
+<td align="left">极度轻松</td>
+<td align="left">极佳 (Playwright 自动截屏)</td>
+<td align="left">良好</td>
+<td align="left">网页、手机 App (通过包装)</td>
+<td align="left">2D 经营、卡牌、平台跳跃、休闲动作</td>
+</tr>
+<tr>
+<td align="left"><strong>Web 3D + 本地编辑器</strong></td>
+<td align="left">Babylon.js + Babylon Editor</td>
+<td align="left">极度轻松</td>
+<td align="left">极佳 (内置 MCP 与截屏)</td>
+<td align="left">完整</td>
+<td align="left">网页、手机 App (通过包装)</td>
+<td align="left">空间布局型 3D、展示类与网页 3D 游戏</td>
+</tr>
+<tr>
+<td align="left"><strong>传统引擎 + 本地桥接</strong></td>
+<td align="left">Godot 4 + Swallowtail &#x2F; MCP</td>
+<td align="left">良好</td>
+<td align="left">良好 (通过插件截屏反馈)</td>
+<td align="left">极度完备</td>
+<td align="left">原生电脑、手机、网页 (限 GDScript)</td>
+<td align="left">跨平台中大型独立游戏、原生桌面项目</td>
+</tr>
+<tr>
+<td align="left"><strong>纯代码 ECS 架构</strong></td>
+<td align="left">Bevy + Rust</td>
+<td align="left">逻辑清晰，但 API 常迭代</td>
+<td align="left">较弱 (缺乏官方可视化编辑器)</td>
+<td align="left">演进中</td>
+<td align="left">原生电脑、实验性 Web</td>
+<td align="left">复杂数值模拟、海量实体逻辑演算</td>
+</tr>
+<tr>
+<td align="left"><strong>网页封装为 App</strong></td>
+<td align="left">Phaser &#x2F; Babylon + Capacitor</td>
+<td align="left">极度轻松</td>
+<td align="left">极佳</td>
+<td align="left">取决于底层 Web 引擎</td>
+<td align="left">iOS、Android、网页</td>
+<td align="left">打算跨平台发行的商业休闲游戏</td>
+</tr>
+<tr>
+<td align="left"><strong>同语言联机后端</strong></td>
+<td align="left">Colyseus + TypeScript</td>
+<td align="left">极度轻松</td>
+<td align="left">不适用 (后端业务)</td>
+<td align="left">专精于联机同步</td>
+<td align="left">适配各大前端技术栈</td>
+<td align="left">房间制联机、回合合作类游戏</td>
+</tr>
+</tbody></table>
+<h2 id="实战技术搭配推荐"><a href="#实战技术搭配推荐" class="headerlink" title="实战技术搭配推荐"></a>实战技术搭配推荐</h2><p>如果你正打算让 AI Agent 成为你的主力副手一起做游戏，建议按以下组合切入：</p>
+<ol>
+<li><p><strong>想做 2D 游戏，且打算发布在网页或上架手机双端</strong>：</p>
+<ul>
+<li>选用 <strong>Phaser 4</strong> + <strong>TypeScript</strong> + <strong>Vite</strong>。</li>
+<li>配置 <strong>Playwright</strong> 编写自动化测试与截屏自检。</li>
+<li>准备上架 App Store &#x2F; Google Play 时，用 <strong>Capacitor</strong> 包装。</li>
+<li>如需多人联机，后端接入 <strong>Colyseus</strong>。</li>
+</ul>
+</li>
+<li><p><strong>想做中轻度 3D 网页或跨平台游戏</strong>：</p>
+<ul>
+<li>选用 <strong>Babylon.js</strong> 搭配 <strong>Babylon Editor 5</strong>。</li>
+<li>3D 模型全部在外部做好导出为 <code>.glb</code> 文件，让 AI 通过 MCP 驱动编辑器进行场景摆放，并以截屏检验光照效果。</li>
+</ul>
+</li>
+<li><p><strong>想做中型原生桌面或手机 3D 游戏</strong>：</p>
+<ul>
+<li>选用 <strong>Godot 4</strong>（使用 <strong>GDScript</strong>）。</li>
+<li>务必安装 <strong>Swallowtail</strong> 或 <strong>Godot Editor MCP</strong> 这类本地通信工具，让 AI 能够连接进编辑器检视画面与调试，而不是让它盲目手改场景文本。</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在 AI 时代选择游戏开发架构时，评判标准已经发生了根本变化：</p>
+<p><strong>最好的工具，不一定是功能按钮最多、功能最繁杂的软件；而是最容易让 AI“看得见结果、能够自己测试验证，并迅速把问题修正好”的架构。</strong></p>
+<p>当你为 AI 准备了一套能自动截屏、能捕获报错、所有配置都用清晰纯文本保存的开发环境，AI 就会从一个经常帮倒忙的新手，真正变成能帮你独当一面的强大开发合伙人。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Claude/">Claude</a>, <a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/TypeScript/">TypeScript</a>, <a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/Godot/">Godot</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析" data-url="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F11%2Fopen-source-game-engine-architectures-for-ai-agents%2F&title=%E9%80%82%E5%90%88%20AI%20%E5%BC%80%E5%8F%91%E7%9A%84%E5%BC%80%E6%BA%90%E6%B8%B8%E6%88%8F%E6%9E%B6%E6%9E%84%EF%BC%9AWeb%E3%80%81%E7%BC%96%E8%BE%91%E5%99%A8%E6%A1%A5%E6%8E%A5%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%A3%80%E6%9F%A5%E5%85%A8%E8%A7%A3%E6%9E%90" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F11%2Fopen-source-game-engine-architectures-for-ai-agents%2F&title=%E9%80%82%E5%90%88%20AI%20%E5%BC%80%E5%8F%91%E7%9A%84%E5%BC%80%E6%BA%90%E6%B8%B8%E6%88%8F%E6%9E%B6%E6%9E%84%EF%BC%9AWeb%E3%80%81%E7%BC%96%E8%BE%91%E5%99%A8%E6%A1%A5%E6%8E%A5%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%A3%80%E6%9F%A5%E5%85%A8%E8%A7%A3%E6%9E%90" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=%E9%80%82%E5%90%88%20AI%20%E5%BC%80%E5%8F%91%E7%9A%84%E5%BC%80%E6%BA%90%E6%B8%B8%E6%88%8F%E6%9E%B6%E6%9E%84%EF%BC%9AWeb%E3%80%81%E7%BC%96%E8%BE%91%E5%99%A8%E6%A1%A5%E6%8E%A5%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%A3%80%E6%9F%A5%E5%85%A8%E8%A7%A3%E6%9E%90&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F11%2Fopen-source-game-engine-architectures-for-ai-agents%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析" data-url="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/" class="related-post-link"
+           data-rel-title="独立游戏音频全 AI 化实战：Suno 生成配乐、MOSS-SoundEffect 本地生成音效，低成本打造沉浸式游戏声音工作流"
+           data-rel-path="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/cover.jpg?v=049f9420" alt="独立游戏音频全 AI 化实战：Suno 生成配乐、MOSS-SoundEffect 本地生成音效，低成本打造沉浸式游戏声音工作流" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">独立游戏音频全 AI 化实战：Suno 生成配乐、MOSS-SoundEffect 本地生成音效，低成本打造沉浸式游戏声音工作流</h4>
+            
+              <time class="related-post-date">2026-08-27</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/" class="related-post-link"
+           data-rel-title="告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战"
+           data-rel-path="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8" alt="告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战</h4>
+            
+              <time class="related-post-date">2026-08-24</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/" class="related-post-link"
+           data-rel-title="为什么 localhost 发给朋友打不开？让 AI 网站真正公开上线的关键步骤"
+           data-rel-path="/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/cover.jpg?v=5d1345e8" alt="为什么 localhost 发给朋友打不开？让 AI 网站真正公开上线的关键步骤" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">为什么 localhost 发给朋友打不开？让 AI 网站真正公开上线的关键步骤</h4>
+            
+              <time class="related-post-date">2026-09-06</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>10</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/tags/AI/">AI</a><small>19</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>

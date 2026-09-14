@@ -1,0 +1,910 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="為什麼叫 AI 寫網頁很順利，做遊戲卻常常破圖或物件懸空？本文跳過通用的軟體週期理論，直接聚焦在遊戲引擎架構：為什麼網頁技術常常勝過傳統引擎？Godot 該怎麼正確橋接？以及 3D 與多人遊戲該如何搭配工具。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/11/open-source-game-engine-architectures-for-ai-agents/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/">
+  
+
+  <meta property="og:title" content="適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析"/>
+  <meta property="og:description" content="為什麼叫 AI 寫網頁很順利，做遊戲卻常常破圖或物件懸空？本文跳過通用的軟體週期理論，直接聚焦在遊戲引擎架構：為什麼網頁技術常常勝過傳統引擎？Godot 該怎麼正確橋接？以及 3D 與多人遊戲該如何搭配工具。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover.jpg?v=c7d67a68" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析">
+  <meta name="twitter:description" content="為什麼叫 AI 寫網頁很順利，做遊戲卻常常破圖或物件懸空？本文跳過通用的軟體週期理論，直接聚焦在遊戲引擎架構：為什麼網頁技術常常勝過傳統引擎？Godot 該怎麼正確橋接？以及 3D 與多人遊戲該如何搭配工具。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover.jpg?v=c7d67a68">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/","url":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/","headline":"適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析","description":"為什麼叫 AI 寫網頁很順利，做遊戲卻常常破圖或物件懸空？本文跳過通用的軟體週期理論，直接聚焦在遊戲引擎架構：為什麼網頁技術常常勝過傳統引擎？Godot 該怎麼正確橋接？以及 3D 與多人遊戲該如何搭配工具。","datePublished":"2026-09-11T04:00:00.000Z","dateModified":"2026-09-11T04:45:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"遊戲開發","item":"https://blog.6yuwei.com/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析","item":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-適合-AI-開發的開源遊戲架構：Web、Editor-Bridge-與自動化驗證閉環全解析" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-11T04:00:00.000Z"><a href="/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/">2026-09-11</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=aa366576" alt="AI Agent 與遊戲引擎即時畫面檢查與程式碼自動修正概念圖" width="1360" height="759" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover-card-480.jpg?v=24212410 480w, /2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=aa366576 720w, /2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover-card-960.jpg?v=922182f2 960w, /2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover-card-1280.jpg?v=156dece6 1280w, /2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover.jpg?v=c7d67a68 1360w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>我們在之前的 <a href="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/">告別 Vibe Coding！Agentic SDLC 完整架構解析</a> 中深入探討過，如何透過狀態機與自動化驗證閘門，讓 AI Coding Agent 穩定交付軟體。但當你把這套流程搬到<strong>遊戲開發</strong>時，很多人會立刻碰壁：</p>
+<p>在一般的 Web 或後端專案裡，AI 只要跑單元測試、看編譯錯誤或打 API，就能知道自己有沒有做對；但遊戲不一樣，遊戲是<strong>高度依賴畫面、空間布局與即時反饋</strong>的產品。如果你叫 AI 在傳統遊戲引擎裡做一個 3D 場景，它常常只會丟出一堆坐標重疊的方塊、漏掉貼圖，最後整個畫面亂成一團。</p>
+<p>這不是因為 AI 不會寫遊戲程式碼，而是因為大部分傳統遊戲引擎，在誕生之初就不是為了給 AI Agent 操作而設計的。</p>
+<span id="more"></span>
+
+<h2 id="核心痛點：遊戲開發最缺的不是寫程式，而是「看不見結果」"><a href="#核心痛點：遊戲開發最缺的不是寫程式，而是「看不見結果」" class="headerlink" title="核心痛點：遊戲開發最缺的不是寫程式，而是「看不見結果」"></a>核心痛點：遊戲開發最缺的不是寫程式，而是「看不見結果」</h2><p>在討論技術選型時，大家常問：<strong>AI 比較會寫 C#、GDScript 還是 TypeScript？</strong></p>
+<p>但這完全問錯了方向。在遊戲開發中，真正的痛點只有一個：</p>
+<p><strong>AI 寫完程式之後，到底能不能看到遊戲畫面，並確認角色有沒有掉出地圖？</strong></p>
+<p>如果 AI 寫完程式碼，根本不知道畫面長什麼樣子，那它每改一次都只能靠盲猜。相反地，如果環境能讓 AI 自動截圖、讀取錯誤訊息、模擬玩家點擊，它就能像真人工程師一樣自己發現問題並修正。</p>
+<p>這也是為什麼以網頁技術為核心的遊戲工具，在 AI 開發上的體驗常常好上一大截。因為瀏覽器天生就能輕易截圖、檢查 DOM 與 Canvas、讀取 Console 報錯，搭配 <strong>Playwright</strong> 這類自動化工具，AI 就能在幾秒鐘內自己開啟遊戲、玩一次並確認畫面。</p>
+<p>接下來，我們直接聚焦在實戰：在完全開源、可自己掌控程式碼的前提下，哪些架構最能解決這個痛點？</p>
+<h2 id="方案一：純程式碼網頁架構（2D-首選-Phaser-4）"><a href="#方案一：純程式碼網頁架構（2D-首選-Phaser-4）" class="headerlink" title="方案一：純程式碼網頁架構（2D 首選 Phaser 4）"></a>方案一：純程式碼網頁架構（2D 首選 Phaser 4）</h2><p>這是目前實測下來，AI 寫起來最順暢、最不容易翻車的一類。</p>
+<ul>
+<li><strong>2D 組合</strong>：<strong>Phaser 4</strong> + <strong>TypeScript</strong> + <strong>Vite</strong> + 一般網頁 UI + <strong>Playwright</strong></li>
+<li><strong>3D 組合</strong>：<strong>Babylon.js</strong>（或 <strong>Three.js</strong>）+ <strong>TypeScript</strong> + <strong>Vite</strong> + <strong>Playwright</strong></li>
+</ul>
+<h3 id="為什麼這套對-AI-特別友善"><a href="#為什麼這套對-AI-特別友善" class="headerlink" title="為什麼這套對 AI 特別友善"></a>為什麼這套對 AI 特別友善</h3><p>原因很直白：<strong>專案裡的所有東西都是純文字</strong>。</p>
+<p>遊戲邏輯是 TypeScript、介面是用 HTML&#x2F;CSS 排版、關卡資料是 JSON。AI 修改程式碼後，瀏覽器立刻熱更新重整；接著 Playwright 自動截圖並檢查 Console 報錯，AI 一看截圖就能知道「按鈕有沒有被擋住」、「角色動畫有沒有播放」。</p>
+<p>以 2D 引擎來說，<strong>Phaser 4</strong> 採用完全開放的 <strong>MIT 授權</strong>，而且官方在設計時就主打 AI-ready，原始碼庫裡直接內建了專為 AI Agent 設計的技能設定（Agent Skills），涵蓋場景切換、物理碰撞、輸入按鍵、動畫播放與攝影機跟隨。</p>
+<p>如果你想做的是 2D RPG、農場釣魚、模擬經營、休閒卡牌、塔防或放置點擊遊戲，這套方案是目前開發速度最快、反饋最直接的選擇。</p>
+<h2 id="方案二：網頁引擎加上本地編輯器（3D-首選-Babylon-js）"><a href="#方案二：網頁引擎加上本地編輯器（3D-首選-Babylon-js）" class="headerlink" title="方案二：網頁引擎加上本地編輯器（3D 首選 Babylon.js）"></a>方案二：網頁引擎加上本地編輯器（3D 首選 Babylon.js）</h2><p>如果要做 3D 遊戲，純手寫程式碼來排布空間，AI 很容易算錯坐標。這時最好的解法，是使用帶有本地視覺化編輯器的開源 3D 引擎。</p>
+<p>代表方案是 <strong>Babylon.js</strong> 加上 <strong>Babylon Editor 5</strong>。</p>
+<h3 id="澄清一個常見觀念：Three-js-與-Babylon-js-不太一樣"><a href="#澄清一個常見觀念：Three-js-與-Babylon-js-不太一樣" class="headerlink" title="澄清一個常見觀念：Three.js 與 Babylon.js 不太一樣"></a>澄清一個常見觀念：Three.js 與 Babylon.js 不太一樣</h3><p>很多人以為這兩者差不多，但本質上有很大差異：</p>
+<ul>
+<li><strong>Three.js</strong> 本質上是一個非常優秀的<strong>3D 繪圖函式庫</strong>，主要負責把東西畫出來，但遊戲常見的物理、動畫控制器、音效管理等，需要自己東拼西湊。</li>
+<li><strong>Babylon.js</strong> 則是功能齊全的<strong>開源遊戲引擎</strong>（採用 <strong>Apache-2.0 授權</strong>），內部已經把場景管理、物理引擎、粒子與動畫系統都整合好了。</li>
+</ul>
+<p>更棒的是它的桌面編輯器 <strong>Babylon Editor 5</strong>。它不是綁定雲端的付費服務，而是一個開源的跨平台桌面軟體（Windows、macOS、Linux 都能自己編譯打包），沒有任何平台綁定。</p>
+<h3 id="為什麼對-AI-很厲害"><a href="#為什麼對-AI-很厲害" class="headerlink" title="為什麼對 AI 很厲害"></a>為什麼對 AI 很厲害</h3><p>Babylon Editor 官方直接內建了 <strong>MCP（Model Context Protocol）</strong> 介面與命令列工具（CLI）。這表示 AI Agent 不僅能直接修改 TypeScript 腳本，還能透過通訊協定命令編輯器「建立某個物件」、「掛上光源」、「調整位置」，甚至叫編輯器截圖傳回給 AI 審查。</p>
+<p>在打包發布時，它有完全獨立的命令列工具 <code>babylonjs-editor-cli</code>，不用打開圖形介面就能自動打包場景與貼圖，完全可以在自己的伺服器上自動化建置。</p>
+<h2 id="方案三：傳統引擎加上專用橋接工具（Godot-的正確用法）"><a href="#方案三：傳統引擎加上專用橋接工具（Godot-的正確用法）" class="headerlink" title="方案三：傳統引擎加上專用橋接工具（Godot 的正確用法）"></a>方案三：傳統引擎加上專用橋接工具（Godot 的正確用法）</h2><p>很多人喜歡 <strong>Godot</strong>，因為它是完整、輕量且完全免費的開源引擎（MIT 授權），而且它的場景檔（<code>.tscn</code>）本來就是文字格式。</p>
+<h3 id="以前的常見盲點：叫-AI-盲改場景檔"><a href="#以前的常見盲點：叫-AI-盲改場景檔" class="headerlink" title="以前的常見盲點：叫 AI 盲改場景檔"></a>以前的常見盲點：叫 AI 盲改場景檔</h3><p>很多人嘗試讓 AI 直接修改 <code>.tscn</code> 檔案，結果往往很糟糕。</p>
+<p>因為 <code>.tscn</code> 雖然是文字，但長這樣：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[node name=&quot;House&quot; type=&quot;Node3D&quot;]</span><br><span class="line">transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -8.3)</span><br></pre></td></tr></table></figure>
+<p>AI 雖然會改數字，但它<strong>無法在腦袋裡想像出這個坐標會不會讓房子卡在地底下、會不會擋住視線</strong>。沒有畫面回饋，AI 只能亂猜。</p>
+<h3 id="現在的解法：給-Godot-裝上-AI-橋接器"><a href="#現在的解法：給-Godot-裝上-AI-橋接器" class="headerlink" title="現在的解法：給 Godot 裝上 AI 橋接器"></a>現在的解法：給 Godot 裝上 AI 橋接器</h3><p>現在社群推出了專門的工具（例如 <strong>Godot Editor MCP</strong> 或 <strong>Swallowtail</strong>）。這些工具就像在 Godot 內部開了一扇溝通窗戶，AI 可以直接：</p>
+<ul>
+<li>檢查場景樹裡有哪些物件。</li>
+<li>命令 Godot 建立節點或掛載腳本。</li>
+<li>指令遊戲啟動試玩、模擬按鍵，並把遊戲畫面截圖回傳給 AI。</li>
+</ul>
+<p>這樣一來，AI 就不再是閉著眼睛改設定檔，而是能真正確認運行結果。</p>
+<h3 id="一個非常重要的注意事項：Godot-4-的網頁匯出限制"><a href="#一個非常重要的注意事項：Godot-4-的網頁匯出限制" class="headerlink" title="一個非常重要的注意事項：Godot 4 的網頁匯出限制"></a>一個非常重要的注意事項：Godot 4 的網頁匯出限制</h3><p>如果你打算用 Godot 4 做網頁遊戲，**請務必使用 GDScript，不要使用 C#**。因為目前官方 Godot 4 的 C# 專案仍然無法直接匯出為 Web（手機雙端的 C# 也還標註為實驗階段）。原生桌面遊戲才適合自由選擇 GDScript 或 C#。</p>
+<h2 id="方案四：不要叫-AI-從零捏模型，要像拼積木一樣擺放"><a href="#方案四：不要叫-AI-從零捏模型，要像拼積木一樣擺放" class="headerlink" title="方案四：不要叫 AI 從零捏模型，要像拼積木一樣擺放"></a>方案四：不要叫 AI 從零捏模型，要像拼積木一樣擺放</h2><p>這是在 3D 遊戲開發中，幾乎所有人都踩過的坑：<strong>千萬不要叫 AI 在程式碼裡用幾十個方塊和球體去硬拼出一座村莊。</strong></p>
+<p>讓 AI 用程式碼去算幾百個點的空間位置，既花費大量 Token，產出的成果又通常很難看。</p>
+<p>更好的分工是<strong>「積木歸模型庫，擺放歸 AI」</strong>：</p>
+<ol>
+<li>模型在 <strong>Blender</strong> 做好，或從開源資產庫下載現成的，匯出成標準的 <code>.glb</code>（glTF）檔案（例如 <code>house_a.glb</code>、<code>boat_b.glb</code>）。</li>
+<li>讓 AI 只負責寫規則和擺放邏輯，例如下指令：<code>在港口中心點放一艘 boat_b</code>。</li>
+</ol>
+<p>讓專業的 3D 模型保持獨立完整，AI 只要負責調度與撰寫遊戲邏輯，整體專案就會非常乾淨穩定。</p>
+<h2 id="方案五：想要發行手機-App？用-Capacitor-包裝"><a href="#方案五：想要發行手機-App？用-Capacitor-包裝" class="headerlink" title="方案五：想要發行手機 App？用 Capacitor 包裝"></a>方案五：想要發行手機 App？用 Capacitor 包裝</h2><p>如果你的遊戲主要是網頁技術開發，但最後想要上架到 <strong>Apple App Store</strong> 和 <strong>Google Play</strong>，目前非常推薦的方案是搭配 <strong>Capacitor</strong>。</p>
+<p>這套架構的核心優勢在於：</p>
+<ul>
+<li><strong>平日 95% 的開發時間</strong>：AI 都在最擅長的 TypeScript、瀏覽器和 Playwright 裡跑，測試速度飛快，隨改隨看。</li>
+<li><strong>只有 5% 的特殊功能</strong>：像是應用程式內購（IAP）、廣告、手機震動或推播通知，才透過 Capacitor 的原生外掛去串接。</li>
+</ul>
+<p>Capacitor 是完全開源的（MIT 授權），它輸出的 iOS 和 Android 專案就是標準的 Xcode 與 Android Studio 原始碼，完全掌握在你自己手裡，不需要被任何第三方的封閉雲端打包平台綁架。</p>
+<h2 id="連線多人遊戲：後端該怎麼選"><a href="#連線多人遊戲：後端該怎麼選" class="headerlink" title="連線多人遊戲：後端該怎麼選"></a>連線多人遊戲：後端該怎麼選</h2><p>如果遊戲需要連線多人遊玩，後端架構也大有學問：</p>
+<ol>
+<li><strong>小型連線、房間合作制（最推薦）</strong>：<ul>
+<li>使用 <strong>Colyseus</strong>（Node.js &#x2F; TypeScript）。</li>
+<li>優點：遊戲前端跟後端都用 TypeScript，連線規格與遊戲規則可以前後端共用，AI 改起程式碼來最不容易出錯。</li>
+</ul>
+</li>
+<li><strong>需要帳號、排行榜、聊天與公會</strong>：<ul>
+<li>直接自建 <strong>Nakama</strong>。</li>
+<li>用一條 <code>docker compose up</code> 就能在本機跑起整套包含 PostgreSQL 的遊戲伺服器，直接提供登入、排行榜與配對功能，省去自己從零手寫後端的大量時間。</li>
+</ul>
+</li>
+</ol>
+<h2 id="各種架構特色速查表"><a href="#各種架構特色速查表" class="headerlink" title="各種架構特色速查表"></a>各種架構特色速查表</h2><table>
+<thead>
+<tr>
+<th align="left">架構方案</th>
+<th align="left">代表工具</th>
+<th align="left">AI 寫邏輯難易度</th>
+<th align="left">AI 檢查畫面能力</th>
+<th align="left">引擎功能完整性</th>
+<th align="left">適合發行平台</th>
+<th align="left">最佳適用遊戲類型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>網頁 2D 程式導向</strong></td>
+<td align="left">Phaser 4 + TypeScript</td>
+<td align="left">極度輕鬆</td>
+<td align="left">優秀 (Playwright 自動截圖)</td>
+<td align="left">良好</td>
+<td align="left">網頁、手機 App (透過包裝)</td>
+<td align="left">2D 經營、RPG、卡牌、小品動作</td>
+</tr>
+<tr>
+<td align="left"><strong>網頁 3D + 本地編輯器</strong></td>
+<td align="left">Babylon.js + Babylon Editor</td>
+<td align="left">極度輕鬆</td>
+<td align="left">優秀 (內建 MCP 與截圖)</td>
+<td align="left">完整</td>
+<td align="left">網頁、手機 App (透過包裝)</td>
+<td align="left">空間佈局型 3D、展示型與網頁 3D 遊戲</td>
+</tr>
+<tr>
+<td align="left"><strong>傳統引擎 + 橋接工具</strong></td>
+<td align="left">Godot 4 + Swallowtail &#x2F; MCP</td>
+<td align="left">良好</td>
+<td align="left">良好 (需透過橋接截圖)</td>
+<td align="left">極度完整</td>
+<td align="left">原生電腦、手機、網頁 (限 GDScript)</td>
+<td align="left">跨平台中大型獨立遊戲、原生桌面專案</td>
+</tr>
+<tr>
+<td align="left"><strong>純程式碼 ECS 架構</strong></td>
+<td align="left">Bevy + Rust</td>
+<td align="left">邏輯清楚，但 API 常變動</td>
+<td align="left">較弱 (缺少官方可視化編輯器)</td>
+<td align="left">發展中</td>
+<td align="left">原生電腦、實驗性網頁</td>
+<td align="left">規則複雜的數值模擬、大量物件演算</td>
+</tr>
+<tr>
+<td align="left"><strong>網頁封裝成 App</strong></td>
+<td align="left">Phaser &#x2F; Babylon + Capacitor</td>
+<td align="left">極度輕鬆</td>
+<td align="left">優秀</td>
+<td align="left">依選用引擎而定</td>
+<td align="left">iOS、Android、網頁</td>
+<td align="left">打算跨平台發行的商業休閒遊戲</td>
+</tr>
+<tr>
+<td align="left"><strong>同語言連線後端</strong></td>
+<td align="left">Colyseus + TypeScript</td>
+<td align="left">極度輕鬆</td>
+<td align="left">不適用 (後端邏輯)</td>
+<td align="left">專精於連線</td>
+<td align="left">支援各大前端平台</td>
+<td align="left">房間制連線、回合制合作遊戲</td>
+</tr>
+</tbody></table>
+<h2 id="實戰建議組合"><a href="#實戰建議組合" class="headerlink" title="實戰建議組合"></a>實戰建議組合</h2><p>如果你正打算讓 AI Agent 當你的副手一起做遊戲，推薦依照以下組合出發：</p>
+<ol>
+<li><p><strong>想做 2D 遊戲，且打算放網頁或上架手機雙平台</strong>：</p>
+<ul>
+<li>選擇 <strong>Phaser 4</strong> + <strong>TypeScript</strong> + <strong>Vite</strong>。</li>
+<li>用 <strong>Playwright</strong> 寫好自動測試與截圖檢查。</li>
+<li>打算上架 App Store &#x2F; Google Play 時，用 <strong>Capacitor</strong> 包裝。</li>
+<li>如果要做多人連線，後端搭配 <strong>Colyseus</strong>。</li>
+</ul>
+</li>
+<li><p><strong>想做中輕度 3D 網頁或跨平台遊戲</strong>：</p>
+<ul>
+<li>選擇 <strong>Babylon.js</strong> 搭配 <strong>Babylon Editor 5</strong>。</li>
+<li>3D 模型全部在外部做好轉成 <code>.glb</code> 檔案，讓 AI 透過 MCP 驅動編輯器擺放，並用截圖確認效果。</li>
+</ul>
+</li>
+<li><p><strong>想做中型原生桌面或手機 3D 遊戲</strong>：</p>
+<ul>
+<li>選擇 <strong>Godot 4</strong>（搭配 <strong>GDScript</strong>）。</li>
+<li>務必安裝 <strong>Swallowtail</strong> 或 <strong>Godot Editor MCP</strong> 這類本地橋接工具，讓 AI 能連進編輯器檢視畫面與除錯，而不是讓它盲改場景檔。</li>
+</ul>
+</li>
+</ol>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>AI 時代在選擇遊戲引擎時，評判的標準已經變了：</p>
+<p><strong>最好的工具，不一定是功能清單最長、按鈕最多的軟體；而是最能讓 AI「看得見結果、能自己測試，並迅速把問題修正好」的架構。</strong></p>
+<p>當你為 AI 準備了一套能自動截圖、能回傳錯誤訊息、所有設定都用純文字清楚記錄的開發環境，AI 就會從一個常常幫倒忙的實習生，真正變成能為你獨當一面的超強開發助手。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>, <a href="/tags/AI/">AI</a>, <a href="/tags/TypeScript/">TypeScript</a>, <a href="/tags/Claude/">Claude</a>, <a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a>, <a href="/tags/Codex/">Codex</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>, <a href="/tags/Godot/">Godot</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="複製連結" aria-label="複製連結">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>複製連結</span>
+    </button>
+
+    
+      <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
+      <a href="https://www.threads.net/intent/post?text=%E9%81%A9%E5%90%88%20AI%20%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81%E7%B7%A8%E8%BC%AF%E5%99%A8%E6%A9%8B%E6%8E%A5%E8%88%87%E8%87%AA%E5%8B%95%E6%AA%A2%E6%9F%A5%E5%85%A8%E8%A7%A3%E6%9E%90%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F11%2F%25E9%2581%25A9%25E5%2590%2588-AI-%25E9%2596%258B%25E7%2599%25BC%25E7%259A%2584%25E9%2596%258B%25E6%25BA%2590%25E9%2581%258A%25E6%2588%25B2%25E6%259E%25B6%25E6%25A7%258B%25EF%25BC%259AWeb%25E3%2580%2581Editor-Bridge-%25E8%2588%2587%25E8%2587%25AA%25E5%258B%2595%25E5%258C%2596%25E9%25A9%2597%25E8%25AD%2589%25E9%2596%2589%25E7%2592%25B0%25E5%2585%25A8%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
+        </svg>
+        <span>Threads</span>
+      </a>
+      <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F11%2F%25E9%2581%25A9%25E5%2590%2588-AI-%25E9%2596%258B%25E7%2599%25BC%25E7%259A%2584%25E9%2596%258B%25E6%25BA%2590%25E9%2581%258A%25E6%2588%25B2%25E6%259E%25B6%25E6%25A7%258B%25EF%25BC%259AWeb%25E3%2580%2581Editor-Bridge-%25E8%2588%2587%25E8%2587%25AA%25E5%258B%2595%25E5%258C%2596%25E9%25A9%2597%25E8%25AD%2589%25E9%2596%2589%25E7%2592%25B0%25E5%2585%25A8%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-line" title="Share on LINE" aria-label="Share on LINE">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33v-2.95c0-.349.28-.63.628-.63.349 0 .627.281.627.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINE</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F11%2F%25E9%2581%25A9%25E5%2590%2588-AI-%25E9%2596%258B%25E7%2599%25BC%25E7%259A%2584%25E9%2596%258B%25E6%25BA%2590%25E9%2581%258A%25E6%2588%25B2%25E6%259E%25B6%25E6%25A7%258B%25EF%25BC%259AWeb%25E3%2580%2581Editor-Bridge-%25E8%2588%2587%25E8%2587%25AA%25E5%258B%2595%25E5%258C%2596%25E9%25A9%2597%25E8%25AD%2589%25E9%2596%2589%25E7%2592%25B0%25E5%2585%25A8%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=%E9%81%A9%E5%90%88%20AI%20%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81%E7%B7%A8%E8%BC%AF%E5%99%A8%E6%A9%8B%E6%8E%A5%E8%88%87%E8%87%AA%E5%8B%95%E6%AA%A2%E6%9F%A5%E5%85%A8%E8%A7%A3%E6%9E%90&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F11%2F%25E9%2581%25A9%25E5%2590%2588-AI-%25E9%2596%258B%25E7%2599%25BC%25E7%259A%2584%25E9%2596%258B%25E6%25BA%2590%25E9%2581%258A%25E6%2588%25B2%25E6%259E%25B6%25E6%25A7%258B%25EF%25BC%259AWeb%25E3%2580%2581Editor-Bridge-%25E8%2588%2587%25E8%2587%25AA%25E5%258B%2595%25E5%258C%2596%25E9%25A9%2597%25E8%25AD%2589%25E9%2596%2589%25E7%2592%25B0%25E5%2585%25A8%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析" data-url="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/" class="related-post-link"
+           data-rel-title="告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰"
+           data-rel-path="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/"
+           data-rel-tag="前端開發"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/cover.jpg?v=d7bfd9e8" alt="告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">前端開發</span>
+            
+            <h4 class="related-post-item-title">告別 Vibe Coding！Agentic SDLC 完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰</h4>
+            
+              <time class="related-post-date">2026-08-24</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/06/18/claude-codex-quota-guide/" class="related-post-link"
+           data-rel-title="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法"
+           data-rel-path="/2026/06/18/claude-codex-quota-guide/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/06/18/claude-codex-quota-guide/cover.webp?v=fa6a9f8f" alt="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="related-post-link"
+           data-rel-title="獨立遊戲音效 AI 工作流：Suno 產配樂、MOSS-SoundEffect 本地生音效，低成本打造遊戲聲音"
+           data-rel-path="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/cover.jpg?v=049f9420" alt="獨立遊戲音效 AI 工作流：Suno 產配樂、MOSS-SoundEffect 本地生音效，低成本打造遊戲聲音" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">獨立遊戲音效 AI 工作流：Suno 產配樂、MOSS-SoundEffect 本地生音效，低成本打造遊戲聲音</h4>
+            
+              <time class="related-post-date">2026-08-27</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>4</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>29</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>42</small></li>
+  
+    <li><a href="/tags/AI-Agent/">AI Agent</a><small>10</small></li>
+  
+    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>2</small></li>
+  
+    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+  
+    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+  
+    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>11</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+  
+    <li><a href="/tags/Command-Code/">Command Code</a><small>1</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT-6/">GPT-6</a><small>1</small></li>
+  
+    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
+  
+    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>4</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>8</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
+  
+    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
+  
+    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
+  
+    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/Z-ai/">Z.ai</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>12</small></li>
+  
+    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
