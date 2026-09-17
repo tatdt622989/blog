@@ -20,7 +20,7 @@ tags:
 - Tools
 ---
 
-![Live ranking of AI subscription plans by value per dollar, showing recommendation scores, plans, capability ranks and real prices](cover-v2.jpg)
+![Live ranking of AI subscription plans by value per dollar, showing recommendation scores, plans, capability ranks and real prices](cover.jpg)
 
 Here is something most people never find out: **among AI subscriptions that cost roughly $20 a month, one gives you about 26 times the official-API-equivalent usage, another gives you 1x.** Same price, more than a twentyfold gap in what you actually get, and the official pricing pages only say things like "generous", "expanded" or "boosted" without a single number.
 

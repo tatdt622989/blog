@@ -137,16 +137,13 @@ push 後 GitHub Actions 會自動把 `public/` 部署到伺服器。
 
 這種情況請先整理乾淨（只留本次要發布的內容），或改用手動方式精準 `git add` 指定檔案後再 commit / push。
 
-## ⚠️ CDN（Cloudflare）快取：換圖看不到更新時
+## ⚠️ CDN（Cloudflare）快取與版本參數（重要：cover 嚴禁改名）
 
 網站前面有 Cloudflare，**靜態圖片（png 等）會被快取約 4 小時**（`cache-control: max-age=14400`），但文章 HTML 是 `cf-cache-status: DYNAMIC`（不快取）。
 
-影響：**已部署過的圖片，如果用「同檔名」換內容，訪客仍會看到舊圖**（CDN 回快取），就算 origin 已更新也一樣。新文章第一次發布不受影響（路徑全新）。
-
-- 排查：用 `curl -sI <圖片url>` 看 `cf-cache-status` / `age`；加上 `?nocache=隨機` 繞過快取就能確認 origin 其實已是新圖。
-- 解法（擇一）：
-  1. **改成新檔名**（如 `cover-v2.png`、`panel-main-v2.png`）並更新引用 → 網址一變 CDN 直接 miss，所有訪客立即看到新圖（本專案採用此法）。
-  2. 到 Cloudflare 後台 **Purge Cache**（清該 URL 或全清）。
+- **封面圖（cover.jpg / cover.png）嚴禁改名**：封面檔名**一律固定為 `cover.jpg`（或原格式副檔名），絕對禁止改名為 `cover-v2`、`cover-v3` 等**。
+- **快取更新一律由參數版號處理**：建置流程 `npm run build`（即 `node scripts/optimize-public-images.js`）會自動計算圖片內容的 MD5 hash，並在產出的 HTML 中自動注入 `?v=hash` 版本號參數（包含 `srcset` 的所有響應式卡片變體）。當圖片內容更新時，產出的版本號會自動變更，訪客與 CDN 即會立即載入新圖，不需要也不允許修改實體檔名。
+- **內文其他圖片**：若需要立即穿透快取，使用 URL 版本號參數（例如 `panel.png?v=2`），或至 Cloudflare 後台 Purge Cache。
 - 自己的瀏覽器另外用 **Cmd + Shift + R** 硬刷。
 
 ## 正常發文檢查清單
