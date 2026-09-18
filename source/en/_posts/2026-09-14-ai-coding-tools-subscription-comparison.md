@@ -3,7 +3,7 @@ title: "Which AI Coding Tool Should You Choose? September 2026 Subscription Comp
 date: 2026-09-14 01:45:00
 updated: 2026-09-14 08:51:03
 translation_key: ai-frontend-coding-subscriptions-value-guide
-description: "The September 2026 AI coding value ranking: the exact top 10 plans with models, monthly prices and API-equivalent multipliers, plus Claude's quota change."
+description: "The September 2026 AI coding ranking: top 10 plans with models, monthly pricing, API-equivalent value multipliers, and Claude quota updates."
 permalink: 2026/09/14/ai-coding-tools-subscription-comparison/
 translations:
   zh-TW: "/2026/09/14/ai-coding-tools-subscription-comparison/"

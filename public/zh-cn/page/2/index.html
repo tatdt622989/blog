@@ -198,6 +198,47 @@
   </div>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-e2e-testing-agentic-sdlc-ground-truth" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-01T02:30:24.000Z"><a href="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/">2026-09-01</a></time>
+      
+      
+  
+    <p class="title"><a href="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/">AI 时代，E2E 测试该如何升级？从固定脚本到 AI-native Harness</a></p>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-720.jpg?v=ca69ca85" alt="AI 时代的 E2E 验收系统将产品版本、固定测试、AI 探索与测试记录串联的技术插图" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-480.jpg?v=8c117004 480w, /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-720.jpg?v=ca69ca85 720w, /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-960.jpg?v=011028d8 960w, /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg?v=de8aafbd 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>单个 E2E 测试用例只负责跑通特定业务场景；<strong>E2E Harness（端到端工程化验收系统）则负责从构建版本交付、测试数据准备、环境编排、断言判定到失败归因反馈的整条闭环链路。</strong></p>
+<p>当 AI 让业务迭代与代码生成的速度成倍提升时，隐蔽缺陷、用例维护成本以及最终的验收工作也随之激增。因此，真正需要升级的绝非自动化脚本的堆叠数量，而是整套验收系统的<strong>物理边界、客观运行记录与闭环反馈机制</strong>。</p>
+<p>本文核心聚焦于一个工程命题：在编程智能体（Coding Agent）能够源源不断提交代码并修改系统的今天，E2E Harness 该如何架构，才能让固定测试成为把守 CI 流水线的钢铁闸门、让探索智能体精准挖掘未知死角，并将每一次报错转化为持续进化的测试资产？无论受测目标是浏览器前端、微服务接口、桌面客户端还是移动端应用，这套架构理念均可无缝通用。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+
+
+
   <article id="post-ai-model-leaderboards-benchmark-metrics" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -568,47 +609,6 @@
 
 
 
-  <article id="post-claude-code-cross-session-messaging" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon" style="display: none"></div>
-        <time class="dt-published" datetime="2026-08-09T06:10:00.000Z"><a href="/zh-cn/2026/08/09/claude-code-cross-session-messaging/">2026-08-09</a></time>
-      
-      
-  
-    <p class="title"><a href="/zh-cn/2026/08/09/claude-code-cross-session-messaging/">Claude Code 跨会话消息：让不同 Session 相互通信的完整指南</a></p>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p class="post-cover-frame"><img src="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c" alt="Claude Code 跨会话消息让多个 Session 交换任务摘要的示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-480.jpg?v=c4ec80f1 480w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c 720w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-960.jpg?v=6b3e647c 960w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-1280.jpg?v=17a867cc 1280w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p>Claude Code 近期上线了一项第一眼极易被误读、但在实际工程开发中体验极其舒适的重磅特性：<strong>运行在不同终端窗口中的 Claude Code Session，现在能够直接互相发送消息了</strong>。</p>
-<p>这项功能的日常使用场景非常符合直觉：你在其中一个终端窗口正专注于某项功能的编码，可以随时让当前的 Claude 直接跨窗口去询问另一个正在跑数据迁移的 Session；而另一个 Session 跑完之后，也可以主动将工作摘要原路推回，甚至当它察觉到自己的接口改动可能会破坏对端模块时，能第一时间向对方发起协同提醒。</p>
-<p>不过必须明确，这项机制绝非简单粗暴地将两段原本独立的完整长对话合并为一，更不是在后台自作主张地互相乱改全局工程文件。它本质上传递的是<strong>轻量级的文本消息与结构化业务摘要</strong>，且每个独立的 Session 依然牢牢维系着各自专属的执行工作树、系统权限限制与上下文记忆。只有充分理解这一设计边界，才能避免在日常研发中将它与 <code>--resume</code> 会话恢复、子代理调度或是完整的 Agent Teams 团队模式相互混淆。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/zh-cn/2026/08/09/claude-code-cross-session-messaging/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-    
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -639,7 +639,7 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/zh-cn/categories/AI/">AI</a><small>5</small></li>
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>6</small></li>
   
     <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>10</small></li>
   
@@ -664,9 +664,9 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>20</small></li>
+    <li><a href="/zh-cn/tags/AI/">AI</a><small>21</small></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>4</small></li>
+    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>5</small></li>
   
     <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
   
@@ -710,9 +710,9 @@
   
     <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
-    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
   
-    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>2</small></li>
   
     <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
   
@@ -738,7 +738,7 @@
   
     <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
   
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>3</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>4</small></li>
   
     <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
   

@@ -1,0 +1,823 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="TypeSafe AI 推出的 Jev 模型完全不生成文本，只返回带概率的类型安全决策。本文聚焦 Jev 的核心运行机制、五大高频落地使用场景，以及本地开源工具链（Outlines、Instructor、Adapter）替代方案，帮你用对工具打造极速、零幻觉的 AI 决策流程。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/17/typesafe-jev-system-one-model-guide/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/17/typesafe-jev-system-one-model-guide/">
+  
+
+  <meta property="og:title" content="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策"/>
+  <meta property="og:description" content="TypeSafe AI 推出的 Jev 模型完全不生成文本，只返回带概率的类型安全决策。本文聚焦 Jev 的核心运行机制、五大高频落地使用场景，以及本地开源工具链（Outlines、Instructor、Adapter）替代方案，帮你用对工具打造极速、零幻觉的 AI 决策流程。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策">
+  <meta name="twitter:description" content="TypeSafe AI 推出的 Jev 模型完全不生成文本，只返回带概率的类型安全决策。本文聚焦 Jev 的核心运行机制、五大高频落地使用场景，以及本地开源工具链（Outlines、Instructor、Adapter）替代方案，帮你用对工具打造极速、零幻觉的 AI 决策流程。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/","headline":"Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策","description":"TypeSafe AI 推出的 Jev 模型完全不生成文本，只返回带概率的类型安全决策。本文聚焦 Jev 的核心运行机制、五大高频落地使用场景，以及本地开源工具链（Outlines、Instructor、Adapter）替代方案，帮你用对工具打造极速、零幻觉的 AI 决策流程。","datePublished":"2026-09-17T10:00:00.000Z","dateModified":"2026-09-18T04:40:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/zh-cn/categories/AI/"},{"@type":"ListItem","position":3,"name":"Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策","item":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/17/typesafe-jev-system-one-model-guide/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/17/typesafe-jev-system-one-model-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-typesafe-jev-system-one-model-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-17T10:00:00.000Z"><a href="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/">2026-09-17</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover-card-720.jpg?v=8663d16e" alt="Jev System One 模型示意：非结构化状态输入，经模型并行评估后输出带概率的类型安全决策" width="1365" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover-card-480.jpg?v=5c4d0456 480w, /zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover-card-720.jpg?v=8663d16e 720w, /zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover-card-960.jpg?v=9e4e1a71 960w, /zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover-card-1280.jpg?v=6762e64c 1280w, /zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980 1365w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>ChatGPT 共同发明人、前 OpenAI 研究员 Diogo Almeida 创立的 <strong>TypeSafe AI</strong>，最近推出了一款非常独特的新模型 <strong>Jev</strong>。它最引人注目的特质只有一句话：<strong>完全不生成任何文本</strong>。</p>
+<p>你输入一段用户文本或系统状态，它不会客套回复、不会写邮件，更不会长篇大论分析；它只会返回你预先定义好的选项，并附带校准过的概率分布（例如 <code>&#123;&quot;billing&quot;: 0.08, &quot;technical&quot;: 0.85, &quot;sales&quot;: 0.07&#125;</code>）。</p>
+<p>很多工程师在搭建 AI Agent 或自动化业务流时，最常遇到的痛点就是：程序明明只需要一个简单的 <code>if/else</code> 分支判断，却不得不调用大模型慢吞吞地逐字吐出字符串，再费劲写正则表达式解析提取。不仅白白消耗几秒钟的宝贵时间与接口费用，还随时要提防模型格式跑偏甚至胡说八道。Jev 走的正是截然不同的“纯决策路线”。</p>
+<p>这篇文章不谈晦涩难懂的学术推导，直接把重心聚焦在两件事：<strong>它能落地在哪些真实的业务场景？</strong> 以及 <strong>如果你想在本地或开源生态实现类似效果，有哪些开源工具可以直接上手？</strong></p>
+<span id="more"></span>
+
+<h2 id="三秒搞懂：它跟传统-LLM-到底差在哪？"><a href="#三秒搞懂：它跟传统-LLM-到底差在哪？" class="headerlink" title="三秒搞懂：它跟传统 LLM 到底差在哪？"></a>三秒搞懂：它跟传统 LLM 到底差在哪？</h2><p>我们平时常用的 ChatGPT、Claude 或 Gemini 都属于“生成式模型”，本质是在不断预测下一个 token。而 Jev 这种“System One 决策模型”，本质上是在做<strong>并行概率分布计算</strong>。</p>
+<p>用一个常见的开发问题对比两者的巨大差异：</p>
+<table>
+<thead>
+<tr>
+<th>维度对比</th>
+<th>传统生成式 LLM</th>
+<th>Jev 决策模型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>处理方式</strong></td>
+<td>逐字序列自回归解码，输出一段长文本</td>
+<td>针对预设选项直接并行计算概率分布</td>
+</tr>
+<tr>
+<td><strong>响应速度</strong></td>
+<td>约 2 到 10 秒（取决于输出长度）</td>
+<td><strong>70 到 500 毫秒</strong>（极速响应）</td>
+</tr>
+<tr>
+<td><strong>输出格式</strong></td>
+<td>字符串文本，需编写代码解析与校验</td>
+<td><strong>100% 类型安全的结构化数值</strong></td>
+</tr>
+<tr>
+<td><strong>幻觉风险</strong></td>
+<td>可能返回 schema 外的不受控内容</td>
+<td><strong>数学上无法生成未定义选项</strong></td>
+</tr>
+<tr>
+<td><strong>计费方式</strong></td>
+<td>输入昂贵、输出通常更贵 5 倍</td>
+<td>输入每百万 token 仅需 <strong>$0.042</strong>，<strong>输出免费</strong></td>
+</tr>
+</tbody></table>
+<p>一句话概括：<strong>如果你的业务逻辑最终只是为了拿到 AI 结果做 <code>if</code> 分支，传统 LLM 既慢又烧钱；Jev 则是直接给你一个带概率置信度的下拉菜单。</strong></p>
+<h2 id="三种问题原语：Choice、Score、Noul"><a href="#三种问题原语：Choice、Score、Noul" class="headerlink" title="三种问题原语：Choice、Score、Noul"></a>三种问题原语：Choice、Score、Noul</h2><p>Jev 的 API 只有一个统一端点（<code>POST https://api.typesafe.ai/v1/systemone</code>），每次请求传入一个 <code>state</code>（用户诉求、代码片段或系统 JSON 状态）与一组 <code>questions</code>。</p>
+<p>每个问题属于以下三种原语之一：</p>
+<ol>
+<li><strong>Choice（多选一）</strong>：从预设的分类选项中挑出最匹配的一项。</li>
+<li><strong>Score（等级评分）</strong>：对照一组有序层级（如“轻微瑕疵”、“存在替代方案”、“严重阻碍”）给出评级分数。</li>
+<li><strong>Noul（布尔概率）</strong>：提出一个是非判断题，返回该命题成立的置信概率（0 到 1 之间）。</li>
+</ol>
+<h3 id="实际请求与响应格式"><a href="#实际请求与响应格式" class="headerlink" title="实际请求与响应格式"></a>实际请求与响应格式</h3><p>一次发送给 Jev 的请求体结构如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jev-latest&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我被重复扣款了，请帮我退回第二笔扣款。&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;questions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;department&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;choice&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;instructions&quot;</span><span class="punctuation">:</span> <span class="string">&quot;应该由哪个团队跟进？&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;criteria&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;billing&quot;</span><span class="punctuation">:</span> <span class="string">&quot;账单、发票、退款相关&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;technical&quot;</span><span class="punctuation">:</span> <span class="string">&quot;系统故障、连线异常&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;sales&quot;</span><span class="punctuation">:</span> <span class="string">&quot;商务洽谈、升级方案&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;severity&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;score&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;instructions&quot;</span><span class="punctuation">:</span> <span class="string">&quot;该问题严重程度如何？&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;criteria&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;轻微问题&quot;</span><span class="punctuation">,</span> <span class="string">&quot;存在替代方案&quot;</span><span class="punctuation">,</span> <span class="string">&quot;严重受阻&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;requestsRefund&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;noul&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;instructions&quot;</span><span class="punctuation">:</span> <span class="string">&quot;用户是否明确提出了退款申请？&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Jev 会在几十毫秒内<strong>并行处理所有问题</strong>，直接返回纯净的结构化数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;answers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;department&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;billing&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;billing&quot;</span><span class="punctuation">:</span> <span class="number">0.88</span><span class="punctuation">,</span> <span class="attr">&quot;technical&quot;</span><span class="punctuation">:</span> <span class="number">0.07</span><span class="punctuation">,</span> <span class="attr">&quot;sales&quot;</span><span class="punctuation">:</span> <span class="number">0.05</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.91</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;severity&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="number">2.1</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">0.12</span><span class="punctuation">,</span> <span class="number">0.65</span><span class="punctuation">,</span> <span class="number">0.23</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.84</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;requestsRefund&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probability&quot;</span><span class="punctuation">:</span> <span class="number">0.96</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.95</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>每个答案都自带<strong>校准过的置信度（Confidence）</strong>，后端程序可以直接依据数值设定放行或审核门槛。</p>
+<h2 id="五大高频落地场景：什么时候该用它？"><a href="#五大高频落地场景：什么时候该用它？" class="headerlink" title="五大高频落地场景：什么时候该用它？"></a>五大高频落地场景：什么时候该用它？</h2><p>Jev 不适合用来撰写文章或闲聊对话，但在复杂的自动化流转体系中，它能成为极其强大的加速引擎：</p>
+<h3 id="1-AI-Agent-的极速路由与工具分流（Fast-Router）"><a href="#1-AI-Agent-的极速路由与工具分流（Fast-Router）" class="headerlink" title="1. AI Agent 的极速路由与工具分流（Fast Router）"></a>1. AI Agent 的极速路由与工具分流（Fast Router）</h3><p>现有的智能体框架中，Agent 每一次决策“下一步该调用检索工具、数据库，还是直接回复用户”时，如果每次都让主力大模型跑一遍复杂的 CoT 思维链，单单选择工具这一步就得等待 3 秒以上。</p>
+<p>把第一层意图判断剥离给 Jev：</p>
+<ul>
+<li>90% 的常规工具调用可以在 <strong>100ms</strong> 内毫秒级路由完毕。</li>
+<li>仅当 Jev 返回的置信度低于阈值（如 <code>&lt; 0.6</code>）时，才触发大模型进行慢速深度推理。整体 Agent 的交互延迟能实现质的飞跃。</li>
+</ul>
+<h3 id="2-海量数据打标与批处理流水线（Data-Pipeline）"><a href="#2-海量数据打标与批处理流水线（Data-Pipeline）" class="headerlink" title="2. 海量数据打标与批处理流水线（Data Pipeline）"></a>2. 海量数据打标与批处理流水线（Data Pipeline）</h3><p>面对数万条日志（Error Logs）、工单记录或用户反馈：</p>
+<ul>
+<li>传统方案：逐条调用大模型 API，耗时长达数小时且账单动辄数十美元。</li>
+<li>Jev 方案：百万输入 token 仅 $0.042 美元、输出完全免费，且原生支持并行打标。可以在几分钟内以极低成本将整批原始日志转化为结构化分析字段。</li>
+</ul>
+<h3 id="3-LLM-输出的毫秒级安全护栏（Guardrails）"><a href="#3-LLM-输出的毫秒级安全护栏（Guardrails）" class="headerlink" title="3. LLM 输出的毫秒级安全护栏（Guardrails）"></a>3. LLM 输出的毫秒级安全护栏（Guardrails）</h3><p>企业部署客服或业务 Agent 最担心的就是模型“乱答应优惠”或违规泄密。<br>传统双模型方案（模型 A 生成、模型 B 审核）会导致用户端响应时间直接翻倍。而 Jev 的延时仅 70～150 毫秒，在生成文本发给用户前的间隙，并行完成“是否包含越权承诺？”、“是否涉及隐私泄露？”等是非判断，毫秒级熔断风险输出。</p>
+<h3 id="4-实时游戏-AI-与行为决策树（Game-AI）"><a href="#4-实时游戏-AI-与行为决策树（Game-AI）" class="headerlink" title="4. 实时游戏 AI 与行为决策树（Game AI）"></a>4. 实时游戏 AI 与行为决策树（Game AI）</h3><p>游戏中的 NPC 或动态触发器通常需要每秒执行数次状态评估。<br>以往“把游戏 NPC 接入大模型”最大的死穴就是网络与生成延时高达数秒。Jev 支持每秒 10 次以上的高频请求，将玩家当前血量、距离、装备打包成 JSON 状态输入，NPC 可以在 0.1 秒内拿到“巡逻 &#x2F; 伏击 &#x2F; 撤退”的概率分布，既具 AI 随机拟真感，又完全不会引起游戏掉帧。</p>
+<h3 id="5-动态表单验证与反欺诈评分（Fraud-Detection）"><a href="#5-动态表单验证与反欺诈评分（Fraud-Detection）" class="headerlink" title="5. 动态表单验证与反欺诈评分（Fraud Detection）"></a>5. 动态表单验证与反欺诈评分（Fraud Detection）</h3><p>用户在订单备注或申请表中输入的非结构化留言往往隐藏着套现或欺诈风险。通过 Jev 可在提交瞬间即时计算异常分数与欺诈倾向概率，高危申请直接触发二次人脸或人工审核，低风险请求秒级放行。</p>
+<h2 id="实际架构流程示例"><a href="#实际架构流程示例" class="headerlink" title="实际架构流程示例"></a>实际架构流程示例</h2><p>在生产系统架构中，Jev 通常充当“快速决策门禁”的核心角色：</p>
+<pre class="mermaid">
+flowchart TD
+    classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef review fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    A([1. 原始状态进站<br>如客户诉求或系统日志]):::intake
+    B["2. 后端打包 state<br>定义并行问题请求 Jev"]:::dev
+    C["3. Jev 70ms 极速并行计算<br>返回选项、概率分布与置信度"]:::dev
+    G["CONFIDENCE GATE<br>程序依据置信度数值分流"]:::gate
+    D["4a. 置信度高于 0.85<br>自动化脚本直接执行业务逻辑"]:::test
+    E["4b. 置信度低于 0.85<br>交由主力大模型慢思考或人工审核"]:::review
+    F([5. 流程完成并持久化归档]):::done
+
+    A --> B
+    B --> C
+    C --> G
+    G -->|明确路径| D
+    G -.->|边缘模糊| E
+    D --> F
+    E --> F
+</pre>
+
+<h2 id="开源替代方案与工具链生态"><a href="#开源替代方案与工具链生态" class="headerlink" title="开源替代方案与工具链生态"></a>开源替代方案与工具链生态</h2><p>如果你目前尚未取得 Jev 早期测试权限，或者项目需要<strong>完全私有化、纯本地运行的开源方案</strong>，开源社区中同样有一批成熟的工具可以实现类似架构：</p>
+<h3 id="1-system-one-adapter-python（官方开源适配器）"><a href="#1-system-one-adapter-python（官方开源适配器）" class="headerlink" title="1. system-one-adapter-python（官方开源适配器）"></a>1. <code>system-one-adapter-python</code>（官方开源适配器）</h3><p>TypeSafe 官方在 GitHub 开源了 Python 适配库（<a target="_blank" rel="noopener" href="https://github.com/typesafe-ai/system-one-adapter-python"><code>typesafe-ai/system-one-adapter-python</code></a>）。它可以把常见的开源大模型（如通过 Ollama 或 vLLM 部署的 Llama 3、Qwen、DeepSeek）包装为与 Jev 完全一致的 Choice &#x2F; Score &#x2F; Noul 规范，非常适合在本地做前期概念验证。</p>
+<h3 id="2-Outlines-与-Guidance（开源结构化解码引擎）"><a href="#2-Outlines-与-Guidance（开源结构化解码引擎）" class="headerlink" title="2. Outlines 与 Guidance（开源结构化解码引擎）"></a>2. Outlines 与 Guidance（开源结构化解码引擎）</h3><p>如果你想在自己的 GPU 服务器上构建零格式跑偏的输出，<strong>Outlines</strong> 与 <strong>Guidance</strong> 是开源界的标杆项目。它们并非依靠 prompt 乞求模型遵循格式，而是在自回归采样的 Logits 概率层通过状态机或正则表达式进行硬性掩码约束，确保模型绝对无法生成选项外的字符，从物理层面规避格式幻觉。</p>
+<h3 id="3-Instructor（基于-Pydantic-的类型利器）"><a href="#3-Instructor（基于-Pydantic-的类型利器）" class="headerlink" title="3. Instructor（基于 Pydantic 的类型利器）"></a>3. Instructor（基于 Pydantic 的类型利器）</h3><p>Python 开源生态中极具人气的结构化抽取库 <strong>Instructor</strong>，支持将任意商业或开源模型的响应无缝序列化为具备严格类型约束的 Pydantic 模型，自带重试机制与自定义验证器。</p>
+<h3 id="4-ModernBERT-x2F-SetFit（超轻量本地专用分类模型）"><a href="#4-ModernBERT-x2F-SetFit（超轻量本地专用分类模型）" class="headerlink" title="4. ModernBERT &#x2F; SetFit（超轻量本地专用分类模型）"></a>4. ModernBERT &#x2F; SetFit（超轻量本地专用分类模型）</h3><p>如果你的实际需求纯粹是多分类问题，甚至完全没必要跑数十亿参数的 LLM！HuggingFace 上的 <strong>ModernBERT</strong> 或是基于少样本对比学习的 <strong>SetFit</strong>，模型参数量仅数十到数百 MB，在通用 CPU 上即可跑出 <strong>10 毫秒</strong>级别的单次推理，完全不消耗任何云端费用与网络带宽。</p>
+<h3 id="5-Vercel-AI-SDK-生态集成"><a href="#5-Vercel-AI-SDK-生态集成" class="headerlink" title="5. Vercel AI SDK 生态集成"></a>5. Vercel AI SDK 生态集成</h3><p>在全栈开发领域，Vercel AI SDK 现已提供针对 TypeSafe 的原生适配。通过 <code>experimental_evaluate</code> 函数配合 <code>typeSafeAi.evaluationModel(&#39;jev-latest&#39;)</code>，即可在前端&#x2F;Node 环境中享受到类型安全的 Choice、Score 与布尔评估支持。</p>
+<h2 id="一句话选型指南"><a href="#一句话选型指南" class="headerlink" title="一句话选型指南"></a>一句话选型指南</h2><ul>
+<li>业务需要<strong>创作长文、编写代码、深度推理或拟人聊天</strong>：请坚持选用 <strong>传统生成式 LLM</strong>。</li>
+<li>业务需要<strong>智能分流、条件路由、批量打标、实时风控或等级判定</strong>：请果断拆解出专属的决策车道，交给 <strong>Jev 或开源结构化引擎</strong>。</li>
+</ul>
+<p>让生成模型专心讲话，让决策模型专心判断，才是搭建下一代低延迟、高可靠、低成本 AI 应用的最佳架构路径。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/AI/">AI</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/OpenAI/">OpenAI</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/LLM/">LLM</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策" data-url="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F17%2Ftypesafe-jev-system-one-model-guide%2F&title=Jev%20%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FChatGPT%20%E5%85%B1%E5%90%8C%E5%8F%91%E6%98%8E%E4%BA%BA%E6%89%93%E9%80%A0%E7%9A%84%20System%20One%20%E6%A8%A1%E5%9E%8B%EF%BC%8C%E4%B8%8D%E7%94%9F%E6%88%90%E6%96%87%E6%9C%AC%E5%8F%AA%E7%BB%99%E6%A6%82%E7%8E%87%E5%86%B3%E7%AD%96" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F17%2Ftypesafe-jev-system-one-model-guide%2F&title=Jev%20%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FChatGPT%20%E5%85%B1%E5%90%8C%E5%8F%91%E6%98%8E%E4%BA%BA%E6%89%93%E9%80%A0%E7%9A%84%20System%20One%20%E6%A8%A1%E5%9E%8B%EF%BC%8C%E4%B8%8D%E7%94%9F%E6%88%90%E6%96%87%E6%9C%AC%E5%8F%AA%E7%BB%99%E6%A6%82%E7%8E%87%E5%86%B3%E7%AD%96" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Jev%20%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FChatGPT%20%E5%85%B1%E5%90%8C%E5%8F%91%E6%98%8E%E4%BA%BA%E6%89%93%E9%80%A0%E7%9A%84%20System%20One%20%E6%A8%A1%E5%9E%8B%EF%BC%8C%E4%B8%8D%E7%94%9F%E6%88%90%E6%96%87%E6%9C%AC%E5%8F%AA%E7%BB%99%E6%A6%82%E7%8E%87%E5%86%B3%E7%AD%96&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F17%2Ftypesafe-jev-system-one-model-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策" data-url="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/" class="related-post-link"
+           data-rel-title="Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破"
+           data-rel-path="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/cover.jpg?v=1a81b644" alt="Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破</h4>
+            
+              <time class="related-post-date">2026-09-03</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/09/claude-code-cross-session-messaging/" class="related-post-link"
+           data-rel-title="Claude Code 跨会话消息：让不同 Session 相互通信的完整指南"
+           data-rel-path="/zh-cn/2026/08/09/claude-code-cross-session-messaging/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e" alt="Claude Code 跨会话消息：让不同 Session 相互通信的完整指南" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Code 跨会话消息：让不同 Session 相互通信的完整指南</h4>
+            
+              <time class="related-post-date">2026-08-09</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/" class="related-post-link"
+           data-rel-title="开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线"
+           data-rel-path="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914" alt="开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线</h4>
+            
+              <time class="related-post-date">2026-09-04</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>10</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/tags/AI/">AI</a><small>21</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>5</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>7</small></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>

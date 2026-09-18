@@ -2,7 +2,7 @@
 title: "Open-Source Game Architectures for AI Agents: Closed Loops, Editor Bridges, and Pragmatic Stacks"
 date: 2026-09-11 12:00:00
 updated: 2026-09-11 12:45:00
-description: "Why is it easy for AI to write web apps, but so messy when building games? Skipping abstract SDLC theory, this guide directly explores game engine architecture: why Web stacks excel, how to bridge Godot properly, and tool combinations for 3D and multiplayer."
+description: "A practical guide to game engine architectures for AI agents: why Web stacks excel, how to bridge Godot properly, and stacks for 3D and multiplayer."
 permalink: 2026/09/11/open-source-game-engine-architectures-for-ai-agents/
 translation_key: open-source-game-engine-architectures-for-ai-agents
 translations:

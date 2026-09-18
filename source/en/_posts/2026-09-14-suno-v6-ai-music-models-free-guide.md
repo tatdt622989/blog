@@ -2,7 +2,7 @@
 title: "Suno v6 Released: Three New Models, Multimodal Audio Inputs, and Free Tier Guide"
 date: 2026-09-14 16:35:00
 updated: 2026-09-14 16:35:00
-description: "Suno officially rolled out its 6th generation music model Suno v6 in September 2026. A breakdown of Flagship v6, Experimental v6-wild, and the freely accessible v6-mini, featuring multimodal voice inputs, in-place editing, the ongoing free trial, and commercial rights for developers."
+description: "A complete guide to Suno v6: exploring Flagship, Wild, and Mini models with multimodal audio inputs, in-place editing, and commercial usage rights."
 translation_key: suno-v6-ai-music-models-free-guide
 permalink: 2026/09/14/suno-v6-ai-music-models-free-guide/
 translations:
