@@ -1,0 +1,993 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Claude Opus 5.5 正式上線，Artificial Analysis 以 58 分登頂。整理官方九項評測、五種推理強度、API 價格與快取降幅、訂閱額度重設，以及開發者升級前必看的四項不相容變更，拆解最高分與實際成本的差別。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
+  
+
+  <meta property="og:title" content="Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析"/>
+  <meta property="og:description" content="Claude Opus 5.5 正式上線，Artificial Analysis 以 58 分登頂。整理官方九項評測、五種推理強度、API 價格與快取降幅、訂閱額度重設，以及開發者升級前必看的四項不相容變更，拆解最高分與實際成本的差別。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover.jpg?v=123e4c05" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析">
+  <meta name="twitter:description" content="Claude Opus 5.5 正式上線，Artificial Analysis 以 58 分登頂。整理官方九項評測、五種推理強度、API 價格與快取降幅、訂閱額度重設，以及開發者升級前必看的四項不相容變更，拆解最高分與實際成本的差別。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover.jpg?v=123e4c05">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/","url":"https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/","headline":"Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析","description":"Claude Opus 5.5 正式上線，Artificial Analysis 以 58 分登頂。整理官方九項評測、五種推理強度、API 價格與快取降幅、訂閱額度重設，以及開發者升級前必看的四項不相容變更，拆解最高分與實際成本的差別。","datePublished":"2026-09-22T16:56:00.000Z","dateModified":"2026-09-22T16:56:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析","item":"https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Claude-Opus-5-5-上線：AA-登頂、價格降幅與完整評測解析" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-22T16:56:00.000Z"><a href="/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">2026-09-23</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=dd6d4fa9" alt="Claude Opus 5.5 代理開發、文件工作與效率提升主題插畫" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover-card-480.jpg?v=f5d2f595 480w, /2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=dd6d4fa9 720w, /2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover-card-960.jpg?v=031ba809 960w, /2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover-card-1280.jpg?v=897b3ffa 1280w, /2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/cover.jpg?v=123e4c05 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p><strong>Claude Opus 5.5 正式上線，Artificial Analysis 的最新智慧指數以 58 分登上第一名。</strong> 這次最值得注意的，是更高的能力上限與更低的使用單價同時出現；但「58 分」用的是最高推理強度，「成本降低 40%」則是官方對預設設定下典型工作的估計，兩者不能直接拼成同一個使用情境。</p>
+<p>本文對照 Anthropic 公告、API 文件、官方完整評測圖與 Artificial Analysis 即時頁面，整理到底進步在哪裡、怎麼計價，以及升級時容易踩到的地方。<strong>這是發布首日的資料分析，未宣稱已完成本站實機評測。</strong></p>
+<span id="more"></span>
+
+<h2 id="Opus-5-5-先看重點：上線日期、規格與使用入口"><a href="#Opus-5-5-先看重點：上線日期、規格與使用入口" class="headerlink" title="Opus 5.5 先看重點：上線日期、規格與使用入口"></a>Opus 5.5 先看重點：上線日期、規格與使用入口</h2><p>Anthropic 官方發布日期為 <strong>2026 年 9 月 22 日</strong>；本文於台灣時間 <strong>9 月 23 日凌晨</strong>查核。API 規格如下，別把 API 的上限直接當成每個訂閱介面都會提供的額度。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/models/opus-5-5/overview">官方模型文件</a></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>已確認資訊</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude API 模型 ID</td>
+<td><strong>claude-opus-5-5</strong></td>
+</tr>
+<tr>
+<td>上下文視窗</td>
+<td>100 萬 tokens</td>
+</tr>
+<tr>
+<td>一般 API 最大輸出</td>
+<td>128K tokens</td>
+</tr>
+<tr>
+<td>輸入／輸出類型</td>
+<td>文字、圖片輸入；文字輸出</td>
+</tr>
+<tr>
+<td>推理機制</td>
+<td>Adaptive thinking 持續開啟，預設 <strong>medium</strong></td>
+</tr>
+<tr>
+<td>Claude 訂閱入口</td>
+<td>Pro、Max、Team、Enterprise</td>
+</tr>
+<tr>
+<td>開發者入口</td>
+<td>Claude API、Amazon Bedrock、Claude Platform on AWS、Google Cloud、Microsoft Foundry</td>
+</tr>
+</tbody></table>
+<p>訂閱方案可用性見 <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/opus">Opus 產品頁</a>，雲端平台清單見 <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/release-notes/overview">API 發布紀錄</a>。各平台仍有自己的帳戶權限與設定。</p>
+<h2 id="Artificial-Analysis-已更新：58-分第一，但要看-effort"><a href="#Artificial-Analysis-已更新：58-分第一，但要看-effort" class="headerlink" title="Artificial Analysis 已更新：58 分第一，但要看 effort"></a>Artificial Analysis 已更新：58 分第一，但要看 effort</h2><p>查核時，<strong>Artificial Analysis Intelligence Index v4.3.2</strong> 的 Opus 5.5 模型頁顯示 <strong>58 分、排名第一</strong>。首頁同時顯示 Fable 5.1 為 53 分、GPT-6 Astra 為 53 分；這些是頁面顯示的整數分數。兩個 Claude 條目都帶有 <strong>max with fallback</strong>，GPT-6 Astra 則是 <strong>max</strong>。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/">AA 即時排行榜</a></p>
+<p>AA 也同時列出 Opus 5.5 的五種推理強度。下表每列都保留 <strong>Default Fallback</strong> 條件，token 數是整套 Intelligence Index 評測的累計輸出量，<strong>不是單次回答長度或上下文容量</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>Opus 5.5 推理強度</th>
+<th align="right">AA 智慧指數</th>
+<th align="right">評測累計輸出 tokens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5">max</a></td>
+<td align="right">58</td>
+<td align="right">約 2.6 億</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5-xhigh">xhigh</a></td>
+<td align="right">56</td>
+<td align="right">約 1 億</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5-high">high</a></td>
+<td align="right">54</td>
+<td align="right">約 5,300 萬</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5-medium">medium</a></td>
+<td align="right">51</td>
+<td align="right">約 3,800 萬</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5-low">low</a></td>
+<td align="right">42</td>
+<td align="right">約 2,000 萬</td>
+</tr>
+</tbody></table>
+<p><strong>我的解讀：日常開發值得先測 medium 與 high，再決定哪些難題需要 max。</strong> 以 AA 顯示的四捨五入數字計算，max 的總輸出量約為 medium 的 <strong>6.8 倍</strong>，換來 7 分差距。這不是帳單倍率，因為還沒納入輸入、快取與其他費用；但足以提醒我們，榜首設定不一定適合每一次呼叫。</p>
+<p>另外，查核時 AA 新模型頁的速度與每任務成本仍標示 <strong>N&#x2F;A</strong>，部分價格欄顯示 <strong>$0.00</strong>，與 Anthropic 已公布的付費價格不符。本文因此採官方價目表，<strong>不把該欄位解讀成免費，也不推算尚未公布的實測速度</strong>。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5">AA 模型頁</a></p>
+<h2 id="官方九項評測：程式開發領先，Astra-仍有強項"><a href="#官方九項評測：程式開發領先，Astra-仍有強項" class="headerlink" title="官方九項評測：程式開發領先，Astra 仍有強項"></a>官方九項評測：程式開發領先，Astra 仍有強項</h2><p>以下數字來自 Anthropic 發布的比較圖，與公告表格逐項核對。<strong>這是官方彙整的評測結果，與上一節 AA 的綜合智慧指數是不同資料。</strong>「未列」表示官方圖沒有提供該格成績，不代表零分。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">官方發布公告與評測</a></p>
+<table>
+<thead>
+<tr>
+<th>評測</th>
+<th align="right">Opus 5.5</th>
+<th align="right">Fable 5.1</th>
+<th align="right">Opus 5</th>
+<th align="right">GPT-6 Astra</th>
+<th align="right">GPT-5.6 Sol</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Terminal-Bench 4.0</td>
+<td align="right"><strong>66.4%</strong></td>
+<td align="right">55.8%</td>
+<td align="right">52.3%</td>
+<td align="right">57.9%</td>
+<td align="right">37.3%</td>
+</tr>
+<tr>
+<td>FrontierCode v1.1（Main）</td>
+<td align="right"><strong>54.4%</strong></td>
+<td align="right">50.3%</td>
+<td align="right">48.0%</td>
+<td align="right">53.3%</td>
+<td align="right">47.5%</td>
+</tr>
+<tr>
+<td>CursorBench 4.0</td>
+<td align="right"><strong>57.8%</strong></td>
+<td align="right">51.8%</td>
+<td align="right">46.6%</td>
+<td align="right">未列</td>
+<td align="right">41.7%</td>
+</tr>
+<tr>
+<td>GDPval-AA v2.1</td>
+<td align="right"><strong>1846</strong></td>
+<td align="right">1735</td>
+<td align="right">1708</td>
+<td align="right">1542</td>
+<td align="right">1588</td>
+</tr>
+<tr>
+<td>AutomationBench</td>
+<td align="right">40.0%</td>
+<td align="right">31.4%</td>
+<td align="right">26.9%</td>
+<td align="right"><strong>41.4%</strong></td>
+<td align="right">28.8%</td>
+</tr>
+<tr>
+<td>Humanity’s Last Exam（含工具）</td>
+<td align="right"><strong>67.7%</strong></td>
+<td align="right">65.6%</td>
+<td align="right">63.6%</td>
+<td align="right">57.2%</td>
+<td align="right">未列</td>
+</tr>
+<tr>
+<td>Terminal-Bench-Science 0.1</td>
+<td align="right">58.7%</td>
+<td align="right">52.6%</td>
+<td align="right">29.0%</td>
+<td align="right"><strong>64.6%</strong></td>
+<td align="right">22.4%</td>
+</tr>
+<tr>
+<td>OSWorld 2.0（partial）</td>
+<td align="right"><strong>81.8%</strong></td>
+<td align="right">80.7%</td>
+<td align="right">74.0%</td>
+<td align="right">未列</td>
+<td align="right">未列</td>
+</tr>
+<tr>
+<td>Chartography（含工具）</td>
+<td align="right"><strong>89.0%</strong></td>
+<td align="right">88.4%</td>
+<td align="right">83.4%</td>
+<td align="right">未列</td>
+<td align="right">未列</td>
+</tr>
+</tbody></table>
+<p>GDPval-AA 這一列是評分，<strong>不是百分比</strong>；OSWorld 的 <strong>partial</strong> 與其他列的工具條件也都保留，避免把不同口徑看成同一種正確率。</p>
+<p>最明顯的變化在 Terminal-Bench：Opus 5.5 比 Opus 5 高 <strong>14.1 個百分點</strong>，比 Astra 高 <strong>8.5 個百分點</strong>。但 FrontierCode 對 Astra 只高 1.1 個百分點；商業流程與代理科學研究的表中最高分，仍是 Astra。用這張圖宣稱「所有工作全面輾壓」就太過頭了。</p>
+<p>閱讀時還有三個條件不能省略：</p>
+<ul>
+<li>Opus 5.5 多數列使用 <strong>max</strong>，Terminal-Bench 則使用 <strong>xhigh</strong>；Astra 的該列使用 <strong>high</strong>，並非統一 effort 的對照實驗。</li>
+<li>官方啟用正式環境防護，部分題目可能交由舊模型完成；AutomationBench 由 Zapier 執行且不使用 fallback，觸發防護即算失敗。</li>
+<li>Terminal-Bench 的 Opus 5.5 標準誤為 ±2.6 個百分點；科學研究測試各模型約 ±3.5–5 個百分點。小差距不宜直接解讀為穩定勝負。</li>
+</ul>
+<details>
+<summary>展開官方完整評測原圖與註腳</summary>
+
+<p><img src="/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/official-benchmarks.png?v=88d00500" alt="Anthropic Claude Opus 5.5 官方九項評測比較圖，包含 Fable 5.1、Opus 5、GPT-6 Astra 與 GPT-5.6 Sol 及測試註腳"></p>
+<p>圖片來源：Anthropic 官方發布資料，保留原圖數字與註腳。</p>
+</details>
+
+<h2 id="價格到底降多少？20-、40-、60-各有意思"><a href="#價格到底降多少？20-、40-、60-各有意思" class="headerlink" title="價格到底降多少？20%、40%、60% 各有意思"></a>價格到底降多少？20%、40%、60% 各有意思</h2><p>以下為標準 Claude API 價格，單位均為 <strong>美元／100 萬 tokens</strong>。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">官方價格文件</a></p>
+<table>
+<thead>
+<tr>
+<th>計費項目</th>
+<th align="right">Opus 5</th>
+<th align="right">Opus 5.5</th>
+<th align="right">單價降幅</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一般輸入</td>
+<td align="right">$5</td>
+<td align="right">$4</td>
+<td align="right">20%</td>
+</tr>
+<tr>
+<td>輸出</td>
+<td align="right">$25</td>
+<td align="right">$20</td>
+<td align="right">20%</td>
+</tr>
+<tr>
+<td>5 分鐘快取寫入</td>
+<td align="right">$6.25</td>
+<td align="right">$5</td>
+<td align="right">20%</td>
+</tr>
+<tr>
+<td>1 小時快取寫入</td>
+<td align="right">$10</td>
+<td align="right">$8</td>
+<td align="right">20%</td>
+</tr>
+<tr>
+<td>快取命中讀取</td>
+<td align="right">$0.50</td>
+<td align="right">$0.20</td>
+<td align="right">60%</td>
+</tr>
+</tbody></table>
+<p><strong>40% 指的是 Anthropic 對典型任務總成本的估計</strong>，包含單價與 token 使用效率的變化，並非所有計費項目都打六折。官方另稱一般輸出生成速度比 Opus 5 快超過 30%；這也不是整個專案必定快 30% 的保證。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">官方公告</a></p>
+<p>自己算一個固定用量的例子就很清楚：假設未命中快取的輸入為 100 萬 tokens、輸出為 20 萬 tokens，且不計工具等額外費用，Opus 5 是 <strong>$10</strong>，Opus 5.5 是 <strong>$8</strong>，省的是 20%。若模型還能減少嘗試次數、縮短輸出或提高快取命中率，總成本才會繼續下降。</p>
+<p>對反覆讀同一套程式碼的代理工作，快取值得特別看：相同的 1,000 萬快取讀取 tokens，讀取費由 <strong>$5 降到 $2</strong>；初次寫入與輸出仍需另計。</p>
+<p><strong>Fast mode</strong> 則另收較高費率：Opus 5.5 輸入 <strong>$8</strong>、輸出 <strong>$40</strong>，官方稱最高可達一般模式的 2.5 倍速度。別把 Fast mode 與標準模式混算。以相同 token 數計，Opus 5.5 標準輸入／輸出單價也比 Fable 5.1 的 $10／$50 低 60%，但這仍不是兩個模型每項工作的總價差。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/opus">Opus 產品頁</a>、<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/models/overview">模型規格對照</a></p>
+<h2 id="Pro、Max、Team-額度與可自行使用的重設"><a href="#Pro、Max、Team-額度與可自行使用的重設" class="headerlink" title="Pro、Max、Team 額度與可自行使用的重設"></a>Pro、Max、Team 額度與可自行使用的重設</h2><p>Anthropic 同步宣布提高 <strong>Pro、Max、Team 的五小時用量上限</strong>，並提供訂閱使用者可自行選擇時機使用的額度重設。發布公告未列統一增幅，不宜自行寫成「全部翻倍」。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">官方公告</a></p>
+<p>有拿到重設的帳戶，可在網頁版或桌面版 <strong>Settings → Usage → Resets → Reset for free</strong> 查看與使用。重設的是五小時或每週額度，依帳戶顯示的優惠為準；到期時間也看頁面標示。手機與 Claude Code 終端目前沒有該按鈕，但重設後會共用帳戶額度。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17007452-what-is-a-limit-reset">官方重設說明</a></p>
+<p>這是用量權益調整，不等於 Pro 或 Max 的月費跟著 API 單價一起降價。評估訂閱方案時，可以接著看本站的 <a href="/2026/09/14/ai-coding-tools-subscription-comparison/">AI 開發工具訂閱比較</a>，並留意文章中的資料日期。</p>
+<h2 id="開發者升級前，先處理四項不相容變更"><a href="#開發者升級前，先處理四項不相容變更" class="headerlink" title="開發者升級前，先處理四項不相容變更"></a>開發者升級前，先處理四項不相容變更</h2><p>如果你只在 Claude 介面切換模型，通常不需要處理 API 參數；但自行串接 Messages API 的程式，不宜只替換模型名稱就直接切正式流量。</p>
+<ol>
+<li><strong>不能關閉 thinking</strong>：舊的 <code>thinking.type: &quot;disabled&quot;</code> 或 <code>&quot;enabled&quot;</code> 設定會報 400。改用 effort 控制推理深度。</li>
+<li><strong>不能強制指定工具呼叫</strong>：<code>tool_choice</code> 的 <code>any</code>、<code>tool</code> 不再支援。依需求改用 <code>auto</code> 搭配 strict tool use 或 structured outputs；其中 strict 約束的是工具參數格式，並不保證模型一定呼叫工具。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/release-notes/overview">API 發布紀錄</a></li>
+<li><strong>thinking blocks 綁定模型與對話</strong>：中途改寫 system、工具或舊訊息，可能使重播的 thinking blocks 失效；跨模型路由也要檢查相容性。</li>
+<li><strong>computer use 工具有平台差異</strong>：Claude API 與 Google Cloud 要改用 <code>computer_toolset_20260801</code>；Amazon Bedrock 仍支援舊的 <code>computer_20251124</code>。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/models/opus-5-5/migration-guide">官方遷移指南</a></li>
+</ol>
+<p>還有一項不一定報錯、卻很容易讓產品看起來故障的變化：工具呼叫之間的進度文字改放在 <strong>thinking blocks</strong>，預設顯示設定不會提供文字。若你的介面原本靠 text blocks 顯示「正在處理」，要同步調整回應解析。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/models/opus-5-5/overview">模型文件的回應格式說明</a></p>
+<h2 id="我會怎麼選：先比較完成工作的代價"><a href="#我會怎麼選：先比較完成工作的代價" class="headerlink" title="我會怎麼選：先比較完成工作的代價"></a>我會怎麼選：先比較完成工作的代價</h2><p><strong>對正在用 Opus 5 寫程式的人，我會把 Opus 5.5 列為優先試用對象。</strong> 選一個你熟悉、能驗收結果的真實任務，同時記錄修正次數、測試結果、耗時和總費用，再決定是否作為預設模型。AA 的 effort 表很適合拿來規劃 medium、high、max 的試跑順序。</p>
+<p>如果你主要做科學研究或跨系統商業流程，保留 Astra 做同題比較仍有價值；官方表本身就顯示這兩個領域的差異。要從 Fable 5.1 轉過來，也應先驗證自己的高難度工作是否維持品質，再把單價優勢算進去。</p>
+<p>最後，<strong>with fallback</strong> 是實際使用條件的一部分：官方說明某些請求會切換到其他模型，介面會標示回應者。因此做自己的測試時，也記得確認到底是哪個模型完成工作。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5">官方模型切換說明</a></p>
+<p>本文採用 2026 年 9 月 23 日凌晨查核的官方文件與 AA 頁面；排行榜、供應平台與帳戶權益會持續更新。官方另預告 Sonnet 5.5、Haiku 5.5 將於接下來幾週推出，目前不能把它們寫成已同步發布。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">發布公告</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/Claude/">Claude</a>, <a href="/tags/Claude-Code/">Claude Code</a>, <a href="/tags/Anthropic/">Anthropic</a>, <a href="/tags/Artificial-Analysis/">Artificial Analysis</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="複製連結" aria-label="複製連結">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>複製連結</span>
+    </button>
+
+    
+      <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
+      <a href="https://www.threads.net/intent/post?text=Claude%20Opus%205.5%20%E4%B8%8A%E7%B7%9A%EF%BC%9AAA%20%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FClaude-Opus-5-5-%25E4%25B8%258A%25E7%25B7%259A%25EF%25BC%259AAA-%25E7%2599%25BB%25E9%25A0%2582%25E3%2580%2581%25E5%2583%25B9%25E6%25A0%25BC%25E9%2599%258D%25E5%25B9%2585%25E8%2588%2587%25E5%25AE%258C%25E6%2595%25B4%25E8%25A9%2595%25E6%25B8%25AC%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
+        </svg>
+        <span>Threads</span>
+      </a>
+      <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FClaude-Opus-5-5-%25E4%25B8%258A%25E7%25B7%259A%25EF%25BC%259AAA-%25E7%2599%25BB%25E9%25A0%2582%25E3%2580%2581%25E5%2583%25B9%25E6%25A0%25BC%25E9%2599%258D%25E5%25B9%2585%25E8%2588%2587%25E5%25AE%258C%25E6%2595%25B4%25E8%25A9%2595%25E6%25B8%25AC%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-line" title="Share on LINE" aria-label="Share on LINE">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33v-2.95c0-.349.28-.63.628-.63.349 0 .627.281.627.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINE</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FClaude-Opus-5-5-%25E4%25B8%258A%25E7%25B7%259A%25EF%25BC%259AAA-%25E7%2599%25BB%25E9%25A0%2582%25E3%2580%2581%25E5%2583%25B9%25E6%25A0%25BC%25E9%2599%258D%25E5%25B9%2585%25E8%2588%2587%25E5%25AE%258C%25E6%2595%25B4%25E8%25A9%2595%25E6%25B8%25AC%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Claude%20Opus%205.5%20%E4%B8%8A%E7%B7%9A%EF%BC%9AAA%20%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FClaude-Opus-5-5-%25E4%25B8%258A%25E7%25B7%259A%25EF%25BC%259AAA-%25E7%2599%25BB%25E9%25A0%2582%25E3%2580%2581%25E5%2583%25B9%25E6%25A0%25BC%25E9%2599%258D%25E5%25B9%2585%25E8%2588%2587%25E5%25AE%258C%25E6%2595%25B4%25E8%25A9%2595%25E6%25B8%25AC%25E8%25A7%25A3%25E6%259E%2590%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析" data-url="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/06/18/claude-codex-quota-guide/" class="related-post-link"
+           data-rel-title="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法"
+           data-rel-path="/2026/06/18/claude-codex-quota-guide/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/06/18/claude-codex-quota-guide/cover.webp?v=fa6a9f8f" alt="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/" class="related-post-link"
+           data-rel-title="Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南"
+           data-rel-path="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover-v2.jpg?v=4beac131" alt="Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南</h4>
+            
+              <time class="related-post-date">2026-05-06</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/09/02/Claude-Fable-5-1-%E6%97%97%E8%89%A6%E7%99%BC%E8%A1%A8%EF%BC%81%E5%BF%AB%E5%8F%96%E7%8B%82%E9%99%8D-75-%E8%88%87%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E9%96%8B%E7%99%BC%E7%9A%84%E6%A0%B8%E5%BF%83%E8%AE%8A%E9%9D%A9/" class="related-post-link"
+           data-rel-title="Claude Fable 5.1 旗艦發表！快取狂降 75% 與長時程代理開發的核心變革"
+           data-rel-path="/2026/09/02/Claude-Fable-5-1-%E6%97%97%E8%89%A6%E7%99%BC%E8%A1%A8%EF%BC%81%E5%BF%AB%E5%8F%96%E7%8B%82%E9%99%8D-75-%E8%88%87%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E9%96%8B%E7%99%BC%E7%9A%84%E6%A0%B8%E5%BF%83%E8%AE%8A%E9%9D%A9/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/02/Claude-Fable-5-1-%E6%97%97%E8%89%A6%E7%99%BC%E8%A1%A8%EF%BC%81%E5%BF%AB%E5%8F%96%E7%8B%82%E9%99%8D-75-%E8%88%87%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E9%96%8B%E7%99%BC%E7%9A%84%E6%A0%B8%E5%BF%83%E8%AE%8A%E9%9D%A9/cover.jpg?v=ea31fc34" alt="Claude Fable 5.1 旗艦發表！快取狂降 75% 與長時程代理開發的核心變革" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Fable 5.1 旗艦發表！快取狂降 75% 與長時程代理開發的核心變革</h4>
+            
+              <time class="related-post-date">2026-09-02</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>31</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>46</small></li>
+  
+    <li><a href="/tags/AI-Agent/">AI Agent</a><small>11</small></li>
+  
+    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>3</small></li>
+  
+    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+  
+    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/tags/Anthropic/">Anthropic</a><small>2</small></li>
+  
+    <li><a href="/tags/Artificial-Analysis/">Artificial Analysis</a><small>1</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+  
+    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>3</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>13</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>4</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+  
+    <li><a href="/tags/Command-Code/">Command Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT-6/">GPT-6</a><small>1</small></li>
+  
+    <li><a href="/tags/Gemini/">Gemini</a><small>1</small></li>
+  
+    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
+  
+    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>5</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>9</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
+  
+    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
+  
+    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
+  
+    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/Z-ai/">Z.ai</a><small>2</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
+  
+    <li><a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>13</small></li>
+  
+    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>8</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
