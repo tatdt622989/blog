@@ -1,0 +1,869 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>開源 AI 繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="2026 年開源 AI 繪圖底模選型全攻略。深入評測 FLUX.1、SD 3.5、SDXL、Illustrious 與 Pony，依顯卡顯存（4GB 至 24GB）、量化方案、畫質與風格（寫實、二次元、排版文字），助你精準挑出最適合的開源圖像模型。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/22/open-source-ai-image-models-selection-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">
+  
+
+  <meta property="og:title" content="開源 AI 繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型"/>
+  <meta property="og:description" content="2026 年開源 AI 繪圖底模選型全攻略。深入評測 FLUX.1、SD 3.5、SDXL、Illustrious 與 Pony，依顯卡顯存（4GB 至 24GB）、量化方案、畫質與風格（寫實、二次元、排版文字），助你精準挑出最適合的開源圖像模型。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover.jpg?v=826b562c" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="開源 AI 繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型">
+  <meta name="twitter:description" content="2026 年開源 AI 繪圖底模選型全攻略。深入評測 FLUX.1、SD 3.5、SDXL、Illustrious 與 Pony，依顯卡顯存（4GB 至 24GB）、量化方案、畫質與風格（寫實、二次元、排版文字），助你精準挑出最適合的開源圖像模型。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover.jpg?v=826b562c">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/","url":"https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/","headline":"開源 AI 繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型","description":"2026 年開源 AI 繪圖底模選型全攻略。深入評測 FLUX.1、SD 3.5、SDXL、Illustrious 與 Pony，依顯卡顯存（4GB 至 24GB）、量化方案、畫質與風格（寫實、二次元、排版文字），助你精準挑出最適合的開源圖像模型。","datePublished":"2026-09-22T08:15:00.000Z","dateModified":"2026-09-22T08:15:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"開源 AI 繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型","item":"https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/22/open-source-ai-image-models-selection-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-開源-AI-繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-22T08:15:00.000Z"><a href="/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">2026-09-22</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">開源 AI 繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover-card-720.jpg?v=58c06350" alt="開源 AI 繪圖模型選型指南：顯存設備、畫質與風格全景對照" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover-card-480.jpg?v=480abdd3 480w, /2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover-card-720.jpg?v=58c06350 720w, /2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover-card-960.jpg?v=22097504 960w, /2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/cover.jpg?v=826b562c 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>許多創作者與獨立開發者在搭建本機 AI 繪圖環境時，最先遭遇的瓶頸往往不是安裝軟體，而是在面對開源社群成千上萬個模型檔案時感到眼花撩亂。選錯底模，輕則顯示卡記憶體（VRAM）溢出直接報錯跳出，重則耗費數小時反覆抽卡，依然得不到滿意的構圖與質感。</p>
+<p>開源圖像生成領域已從早期的單一標準，演進為多元架構並存的成熟生態。不同的底模在參數量級、訓練資料集偏好、文字理解能力以及硬體資源消耗上，存在著極為明顯的界線。本文將從<strong>硬體顯存設備門檻</strong>、<strong>生成品質與架構特性</strong>，以及<strong>擅長風格領域</strong>三大維度，為你全面梳理市面上主流的開源繪圖模型，幫助你一眼找出最適合自己創作場景的命定工具。</p>
+<span id="more"></span>
+
+<h2 id="挑選開源底模的三大關鍵維度"><a href="#挑選開源底模的三大關鍵維度" class="headerlink" title="挑選開源底模的三大關鍵維度"></a>挑選開源底模的三大關鍵維度</h2><p>要挑選出真正好用的底模，不能單看排行榜上的評分，必須同時檢視以下三項關鍵維度：</p>
+<h3 id="1-顯示卡記憶體與硬體吞吐量（VRAM）"><a href="#1-顯示卡記憶體與硬體吞吐量（VRAM）" class="headerlink" title="1. 顯示卡記憶體與硬體吞吐量（VRAM）"></a>1. 顯示卡記憶體與硬體吞吐量（VRAM）</h3><p>模型的參數量直接決定了顯存的占用底線。如果顯存不足，系統會將運算權重溢出到系統記憶體（RAM），導致生成速度劇烈下降數十倍，甚至直接中斷程序。現今透過 <strong>GGUF</strong> 或 <strong>NF4</strong> 等模型量化（Quantization）技術，讓中階顯示卡也能越級挑戰超大型模型。</p>
+<h3 id="2-底層神經網路架構（U-Net-vs-DiT）"><a href="#2-底層神經網路架構（U-Net-vs-DiT）" class="headerlink" title="2. 底層神經網路架構（U-Net vs. DiT）"></a>2. 底層神經網路架構（U-Net vs. DiT）</h3><p>傳統的 Stable Diffusion 1.5 與 SDXL 採用 <strong>U-Net</strong> 架構，在社群中累積了最繁榮的 LoRA 與外掛生態，但對自然語言長句的語意理解相對吃力。新一代模型如 FLUX 與 SD 3.5 則轉向 <strong>Diffusion Transformer（DiT &#x2F; MMDiT）</strong> 架構，結合大型文字編碼器，能精準聽懂長篇複雜描述，並在畫面中正確排布多個主體的空間相對位置。</p>
+<h3 id="3-風格分化與訓練集偏好"><a href="#3-風格分化與訓練集偏好" class="headerlink" title="3. 風格分化與訓練集偏好"></a>3. 風格分化與訓練集偏好</h3><p>沒有任何一個模型能在所有風格上同時稱霸。以寫實照片見長的照片級模型，畫起日系插畫往往顯得油膩僵硬；而深度訓練於動漫資料集的二次元模型，也無法勝任真實人物攝影或工業產品渲染。</p>
+<hr>
+<h2 id="顯存設備門檻與量化梯隊（4GB-至-24GB）"><a href="#顯存設備門檻與量化梯隊（4GB-至-24GB）" class="headerlink" title="顯存設備門檻與量化梯隊（4GB 至 24GB）"></a>顯存設備門檻與量化梯隊（4GB 至 24GB）</h2><p>在下載動輒數十 GB 的權重檔之前，請先確認你的顯示卡規格。以下是當前開源模型的硬體適配梯隊：</p>
+<table>
+<thead>
+<tr>
+<th align="left">顯存階梯</th>
+<th align="left">代表硬體配置</th>
+<th align="left">推薦運行的模型與精度格式</th>
+<th align="left">運行表現與注意事項</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>入門級（4GB 至 6GB）</strong></td>
+<td align="left">GTX 1660、RTX 3050、入門筆電 GPU</td>
+<td align="left"><strong>SD 1.5 微調版</strong></td>
+<td align="left">秒級快速出圖，但原生解析度受限於 512×512，極度依賴放大算法補足細節。</td>
+</tr>
+<tr>
+<td align="left"><strong>主流甜品級（8GB 至 12GB）</strong></td>
+<td align="left">RTX 3060、RTX 4060、RTX 4070</td>
+<td align="left"><strong>SDXL 原生、SD 3.5 Medium、FLUX.1 Schnell&#x2F;Dev（GGUF Q4&#x2F;NF4 量化）</strong></td>
+<td align="left">性價比最高的甜蜜點。藉由量化版 FLUX 與成熟的 SDXL 生態，能流暢產出 1024×1024 高清畫面。</td>
+</tr>
+<tr>
+<td align="left"><strong>高階生產力級（16GB 至 24GB）</strong></td>
+<td align="left">RTX 4080、RTX 3090、RTX 4090、Apple Silicon（36GB 以上統一記憶體）</td>
+<td align="left"><strong>FLUX.1 Dev（FP8&#x2F;BF16 原生）、SD 3.5 Large（FP16）</strong></td>
+<td align="left">旗艦級創作平台。可原生載入高精度模型，支援多重 LoRA 堆疊與極致細節重繪，無需妥協壓縮損失。</td>
+</tr>
+</tbody></table>
+<h3 id="拯救中階顯卡的關鍵技術：GGUF-與-NF4"><a href="#拯救中階顯卡的關鍵技術：GGUF-與-NF4" class="headerlink" title="拯救中階顯卡的關鍵技術：GGUF 與 NF4"></a>拯救中階顯卡的關鍵技術：GGUF 與 NF4</h3><p>如果你的顯示卡只有 8GB 或 12GB 顯存，過去幾乎無法運行像 FLUX 這種 12B 參數量級的龐然大物。如今在 <strong>ComfyUI</strong> 或 <strong>Forge</strong> 等現代生圖工具中，你可以直接載入 <strong>GGUF（Q4_K_S、Q5_K_S）</strong> 或 <strong>NF4</strong> 格式的量化模型。這些格式將原本 16 位元的權重壓縮至 4 到 8 位元，大幅降低顯存需求至 7GB 至 11GB，且視覺品質幾乎未見肉眼可辨的衰退，是中小創作者必裝的實用技巧。</p>
+<hr>
+<h2 id="主流開源模型深入評析"><a href="#主流開源模型深入評析" class="headerlink" title="主流開源模型深入評析"></a>主流開源模型深入評析</h2><p>依據風格專長與技術血統，當前開源生態主要由四大代表體系組成：</p>
+<h3 id="1-FLUX-1（Dev-x2F-Schnell）：寫實光影與文字排版的當代標竿"><a href="#1-FLUX-1（Dev-x2F-Schnell）：寫實光影與文字排版的當代標竿" class="headerlink" title="1. FLUX.1（Dev &#x2F; Schnell）：寫實光影與文字排版的當代標竿"></a>1. FLUX.1（Dev &#x2F; Schnell）：寫實光影與文字排版的當代標竿</h3><p>由原 Stable Diffusion 核心團隊創立的 <a target="_blank" rel="noopener" href="https://blackforestlabs.ai/">Black Forest Labs</a> 所開發，採用 12B 參數的 DiT 架構，是目前開源界公認在<strong>真實感</strong>與<strong>提示詞遵從度</strong>上的頂級模型。</p>
+<ul>
+<li><strong>版本劃分</strong>：<strong>FLUX.1 [schnell]</strong> 採 Apache 2.0 授權，專注於 4 步快速生成；<strong>FLUX.1 [dev]</strong> 則是品質更高的非商用開源權重，適合追求極致畫質的創作。</li>
+<li><strong>最大強項</strong>：<ol>
+<li><strong>告別塑料假人感</strong>：皮膚的微觀毛孔、真實皺褶、瞳孔自然反光與微光漫射表現極為震撼，徹底擺脫過往 AI 生圖常見的油光質感。</li>
+<li><strong>圖中文字排版能力</strong>：能精準在招牌、T 恤印花、手持紙張上渲染出完全正確的英文單字與標題，解決了開源繪圖長久以來的亂碼痛點。</li>
+<li><strong>複雜指示理解</strong>：結合 T5 文字編碼器，能精確理解多個物件的位置關係與鏡頭景深指令。</li>
+</ol>
+</li>
+<li><strong>主要局限</strong>：原版權重體積巨大，對硬體要求嚴苛；二次元動漫風格雖然可藉由社群 LoRA 擴充，但原生畫風偏向厚塗與歐美寫實。</li>
+</ul>
+<h3 id="2-Stable-Diffusion-3-5（Large-x2F-Medium）：兼具商用與架構革新的平衡之作"><a href="#2-Stable-Diffusion-3-5（Large-x2F-Medium）：兼具商用與架構革新的平衡之作" class="headerlink" title="2. Stable Diffusion 3.5（Large &#x2F; Medium）：兼具商用與架構革新的平衡之作"></a>2. Stable Diffusion 3.5（Large &#x2F; Medium）：兼具商用與架構革新的平衡之作</h3><p><a target="_blank" rel="noopener" href="https://stability.ai/">Stability AI</a> 推出的最新架構升級，採用多模態擴散變換器（MMDiT），有效修復了早期 SD3 在人體解剖學上的異常問題。</p>
+<ul>
+<li><strong>版本劃分</strong>：包含 8B 參數的 <strong>SD 3.5 Large</strong>（適合高階顯卡）與 2.5B 參數的 <strong>SD 3.5 Medium</strong>（原生效能即可在 8GB 消費級顯卡順暢運行）。</li>
+<li><strong>最大強項</strong>：提供極佳的商業授權彈性，在人體動態姿態、自然光學分佈與字型排版上具備優異水準，是注重合規性商業專案的穩妥基石。</li>
+<li><strong>主要局限</strong>：社群生態起步相對晚於 SDXL，目前的 LoRA 與 ControlNet 工具鏈豐富度仍在持續成長中。</li>
+</ul>
+<h3 id="3-SDXL（Stable-Diffusion-XL）：生態繁榮度無可撼動的中流砥柱"><a href="#3-SDXL（Stable-Diffusion-XL）：生態繁榮度無可撼動的中流砥柱" class="headerlink" title="3. SDXL（Stable Diffusion XL）：生態繁榮度無可撼動的中流砥柱"></a>3. SDXL（Stable Diffusion XL）：生態繁榮度無可撼動的中流砥柱</h3><p>儘管技術架構已有後起之秀，但以 U-Net 為核心的 <strong>SDXL</strong> 依然是目前社群中資源最豐富、微調模型最多元的通用主力。</p>
+<ul>
+<li><strong>最大強項</strong>：在 <a target="_blank" rel="noopener" href="https://civitai.com/">Civitai</a> 與 <a target="_blank" rel="noopener" href="https://huggingface.co/">Hugging Face</a> 上擁有數量最龐大的專屬微調 Checkpoint（例如 Juggernaut XL、RealVisXL）、數萬款 LoRA 以及最齊全的 ControlNet 姿態控制模組。</li>
+<li><strong>適用族群</strong>：使用 8GB 至 12GB 顯存、需要高度精確控制姿勢與線稿、或是需要為原創角色頻繁掛載多個 LoRA 的創作者。</li>
+</ul>
+<h3 id="4-Illustrious-與-Pony-Diffusion：動漫二次元插畫的雙雄對決"><a href="#4-Illustrious-與-Pony-Diffusion：動漫二次元插畫的雙雄對決" class="headerlink" title="4. Illustrious 與 Pony Diffusion：動漫二次元插畫的雙雄對決"></a>4. Illustrious 與 Pony Diffusion：動漫二次元插畫的雙雄對決</h3><p>如果你專注於動漫同人、日系遊戲立繪或輕小說插畫，這兩款基於 SDXL 深度重訓練的二次元神模是唯二必備選擇：</p>
+<ul>
+<li><strong>Pony Diffusion V6</strong>：採用 Danbooru 標籤系統（Tagging）進行深度訓練。優勢在於對特徵詞（如視角、服飾、特定角色特徵）有著近乎百分之百的精確觸發率，且社群中擁有海量的二次元角色 LoRA。但缺點是必須使用特定的評分標籤前綴，且畫風容易帶有濃厚的既定色彩。</li>
+<li><strong>Illustrious-XL（與 NoobAI 系列）</strong>：新一代日系二次元底模代表。相較於 Pony，它大幅強化了自然語言理解能力，並具備更出色的原生人體解剖結構、現代動漫色彩動態範圍與細膩線條，擺脫了僵硬的標籤感，已成為許多專業插畫家的新寵。</li>
+</ul>
+<hr>
+<h2 id="一張表掌握選型決策矩陣"><a href="#一張表掌握選型決策矩陣" class="headerlink" title="一張表掌握選型決策矩陣"></a>一張表掌握選型決策矩陣</h2><table>
+<thead>
+<tr>
+<th align="left">創作情境與目標</th>
+<th align="left">最佳推薦底模</th>
+<th align="left">推薦精度與格式</th>
+<th align="left">建議顯存配置</th>
+<th align="left">核心推薦原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>極致商業寫實、廣告人像與電影感</strong></td>
+<td align="left"><strong>FLUX.1 [dev]</strong></td>
+<td align="left">GGUF Q5&#x2F;Q8 或 FP8</td>
+<td align="left">12GB 至 16GB</td>
+<td align="left">無可比擬的自然皮膚肌理與真實光影衰減，質感天花板。</td>
+</tr>
+<tr>
+<td align="left"><strong>海報設計、包裝字型與圖中文字</strong></td>
+<td align="left"><strong>FLUX.1 或 SD 3.5 Large</strong></td>
+<td align="left">GGUF Q4 或 FP8</td>
+<td align="left">8GB 至 16GB</td>
+<td align="left">英文文字生成準確率極高，大幅減少修圖改字工作。</td>
+</tr>
+<tr>
+<td align="left"><strong>日系動漫、角色同人與遊戲立繪</strong></td>
+<td align="left"><strong>Illustrious-XL &#x2F; Pony V6</strong></td>
+<td align="left">Safetensors 原生</td>
+<td align="left">8GB 至 12GB</td>
+<td align="left">二次元解剖學人體與線條極致優化，社群動漫資源浩瀚。</td>
+</tr>
+<tr>
+<td align="left"><strong>手部骨架鎖定、姿態精準控制流水線</strong></td>
+<td align="left"><strong>SDXL 微調版</strong></td>
+<td align="left">Safetensors FP16</td>
+<td align="left">8GB 至 12GB</td>
+<td align="left">ControlNet 與 OpenPose 支援最成熟，工程化出圖成功率最高。</td>
+</tr>
+<tr>
+<td align="left"><strong>舊款顯卡、筆電移動端或輕量快速草圖</strong></td>
+<td align="left"><strong>SD 1.5 社群微調版</strong></td>
+<td align="left">Safetensors 剪枝版</td>
+<td align="left">4GB 至 6GB</td>
+<td align="left">資源消耗極低，秒級生成，適合快速驗證概念構圖。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="結語與下一步：讓好底模進入確定性工業流水線"><a href="#結語與下一步：讓好底模進入確定性工業流水線" class="headerlink" title="結語與下一步：讓好底模進入確定性工業流水線"></a>結語與下一步：讓好底模進入確定性工業流水線</h2><p>挑選出符合預算與風格的底模，只是擺脫隨機盲試的第一步。在真實的遊戲開發、插畫製作或商業專案中，想要穩定產出高水準的視覺資產，關鍵還是在於如何將底模與精準控制工具相結合。</p>
+<p>如果你想進一步了解如何透過 ControlNet 鎖定角色骨架、利用 ADetailer 自動修復五官手部，以及在 ComfyUI 中搭建多層漸進式出圖流程，歡迎延伸閱讀我們先前的架構剖析：<a href="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線</a>。選對大腦，加上穩固的管線，就能讓你的本機 AI 繪圖工作流發揮出最大的創作潛能。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>, <a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a>, <a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="複製連結" aria-label="複製連結">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>複製連結</span>
+    </button>
+
+    
+      <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
+      <a href="https://www.threads.net/intent/post?text=%E9%96%8B%E6%BA%90%20AI%20%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F22%2F%25E9%2596%258B%25E6%25BA%2590-AI-%25E7%25B9%25AA%25E5%259C%2596%25E6%25A8%25A1%25E5%259E%258B%25E9%2581%25B8%25E5%259E%258B%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BE%259D%25E9%25A1%25AF%25E5%25AD%2598%25E8%25A8%25AD%25E5%2582%2599%25E3%2580%2581%25E7%2594%259F%25E6%2588%2590%25E5%2593%2581%25E8%25B3%25AA%25E8%2588%2587%25E9%25A2%25A8%25E6%25A0%25BC%25E6%258C%2591%25E5%2587%25BA%25E5%2591%25BD%25E5%25AE%259A%25E6%25A8%25A1%25E5%259E%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
+        </svg>
+        <span>Threads</span>
+      </a>
+      <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F22%2F%25E9%2596%258B%25E6%25BA%2590-AI-%25E7%25B9%25AA%25E5%259C%2596%25E6%25A8%25A1%25E5%259E%258B%25E9%2581%25B8%25E5%259E%258B%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BE%259D%25E9%25A1%25AF%25E5%25AD%2598%25E8%25A8%25AD%25E5%2582%2599%25E3%2580%2581%25E7%2594%259F%25E6%2588%2590%25E5%2593%2581%25E8%25B3%25AA%25E8%2588%2587%25E9%25A2%25A8%25E6%25A0%25BC%25E6%258C%2591%25E5%2587%25BA%25E5%2591%25BD%25E5%25AE%259A%25E6%25A8%25A1%25E5%259E%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-line" title="Share on LINE" aria-label="Share on LINE">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33v-2.95c0-.349.28-.63.628-.63.349 0 .627.281.627.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINE</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F22%2F%25E9%2596%258B%25E6%25BA%2590-AI-%25E7%25B9%25AA%25E5%259C%2596%25E6%25A8%25A1%25E5%259E%258B%25E9%2581%25B8%25E5%259E%258B%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BE%259D%25E9%25A1%25AF%25E5%25AD%2598%25E8%25A8%25AD%25E5%2582%2599%25E3%2580%2581%25E7%2594%259F%25E6%2588%2590%25E5%2593%2581%25E8%25B3%25AA%25E8%2588%2587%25E9%25A2%25A8%25E6%25A0%25BC%25E6%258C%2591%25E5%2587%25BA%25E5%2591%25BD%25E5%25AE%259A%25E6%25A8%25A1%25E5%259E%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=%E9%96%8B%E6%BA%90%20AI%20%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F22%2F%25E9%2596%258B%25E6%25BA%2590-AI-%25E7%25B9%25AA%25E5%259C%2596%25E6%25A8%25A1%25E5%259E%258B%25E9%2581%25B8%25E5%259E%258B%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BE%259D%25E9%25A1%25AF%25E5%25AD%2598%25E8%25A8%25AD%25E5%2582%2599%25E3%2580%2581%25E7%2594%259F%25E6%2588%2590%25E5%2593%2581%25E8%25B3%25AA%25E8%2588%2587%25E9%25A2%25A8%25E6%25A0%25BC%25E6%258C%2591%25E5%2587%25BA%25E5%2591%25BD%25E5%25AE%259A%25E6%25A8%25A1%25E5%259E%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="開源 AI 繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型" data-url="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/" class="related-post-link"
+           data-rel-title="開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線"
+           data-rel-path="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/cover.jpg?v=b2985914" alt="開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">開源 AI 繪圖精準控制全解析：從 Checkpoint、LoRA 到 ComfyUI 工業級流水線</h4>
+            
+              <time class="related-post-date">2026-09-04</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/" class="related-post-link"
+           data-rel-title="用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型"
+           data-rel-path="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/cover.jpg?v=4690a881" alt="用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">用 GCP 300 美金免費額度，在 OpenCode 爽用 Gemini 最新模型</h4>
+            
+              <time class="related-post-date">2026-08-21</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/" class="related-post-link"
+           data-rel-title="Claude Code 跨工作階段訊息：讓不同 Session 互相傳話的完整用法"
+           data-rel-path="/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/cover.jpg?v=49ab829e" alt="Claude Code 跨工作階段訊息：讓不同 Session 互相傳話的完整用法" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Code 跨工作階段訊息：讓不同 Session 互相傳話的完整用法</h4>
+            
+              <time class="related-post-date">2026-08-09</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>30</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AI/">AI</a><small>45</small></li>
+  
+    <li><a href="/tags/AI-Agent/">AI Agent</a><small>11</small></li>
+  
+    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>3</small></li>
+  
+    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+  
+    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+  
+    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>3</small></li>
+  
+    <li><a href="/tags/Claude/">Claude</a><small>12</small></li>
+  
+    <li><a href="/tags/Claude-Code/">Claude Code</a><small>3</small></li>
+  
+    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+  
+    <li><a href="/tags/Command-Code/">Command Code</a><small>2</small></li>
+  
+    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+  
+    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
+  
+    <li><a href="/tags/GPT-6/">GPT-6</a><small>1</small></li>
+  
+    <li><a href="/tags/Gemini/">Gemini</a><small>1</small></li>
+  
+    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
+  
+    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
+  
+    <li><a href="/tags/LLM/">LLM</a><small>5</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
+  
+    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
+  
+    <li><a href="/tags/OpenAI/">OpenAI</a><small>9</small></li>
+  
+    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
+  
+    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
+  
+    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
+  
+    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
+  
+    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
+  
+    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
+  
+    <li><a href="/tags/React/">React</a><small>1</small></li>
+  
+    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
+  
+    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
+  
+    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
+  
+    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
+  
+    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
+  
+    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
+  
+    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
+  
+    <li><a href="/tags/Z-ai/">Z.ai</a><small>2</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
+  
+    <li><a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>13</small></li>
+  
+    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>8</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>

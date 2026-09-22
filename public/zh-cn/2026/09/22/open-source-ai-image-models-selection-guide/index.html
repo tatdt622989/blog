@@ -1,0 +1,831 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="2026 年开源 AI 绘图底模选型全攻略。深入横向测评 FLUX.1、SD 3.5、SDXL、Illustrious 与 Pony，结合显卡显存（4GB 至 24GB）、量化方案、画质表现与擅长风格（写实、二次元、排版文字），助你高效挑出最适合的开源图像模型。">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/22/open-source-ai-image-models-selection-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">
+  
+
+  <meta property="og:title" content="开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型"/>
+  <meta property="og:description" content="2026 年开源 AI 绘图底模选型全攻略。深入横向测评 FLUX.1、SD 3.5、SDXL、Illustrious 与 Pony，结合显卡显存（4GB 至 24GB）、量化方案、画质表现与擅长风格（写实、二次元、排版文字），助你高效挑出最适合的开源图像模型。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover.jpg?v=826b562c" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型">
+  <meta name="twitter:description" content="2026 年开源 AI 绘图底模选型全攻略。深入横向测评 FLUX.1、SD 3.5、SDXL、Illustrious 与 Pony，结合显卡显存（4GB 至 24GB）、量化方案、画质表现与擅长风格（写实、二次元、排版文字），助你高效挑出最适合的开源图像模型。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover.jpg?v=826b562c">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/","headline":"开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型","description":"2026 年开源 AI 绘图底模选型全攻略。深入横向测评 FLUX.1、SD 3.5、SDXL、Illustrious 与 Pony，结合显卡显存（4GB 至 24GB）、量化方案、画质表现与擅长风格（写实、二次元、排版文字），助你高效挑出最适合的开源图像模型。","datePublished":"2026-09-22T08:15:00.000Z","dateModified":"2026-09-22T08:15:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型","item":"https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/22/開源-AI-繪圖模型選型全指南：依顯存設備、生成品質與風格挑出命定模型/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/22/open-source-ai-image-models-selection-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-open-source-ai-image-models-selection-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-22T08:15:00.000Z"><a href="/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/">2026-09-22</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover-card-720.jpg?v=58c06350" alt="开源 AI 绘图模型选型全指南：显存设备、画质与风格全景对照" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover-card-480.jpg?v=480abdd3 480w, /zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover-card-720.jpg?v=58c06350 720w, /zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover-card-960.jpg?v=22097504 960w, /zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/cover.jpg?v=826b562c 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>很多创作者和独立开发者在搭建本地 AI 生图环境时，最先遭遇的痛点往往不是安装 WebUI 或 ComfyUI，而是在面对开源社区数以万计的模型权重文件时毫无头绪。选错了底模，轻则显卡显存（VRAM）直接溢出报错闪退，重则花费数小时反复抽卡，产出的画面依然充斥着塑料感与结构崩坏。</p>
+<p>开源图像生成领域早已脱离了早期的单一系列，发展成为多架构并存的成熟生态。不同的基底模型在参数规模、训练数据集侧重、自然语言理解能力以及硬件算力消耗上，存在着极为分明的边界。本文将从<strong>硬件显存门槛</strong>、<strong>画质表现与网络架构</strong>，以及<strong>擅长风格领域</strong>三大维度，全面梳理当前主流的开源绘图模型，助你精准挑出最契合自身业务与创作场景的主力模型。</p>
+<span id="more"></span>
+
+<h2 id="挑选开源底模的三大核心维度"><a href="#挑选开源底模的三大核心维度" class="headerlink" title="挑选开源底模的三大核心维度"></a>挑选开源底模的三大核心维度</h2><p>评估一款开源底模是否好用，不能脱离具体的运行环境与业务诉求，核心要考量以下三大维度：</p>
+<h3 id="1-显存占用与硬件吞吐量（VRAM）"><a href="#1-显存占用与硬件吞吐量（VRAM）" class="headerlink" title="1. 显存占用与硬件吞吐量（VRAM）"></a>1. 显存占用与硬件吞吐量（VRAM）</h3><p>模型的参数规模直接决定了显存的硬性底线。如果物理显存不足，深度学习框架会将权重卸载（Offload）到系统内存中，导致推理生成速度断崖式下跌数十倍。如今借助 <strong>GGUF</strong> 与 <strong>NF4</strong> 等模型量化（Quantization）技术，中端显卡也能跨级顺畅运行百亿参数级别的庞大模型。</p>
+<h3 id="2-底层神经网络架构（U-Net-对比-DiT）"><a href="#2-底层神经网络架构（U-Net-对比-DiT）" class="headerlink" title="2. 底层神经网络架构（U-Net 对比 DiT）"></a>2. 底层神经网络架构（U-Net 对比 DiT）</h3><p>经典的 Stable Diffusion 1.5 和 SDXL 基于 <strong>U-Net</strong> 架构，沉淀了社区中最庞大的 LoRA 和生态插件，但对长篇复杂自然语言的解析相对吃力。新一代模型如 FLUX 和 SD 3.5 则全面转向 <strong>Diffusion Transformer（DiT &#x2F; MMDiT）</strong> 架构，搭配先进的大型文本编码器，能够准确理解复杂的多主体空间方位与长提示词逻辑。</p>
+<h3 id="3-风格分化与数据集侧重"><a href="#3-风格分化与数据集侧重" class="headerlink" title="3. 风格分化与数据集侧重"></a>3. 风格分化与数据集侧重</h3><p>没有任何一个底模能兼顾所有视觉流派。以真实感见长的写实大模型，在生成日系动漫时容易显得厚重僵硬；而深度拟合于二次元动漫数据集的模型，也无法合成真实的人物肤质毛孔或物理光影衰减。</p>
+<hr>
+<h2 id="硬件显存阶梯与量化适配（4GB-至-24GB）"><a href="#硬件显存阶梯与量化适配（4GB-至-24GB）" class="headerlink" title="硬件显存阶梯与量化适配（4GB 至 24GB）"></a>硬件显存阶梯与量化适配（4GB 至 24GB）</h2><p>在下载数十 GB 大小的模型权重前，请务必先对照你的显卡配置：</p>
+<table>
+<thead>
+<tr>
+<th align="left">显存阶梯</th>
+<th align="left">代表性硬件配置</th>
+<th align="left">推荐运行模型与精度格式</th>
+<th align="left">运行表现与关键建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>入门级（4GB 至 6GB）</strong></td>
+<td align="left">GTX 1660、RTX 3050、入门轻薄本独立显卡</td>
+<td align="left"><strong>SD 1.5 社区精选微调版</strong></td>
+<td align="left">秒级疾速出图。但原生分辨率局限于 512×512，细节与人脸必须重度依赖放大算法与重绘修复。</td>
+</tr>
+<tr>
+<td align="left"><strong>主流甜点级（8GB 至 12GB）</strong></td>
+<td align="left">RTX 3060、RTX 4060、RTX 4070</td>
+<td align="left"><strong>SDXL 原生版、SD 3.5 Medium、FLUX.1 Schnell&#x2F;Dev（GGUF Q4&#x2F;NF4 量化）</strong></td>
+<td align="left">极具性价比的黄金档位。借助量化版 FLUX 与成熟的 SDXL 生态，能够流畅输出 1024×1024 高清原图。</td>
+</tr>
+<tr>
+<td align="left"><strong>高端生产力级（16GB 至 24GB）</strong></td>
+<td align="left">RTX 4080、RTX 3090、RTX 4090、Apple Silicon（36GB 以上统一内存）</td>
+<td align="left"><strong>FLUX.1 Dev（FP8&#x2F;BF16 原生版）、SD 3.5 Large（FP16）</strong></td>
+<td align="left">工作站级旗舰配置。支持原生加载高精度模型，能够承载多重 LoRA 叠加与高清局部精修，无压缩损耗。</td>
+</tr>
+</tbody></table>
+<h3 id="拯救中端显卡的量化利器：GGUF-与-NF4"><a href="#拯救中端显卡的量化利器：GGUF-与-NF4" class="headerlink" title="拯救中端显卡的量化利器：GGUF 与 NF4"></a>拯救中端显卡的量化利器：GGUF 与 NF4</h3><p>如果你的显卡仅有 8GB 或 12GB 显存，以往几乎无法本地运行像 FLUX 这种 12B 参数量级的超大模型。如今在 <strong>ComfyUI</strong> 或 <strong>Forge</strong> 等现代化推理工具中，你可以直接挂载 <strong>GGUF（Q4_K_S、Q5_K_S）</strong> 或 <strong>NF4</strong> 格式的量化底模。这些技术将 16 位的原始浮点数压缩为 4 位或 8 位，显存占用直降至 7GB 到 11GB 区间，而肉眼可见的画质损耗微乎其微，是中低预算创作者的必学技巧。</p>
+<hr>
+<h2 id="主流开源模型深度解析"><a href="#主流开源模型深度解析" class="headerlink" title="主流开源模型深度解析"></a>主流开源模型深度解析</h2><p>当前开源生图生态主要由以下四大核心流派组成：</p>
+<h3 id="1-FLUX-1（Dev-x2F-Schnell）：真实光影与文字排版的天花板"><a href="#1-FLUX-1（Dev-x2F-Schnell）：真实光影与文字排版的天花板" class="headerlink" title="1. FLUX.1（Dev &#x2F; Schnell）：真实光影与文字排版的天花板"></a>1. FLUX.1（Dev &#x2F; Schnell）：真实光影与文字排版的天花板</h3><p>由原 Stable Diffusion 核心研发团队创立的 <a target="_blank" rel="noopener" href="https://blackforestlabs.ai/">Black Forest Labs</a> 出品，拥有 120 亿（12B）参数的 DiT 架构，是目前业界公认在<strong>真实质感</strong>和<strong>提示词遵从度</strong>上的旗舰基准。</p>
+<ul>
+<li><strong>版本划分</strong>：<strong>FLUX.1 [schnell]</strong> 采用 Apache 2.0 开源协议，专为 4 步极速推理设计；<strong>FLUX.1 [dev]</strong> 则是画质更极致的非商用开源权重，适合追求高精度成品的创作。</li>
+<li><strong>核心优势</strong>：<ol>
+<li><strong>告别假人塑料感</strong>：真实的皮肤肌理微观纹理、瞳孔反光、眼周细纹与物理次表面散射表现极为惊艳，彻底杜绝了以往 AI 图片常见的油光假面感。</li>
+<li><strong>图中英文字体渲染</strong>：能够在广告牌、T恤印花、手持标语上精准绘制出完全正确的英文单词与排版标题，有效解决了生图工具长久以来的乱码痛点。</li>
+<li><strong>复杂多主体理解</strong>：配合 T5 文本编码器，能精细执行带有明确前后、左右方位词的多物体交互提示词。</li>
+</ol>
+</li>
+<li><strong>局限性</strong>：原生权重极其笨重，对硬件显存要求严苛；在生成日系扁平二次元风格时，底模天生偏向欧美写实厚涂，需要挂载特定风格 LoRA 进行矫正。</li>
+</ul>
+<h3 id="2-Stable-Diffusion-3-5（Large-x2F-Medium）：兼顾商用合规与架构跃升"><a href="#2-Stable-Diffusion-3-5（Large-x2F-Medium）：兼顾商用合规与架构跃升" class="headerlink" title="2. Stable Diffusion 3.5（Large &#x2F; Medium）：兼顾商用合规与架构跃升"></a>2. Stable Diffusion 3.5（Large &#x2F; Medium）：兼顾商用合规与架构跃升</h3><p><a target="_blank" rel="noopener" href="https://stability.ai/">Stability AI</a> 推出的最新一代架构，基于多模态扩散变换器（MMDiT），彻底修复了早期版本在人体四肢解剖结构上的变形问题。</p>
+<ul>
+<li><strong>版本划分</strong>：包含面向专业硬件的 8B 参数 <strong>SD 3.5 Large</strong>，以及专为消费级 8GB 显存量身定制的 2.5B 参数 <strong>SD 3.5 Medium</strong>。</li>
+<li><strong>核心优势</strong>：商业授权体系清晰友好，人体动态比例协调，在文字排版与构图平衡性上表现扎实，是注重商用合规团队的首选基石。</li>
+<li><strong>局限性</strong>：社区生态起步晚于 SDXL，现有的第三方微调大模型与专属 LoRA 库仍在积累与追赶之中。</li>
+</ul>
+<h3 id="3-SDXL（Stable-Diffusion-XL）：生态繁荣度无出其右的工业基石"><a href="#3-SDXL（Stable-Diffusion-XL）：生态繁荣度无出其右的工业基石" class="headerlink" title="3. SDXL（Stable Diffusion XL）：生态繁荣度无出其右的工业基石"></a>3. SDXL（Stable Diffusion XL）：生态繁荣度无出其右的工业基石</h3><p>尽管在绝对参数量和新架构上已被后辈超越，但采用 U-Net 骨干的 <strong>SDXL</strong> 仍然是目前开源社区中生态最完善、工具链最完备的通用模型。</p>
+<ul>
+<li><strong>核心优势</strong>：在 <a target="_blank" rel="noopener" href="https://civitai.com/">Civitai</a> 和 <a target="_blank" rel="noopener" href="https://huggingface.co/">Hugging Face</a> 上拥有最浩瀚的细分微调 Checkpoint（如 Juggernaut XL、RealVisXL 等）、数以万计的角色与画风 LoRA，以及覆盖最全的 ControlNet 姿态控制模块。</li>
+<li><strong>适用人群</strong>：使用 8GB 到 12GB 显存显卡，需要严密控制人物动作骨骼、线稿，或是在工作流中需要同时叠加多款 LoRA 的创作者。</li>
+</ul>
+<h3 id="4-Illustrious-与-Pony-Diffusion：二次元动漫插画的巅峰对决"><a href="#4-Illustrious-与-Pony-Diffusion：二次元动漫插画的巅峰对决" class="headerlink" title="4. Illustrious 与 Pony Diffusion：二次元动漫插画的巅峰对决"></a>4. Illustrious 与 Pony Diffusion：二次元动漫插画的巅峰对决</h3><p>如果你深耕动漫同人插画、二次元游戏美术立绘或轻小说视觉概念，这两大基于 SDXL 深度训练的二次元专精模型是绝对不可绕开的主力：</p>
+<ul>
+<li><strong>Pony Diffusion V6</strong>：重度基于 Danbooru 标签体系（Tagging）训练。最大优势在于对二次元专有特征词（如视角、发饰、特定角色服装细节）具备近乎百分之百的触发准确率，坐拥全网最庞大的动漫角色 LoRA 库。但其提示词格式门槛较高，且画风具有明显的辨识固化感。</li>
+<li><strong>Illustrious-XL（与 NoobAI 系列）</strong>：新一代日系二次元底模的领跑者。与 Pony 相比，它具备更出色的自然语言提示词解析能力，在原生人体解剖结构、现代动漫色彩动态范围与笔触细腻度上更加出众，摆脱了机械标签感，深受专业插画师青睐。</li>
+</ul>
+<hr>
+<h2 id="选型决策一览表"><a href="#选型决策一览表" class="headerlink" title="选型决策一览表"></a>选型决策一览表</h2><table>
+<thead>
+<tr>
+<th align="left">创作场景与核心需求</th>
+<th align="left">推荐模型</th>
+<th align="left">优选格式与精度</th>
+<th align="left">建议显存</th>
+<th align="left">核心选型逻辑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>商业摄影、写实肖像与电影级质感</strong></td>
+<td align="left"><strong>FLUX.1 [dev]</strong></td>
+<td align="left">GGUF Q5&#x2F;Q8 或 FP8</td>
+<td align="left">12GB 至 16GB</td>
+<td align="left">皮肤微观肌理与真实光影衰减的天花板级别呈现。</td>
+</tr>
+<tr>
+<td align="left"><strong>平面海报、字体包装与图中英文字</strong></td>
+<td align="left"><strong>FLUX.1 或 SD 3.5 Large</strong></td>
+<td align="left">GGUF Q4 或 FP8</td>
+<td align="left">8GB 至 16GB</td>
+<td align="left">英文拼写准确度极高，大幅减少后期修图工作量。</td>
+</tr>
+<tr>
+<td align="left"><strong>二次元动漫、角色同人与游戏立绘</strong></td>
+<td align="left"><strong>Illustrious-XL &#x2F; Pony V6</strong></td>
+<td align="left">Safetensors 原生版</td>
+<td align="left">8GB 至 12GB</td>
+<td align="left">专为动漫人体与唯美线条深度优化，二次元生态支持极其强大。</td>
+</tr>
+<tr>
+<td align="left"><strong>骨骼姿态锁定、确定性控制工作流</strong></td>
+<td align="left"><strong>SDXL 社区微调版</strong></td>
+<td align="left">Safetensors FP16</td>
+<td align="left">8GB 至 12GB</td>
+<td align="left">ControlNet 与 OpenPose 兼容性最佳，工程化交付成功率最高。</td>
+</tr>
+<tr>
+<td align="left"><strong>老旧显卡、笔记本移动端与极速草图</strong></td>
+<td align="left"><strong>SD 1.5 社区精简版</strong></td>
+<td align="left">Safetensors 剪枝版</td>
+<td align="left">4GB 至 6GB</td>
+<td align="left">极低显存占用，秒级出图，极度适合概念前期的灵感发散。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="结语与下一步：将优质底模融入工业化生产管线"><a href="#结语与下一步：将优质底模融入工业化生产管线" class="headerlink" title="结语与下一步：将优质底模融入工业化生产管线"></a>结语与下一步：将优质底模融入工业化生产管线</h2><p>选定适合自身硬件与业务流派的基底模型，只是摆脱盲目试错的第一步。在实际的商业设计与游戏美术开发中，要想持续稳定地产出高质量视觉资产，关键在于如何将底模与高精度的控制工具无缝串联。</p>
+<p>如果你想进一步了解如何利用 ControlNet 严密锁定人物肢体动作、借助 ADetailer 自动化修复面部微表情与手部细节，以及如何在 ComfyUI 中搭建分层渐进式的工业级流水线，欢迎参考我们此前的深度技术复盘：<a href="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/">开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线</a>。选对底模大模型，配以工程化管线，方能彻底释放本地 AI 绘图的无限生产力。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型" data-url="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F22%2Fopen-source-ai-image-models-selection-guide%2F&title=%E5%BC%80%E6%BA%90%20AI%20%E7%BB%98%E5%9B%BE%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8C%89%E6%98%BE%E5%AD%98%E8%AE%BE%E5%A4%87%E3%80%81%E7%94%BB%E8%B4%A8%E8%A1%A8%E7%8E%B0%E4%B8%8E%E9%A3%8E%E6%A0%BC%E6%8C%91%E5%87%BA%E5%90%88%E9%80%82%E6%A8%A1%E5%9E%8B" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F22%2Fopen-source-ai-image-models-selection-guide%2F&title=%E5%BC%80%E6%BA%90%20AI%20%E7%BB%98%E5%9B%BE%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8C%89%E6%98%BE%E5%AD%98%E8%AE%BE%E5%A4%87%E3%80%81%E7%94%BB%E8%B4%A8%E8%A1%A8%E7%8E%B0%E4%B8%8E%E9%A3%8E%E6%A0%BC%E6%8C%91%E5%87%BA%E5%90%88%E9%80%82%E6%A8%A1%E5%9E%8B" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=%E5%BC%80%E6%BA%90%20AI%20%E7%BB%98%E5%9B%BE%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8C%89%E6%98%BE%E5%AD%98%E8%AE%BE%E5%A4%87%E3%80%81%E7%94%BB%E8%B4%A8%E8%A1%A8%E7%8E%B0%E4%B8%8E%E9%A3%8E%E6%A0%BC%E6%8C%91%E5%87%BA%E5%90%88%E9%80%82%E6%A8%A1%E5%9E%8B&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F22%2Fopen-source-ai-image-models-selection-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型" data-url="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/" class="related-post-link"
+           data-rel-title="开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线"
+           data-rel-path="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914" alt="开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线</h4>
+            
+              <time class="related-post-date">2026-09-04</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/09/claude-code-cross-session-messaging/" class="related-post-link"
+           data-rel-title="Claude Code 跨会话消息：让不同 Session 相互通信的完整指南"
+           data-rel-path="/zh-cn/2026/08/09/claude-code-cross-session-messaging/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e" alt="Claude Code 跨会话消息：让不同 Session 相互通信的完整指南" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Code 跨会话消息：让不同 Session 相互通信的完整指南</h4>
+            
+              <time class="related-post-date">2026-08-09</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/" class="related-post-link"
+           data-rel-title="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策"
+           data-rel-path="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" alt="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策</h4>
+            
+              <time class="related-post-date">2026-09-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>11</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/tags/AI/">AI</a><small>22</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>5</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>7</small></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>5</small></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>7</small></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
