@@ -1,0 +1,777 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vibe Coding 做出 App 後怎麼上架？2026 iOS 與 Android 雙平台準備、測試與送審教學 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="從 Vibe Coding 原型走到 App Store 與 Google Play，整理 2026 年雙平台帳號、簽署建置、實機測試、隱私申報與送審步驟，並示範 AI 能幫忙盤點哪些資料。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  
+
+  <meta property="og:title" content="Vibe Coding 做出 App 後怎麼上架？2026 iOS 與 Android 雙平台準備、測試與送審教學"/>
+  <meta property="og:description" content="從 Vibe Coding 原型走到 App Store 與 Google Play，整理 2026 年雙平台帳號、簽署建置、實機測試、隱私申報與送審步驟，並示範 AI 能幫忙盤點哪些資料。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover.png?v=7a7c014a" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vibe Coding 做出 App 後怎麼上架？2026 iOS 與 Android 雙平台準備、測試與送審教學">
+  <meta name="twitter:description" content="從 Vibe Coding 原型走到 App Store 與 Google Play，整理 2026 年雙平台帳號、簽署建置、實機測試、隱私申報與送審步驟，並示範 AI 能幫忙盤點哪些資料。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover.png?v=7a7c014a">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/","url":"https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/","headline":"Vibe Coding 做出 App 後怎麼上架？2026 iOS 與 Android 雙平台準備、測試與送審教學","description":"從 Vibe Coding 原型走到 App Store 與 Google Play，整理 2026 年雙平台帳號、簽署建置、實機測試、隱私申報與送審步驟，並示範 AI 能幫忙盤點哪些資料。","datePublished":"2026-09-23T04:00:00.000Z","dateModified":"2026-09-23T04:00:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover.png"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"獨立開發","item":"https://blog.6yuwei.com/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"Vibe Coding 做出 App 後怎麼上架？2026 iOS 與 Android 雙平台準備、測試與送審教學","item":"https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/23/vibe-coding-app-store-google-play-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Vibe-Coding-App-雙平台上架教學" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-23T04:00:00.000Z"><a href="/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">2026-09-23</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Vibe Coding 做出 App 後怎麼上架？2026 iOS 與 Android 雙平台準備、測試與送審教學</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover-card-720.jpg?v=6a5c6aca" alt="兩支手機、發布檢查表與 AI 工作流程構成的雙平台上架示意圖" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover-card-480.jpg?v=5886e5b9 480w, /2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover-card-720.jpg?v=6a5c6aca 720w, /2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover-card-960.jpg?v=1fca2bbb 960w, /2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover-card-1280.jpg?v=17a44eb1 1280w, /2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/cover.png?v=7a7c014a 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>用 Vibe Coding 做出能操作的畫面，只是上架的起點。商店要收到的是能簽署、安裝、通過實機測試的 App，還要有正確的資料揭露、商店頁面和審核資訊。這篇以第一次同時送 App Store 與 Google Play 的獨立開發者為例，帶你把原型變成可送審版本，也說清楚 AI 能在哪些地方省時間、哪些結論必須自己驗證。</p>
+<span id="more"></span>
+
+<h2 id="第一步：確認做出的是網站，還是能上架的-App"><a href="#第一步：確認做出的是網站，還是能上架的-App" class="headerlink" title="第一步：確認做出的是網站，還是能上架的 App"></a>第一步：確認做出的是網站，還是能上架的 App</h2><p>先問自己：手上是否有可以建置與簽署的 iOS、Android 專案，以及能在實體手機安裝的版本？瀏覽器裡跑得動的網頁或 PWA，並不會自動變成兩個商店可提交的安裝檔。若你使用跨平台框架，仍須確認它能產出 iOS 建置版本和 Android App Bundle，並能管理各平台的權限、簽署與商店設定。</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>手上已有</th>
+<th>下一步要證明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>網站、PWA 或 AI 產生的前端</td>
+<td>選擇可維護的 App 技術方案，列出原生功能與平台限制；不要把「網頁預覽成功」當成上架完成。</td>
+</tr>
+<tr>
+<td>iOS、Android 專案</td>
+<td>在實體 iPhone 與 Android 手機安裝，確認啟動、登入、核心流程及權限正常。</td>
+</tr>
+<tr>
+<td>可安裝版本</td>
+<td>檢查簽署、版本號、資料流、商店素材與送審表單是否與實際功能一致。</td>
+</tr>
+</tbody></table></div>
+<p>Apple 的<a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">審核準則 4.2</a>要求 App 具備足夠的功能與價值；若只是把網站包成殼，可能無法通過審核。先把產品用途做清楚，再決定如何封裝。</p>
+<h2 id="上架前要準備的帳號、檔案與資料"><a href="#上架前要準備的帳號、檔案與資料" class="headerlink" title="上架前要準備的帳號、檔案與資料"></a>上架前要準備的帳號、檔案與資料</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>App Store</th>
+<th>Google Play</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>開發者帳號</td>
+<td><a target="_blank" rel="noopener" href="https://developer.apple.com/programs/enroll/">Apple Developer Program</a> 年費 99 美元；個人帳號會顯示法定姓名，組織申請涉及 D-U-N-S Number。</td>
+<td><a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/6112435?hl=en-AU">Play Console</a> 一次性註冊費 25 美元，並須完成身分驗證。</td>
+</tr>
+<tr>
+<td>建置格式</td>
+<td>使用 Xcode 上傳已簽署的 iOS 建置版本。自 2026 年 4 月 28 日起，提交 App Store Connect 的 iOS App 須使用 <a target="_blank" rel="noopener" href="https://developer.apple.com/news/upcoming-requirements/">Xcode 26 以上與 iOS 26 SDK</a> 建置。</td>
+<td>新 App 使用 <a target="_blank" rel="noopener" href="https://developer.android.com/guide/app-bundle">Android App Bundle（AAB）</a> 與 Play App Signing。自 2026 年 8 月 31 日起，手機與平板的新 App 及更新須<a target="_blank" rel="noopener" href="https://developer.android.com/google/play/requirements/target-sdk">以 Android 16／API 36 以上為目標</a>；其他裝置類別有例外。</td>
+</tr>
+<tr>
+<td>識別與素材</td>
+<td>確定 App 名稱、Bundle ID、版本、圖示、實際畫面截圖、說明與支援網址。</td>
+<td>確定套件名稱、版本、圖示、實際畫面截圖、商店說明與聯絡資訊。</td>
+</tr>
+<tr>
+<td>法規與審核資料</td>
+<td>隱私權政策、<a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy">App Privacy</a>、年齡分級、審核測試帳號與操作說明。</td>
+<td>隱私權政策、<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/10787469?hl=en-AE">Data safety</a>、內容分級、目標受眾與廣告聲明；依帳號類型準備測試資格。</td>
+</tr>
+</tbody></table></div>
+<p>費用以官方頁面標示的美元金額為準，實際付款幣別、稅費與帳號資格依所在地及申請方式確認。若以公司名義上架，先決定商店要顯示的法律實體，避免做到最後才發現帳號類型不符。</p>
+<p>此外，先盤點登入方式、通知、相機、定位、分析、廣告、付款與第三方 SDK。表單問的是<strong>實際資料處理行為</strong>，不是程式碼裡是否出現某個套件名稱。Apple 要求申報 App 及第三方程式碼的資料處理；Google 的 Data safety 也要求開發者申報，即使 App 宣稱不蒐集資料也要完成相應欄位。若提供帳號建立功能，Apple 要求在 App 中可發起<a target="_blank" rel="noopener" href="https://developer.apple.com/support/offering-account-deletion-in-your-app/">帳號刪除</a>；Google 另要求在 App 中與網頁提供<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/13327111?hl=en">刪除途徑</a>。</p>
+<h2 id="AI-最適合做的三種上架準備工作"><a href="#AI-最適合做的三種上架準備工作" class="headerlink" title="AI 最適合做的三種上架準備工作"></a>AI 最適合做的三種上架準備工作</h2><p>AI 可以幫你整理證據與找遺漏，但它看不到你未提供的後端設定、第三方儀表板與實際網路流量。把它當成整理助手，輸出要能追溯到檔案或實測結果。</p>
+<p><strong>一、盤點發行缺口。</strong>把專案設定、依賴清單、iOS／Android 建置設定與功能列表交給 AI，要求它列出：已有證據、缺少項目、仍待確認的問題。提示詞可以這樣寫：</p>
+<blockquote>
+<p>請依照我提供的專案檔案，製作 iOS 與 Google Play 上架盤點表。逐項列出建置格式、簽署、版本號、權限、SDK、商店素材及測試方法；每個結論附檔案位置或我提供的證據。沒有證據的地方標「待確認」，不要猜測。不要要求我貼私鑰、憑證或密碼。</p>
+</blockquote>
+<p><strong>二、草擬資料流與隱私申報。</strong>提供實際使用的 SDK、API、權限、資料保存方式與第三方服務清單，請 AI 整理「收集什麼、為何使用、傳給誰、可否刪除」的矩陣，再由開發者對照伺服器紀錄、服務供應商文件與商店表單確認。<strong>AI 草稿不能直接當作 App Privacy 或 Data safety 的事實聲明。</strong></p>
+<p><strong>三、產生實機測試與審核說明。</strong>讓 AI 根據真實功能列出首次開啟、註冊登入、權限拒絕、弱網、付款、登出與刪除帳號的測試案例；把已通過的結果和操作路徑整理成審核員可讀的說明。截圖應呈現實際 App 畫面，商店文案不可承諾尚未做出的功能。</p>
+<h2 id="先在兩支實體手機跑完關鍵流程"><a href="#先在兩支實體手機跑完關鍵流程" class="headerlink" title="先在兩支實體手機跑完關鍵流程"></a>先在兩支實體手機跑完關鍵流程</h2><p>在送審前，至少用一支實體 iPhone 和一支實體 Android 手機安裝候選版本。逐項記錄<strong>裝置、系統版本、App 版本、操作步驟與結果</strong>。建置成功只能證明產出檔案，不能證明使用者真的能完成流程。</p>
+<ul>
+<li>從全新安裝開始，檢查啟動畫面、註冊或登入，以及主要任務能否完成。</li>
+<li>拒絕定位、通知、相機等權限，確認 App 不會卡死，說明文字也與用途一致。</li>
+<li>測試斷網、慢網、連結跳轉、前景與背景切換，以及重新開啟後的狀態。</li>
+<li>若有購買、訂閱或建立帳號，分別驗證購買恢復、取消流程、登出及刪除帳號。</li>
+<li>使用供審核員測試的帳號走一次完整流程；需要登入的 App 應依<a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple 審核準則 2.1</a>提供有效示範帳號或示範模式及必要說明。</li>
+</ul>
+<p>若 App 販售數位功能或內容，先對照 <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple App Review Guideline 3.1.1</a> 和 <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9858738?hl=en">Google Play 付款政策</a>。兩邊對應用內付款各有規則與地區例外，不要讓 AI 只憑一句「接 Stripe 就好」決定結帳流程。</p>
+<h2 id="iOS：從-App-Store-Connect-到送審"><a href="#iOS：從-App-Store-Connect-到送審" class="headerlink" title="iOS：從 App Store Connect 到送審"></a>iOS：從 App Store Connect 到送審</h2><ol>
+<li>申請並啟用 Apple Developer Program，確認個人或組織身分、合約與付款設定。</li>
+<li>在 App Store Connect 建立 <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app">App 記錄</a>，設定名稱、主要語言、Bundle ID 與 SKU；讓程式中的識別碼與記錄一致。</li>
+<li>使用符合當前 SDK 要求的 Xcode 建置、簽署並上傳。先用 <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/">TestFlight</a> 測試；外部測試的首個建置版本可能需要 Beta App Review。</li>
+<li>填寫商店說明、實際截圖、支援及隱私權政策網址、App Privacy、年齡分級與需要的其他聲明。把登入方式、測試帳號及特殊操作寫給審核員。</li>
+<li>選擇已測試的建置版本，檢查所有必填欄位，然後依 <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app">App Store Connect 送審流程</a>提交。通過審核後再確認實際上架狀態與商店頁面。</li>
+</ol>
+<p>如果在歐盟提供 App，還須依你的發行範圍與身分，檢查 App Store Connect 的交易者身分要求；不要套用別人的勾選結果。</p>
+<h2 id="Android：從-Play-Console-到正式發布"><a href="#Android：從-Play-Console-到正式發布" class="headerlink" title="Android：從 Play Console 到正式發布"></a>Android：從 Play Console 到正式發布</h2><ol>
+<li>建立 Play Console 開發者帳號、完成身分驗證。部分新個人帳號還須透過 Play Console 手機 App 以<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14316361?hl=en">實體 Android 裝置驗證</a>。</li>
+<li>在 Play Console <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9859152?hl=en&rd=2">建立 App</a>，確認套件名稱、商店資料及聯絡資訊。產出已簽署的 AAB，設定 Play App Signing，並檢查適用的 target API 要求。</li>
+<li>完成商店頁面、實際截圖、隱私權政策、Data safety、內容分級、目標受眾及廣告等<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9867159?hl=en">App content 聲明</a>。</li>
+<li>先用內部或封閉測試軌道安裝與驗證。若是 <strong>2023 年 11 月 13 日後建立的個人開發者帳號</strong>，正式版申請前須先完成<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14151465?hl=en">至少 12 名測試者連續加入封閉測試 14 天</a>，再申請正式版存取權；不要把這項條件誤套到所有舊帳號或組織帳號。</li>
+<li>達到帳號適用條件後，選擇已驗證的 AAB，依 <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9859348?hl=en">發布軌道流程</a>建立正式版並送審。審核通過後，核對實際發布範圍、下載、啟動與商店資訊。</li>
+</ol>
+<p>若 App <strong>本身</strong>能生成 AI 內容，還要檢查 <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14094294?hl=en-GB">Google Play 的 AI 生成內容政策</a>，包括適用情況下的使用者檢舉機制。用 AI 協助寫程式，與向使用者提供 AI 生成內容，是兩件不同的事。</p>
+<h2 id="送審前最後核對"><a href="#送審前最後核對" class="headerlink" title="送審前最後核對"></a>送審前最後核對</h2><ul>
+<li>兩個平台各有一份已安裝、已走完核心流程的候選版本，版本號與商店選取的建置檔一致。</li>
+<li>截圖、文案、權限提示、資料申報與實際行為一致；隱私權政策、支援網址及刪除途徑可開啟。</li>
+<li>審核員可進入需要登入的功能；付款、訂閱及帳號功能已用對應測試環境驗證。</li>
+<li>已依帳號類型完成 Apple／Google 要求的測試與身分步驟；發布後安排首次安裝與商店頁面複查。</li>
+</ul>
+<p>AI 能把檢查清單、測試案例與商店文案做得更快，但真正的上架證據是<strong>可安裝的建置版本、實機結果與準確的申報</strong>。本文的官方規則查核於 2026 年 9 月 23 日；提交當天，仍要以連結的 Apple 與 Google 官方頁面和後台提示為準。</p>
+<p>完成上架後，若要處理商店頁面的曝光與轉換，可以接著看本站的 <a href="/2026/08/25/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85%E5%BF%85%E8%AE%80%EF%BC%9AApp-%E4%B8%8A%E6%9E%B6%E8%88%87-ASO-%E5%AF%A6%E6%88%B0%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8A%EF%BC%8C%E5%BE%9E%E9%9B%B6%E6%89%93%E9%80%A0%E9%AB%98%E6%8E%92%E5%90%8D%E7%9A%84%E5%A2%9E%E9%95%B7%E9%A3%9B%E8%BC%AA/">App 上架與 ASO 實戰手冊</a>。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/Vibe-Coding/">Vibe Coding</a>, <a href="/tags/App-Store/">App Store</a>, <a href="/tags/Google-Play/">Google Play</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="複製連結" aria-label="複製連結">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>複製連結</span>
+    </button>
+
+    
+      <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
+      <a href="https://www.threads.net/intent/post?text=Vibe%20Coding%20%E5%81%9A%E5%87%BA%20App%20%E5%BE%8C%E6%80%8E%E9%BA%BC%E4%B8%8A%E6%9E%B6%EF%BC%9F2026%20iOS%20%E8%88%87%20Android%20%E9%9B%99%E5%B9%B3%E5%8F%B0%E6%BA%96%E5%82%99%E3%80%81%E6%B8%AC%E8%A9%A6%E8%88%87%E9%80%81%E5%AF%A9%E6%95%99%E5%AD%B8%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FVibe-Coding-App-%25E9%259B%2599%25E5%25B9%25B3%25E5%258F%25B0%25E4%25B8%258A%25E6%259E%25B6%25E6%2595%2599%25E5%25AD%25B8%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
+        </svg>
+        <span>Threads</span>
+      </a>
+      <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FVibe-Coding-App-%25E9%259B%2599%25E5%25B9%25B3%25E5%258F%25B0%25E4%25B8%258A%25E6%259E%25B6%25E6%2595%2599%25E5%25AD%25B8%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-line" title="Share on LINE" aria-label="Share on LINE">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33v-2.95c0-.349.28-.63.628-.63.349 0 .627.281.627.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINE</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FVibe-Coding-App-%25E9%259B%2599%25E5%25B9%25B3%25E5%258F%25B0%25E4%25B8%258A%25E6%259E%25B6%25E6%2595%2599%25E5%25AD%25B8%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Vibe%20Coding%20%E5%81%9A%E5%87%BA%20App%20%E5%BE%8C%E6%80%8E%E9%BA%BC%E4%B8%8A%E6%9E%B6%EF%BC%9F2026%20iOS%20%E8%88%87%20Android%20%E9%9B%99%E5%B9%B3%E5%8F%B0%E6%BA%96%E5%82%99%E3%80%81%E6%B8%AC%E8%A9%A6%E8%88%87%E9%80%81%E5%AF%A9%E6%95%99%E5%AD%B8&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F09%2F23%2FVibe-Coding-App-%25E9%259B%2599%25E5%25B9%25B3%25E5%258F%25B0%25E4%25B8%258A%25E6%259E%25B6%25E6%2595%2599%25E5%25AD%25B8%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Vibe Coding 做出 App 後怎麼上架？2026 iOS 與 Android 雙平台準備、測試與送審教學" data-url="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/06/18/claude-codex-quota-guide/" class="related-post-link"
+           data-rel-title="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法"
+           data-rel-path="/2026/06/18/claude-codex-quota-guide/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/06/18/claude-codex-quota-guide/cover.webp?v=fa6a9f8f" alt="Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/" class="related-post-link"
+           data-rel-title="Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南"
+           data-rel-path="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/cover-v2.jpg?v=4beac131" alt="Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南</h4>
+            
+              <time class="related-post-date">2026-05-06</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/06/15/aseprite-install-guide/" class="related-post-link"
+           data-rel-title="Aseprite 安裝教學：踏進 AI Pixel Art 的第一步"
+           data-rel-path="/2026/06/15/aseprite-install-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/06/15/aseprite-install-guide/cover-v2.png?v=0d1ef863" alt="Aseprite 安裝教學：踏進 AI Pixel Art 的第一步" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Aseprite 安裝教學：踏進 AI Pixel Art 的第一步</h4>
+            
+              <time class="related-post-date">2026-06-15</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>32</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/tags/AI/"><span>AI</span><small>47</small></a></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
+  
+    <li><a href="/tags/Claude/"><span>Claude</span><small>13</small></a></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
+  
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>12</small></a></li>
+  
+    <li><a href="/tags/Codex/"><span>Codex</span><small>12</small></a></li>
+  
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>10</small></a></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>8</small></a></li>
+  
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
+  
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
+  
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
+  
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
+  
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>

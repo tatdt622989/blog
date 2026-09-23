@@ -1,0 +1,767 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="面向第一次发布移动应用的 Vibe Coding 开发者，梳理 2026 年 iOS 与 Android 的账号、签名打包、真机测试、隐私申报和审核流程，以及 AI 能提供的实际帮助。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  
+
+  <meta property="og:title" content="Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南"/>
+  <meta property="og:description" content="面向第一次发布移动应用的 Vibe Coding 开发者，梳理 2026 年 iOS 与 Android 的账号、签名打包、真机测试、隐私申报和审核流程，以及 AI 能提供的实际帮助。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png?v=7a7c014a" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南">
+  <meta name="twitter:description" content="面向第一次发布移动应用的 Vibe Coding 开发者，梳理 2026 年 iOS 与 Android 的账号、签名打包、真机测试、隐私申报和审核流程，以及 AI 能提供的实际帮助。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png?v=7a7c014a">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/","headline":"Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南","description":"面向第一次发布移动应用的 Vibe Coding 开发者，梳理 2026 年 iOS 与 Android 的账号、签名打包、真机测试、隐私申报和审核流程，以及 AI 能提供的实际帮助。","datePublished":"2026-09-23T04:00:00.000Z","dateModified":"2026-09-23T04:00:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"独立开发","item":"https://blog.6yuwei.com/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/"},{"@type":"ListItem","position":3,"name":"Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南","item":"https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4a3d076f03">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/23/Vibe-Coding-App-雙平台上架教學/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/23/vibe-coding-app-store-google-play-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-vibe-coding-app-store-google-play-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-23T04:00:00.000Z"><a href="/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/">2026-09-23</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-720.jpg?v=6a5c6aca" alt="两部手机、发布检查表和 AI 工作流程组成的双平台上架示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-480.jpg?v=5886e5b9 480w, /zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-720.jpg?v=6a5c6aca 720w, /zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-960.jpg?v=1fca2bbb 960w, /zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-1280.jpg?v=17a44eb1 1280w, /zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png?v=7a7c014a 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>用 Vibe Coding 做出能操作的原型，离应用商店上架还有一段距离。商店需要的是可以签名、安装并通过真机验证的应用，还需要与实际功能一致的隐私声明、商店资料和审核说明。本文面向第一次同时发布 iOS 和 Android 应用的独立开发者，按准备、测试、提交的顺序梳理流程，并给出 AI 可以直接参与的工作。</p>
+<span id="more"></span>
+
+<h2 id="先分清：你做的是网页，还是可发布的移动应用"><a href="#先分清：你做的是网页，还是可发布的移动应用" class="headerlink" title="先分清：你做的是网页，还是可发布的移动应用"></a>先分清：你做的是网页，还是可发布的移动应用</h2><p>先检查手里是否有能构建、签名的 iOS 与 Android 工程，以及能安装到真机的版本。浏览器中的网页或 PWA 即使运行正常，也不会自动成为商店可提交的安装包。使用跨平台框架时，同样要确认它可以生成 iOS 构建产物和 Android App Bundle，并能处理两端的权限、签名和配置。</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>当前成果</th>
+<th>还需要验证什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>网页、PWA 或 AI 生成的前端</td>
+<td>选定可维护的移动端方案，明确原生能力与平台限制。</td>
+</tr>
+<tr>
+<td>iOS 和 Android 工程</td>
+<td>在实体 iPhone 和 Android 手机上安装，跑通启动、登录、核心操作及权限流程。</td>
+</tr>
+<tr>
+<td>已生成安装包</td>
+<td>核对签名、版本号、数据处理、商店素材和审核表单。</td>
+</tr>
+</tbody></table></div>
+<p>Apple 的<a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">审核指南 4.2</a>要求应用提供足够的功能与价值。仅给网站套一层容器，可能无法过审；先把移动端产品体验和用途做扎实。</p>
+<h2 id="两个平台各要准备什么"><a href="#两个平台各要准备什么" class="headerlink" title="两个平台各要准备什么"></a>两个平台各要准备什么</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>App Store</th>
+<th>Google Play</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发者账号</td>
+<td><a target="_blank" rel="noopener" href="https://developer.apple.com/programs/enroll/">Apple Developer Program</a> 年费 99 美元；个人账号展示法定姓名，组织申请涉及 D-U-N-S Number。</td>
+<td><a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/6112435?hl=en-AU">Play Console</a> 一次性注册费 25 美元，还需完成身份验证。</td>
+</tr>
+<tr>
+<td>构建要求</td>
+<td>使用 Xcode 上传已签名的 iOS 构建版本。自 2026 年 4 月 28 日起，提交至 App Store Connect 的 iOS 应用须使用 <a target="_blank" rel="noopener" href="https://developer.apple.com/news/upcoming-requirements/">Xcode 26 或更新版本及 iOS 26 SDK</a> 构建。</td>
+<td>新应用使用 <a target="_blank" rel="noopener" href="https://developer.android.com/guide/app-bundle">Android App Bundle（AAB）</a> 与 Play App Signing。自 2026 年 8 月 31 日起，手机和平板的新应用及更新须<a target="_blank" rel="noopener" href="https://developer.android.com/google/play/requirements/target-sdk">以 Android 16／API 36 或更高版本为目标</a>；其他设备类别有例外。</td>
+</tr>
+<tr>
+<td>基础资料</td>
+<td>应用名称、Bundle ID、版本、图标、真实界面截图、描述与支持网址。</td>
+<td>包名、版本、图标、真实界面截图、商店描述与联系信息。</td>
+</tr>
+<tr>
+<td>声明与审核</td>
+<td>隐私政策、<a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy">App Privacy</a>、年龄分级、审核测试账号与操作说明。</td>
+<td>隐私政策、<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/10787469?hl=en-AE">Data safety</a>、内容分级、目标受众与广告声明，以及适用的测试资格。</td>
+</tr>
+</tbody></table></div>
+<p>费用以上述官方页面显示的美元价格为准，付款币种、税费及申请资格以实际地区和账号类型为准。打算用公司名义发布时，先确定商店中应显示的法律主体。</p>
+<p>把登录、通知、相机、定位、分析、广告、支付和第三方 SDK 做成一张数据清单。隐私表单填写的是<strong>应用实际怎样处理数据</strong>。Apple 要求说明应用及第三方代码的数据处理；Google 的 Data safety 即使在应用不采集数据时也需要完成相应申报。若应用允许用户创建账号，Apple 要求在应用内提供<a target="_blank" rel="noopener" href="https://developer.apple.com/support/offering-account-deletion-in-your-app/">发起账号删除的功能</a>；Google 还要求提供应用内入口与<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/13327111?hl=en">网页删除请求链接</a>。</p>
+<h2 id="让-AI-帮你做三件高价值的事"><a href="#让-AI-帮你做三件高价值的事" class="headerlink" title="让 AI 帮你做三件高价值的事"></a>让 AI 帮你做三件高价值的事</h2><p><strong>第一，盘点发布缺口。</strong>把项目配置、依赖列表、iOS 与 Android 构建设置、功能列表交给 AI，让它按「已证实／缺失／待核实」输出清单，并写明依据。可直接使用下面的提示词：</p>
+<blockquote>
+<p>根据我提供的项目文件，整理 iOS 与 Google Play 发布清单，逐项核对构建格式、签名、版本号、权限、SDK、商店素材和测试方法。每个判断都附文件路径或我给出的证据；没有证据就标注「待核实」。不要猜测，也不要向我索取私钥、证书或密码。</p>
+</blockquote>
+<p><strong>第二，整理隐私申报草稿。</strong>提供 SDK、接口、权限、数据保存周期及第三方服务清单，让 AI 列出「收集什么、用途是什么、共享给谁、如何删除」。然后由开发者结合服务端日志、供应商文档和真实流量核实，再填写 App Privacy 和 Data safety。<strong>AI 生成的表格不能直接当成事实声明。</strong></p>
+<p><strong>第三，生成测试用例与审核说明。</strong>让 AI 根据真实功能覆盖首次启动、注册登录、拒绝权限、弱网、支付、退出登录和删除账号；根据实测结果整理审核员可执行的操作步骤。商店截图须来自真实应用，文案也不能写尚未实现的功能。</p>
+<h2 id="真机验证比构建成功更关键"><a href="#真机验证比构建成功更关键" class="headerlink" title="真机验证比构建成功更关键"></a>真机验证比构建成功更关键</h2><p>至少用一部实体 iPhone 和一部实体 Android 手机安装候选版本。每条结果记录<strong>机型、系统版本、应用版本、操作步骤与结果</strong>。构建成功只说明产出了文件，并不能说明用户可以完成任务。</p>
+<ul>
+<li>从全新安装开始，验证启动、登录或注册、主要功能。</li>
+<li>拒绝通知、相机、定位等权限，检查应用是否还能正常工作，权限说明是否准确。</li>
+<li>测试断网、弱网、外部链接、前后台切换，以及重新启动后的状态。</li>
+<li>如果有购买、订阅或账号，分别验证恢复购买、取消流程、退出登录与删除账号。</li>
+<li>使用提供给审核员的账号完整走一遍；需要登录的应用应按 <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple 审核指南 2.1</a>提供有效演示账号或演示模式。</li>
+</ul>
+<p>销售数字功能或内容时，提前核对 <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple 规则 3.1.1</a>与 <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9858738?hl=en">Google Play 支付政策</a>。两平台对应用内支付有各自的要求及地区例外，不能只凭 AI 的一句建议选择支付方案。</p>
+<h2 id="iOS：从-App-Store-Connect-到提交审核"><a href="#iOS：从-App-Store-Connect-到提交审核" class="headerlink" title="iOS：从 App Store Connect 到提交审核"></a>iOS：从 App Store Connect 到提交审核</h2><ol>
+<li>加入 Apple Developer Program，确认个人或组织身份，并完成适用的协议与付款设置。</li>
+<li>在 App Store Connect <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app">创建应用记录</a>，填写名称、主要语言、Bundle ID 和 SKU，确保与工程配置一致。</li>
+<li>用符合当前 SDK 要求的 Xcode 构建、签名、上传，并通过 <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/">TestFlight</a>测试。外部测试的首个构建版本可能需要 Beta App Review。</li>
+<li>填写商店介绍、真实截图、支持和隐私政策网址、App Privacy、年龄分级及其他适用声明；向审核员提供测试账号和必要操作说明。</li>
+<li>选择已测试的构建版本，按 <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app">App Store Connect 提交流程</a>送审。通过后，再检查实际上架状态及商店页面。</li>
+</ol>
+<p>如果在欧盟提供应用，还需根据发布地区和自身身份核对 App Store Connect 的交易者身份要求。</p>
+<h2 id="Android：从-Play-Console-到正式发布"><a href="#Android：从-Play-Console-到正式发布" class="headerlink" title="Android：从 Play Console 到正式发布"></a>Android：从 Play Console 到正式发布</h2><ol>
+<li>注册 Play Console 并完成身份验证。部分新个人账号还需要通过 Play Console 手机应用，使用<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14316361?hl=en">实体 Android 设备完成验证</a>。</li>
+<li>在 Play Console <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9859152?hl=en&rd=2">创建应用</a>，设置包名、商店资料及联系信息。生成已签名的 AAB，配置 Play App Signing，核对目标 API 要求。</li>
+<li>完成商店页面、真实截图、隐私政策、Data safety、内容分级、目标受众、广告等<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9867159?hl=en">应用内容声明</a>。</li>
+<li>先通过内部测试或封闭测试轨道安装验证。对于 <strong>2023 年 11 月 13 日之后创建的个人开发者账号</strong>，申请正式版访问权限前，还要完成<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14151465?hl=en">至少 12 名测试者连续参与封闭测试 14 天</a>。这项规则不要直接套用到所有旧账号或组织账号。</li>
+<li>满足适用条件后，使用已验证的 AAB 按<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9859348?hl=en">发布轨道说明</a>创建正式版并提交。通过审核后，核对发布地区、下载和启动，以及商店信息。</li>
+</ol>
+<p>如果<strong>应用本身</strong>向用户生成 AI 内容，还要查看 <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14094294?hl=en-GB">Google Play 的 AI 生成内容政策</a>，包括适用时的应用内举报机制。用 AI 辅助开发，与向用户提供 AI 生成内容，所涉及的审核要求并不相同。</p>
+<h2 id="提交前的最后检查"><a href="#提交前的最后检查" class="headerlink" title="提交前的最后检查"></a>提交前的最后检查</h2><ul>
+<li>两个平台都有已安装、已跑通核心流程的候选版本，版本号与所选构建产物一致。</li>
+<li>截图、文案、权限说明及数据申报符合真实行为；隐私政策、支持网址和删除入口可访问。</li>
+<li>审核员能进入受登录保护的功能；支付、订阅与账号流程已在对应测试环境验证。</li>
+<li>按账号类型完成身份及测试要求；发布后再次检查首次安装和商店页面。</li>
+</ul>
+<p>AI 可以加速整理检查表、测试用例和文案。最终能证明应用具备发布条件的，仍是<strong>可安装的构建版本、真机测试结果与准确申报</strong>。本文的官方规则核对日期为 2026 年 9 月 23 日；正式提交当天，请再次查看文中 Apple、Google 官方页面及后台提示。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Vibe-Coding/">Vibe Coding</a>, <a href="/zh-cn/tags/App-Store/">App Store</a>, <a href="/zh-cn/tags/Google-Play/">Google Play</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南" data-url="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F23%2Fvibe-coding-app-store-google-play-guide%2F&title=Vibe%20Coding%20%E5%81%9A%E5%87%BA%20App%20%E5%90%8E%E6%80%8E%E4%B9%88%E4%B8%8A%E6%9E%B6%EF%BC%9F2026%20%E5%B9%B4%20App%20Store%20%E4%B8%8E%20Google%20Play%20%E5%8F%8C%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E6%8C%87%E5%8D%97" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F23%2Fvibe-coding-app-store-google-play-guide%2F&title=Vibe%20Coding%20%E5%81%9A%E5%87%BA%20App%20%E5%90%8E%E6%80%8E%E4%B9%88%E4%B8%8A%E6%9E%B6%EF%BC%9F2026%20%E5%B9%B4%20App%20Store%20%E4%B8%8E%20Google%20Play%20%E5%8F%8C%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E6%8C%87%E5%8D%97" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Vibe%20Coding%20%E5%81%9A%E5%87%BA%20App%20%E5%90%8E%E6%80%8E%E4%B9%88%E4%B8%8A%E6%9E%B6%EF%BC%9F2026%20%E5%B9%B4%20App%20Store%20%E4%B8%8E%20Google%20Play%20%E5%8F%8C%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83%E6%8C%87%E5%8D%97&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F09%2F23%2Fvibe-coding-app-store-google-play-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Vibe Coding 做出 App 后怎么上架？2026 年 App Store 与 Google Play 双平台发布指南" data-url="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
+           data-rel-title="AI 编程工具怎么选？2026 年 9 月订阅方案对比"
+           data-rel-path="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb" alt="AI 编程工具怎么选？2026 年 9 月订阅方案对比" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">AI 编程工具怎么选？2026 年 9 月订阅方案对比</h4>
+            
+              <time class="related-post-date">2026-09-14</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/" class="related-post-link"
+           data-rel-title="让 AI 在云端替你打工！揭秘 xAI Grok Bot 的 4 大底层架构与 6 个高阶自动化工作流"
+           data-rel-path="/zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/cover.jpg?v=e37a9eb2" alt="让 AI 在云端替你打工！揭秘 xAI Grok Bot 的 4 大底层架构与 6 个高阶自动化工作流" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">让 AI 在云端替你打工！揭秘 xAI Grok Bot 的 4 大底层架构与 6 个高阶自动化工作流</h4>
+            
+              <time class="related-post-date">2026-08-28</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" class="related-post-link"
+           data-rel-title="Codex 额度与 5 小时限制：重置时间、用量查询与提效降耗实战指南"
+           data-rel-path="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" alt="Codex 额度与 5 小时限制：重置时间、用量查询与提效降耗实战指南" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Codex 额度与 5 小时限制：重置时间、用量查询与提效降耗实战指南</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>13</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>24</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Grok/"><span>Grok</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>

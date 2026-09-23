@@ -1,0 +1,765 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>How to Publish a Vibe Coded App in 2026: App Store and Google Play Checklist | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="A 2026 guide to publishing a vibe coded app on iOS and Android: accounts, signed builds, device testing, privacy, review, and practical AI workflows.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/09/23/Vibe-Coding-App-%E9%9B%99%E5%B9%B3%E5%8F%B0%E4%B8%8A%E6%9E%B6%E6%95%99%E5%AD%B8/">
+  
+
+  <meta property="og:title" content="How to Publish a Vibe Coded App in 2026: App Store and Google Play Checklist"/>
+  <meta property="og:description" content="A 2026 guide to publishing a vibe coded app on iOS and Android: accounts, signed builds, device testing, privacy, review, and practical AI workflows."/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png?v=7a7c014a" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Publish a Vibe Coded App in 2026: App Store and Google Play Checklist">
+  <meta name="twitter:description" content="A 2026 guide to publishing a vibe coded app on iOS and Android: accounts, signed builds, device testing, privacy, review, and practical AI workflows.">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png?v=7a7c014a">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/","url":"https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/","headline":"How to Publish a Vibe Coded App in 2026: App Store and Google Play Checklist","description":"A 2026 guide to publishing a vibe coded app on iOS and Android: accounts, signed builds, device testing, privacy, review, and practical AI workflows.","datePublished":"2026-09-23T04:00:00.000Z","dateModified":"2026-09-23T04:00:00.000Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Indie Development","item":"https://blog.6yuwei.com/en/categories/Indie-Development/"},{"@type":"ListItem","position":3,"name":"How to Publish a Vibe Coded App in 2026: App Store and Google Play Checklist","item":"https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+  <link rel="stylesheet" href="/en/css/style.css?v=4a3d076f03">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/en/">
+      <img src="/en/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="Switch language">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">English</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/09/23/Vibe-Coding-App-雙平台上架教學/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>Traditional Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/09/23/vibe-coding-app-store-google-play-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>Simplified Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/09/23/vibe-coding-app-store-google-play-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/en/">Home</a></li>
+    
+      <li><a href="/en/archives">Archives</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">Works</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="Search">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">Search</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-vibe-coding-app-store-google-play-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-09-23T04:00:00.000Z"><a href="/en/2026/09/23/vibe-coding-app-store-google-play-guide/">2026-09-23</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">How to Publish a Vibe Coded App in 2026: App Store and Google Play Checklist</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/en/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-720.jpg?v=6a5c6aca" alt="Two phones beside a release checklist and an AI workflow" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-480.jpg?v=5886e5b9 480w, /en/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-720.jpg?v=6a5c6aca 720w, /en/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-960.jpg?v=1fca2bbb 960w, /en/2026/09/23/vibe-coding-app-store-google-play-guide/cover-card-1280.jpg?v=17a44eb1 1280w, /en/2026/09/23/vibe-coding-app-store-google-play-guide/cover.png?v=7a7c014a 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>A working vibe coding prototype is a start, but an app store needs a signed, installable build that survives testing on real devices. It also needs accurate privacy disclosures, a store listing, and enough information for reviewers to use the app. This guide walks a first-time indie developer through both stores in 2026 and shows where AI can save time without making unverified claims on your behalf.</p>
+<span id="more"></span>
+
+<h2 id="First-check-whether-you-have-a-website-or-an-app"><a href="#First-check-whether-you-have-a-website-or-an-app" class="headerlink" title="First, check whether you have a website or an app"></a>First, check whether you have a website or an app</h2><p>Do you have iOS and Android projects that you can build and sign, and versions you can install on physical phones? A website or PWA that runs in a browser does not automatically produce submissions for either store. A cross-platform framework can help, but you still need platform builds, permissions, signing, and store configuration.</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>What you have</th>
+<th>What to verify next</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A website, PWA, or AI-generated frontend</td>
+<td>Choose a maintainable mobile approach and identify the native capabilities and platform constraints you need.</td>
+</tr>
+<tr>
+<td>iOS and Android projects</td>
+<td>Install them on an iPhone and an Android phone; test launch, sign-in, key tasks, and permissions.</td>
+</tr>
+<tr>
+<td>Installable builds</td>
+<td>Check signing, version numbers, data flows, listing assets, and review forms against the actual app.</td>
+</tr>
+</tbody></table></div>
+<p>Apple’s <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">App Review Guideline 4.2</a> expects an app to offer enough functionality and value. A thin wrapper around a website may be rejected. Define the mobile product before choosing how to package it.</p>
+<h2 id="Prepare-the-accounts-builds-and-disclosures"><a href="#Prepare-the-accounts-builds-and-disclosures" class="headerlink" title="Prepare the accounts, builds, and disclosures"></a>Prepare the accounts, builds, and disclosures</h2><div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>App Store</th>
+<th>Google Play</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Developer account</td>
+<td>The <a target="_blank" rel="noopener" href="https://developer.apple.com/programs/enroll/">Apple Developer Program</a> is $99 per year. An individual account displays your legal name; organization enrollment involves a D-U-N-S Number.</td>
+<td><a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/6112435?hl=en-AU">Play Console</a> has a one-time $25 registration fee and requires identity verification.</td>
+</tr>
+<tr>
+<td>Build requirements</td>
+<td>Upload a signed iOS build with Xcode. Since April 28, 2026, iOS apps submitted to App Store Connect must be built with <a target="_blank" rel="noopener" href="https://developer.apple.com/news/upcoming-requirements/">Xcode 26 or later and the iOS 26 SDK</a>.</td>
+<td>New apps use an <a target="_blank" rel="noopener" href="https://developer.android.com/guide/app-bundle">Android App Bundle (AAB)</a> and Play App Signing. Since August 31, 2026, new apps and updates for phones and tablets must <a target="_blank" rel="noopener" href="https://developer.android.com/google/play/requirements/target-sdk">target Android 16 &#x2F; API level 36 or higher</a>; other device categories have exceptions.</td>
+</tr>
+<tr>
+<td>Identity and assets</td>
+<td>App name, bundle ID, version, icon, screenshots from the real app, description, and support URL.</td>
+<td>Package name, version, icon, real screenshots, store description, and contact details.</td>
+</tr>
+<tr>
+<td>Policy and review</td>
+<td>Privacy policy, <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy">App Privacy</a> answers, age rating, review credentials, and instructions.</td>
+<td>Privacy policy, <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/10787469?hl=en-AE">Data safety</a>, content rating, target audience and ads declarations, plus any testing requirement for your account.</td>
+</tr>
+</tbody></table></div>
+<p>Those are the fees shown on the official pages in US dollars; payment currency, taxes, and eligibility depend on your location and account. If you are publishing for a company, decide which legal entity should appear in the store before enrolling.</p>
+<p>Inventory sign-in, notifications, camera, location, analytics, ads, payments, and third-party SDKs. Privacy forms describe <strong>what the app actually does with data</strong>, including third-party code. Google requires a Data safety form even when an app does not collect user data. If users can create accounts, Apple requires a way to <a target="_blank" rel="noopener" href="https://developer.apple.com/support/offering-account-deletion-in-your-app/">initiate deletion in the app</a>; Google requires an in-app path and a <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/13327111?hl=en">web link for deletion requests</a>.</p>
+<h2 id="Three-useful-AI-workflows-before-submission"><a href="#Three-useful-AI-workflows-before-submission" class="headerlink" title="Three useful AI workflows before submission"></a>Three useful AI workflows before submission</h2><p><strong>1. Find release gaps.</strong> Give an AI assistant your project configuration, dependency list, platform build settings, and feature list. Ask for a table with evidence, missing items, and open questions. For example:</p>
+<blockquote>
+<p>Based only on the project files I provide, audit our iOS and Google Play release readiness. Cover build formats, signing, versions, permissions, SDKs, listing assets, and test methods. Cite the file or evidence for every conclusion. Mark anything unsupported as “needs verification.” Do not ask for private keys, certificates, or passwords.</p>
+</blockquote>
+<p><strong>2. Draft a data-flow inventory.</strong> Supply the actual SDKs, API calls, permissions, retention rules, and third-party services. Ask AI to organize what is collected, why, who receives it, and how users can delete it. Then verify that draft against server logs, provider documentation, and real network behavior before completing App Privacy or Data safety. <strong>An AI-generated inventory is not evidence by itself.</strong></p>
+<p><strong>3. Generate device tests and reviewer notes.</strong> Ask AI for cases covering first launch, registration, denied permissions, poor connectivity, purchases, sign-out, and account deletion based on features that exist. Turn confirmed test results into concise instructions for reviewers. Screenshots should show the real app; listing copy should describe features that are already working.</p>
+<h2 id="Test-the-candidate-builds-on-real-phones"><a href="#Test-the-candidate-builds-on-real-phones" class="headerlink" title="Test the candidate builds on real phones"></a>Test the candidate builds on real phones</h2><p>Install each candidate on at least one physical iPhone and one physical Android phone. Record the <strong>device, OS version, app version, steps, and result</strong>. A successful build proves that a file was produced; it does not prove that a user can complete a task.</p>
+<ul>
+<li>Start from a fresh install and complete the primary task, including registration or sign-in if needed.</li>
+<li>Deny camera, location, or notification permissions and check that the app responds safely and explains why it asks.</li>
+<li>Test offline and slow connections, external links, backgrounding, and relaunch.</li>
+<li>If applicable, test purchase restoration, cancellation, sign-out, and account deletion.</li>
+<li>Run the full flow using the reviewer account. <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple’s Guideline 2.1</a> calls for valid demo credentials or a demo mode when review requires access.</li>
+</ul>
+<p>For digital features or content sold in the app, read <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple’s Guideline 3.1.1</a> and the <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9858738?hl=en">Google Play payments policy</a>. Both have platform rules and regional exceptions. Do not select a checkout flow from a one-line AI suggestion.</p>
+<h2 id="iOS-from-App-Store-Connect-to-review"><a href="#iOS-from-App-Store-Connect-to-review" class="headerlink" title="iOS: from App Store Connect to review"></a>iOS: from App Store Connect to review</h2><ol>
+<li>Enroll in the Apple Developer Program and complete the applicable identity, agreement, and payment setup.</li>
+<li><a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app">Create an app record</a> in App Store Connect with the name, primary language, bundle ID, and SKU. Match the bundle ID in your project.</li>
+<li>Build, sign, and upload with an Xcode version that meets the current SDK requirement. Use <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/">TestFlight</a> before release; the first build for external testers may require Beta App Review.</li>
+<li>Add the listing, real screenshots, support and privacy URLs, App Privacy answers, age rating, and any other applicable declarations. Give reviewers credentials and instructions for unusual flows.</li>
+<li>Select the build you tested and <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app">submit it for App Review</a>. After approval, check its actual release status and store page.</li>
+</ol>
+<p>If you distribute in the EU, also check the trader-status requirements in App Store Connect for your distribution and legal status.</p>
+<h2 id="Android-from-Play-Console-to-production"><a href="#Android-from-Play-Console-to-production" class="headerlink" title="Android: from Play Console to production"></a>Android: from Play Console to production</h2><ol>
+<li>Register for Play Console and complete identity verification. Some new personal accounts also need to <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14316361?hl=en">verify a physical Android device</a> through the Play Console mobile app.</li>
+<li><a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9859152?hl=en&rd=2">Create the app</a>, confirm the package name, listing details, and contact information. Build a signed AAB, configure Play App Signing, and check the applicable target API requirement.</li>
+<li>Finish the store listing, real screenshots, privacy policy, Data safety, content rating, target audience, ads, and other <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9867159?hl=en">App content declarations</a>.</li>
+<li>Install and verify via an internal or closed testing track. For <strong>personal developer accounts created after November 13, 2023</strong>, production access requires <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14151465?hl=en">at least 12 testers opted into a closed test continuously for 14 days</a>, followed by an application for production access. Do not assume this applies to every older or organization account.</li>
+<li>Once your account meets its requirements, use the verified AAB to <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9859348?hl=en">create a production release</a>. After review, check the rollout countries, download, launch, and store information.</li>
+</ol>
+<p>If the <strong>app itself generates AI content for users</strong>, review <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14094294?hl=en-GB">Google Play’s AI-generated content policy</a>, including an in-app reporting mechanism where required. Using AI to help write code is a different situation from offering AI-generated content as an app feature.</p>
+<h2 id="Final-pre-submission-check"><a href="#Final-pre-submission-check" class="headerlink" title="Final pre-submission check"></a>Final pre-submission check</h2><ul>
+<li>Both platforms have candidate builds installed and tested through the core flow; the selected store builds match the tested versions.</li>
+<li>Screenshots, claims, permission prompts, and data disclosures match actual behavior. Privacy, support, and deletion links work.</li>
+<li>Reviewers can access sign-in-protected features. Payment, subscription, and account flows have been checked in their test environments.</li>
+<li>Account-specific identity and testing requirements are complete. Plan a fresh-install and listing check after release.</li>
+</ul>
+<p>AI can speed up your checklist, test cases, and copy. The evidence that an app is ready remains <strong>an installable build, observed device results, and accurate disclosures</strong>. Official requirements in this article were checked on September 23, 2026; verify the linked Apple and Google pages and your console prompts again on submission day.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/en/categories/Indie-Development/">Indie Development</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Vibe-Coding/">Vibe Coding</a>, <a href="/en/tags/App-Store/">App Store</a>, <a href="/en/tags/Google-Play/">Google Play</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">Share</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="Copy Link" aria-label="Copy Link">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>Copy Link</span>
+    </button>
+
+    
+      <!-- 英文（全球開發者生態）：X、LinkedIn、Reddit、Hacker News、Facebook -->
+      <a href="https://twitter.com/intent/tweet?text=How%20to%20Publish%20a%20Vibe%20Coded%20App%20in%202026%3A%20App%20Store%20and%20Google%20Play%20Checklist&url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F09%2F23%2Fvibe-coding-app-store-google-play-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F09%2F23%2Fvibe-coding-app-store-google-play-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-linkedin" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63z"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://reddit.com/submit?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F09%2F23%2Fvibe-coding-app-store-google-play-guide%2F&title=How%20to%20Publish%20a%20Vibe%20Coded%20App%20in%202026%3A%20App%20Store%20and%20Google%20Play%20Checklist" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-reddit" title="Share on Reddit" aria-label="Share on Reddit">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.197-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+        </svg>
+        <span>Reddit</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F09%2F23%2Fvibe-coding-app-store-google-play-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="How to Publish a Vibe Coded App in 2026: App Store and Google Play Checklist" data-url="https://blog.6yuwei.com/en/2026/09/23/vibe-coding-app-store-google-play-guide/" title="Share" aria-label="Share" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>Share...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/en/2026/09/23/vibe-coding-app-store-google-play-guide/">
+  <h3 class="related-posts-title">Related Posts</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
+           data-rel-title="Which AI Coding Tool Should You Choose? September 2026 Subscription Comparison"
+           data-rel-path="/en/2026/09/14/ai-coding-tools-subscription-comparison/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb" alt="Which AI Coding Tool Should You Choose? September 2026 Subscription Comparison" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Which AI Coding Tool Should You Choose? September 2026 Subscription Comparison</h4>
+            
+              <time class="related-post-date">2026-09-14</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/" class="related-post-link"
+           data-rel-title="How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter"
+           data-rel-path="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/cover.jpg?v=330a3459" alt="How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter</h4>
+            
+              <time class="related-post-date">2026-08-31</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/" class="related-post-link"
+           data-rel-title="Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet"
+           data-rel-path="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914" alt="Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet</h4>
+            
+              <time class="related-post-date">2026-09-04</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/categories/AI/">AI</a><small>7</small></li>
+  
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>5</small></li>
+  
+    <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>7</small></li>
+  
+    <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Game-Development/">Game Development</a><small>4</small></li>
+  
+    <li><a href="/en/categories/Indie-Development/">Indie Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Indie-Hacker/">Indie Hacker</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>3</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/categories/">View all categories</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">Popular tags</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/en/tags/AI/"><span>AI</span><small>20</small></a></li>
+  
+    <li><a href="/en/tags/Codex/"><span>Codex</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/Claude/"><span>Claude</span><small>6</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agent/"><span>AI Agent</span><small>4</small></a></li>
+  
+    <li><a href="/en/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
+  
+    <li><a href="/en/tags/Developer-Tools/"><span>Developer Tools</span><small>4</small></a></li>
+  
+    <li><a href="/en/tags/AI-Image-Generation/"><span>AI Image Generation</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/Game-Development/"><span>Game Development</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/Indie-Developer/"><span>Indie Developer</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/Software-Engineering/"><span>Software Engineering</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agents/"><span>AI Agents</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/AI-Coding/"><span>AI Coding</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Grok/"><span>Grok</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/tags/">View all tags</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script>window.BLOG_I18N = {"copyCode":"Copy","codeCopied":"Copied","toastCodeCopied":"Code copied to clipboard","copyLinkLabel":"Copy Link","linkCopied":"Article link copied","headingCopied":"Section link copied","tocTitle":"Table of Contents","searchLoading":"Loading...","searchEmpty":"Type keywords to start searching...","searchNoResults":"No articles matching \"%s\"","tableScrollLabel":"Table, scroll horizontally for more columns","tableScrollHint":"Scroll horizontally to view the full table. You can also use the arrow keys."};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="Search articles, tags, or keywords..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">Type keywords to start searching...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">ESC to close, ↑↓ to navigate, Enter to open</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/en/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/en/js/jquery-3.4.1.min.js"></script>
+<script defer src="/en/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/en/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/en/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -203,6 +203,46 @@
   <a href="/tags/">查看所有標籤</a>
 </nav>
 
+  <article id="post-告別-AI-瞎寫程式的時代：用-Superpowers-框架為-Claude-Code-與-Codex-注入工程紀律" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-06-26T07:48:00.000Z"><a href="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/">2026-06-26</a></time>
+      
+      
+  
+    <p class="title"><a href="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/">Claude Code 與 AI 寫程式的工程紀律：用 Superpowers 框架實踐 TDD 告別 Vibe Coding</a></p>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-720.jpg?v=38ad4db2" alt="Superpowers 框架與 AI 代理工程紀律封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-480.jpg?v=0f1f5039 480w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-720.jpg?v=38ad4db2 720w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-960.jpg?v=b8e70011 960w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover-card-1280.jpg?v=10191d4b 1280w, /2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/cover.jpg?v=b634fff5 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>隨著 <a href="/2026/06/20/Claude-Code-2026-%E5%85%AD%E6%9C%88%E6%9B%B4%E6%96%B0%E5%AF%A6%E6%B8%AC%EF%BC%9A%E5%9B%9B%E5%80%8B%E6%88%91%E9%A6%AC%E4%B8%8A%E9%96%8B%E4%BE%86%E7%94%A8%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/">Claude Code</a> 與 Codex 等自主程式開發代理的爆發，軟體開發迎來了極速生成時代，卻也帶來了盲目 <strong>Vibe Coding</strong> 的副作用。這正是我們在探討 <a href="/2026/06/24/AI-%E6%99%82%E4%BB%A3%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%B8%AB%E8%AD%B7%E5%9F%8E%E6%B2%B3%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E5%A4%A7%E9%83%A8%E5%88%86-AI-%E7%94%9F%E6%88%90%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%AF%AB%E7%84%A1%E5%83%B9%E5%80%BC%EF%BC%8C%E8%80%8C%E4%BD%A0%E4%BE%9D%E7%84%B6%E4%B8%8D%E5%8F%AF%E5%8F%96%E4%BB%A3/">AI 時代的工程師護城河</a> 時面臨的核心困境：缺乏工程品質把關的 AI 代理，往往像個急躁的實習生，沒搞懂需求、沒寫測試就急著改代碼，最終留下難以維護的技術債。</p>
+<p>為了給這些狂奔的 AI 代理套上緊箍咒，Jesse Vincent 開源了 <strong>Superpowers</strong> 代理協作框架（<strong>obra&#x2F;superpowers</strong>）。本文將深入解析其運作機制，看它如何透過結構化技能與規則，為 AI 注入嚴格的工程紀律，將其訓練為嚴謹的軟體工程師。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2026/06/26/%E5%91%8A%E5%88%A5-AI-%E7%9E%8E%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%99%82%E4%BB%A3%EF%BC%9A%E7%94%A8-Superpowers-%E6%A1%86%E6%9E%B6%E7%82%BA-Claude-Code-%E8%88%87-Codex-%E6%B3%A8%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%B4%80%E5%BE%8B/#more" class="more-link">閱讀全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+
+
+
   <article id="post-AI-時代的工程師護城河：為什麼大部分-AI-生成的程式碼毫無價值，而你依然不可取代" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -564,51 +604,6 @@
 
 
 
-  <article id="post-pixellab-ai-pixel-art-game-assets" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon" style="display: none"></div>
-        <time class="dt-published" datetime="2026-06-14T16:17:47.000Z"><a href="/2026/06/15/pixellab-ai-pixel-art-game-assets/">2026-06-15</a></time>
-      
-      
-  
-    <p class="title"><a href="/2026/06/15/pixellab-ai-pixel-art-game-assets/">想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星</a></p>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p class="post-cover-frame"><img src="/2026/06/15/pixellab-ai-pixel-art-game-assets/cover-v2.webp?v=42006c1c" alt="PixelLab AI 像素藝術遊戲素材生成器封面圖" width="400" height="240" decoding="async" class="auto-layout-image post-cover-image"></p>
-<h2 id="前言：有想法、有引擎，就是缺美術"><a href="#前言：有想法、有引擎，就是缺美術" class="headerlink" title="前言：有想法、有引擎，就是缺美術"></a>前言：有想法、有引擎，就是缺美術</h2><p>如果你曾經想做一款自己的小遊戲，多半會卡在同一個地方——<strong>美術素材</strong>。</p>
-<p>程式可以慢慢學，遊戲引擎（Unity、Godot、GameMaker）也都免費，網路教學一大堆。但是當你打開引擎、準備放進主角、敵人、道具、地圖磚塊時，才會發現一個殘酷的事實：</p>
-<blockquote>
-<p>「我不會畫圖。」</p>
-</blockquote>
-<p>買素材包？風格常常湊不齊，缺的東西永遠剛好沒有。外包？預算與時間都吃不消。自己學畫 pixel art？光是讓一隻角色的八個方向動起來，就足以讓人放棄整個專案。</p>
-<p>這篇文章要介紹的 <strong>PixelLab</strong>，正是為了這個痛點而生：它讓你用 <strong>AI 直接生成 pixel art 素材</strong>——角色、動畫、道具、地圖磚塊、甚至 UI 介面，而且能直接在你熟悉的繪圖工具 <strong>Aseprite</strong> 裡操作。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2026/06/15/pixellab-ai-pixel-art-game-assets/#more" class="more-link">閱讀全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-    
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -652,6 +647,8 @@
   
     <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
   
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>1</small></li>
+  
     <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
   
     <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
@@ -675,7 +672,7 @@
   <h3 class="title">常用標籤</h3>
   <ul class="entry tag-summary__list">
   
-    <li><a href="/tags/AI/"><span>AI</span><small>46</small></a></li>
+    <li><a href="/tags/AI/"><span>AI</span><small>47</small></a></li>
   
     <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
   
