@@ -6,7 +6,7 @@
   <title>Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="Claude Opus 5.5 正式上線，Artificial Analysis 以 58 分登頂。整理官方九項評測、五種推理強度、API 價格與快取降幅、訂閱額度重設，以及開發者升級前必看的四項不相容變更，拆解最高分與實際成本的差別。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -233,7 +233,7 @@
 <span id="more"></span>
 
 <h2 id="Opus-5-5-先看重點：上線日期、規格與使用入口"><a href="#Opus-5-5-先看重點：上線日期、規格與使用入口" class="headerlink" title="Opus 5.5 先看重點：上線日期、規格與使用入口"></a>Opus 5.5 先看重點：上線日期、規格與使用入口</h2><p>Anthropic 官方發布日期為 <strong>2026 年 9 月 22 日</strong>；本文於台灣時間 <strong>9 月 23 日凌晨</strong>查核。API 規格如下，別把 API 的上限直接當成每個訂閱介面都會提供的額度。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/models/opus-5-5/overview">官方模型文件</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>項目</th>
@@ -268,11 +268,11 @@
 <td>開發者入口</td>
 <td>Claude API、Amazon Bedrock、Claude Platform on AWS、Google Cloud、Microsoft Foundry</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>訂閱方案可用性見 <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/opus">Opus 產品頁</a>，雲端平台清單見 <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/release-notes/overview">API 發布紀錄</a>。各平台仍有自己的帳戶權限與設定。</p>
 <h2 id="Artificial-Analysis-已更新：58-分第一，但要看-effort"><a href="#Artificial-Analysis-已更新：58-分第一，但要看-effort" class="headerlink" title="Artificial Analysis 已更新：58 分第一，但要看 effort"></a>Artificial Analysis 已更新：58 分第一，但要看 effort</h2><p>查核時，<strong>Artificial Analysis Intelligence Index v4.3.2</strong> 的 Opus 5.5 模型頁顯示 <strong>58 分、排名第一</strong>。首頁同時顯示 Fable 5.1 為 53 分、GPT-6 Astra 為 53 分；這些是頁面顯示的整數分數。兩個 Claude 條目都帶有 <strong>max with fallback</strong>，GPT-6 Astra 則是 <strong>max</strong>。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/">AA 即時排行榜</a></p>
 <p>AA 也同時列出 Opus 5.5 的五種推理強度。下表每列都保留 <strong>Default Fallback</strong> 條件，token 數是整套 Intelligence Index 評測的累計輸出量，<strong>不是單次回答長度或上下文容量</strong>。</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>Opus 5.5 推理強度</th>
@@ -305,11 +305,11 @@
 <td align="right">42</td>
 <td align="right">約 2,000 萬</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>我的解讀：日常開發值得先測 medium 與 high，再決定哪些難題需要 max。</strong> 以 AA 顯示的四捨五入數字計算，max 的總輸出量約為 medium 的 <strong>6.8 倍</strong>，換來 7 分差距。這不是帳單倍率，因為還沒納入輸入、快取與其他費用；但足以提醒我們，榜首設定不一定適合每一次呼叫。</p>
 <p>另外，查核時 AA 新模型頁的速度與每任務成本仍標示 <strong>N&#x2F;A</strong>，部分價格欄顯示 <strong>$0.00</strong>，與 Anthropic 已公布的付費價格不符。本文因此採官方價目表，<strong>不把該欄位解讀成免費，也不推算尚未公布的實測速度</strong>。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5">AA 模型頁</a></p>
 <h2 id="官方九項評測：程式開發領先，Astra-仍有強項"><a href="#官方九項評測：程式開發領先，Astra-仍有強項" class="headerlink" title="官方九項評測：程式開發領先，Astra 仍有強項"></a>官方九項評測：程式開發領先，Astra 仍有強項</h2><p>以下數字來自 Anthropic 發布的比較圖，與公告表格逐項核對。<strong>這是官方彙整的評測結果，與上一節 AA 的綜合智慧指數是不同資料。</strong>「未列」表示官方圖沒有提供該格成績，不代表零分。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">官方發布公告與評測</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
 <th>評測</th>
@@ -392,7 +392,7 @@
 <td align="right">未列</td>
 <td align="right">未列</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>GDPval-AA 這一列是評分，<strong>不是百分比</strong>；OSWorld 的 <strong>partial</strong> 與其他列的工具條件也都保留，避免把不同口徑看成同一種正確率。</p>
 <p>最明顯的變化在 Terminal-Bench：Opus 5.5 比 Opus 5 高 <strong>14.1 個百分點</strong>，比 Astra 高 <strong>8.5 個百分點</strong>。但 FrontierCode 對 Astra 只高 1.1 個百分點；商業流程與代理科學研究的表中最高分，仍是 Astra。用這張圖宣稱「所有工作全面輾壓」就太過頭了。</p>
 <p>閱讀時還有三個條件不能省略：</p>
@@ -409,7 +409,7 @@
 </details>
 
 <h2 id="價格到底降多少？20-、40-、60-各有意思"><a href="#價格到底降多少？20-、40-、60-各有意思" class="headerlink" title="價格到底降多少？20%、40%、60% 各有意思"></a>價格到底降多少？20%、40%、60% 各有意思</h2><p>以下為標準 Claude API 價格，單位均為 <strong>美元／100 萬 tokens</strong>。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">官方價格文件</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>計費項目</th>
@@ -448,7 +448,7 @@
 <td align="right">$0.20</td>
 <td align="right">60%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>40% 指的是 Anthropic 對典型任務總成本的估計</strong>，包含單價與 token 使用效率的變化，並非所有計費項目都打六折。官方另稱一般輸出生成速度比 Opus 5 快超過 30%；這也不是整個專案必定快 30% 的保證。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">官方公告</a></p>
 <p>自己算一個固定用量的例子就很清楚：假設未命中快取的輸入為 100 萬 tokens、輸出為 20 萬 tokens，且不計工具等額外費用，Opus 5 是 <strong>$10</strong>，Opus 5.5 是 <strong>$8</strong>，省的是 20%。若模型還能減少嘗試次數、縮短輸出或提高快取命中率，總成本才會繼續下降。</p>
 <p>對反覆讀同一套程式碼的代理工作，快取值得特別看：相同的 1,000 萬快取讀取 tokens，讀取費由 <strong>$5 降到 $2</strong>；初次寫入與輸出仍需另計。</p>
@@ -645,7 +645,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分類</h3>
   <ul class="entry">
   
@@ -674,132 +674,60 @@
     <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">標籤</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/tags/AI/">AI</a><small>46</small></li>
+    <li><a href="/tags/AI/"><span>AI</span><small>46</small></a></li>
   
-    <li><a href="/tags/AI-Agent/">AI Agent</a><small>12</small></li>
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/tags/Claude/"><span>Claude</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>3</small></li>
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+    <li><a href="/tags/Codex/"><span>Codex</span><small>12</small></a></li>
   
-    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>10</small></a></li>
   
-    <li><a href="/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>8</small></a></li>
   
-    <li><a href="/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
   
-    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
   
-    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
   
-    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>3</small></li>
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude/">Claude</a><small>13</small></li>
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude-Code/">Claude Code</a><small>4</small></li>
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
   
-    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
   
-    <li><a href="/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
   
-    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
-  
-    <li><a href="/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
-  
-    <li><a href="/tags/LLM/">LLM</a><small>5</small></li>
-  
-    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
-  
-    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
-  
-    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
-  
-    <li><a href="/tags/OpenAI/">OpenAI</a><small>10</small></li>
-  
-    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
-  
-    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
-  
-    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
-  
-    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
-  
-    <li><a href="/tags/React/">React</a><small>1</small></li>
-  
-    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
-  
-    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
-  
-    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
-  
-    <li><a href="/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
-  
-    <li><a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
-  
-    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>13</small></li>
-  
-    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
-  
-    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
-  
-    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>8</small></li>
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -810,7 +738,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -852,7 +780,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/js/custom.js?v=260623-1"></script>
+  <script defer src="/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/js/jquery-3.4.1.min.js"></script>
@@ -986,8 +914,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

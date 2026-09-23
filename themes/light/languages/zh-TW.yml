@@ -39,3 +39,17 @@ copy_link: "複製連結"
 link_copied: "已複製文章連結"
 heading_copied: "已複製章節連結"
 toc_title: "目次"
+popular_tags: 常用標籤
+all_tags: 查看所有標籤
+all_categories: 查看所有分類
+browse_topics: 瀏覽主題
+tags_directory_description: 依標籤探索 AI、前端開發、遊戲開發與日語學習文章。標籤依文章數排列，也可輸入名稱快速篩選。
+categories_directory_description: 依分類瀏覽技術教學、工具實測與生活筆記，找到感興趣的主題。
+filter_topics: 篩選名稱
+filter_topics_placeholder: 輸入標籤或分類名稱
+topics_count: "%s 個主題"
+posts_count: "%s 篇"
+topics_empty: 找不到符合的主題，請試試其他關鍵字。
+topic_description: "瀏覽 6yuwei 部落格中與「%s」相關的文章、教學與實測筆記。"
+table_scroll_label: 表格，可左右捲動
+table_scroll_hint: 左右滑動查看完整表格；鍵盤可使用方向鍵。

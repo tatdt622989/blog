@@ -6,7 +6,7 @@
   <title>Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="Claude Opus 5.5 正式发布，以 58 分登顶 Artificial Analysis。汇总官方九项基准测试、五档推理强度、API 与缓存价格、订阅额度重置，以及开发者迁移前必须处理的四项不兼容变更，说明最高分与实际使用成本的区别。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -233,7 +233,7 @@
 <span id="more"></span>
 
 <h2 id="发布日期、核心规格与使用入口"><a href="#发布日期、核心规格与使用入口" class="headerlink" title="发布日期、核心规格与使用入口"></a>发布日期、核心规格与使用入口</h2><p>Anthropic 标注的发布日期为 <strong>2026 年 9 月 22 日</strong>，本文在北京时间 <strong>9 月 23 日凌晨</strong>查核。以下是 API 规格，不应直接理解为每个订阅产品界面都开放同样的上限。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/models/opus-5-5/overview">官方模型文档</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>项目</th>
@@ -268,11 +268,11 @@
 <td>开发者入口</td>
 <td>Claude API、Amazon Bedrock、Claude Platform on AWS、Google Cloud、Microsoft Foundry</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>订阅可用性见 <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/opus">Opus 产品页</a>，云平台列表见 <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/release-notes/overview">API 更新日志</a>。实际访问仍取决于平台和账户配置。</p>
 <h2 id="AA-登顶的关键条件：max-与默认-medium-差多少"><a href="#AA-登顶的关键条件：max-与默认-medium-差多少" class="headerlink" title="AA 登顶的关键条件：max 与默认 medium 差多少"></a>AA 登顶的关键条件：max 与默认 medium 差多少</h2><p>查核时，<strong>Artificial Analysis Intelligence Index v4.3.2</strong> 的 Opus 5.5 页面显示 <strong>58 分、排名第一</strong>。首页上 Fable 5.1 和 GPT-6 Astra 均显示 53 分。这些是页面展示的整数值；两个 Claude 条目带有 <strong>max with fallback</strong>，Astra 则标注 <strong>max</strong>。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/">AA 实时排行榜</a></p>
 <p>AA 已提供五档 Opus 5.5 评测。下表均启用 <strong>Default Fallback</strong>；输出 token 数是完整 Intelligence Index 测试的累计量，<strong>不代表一次回答的长度，也不是上下文窗口大小</strong>。</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>推理强度</th>
@@ -305,11 +305,11 @@
 <td align="right">42</td>
 <td align="right">约 2,000 万</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>我的判断是：日常编程先比较 medium 和 high，把 max 留给确实需要更深推理的任务。</strong> 按页面的近似值计算，max 比 medium 高 7 分，累计输出量却约为后者的 <strong>6.8 倍</strong>。这不能直接换算成费用倍数，因为输入、缓存和其他成本还没算进去，但能说明榜首配置与日常默认配置是两回事。</p>
 <p>发布初期，AA 新模型页面的速度和单任务成本仍为 <strong>N&#x2F;A</strong>，部分价格字段显示 <strong>$0.00</strong>，与官方收费标准不符。本文不把这些字段视为免费调用依据，也不推导尚未给出的实测速率，计费以 Anthropic 文档为准。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5">AA 模型页</a></p>
 <h2 id="官方九项基准：编程表现突出，但并非所有项目第一"><a href="#官方九项基准：编程表现突出，但并非所有项目第一" class="headerlink" title="官方九项基准：编程表现突出，但并非所有项目第一"></a>官方九项基准：编程表现突出，但并非所有项目第一</h2><p>下表按 Anthropic 官方比较图整理，并与公告核对。<strong>官方测试汇总和 AA 综合智能指数采用不同口径，不可混用。</strong>“未列”表示图中没有给出成绩，不等于零分。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">官方发布公告</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
 <th>基准测试</th>
@@ -392,7 +392,7 @@
 <td align="right">未列</td>
 <td align="right">未列</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>GDPval-AA 的数值是评分，<strong>不是百分比</strong>；表中保留了 OSWorld 的 <strong>partial</strong> 和工具使用条件，避免把不同指标当作统一的正确率。</p>
 <p>Terminal-Bench 上，Opus 5.5 比 Opus 5 高 <strong>14.1 个百分点</strong>，比 Astra 高 <strong>8.5 个百分点</strong>。但 FrontierCode 对 Astra 的优势只有 1.1 个百分点，AutomationBench 和代理科学研究则仍由 Astra 取得表中最高分。“全面碾压所有任务”并不是这组数据能支持的结论。</p>
 <p>还应把图下注释一起读完：</p>
@@ -409,7 +409,7 @@
 </details>
 
 <h2 id="API-价格：单价降低-20-，缓存读取降低-60"><a href="#API-价格：单价降低-20-，缓存读取降低-60" class="headerlink" title="API 价格：单价降低 20%，缓存读取降低 60%"></a>API 价格：单价降低 20%，缓存读取降低 60%</h2><p>标准 Claude API 的计费如下，单位为 <strong>美元／100 万 tokens</strong>。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">官方价格文档</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>计费项目</th>
@@ -448,7 +448,7 @@
 <td align="right">$0.20</td>
 <td align="right">60%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>官方宣传的 <strong>40% 是典型任务总成本的估计降幅</strong>，同时考虑了单价和 token 使用效率，并非全部项目都按六折收费。官方还表示输出生成速度提升超过 30%，但完整任务还包含推理、工具调用和等待，不能据此承诺项目交付也一定快 30%。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">发布公告</a></p>
 <p>举一个固定用量的算例：100 万未缓存输入 tokens，加上 20 万输出 tokens，不含工具等额外费用，Opus 5 要 <strong>$10</strong>，Opus 5.5 要 <strong>$8</strong>，节省 20%。只有进一步减少重试、输出量或重复读取成本，总费用才会继续降低。</p>
 <p>对需要反复读取同一代码库的智能体，1,000 万缓存读取 tokens 的费用由 <strong>$5 降为 $2</strong>；首次缓存写入和输出仍另外计费。</p>
@@ -645,7 +645,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分类</h3>
   <ul class="entry">
   
@@ -666,102 +666,60 @@
     <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>23</small></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>23</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>8</small></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>5</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>7</small></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+    <li><a href="/zh-cn/tags/Grok/"><span>Grok</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -772,7 +730,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -814,7 +772,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
@@ -948,8 +906,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

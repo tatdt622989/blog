@@ -6,7 +6,7 @@
   <title>AI 時代，E2E 測試要怎麼升級？從固定腳本到 AI-native Harness | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="AI 讓產品更快被寫出，也讓驗收成為新瓶頸。本文用通用 E2E Harness 架構說明如何隔離產品、固定驗收、讓 Agent 探索，並把每次失敗變成可重播的回歸測試。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -242,7 +242,7 @@
 </ul>
 <p>這就是 <strong>AI 測試劇場</strong>：同一個 Builder Agent 寫完產品，又照自己的假設寫測試，最後看到綠燈就說完成。覆蓋率可能上升，真正的錯誤卻沒被抓到，因為產品、測試和預期結果都來自同一個錯誤假設。單元測試仍然重要，但它只是 Builder 的本機快速檢查，不是獨立的產品驗收。要拆掉這個盲點，Validator 必須拿著 build，從產品外部跑過真實介面，再用另一套固定規則判定結果。</p>
 <p>把它拆成三層會比較清楚：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>層次</th>
@@ -265,7 +265,7 @@
 <td>管理整套驗收流程</td>
 <td>build、環境、資料、Evidence、判定、CI、Agent 規則</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>所以，團隊說「我們用了 Playwright」，只代表有了自動化執行工具。只有當它還能接收指定 build、準備隔離資料、留下可重播紀錄、做出固定判定，並把新問題加入回歸測試，才稱得上是一個 E2E Harness。</p>
 <p>「Harness」在測試領域也不是 AI 才發明的新詞。ISTQB 2019 年的術語表把 test harness 定義為執行測試套件所需的測試環境、stubs 與 drivers；更早的 FDA／IEEE 軟體工程術語則把 test driver／test harness 描述成負責呼叫測試對象、提供輸入、監控執行與回報結果的元件。<a target="_blank" rel="noopener" href="https://api.glossary.istqb.org/storage/help/R0uz58NqLzUz48LVUuyGSF76NFj4LHQazSs0GlNS.pdf">ISTQB Glossary</a>、<a target="_blank" rel="noopener" href="https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-guides/glossary-computer-system-software-development-terminology-895">FDA／IEEE Software Glossary</a></p>
 <p>近年變得流行的是 <strong>AI-native Harness</strong> 這個用法：當 Agent 會自己讀規格、修改產品、執行測試、分析失敗與提出修復時，Harness 不再只是測試執行器的外殼，而是替 Agent 提供工具、上下文、限制、證據與完成條件的控制面。OpenAI 對 Harness Engineering 的描述，正是把重點從「如何下更好的 prompt」移到「如何設計讓 Agent 可靠工作的環境與回饋迴圈」。<a target="_blank" rel="noopener" href="https://openai.com/index/harness-engineering/">Harness engineering</a></p>
@@ -350,7 +350,7 @@ flowchart TD
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">e2e-harness/</span><br><span class="line">├── AGENTS.md</span><br><span class="line">├── docs/</span><br><span class="line">│   ├── product-map.md</span><br><span class="line">│   ├── test-strategy.md</span><br><span class="line">│   ├── environments.md</span><br><span class="line">│   ├── selector-contract.md</span><br><span class="line">│   └── known-issues.md</span><br><span class="line">├── specs/</span><br><span class="line">│   ├── smoke/</span><br><span class="line">│   ├── critical/</span><br><span class="line">│   └── regression/</span><br><span class="line">├── pages/                 # Web UI，需要時使用</span><br><span class="line">├── screens/               # 其他 UI surface，需要時使用</span><br><span class="line">├── components/            # 共用 UI，需要時使用</span><br><span class="line">├── flows/</span><br><span class="line">├── assertions/</span><br><span class="line">├── fixtures/</span><br><span class="line">├── support/</span><br><span class="line">├── adapters/</span><br><span class="line">│   ├── browser/           # Playwright</span><br><span class="line">│   ├── mobile/            # Mobile adapter，可選</span><br><span class="line">│   └── api/               # API client／contract，可選</span><br><span class="line">├── observability/</span><br><span class="line">├── agent/</span><br><span class="line">│   ├── exploratory/</span><br><span class="line">│   ├── failure-analysis/</span><br><span class="line">│   ├── test-generation/</span><br><span class="line">│   └── maintenance/</span><br><span class="line">├── config/</span><br><span class="line">└── scripts/</span><br></pre></td></tr></table></figure>
 
 <p>各資料夾只負責一件事：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>資料夾</th>
@@ -389,13 +389,13 @@ flowchart TD
 <td><code>agent/</code></td>
 <td>探索、失敗分析、案例生成與低風險維護</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3 id="先寫要驗證什麼，再寫怎麼操作"><a href="#先寫要驗證什麼，再寫怎麼操作" class="headerlink" title="先寫要驗證什麼，再寫怎麼操作"></a>先寫要驗證什麼，再寫怎麼操作</h3><p>Spec 應該寫清楚前置條件、使用者要做什麼、什麼結果算成功，以及哪些情況算失敗，不要只列 selector。流程層和執行器再把它翻成實際操作：Web 用 role、label、語意文字或 test ID；其他介面使用對應的 accessibility id、resource id 或服務契約。找不到元素時，Agent 可以修定位方式，但不能把預期結果改寬。</p>
 <p>範例：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> checkoutFlow.<span class="title function_">placeOrder</span>(&#123;</span><br><span class="line">  <span class="attr">product</span>: catalog.<span class="property">inStockItem</span>,</span><br><span class="line">  <span class="attr">account</span>: users.<span class="property">standard</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> checkoutAssertions.<span class="title function_">expectCreatedOnce</span>();</span><br></pre></td></tr></table></figure>
 
 <p>流程可以跨多個頁面、畫面或 API，但頁面物件不應該塞進完整業務流程。這樣 Agent 修一個定位方式或 API 執行器時，不必重新理解整個產品。</p>
-<h3 id="三種測試，各自負責什麼"><a href="#三種測試，各自負責什麼" class="headerlink" title="三種測試，各自負責什麼"></a>三種測試，各自負責什麼</h3><table>
+<h3 id="三種測試，各自負責什麼"><a href="#三種測試，各自負責什麼" class="headerlink" title="三種測試，各自負責什麼"></a>三種測試，各自負責什麼</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>Suite</th>
@@ -422,7 +422,7 @@ flowchart TD
 <td>Merge 後、Nightly</td>
 <td>依風險設定</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>這就是這套驗收系統的分工：本機先跑快速測試，固定 E2E 守住重要流程，AI 探索則不直接決定 CI 是否放行。不同產品可能沒有 <code>screens/</code> 或 UI 層，但重點不變：<strong>只有固定執行器能決定固定驗收是否通過</strong>。</p>
 <h2 id="四、固定測試和-AI-探索要分工"><a href="#四、固定測試和-AI-探索要分工" class="headerlink" title="四、固定測試和 AI 探索要分工"></a>四、固定測試和 AI 探索要分工</h2><h3 id="可以共用紀錄，不能共用放行權"><a href="#可以共用紀錄，不能共用放行權" class="headerlink" title="可以共用紀錄，不能共用放行權"></a>可以共用紀錄，不能共用放行權</h3><pre class="mermaid">
 flowchart TD
@@ -477,7 +477,7 @@ flowchart TD
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">探索</span><br><span class="line">  → 留下紀錄</span><br><span class="line">  → 分析</span><br><span class="line">  → 重現</span><br><span class="line">  → 建立固定回歸測試</span><br><span class="line">  → 再跑一次</span><br></pre></td></tr></table></figure>
 
 <p>如果問題能穩定重現，才放進 <code>specs/regression/</code>。這樣每抓到一個新問題，就多一條永久保護。</p>
-<h3 id="修改產品的人和驗收的人要分開"><a href="#修改產品的人和驗收的人要分開" class="headerlink" title="修改產品的人和驗收的人要分開"></a>修改產品的人和驗收的人要分開</h3><table>
+<h3 id="修改產品的人和驗收的人要分開"><a href="#修改產品的人和驗收的人要分開" class="headerlink" title="修改產品的人和驗收的人要分開"></a>修改產品的人和驗收的人要分開</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>角色</th>
@@ -500,7 +500,7 @@ flowchart TD
 <td>定義要驗證的行為、確認變更、接受風險例外</td>
 <td>不能只看 AI 摘要而跳過原始紀錄</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>是否使用不同模型不是重點。重要的是把角色、上下文、環境和決策權分開。2026 年一項 LLM 測試生成研究在特定實驗中觀察到，先生成錯誤程式碼再生成測試，抓錯率低於獨立生成測試；這也是 Builder 和 Validator 不應共用同一套錯誤假設的原因。<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05139">On the risk of coding before testing</a></p>
 <h2 id="五、把測試紀錄留下來，讓-Agent-能查問題"><a href="#五、把測試紀錄留下來，讓-Agent-能查問題" class="headerlink" title="五、把測試紀錄留下來，讓 Agent 能查問題"></a>五、把測試紀錄留下來，讓 Agent 能查問題</h2><h3 id="不要只留下錯誤訊息"><a href="#不要只留下錯誤訊息" class="headerlink" title="不要只留下錯誤訊息"></a>不要只留下錯誤訊息</h3><p>只留下 <code>Expected visible, received hidden</code>，幾乎無法幫 Agent 找原因。測試至少要在失敗時保存：</p>
 <ul>
@@ -563,7 +563,7 @@ flowchart TD
 </pre>
 
 <h3 id="CI-怎麼安排測試"><a href="#CI-怎麼安排測試" class="headerlink" title="CI 怎麼安排測試"></a>CI 怎麼安排測試</h3><p>產品 Repo 和測試 Repo 可以用建置版本連接：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>階段</th>
@@ -596,12 +596,12 @@ flowchart TD
 <td>在隔離環境嘗試未知組合，保存可重現步驟</td>
 <td>不直接修改 main</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>每份報告至少要記錄產品 commit、測試 commit、build number、OS／Browser／Runtime、環境、資料 seed 和測試帳號。沒有這些資料，Agent 很容易把環境問題誤判成產品問題。</p>
 <h3 id="怎麼判斷測試覆蓋得夠不夠"><a href="#怎麼判斷測試覆蓋得夠不夠" class="headerlink" title="怎麼判斷測試覆蓋得夠不夠"></a>怎麼判斷測試覆蓋得夠不夠</h3><p>對 E2E Harness，覆蓋率不應只回答「跑過多少行程式碼」，而要回答：「重要的產品行為，有多少真的被驗證過？」可以把一個測試項目想成：</p>
 <p><code>意圖 × 狀態 × 資料 × 介面</code></p>
 <p>例如「結帳 × session 過期 × 標準帳號 × Web／Chrome」是一個測試項目；「提交付款 × 重複點擊 × 已存在訂單 × API＋Web」是另一個。只有測試真的跑過這個組合，並檢查產品結果和必要的資料變化，才算覆蓋。Agent 隨機探索一次、畫面沒有報錯，不能直接算成覆蓋率。</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>指標</th>
@@ -639,7 +639,7 @@ flowchart TD
 <td>被測試抓到的有效錯誤 ÷ 有效錯誤總數</td>
 <td>測試能不能抓到故意注入的錯誤</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>程式碼的行覆蓋率、函式覆蓋率和分支覆蓋率仍然有用，但它只表示某段程式跑過，不表示判定寫對，也不表示產品符合需求。ISTQB 也把敘述覆蓋率和決策／條件覆蓋率分開定義；它們是程式結構的指標，不是產品品質分數。<a target="_blank" rel="noopener" href="https://api.glossary.istqb.org/storage/help/R0uz58NqLzUz48LVUuyGSF76NFj4LHQazSs0GlNS.pdf">ISTQB Testing Glossary</a></p>
 <p>因此 CI 不應只設一條「80% 就通過」的規則。比較實用的做法是：</p>
 <ul>
@@ -861,7 +861,7 @@ flowchart TD
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分類</h3>
   <ul class="entry">
   
@@ -890,132 +890,60 @@ flowchart TD
     <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">標籤</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/tags/AI/">AI</a><small>46</small></li>
+    <li><a href="/tags/AI/"><span>AI</span><small>46</small></a></li>
   
-    <li><a href="/tags/AI-Agent/">AI Agent</a><small>12</small></li>
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/tags/Claude/"><span>Claude</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>3</small></li>
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+    <li><a href="/tags/Codex/"><span>Codex</span><small>12</small></a></li>
   
-    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>10</small></a></li>
   
-    <li><a href="/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>8</small></a></li>
   
-    <li><a href="/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
   
-    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
   
-    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
   
-    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>3</small></li>
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude/">Claude</a><small>13</small></li>
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude-Code/">Claude Code</a><small>4</small></li>
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
   
-    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
   
-    <li><a href="/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
   
-    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
-  
-    <li><a href="/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
-  
-    <li><a href="/tags/LLM/">LLM</a><small>5</small></li>
-  
-    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
-  
-    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
-  
-    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
-  
-    <li><a href="/tags/OpenAI/">OpenAI</a><small>10</small></li>
-  
-    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
-  
-    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
-  
-    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
-  
-    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
-  
-    <li><a href="/tags/React/">React</a><small>1</small></li>
-  
-    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
-  
-    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
-  
-    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
-  
-    <li><a href="/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
-  
-    <li><a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
-  
-    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>13</small></li>
-  
-    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
-  
-    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
-  
-    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>8</small></li>
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -1026,7 +954,7 @@ flowchart TD
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -1068,7 +996,7 @@ flowchart TD
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/js/custom.js?v=260623-1"></script>
+  <script defer src="/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/js/jquery-3.4.1.min.js"></script>
@@ -1202,8 +1130,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

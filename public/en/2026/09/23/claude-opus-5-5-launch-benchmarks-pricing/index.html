@@ -6,7 +6,7 @@
   <title>Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="Claude Opus 5.5 leads AA at 58. Compare all nine official benchmarks, five effort levels, API prices, subscription resets, and migration changes.">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/en/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -233,7 +233,7 @@
 <span id="more"></span>
 
 <h2 id="Release-date-specifications-and-availability"><a href="#Release-date-specifications-and-availability" class="headerlink" title="Release date, specifications, and availability"></a>Release date, specifications, and availability</h2><p>Anthropic dates the release <strong>September 22, 2026</strong>. The sources below were checked early on <strong>September 23 in Taiwan, UTC+8</strong>. These are API specifications; a subscription interface may expose different limits. <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/models/opus-5-5/overview">Official model documentation</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -268,11 +268,11 @@
 <td>Developer platforms</td>
 <td>Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, Microsoft Foundry</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>Plan availability is documented on the <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/opus">Opus product page</a>; cloud availability is listed in the <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/release-notes/overview">API release notes</a>. Access still depends on the platform and account configuration.</p>
 <h2 id="Artificial-Analysis-first-at-max-with-a-different-picture-at-medium"><a href="#Artificial-Analysis-first-at-max-with-a-different-picture-at-medium" class="headerlink" title="Artificial Analysis: first at max, with a different picture at medium"></a>Artificial Analysis: first at max, with a different picture at medium</h2><p>At the time checked, <strong>Artificial Analysis Intelligence Index v4.3.2</strong> showed Opus 5.5 at <strong>58</strong>, ahead of Fable 5.1 and GPT-6 Astra, both displayed at 53. These are the site’s rounded scores. Both Claude entries are labeled <strong>max with fallback</strong>; Astra is labeled <strong>max</strong>. <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/">Live AA leaderboard</a></p>
 <p>AA has also published five Opus 5.5 effort variants. All rows below use <strong>Default Fallback</strong>. Token counts are aggregate output across the Intelligence Index evaluation, <strong>not a single response or the context-window capacity</strong>.</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>Effort</th>
@@ -305,11 +305,11 @@
 <td align="right">42</td>
 <td align="right">Approximately 20M</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>My reading: test medium and high for routine development before making max the default.</strong> Using the displayed approximations, max produces about <strong>6.8 times</strong> medium’s total output for seven more index points. That is not a bill multiplier: input, caching, and other charges also matter. It does show why the highest-scoring configuration and the most useful everyday configuration need separate evaluation.</p>
 <p>AA’s new model pages still showed <strong>N&#x2F;A</strong> for speed and cost per task, alongside some <strong>$0.00</strong> price fields. Those fields conflict with Anthropic’s published paid pricing. This article therefore uses the official rate card and does not interpret the unfinished fields as free access or measured throughput. <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-opus-5-5">AA model page</a></p>
 <h2 id="All-nine-official-benchmarks-including-where-Astra-leads"><a href="#All-nine-official-benchmarks-including-where-Astra-leads" class="headerlink" title="All nine official benchmarks, including where Astra leads"></a>All nine official benchmarks, including where Astra leads</h2><p>The following reproduces the numerical comparison in Anthropic’s official chart, checked against its announcement. <strong>This vendor-published comparison is separate from AA’s overall Intelligence Index.</strong> “Not listed” means the chart provides no result, not that the model scored zero. <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">Official announcement</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
 <th>Benchmark</th>
@@ -392,7 +392,7 @@
 <td align="right">Not listed</td>
 <td align="right">Not listed</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>GDPval-AA is a rating, <strong>not a percentage</strong>. The OSWorld <strong>partial</strong> label and tool-use conditions are retained because these rows do not all measure the same kind of success.</p>
 <p>Terminal-Bench shows a <strong>14.1 percentage-point</strong> gain over Opus 5 and an <strong>8.5-point</strong> lead over Astra. The FrontierCode margin over Astra is only 1.1 points, however, and Astra has the highest listed scores on business workflows and agentic scientific research. The chart does not support a claim of universal superiority.</p>
 <p>Its footnotes also matter:</p>
@@ -409,7 +409,7 @@
 </details>
 
 <h2 id="Pricing-distinguish-the-20-40-and-60-reductions"><a href="#Pricing-distinguish-the-20-40-and-60-reductions" class="headerlink" title="Pricing: distinguish the 20%, 40%, and 60% reductions"></a>Pricing: distinguish the 20%, 40%, and 60% reductions</h2><p>Standard Claude API prices are in <strong>USD per million tokens</strong>. <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/about-claude/pricing">Official pricing documentation</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>Charge</th>
@@ -448,7 +448,7 @@
 <td align="right">$0.20</td>
 <td align="right">60%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>The <strong>40% figure is Anthropic’s estimated reduction in typical task cost</strong>, combining pricing and token efficiency. It is not a blanket 40% rate-card discount. Anthropic also reports over 30% faster output generation; that does not guarantee a project finishes 30% sooner. <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-opus-5-5">Announcement</a></p>
 <p>Consider a fixed-volume example: one million uncached input tokens and 200,000 output tokens, excluding tools and other charges, cost <strong>$10</strong> on Opus 5 and <strong>$8</strong> on Opus 5.5. That saves 20%. Fewer retries, shorter outputs, or better cache use can reduce the bill further, but those are workload outcomes to measure.</p>
 <p>Repeated repository reads are particularly relevant: ten million cache-hit tokens cost <strong>$2 instead of $5</strong>, excluding the original cache write and any output.</p>
@@ -645,7 +645,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
@@ -664,122 +664,60 @@
     <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>3</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/en/categories/">View all categories</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">Popular tags</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/en/tags/AI/">AI</a><small>19</small></li>
+    <li><a href="/en/tags/AI/"><span>AI</span><small>19</small></a></li>
   
-    <li><a href="/en/tags/AI-Agent/">AI Agent</a><small>4</small></li>
+    <li><a href="/en/tags/Codex/"><span>Codex</span><small>7</small></a></li>
   
-    <li><a href="/en/tags/AI-Agents/">AI Agents</a><small>2</small></li>
+    <li><a href="/en/tags/Claude/"><span>Claude</span><small>6</small></a></li>
   
-    <li><a href="/en/tags/AI-Coding/">AI Coding</a><small>2</small></li>
+    <li><a href="/en/tags/AI-Agent/"><span>AI Agent</span><small>4</small></a></li>
   
-    <li><a href="/en/tags/AI-Evaluation/">AI Evaluation</a><small>1</small></li>
+    <li><a href="/en/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
   
-    <li><a href="/en/tags/AI-Image-Generation/">AI Image Generation</a><small>3</small></li>
+    <li><a href="/en/tags/Developer-Tools/"><span>Developer Tools</span><small>4</small></a></li>
   
-    <li><a href="/en/tags/AI-Tools/">AI Tools</a><small>1</small></li>
+    <li><a href="/en/tags/AI-Image-Generation/"><span>AI Image Generation</span><small>3</small></a></li>
   
-    <li><a href="/en/tags/AI-Video/">AI Video</a><small>1</small></li>
+    <li><a href="/en/tags/Game-Development/"><span>Game Development</span><small>3</small></a></li>
   
-    <li><a href="/en/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/en/tags/Indie-Developer/"><span>Indie Developer</span><small>3</small></a></li>
   
-    <li><a href="/en/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/en/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
-    <li><a href="/en/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/en/tags/Software-Engineering/"><span>Software Engineering</span><small>3</small></a></li>
   
-    <li><a href="/en/tags/Aseprite/">Aseprite</a><small>1</small></li>
+    <li><a href="/en/tags/AI-Agents/"><span>AI Agents</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/Benchmarks/">Benchmarks</a><small>1</small></li>
+    <li><a href="/en/tags/AI-Coding/"><span>AI Coding</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+    <li><a href="/en/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/Claude/">Claude</a><small>6</small></li>
+    <li><a href="/en/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/Claude-Code/">Claude Code</a><small>4</small></li>
+    <li><a href="/en/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/Codex/">Codex</a><small>7</small></li>
+    <li><a href="/en/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/CodexBar/">CodexBar</a><small>1</small></li>
+    <li><a href="/en/tags/Godot/"><span>Godot</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/en/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
   
-    <li><a href="/en/tags/Cursor/">Cursor</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Developer-Tools/">Developer Tools</a><small>4</small></li>
-  
-    <li><a href="/en/tags/Development-Tools/">Development Tools</a><small>1</small></li>
-  
-    <li><a href="/en/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
-  
-    <li><a href="/en/tags/E2E-Testing/">E2E Testing</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Frontend-Development/">Frontend Development</a><small>1</small></li>
-  
-    <li><a href="/en/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/en/tags/Game-Development/">Game Development</a><small>3</small></li>
-  
-    <li><a href="/en/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/en/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/en/tags/Indie-Dev/">Indie Dev</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Indie-Developer/">Indie Developer</a><small>3</small></li>
-  
-    <li><a href="/en/tags/Indie-Game-Dev/">Indie Game Dev</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Indie-Hacker/">Indie Hacker</a><small>1</small></li>
-  
-    <li><a href="/en/tags/JavaScript/">JavaScript</a><small>1</small></li>
-  
-    <li><a href="/en/tags/LLM/">LLM</a><small>3</small></li>
-  
-    <li><a href="/en/tags/Open-Source/">Open Source</a><small>1</small></li>
-  
-    <li><a href="/en/tags/OpenAI/">OpenAI</a><small>2</small></li>
-  
-    <li><a href="/en/tags/Parallel-Work/">Parallel Work</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
-  
-    <li><a href="/en/tags/PixelLab/">PixelLab</a><small>1</small></li>
-  
-    <li><a href="/en/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Software-Engineering/">Software Engineering</a><small>3</small></li>
-  
-    <li><a href="/en/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/en/tags/Tools/">Tools</a><small>2</small></li>
-  
-    <li><a href="/en/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/en/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Usage-Limits/">Usage Limits</a><small>1</small></li>
-  
-    <li><a href="/en/tags/Web-Development/">Web Development</a><small>2</small></li>
-  
-    <li><a href="/en/tags/Z-ai/">Z.ai</a><small>2</small></li>
+    <li><a href="/en/tags/Grok/"><span>Grok</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/en/tags/">View all tags</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -790,7 +728,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"Copy","codeCopied":"Copied","toastCodeCopied":"Code copied to clipboard","copyLinkLabel":"Copy Link","linkCopied":"Article link copied","headingCopied":"Section link copied","tocTitle":"Table of Contents","searchLoading":"Loading...","searchEmpty":"Type keywords to start searching...","searchNoResults":"No articles matching \"%s\""};</script>
+  <script>window.BLOG_I18N = {"copyCode":"Copy","codeCopied":"Copied","toastCodeCopied":"Code copied to clipboard","copyLinkLabel":"Copy Link","linkCopied":"Article link copied","headingCopied":"Section link copied","tocTitle":"Table of Contents","searchLoading":"Loading...","searchEmpty":"Type keywords to start searching...","searchNoResults":"No articles matching \"%s\"","tableScrollLabel":"Table, scroll horizontally for more columns","tableScrollHint":"Scroll horizontally to view the full table. You can also use the arrow keys."};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -832,7 +770,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/en/js/custom.js?v=260623-1"></script>
+  <script defer src="/en/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/en/js/jquery-3.4.1.min.js"></script>
@@ -966,8 +904,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

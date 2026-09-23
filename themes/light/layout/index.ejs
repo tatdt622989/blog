@@ -1,3 +1,8 @@
+<nav class="topic-navigation" aria-label="<%= __('browse_topics') %>">
+  <span><%= __('browse_topics') %></span>
+  <a href="<%- url_for('categories/') %>"><%= __('categories') %></a>
+  <a href="<%- url_for('tags/') %>"><%= __('all_tags') %></a>
+</nav>
 <% page.posts.each(function(item){ %>
   <%- partial('_partial/article', {item: item, index: true}) %>
 <% }); %>

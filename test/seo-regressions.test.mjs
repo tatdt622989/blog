@@ -188,7 +188,7 @@ test('homepage avoids post-only JavaScript libraries', () => {
   const homepage = read('public/index.html');
   const post = read('public/2026/06/23/OpenAI-推出-GPT-5-5-Cyber：防守方專屬的-AI-網路安全新利器/index.html');
 
-  assert.match(homepage, /js\/custom\.js\?v=260623-1/, 'homepage should load the small custom script');
+  assert.match(homepage, /<script defer src="\/js\/custom\.js\?v=[\w-]+"><\/script>/, 'homepage should load the deferred, versioned custom script');
   assert.doesNotMatch(homepage, /jquery-3\.4\.1\.min\.js/, 'homepage should not load jQuery');
   assert.doesNotMatch(homepage, /jquery\.fancybox\.pack\.js/, 'homepage should not load Fancybox');
   assert.match(post, /jquery-3\.4\.1\.min\.js/, 'post pages should still load jQuery for Fancybox');

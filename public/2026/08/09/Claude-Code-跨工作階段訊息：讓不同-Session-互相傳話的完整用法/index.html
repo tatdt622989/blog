@@ -6,7 +6,7 @@
   <title>Claude Code 跨工作階段訊息：讓不同 Session 互相傳話的完整用法 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="Claude Code v2.1.224 新增跨工作階段訊息，讓不同 Session 交換任務摘要、詢問進度並回覆答案。本文整理實際用法、跨機限制、Agent Teams 差異與安全設定。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -249,7 +249,7 @@
 
 <p>Claude 會負責找對方、組織問題、等待回覆，再把結果帶回目前的對話。這對同一個專案同時開很多終端機的人特別方便。</p>
 <h3 id="2-平行工作時交換進度"><a href="#2-平行工作時交換進度" class="headerlink" title="2. 平行工作時交換進度"></a>2. 平行工作時交換進度</h3><p>你可以讓不同 Session 各自負責一個邊界清楚的工作：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>Session</th>
@@ -272,7 +272,7 @@
 <td>檢查回歸與邊界案例</td>
 <td>測試結果、失敗案例、阻塞原因</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>API Session 完成後，可以主動傳一則摘要給前端或測試 Session。這比讓每個 Session 不斷重新掃描整個 repository，更接近人類團隊交接工作的方式。</p>
 <h3 id="3-詢問另一台機器上的工作狀態"><a href="#3-詢問另一台機器上的工作狀態" class="headerlink" title="3. 詢問另一台機器上的工作狀態"></a>3. 詢問另一台機器上的工作狀態</h3><p>官方文件也把跨機器回覆列為用途之一。比如你在筆電上的 Session 想知道桌機上的長時間測試是否完成，可以發出詢問，讓遠端 Session 回答狀態。</p>
 <p>但這裡有一個很重要的限制：<strong>跨機器或 Claude Code Web 的 Session 目前主要是回覆型連線</strong>。你不能把它當成任意方向、任意時間都能推送工作的遠端控制通道；通常要先有可回覆的訊息路徑，且 Remote Control 必須讓對方 Session 可被找到。</p>
@@ -325,7 +325,7 @@
 <p>收件 Session 回答後，原本的 Session 會收到回覆。訊息畫面會顯示類似 <strong>Message from</strong> 的列，必要時可以使用 <code>Ctrl + O</code> 展開較完整的內容。</p>
 <p>這個設計有兩個好處：不會偷偷中斷另一個 Session 的檔案操作；同時也讓每個 Session 保有自己的權限判斷。如果收件端原本就被禁止執行某個動作，另一個 Session 不能透過傳訊息繞過這個限制。</p>
 <h2 id="同一台機器與跨機器，行為不一樣"><a href="#同一台機器與跨機器，行為不一樣" class="headerlink" title="同一台機器與跨機器，行為不一樣"></a>同一台機器與跨機器，行為不一樣</h2><p>這是目前最值得在文章裡講清楚的部分。官方文件把訊息的傳遞路徑分成幾種情境：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>情境</th>
@@ -358,11 +358,11 @@
 <td>主要是回覆訊息</td>
 <td>不是同機 Session 的完整雙向 socket 通道</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>同機訊息不會經過 Anthropic 伺服器；跨機器與 Web 路徑則會經過 Anthropic 服務。因此，如果訊息可能跨機器，就不要把 API key、個人資料、密碼或不必要的原始碼直接塞進摘要裡。</p>
 <p>另外，兩個 Session 即使在同一個 repository，也不代表它們共享對話歷史。訊息只是額外送到對方的文字；檔案是否存在、工作目錄是否相同、未提交修改是否可見，仍然取決於實際的檔案系統與 Git 配置。</p>
 <h2 id="它和-resume、子代理、Agent-Teams-有什麼不同？"><a href="#它和-resume、子代理、Agent-Teams-有什麼不同？" class="headerlink" title="它和 --resume、子代理、Agent Teams 有什麼不同？"></a>它和 <code>--resume</code>、子代理、Agent Teams 有什麼不同？</h2><p>這四種機制都能讓人感覺「不只一個 AI 在工作」，但設計目標完全不同：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>機制</th>
@@ -395,7 +395,7 @@
 <td>各自有脈絡，可直接互傳團隊訊息</td>
 <td>有，共享任務清單</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>如果只是「我在兩個終端機各開一個 Claude，請它們交換幾句進度」，用跨工作階段訊息就夠了。</p>
 <p>如果你要的是一個主代理拆任務、追蹤狀態、管理多個隊友，那是 Agent Teams。Agent Teams 目前仍是實驗性功能，需設定：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</span><br></pre></td></tr></table></figure>
@@ -477,7 +477,7 @@
         
   
   <div class="tags">
-    <a href="/tags/AI/">AI</a>, <a href="/tags/Claude-Code/">Claude Code</a>, <a href="/tags/AI-Agent/">AI Agent</a>, <a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a>
+    <a href="/tags/AI/">AI</a>, <a href="/tags/AI-Agent/">AI Agent</a>, <a href="/tags/Claude-Code/">Claude Code</a>, <a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a>
   </div>
 
         
@@ -640,7 +640,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分類</h3>
   <ul class="entry">
   
@@ -669,132 +669,60 @@
     <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">標籤</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/tags/AI/">AI</a><small>46</small></li>
+    <li><a href="/tags/AI/"><span>AI</span><small>46</small></a></li>
   
-    <li><a href="/tags/AI-Agent/">AI Agent</a><small>12</small></li>
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/tags/Claude/"><span>Claude</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>3</small></li>
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+    <li><a href="/tags/Codex/"><span>Codex</span><small>12</small></a></li>
   
-    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>10</small></a></li>
   
-    <li><a href="/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>8</small></a></li>
   
-    <li><a href="/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
   
-    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
   
-    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
   
-    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>3</small></li>
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude/">Claude</a><small>13</small></li>
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude-Code/">Claude Code</a><small>4</small></li>
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
   
-    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
   
-    <li><a href="/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
   
-    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
-  
-    <li><a href="/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
-  
-    <li><a href="/tags/LLM/">LLM</a><small>5</small></li>
-  
-    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
-  
-    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
-  
-    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
-  
-    <li><a href="/tags/OpenAI/">OpenAI</a><small>10</small></li>
-  
-    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
-  
-    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
-  
-    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
-  
-    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
-  
-    <li><a href="/tags/React/">React</a><small>1</small></li>
-  
-    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
-  
-    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
-  
-    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
-  
-    <li><a href="/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
-  
-    <li><a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
-  
-    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>13</small></li>
-  
-    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
-  
-    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
-  
-    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>8</small></li>
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -805,7 +733,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -847,7 +775,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/js/custom.js?v=260623-1"></script>
+  <script defer src="/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/js/jquery-3.4.1.min.js"></script>
@@ -981,8 +909,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

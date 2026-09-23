@@ -1,8 +1,8 @@
 ---
 title: "GPT-6 Sol and Luna: Artificial Analysis Scores, API Prices, and How to Choose"
 date: 2026-09-23 08:33:00
-updated: 2026-09-23 08:33:00
-description: "Compare GPT-6 Sol and Luna API prices, cache discounts, context limits, live Artificial Analysis scores, benchmark costs, and model-selection tradeoffs."
+updated: 2026-09-23 09:57:11
+description: "Compare GPT-6 Sol and Luna API prices, cache discounts, context limits, Artificial Analysis scores, benchmark costs, and model-selection tradeoffs."
 permalink: 2026/09/23/gpt-6-sol-luna-pricing-aa-review/
 translation_key: gpt-6-sol-luna-pricing-aa-review
 translations:

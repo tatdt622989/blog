@@ -11,7 +11,9 @@ var BLOG_STRINGS = (function () {
     tocTitle: i18n.tocTitle || '目次',
     searchLoading: i18n.searchLoading || '載入中...',
     searchEmpty: i18n.searchEmpty || '輸入關鍵字開始搜尋...',
-    searchNoResults: i18n.searchNoResults || '找不到符合「%s」的相關文章'
+    searchNoResults: i18n.searchNoResults || '找不到符合「%s」的相關文章',
+    tableScrollLabel: i18n.tableScrollLabel || '表格，可左右捲動',
+    tableScrollHint: i18n.tableScrollHint || '左右滑動查看完整表格；鍵盤可使用方向鍵。'
   };
 })();
 
@@ -60,14 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  document.querySelectorAll('table').forEach(function (table) {
-    if (table.parentElement && table.parentElement.classList.contains('table-wrap')) return;
-
-    var wrapper = document.createElement('div');
-    wrapper.className = 'table-wrap';
-    table.parentNode.insertBefore(wrapper, table);
-    wrapper.appendChild(table);
-  });
+  initDataTables();
+  initTaxonomyFilter();
 
   if (articles.length === 1) {
     createTOC(articles[0]);
@@ -80,6 +76,72 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.setTimeout(scrollToAnchor, 10);
 });
+
+function initDataTables() {
+  document.querySelectorAll('article .entry table').forEach(function (table) {
+    if (table.closest('.highlight, .gist') || table.parentElement.closest('table')) return;
+    var wrapper = table.parentElement;
+    if (!wrapper.matches('.table-wrap, .tableWrap')) {
+      wrapper = document.createElement('div');
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    }
+    wrapper.classList.add('table-wrap', 'data-table-wrap');
+    var columns = Array.from(table.rows[0] ? table.rows[0].cells : []).reduce(function (count, cell) {
+      return count + cell.colSpan;
+    }, 0);
+    wrapper.style.setProperty('--table-min-width', (columns > 3 ? Math.min(columns * 140, 1120) : 0) + 'px');
+    var hint = document.createElement('p');
+    hint.className = 'table-scroll-hint';
+    hint.textContent = BLOG_STRINGS.tableScrollHint;
+    wrapper.insertAdjacentElement('afterend', hint);
+
+    function updateOverflow() {
+      var overflowing = wrapper.scrollWidth > wrapper.clientWidth + 1;
+      hint.hidden = !overflowing;
+      wrapper.classList.toggle('has-scroll-right', overflowing && wrapper.scrollLeft < wrapper.scrollWidth - wrapper.clientWidth - 2);
+      if (overflowing) {
+        wrapper.setAttribute('tabindex', '0');
+        wrapper.setAttribute('role', 'region');
+        wrapper.setAttribute('aria-label', table.caption ? table.caption.textContent : BLOG_STRINGS.tableScrollLabel);
+      } else {
+        wrapper.removeAttribute('tabindex');
+        wrapper.removeAttribute('role');
+        wrapper.removeAttribute('aria-label');
+      }
+    }
+    updateOverflow();
+    wrapper.addEventListener('scroll', updateOverflow, { passive: true });
+    if (window.ResizeObserver) {
+      var observer = new ResizeObserver(updateOverflow);
+      observer.observe(wrapper);
+      observer.observe(table);
+    } else {
+      window.addEventListener('resize', updateOverflow);
+    }
+  });
+}
+
+function initTaxonomyFilter() {
+  var directory = document.querySelector('.taxonomy-directory');
+  if (!directory) return;
+  var input = directory.querySelector('#taxonomy-filter');
+  var items = Array.from(directory.querySelectorAll('[data-topic]'));
+  var status = directory.querySelector('[data-count-template]');
+  var empty = directory.querySelector('.taxonomy-directory__empty');
+  directory.querySelector('.taxonomy-directory__tools').hidden = false;
+  input.addEventListener('input', function () {
+    var query = input.value.trim().normalize('NFKC').toLocaleLowerCase();
+    var visible = 0;
+    items.forEach(function (item) {
+      var matches = item.dataset.topic.normalize('NFKC').toLocaleLowerCase().includes(query);
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    status.textContent = status.dataset.countTemplate.replace('%s', visible);
+    empty.hidden = visible > 0;
+  });
+}
 
 /* -------------------------------------------------------------
  * 1. 剪貼簿與 Toast 提示 (Toast & Clipboard)

@@ -6,7 +6,7 @@
   <title>开源 AI 绘图模型选型全指南：按显存设备、画质表现与风格挑出合适模型 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="2026 年开源 AI 绘图底模选型全攻略。深入横向测评 FLUX.1、SD 3.5、SDXL、Illustrious 与 Pony，结合显卡显存（4GB 至 24GB）、量化方案、画质表现与擅长风格（写实、二次元、排版文字），助你高效挑出最适合的开源图像模型。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/22/open-source-ai-image-models-selection-guide/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/22/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E6%A8%A1%E5%9E%8B%E9%81%B8%E5%9E%8B%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BE%9D%E9%A1%AF%E5%AD%98%E8%A8%AD%E5%82%99%E3%80%81%E7%94%9F%E6%88%90%E5%93%81%E8%B3%AA%E8%88%87%E9%A2%A8%E6%A0%BC%E6%8C%91%E5%87%BA%E5%91%BD%E5%AE%9A%E6%A8%A1%E5%9E%8B/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -238,7 +238,7 @@
 <h3 id="3-风格分化与数据集侧重"><a href="#3-风格分化与数据集侧重" class="headerlink" title="3. 风格分化与数据集侧重"></a>3. 风格分化与数据集侧重</h3><p>没有任何一个底模能兼顾所有视觉流派。以真实感见长的写实大模型，在生成日系动漫时容易显得厚重僵硬；而深度拟合于二次元动漫数据集的模型，也无法合成真实的人物肤质毛孔或物理光影衰减。</p>
 <hr>
 <h2 id="硬件显存阶梯与量化适配（4GB-至-24GB）"><a href="#硬件显存阶梯与量化适配（4GB-至-24GB）" class="headerlink" title="硬件显存阶梯与量化适配（4GB 至 24GB）"></a>硬件显存阶梯与量化适配（4GB 至 24GB）</h2><p>在下载数十 GB 大小的模型权重前，请务必先对照你的显卡配置：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th align="left">显存阶梯</th>
@@ -265,7 +265,7 @@
 <td align="left"><strong>FLUX.1 Dev（FP8&#x2F;BF16 原生版）、SD 3.5 Large（FP16）</strong></td>
 <td align="left">工作站级旗舰配置。支持原生加载高精度模型，能够承载多重 LoRA 叠加与高清局部精修，无压缩损耗。</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3 id="拯救中端显卡的量化利器：GGUF-与-NF4"><a href="#拯救中端显卡的量化利器：GGUF-与-NF4" class="headerlink" title="拯救中端显卡的量化利器：GGUF 与 NF4"></a>拯救中端显卡的量化利器：GGUF 与 NF4</h3><p>如果你的显卡仅有 8GB 或 12GB 显存，以往几乎无法本地运行像 FLUX 这种 12B 参数量级的超大模型。如今在 <strong>ComfyUI</strong> 或 <strong>Forge</strong> 等现代化推理工具中，你可以直接挂载 <strong>GGUF（Q4_K_S、Q5_K_S）</strong> 或 <strong>NF4</strong> 格式的量化底模。这些技术将 16 位的原始浮点数压缩为 4 位或 8 位，显存占用直降至 7GB 到 11GB 区间，而肉眼可见的画质损耗微乎其微，是中低预算创作者的必学技巧。</p>
 <hr>
 <h2 id="主流开源模型深度解析"><a href="#主流开源模型深度解析" class="headerlink" title="主流开源模型深度解析"></a>主流开源模型深度解析</h2><p>当前开源生图生态主要由以下四大核心流派组成：</p>
@@ -297,7 +297,7 @@
 <li><strong>Illustrious-XL（与 NoobAI 系列）</strong>：新一代日系二次元底模的领跑者。与 Pony 相比，它具备更出色的自然语言提示词解析能力，在原生人体解剖结构、现代动漫色彩动态范围与笔触细腻度上更加出众，摆脱了机械标签感，深受专业插画师青睐。</li>
 </ul>
 <hr>
-<h2 id="选型决策一览表"><a href="#选型决策一览表" class="headerlink" title="选型决策一览表"></a>选型决策一览表</h2><table>
+<h2 id="选型决策一览表"><a href="#选型决策一览表" class="headerlink" title="选型决策一览表"></a>选型决策一览表</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:700px"><table>
 <thead>
 <tr>
 <th align="left">创作场景与核心需求</th>
@@ -342,7 +342,7 @@
 <td align="left">4GB 至 6GB</td>
 <td align="left">极低显存占用，秒级出图，极度适合概念前期的灵感发散。</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2 id="结语与下一步：将优质底模融入工业化生产管线"><a href="#结语与下一步：将优质底模融入工业化生产管线" class="headerlink" title="结语与下一步：将优质底模融入工业化生产管线"></a>结语与下一步：将优质底模融入工业化生产管线</h2><p>选定适合自身硬件与业务流派的基底模型，只是摆脱盲目试错的第一步。在实际的商业设计与游戏美术开发中，要想持续稳定地产出高质量视觉资产，关键在于如何将底模与高精度的控制工具无缝串联。</p>
 <p>如果你想进一步了解如何利用 ControlNet 严密锁定人物肢体动作、借助 ADetailer 自动化修复面部微表情与手部细节，以及如何在 ComfyUI 中搭建分层渐进式的工业级流水线，欢迎参考我们此前的深度技术复盘：<a href="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/">开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线</a>。选对底模大模型，配以工程化管线，方能彻底释放本地 AI 绘图的无限生产力。</p>
@@ -523,7 +523,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分类</h3>
   <ul class="entry">
   
@@ -544,102 +544,60 @@
     <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>23</small></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>23</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>8</small></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>5</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>7</small></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+    <li><a href="/zh-cn/tags/Grok/"><span>Grok</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -650,7 +608,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -692,7 +650,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
@@ -826,8 +784,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

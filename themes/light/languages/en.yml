@@ -39,3 +39,17 @@ share_title: "Share"
 copy_link: "Copy Link"
 link_copied: "Article link copied"
 heading_copied: "Section link copied"
+popular_tags: Popular tags
+all_tags: View all tags
+all_categories: View all categories
+browse_topics: Browse topics
+tags_directory_description: Explore articles on AI, frontend engineering, game development, and Japanese learning. Tags are ordered by article count; filter by name to find a topic.
+categories_directory_description: Browse technical tutorials, hands-on tool reviews, and personal notes by category.
+filter_topics: Filter by name
+filter_topics_placeholder: Enter a tag or category name
+topics_count: "%s topics"
+posts_count: "%s posts"
+topics_empty: No matching topics. Try another keyword.
+topic_description: "Explore articles, tutorials, and hands-on notes about %s on the 6yuwei blog."
+table_scroll_label: Table, scroll horizontally for more columns
+table_scroll_hint: Scroll horizontally to view the full table. You can also use the arrow keys.

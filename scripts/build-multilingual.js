@@ -5,6 +5,7 @@ const os = require('os');
 const path = require('path');
 const Hexo = require('hexo');
 const {
+  addTaxonomyDirectoriesToSitemap,
   normalizeSitemapCanonicalUrls,
   normalizeSitemapHomeXml,
   writeSitemapIndex,
@@ -95,15 +96,21 @@ async function buildMultilingualSite(options = {}) {
     const chineseSitemap = fs.readFileSync(chineseSitemapPath, 'utf8');
     fs.writeFileSync(
       chineseSitemapPath,
-      normalizeSitemapCanonicalUrls(chineseSitemap),
+      addTaxonomyDirectoriesToSitemap(
+        normalizeSitemapCanonicalUrls(chineseSitemap),
+        'https://blog.6yuwei.com/',
+      ),
     );
 
     const simplifiedChineseSitemapPath = path.join(outputDir, 'zh-cn', 'sitemap.xml');
     const simplifiedChineseSitemap = fs.readFileSync(simplifiedChineseSitemapPath, 'utf8');
     fs.writeFileSync(
       simplifiedChineseSitemapPath,
-      normalizeSitemapCanonicalUrls(
-        normalizeSitemapHomeXml(simplifiedChineseSitemap, 'https://blog.6yuwei.com/zh-cn/'),
+      addTaxonomyDirectoriesToSitemap(
+        normalizeSitemapCanonicalUrls(
+          normalizeSitemapHomeXml(simplifiedChineseSitemap, 'https://blog.6yuwei.com/zh-cn/'),
+        ),
+        'https://blog.6yuwei.com/zh-cn/',
       ),
     );
 
@@ -111,8 +118,11 @@ async function buildMultilingualSite(options = {}) {
     const englishSitemap = fs.readFileSync(englishSitemapPath, 'utf8');
     fs.writeFileSync(
       englishSitemapPath,
-      normalizeSitemapCanonicalUrls(
-        normalizeSitemapHomeXml(englishSitemap, 'https://blog.6yuwei.com/en/'),
+      addTaxonomyDirectoriesToSitemap(
+        normalizeSitemapCanonicalUrls(
+          normalizeSitemapHomeXml(englishSitemap, 'https://blog.6yuwei.com/en/'),
+        ),
+        'https://blog.6yuwei.com/en/',
       ),
     );
 

@@ -6,7 +6,7 @@
   <title>AI 模型排行榜怎麼看？LMArena、SWE-bench、LiveBench 與 12 個關鍵指標完整解析 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="AI 模型排行榜到底在比什麼？比較 LMArena、Artificial Analysis、SWE-bench、Scale Labs 與 LiveBench，白話解析 Arena Score、pass@1、TTFT、TPS、Cost per Task 等 12 個關鍵指標，教你依任務選對評測平台。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -281,7 +281,7 @@
 <h2 id="Hugging-Face-Open-LLM-Leaderboard-為什麼不再列入"><a href="#Hugging-Face-Open-LLM-Leaderboard-為什麼不再列入" class="headerlink" title="Hugging Face Open LLM Leaderboard 為什麼不再列入"></a>Hugging Face Open LLM Leaderboard 為什麼不再列入</h2><p>Hugging Face Open LLM Leaderboard 曾是搜尋開源模型的重要入口，v2 使用 MMLU-Pro、GPQA、IFEval、MATH、MuSR 等標準測試，並讓社群模型以透明方式排隊評測。</p>
 <p>不過官方已在 <strong>2025 年 3 月 13 日</strong><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard/discussions/1135">宣布排行榜退役</a>。原因包括模型能力與推理方式快速變化，原有評測組合逐漸無法提供足夠鑑別度。它評估過超過 13,000 個模型，仍是重要的歷史資料，但不應再被寫成持續更新的當代五大平台之一。</p>
 <p>現在要挑選開源模型，除了參考歷史紀錄，也要查看模型卡、授權、上下文長度、量化版本、記憶體需求，以及在自己硬體與任務上的實測。</p>
-<h2 id="多平台比較表"><a href="#多平台比較表" class="headerlink" title="多平台比較表"></a>多平台比較表</h2><table>
+<h2 id="多平台比較表"><a href="#多平台比較表" class="headerlink" title="多平台比較表"></a>多平台比較表</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:700px"><table>
 <thead>
 <tr>
 <th>平台</th>
@@ -326,7 +326,7 @@
 <td>分領域正確率、平均分、更新日期</td>
 <td>較難衡量創意與主觀溝通品質</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2 id="依照使用情境選平台"><a href="#依照使用情境選平台" class="headerlink" title="依照使用情境選平台"></a>依照使用情境選平台</h2><h3 id="聊天機器人與內容助理"><a href="#聊天機器人與內容助理" class="headerlink" title="聊天機器人與內容助理"></a>聊天機器人與內容助理</h3><p>先看 LMArena 的 Overall、Instruction Following、Multi-Turn 與對應語言表現，再用自己的品牌語氣、正確性與拒答案例做小型盲測。偏好高不代表內容一定正確，事實查核仍不可省略。</p>
 <h3 id="API-產品與大量推論服務"><a href="#API-產品與大量推論服務" class="headerlink" title="API 產品與大量推論服務"></a>API 產品與大量推論服務</h3><p>先用 Artificial Analysis 篩選能力、TTFA、TPS、端到端時間與價格，再以真實流量測試尖峰延遲、錯誤率、速率限制與供應商穩定性。標示價格不能取代實際帳單。</p>
 <h3 id="Coding-Agent-與自動化開發"><a href="#Coding-Agent-與自動化開發" class="headerlink" title="Coding Agent 與自動化開發"></a>Coding Agent 與自動化開發</h3><p>查看 SWE-bench Verified 與其他終端、程式庫知識評測，同時記錄 Agent 框架、工具權限、嘗試次數、Cost per Task 與 End-to-End Time。若要設計完整開發流程，也可參考 <a href="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/">Agentic SDLC 架構指南</a>。</p>
@@ -521,7 +521,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分類</h3>
   <ul class="entry">
   
@@ -550,132 +550,60 @@
     <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">標籤</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/tags/AI/">AI</a><small>46</small></li>
+    <li><a href="/tags/AI/"><span>AI</span><small>46</small></a></li>
   
-    <li><a href="/tags/AI-Agent/">AI Agent</a><small>12</small></li>
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/tags/Claude/"><span>Claude</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>3</small></li>
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+    <li><a href="/tags/Codex/"><span>Codex</span><small>12</small></a></li>
   
-    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>10</small></a></li>
   
-    <li><a href="/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>8</small></a></li>
   
-    <li><a href="/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
   
-    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
   
-    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
   
-    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>3</small></li>
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude/">Claude</a><small>13</small></li>
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude-Code/">Claude Code</a><small>4</small></li>
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
   
-    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
   
-    <li><a href="/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
   
-    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
-  
-    <li><a href="/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
-  
-    <li><a href="/tags/LLM/">LLM</a><small>5</small></li>
-  
-    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
-  
-    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
-  
-    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
-  
-    <li><a href="/tags/OpenAI/">OpenAI</a><small>10</small></li>
-  
-    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
-  
-    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
-  
-    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
-  
-    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
-  
-    <li><a href="/tags/React/">React</a><small>1</small></li>
-  
-    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
-  
-    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
-  
-    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
-  
-    <li><a href="/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
-  
-    <li><a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
-  
-    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>13</small></li>
-  
-    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
-  
-    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
-  
-    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>8</small></li>
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -686,7 +614,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -728,7 +656,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/js/custom.js?v=260623-1"></script>
+  <script defer src="/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/js/jquery-3.4.1.min.js"></script>
@@ -862,8 +790,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

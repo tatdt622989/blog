@@ -2,7 +2,7 @@
 title: >-
   The Definitive Open-Source AI Image Model Selection Guide: VRAM, Quality, and Style Matrix
 description: >-
-  The definitive 2026 guide to open-source AI image models: FLUX.1, SD 3.5, SDXL, Illustrious, and Pony across VRAM tiers (4GB to 24GB), quantization, and styles.
+  Compare FLUX.1, SD 3.5, SDXL, Illustrious, and Pony by VRAM needs, quantization, image quality, and style to choose a model for your hardware.
 permalink: 2026/09/22/open-source-ai-image-models-selection-guide/
 translation_key: open-source-ai-image-models-selection-guide
 translations:
@@ -16,7 +16,7 @@ tags:
   - Developer Tools
   - Indie Developer
 date: 2026-09-22 16:15:00
-updated: 2026-09-22 16:15:00
+updated: 2026-09-23 09:57:11
 ---
 
 ![Open-source AI image generation model selection guide: VRAM tiers, quality benchmarks, and artistic styles](cover.jpg)

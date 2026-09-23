@@ -6,7 +6,7 @@
   <title>Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="Google 正式发布 Gemini 3.8 Flash！本文以一线智能体视角深度剖析其底层架构：1M 上下文窗口、长时程自省智能体循环、DeepSWE 基准突破与极致性价比，带你全面掌握下一代 AI 软件工程工作流。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -235,7 +235,7 @@
 <hr>
 <h2 id="为什么是工作马？核心规格与内部代号"><a href="#为什么是工作马？核心规格与内部代号" class="headerlink" title="为什么是工作马？核心规格与内部代号"></a>为什么是工作马？核心规格与内部代号</h2><p>在深入底层架构之前，先来看看这次随 Google 官方发布的核心技术参数。在 Google 内部研发与测试阶段，该架构的内部项目代号为 <strong>Skimaki</strong>，曾在 Google 内部的 Jetski 评估平台上历经数百万次高强度的长时程推理测试。</p>
 <p>不同于昂贵且响应沉重的前沿旗舰模型（Frontier Models），Flash 系列的核心基因始终是<strong>极高速度与极低成本</strong>。但在 Gemini 3.8 Flash 身上，研发团队成功将以往仅存在于千亿级旗舰模型中的深度推理能力，蒸馏并融入到高吞吐的 Flash 核心架构中。</p>
-<h3 id="核心规格与同级模型对比"><a href="#核心规格与同级模型对比" class="headerlink" title="核心规格与同级模型对比"></a>核心规格与同级模型对比</h3><table>
+<h3 id="核心规格与同级模型对比"><a href="#核心规格与同级模型对比" class="headerlink" title="核心规格与同级模型对比"></a>核心规格与同级模型对比</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th align="left">规格与参数维度</th>
@@ -292,7 +292,7 @@
 <td align="left">无</td>
 <td align="left">仅限特定定制合约</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>从资费来看，Google 在 2026 年底前保持了极具杀伤力的优惠定价：输入每百万 Tokens 仅需 <strong>$0.75 美元</strong>，输出仅需 <strong>$3.75 美元</strong>。这意味着在各类自主开发智能体（例如 Antigravity 或各类 Agentic IDE）中进行多轮深度思考、连续读取数十个项目文件与测试报告时，综合算力成本甚至不到顶尖旗舰模型的十分之一。</p>
 <hr>
 <h2 id="底层机制突破：长时程智能体循环与极致勤奋度"><a href="#底层机制突破：长时程智能体循环与极致勤奋度" class="headerlink" title="底层机制突破：长时程智能体循环与极致勤奋度"></a>底层机制突破：长时程智能体循环与极致勤奋度</h2><p>绝大多数开发者在操作传统大语言模型时，最常遇到的挫败感来自于模型的<strong>短视（Myopia）</strong>：</p>
@@ -336,7 +336,7 @@ flowchart TD
 <p>在这一执行流程中，核心灵魂正是 <strong>4 -&gt; 5 -&gt; 3</strong> 的勤奋度自省闭环。传统模型在测试失败时往往束手无策，而 Gemini 3.8 Flash 能在该封闭回路中自主读取 Traceback、重新检索关联模块、生成最小差异补丁（Minimal Diff），直到完全通过质量闸门为止。</p>
 <hr>
 <h2 id="基准测试深度对决：主流旗舰同台竞技"><a href="#基准测试深度对决：主流旗舰同台竞技" class="headerlink" title="基准测试深度对决：主流旗舰同台竞技"></a>基准测试深度对决：主流旗舰同台竞技</h2><p>在 Google DeepMind 公布的官方数据与 2026 年 9 月最新的实测榜单中，Gemini 3.8 Flash 展现出了直接跨入顶尖旗舰梯队的硬核实力。以下为其与当前业界主流旗舰模型的关键基准与成本对照：</p>
-<h3 id="主流旗舰模型关键数据对比"><a href="#主流旗舰模型关键数据对比" class="headerlink" title="主流旗舰模型关键数据对比"></a>主流旗舰模型关键数据对比</h3><table>
+<h3 id="主流旗舰模型关键数据对比"><a href="#主流旗舰模型关键数据对比" class="headerlink" title="主流旗舰模型关键数据对比"></a>主流旗舰模型关键数据对比</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
 <th align="left">评测维度与基准项目</th>
@@ -395,7 +395,7 @@ flowchart TD
 <td align="left"><strong>约 8.0x 旗舰成本</strong></td>
 <td align="left"><strong>基准 (1x)</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <blockquote>
 <p>[!NOTE]<br>数据来源：引自 Google DeepMind 官方 Model Card、2026 年 9 月 Terminal-Bench 2.1 实测榜单，以及 Anthropic 与 OpenAI 官方开发者定价文档。</p>
 </blockquote>
@@ -593,7 +593,7 @@ flowchart TD
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分类</h3>
   <ul class="entry">
   
@@ -614,102 +614,60 @@ flowchart TD
     <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>23</small></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>23</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>8</small></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>5</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>7</small></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+    <li><a href="/zh-cn/tags/Grok/"><span>Grok</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -720,7 +678,7 @@ flowchart TD
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -762,7 +720,7 @@ flowchart TD
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
@@ -896,8 +854,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

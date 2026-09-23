@@ -1,0 +1,195 @@
+.topic-navigation
+  display flex
+  flex-wrap wrap
+  align-items center
+  gap 12px 20px
+  margin 0 0 20px
+  font-size 14px
+  color #53645c
+  a
+    color #166947
+    padding 8px 0
+    font-weight 500
+    &:focus-visible
+      outline 2px solid #16754f
+      outline-offset 3px
+
+.taxonomy-directory
+  background #fff
+  border-radius 10px
+  padding 28px
+  margin-bottom 40px
+  &__header
+    h1
+      font-size 28px
+      font-weight 500
+      margin-bottom 12px
+    p
+      color #53645c
+      line-height 1.8
+  &__nav
+    display flex
+    flex-wrap wrap
+    gap 24px
+    margin 24px 0
+    border-bottom 1px solid #dce8e0
+    a
+      padding 8px 0
+      color #53645c
+      &[aria-current=page]
+        color #166947
+        border-bottom 3px solid #22a779
+        font-weight 700
+  &__tools
+    margin-bottom 20px
+    label
+      display block
+      margin-bottom 8px
+    input
+      box-sizing border-box
+      width 100%
+      padding 12px 14px
+      border 1px solid #aabeb1
+      border-radius 6px
+      font inherit
+      background #fff
+      color #233c2d
+  &__status
+    margin-top 10px
+    color #53645c
+    font-size 14px
+  &__list
+    list-style none
+    display grid
+    grid-template-columns repeat(2, minmax(0, 1fr))
+    column-gap 28px
+    li
+      border-bottom 1px solid #e7eee9
+      min-width 0
+    a
+      display flex
+      align-items baseline
+      justify-content space-between
+      gap 12px
+      padding 14px 4px
+      color #166947
+      overflow-wrap anywhere
+      &:hover
+        background #f4f9f6
+  &__count
+    flex-shrink 0
+    color #617167
+    font-size 13px
+    font-variant-numeric tabular-nums
+  &__empty
+    padding 24px 0
+    color #53645c
+  a:focus-visible, input:focus-visible
+    outline 2px solid #16754f
+    outline-offset 3px
+  [hidden]
+    display none !important
+  @media screen and (max-width: 600px)
+    padding 20px
+    &__list
+      grid-template-columns minmax(0, 1fr)
+
+#sidebar
+  .tag-summary
+    .tag-summary__list
+      display flex
+      flex-wrap wrap
+      gap 5px
+      font-size 12px
+      padding 12px 16px 4px
+      li a
+        display inline-flex
+        align-items center
+        gap 3px
+        min-height 26px
+        box-sizing border-box
+        padding 3px 6px
+        border 1px solid #dce8e0
+        border-radius 4px
+        color #166947
+        background #f7faf8
+        line-height 1.35
+        &:hover
+          border-color #22a779
+      small
+        font-variant-numeric tabular-nums
+        margin 0
+        font-size 10px
+        color #617167
+        &:before, &:after
+          content none
+  .widget-directory-link
+    display block
+    margin 0 20px
+    padding 12px 0 16px
+    font-size 14px
+    font-weight 500
+    color #166947
+  a:focus-visible
+    outline 2px solid #16754f
+    outline-offset 3px
+
+article .entry
+  .data-table-wrap
+    box-sizing border-box
+    display flex
+    margin 24px 0 8px
+    border 1px solid #cfdfd4
+    border-radius 8px
+    &:focus-visible
+      outline 2px solid #16754f
+      outline-offset 3px
+    @media screen and (max-width: 960px)
+      &::after
+        content ''
+        flex 0 0 1px
+        align-self stretch
+        position sticky
+        right 0
+        pointer-events none
+        box-shadow 0 0 45px 10px rgba(0, 0, 0, 0.1)
+        opacity 0
+      &.has-scroll-right::after
+        opacity 1
+    > table
+      flex-shrink 0
+      width 100%
+      min-width var(--table-min-width, 0px)
+      margin 0
+      border 0
+      font-size 16px
+      line-height 1.7
+      letter-spacing 0
+      td, th
+        border 0
+        border-bottom 1px solid #e1eae5
+        padding 12px 16px
+        vertical-align top
+        overflow-wrap break-word
+        font-variant-numeric tabular-nums
+      thead th
+        background #eaf5ef
+        color #214f37
+        font-weight 700
+        white-space normal
+        border-bottom 2px solid #b9d9c6
+      tbody tr:nth-child(even)
+        background #f7faf8
+      tbody tr:hover
+        background #edf6f0
+      tbody tr:last-child td
+        border-bottom 0
+      @media screen and (max-width: 600px)
+        td, th
+          padding 10px 12px
+  .table-scroll-hint
+    margin 0 0 24px
+    font-size 13px
+    color #53645c
+    &[hidden]
+      display none

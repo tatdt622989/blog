@@ -6,7 +6,7 @@
   <title>开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="深入解析开源 AI 绘图精准控制架构：从 Checkpoint、LoRA、ControlNet 到 ADetailer，解密专业创作者保持角色一致性与 ComfyUI 五层工业级流水线，告别盲目随机试错。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/04/%E9%96%8B%E6%BA%90-AI-%E7%B9%AA%E5%9C%96%E7%B2%BE%E6%BA%96%E6%8E%A7%E5%88%B6%E5%85%A8%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E-Checkpoint%E3%80%81LoRA-%E5%88%B0-ComfyUI-%E5%B7%A5%E6%A5%AD%E7%B4%9A%E6%B5%81%E6%B0%B4%E7%B7%9A/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -256,7 +256,7 @@
 <h3 id="手部与肢体畸形修复的双重保险"><a href="#手部与肢体畸形修复的双重保险" class="headerlink" title="手部与肢体畸形修复的双重保险"></a>手部与肢体畸形修复的双重保险</h3><h4 id="1-ADetailer（自动化局部切片高精重绘）"><a href="#1-ADetailer（自动化局部切片高精重绘）" class="headerlink" title="1. ADetailer（自动化局部切片高精重绘）"></a>1. ADetailer（自动化局部切片高精重绘）</h4><p>早期修复手部依赖繁琐的手工涂抹遮罩。<strong>ADetailer（After Detailer）</strong> 借助目标检测模型（如 YOLO），在整幅图像初次渲染后，自动检测定位手部与面部矩形区域。随后将局部切片放大至独立高分辨率画布，在专属手部提示词引导下进行微量重绘（重绘幅度通常设在 0.3 至 0.4），最后无缝缝合回原图，一键提升五指与眼神的精致度。</p>
 <h4 id="2-3D-姿态绑定与多重-ControlNet-联立"><a href="#2-3D-姿态绑定与多重-ControlNet-联立" class="headerlink" title="2. 3D 姿态绑定与多重 ControlNet 联立"></a>2. 3D 姿态绑定与多重 ControlNet 联立</h4><p>资深创作者很少凭空依靠文字赌动作。常见工作流是在 <strong>Blender</strong> 或轻量 3D 姿态软件中，花几十秒调整好 3D 玩偶的人体透视，导出 <strong>OpenPose 骨骼图</strong> 与 <strong>Depth 深度图</strong>。在骨骼点位与空间深度的双重约束下，AI 失去了自由畸变的可能，从底层杜绝了长短手与断肢问题。</p>
 <h3 id="角色特征一致性的三大工业方案"><a href="#角色特征一致性的三大工业方案" class="headerlink" title="角色特征一致性的三大工业方案"></a>角色特征一致性的三大工业方案</h3><p>制作多机位游戏立绘或长篇连环画时，换个视角人物就变脸是绝对无法接受的缺陷。业界通常按精度梯度采用以下策略：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th align="left">方案类别</th>
@@ -283,7 +283,7 @@
 <td align="left">98% 工业级高保真</td>
 <td align="left">大动态动作场景、极端透视镜头分镜</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>针对原创游戏主角，业界成熟的打法是收集 15 到 25 张多视角图训练出专属角色 LoRA（权重配置在 0.7 左右），同时在节点链路上接入一张基准立绘走 IP-Adapter（权重配置在 0.5 左右）。双重约束并存，既规避了单 LoRA 权重过高导致动作僵死过拟合，又能确保面部轮廓在各类复杂光影下高度统一。</p>
 <hr>
 <h2 id="拆解-ComfyUI-五层工业级微调流水线"><a href="#拆解-ComfyUI-五层工业级微调流水线" class="headerlink" title="拆解 ComfyUI 五层工业级微调流水线"></a>拆解 ComfyUI 五层工业级微调流水线</h2><p>传统表单式 WebUI 将各计算步骤封装于黑盒之中，难以介入各级中间数据。而 <strong>ComfyUI</strong> 凭借其直观的节点图（Node-based Pipeline），将图像生成完全重构为一条透明、可回溯、支持异步批量调用的工程流水线。</p>
@@ -341,7 +341,7 @@ flowchart TD
 <p>注：为直观解说确定性管线中各节点的演进原理，上方步骤 1 至步骤 3 包含流程原理示意与局部修复对比效果图；步骤 4 与步骤 5 则为基于 RTX 4090 算力与 RMBG 2.0 模型实测输出之高分辨率成果与透明去背交付品。</p>
 </blockquote>
 <hr>
-<h2 id="结语：从盲目试错到工程化交付的思维跃迁"><a href="#结语：从盲目试错到工程化交付的思维跃迁" class="headerlink" title="结语：从盲目试错到工程化交付的思维跃迁"></a>结语：从盲目试错到工程化交付的思维跃迁</h2><table>
+<h2 id="结语：从盲目试错到工程化交付的思维跃迁"><a href="#结语：从盲目试错到工程化交付的思维跃迁" class="headerlink" title="结语：从盲目试错到工程化交付的思维跃迁"></a>结语：从盲目试错到工程化交付的思维跃迁</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th align="left">维度对比</th>
@@ -369,7 +369,7 @@ flowchart TD
 <td align="left">表单式单次网页交互</td>
 <td align="left">节点化数据流，可导出 JSON 并入自动化批处理</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>一旦跳出将 AI 绘图视作黑盒魔法的误区，将其拆解为由“底模知识库、特征低秩补丁、空间几何约束与多级滤波器”构成的标准数据流水线，所有失控与崩坏都将变得可定位、可修复。借助 ComfyUI 的模块化能力，独立开发者也能以确定性的工业标准，稳定交付高质量视觉资产。</p>
 
       
@@ -548,7 +548,7 @@ flowchart TD
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分类</h3>
   <ul class="entry">
   
@@ -569,102 +569,60 @@ flowchart TD
     <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>23</small></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>23</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>8</small></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>5</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>7</small></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+    <li><a href="/zh-cn/tags/Grok/"><span>Grok</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -675,7 +633,7 @@ flowchart TD
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -717,7 +675,7 @@ flowchart TD
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
@@ -851,8 +809,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

@@ -6,7 +6,7 @@
   <title>GPT-6 Sol 与 Luna 发布：Artificial Analysis 评分、API 价格与选型 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="GPT-6 Sol 与 Luna 于 2026 年 9 月 22 日发布。本文对比官方 API 规格、标准与缓存单价、长上下文费率，以及 Artificial Analysis 的 Intelligence Index 分数与单项评测成本，说明如何选择 Sol 或 Luna。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/23/gpt-6-sol-luna-pricing-aa-review/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/23/GPT-6-Sol%E3%80%81Luna-%E4%B8%8A%E7%B7%9A%EF%BC%9AArtificial-Analysis-%E8%A9%95%E5%88%86%E3%80%81%E5%83%B9%E6%A0%BC%E8%88%87%E9%81%B8%E5%9E%8B/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -233,7 +233,7 @@
 <span id="more"></span>
 
 <h2 id="GPT-6-Sol-与-Luna-的规格和入口"><a href="#GPT-6-Sol-与-Luna-的规格和入口" class="headerlink" title="GPT-6 Sol 与 Luna 的规格和入口"></a>GPT-6 Sol 与 Luna 的规格和入口</h2><p>OpenAI 将 Sol 定位为复杂编程与智能体工作模型，将 Luna 定位为高效率、大批量聚焦任务的选择。官方 API 文档目前为两者列出 105 万 tokens 上下文窗口、最多 12.8 万输出 tokens，以及六档推理强度。两者都接受文本和图片输入、生成文本；通过 Responses API 还可使用工具和函数调用。<a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-6-sol">GPT-6 Sol 文档</a>、<a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-6-luna">GPT-6 Luna 文档</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>项目</th>
@@ -271,10 +271,10 @@
 <td>文本、图片输入；文本输出</td>
 <td>文本、图片输入；文本输出</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>公告列出的使用入口是 ChatGPT Work 和 Codex，适用于 Plus、Pro、Business、Enterprise、Edu。Free 和 Go 用户可在桌面应用中使用 Luna；公告发布时，普通 Chat 还未开放这些模型，且采用逐步推送。API 则使用表格中的模型 ID。这是产品公告当时说明的范围，实际账户仍应以界面和权限为准。<a target="_blank" rel="noopener" href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">OpenAI 发布公告</a></p>
 <h2 id="API-价格：Sol-减半，Luna-输出价降幅更大"><a href="#API-价格：Sol-减半，Luna-输出价降幅更大" class="headerlink" title="API 价格：Sol 减半，Luna 输出价降幅更大"></a>API 价格：Sol 减半，Luna 输出价降幅更大</h2><p>下表列出每 100 万 tokens 的标准 API 价格。OpenAI 以 GPT-5.6 先前的价格为基准，称两款新模型整体便宜约 50%。按单价计算，Sol 的输入和输出都减半；Luna 输入减半，输出则从 $1.20 降至 $0.50，降幅约为 58%。<a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/pricing">官方价格表</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>模型</th>
@@ -307,10 +307,10 @@
 <td align="right">$0.01</td>
 <td align="right">$0.50</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>对于需要长时间保留上下文的智能体，缓存命中输入是值得关注的成本项：GPT-6 的缓存命中价是普通输入价的 10%。不过，105 万 tokens 的上下文上限不等于整次请求都按短上下文费率计费。输入超过 27.2 万 tokens 时，该请求的输入与缓存费率翻倍，输出费率为 1.5 倍；Batch 和 Flex 是标准价格的一半，Fast mode 则按适用价格的两倍计费。大批量上线之前，应把这些条件一起纳入成本估算。</p>
 <h2 id="Artificial-Analysis-实时评分与单项任务成本"><a href="#Artificial-Analysis-实时评分与单项任务成本" class="headerlink" title="Artificial Analysis 实时评分与单项任务成本"></a>Artificial Analysis 实时评分与单项任务成本</h2><p>Artificial Analysis Intelligence Index v4.3.2 汇总 10 项评测，涉及智能体任务、编程与终端操作、科学推理、知识可靠性和长文理解。下表是 <strong>2026 年 9 月 23 日查询时的实时榜单快照</strong>，排名会变化。指数分数不是答题正确率；单项任务成本是根据该评测集实际 token 用量和价格计算的加权平均值，并非每位用户都会支付的固定费用。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis 榜单</a>、<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/methodology/intelligence-benchmarking">评测方法</a></p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:700px"><table>
 <thead>
 <tr>
 <th>推理档位</th>
@@ -355,7 +355,7 @@
 <td align="right">37</td>
 <td align="right">$0.07</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>这些数字提供了一个实用的选择刻度：Sol 从 xhigh 升到 max，分数提高 4 分，AA 测得的平均任务成本翻倍；Luna 从 xhigh 升到 max，增加 3 分，成本从 4 美分升至 7 美分。若比较 max 档，Sol 分数更高，但 AA 的任务成本约为 Luna 的 15 倍。<strong>更高推理档位买到的是特定评测里的额外能力，不是免费的默认升级。</strong></p>
 <p>Sol 的最高分也不是当前榜单第一：同一榜单上的 GPT-6 Astra max 得 53 分，Claude Opus 5.5 max（含 fallback）得 58 分。比较这些模型时，要同时考虑推理档位、fallback、工具、单项任务成本和自己的工作类型，不能只看最高分。</p>
 <p>还有一项规格差异需要说明：OpenAI API 文档为 Sol 和 Luna 都列出 105 万 tokens 上下文窗口；Artificial Analysis 当前模型资料显示 Sol 为 87.2 万、Luna 为 100 万。公开资料没有解释差异原因，因此本文分别引用提供商规格和 AA 数据，不把两种口径当作同一项保证。</p>
@@ -541,7 +541,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分类</h3>
   <ul class="entry">
   
@@ -562,102 +562,60 @@
     <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>23</small></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>23</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>8</small></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>5</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>7</small></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+    <li><a href="/zh-cn/tags/Grok/"><span>Grok</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -668,7 +626,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -710,7 +668,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
@@ -844,8 +802,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

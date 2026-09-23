@@ -6,7 +6,7 @@
   <title>Cursor vs Codex vs Claude Code：2026 AI Coding 工具比較與選擇指南 | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="Cursor vs Codex 該怎麼選？本文比較 Claude Code、Codex、Cursor 的價格、額度、IDE、CLI 與雲端代理工作流，整理 2026 適用情境，幫你依專案規模與預算挑選 AI coding 工具。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -240,7 +240,7 @@
 <li>如果你最在意編輯器手感，同時也想用 CLI、Cloud Agents 與背景任務，<strong>Cursor 的整合最完整</strong></li>
 </ul>
 <h2 id="Cursor-vs-Codex-vs-Claude-Code：30-秒選擇表"><a href="#Cursor-vs-Codex-vs-Claude-Code：30-秒選擇表" class="headerlink" title="Cursor vs Codex vs Claude Code：30 秒選擇表"></a>Cursor vs Codex vs Claude Code：30 秒選擇表</h2><p>先別把這三款工具簡化成「編輯器對 terminal」。截至 2026 年 8 月，Cursor 已經有 CLI 與 Cloud Agents；Claude Code 可以直接整合進 Cursor、VS Code 與 JetBrains；Codex 也橫跨桌面、網頁、CLI、IDE 與雲端環境。真正的差別，已經從「在哪裡執行」變成「你希望怎麼掌控工作」。</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>工具</th>
@@ -263,9 +263,9 @@
 <td>在編輯器裡持續補全、檢查與交給 agent</td>
 <td>邊寫邊改、UI 開發、需要高頻人工介入</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3 id="Cursor-vs-Codex：核心差異"><a href="#Cursor-vs-Codex：核心差異" class="headerlink" title="Cursor vs Codex：核心差異"></a>Cursor vs Codex：核心差異</h3><p>如果你只在 <strong>Cursor 與 Codex</strong> 之間選，最簡單的判斷方式是看自己想不想留在 IDE 裡工作。Cursor 把補全、inline diff、對話修改和手動編輯放在同一個介面，適合頻繁查看並微調每一步；Codex 則更適合把需求與驗收條件交代清楚，讓代理人跨檔案執行、跑測試，再回來檢查結果。</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>比較項目</th>
@@ -293,10 +293,10 @@
 <td>IDE 手感與即時回饋</td>
 <td>任務拆解、執行能力與額度</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>已經有 ChatGPT 方案的人，可以先確認自己的 <a href="/2026/06/18/claude-codex-quota-guide/">Codex 額度、5 小時限制與重設時間</a>，再判斷是否還需要另外訂閱 Cursor。若工作內容以大量 inline 編輯為主，Cursor 的價值會比較明確；若主要需求是把完整任務交給代理人，Codex 通常更值得先測。</p>
 <h2 id="1-Claude-Code：目前最像真正工程代理人的工具"><a href="#1-Claude-Code：目前最像真正工程代理人的工具" class="headerlink" title="1. Claude Code：目前最像真正工程代理人的工具"></a><a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan">1. Claude Code：目前最像真正工程代理人的工具</a></h2><p>Claude Code 最大的特色，不是它會寫 code 而已，而是它真的比較像一個從 terminal 出發、深入既有開發環境工作的代理人。它可以直接看你的資料夾結構、讀檔、改檔、跑指令，也能整合進 Cursor、VS Code 與 JetBrains。對於多檔案重構、大型專案除錯、整理現有程式碼脈絡這種事情，整體體驗通常很完整。</p>
-<h3 id="目前官方方案與大致限制"><a href="#目前官方方案與大致限制" class="headerlink" title="目前官方方案與大致限制"></a>目前官方方案與大致限制</h3><table>
+<h3 id="目前官方方案與大致限制"><a href="#目前官方方案與大致限制" class="headerlink" title="目前官方方案與大致限制"></a>目前官方方案與大致限制</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>方案</th>
@@ -323,7 +323,7 @@
 <td>每個 session 約為 Pro 的 20 倍</td>
 <td>重度使用者、平行開很多任務的人</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>需要注意的是，<strong>Claude 與 Claude Code 的用量是共用的</strong>，不是分開算。如果你白天已經在 Claude 網頁版開很多長對話，晚上再進 Claude Code，用量會一起被吃掉。官方目前也同時採用 5 小時 session 與每週用量限制，所以不適合再用固定 prompt 數量估算每個人一定能用多久。</p>
 <p>另外一個很容易忽略的點是，如果你的環境裡有設定 <code>ANTHROPIC_API_KEY</code>，Claude Code 可能會直接走 API 計費，而不是吃你的 Pro &#x2F; Max 訂閱額度，這點官方文件有特別提醒。</p>
 <h3 id="Reddit-上比較常見的使用感受"><a href="#Reddit-上比較常見的使用感受" class="headerlink" title="Reddit 上比較常見的使用感受"></a>Reddit 上比較常見的使用感受</h3><p>我看下來，近期 Reddit 上對 Claude Code 的共識其實蠻明顯的：</p>
@@ -336,7 +336,7 @@
 <h2 id="2-Codex：如果你已經在-ChatGPT-生態裡，最值得先試"><a href="#2-Codex：如果你已經在-ChatGPT-生態裡，最值得先試" class="headerlink" title="2. Codex：如果你已經在 ChatGPT 生態裡，最值得先試"></a><a target="_blank" rel="noopener" href="https://developers.openai.com/codex/pricing">2. Codex：如果你已經在 ChatGPT 生態裡，最值得先試</a></h2><p>Codex 現在和早期大家印象中的「OpenAI 舊 Codex 模型」已經不是同一回事。現在它更像是 OpenAI 的 coding agent 產品線，能在本地或雲端幫你做實際任務，也可以接 IDE、CLI 與額外工具。</p>
 <p>對一般使用者來說，Codex 最大的優勢很簡單：<strong>它已經被包進 ChatGPT 方案裡了</strong>。如果你本來就有 ChatGPT Plus 或 Pro，那其實不太需要額外再決定一次要不要買別的工具，先用 Codex 看看自己的工作流合不合，通常是最合理的做法。</p>
 <h3 id="目前官方方案與限制重點"><a href="#目前官方方案與限制重點" class="headerlink" title="目前官方方案與限制重點"></a>目前官方方案與限制重點</h3><p>截至 <strong>2026 年 8 月 30 日</strong>，OpenAI 官方列出的個人方案如下：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>方案</th>
@@ -364,7 +364,7 @@
 <td><strong><span style="color:#c13232">$100&#x2F;月起</span></strong></td>
 <td>可選比 Plus 高 5 倍或 20 倍的 Codex 用量</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>Plus 目前可在網頁、CLI、IDE extension 與 iOS 使用 Codex，並包含 GPT-5.6 Sol、Terra、Luna 模型家族；Pro 另提供 GPT-5.3-Codex-Spark research preview。超過內含用量後，也可以另外購買 ChatGPT credits 繼續使用。</p>
 <p>現在不適合再用固定「幾則訊息」估算 Codex。實際消耗會受到模型、任務複雜度、上下文、推理強度、工具與執行時間影響；同一句需求，在小型本地修改與長時間雲端任務上的成本可能差很多。最準確的做法仍是查看自己帳號的 <strong>Settings → Usage</strong> 或 CLI 的 <strong>&#x2F;status</strong>。</p>
 <h3 id="Reddit-上比較常見的使用感受-1"><a href="#Reddit-上比較常見的使用感受-1" class="headerlink" title="Reddit 上比較常見的使用感受"></a>Reddit 上比較常見的使用感受</h3><p>Reddit 上對 Codex 的評價，這陣子我看到比較多的是這幾點：</p>
@@ -375,7 +375,7 @@
 </ul>
 <p>所以 Codex 的問題通常不是「能不能做」，而是 <strong>你喜不喜歡它的工作節奏</strong>。如果你已經習慣在編輯器裡一直來回微調，Codex 不一定是最順手的；但如果你本來就習慣把需求講清楚，再讓代理人一次做大一點的工作，它其實很有吸引力。</p>
 <h2 id="3-Cursor：編輯器體驗還是很強"><a href="#3-Cursor：編輯器體驗還是很強" class="headerlink" title="3. Cursor：編輯器體驗還是很強"></a><a target="_blank" rel="noopener" href="https://cursor.com/pricing">3. Cursor：編輯器體驗還是很強</a></h2><p>Cursor 目前仍然是三者中最偏「editor-first」的產品，但它已經不只是 AI 編輯器。除了補全、inline diff 與 Agent，現在也有 CLI、Cloud Agents、背景任務、MCP、skills 與 hooks。它的優勢不是哪個單一模型一定最強，而是把人工編輯、即時審查與代理工作放在同一套體驗裡。</p>
-<h3 id="目前官方方案"><a href="#目前官方方案" class="headerlink" title="目前官方方案"></a>目前官方方案</h3><table>
+<h3 id="目前官方方案"><a href="#目前官方方案" class="headerlink" title="目前官方方案"></a>目前官方方案</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>方案</th>
@@ -394,7 +394,7 @@
 <td>Ultra</td>
 <td><strong><span style="color:#c13232">$200&#x2F;月</span></strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>Cursor 官方目前比較強調不同方案對 OpenAI、Claude、Gemini 模型的使用倍數差異，例如 <strong>Pro+ 是 3x usage、Ultra 是 20x usage</strong>。它不像 Claude Code 那樣把「大約幾個 prompts &#x2F; 5 小時」寫得那麼直接，所以實際感受會更看你的模型選擇和工作方式。</p>
 <h3 id="Reddit-上比較常見的使用感受-2"><a href="#Reddit-上比較常見的使用感受-2" class="headerlink" title="Reddit 上比較常見的使用感受"></a>Reddit 上比較常見的使用感受</h3><p>近期 Reddit 上對 Cursor 的看法大致是：</p>
 <ul>
@@ -404,7 +404,7 @@
 </ul>
 <p>這也是為什麼 Cursor 到現在還是很有競爭力。因為很多人真正要的，不是完全放手，而是 <strong>在保留 IDE 手感的前提下，把 AI 接進原本 workflow</strong>。</p>
 <h2 id="我自己會怎麼選"><a href="#我自己會怎麼選" class="headerlink" title="我自己會怎麼選"></a>我自己會怎麼選</h2><p>如果今天是我自己要花錢，我大概會這樣分：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>你的情況</th>
@@ -431,7 +431,7 @@
 <td>幾乎每天都在高強度 coding，還會同時開很多任務</td>
 <td><strong>Claude Code Max 20x</strong> 或 <strong>ChatGPT Pro</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>如果你現在最在意的是 <strong>Claude Code 的方案值不值得上</strong>，那我自己的結論會是：</p>
 <ul>
 <li><strong>Pro 可以試，但不要用 Pro 來判斷 Claude Code 的上限</strong></li>
@@ -639,7 +639,7 @@
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分類</h3>
   <ul class="entry">
   
@@ -668,132 +668,60 @@
     <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">標籤</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/tags/AI/">AI</a><small>46</small></li>
+    <li><a href="/tags/AI/"><span>AI</span><small>46</small></a></li>
   
-    <li><a href="/tags/AI-Agent/">AI Agent</a><small>12</small></li>
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/tags/Claude/"><span>Claude</span><small>13</small></a></li>
   
-    <li><a href="/tags/AI-%E5%BD%B1%E7%89%87/">AI 影片</a><small>1</small></li>
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/">AI 繪圖</a><small>3</small></li>
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>12</small></a></li>
   
-    <li><a href="/tags/AI-%E8%A9%95%E6%B8%AC/">AI 評測</a><small>1</small></li>
+    <li><a href="/tags/Codex/"><span>Codex</span><small>12</small></a></li>
   
-    <li><a href="/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>10</small></a></li>
   
-    <li><a href="/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>8</small></a></li>
   
-    <li><a href="/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
   
-    <li><a href="/tags/Aseprite/">Aseprite</a><small>3</small></li>
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
   
-    <li><a href="/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
   
-    <li><a href="/tags/ChatGPT/">ChatGPT</a><small>3</small></li>
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude/">Claude</a><small>13</small></li>
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
   
-    <li><a href="/tags/Claude-Code/">Claude Code</a><small>4</small></li>
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
   
-    <li><a href="/tags/Codex/">Codex</a><small>12</small></li>
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
   
-    <li><a href="/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
   
-    <li><a href="/tags/Cursor/">Cursor</a><small>1</small></li>
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
   
-    <li><a href="/tags/E2E-%E6%B8%AC%E8%A9%A6/">E2E 測試</a><small>1</small></li>
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/tags/Firebase/">Firebase</a><small>1</small></li>
-  
-    <li><a href="/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>8</small></li>
-  
-    <li><a href="/tags/LLM/">LLM</a><small>5</small></li>
-  
-    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
-  
-    <li><a href="/tags/MCP/">MCP</a><small>1</small></li>
-  
-    <li><a href="/tags/Minecraft/">Minecraft</a><small>1</small></li>
-  
-    <li><a href="/tags/Node-js/">Node.js</a><small>1</small></li>
-  
-    <li><a href="/tags/OpenAI/">OpenAI</a><small>10</small></li>
-  
-    <li><a href="/tags/PWA/">PWA</a><small>1</small></li>
-  
-    <li><a href="/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/tags/Pixel-Art/">Pixel Art</a><small>3</small></li>
-  
-    <li><a href="/tags/PixelLab/">PixelLab</a><small>2</small></li>
-  
-    <li><a href="/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/tags/RAG/">RAG</a><small>1</small></li>
-  
-    <li><a href="/tags/React/">React</a><small>1</small></li>
-  
-    <li><a href="/tags/SCSS/">SCSS</a><small>2</small></li>
-  
-    <li><a href="/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/tags/Three-js/">Three.js</a><small>2</small></li>
-  
-    <li><a href="/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/tags/VPS/">VPS</a><small>2</small></li>
-  
-    <li><a href="/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6/">前端測試</a><small>1</small></li>
-  
-    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>12</small></li>
-  
-    <li><a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E6%9C%AC/">日本</a><small>1</small></li>
-  
-    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
-  
-    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>13</small></li>
-  
-    <li><a href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>1</small></li>
-  
-    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>5</small></li>
-  
-    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>7</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E6%BA%90%E5%B7%A5%E5%85%B7/">開源工具</a><small>1</small></li>
-  
-    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a><small>8</small></li>
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -804,7 +732,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -846,7 +774,7 @@
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/js/custom.js?v=260623-1"></script>
+  <script defer src="/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/js/jquery-3.4.1.min.js"></script>
@@ -980,8 +908,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

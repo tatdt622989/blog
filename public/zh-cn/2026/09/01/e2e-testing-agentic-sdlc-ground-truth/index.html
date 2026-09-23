@@ -6,7 +6,7 @@
   <title>AI 时代，E2E 测试该如何升级？从固定脚本到 AI-native Harness | 6yuwei</title>
   <meta name="author" content="6yuwei">
   <meta name="description" content="当 AI 以前所未有的速度编写代码，测试验收便成为新瓶颈。本文以通用的 E2E Harness 架构，深入探讨如何实现代码隔离、固定验收基准、驱动智能体自主探索，并将每一次失败转化为可回放的回归测试用例。">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/">
   
   <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/">
@@ -98,7 +98,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=762b86ccd1">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4a3d076f03">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -242,7 +242,7 @@
 </ul>
 <p>这正是业界常见的<strong>AI 测试自欺剧场（AI Test Theater）</strong>：同一个 Builder Agent 编写完业务代码后，完全基于自己的主观假设编写测试用例，最后看到终端绿灯便宣称任务完成。即使代码覆盖率数字有所提升，真实的逻辑缺陷却被掩盖在相同的盲区中。单元测试固然至关重要，但它本质上只是开发者本地的快速语法与逻辑校验，绝不能等同于独立客观的系统级验收。要打破这种盲区，验证器（Validator）必须获取独立的构建产物（Build Artifact），从产品外部调起真实的运行界面，并依赖另一套不可篡改的确定性基准进行验证。</p>
 <p>将其拆解为三层架构会更加清晰：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th align="left">架构层级</th>
@@ -265,7 +265,7 @@
 <td align="left">统管端到端全链路验收生命周期</td>
 <td align="left">构建产物载入、环境隔离、数据治理、多维日志证据、断言规则、CI 闸门、智能体交互</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>因此，当团队声称“我们引入了 Playwright”时，实际上仅仅引入了一款出色的浏览器自动化工具。唯有当整个体系能够自动化接收指定的构建包、准备隔离的沙盒数据、沉淀可复现的完整运行轨迹、做出确定性判定并将新缺陷纳入长期回归套件时，它才称得上是一套合格的 <strong>E2E Harness</strong>。</p>
 <p>在软件工程历史中，“Harness”并不是伴随大模型出现的新名词。早在 ISTQB 2019 年的标准术语表中，Test Harness 就被定义为执行特定测试套件所需的整套受控环境、桩模块（Stubs）与驱动程序（Drivers）；而在更早的 FDA 与 IEEE 软件工程标准中，Test Driver 与 Test Harness 则指代负责调用受测系统、注入测试数据、监控运行状态并汇报警报的完整组件系统。</p>
 <p>近年来备受关注的是 <strong>AI-native Harness</strong> 这一工程演进：当智能体开始具备阅读需求文档、自主修改业务代码、执行测试并分析日志提出修复补丁的能力时，Harness 不再仅仅是运行器的外部包装，而是演化为<strong>为智能体提供工具集、上下文约束、沙盒边界、客观凭据与验收标准的统一控制面（Control Plane）</strong>。正如 OpenAI 在定义 Harness Engineering 时所强调的，核心工作重心已经从“如何写出更精妙的 Prompt”，彻底转移至“如何构建一个让智能体稳定产出、可信自省并实现闭环修复的运行环境”。</p>
@@ -352,7 +352,7 @@ flowchart TD
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">e2e-harness/</span><br><span class="line">├── AGENTS.md              # 面向智能体的工作指引与工程规范</span><br><span class="line">├── docs/                  # 系统规格与环境架构定义</span><br><span class="line">│   ├── product-map.md</span><br><span class="line">│   ├── test-strategy.md</span><br><span class="line">│   ├── environments.md</span><br><span class="line">│   ├── selector-contract.md</span><br><span class="line">│   └── known-issues.md</span><br><span class="line">├── specs/                 # 确定性业务测试用例规格</span><br><span class="line">│   ├── smoke/</span><br><span class="line">│   ├── critical/</span><br><span class="line">│   └── regression/</span><br><span class="line">├── pages/                 # Web 界面元素与局部行为封装（按需）</span><br><span class="line">├── screens/               # 移动端原生界面封装（按需）</span><br><span class="line">├── components/            # 全局通用 UI 组件封装（Modal / Filter 等）</span><br><span class="line">├── flows/                 # 跨页面、跨接口的高阶业务动作流</span><br><span class="line">├── assertions/            # 确定性业务断言逻辑</span><br><span class="line">├── fixtures/              # 数据夹具与测试账号配置</span><br><span class="line">├── support/               # 基础设施与辅助工具</span><br><span class="line">├── adapters/              # 执行器适配层（抹平工具底层差异）</span><br><span class="line">│   ├── browser/           # Playwright 驱动</span><br><span class="line">│   ├── mobile/            # 移动端驱动适配（可选）</span><br><span class="line">│   └── api/               # 接口调用契约（可选）</span><br><span class="line">├── observability/         # 证据与日志采集（截图、Trace、网警、DB Diff）</span><br><span class="line">├── agent/                 # 智能体专区（探索、归因、生成、低风险维护）</span><br><span class="line">│   ├── exploratory/</span><br><span class="line">│   ├── failure-analysis/</span><br><span class="line">│   ├── test-generation/</span><br><span class="line">│   └── maintenance/</span><br><span class="line">├── config/                # 运行配置</span><br><span class="line">└── scripts/               # 本地与 CI 启动脚本</span><br></pre></td></tr></table></figure>
 
 <p>每一层遵循极简单一职责原则：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th align="left">模块目录</th>
@@ -391,13 +391,13 @@ flowchart TD
 <td align="left"><code>agent/</code></td>
 <td align="left">容纳智能体自主探索逻辑、失败根因分析策略、用例自动生成与安全修补配置</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3 id="业务意图与底层驱动严格解耦"><a href="#业务意图与底层驱动严格解耦" class="headerlink" title="业务意图与底层驱动严格解耦"></a>业务意图与底层驱动严格解耦</h3><p>Spec 规格文件的职责是用最通俗清晰的逻辑说明前置条件、用户核心动作流以及什么样的状态代表成功或失败，绝不能充斥着大量的底层 CSS 选择器。流程编排层和驱动适配器再负责将其映射为具体执行指令：Web 优先采用语义角色、无障碍文本或明确的测试标识；接口层采用明确的协议字段。当页面改版导致元素无法定位时，智能体可以修复 Locator，但<strong>严禁擅自放宽预设的业务断言条件</strong>。</p>
 <p>业务用例示例：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> checkoutFlow.<span class="title function_">placeOrder</span>(&#123;</span><br><span class="line">  <span class="attr">product</span>: catalog.<span class="property">inStockItem</span>,</span><br><span class="line">  <span class="attr">account</span>: users.<span class="property">standard</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> checkoutAssertions.<span class="title function_">expectCreatedOnce</span>();</span><br></pre></td></tr></table></figure>
 
 <p>通过将跨步骤动作收敛在 Flow 层，页面对象的复杂度被降到最低。这样无论后续底层定位方式或 API 协议如何微调，智能体都不需要重新通读理解整条端到端业务。</p>
-<h3 id="三级测试套件的职责划分"><a href="#三级测试套件的职责划分" class="headerlink" title="三级测试套件的职责划分"></a>三级测试套件的职责划分</h3><table>
+<h3 id="三级测试套件的职责划分"><a href="#三级测试套件的职责划分" class="headerlink" title="三级测试套件的职责划分"></a>三级测试套件的职责划分</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th align="left">测试套件（Suite）</th>
@@ -424,7 +424,7 @@ flowchart TD
 <td align="left">代码合并后定时跑、Nightly 每夜构建</td>
 <td align="left"><strong>根据风险等级动态判定</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>这种严谨的分层构成了质量防线：开发者本地快速跑语法和单测，固定 E2E 牢牢守住 CI 门禁，而 AI 的开放式探索则绝不直接充当 CI 流水线的放行通行证。</p>
 <hr>
 <h2 id="四、固定测试与-AI-探索的协作边界"><a href="#四、固定测试与-AI-探索的协作边界" class="headerlink" title="四、固定测试与 AI 探索的协作边界"></a>四、固定测试与 AI 探索的协作边界</h2><h3 id="共享运行记录，但绝对隔离放行权限"><a href="#共享运行记录，但绝对隔离放行权限" class="headerlink" title="共享运行记录，但绝对隔离放行权限"></a>共享运行记录，但绝对隔离放行权限</h3><pre class="mermaid">
@@ -479,7 +479,7 @@ flowchart TD
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">自主探索</span><br><span class="line">  → 沉淀结构化日志与轨迹凭据</span><br><span class="line">  → 根因智能分析与环境归因</span><br><span class="line">  → 隔离环境稳定复现</span><br><span class="line">  → 转换为标准化固定回归测试用例</span><br><span class="line">  → 重新执行全流程验证</span><br></pre></td></tr></table></figure>
 
 <p>当探索发现的缺陷能够被稳定重现并编写出确定性断言后，它便正式晋升并归档入 <code>specs/regression/</code>。每捕获一个新缺陷，系统的质量护城河就增加了一道永久防御。</p>
-<h3 id="修改代码的角色与质量验收角色必须明确分离"><a href="#修改代码的角色与质量验收角色必须明确分离" class="headerlink" title="修改代码的角色与质量验收角色必须明确分离"></a>修改代码的角色与质量验收角色必须明确分离</h3><table>
+<h3 id="修改代码的角色与质量验收角色必须明确分离"><a href="#修改代码的角色与质量验收角色必须明确分离" class="headerlink" title="修改代码的角色与质量验收角色必须明确分离"></a>修改代码的角色与质量验收角色必须明确分离</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th align="left">角色定位</th>
@@ -502,7 +502,7 @@ flowchart TD
 <td align="left">审定核心业务验收标准、确认变更、签发例外豁免</td>
 <td align="left"><strong>禁止只听信 AI 的汇报总结而完全忽略原始凭据</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>无论这两者背后使用的是否为同一种底层大模型，关键在于<strong>执行角色、上下文沙盒、工具权限与决策闭环的彻底分离</strong>。最新关于 LLM 软件工程的研究表明，如果让模型先写出错误实现再由其自行生成测试，其用例漏判率会大幅上升；因此，修改者与检验者绝不能共享相同的先验逻辑偏差。</p>
 <hr>
 <h2 id="五、测试运行记录治理：为智能体提供可自省的证据链"><a href="#五、测试运行记录治理：为智能体提供可自省的证据链" class="headerlink" title="五、测试运行记录治理：为智能体提供可自省的证据链"></a>五、测试运行记录治理：为智能体提供可自省的证据链</h2><h3 id="告别单一文本报错，留存全维度调用凭据"><a href="#告别单一文本报错，留存全维度调用凭据" class="headerlink" title="告别单一文本报错，留存全维度调用凭据"></a>告别单一文本报错，留存全维度调用凭据</h3><p>仅仅向智能体抛出一句简单的 <code>Expected visible, received hidden</code>，几乎无法为它提供任何有效的排查线索。系统必须在断言失败的瞬间，完整保留现场证据：</p>
@@ -564,7 +564,7 @@ flowchart TD
 </pre>
 
 <h3 id="CI-x2F-CD-流水线的阶梯式执行策略"><a href="#CI-x2F-CD-流水线的阶梯式执行策略" class="headerlink" title="CI&#x2F;CD 流水线的阶梯式执行策略"></a>CI&#x2F;CD 流水线的阶梯式执行策略</h3><p>产品代码仓库与测试体系通过不可变的构建版本进行联动：</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th align="left">流水线阶段</th>
@@ -597,12 +597,12 @@ flowchart TD
 <td align="left">在隔离沙盒中运行探索智能体，沉淀复现凭据</td>
 <td align="left"><strong>生成待办审查用例，不直接阻断主干</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>每次测试报告必须完整载入双向版本元数据（产品 Commit SHA、测试库 Commit SHA、环境快照），否则一旦遭遇偶发波动，智能体极易将测试配置缺陷误归因为业务代码缺陷。</p>
 <h3 id="如何科学衡量测试覆盖率的真实价值"><a href="#如何科学衡量测试覆盖率的真实价值" class="headerlink" title="如何科学衡量测试覆盖率的真实价值"></a>如何科学衡量测试覆盖率的真实价值</h3><p>在现代 E2E 体系中，覆盖率绝对不能仅仅停留在“执行了多少行源码”这一表面数字上，而必须回答：<strong>“系统中至关重要的核心业务行为，到底有多少比例经过了真实有效的验证？”</strong>我们可以将每个测试项建模为多维张量：</p>
 <p><code>业务意图 × 系统状态 × 测试数据 × 交互界面</code></p>
 <p>例如：<strong>“结算下单 × 会话已过期 × 普通注册账号 × Web&#x2F;Chrome 运行环境”</strong>是一个高价值测试项；<strong>“提交支付 × 连续高频点击 × 已存在待处理订单 × API+Web 联动”</strong>是另一个测试项。只有当自动化用例完整走通这个组合，并对最终业务落盘进行了校验，它才构成真正的有效覆盖。智能体在页面上毫无逻辑地随机点击一圈而页面未崩溃，绝不能计入系统有效覆盖率。</p>
-<table>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th align="left">核心评估指标</th>
@@ -640,7 +640,7 @@ flowchart TD
 <td align="left">成功拦截的人工故意注入缺陷 ÷ 变异缺陷总数</td>
 <td align="left">验证这套测试体系是否真的具备抓出 Bug 的能力</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>源代码层面的行覆盖率、分支覆盖率依然具备参考意义，但它仅代表代码曾被载入执行，丝毫不代表断言逻辑的正确性。这也是为何 ISTQB 明确将语句覆盖与条件覆盖界定为代码结构指标，而非最终交付的业务质量分数。</p>
 <p>因此在 CI 准入规则中，千万不要搞简单的一刀切覆盖率指标，更合理的工程实践包括：</p>
 <ul>
@@ -864,7 +864,7 @@ flowchart TD
 
 
   
-<div class="widget tag">
+<div class="widget tag category-summary">
   <h3 class="title">分类</h3>
   <ul class="entry">
   
@@ -885,102 +885,60 @@ flowchart TD
     <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
 </div>
 
 
+
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/">AI</a><small>23</small></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>23</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/">AI Agent</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%94%9F%E5%9B%BE/">AI 生图</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>6</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%A7%86%E9%A2%91/">AI 视频</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/">AI 评测</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Agentic-SDLC/">Agentic SDLC</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/">Anthropic</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/">Artificial Analysis</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Aseprite/">Aseprite</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>3</small></a></li>
   
-    <li><a href="/zh-cn/tags/Benchmark/">Benchmark</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/">ChatGPT</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude/">Claude</a><small>8</small></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/">Claude Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/">Codex</a><small>6</small></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/">Command Code</a><small>2</small></li>
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-Harness/">E2E Harness</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/E2E-%E6%B5%8B%E8%AF%95/">E2E 测试</a><small>1</small></li>
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/GPT-6/">GPT-6</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Gemini/">Gemini</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Godot/">Godot</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Grok/">Grok</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/JavaScript/">JavaScript</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/LLM/">LLM</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/OpenAI/">OpenAI</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/Phaser/">Phaser</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixelLab/">PixelLab</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/PixiJS/">PixiJS</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Playwright/">Playwright</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Suno/">Suno</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/TypeScript/">TypeScript</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/Unity/">Unity</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Unreal-Engine/">Unreal Engine</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/Z-ai/">Z.ai</a><small>2</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>4</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%B7%A5%E5%85%B7/">工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a><small>5</small></li>
-  
-    <li><a href="/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a><small>1</small></li>
-  
-    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>3</small></li>
-  
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>7</small></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>4</small></li>
+    <li><a href="/zh-cn/tags/Grok/"><span>Grok</span><small>2</small></a></li>
   
   </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
 </div>
+
 
 </aside>
     <div class="clearfix"></div>
@@ -991,7 +949,7 @@ flowchart TD
   
 </div>
 <div class="clearfix"></div></footer>
-  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章"};</script>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
   <div class="search-modal__card">
@@ -1033,7 +991,7 @@ flowchart TD
 </div>
 <div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
 
-  <script defer src="/zh-cn/js/custom.js?v=260623-1"></script>
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
 
 
 <script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
@@ -1167,8 +1125,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
-
-
 
 </body>
 </html>

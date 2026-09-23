@@ -39,3 +39,17 @@ copy_link: "复制链接"
 link_copied: "已复制文章链接"
 heading_copied: "已复制章节链接"
 toc_title: "目录"
+popular_tags: 常用标签
+all_tags: 查看全部标签
+all_categories: 查看全部分类
+browse_topics: 浏览主题
+tags_directory_description: 按标签查找 AI、前端开发、游戏开发和日语学习文章。标签按文章数量排列，也可以输入名称快速筛选。
+categories_directory_description: 按分类浏览技术教程、工具实测和生活随笔，找到感兴趣的主题。
+filter_topics: 筛选名称
+filter_topics_placeholder: 输入标签或分类名称
+topics_count: "%s 个主题"
+posts_count: "%s 篇"
+topics_empty: 没有找到匹配的主题，请尝试其他关键词。
+topic_description: "浏览 6yuwei 博客中与“%s”相关的文章、教程和实测笔记。"
+table_scroll_label: 表格，可左右滚动
+table_scroll_hint: 左右滑动查看完整表格；也可使用键盘方向键。

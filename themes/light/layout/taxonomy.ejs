@@ -1,0 +1,24 @@
+<% var kind = page.taxonomy_index; var items = taxonomy_items(kind); %>
+<section class="taxonomy-directory" aria-labelledby="taxonomy-title">
+  <header class="taxonomy-directory__header">
+    <h1 id="taxonomy-title"><%= __(kind) %></h1>
+    <p><%= __(kind + '_directory_description') %></p>
+    <nav class="taxonomy-directory__nav" aria-label="<%= __('browse_topics') %>">
+      <a href="<%- url_for('categories/') %>" <% if (kind === 'categories') { %>aria-current="page"<% } %>><%= __('categories') %></a>
+      <a href="<%- url_for('tags/') %>" <% if (kind === 'tags') { %>aria-current="page"<% } %>><%= __('tags') %></a>
+    </nav>
+  </header>
+  <div class="taxonomy-directory__tools" hidden>
+    <label for="taxonomy-filter"><%= __('filter_topics') %></label>
+    <input type="search" id="taxonomy-filter" autocomplete="off" placeholder="<%= __('filter_topics_placeholder') %>" aria-controls="taxonomy-list">
+    <p class="taxonomy-directory__status" role="status" aria-live="polite" data-count-template="<%= __('topics_count', '%s') %>"><%= __('topics_count', items.length) %></p>
+  </div>
+  <ul id="taxonomy-list" class="taxonomy-directory__list">
+    <% items.forEach(function(item) { %>
+    <li data-topic="<%= item.name %>">
+      <a href="<%- url_for(item.path) %>"><span><%= item.name %></span><span class="taxonomy-directory__count"><%= __('posts_count', item.count) %></span></a>
+    </li>
+    <% }); %>
+  </ul>
+  <p class="taxonomy-directory__empty" hidden><%= __('topics_empty') %></p>
+</section>

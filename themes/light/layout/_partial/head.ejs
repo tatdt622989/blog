@@ -5,6 +5,7 @@
   var suppressThirdPartyTracking = page.no_tracking === true;
   if (page.current > 1) title.push(__('page', page.current));
   if (page.title) title.push(page.title);
+  if (page.taxonomy_index) title.push(__(page.taxonomy_index));
   if (page.category) title.push(page.category);
   if (page.tag) title.push(page.tag);
   if (page.archive){
@@ -68,9 +69,17 @@
   }
   var metaDescription = '';
   if (page.description) metaDescription = page.description;
-  else if (config.description) metaDescription = config.description;
-  else if (page.excerpt) metaDescription = strip_html(page.excerpt);
-  else if (page.content) metaDescription = strip_html(page.content).substring(0, 150);
+  else if (page.taxonomy_index) metaDescription = __(page.taxonomy_index + '_directory_description');
+  else if (page.tag || page.category) {
+    var topic = page.tag || page.category;
+    var topicName = typeof topic === 'string' ? topic : topic.name;
+    metaDescription = __('topic_description', topicName);
+    if (page.current > 1) metaDescription += ' ' + __('page', page.current);
+  }
+  else if (page.layout === 'post') {
+    metaDescription = cleanText(strip_html(page.excerpt || page.content || '')).substring(0, 160);
+  }
+  if (!metaDescription) metaDescription = config.description || '';
   metaDescription = cleanText(metaDescription);
   var canonicalUrl = page.permalink || absolute_site_url(url_for(page.path || ''));
   canonicalUrl = canonicalUrl.replace(/index\.html$/, '');
@@ -169,6 +178,9 @@
   } else if (page.current > 1) {
     pushBreadcrumb(__('breadcrumb_home'), homeUrl);
     pushBreadcrumb(__('page', page.current), canonicalUrl);
+  } else if (page.taxonomy_index) {
+    pushBreadcrumb(__('breadcrumb_home'), homeUrl);
+    pushBreadcrumb(__(page.taxonomy_index), canonicalUrl);
   } else if (page.title) {
     pushBreadcrumb(__('breadcrumb_home'), homeUrl);
     pushBreadcrumb(page.title, canonicalUrl);
@@ -184,7 +196,7 @@
   <title><%= resolvedTitle %></title>
   <% if (config.author){ %><meta name="author" content="<%= config.author %>"><% } %>
   <% if (metaDescription){ %><meta name="description" content="<%= metaDescription %>"><% } %>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="<%= canonicalUrl %>">
   <% alternateLanguageLinks.forEach(function(link) { %>
   <link rel="alternate" hreflang="<%= link.hreflang %>" href="<%= link.href %>">

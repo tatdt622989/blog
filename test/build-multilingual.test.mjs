@@ -8,6 +8,7 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const {
+  addTaxonomyDirectoriesToSitemap,
   createSitemapIndexXml,
   normalizeSitemapHomeXml,
   writeSitemapIndex,
@@ -64,6 +65,14 @@ test('localized sitemap home URL uses the same trailing-slash canonical as HTML'
   <url><loc>https://blog.6yuwei.com/en/tags/TypeScript/</loc></url>
 </urlset>`,
   );
+});
+
+test('localized sitemap includes both searchable directories once', () => {
+  const xml = '<urlset>\n</urlset>\n';
+  const updated = addTaxonomyDirectoriesToSitemap(xml, 'https://blog.6yuwei.com/en/');
+  assert.match(updated, /<loc>https:\/\/blog\.6yuwei\.com\/en\/tags\/<\/loc>/);
+  assert.match(updated, /<loc>https:\/\/blog\.6yuwei\.com\/en\/categories\/<\/loc>/);
+  assert.equal(addTaxonomyDirectoriesToSitemap(updated, 'https://blog.6yuwei.com/en/'), updated);
 });
 
 test('sitemap index refuses to hide a missing localized sitemap', () => {
@@ -184,6 +193,12 @@ test('multilingual build writes all locale trees to an isolated output directory
     assert.match(simplifiedChineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/zh-cn\/<\/loc>/);
     assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\//);
     assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\/<\/loc>/);
+    assert.match(chineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/tags\/<\/loc>/);
+    assert.match(chineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/categories\/<\/loc>/);
+    assert.match(simplifiedChineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/zh-cn\/tags\/<\/loc>/);
+    assert.match(simplifiedChineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/zh-cn\/categories\/<\/loc>/);
+    assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\/tags\/<\/loc>/);
+    assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\/categories\/<\/loc>/);
 
     assert.equal(chineseContent.meta.url, 'https://blog.6yuwei.com');
     assert.equal(simplifiedChineseContent.meta.url, 'https://blog.6yuwei.com/zh-cn');
