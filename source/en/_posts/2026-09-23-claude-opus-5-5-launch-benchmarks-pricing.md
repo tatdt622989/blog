@@ -1,7 +1,7 @@
 ---
 title: "Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis"
 date: 2026-09-23 00:56:00
-updated: 2026-09-23 00:56:00
+updated: 2026-09-24 21:39:00
 description: "Claude Opus 5.5 leads AA at 58. Compare all nine official benchmarks, five effort levels, API prices, subscription resets, and migration changes."
 permalink: 2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/
 translation_key: claude-opus-5-5-launch-benchmarks-pricing
@@ -25,6 +25,8 @@ tags:
 This launch-day analysis compares the announcement, API documentation, the complete official benchmark chart, and live Artificial Analysis pages. **It is source-based reporting, not a claim that this blog has independently tested the model.**
 
 <!--more-->
+
+**New hands-on project, September 24:** I built a [playable 3D island with Opus 5.5](https://app.6yuwei.com/island/). The finished scene and the limits of what this example demonstrates are at the end of the article.
 
 ## Release date, specifications, and availability
 
@@ -143,3 +145,11 @@ For scientific research or business automation, keep Astra in that comparison. F
 Also record which model actually finishes the task. **With fallback** describes part of the deployed behavior: Anthropic explains that some requests switch models and the interface identifies the responder. [Model-switching documentation](https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5)
 
 This article reflects sources checked early September 23, 2026, UTC+8. Rankings and account benefits can change. Sonnet 5.5 and Haiku 5.5 are announced for the coming weeks, not simultaneous releases. [Launch announcement](https://www.anthropic.com/claude-opus-5-5)
+
+## September 24 update: a playable 3D island from one prompt
+
+I used one prompt with Claude Opus 5.5 to create a [playable 3D island](https://app.6yuwei.com/island/). You can orbit the world to see its mountain, volcano, and villages, switch to walking mode, change the time of day, and generate a different island with a new seed.
+
+![Overview of the 3D survival island made with Claude Opus 5.5, showing the mountain, volcano, villages, and minimap](island-overview.jpg)
+
+This is a **personal project showcase** added after the launch-day analysis, not a rerun of the benchmarks above. I confirmed that the public scene loads in a desktop browser. The full prompt, any later edits, and mobile interaction results are not documented here yet, so this example should not be read as proof that every similar project can ship unchanged in one attempt.

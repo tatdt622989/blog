@@ -1,7 +1,7 @@
 ---
 title: Claude Opus 5.5 上線：AA 登頂、價格降幅與完整評測解析
 date: 2026-09-23 00:56:00
-updated: 2026-09-23 00:56:00
+updated: 2026-09-24 21:39:00
 description: Claude Opus 5.5 正式上線，Artificial Analysis 以 58 分登頂。整理官方九項評測、五種推理強度、API 價格與快取降幅、訂閱額度重設，以及開發者升級前必看的四項不相容變更，拆解最高分與實際成本的差別。
 translation_key: claude-opus-5-5-launch-benchmarks-pricing
 translations:
@@ -24,6 +24,8 @@ tags:
 本文對照 Anthropic 公告、API 文件、官方完整評測圖與 Artificial Analysis 即時頁面，整理到底進步在哪裡、怎麼計價，以及升級時容易踩到的地方。**這是發布首日的資料分析，未宣稱已完成本站實機評測。**
 
 <!--more-->
+
+**9 月 24 日新增實作作品：**我用 Opus 5.5 做了一座[可玩的 3D 漂流島](https://app.6yuwei.com/island/)，文末附實際畫面與這個案例能證明的範圍。
 
 ## Opus 5.5 先看重點：上線日期、規格與使用入口
 
@@ -142,3 +144,11 @@ Anthropic 同步宣布提高 **Pro、Max、Team 的五小時用量上限**，並
 最後，**with fallback** 是實際使用條件的一部分：官方說明某些請求會切換到其他模型，介面會標示回應者。因此做自己的測試時，也記得確認到底是哪個模型完成工作。[官方模型切換說明](https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5)
 
 本文採用 2026 年 9 月 23 日凌晨查核的官方文件與 AA 頁面；排行榜、供應平台與帳戶權益會持續更新。官方另預告 Sonnet 5.5、Haiku 5.5 將於接下來幾週推出，目前不能把它們寫成已同步發布。[發布公告](https://www.anthropic.com/claude-opus-5-5)
+
+## 9 月 24 日補充：一個提示詞做出的 3D 漂流島
+
+我用 Claude Opus 5.5 以一個提示詞生成了[可玩的 3D 漂流島](https://app.6yuwei.com/island/)：可以從環島視角觀察雪山、火山與村落，也能切換步行探索、調整日夜，或用不同種子重新生成島嶼。
+
+![Claude Opus 5.5 製作的 3D 漂流島全景，畫面包含雪山、火山、村落與小地圖](island-overview.jpg)
+
+這是後續的**個人作品展示**，不代表前文的排行榜或官方評測已由我重測。公開成品已在桌面瀏覽器確認能載入；完整提示詞、後續修改紀錄與手機操作結果尚未整理在本文中，因此不把它當成「所有人都能零修改一次完成」的證明。

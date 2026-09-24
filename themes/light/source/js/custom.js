@@ -72,10 +72,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   initCodeCopy();
   initShareButtons();
+  initIslandDemoTracking();
   initSearchModal();
 
   window.setTimeout(scrollToAnchor, 10);
 });
+
+function initIslandDemoTracking() {
+  document.querySelectorAll('a[href*="app.6yuwei.com/island/"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      trackGAEvent('click_island_demo', {
+        link_url: link.href,
+        source_path: window.location.pathname
+      });
+    });
+  });
+}
 
 function initDataTables() {
   document.querySelectorAll('article .entry table').forEach(function (table) {
