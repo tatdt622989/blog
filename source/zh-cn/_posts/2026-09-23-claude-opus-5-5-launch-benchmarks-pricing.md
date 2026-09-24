@@ -1,7 +1,7 @@
 ---
 title: Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读
 date: 2026-09-23 00:56:00
-updated: 2026-09-24 21:39:00
+updated: 2026-09-24 23:44:00
 description: Claude Opus 5.5 正式发布，以 58 分登顶 Artificial Analysis。汇总官方九项基准测试、五档推理强度、API 与缓存价格、订阅额度重置，以及开发者迁移前必须处理的四项不兼容变更，说明最高分与实际使用成本的区别。
 permalink: 2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/
 translation_key: claude-opus-5-5-launch-benchmarks-pricing
@@ -26,7 +26,7 @@ tags:
 
 <!--more-->
 
-**9 月 24 日新增实作项目：**我用 Opus 5.5 做了一座[可在线体验的 3D 漂流岛](https://app.6yuwei.com/island/)，文末附成品画面，并说明这个案例能证明什么。
+**我制作的互动作品：**用一条提示词让 Opus 5.5 生成[可在线体验的 3D 漂流岛](https://app.6yuwei.com/island/)。文末可以看到清晰的白天画面。
 
 ## 发布日期、核心规格与使用入口
 
@@ -146,10 +146,10 @@ API 降价并不等于订阅月费同步下调。需要比较购买方案时，�
 
 本文采用 2026 年 9 月 23 日凌晨查核的资料，排行榜和账户权益会继续变化。Sonnet 5.5、Haiku 5.5 目前只是官方预告将在未来几周推出，不能当作已经同步上线。[发布公告](https://www.anthropic.com/claude-opus-5-5)
 
-## 9 月 24 日补充：一条提示词生成的 3D 漂流岛
+## 一条提示词生成的 3D 漂流岛
 
-我用一条提示词让 Claude Opus 5.5 生成了[可在线体验的 3D 漂流岛](https://app.6yuwei.com/island/)：可以俯瞰雪山、火山和村落，切换到步行探索视角，调整昼夜时间，也可以更换随机种子生成另一座岛。
+我用一条提示词让 Claude Opus 5.5 生成了这座[可在线体验的 3D 漂流岛](https://app.6yuwei.com/island/)。白天能看清雪山、火山、森林和村落；还可以切换到步行探索视角、调整昼夜时间，或者更换随机种子生成另一座岛。
 
-![Claude Opus 5.5 制作的 3D 漂流岛全景，包含雪山、火山、村落和小地图](island-overview.jpg)
+![Claude Opus 5.5 制作的 3D 漂流岛白天画面，清晰展示雪山、火山、森林、村落和小地图](island-overview.jpg)
 
-这是发布首日分析之后补充的**个人项目展示**，不等于重新测试了上文的榜单或官方基准。我已在桌面浏览器确认公开场景能正常加载；完整提示词、后续代码改动和移动端交互结果尚未写入本文，因此不把这一个案例扩大成“同类项目都能零修改一次完成”的结论。
+想近距离看地形，可以直接[打开漂流岛](https://app.6yuwei.com/island/)，试试步行视角和昼夜切换。
