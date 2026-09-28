@@ -5,13 +5,13 @@
   
   <title>React與ReactDOM的區別 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="ReactReact是在所有使用React的環境中共用的函式庫。React 是 React 函式庫的進入點。 如果你使用script標籤載入 React,這些頂層 API 可以在 React 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 import React from ‘react’ 。如果你使">
+  <meta name="description" content="React 與 ReactDOM 有什麼不同？這篇入門筆記說明 React 作為共用函式庫，以及 ReactDOM 負責網頁環境的分工，並整理 script 標籤、ES6 import 與 CommonJS 的引入方式，幫助初學者理解兩者的角色。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2022/02/05/2/">
   
 
   <meta property="og:title" content="React與ReactDOM的區別"/>
-  <meta property="og:description" content="ReactReact是在所有使用React的環境中共用的函式庫。React 是 React 函式庫的進入點。 如果你使用script標籤載入 React,這些頂層 API 可以在 React 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 import React from ‘react’ 。如果你使"/>
+  <meta property="og:description" content="React 與 ReactDOM 有什麼不同？這篇入門筆記說明 React 作為共用函式庫，以及 ReactDOM 負責網頁環境的分工，並整理 script 標籤、ES6 import 與 CommonJS 的引入方式，幫助初學者理解兩者的角色。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2022/02/05/2/"/>
@@ -20,10 +20,10 @@
   <meta property="og:image" content="https://blog.6yuwei.com/img/logo.svg?v=bdf79003" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="React與ReactDOM的區別">
-  <meta name="twitter:description" content="ReactReact是在所有使用React的環境中共用的函式庫。React 是 React 函式庫的進入點。 如果你使用script標籤載入 React,這些頂層 API 可以在 React 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 import React from ‘react’ 。如果你使">
+  <meta name="twitter:description" content="React 與 ReactDOM 有什麼不同？這篇入門筆記說明 React 作為共用函式庫，以及 ReactDOM 負責網頁環境的分工，並整理 script 標籤、ES6 import 與 CommonJS 的引入方式，幫助初學者理解兩者的角色。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/img/logo.svg?v=bdf79003">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/05/2/","url":"https://blog.6yuwei.com/2022/02/05/2/","headline":"React與ReactDOM的區別","description":"ReactReact是在所有使用React的環境中共用的函式庫。React 是 React 函式庫的進入點。 如果你使用script標籤載入 React,這些頂層 API 可以在 React 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 import React from ‘react’ 。如果你使","datePublished":"2022-02-05T14:39:14.000Z","dateModified":"2026-08-17T07:20:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/img/logo.svg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/05/2/","url":"https://blog.6yuwei.com/2022/02/05/2/","headline":"React與ReactDOM的區別","description":"React 與 ReactDOM 有什麼不同？這篇入門筆記說明 React 作為共用函式庫，以及 ReactDOM 負責網頁環境的分工，並整理 script 標籤、ES6 import 與 CommonJS 的引入方式，幫助初學者理解兩者的角色。","datePublished":"2022-02-05T14:39:14.000Z","dateModified":"2026-09-26T04:30:39.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/img/logo.svg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"前端開發","item":"https://blog.6yuwei.com/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"React與ReactDOM的區別","item":"https://blog.6yuwei.com/2022/02/05/2/"}]}</script>
   
@@ -86,7 +86,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
+    <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/css/style.css?v=b7a11f5791">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -215,7 +217,10 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p>React是在所有使用React的環境中共用的函式庫。<br>React 是 React 函式庫的進入點。 如果你使用script標籤載入 React,這些頂層 API 可以在 React 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 import React from ‘react’ 。如果你使用 ES5 撰寫並使用 npm，你可以寫成 var React &#x3D; require(‘react’) 。</p>
+        <p>React 是共用的函式庫，ReactDOM 則負責網頁環境。這篇筆記從兩者的分工與引入方式開始說明。</p>
+<span id="more"></span>
+
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p>React是在所有使用React的環境中共用的函式庫。<br>React 是 React 函式庫的進入點。 如果你使用script標籤載入 React,這些頂層 API 可以在 React 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 import React from ‘react’ 。如果你使用 ES5 撰寫並使用 npm，你可以寫成 var React &#x3D; require(‘react’) 。</p>
 <h2 id="ReactDOM"><a href="#ReactDOM" class="headerlink" title="ReactDOM"></a>ReactDOM</h2><p>React可能不是使用於網頁環境，ReactDOM則是專門用於網頁環境的函示庫。<br>如果使用 script 標籤載入 React 這些頂層 API 就可以在全域 ReactDOM 上找到。如果你使用 ES6 和 npm，你可以寫成 import ReactDOM from ‘react-dom’。如果你使用 ES5 和 npm，你可以寫成 var ReactDOM &#x3D; require(‘react-dom’)。</p>
 
       
@@ -322,46 +327,46 @@
       </div>
     
       <div class="related-post-card">
-        <a href="/2023/03/05/TypeScript%E5%85%A5%E9%96%80%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AFTypeScript%EF%BC%9F/" class="related-post-link"
-           data-rel-title="TypeScript入門：什麼是TypeScript？"
-           data-rel-path="/2023/03/05/TypeScript%E5%85%A5%E9%96%80%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AFTypeScript%EF%BC%9F/"
+        <a href="/2022/02/06/5/" class="related-post-link"
+           data-rel-title="網頁導引神器Shepherd.js"
+           data-rel-path="/2022/02/06/5/"
            data-rel-tag="JavaScript"
            data-rel-position="2">
           <div class="related-post-cover">
             
-              <img src="/2023/03/05/TypeScript%E5%85%A5%E9%96%80%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AFTypeScript%EF%BC%9F/cover.webp?v=805edb9a" alt="TypeScript入門：什麼是TypeScript？" loading="lazy" decoding="async">
+              <img src="/2022/02/06/5/cover.jpg?v=c5007af5" alt="網頁導引神器Shepherd.js" loading="lazy" decoding="async">
             
           </div>
           <div class="related-post-info">
             
               <span class="related-post-tag">JavaScript</span>
             
-            <h4 class="related-post-item-title">TypeScript入門：什麼是TypeScript？</h4>
+            <h4 class="related-post-item-title">網頁導引神器Shepherd.js</h4>
             
-              <time class="related-post-date">2023-03-05</time>
+              <time class="related-post-date">2022-02-06</time>
             
           </div>
         </a>
       </div>
     
       <div class="related-post-card">
-        <a href="/2022/03/14/1/" class="related-post-link"
-           data-rel-title="Google Map Marker Clustering的使用方式與自訂標記"
-           data-rel-path="/2022/03/14/1/"
+        <a href="/2022/02/05/3/" class="related-post-link"
+           data-rel-title="輕巧實用的圖表套件Chart.js"
+           data-rel-path="/2022/02/05/3/"
            data-rel-tag="JavaScript"
            data-rel-position="3">
           <div class="related-post-cover">
             
-              <img src="/2022/03/14/1/cover.jpg?v=3fd450d4" alt="Google Map Marker Clustering的使用方式與自訂標記" loading="lazy" decoding="async">
+              <img src="/2022/02/05/3/cover.webp?v=4f423c9e" alt="輕巧實用的圖表套件Chart.js" loading="lazy" decoding="async">
             
           </div>
           <div class="related-post-info">
             
               <span class="related-post-tag">JavaScript</span>
             
-            <h4 class="related-post-item-title">Google Map Marker Clustering的使用方式與自訂標記</h4>
+            <h4 class="related-post-item-title">輕巧實用的圖表套件Chart.js</h4>
             
-              <time class="related-post-date">2022-03-14</time>
+              <time class="related-post-date">2022-02-05</time>
             
           </div>
         </a>
@@ -490,7 +495,11 @@
   &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
   
 </div>
-<div class="clearfix"></div></footer>
+
+<div class="alignright"><a class="rss-link" href="/rss.xml">RSS 訂閱</a></div>
+
+<div class="clearfix"></div>
+</footer>
   <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>

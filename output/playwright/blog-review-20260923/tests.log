@@ -1,0 +1,300 @@
+
+> hexo-site@0.0.0 test
+> node scripts/run-tests.js
+
+(node:24393) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24393) Warning: Accessing non-existent property 'column' of module exports inside circular dependency
+(node:24393) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:24393) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:24393) Warning: Accessing non-existent property 'column' of module exports inside circular dependency
+(node:24393) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+TAP version 13
+# Subtest: custom.js defines a safe trackGAEvent helper with gtag check
+ok 1 - custom.js defines a safe trackGAEvent helper with gtag check
+  ---
+  duration_ms: 0.829709
+  ...
+# Subtest: custom.js tracks search modal opening with trigger_type
+ok 2 - custom.js tracks search modal opening with trigger_type
+  ---
+  duration_ms: 0.108375
+  ...
+# Subtest: custom.js tracks search queries with debounced GA search event
+ok 3 - custom.js tracks search queries with debounced GA search event
+  ---
+  duration_ms: 0.080042
+  ...
+# Subtest: custom.js tracks search result selection via select_content
+ok 4 - custom.js tracks search result selection via select_content
+  ---
+  duration_ms: 0.082375
+  ...
+# Subtest: custom.js tracks code block copy via copy_code event
+ok 5 - custom.js tracks code block copy via copy_code event
+  ---
+  duration_ms: 0.069666
+  ...
+# Subtest: custom.js tracks social shares and copy link via share event
+ok 6 - custom.js tracks social shares and copy link via share event
+  ---
+  duration_ms: 0.188458
+  ...
+# Subtest: custom.js tracks table of contents interaction and anchor copy
+ok 7 - custom.js tracks table of contents interaction and anchor copy
+  ---
+  duration_ms: 0.094584
+  ...
+# Subtest: custom.js tracks Japanese speech synthesis audio playback
+ok 8 - custom.js tracks Japanese speech synthesis audio playback
+  ---
+  duration_ms: 0.364542
+  ...
+# Subtest: sitemap index lists all localized sitemap URLs
+ok 2 - sitemap index lists all localized sitemap URLs
+  ---
+  duration_ms: 0.495208
+  ...
+# Subtest: localized sitemap home URL uses the same trailing-slash canonical as HTML
+ok 3 - localized sitemap home URL uses the same trailing-slash canonical as HTML
+  ---
+  duration_ms: 0.167625
+  ...
+# Subtest: sitemap index refuses to hide a missing localized sitemap
+ok 4 - sitemap index refuses to hide a missing localized sitemap
+  ---
+  duration_ms: 0.60225
+  ...
+# Subtest: sitemap index is atomically written after all child maps exist
+ok 5 - sitemap index is atomically written after all child maps exist
+  ---
+  duration_ms: 2.988458
+  ...
+# Subtest: multilingual build writes all locale trees to an isolated output directory
+ok 6 - multilingual build writes all locale trees to an isolated output directory
+  ---
+  duration_ms: 2428.386916
+  ...
+# Subtest: mobile header keeps navigation compact and the language menu unclipped
+ok 7 - mobile header keeps navigation compact and the language menu unclipped
+  ---
+  duration_ms: 1998.198334
+  ...
+# Subtest: deployment removes stale public files before upload
+ok 3 - deployment removes stale public files before upload
+  ---
+  duration_ms: 0.465541
+  ...
+# Subtest: locale helpers normalize configured language and home paths
+ok 4 - locale helpers normalize configured language and home paths
+  ---
+  duration_ms: 0.476083
+  ...
+# Subtest: absolute site URLs use the origin exactly once
+ok 5 - absolute site URLs use the origin exactly once
+  ---
+  duration_ms: 0.162125
+  ...
+# Subtest: all homepages advertise reciprocal locales and a Chinese x-default
+ok 6 - all homepages advertise reciprocal locales and a Chinese x-default
+  ---
+  duration_ms: 1.624459
+  ...
+# Subtest: paired posts advertise only real reciprocal translations
+ok 7 - paired posts advertise only real reciprocal translations
+  ---
+  duration_ms: 0.144667
+  ...
+# Subtest: unpaired posts do not claim an alternate translation
+ok 8 - unpaired posts do not claim an alternate translation
+  ---
+  duration_ms: 0.057458
+  ...
+# Subtest: language switch targets a paired post and otherwise falls back to locale home
+ok 9 - language switch targets a paired post and otherwise falls back to locale home
+  ---
+  duration_ms: 0.044125
+  ...
+# Subtest: image optimizer accepts an explicit isolated public directory
+ok 5 - image optimizer accepts an explicit isolated public directory
+  ---
+  duration_ms: 0.447
+  ...
+# Subtest: image optimizer accepts the test public directory environment variable
+ok 6 - image optimizer accepts the test public directory environment variable
+  ---
+  duration_ms: 0.055292
+  ...
+# Subtest: image optimizer rejects a missing public directory argument
+ok 7 - image optimizer rejects a missing public directory argument
+  ---
+  duration_ms: 0.146333
+  ...
+# Subtest: loading the optimizer as a Hexo script ignores another command CLI arguments
+ok 8 - loading the optimizer as a Hexo script ignores another command CLI arguments
+  ---
+  duration_ms: 29.782084
+  ...
+# Subtest: traffic-loader normalizes paths and extracts post traffic properly
+ok 6 - traffic-loader normalizes paths and extracts post traffic properly
+  ---
+  duration_ms: 0.462542
+  ...
+# Subtest: extractPostCover returns the expected cover image path or null
+ok 7 - extractPostCover returns the expected cover image path or null
+  ---
+  duration_ms: 0.292166
+  ...
+# Subtest: getRelatedPosts prioritizes traffic when relevance scores match and falls back to popular posts
+ok 8 - getRelatedPosts prioritizes traffic when relevance scores match and falls back to popular posts
+  ---
+  duration_ms: 0.269791
+  ...
+# Subtest: public post pages render localized related posts and list pages omit them
+ok 9 - public post pages render localized related posts and list pages omit them
+  ---
+  duration_ms: 1.369709
+  ...
+# Subtest: robots.txt allows crawler access to render-critical assets
+ok 7 - robots.txt allows crawler access to render-critical assets
+  ---
+  duration_ms: 0.854
+  ...
+# Subtest: site config provides non-empty SEO defaults
+ok 8 - site config provides non-empty SEO defaults
+  ---
+  duration_ms: 0.172375
+  ...
+# Subtest: head partial emits canonical and social metadata
+ok 9 - head partial emits canonical and social metadata
+  ---
+  duration_ms: 0.093334
+  ...
+# Subtest: theme templates define JSON-LD structured data for homepage, posts, and breadcrumbs
+ok 10 - theme templates define JSON-LD structured data for homepage, posts, and breadcrumbs
+  ---
+  duration_ms: 0.067167
+  ...
+# Subtest: legacy published URLs have PHP redirect stubs in source
+ok 11 - legacy published URLs have PHP redirect stubs in source
+  ---
+  duration_ms: 0.812708
+  ...
+# Subtest: priority posts expose description, updated, exact more tag, and non-empty alt text
+ok 12 - priority posts expose description, updated, exact more tag, and non-empty alt text
+  ---
+  duration_ms: 0.425667
+  ...
+# Subtest: generated pages expose JSON-LD for the homepage, a post, and a taxonomy page
+ok 13 - generated pages expose JSON-LD for the homepage, a post, and a taxonomy page
+  ---
+  duration_ms: 0.597375
+  ...
+# Subtest: generated post images reserve layout space before image load
+ok 14 - generated post images reserve layout space before image load
+  ---
+  duration_ms: 0.598708
+  ...
+# Subtest: content images are not modified by cover-only CLS metadata
+ok 15 - content images are not modified by cover-only CLS metadata
+  ---
+  duration_ms: 1.091625
+  ...
+# Subtest: stylesheet cache version is generated from style sources
+ok 16 - stylesheet cache version is generated from style sources
+  ---
+  duration_ms: 0.43375
+  ...
+# Subtest: homepage cover images use responsive card variants
+ok 17 - homepage cover images use responsive card variants
+  ---
+  duration_ms: 0.374791
+  ...
+# Subtest: homepage avoids post-only JavaScript libraries
+ok 18 - homepage avoids post-only JavaScript libraries
+  ---
+  duration_ms: 0.380583
+  ...
+# Subtest: third-party advertising and analytics scripts are delayed
+ok 19 - third-party advertising and analytics scripts are delayed
+  ---
+  duration_ms: 0.1585
+  ...
+# Subtest: privacy page omits consent-dependent advertising and analytics tags
+ok 20 - privacy page omits consent-dependent advertising and analytics tags
+  ---
+  duration_ms: 0.221459
+  ...
+# Subtest: privacy sitemap entry matches the canonical trailing-slash URL
+ok 21 - privacy sitemap entry matches the canonical trailing-slash URL
+  ---
+  duration_ms: 0.281209
+  ...
+# Subtest: post pages do not render the disabled Facebook comments integration
+ok 22 - post pages do not render the disabled Facebook comments integration
+  ---
+  duration_ms: 0.369584
+  ...
+# Subtest: data tables keep their markup and work without JavaScript, while code tables stay untouched
+ok 8 - data tables keep their markup and work without JavaScript, while code tables stay untouched
+  ---
+  duration_ms: 3.623625
+  ...
+# Subtest: wide comparison tables reserve readable column widths without forcing narrow tables to 720px
+ok 9 - wide comparison tables reserve readable column widths without forcing narrow tables to 720px
+  ---
+  duration_ms: 0.230667
+  ...
+# Subtest: taxonomy directories have real language counterparts without inventing translated tag names
+ok 10 - taxonomy directories have real language counterparts without inventing translated tag names
+  ---
+  duration_ms: 0.488375
+  ...
+# Subtest: all three sites expose complete crawlable topic directories and bounded sidebar tags
+ok 11 - all three sites expose complete crawlable topic directories and bounded sidebar tags
+  ---
+  duration_ms: 3.761459
+  ...
+# Subtest: legacy article descriptions come from the article rather than the site introduction
+ok 12 - legacy article descriptions come from the article rather than the site introduction
+  ---
+  duration_ms: 0.313375
+  ...
+# Subtest: the repository contains the selected high-traffic reciprocal translation pairs
+ok 9 - the repository contains the selected high-traffic reciprocal translation pairs
+  ---
+  duration_ms: 16.939625
+  ...
+# Subtest: all English posts satisfy the multilingual content and SEO contract
+ok 10 - all English posts satisfy the multilingual content and SEO contract
+  ---
+  duration_ms: 4.164958
+  ...
+# Subtest: all Simplified Chinese posts satisfy the multilingual content and SEO contract
+ok 11 - all Simplified Chinese posts satisfy the multilingual content and SEO contract
+  ---
+  duration_ms: 3.425292
+  ...
+# Subtest: duplicate translation keys within one locale are rejected
+ok 12 - duplicate translation keys within one locale are rejected
+  ---
+  duration_ms: 2.852583
+  ...
+# Subtest: a translation key with no peer is rejected
+ok 13 - a translation key with no peer is rejected
+  ---
+  duration_ms: 0.772416
+  ...
+# Subtest: declared alternate paths must match the peer public path in both directions
+ok 14 - declared alternate paths must match the peer public path in both directions
+  ---
+  duration_ms: 2.143125
+  ...
+1..56
+# tests 56
+# pass 56
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4962.260375

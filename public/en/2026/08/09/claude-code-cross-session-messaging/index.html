@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Claude Code Cross-Session Messaging: How Independent Sessions Communicate | 6yuwei</title>
+  <title>Claude Code Cross-Session Messaging: Examples and Limits | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="Use Claude Code cross-session messaging to exchange progress between terminals, worktrees, and machines without merging context or files.">
+  <meta name="description" content="Send messages between Claude Code sessions with a practical prompt, then check versions, session names, cross-machine delivery, and permissions.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/">
   
@@ -18,8 +18,8 @@
   <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/">
   
 
-  <meta property="og:title" content="Claude Code Cross-Session Messaging: How Independent Sessions Communicate"/>
-  <meta property="og:description" content="Use Claude Code cross-session messaging to exchange progress between terminals, worktrees, and machines without merging context or files."/>
+  <meta property="og:title" content="Claude Code Cross-Session Messaging: Examples and Limits"/>
+  <meta property="og:description" content="Send messages between Claude Code sessions with a practical prompt, then check versions, session names, cross-machine delivery, and permissions."/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/"/>
@@ -31,13 +31,13 @@
   
   <meta property="og:image" content="https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Claude Code Cross-Session Messaging: How Independent Sessions Communicate">
-  <meta name="twitter:description" content="Use Claude Code cross-session messaging to exchange progress between terminals, worktrees, and machines without merging context or files.">
+  <meta name="twitter:title" content="Claude Code Cross-Session Messaging: Examples and Limits">
+  <meta name="twitter:description" content="Send messages between Claude Code sessions with a practical prompt, then check versions, session names, cross-machine delivery, and permissions.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/","url":"https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/","headline":"Claude Code Cross-Session Messaging: How Independent Sessions Communicate","description":"Use Claude Code cross-session messaging to exchange progress between terminals, worktrees, and machines without merging context or files.","datePublished":"2026-08-09T06:10:00.000Z","dateModified":"2026-08-27T11:00:00.000Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/","url":"https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/","headline":"Claude Code Cross-Session Messaging: Examples and Limits","description":"Send messages between Claude Code sessions with a practical prompt, then check versions, session names, cross-machine delivery, and permissions.","datePublished":"2026-08-09T06:10:00.000Z","dateModified":"2026-09-26T04:24:14.000Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/cover.jpg"]}</script>
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI Tools","item":"https://blog.6yuwei.com/en/categories/AI-Tools/"},{"@type":"ListItem","position":3,"name":"Claude Code Cross-Session Messaging: How Independent Sessions Communicate","item":"https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI Tools","item":"https://blog.6yuwei.com/en/categories/AI-Tools/"},{"@type":"ListItem","position":3,"name":"Claude Code Cross-Session Messaging: Examples and Limits","item":"https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/"}]}</script>
   
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,7 +98,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=4a3d076f03">
+    <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/en/css/style.css?v=b7a11f5791">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -221,16 +223,20 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">Claude Code Cross-Session Messaging: How Independent Sessions Communicate</h1>
+    <h1 class="p-name title" itemprop="headline name">Claude Code Cross-Session Messaging: Examples and Limits</h1>
   
 
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/en/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c" alt="Claude Code cross-session messaging between independent development sessions" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/08/09/claude-code-cross-session-messaging/cover-card-480.jpg?v=c4ec80f1 480w, /en/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c 720w, /en/2026/08/09/claude-code-cross-session-messaging/cover-card-960.jpg?v=6b3e647c 960w, /en/2026/08/09/claude-code-cross-session-messaging/cover-card-1280.jpg?v=17a867cc 1280w, /en/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p>Claude Code cross-session messaging lets one independent session send a concise text message to another. A frontend session can ask whether an API migration is finished, a test session can report a blocker, and a long-running task can notify the session you are watching when it becomes idle.</p>
+        <p class="post-cover-frame"><img src="/en/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=877da5a0" alt="Claude Code cross-session messaging between independent development sessions" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/08/09/claude-code-cross-session-messaging/cover-card-480.jpg?v=20a626a1 480w, /en/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=877da5a0 720w, /en/2026/08/09/claude-code-cross-session-messaging/cover-card-960.jpg?v=a702dbb3 960w, /en/2026/08/09/claude-code-cross-session-messaging/cover-card-1280.jpg?v=87291f7d 1280w, /en/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>Claude Code cross-session messaging lets independent sessions exchange progress and task summaries. Tell Claude which session to contact and what you need to know. Each session keeps its own files, context, and permissions.</p>
 <span id="more"></span>
 
+<h2 id="Try-a-Progress-Check-First"><a href="#Try-a-Progress-Check-First" class="headerlink" title="Try a Progress Check First"></a>Try a Progress Check First</h2><p>Enter this prompt in your current Claude Code session:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ask the session working on the API for its progress, interface changes, and anything the frontend needs to know. Summarize its reply.</span><br></pre></td></tr></table></figure>
+
+<p>You do not need to call <strong>ListAgents</strong> or <strong>SendMessage</strong> yourself. If Claude cannot find the target, use <strong>&#x2F;list-agents</strong> to check reachable sessions and confirm its name.</p>
 <p>This feature does not merge conversations, transfer files, or create shared memory. Each session keeps its own working directory, permissions, and context. Messaging adds a coordination layer between independent workers.</p>
 <h2 id="Requirements-and-Availability"><a href="#Requirements-and-Availability" class="headerlink" title="Requirements and Availability"></a>Requirements and Availability</h2><p>According to the current <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/cross-session-messaging">Claude Code cross-session messaging documentation</a>:</p>
 <ul>
@@ -481,7 +487,7 @@
 
     
       <!-- 英文（全球開發者生態）：X、LinkedIn、Reddit、Hacker News、Facebook -->
-      <a href="https://twitter.com/intent/tweet?text=Claude%20Code%20Cross-Session%20Messaging%3A%20How%20Independent%20Sessions%20Communicate&url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+      <a href="https://twitter.com/intent/tweet?text=Claude%20Code%20Cross-Session%20Messaging%3A%20Examples%20and%20Limits&url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
@@ -493,7 +499,7 @@
         </svg>
         <span>LinkedIn</span>
       </a>
-      <a href="https://reddit.com/submit?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F&title=Claude%20Code%20Cross-Session%20Messaging%3A%20How%20Independent%20Sessions%20Communicate" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-reddit" title="Share on Reddit" aria-label="Share on Reddit">
+      <a href="https://reddit.com/submit?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F&title=Claude%20Code%20Cross-Session%20Messaging%3A%20Examples%20and%20Limits" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-reddit" title="Share on Reddit" aria-label="Share on Reddit">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
           <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.197-2.512-.73a.326.326 0 0 0-.232-.095z"/>
         </svg>
@@ -508,7 +514,7 @@
     
 
     <!-- 原生分享（行動裝置自動啟用） -->
-    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Claude Code Cross-Session Messaging: How Independent Sessions Communicate" data-url="https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/" title="Share" aria-label="Share" style="display: none;">
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Claude Code Cross-Session Messaging: Examples and Limits" data-url="https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/" title="Share" aria-label="Share" style="display: none;">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="18" cy="5" r="3"></circle>
         <circle cx="6" cy="12" r="3"></circle>
@@ -531,57 +537,11 @@
   <div class="related-posts-grid">
     
       <div class="related-post-card">
-        <a href="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/" class="related-post-link"
-           data-rel-title="Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis"
-           data-rel-path="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/"
-           data-rel-tag="Claude Code"
-           data-rel-position="1">
-          <div class="related-post-cover">
-            
-              <img src="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/cover.jpg?v=123e4c05" alt="Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis" loading="lazy" decoding="async">
-            
-          </div>
-          <div class="related-post-info">
-            
-              <span class="related-post-tag">Claude Code</span>
-            
-            <h4 class="related-post-item-title">Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis</h4>
-            
-              <time class="related-post-date">2026-09-23</time>
-            
-          </div>
-        </a>
-      </div>
-    
-      <div class="related-post-card">
-        <a href="/en/2026/06/18/claude-codex-usage-limits-guide/" class="related-post-link"
-           data-rel-title="Claude Code and Codex Usage Limits: Resets, Credits, and Practical Strategies"
-           data-rel-path="/en/2026/06/18/claude-codex-usage-limits-guide/"
-           data-rel-tag="Claude Code"
-           data-rel-position="2">
-          <div class="related-post-cover">
-            
-              <img src="/en/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" alt="Claude Code and Codex Usage Limits: Resets, Credits, and Practical Strategies" loading="lazy" decoding="async">
-            
-          </div>
-          <div class="related-post-info">
-            
-              <span class="related-post-tag">Claude Code</span>
-            
-            <h4 class="related-post-item-title">Claude Code and Codex Usage Limits: Resets, Credits, and Practical Strategies</h4>
-            
-              <time class="related-post-date">2026-06-18</time>
-            
-          </div>
-        </a>
-      </div>
-    
-      <div class="related-post-card">
         <a href="/en/2026/05/06/claude-code-vs-codex-vs-cursor/" class="related-post-link"
            data-rel-title="Claude Code vs Codex vs Cursor: Which AI Coding Tool Should You Choose in 2026?"
            data-rel-path="/en/2026/05/06/claude-code-vs-codex-vs-cursor/"
            data-rel-tag="Claude Code"
-           data-rel-position="3">
+           data-rel-position="1">
           <div class="related-post-cover">
             
               <img src="/en/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2.jpg?v=4beac131" alt="Claude Code vs Codex vs Cursor: Which AI Coding Tool Should You Choose in 2026?" loading="lazy" decoding="async">
@@ -594,6 +554,52 @@
             <h4 class="related-post-item-title">Claude Code vs Codex vs Cursor: Which AI Coding Tool Should You Choose in 2026?</h4>
             
               <time class="related-post-date">2026-05-06</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/06/18/claude-codex-usage-limits-guide/" class="related-post-link"
+           data-rel-title="Codex Usage Limits: Five-Hour Resets, Weekly Limits, and Credits"
+           data-rel-path="/en/2026/06/18/claude-codex-usage-limits-guide/"
+           data-rel-tag="Claude Code"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" alt="Codex Usage Limits: Five-Hour Resets, Weekly Limits, and Credits" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Claude Code</span>
+            
+            <h4 class="related-post-item-title">Codex Usage Limits: Five-Hour Resets, Weekly Limits, and Credits</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/" class="related-post-link"
+           data-rel-title="Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet"
+           data-rel-path="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/"
+           data-rel-tag="Developer Tools"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914" alt="Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Developer Tools</span>
+            
+            <h4 class="related-post-item-title">Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet</h4>
+            
+              <time class="related-post-date">2026-09-04</time>
             
           </div>
         </a>
@@ -710,7 +716,11 @@
   &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
   
 </div>
-<div class="clearfix"></div></footer>
+
+<div class="alignright"><a class="rss-link" href="/en/rss.xml">Subscribe via RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
   <script>window.BLOG_I18N = {"copyCode":"Copy","codeCopied":"Copied","toastCodeCopied":"Code copied to clipboard","copyLinkLabel":"Copy Link","linkCopied":"Article link copied","headingCopied":"Section link copied","tocTitle":"Table of Contents","searchLoading":"Loading...","searchEmpty":"Type keywords to start searching...","searchNoResults":"No articles matching \"%s\"","tableScrollLabel":"Table, scroll horizontally for more columns","tableScrollHint":"Scroll horizontally to view the full table. You can also use the arrow keys."};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>

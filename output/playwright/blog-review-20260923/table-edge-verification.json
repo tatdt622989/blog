@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "before": {
+        "scrollLeft": 0,
+        "scrollWidth": 841,
+        "clientWidth": 238,
+        "active": true,
+        "cueOpacity": "1",
+        "cueContent": "\"\"",
+        "docWidth": 320
+      },
+      "end": {
+        "scrollLeft": 603,
+        "active": false,
+        "cueOpacity": "0"
+      }
+    },
+    {
+      "width": 390,
+      "before": {
+        "scrollLeft": 0,
+        "scrollWidth": 841,
+        "clientWidth": 308,
+        "active": true,
+        "cueOpacity": "1",
+        "cueContent": "\"\"",
+        "docWidth": 390
+      },
+      "end": {
+        "scrollLeft": 533,
+        "active": false,
+        "cueOpacity": "0"
+      }
+    },
+    {
+      "width": 768,
+      "before": {
+        "scrollLeft": 0,
+        "scrollWidth": 841,
+        "clientWidth": 686,
+        "active": true,
+        "cueOpacity": "1",
+        "cueContent": "\"\"",
+        "docWidth": 768
+      },
+      "end": {
+        "scrollLeft": 155,
+        "active": false,
+        "cueOpacity": "0"
+      }
+    },
+    {
+      "width": 1365,
+      "before": {
+        "scrollLeft": 0,
+        "scrollWidth": 858,
+        "clientWidth": 858,
+        "active": false,
+        "cueOpacity": "1",
+        "cueContent": "none",
+        "docWidth": 1365
+      }
+    }
+  ],
+  "fit": {
+    "scrollWidth": 309,
+    "clientWidth": 308,
+    "active": false,
+    "cueOpacity": "0"
+  },
+  "narrow": "/2026/05/06/AI-coding-工具比較：Claude-Code、Codex、Cursor-怎麼選？/index.html"
+}

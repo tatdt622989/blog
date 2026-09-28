@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: RSS escapes XML and excludes hidden or unpublished posts
+ok 1 - RSS escapes XML and excludes hidden or unpublished posts
+  ---
+  duration_ms: 4.737208
+  ...
+# Subtest: each homepage exposes four local-language guides and a matching RSS feed
+ok 2 - each homepage exposes four local-language guides and a matching RSS feed
+  ---
+  duration_ms: 3.60625
+  ...
+# Subtest: locale helpers normalize configured language and home paths
+ok 2 - locale helpers normalize configured language and home paths
+  ---
+  duration_ms: 1.042083
+  ...
+# Subtest: absolute site URLs use the origin exactly once
+ok 3 - absolute site URLs use the origin exactly once
+  ---
+  duration_ms: 0.212458
+  ...
+# Subtest: all homepages advertise reciprocal locales and a Chinese x-default
+ok 4 - all homepages advertise reciprocal locales and a Chinese x-default
+  ---
+  duration_ms: 0.681375
+  ...
+# Subtest: paired posts advertise only real reciprocal translations
+ok 5 - paired posts advertise only real reciprocal translations
+  ---
+  duration_ms: 0.141292
+  ...
+# Subtest: unpaired posts do not claim an alternate translation
+ok 6 - unpaired posts do not claim an alternate translation
+  ---
+  duration_ms: 0.057916
+  ...
+# Subtest: language switch targets a paired post and otherwise falls back to locale home
+ok 7 - language switch targets a paired post and otherwise falls back to locale home
+  ---
+  duration_ms: 0.044125
+  ...
+# Subtest: robots.txt allows crawler access to render-critical assets
+ok 3 - robots.txt allows crawler access to render-critical assets
+  ---
+  duration_ms: 1.860416
+  ...
+# Subtest: site config provides non-empty SEO defaults
+ok 4 - site config provides non-empty SEO defaults
+  ---
+  duration_ms: 0.317916
+  ...
+# Subtest: head partial emits canonical and social metadata
+ok 5 - head partial emits canonical and social metadata
+  ---
+  duration_ms: 0.414625
+  ...
+# Subtest: theme templates define JSON-LD structured data for homepage, posts, and breadcrumbs
+ok 6 - theme templates define JSON-LD structured data for homepage, posts, and breadcrumbs
+  ---
+  duration_ms: 0.105417
+  ...
+# Subtest: legacy published URLs have PHP redirect stubs in source
+ok 7 - legacy published URLs have PHP redirect stubs in source
+  ---
+  duration_ms: 2.6415
+  ...
+# Subtest: priority posts expose description, updated, exact more tag, and non-empty alt text
+ok 8 - priority posts expose description, updated, exact more tag, and non-empty alt text
+  ---
+  duration_ms: 1.461792
+  ...
+# Subtest: generated pages expose JSON-LD for the homepage, a post, and a taxonomy page
+ok 9 - generated pages expose JSON-LD for the homepage, a post, and a taxonomy page
+  ---
+  duration_ms: 0.725292
+  ...
+# Subtest: generated post images reserve layout space before image load
+ok 10 - generated post images reserve layout space before image load
+  ---
+  duration_ms: 1.319333
+  ...
+# Subtest: content images are not modified by cover-only CLS metadata
+ok 11 - content images are not modified by cover-only CLS metadata
+  ---
+  duration_ms: 0.896125
+  ...
+# Subtest: stylesheet cache version is generated from style sources
+ok 12 - stylesheet cache version is generated from style sources
+  ---
+  duration_ms: 0.823834
+  ...
+# Subtest: homepage cover images use responsive card variants
+ok 13 - homepage cover images use responsive card variants
+  ---
+  duration_ms: 0.379958
+  ...
+# Subtest: homepage avoids post-only JavaScript libraries
+ok 14 - homepage avoids post-only JavaScript libraries
+  ---
+  duration_ms: 0.383875
+  ...
+# Subtest: third-party advertising and analytics scripts are delayed
+ok 15 - third-party advertising and analytics scripts are delayed
+  ---
+  duration_ms: 0.161875
+  ...
+# Subtest: privacy page omits consent-dependent advertising and analytics tags
+ok 16 - privacy page omits consent-dependent advertising and analytics tags
+  ---
+  duration_ms: 0.467458
+  ...
+# Subtest: privacy sitemap entry matches the canonical trailing-slash URL
+ok 17 - privacy sitemap entry matches the canonical trailing-slash URL
+  ---
+  duration_ms: 0.297125
+  ...
+# Subtest: post pages do not render the disabled Facebook comments integration
+ok 18 - post pages do not render the disabled Facebook comments integration
+  ---
+  duration_ms: 0.593833
+  ...
+# Subtest: data tables keep their markup and work without JavaScript, while code tables stay untouched
+ok 4 - data tables keep their markup and work without JavaScript, while code tables stay untouched
+  ---
+  duration_ms: 3.951542
+  ...
+# Subtest: wide comparison tables reserve readable column widths without forcing narrow tables to 720px
+ok 5 - wide comparison tables reserve readable column widths without forcing narrow tables to 720px
+  ---
+  duration_ms: 0.308291
+  ...
+# Subtest: taxonomy directories have real language counterparts without inventing translated tag names
+ok 6 - taxonomy directories have real language counterparts without inventing translated tag names
+  ---
+  duration_ms: 0.567834
+  ...
+# Subtest: all three sites expose complete crawlable topic directories and bounded sidebar tags
+ok 7 - all three sites expose complete crawlable topic directories and bounded sidebar tags
+  ---
+  duration_ms: 3.380125
+  ...
+# Subtest: legacy article descriptions come from the article rather than the site introduction
+ok 8 - legacy article descriptions come from the article rather than the site introduction
+  ---
+  duration_ms: 0.833459
+  ...
+1..29
+# tests 29
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 496.706209

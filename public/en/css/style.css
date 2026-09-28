@@ -1582,6 +1582,106 @@ article .related-posts .related-post-info .related-post-date {
 #comment iframe {
   width: 100% !important;
 }
+.start-here {
+  background: #fff;
+  border: 1px solid #cddfd5;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin: 0 0 24px;
+}
+.start-here__heading {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  gap: 12px;
+}
+.start-here__heading h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #234d39;
+  margin-bottom: 6px;
+}
+.start-here__heading p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #53645c;
+}
+.start-here .rss-link {
+  color: #166947;
+  white-space: nowrap;
+  padding: 6px 0;
+  font-size: 13px;
+}
+.start-here__guides {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+  margin-top: 12px;
+}
+.start-here__guides li {
+  min-width: 0;
+  border-top: 1px solid #e3ece6;
+}
+.start-here__link {
+  display: block;
+  padding: 14px 0;
+}
+.start-here__link:hover {
+  text-decoration: none;
+}
+.start-here__link:hover .start-here__label {
+  text-decoration: underline;
+}
+.start-here__link:focus-visible {
+  outline: 2px solid #16754f;
+  outline-offset: 4px;
+}
+.start-here__label {
+  display: block;
+  color: #166947;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.start-here__description {
+  display: block;
+  color: #53645c;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 3px;
+}
+@media screen and (max-width: 520px) {
+  .start-here {
+    padding: 20px;
+  }
+  .start-here__heading {
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .start-here__guides {
+    grid-template-columns: 1fr;
+  }
+}
 #pagination a {
   display: block;
   padding: 8px 14px;

@@ -1,0 +1,19 @@
+<section class="start-here" aria-labelledby="start-here-title">
+  <div class="start-here__heading">
+    <div>
+      <h2 id="start-here-title"><%= __('start_here_title') %></h2>
+      <p><%= __('start_here_description') %></p>
+    </div>
+    <a class="rss-link" href="<%- url_for(config.feed.path) %>"><%= __('subscribe_rss') %></a>
+  </div>
+  <ul class="start-here__guides">
+    <% start_here_guides().forEach(function(guide, index) { %>
+    <li>
+      <a class="start-here__link" href="<%- url_for(guide.path) %>" data-guide-key="<%= guide.key %>" data-guide-position="<%= index + 1 %>">
+        <span class="start-here__label"><%= __('guide_' + guide.label + '_title') %></span>
+        <span class="start-here__description"><%= __('guide_' + guide.label + '_description') %></span>
+      </a>
+    </li>
+    <% }); %>
+  </ul>
+</section>

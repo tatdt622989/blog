@@ -1,0 +1,34 @@
+✔ collectAdsense 正規化 + 加總 (0.81175ms)
+✔ 帳戶維度保留在 breakdown，不會冒充文章收益 (0.682416ms)
+✔ 所有明細失敗時仍保留總收益，標示頁面資料不可用 (0.106042ms)
+✔ 最近兩個日期依 GA4 時區標記為暫定，不把早期零值當定稿 (29.460416ms)
+✔ collectGa4 使用無維度報表計算不重複的總 sessions 與 active users (0.904666ms)
+✔ collectGa4 回傳工作階段來源排行 (0.157542ms)
+✔ 給 hostName 時帶上 dimensionFilter(共用 property 只算該 host） (0.131667ms)
+✔ 沒給 hostName 時不加 dimensionFilter (0.113708ms)
+✔ parsePost 拆出 front-matter 與正文 (3.424208ms)
+✔ 沒有 front-matter 時 frontmatter 為空、body 為全文 (0.176208ms)
+✔ 讀取 Hexo 不帶開頭分隔線的文章，保留標題、摘要與正文 (0.287208ms)
+✔ postUrlFromFile 依 permalink :year/:month/:day/:title 組 URL (0.297292ms)
+✔ 補抓只更新前兩份既有快照的 GA4，保留其餘來源且 CSV 不重複 (24.968833ms)
+✔ 報告區分近期資料及無法取得的文章收益 (18.869792ms)
+✔ renderReport 含關鍵數字與日期 (0.251083ms)
+✔ 標題塞入收入/動作/點擊/機會詞 (0.423417ms)
+✔ HTML 含本日動作與機會詞區塊 (1.042459ms)
+✔ 沒有動作時顯示「本日無修改」 (0.6945ms)
+✔ HTML 顯示待優化候選 (0.262542ms)
+✔ 沒有候選時顯示「無待優化」 (0.19125ms)
+✔ 降級上線的問題顯示在驗證提醒 (0.204292ms)
+✔ AI 優化提案(預覽）顯示原標題→新標題與摘要 (0.288625ms)
+✔ 被硬擋的草稿顯示在驗證提醒 (0.837041ms)
+✔ sendReport 透過 Resend API 寄出 (1.063209ms)
+✔ sendReport 遇到非 2xx 會丟錯 (0.364083ms)
+✔ 今日趨勢與本日新文預覽顯示 (0.20125ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.90425

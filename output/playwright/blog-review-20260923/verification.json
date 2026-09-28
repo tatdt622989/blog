@@ -1,0 +1,77 @@
+{
+  "articlePath": "/2026/09/14/ai-coding-tools-subscription-comparison/",
+  "viewports": [
+    {
+      "viewport": 320,
+      "documentWidth": 320,
+      "bodyWidth": 280,
+      "tableWidth": 840,
+      "wrapperWidth": 238,
+      "tabindex": "0",
+      "hintVisible": true,
+      "headerBackground": "rgb(234, 245, 239)"
+    },
+    {
+      "viewport": 390,
+      "documentWidth": 390,
+      "bodyWidth": 350,
+      "tableWidth": 840,
+      "wrapperWidth": 308,
+      "tabindex": "0",
+      "hintVisible": true,
+      "headerBackground": "rgb(234, 245, 239)"
+    },
+    {
+      "viewport": 768,
+      "documentWidth": 768,
+      "bodyWidth": 728,
+      "tableWidth": 840,
+      "wrapperWidth": 686,
+      "tabindex": "0",
+      "hintVisible": true,
+      "headerBackground": "rgb(234, 245, 239)"
+    },
+    {
+      "viewport": 1365,
+      "documentWidth": 1365,
+      "bodyWidth": 1365,
+      "tableWidth": 858,
+      "wrapperWidth": 858,
+      "tabindex": null,
+      "hintVisible": false,
+      "headerBackground": "rgb(234, 245, 239)"
+    }
+  ],
+  "tags": [
+    {
+      "locale": "zh-TW",
+      "count": 58,
+      "allOldLinksPreserved": true,
+      "searchAndEmptyState": true
+    },
+    {
+      "locale": "/zh-cn",
+      "count": 43,
+      "allOldLinksPreserved": true,
+      "searchAndEmptyState": true
+    },
+    {
+      "locale": "/en",
+      "count": 53,
+      "allOldLinksPreserved": true,
+      "searchAndEmptyState": true
+    }
+  ],
+  "requestPolicy": "Only local preview files fulfilled; all external requests blocked.",
+  "errors": [],
+  "narrowTable": {
+    "scroll": 308,
+    "client": 308,
+    "viewport": 390
+  },
+  "codeSample": "/2026/06/16/善用頂級LLM：2026年日語學習的高效進階策略/index.html",
+  "noJavaScript": {
+    "directoryLinks": true,
+    "scrollableTables": true
+  }
+}

@@ -1,7 +1,8 @@
 ---
 title: 什麼是 GPT Function calling?
+description: "這篇以 Chat Completions API 的範例介紹 GPT Function calling，說明如何定義函式與參數、接收模型產生的結構化呼叫，再由應用程式執行對應工作，幫助開發者理解語言模型與外部功能之間的分工。"
 date: 2023-10-02 22:56:16
-updated: 2026-08-17 15:20:00
+updated: 2026-09-26 12:30:39
 categories:
 - AI 科技
 tags:
@@ -12,9 +13,13 @@ tags:
 
 ![](cover.jpg)
 
+這篇以 Chat Completions API 的範例介紹 GPT Function calling，說明如何定義函式與參數、接收模型產生的結構化呼叫，再由應用程式執行對應工作，幫助開發者理解語言模型與外部功能之間的分工。
+
+<!--more-->
+
 ## OpenAI API 
 
-在了解 **GPT Function calling** 之前我們先來談談什麼是 OpenAI API ，OpenAI API是一個由OpenAI所提供便於開發者串接他們的服務(例如GPT-4、whisper等)的API，需要透過OpenAI申請API密鑰後才能夠使用<!-- more -->，並且會根據用量收取費用，詳情可以參考[這裡](https://openai.com/pricing)，而本篇要討論的內容則是OpenAI API 底下的 Chat completions API 內的 Function calling 這個功能，以下統一稱為Function calling。
+在了解 **GPT Function calling** 之前我們先來談談什麼是 OpenAI API ，OpenAI API是一個由OpenAI所提供便於開發者串接他們的服務(例如GPT-4、whisper等)的API，需要透過OpenAI申請API密鑰後才能夠使用，並且會根據用量收取費用，詳情可以參考[這裡](https://openai.com/pricing)，而本篇要討論的內容則是OpenAI API 底下的 Chat completions API 內的 Function calling 這個功能，以下統一稱為Function calling。
 
 ## Function calling 有什麼特別的
 

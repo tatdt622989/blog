@@ -1,7 +1,5 @@
-title: Codex 額度與 5 小時限制：2026 重設時間、用量查詢與節省方法
-description: >-
-  Codex 額度怎麼計算、5 小時限制何時重設？本文整理 2026 最新用量面板、週期限制、Credits、手動重設與 CodexBar
-  監控方式，教你縮小任務範圍，並追蹤重要人物的重置預告，提前安排工作。
+title: "Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法"
+description: "Codex 額度在哪裡查、5 小時與每週限制何時重置？本文先用速查表區分自動恢復與 Banked Reset，再整理用量面板、Credits、重置期限和 CodexBar 監控方式，幫你判斷該等待、重設還是調整工作安排。"
 translation_key: claude-codex-usage-limits
 translations:
   en: /en/2026/06/18/claude-codex-usage-limits-guide/
@@ -13,7 +11,7 @@ tags:
   - Codex
   - Claude
 date: 2026-06-18 14:34:36
-updated: 2026-09-12 13:56:48
+updated: "2026-09-26 12:24:14"
 ---
 
 ![Codex 額度與用量管理指南封面](cover.webp)
@@ -23,6 +21,16 @@ updated: 2026-09-12 13:56:48
 Codex 並不是每次對話扣固定次數。模型、任務執行位置、工作複雜度、上下文、推理強度、速度與工具使用都會影響消耗，因此同一個方案能完成的任務數可能差很多。本文整理官方可確認的規則，以及真正能降低浪費的做法。
 
 <!--more-->
+
+## 5 小時、每週與手動重設，先看哪一個？
+
+| 你要確認的項目 | 到哪裡看 | 判斷重點 |
+| --- | --- | --- |
+| 5 小時用量 | **Settings → Usage** 的短期視窗 | 依該列顯示的恢復時間安排工作 |
+| 每週用量 | 同一面板的每週視窗 | 短期視窗恢復，不代表每週額度也恢復 |
+| Banked reset | 帳戶可用的手動重設選項 | 先確認有效期限、使用條件與重設後的週期 |
+
+只想查剩餘額度，可以直接開啟 [Codex 用量面板](https://chatgpt.com/codex/settings/usage)，或在 CLI 輸入 **/status**。不要把別人的重置時間套在自己的帳戶上；[官方用量說明](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits)也以帳戶面板為查詢入口。
 
 ## Codex 額度在哪裡看
 

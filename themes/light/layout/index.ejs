@@ -1,3 +1,6 @@
+<% if (!page.current || page.current === 1) { %>
+  <%- partial('_partial/start_here') %>
+<% } %>
 <nav class="topic-navigation" aria-label="<%= __('browse_topics') %>">
   <span><%= __('browse_topics') %></span>
   <a href="<%- url_for('categories/') %>"><%= __('categories') %></a>

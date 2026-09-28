@@ -53,3 +53,14 @@ topics_empty: No matching topics. Try another keyword.
 topic_description: "Explore articles, tutorials, and hands-on notes about %s on the 6yuwei blog."
 table_scroll_label: Table, scroll horizontally for more columns
 table_scroll_hint: Scroll horizontally to view the full table. You can also use the arrow keys.
+start_here_title: Start here
+start_here_description: Pick a problem and go straight to a practical guide.
+subscribe_rss: Subscribe via RSS
+guide_quota_title: Understand Codex limits
+guide_quota_description: Check usage, reset times, and manual reset options.
+guide_aseprite_title: Get started with Aseprite
+guide_aseprite_description: Install your tools and start making pixel art.
+guide_games_title: Build a game with AI
+guide_games_description: Compare engines and choose your development tools.
+guide_publish_title: Publish your app
+guide_publish_description: Prepare, test, and submit to both app stores.

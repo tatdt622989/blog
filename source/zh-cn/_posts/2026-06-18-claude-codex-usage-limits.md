@@ -1,6 +1,6 @@
 ---
-title: Codex 额度与 5 小时限制：重置时间、用量查询与提效降耗实战指南
-description: 深入解析 2026 年 Codex 与 Claude Code 的配额机制，全面拆解 5 小时窗口、每周用量限制、Banked Reset 与付费额度的扣减逻辑。结合状态栏监控与工程实践，分享精准控制上下文、降低无谓重跑与优化选型的实用技巧，彻底告别额度焦虑。
+title: "Codex 额度与 5 小时限制：重置时间、用量查询与节省方法"
+description: "Codex 剩余额度在哪里查，5 小时和每周限制何时重置？本文用速查表区分自动恢复与 Banked Reset，再说明用量面板、Credits、重置有效期和 CodexBar 监控方法，帮助你判断应该等待、手动重置还是调整任务安排。"
 permalink: 2026/06/18/claude-codex-usage-limits-guide/
 translation_key: claude-codex-usage-limits
 translations:
@@ -13,16 +13,26 @@ tags:
   - Codex
   - Claude
 date: 2026-06-18 14:34:36
-updated: 2026-09-12 13:56:48
+updated: "2026-09-26 12:24:14"
 ---
 
 ![Codex 额度与用量管理指南封面](cover.webp)
 
-在大型项目重构或多文件调试进行到一半时，突然遭遇 Codex 或 Claude Code 额度耗尽无疑令人抓狂。要想从容应对配额限制，首先必须理清四个核心概念：套餐内含用量、重置时间窗口、一次性转存重置（Banked Reset）以及额外购买的付费积分（Credits）。它们各自承担不同角色，不能混为一谈，而且不同账号呈现的选项也存在差异。
+想知道 Codex 额度何时恢复，先打开 **Settings → Usage**，或在 CLI 输入 **/status**。需要分别查看 5 小时和每周窗口，再判断账号是否有可用的手动重置或 Credits。
 
-本文基于 OpenAI 与 Anthropic 官方文档，系统拆解 2026 年最新的用量面板、重置周期与用量监控方式，并从工程实践出发，盘点真正能降低消耗的实用策略与缺乏官方依据的常见误区。
+下面先给出速查表，再说明如何管理重置期限、监控用量和减少重复工作。
 
 <!--more-->
+
+## 先区分 5 小时、每周和手动重置
+
+| 要查询的项目 | 查询位置 | 需要注意什么 |
+| --- | --- | --- |
+| 5 小时用量 | **Settings → Usage** 中的短期窗口 | 以这一栏显示的恢复时间安排任务 |
+| 每周用量 | 同一面板中的每周窗口 | 短期用量恢复，不代表每周额度也恢复 |
+| Banked reset | 账号提供的手动重置选项 | 先核对有效期、使用条件和重置后的周期 |
+
+查询剩余额度可直接打开 [Codex 用量面板](https://chatgpt.com/codex/settings/usage)，或在 CLI 中输入 **/status**。[官方说明](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits)也以账号面板为查询入口，不要用其他用户的截图推算自己的恢复时间。
 
 ## 在哪里查看 Codex 剩余额度
 

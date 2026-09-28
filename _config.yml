@@ -12,6 +12,11 @@ cover: https://blog.6yuwei.com/img/logo.svg
 language: zh-TW
 timezone: Asia/Taipei
 
+feed:
+  type: rss2
+  path: rss.xml
+  limit: 20
+
 # Locales
 i18n:
   default_locale: zh-TW

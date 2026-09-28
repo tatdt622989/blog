@@ -1,7 +1,5 @@
-title: 'Claude Code Cross-Session Messaging: How Independent Sessions Communicate'
-description: >-
-  Use Claude Code cross-session messaging to exchange progress between
-  terminals, worktrees, and machines without merging context or files.
+title: "Claude Code Cross-Session Messaging: Examples and Limits"
+description: "Send messages between Claude Code sessions with a practical prompt, then check versions, session names, cross-machine delivery, and permissions."
 permalink: 2026/08/09/claude-code-cross-session-messaging/
 translation_key: claude-code-cross-session-messaging
 translations:
@@ -15,14 +13,24 @@ tags:
   - Developer Tools
   - Parallel Work
 date: 2026-08-09 14:10:00
-updated: 2026-08-27 19:00:00
+updated: "2026-09-26 12:24:14"
 ---
 
 ![Claude Code cross-session messaging between independent development sessions](cover.jpg)
 
-Claude Code cross-session messaging lets one independent session send a concise text message to another. A frontend session can ask whether an API migration is finished, a test session can report a blocker, and a long-running task can notify the session you are watching when it becomes idle.
+Claude Code cross-session messaging lets independent sessions exchange progress and task summaries. Tell Claude which session to contact and what you need to know. Each session keeps its own files, context, and permissions.
 
 <!--more-->
+
+## Try a Progress Check First
+
+Enter this prompt in your current Claude Code session:
+
+```text
+Ask the session working on the API for its progress, interface changes, and anything the frontend needs to know. Summarize its reply.
+```
+
+You do not need to call **ListAgents** or **SendMessage** yourself. If Claude cannot find the target, use **/list-agents** to check reachable sessions and confirm its name.
 
 This feature does not merge conversations, transfer files, or create shared memory. Each session keeps its own working directory, permissions, and context. Messaging adds a coordination layer between independent workers.
 

@@ -1,0 +1,83 @@
+[
+  {
+    "locale": "zh-TW",
+    "width": 320,
+    "scroll": 320,
+    "links": [
+      "/categories/",
+      "/tags/"
+    ]
+  },
+  {
+    "locale": "zh-TW",
+    "width": 390,
+    "scroll": 390,
+    "links": [
+      "/categories/",
+      "/tags/"
+    ]
+  },
+  {
+    "locale": "zh-TW",
+    "width": 1365,
+    "scroll": 1365,
+    "links": [
+      "/categories/",
+      "/tags/"
+    ]
+  },
+  {
+    "locale": "/zh-cn",
+    "width": 320,
+    "scroll": 320,
+    "links": [
+      "/zh-cn/categories/",
+      "/zh-cn/tags/"
+    ]
+  },
+  {
+    "locale": "/zh-cn",
+    "width": 390,
+    "scroll": 390,
+    "links": [
+      "/zh-cn/categories/",
+      "/zh-cn/tags/"
+    ]
+  },
+  {
+    "locale": "/zh-cn",
+    "width": 1365,
+    "scroll": 1365,
+    "links": [
+      "/zh-cn/categories/",
+      "/zh-cn/tags/"
+    ]
+  },
+  {
+    "locale": "/en",
+    "width": 320,
+    "scroll": 320,
+    "links": [
+      "/en/categories/",
+      "/en/tags/"
+    ]
+  },
+  {
+    "locale": "/en",
+    "width": 390,
+    "scroll": 390,
+    "links": [
+      "/en/categories/",
+      "/en/tags/"
+    ]
+  },
+  {
+    "locale": "/en",
+    "width": 1365,
+    "scroll": 1365,
+    "links": [
+      "/en/categories/",
+      "/en/tags/"
+    ]
+  }
+]

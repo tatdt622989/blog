@@ -5,13 +5,13 @@
   
   <title>在Three.js中使用tween.js做出流暢的動畫效果 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="如果匯入到 Three.js 中的 3D 模型沒有包含動畫，又或者需要讓模型與使用者互動產生動畫效果的話，Three.js 中可以直接的操作模型的座標、位置、縮放等等，但是若要讓動畫效果更加生動流暢，則可以使用 tween.js 這個開源的動畫補間套件來達成！ 讓我們來看看這如何運作，首先，在 Three.js 中建立">
+  <meta name="description" content="想讓 Three.js 模型的移動更加流暢，可以使用 tween.js 補間動畫。本文從簡單場景與方塊開始，示範在點擊事件中設定動畫、更新渲染迴圈與調整物件座標，理解如何把靜態模型接上互動效果。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2022/03/01/1/">
   
 
   <meta property="og:title" content="在Three.js中使用tween.js做出流暢的動畫效果"/>
-  <meta property="og:description" content="如果匯入到 Three.js 中的 3D 模型沒有包含動畫，又或者需要讓模型與使用者互動產生動畫效果的話，Three.js 中可以直接的操作模型的座標、位置、縮放等等，但是若要讓動畫效果更加生動流暢，則可以使用 tween.js 這個開源的動畫補間套件來達成！ 讓我們來看看這如何運作，首先，在 Three.js 中建立"/>
+  <meta property="og:description" content="想讓 Three.js 模型的移動更加流暢，可以使用 tween.js 補間動畫。本文從簡單場景與方塊開始，示範在點擊事件中設定動畫、更新渲染迴圈與調整物件座標，理解如何把靜態模型接上互動效果。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2022/03/01/1/"/>
@@ -20,10 +20,10 @@
   <meta property="og:image" content="https://blog.6yuwei.com/2022/03/01/1/cover.jpg?v=c05d2c88" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="在Three.js中使用tween.js做出流暢的動畫效果">
-  <meta name="twitter:description" content="如果匯入到 Three.js 中的 3D 模型沒有包含動畫，又或者需要讓模型與使用者互動產生動畫效果的話，Three.js 中可以直接的操作模型的座標、位置、縮放等等，但是若要讓動畫效果更加生動流暢，則可以使用 tween.js 這個開源的動畫補間套件來達成！ 讓我們來看看這如何運作，首先，在 Three.js 中建立">
+  <meta name="twitter:description" content="想讓 Three.js 模型的移動更加流暢，可以使用 tween.js 補間動畫。本文從簡單場景與方塊開始，示範在點擊事件中設定動畫、更新渲染迴圈與調整物件座標，理解如何把靜態模型接上互動效果。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2022/03/01/1/cover.jpg?v=c05d2c88">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/03/01/1/","url":"https://blog.6yuwei.com/2022/03/01/1/","headline":"在Three.js中使用tween.js做出流暢的動畫效果","description":"如果匯入到 Three.js 中的 3D 模型沒有包含動畫，又或者需要讓模型與使用者互動產生動畫效果的話，Three.js 中可以直接的操作模型的座標、位置、縮放等等，但是若要讓動畫效果更加生動流暢，則可以使用 tween.js 這個開源的動畫補間套件來達成！ 讓我們來看看這如何運作，首先，在 Three.js 中建立","datePublished":"2022-03-01T15:50:27.000Z","dateModified":"2026-08-17T07:20:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2022/03/01/1/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/03/01/1/","url":"https://blog.6yuwei.com/2022/03/01/1/","headline":"在Three.js中使用tween.js做出流暢的動畫效果","description":"想讓 Three.js 模型的移動更加流暢，可以使用 tween.js 補間動畫。本文從簡單場景與方塊開始，示範在點擊事件中設定動畫、更新渲染迴圈與調整物件座標，理解如何把靜態模型接上互動效果。","datePublished":"2022-03-01T15:50:27.000Z","dateModified":"2026-09-26T04:30:39.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2022/03/01/1/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"前端開發","item":"https://blog.6yuwei.com/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"在Three.js中使用tween.js做出流暢的動畫效果","item":"https://blog.6yuwei.com/2022/03/01/1/"}]}</script>
   
@@ -86,7 +86,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
+    <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/css/style.css?v=b7a11f5791">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -311,34 +313,11 @@
   <div class="related-posts-grid">
     
       <div class="related-post-card">
-        <a href="/2022/02/05/4/" class="related-post-link"
-           data-rel-title="使用Three.js載入外部模型及貼圖"
-           data-rel-path="/2022/02/05/4/"
-           data-rel-tag="Three.js"
-           data-rel-position="1">
-          <div class="related-post-cover">
-            
-              <img src="/2022/02/05/4/cover.webp?v=5899d155" alt="使用Three.js載入外部模型及貼圖" loading="lazy" decoding="async">
-            
-          </div>
-          <div class="related-post-info">
-            
-              <span class="related-post-tag">Three.js</span>
-            
-            <h4 class="related-post-item-title">使用Three.js載入外部模型及貼圖</h4>
-            
-              <time class="related-post-date">2022-02-05</time>
-            
-          </div>
-        </a>
-      </div>
-    
-      <div class="related-post-card">
         <a href="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/" class="related-post-link"
            data-rel-title="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學"
            data-rel-path="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/"
            data-rel-tag="前端開發"
-           data-rel-position="2">
+           data-rel-position="1">
           <div class="related-post-cover">
             
               <img src="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670" alt="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學" loading="lazy" decoding="async">
@@ -351,6 +330,29 @@
             <h4 class="related-post-item-title">非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學</h4>
             
               <time class="related-post-date">2026-08-22</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2022/02/05/4/" class="related-post-link"
+           data-rel-title="使用Three.js載入外部模型及貼圖"
+           data-rel-path="/2022/02/05/4/"
+           data-rel-tag="Three.js"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2022/02/05/4/cover.webp?v=5899d155" alt="使用Three.js載入外部模型及貼圖" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Three.js</span>
+            
+            <h4 class="related-post-item-title">使用Three.js載入外部模型及貼圖</h4>
+            
+              <time class="related-post-date">2022-02-05</time>
             
           </div>
         </a>
@@ -502,7 +504,11 @@
   &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
   
 </div>
-<div class="clearfix"></div></footer>
+
+<div class="alignright"><a class="rss-link" href="/rss.xml">RSS 訂閱</a></div>
+
+<div class="clearfix"></div>
+</footer>
   <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>

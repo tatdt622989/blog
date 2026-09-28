@@ -1,0 +1,343 @@
+
+> hexo-site@0.0.0 test
+> node scripts/run-tests.js
+
+(node:86805) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:86805) Warning: Accessing non-existent property 'column' of module exports inside circular dependency
+(node:86805) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:86805) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:86805) Warning: Accessing non-existent property 'column' of module exports inside circular dependency
+(node:86805) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+TAP version 13
+# Subtest: custom.js defines a safe trackGAEvent helper with gtag check
+ok 1 - custom.js defines a safe trackGAEvent helper with gtag check
+  ---
+  duration_ms: 0.924167
+  ...
+# Subtest: custom.js tracks search modal opening with trigger_type
+ok 2 - custom.js tracks search modal opening with trigger_type
+  ---
+  duration_ms: 0.102792
+  ...
+# Subtest: custom.js tracks search queries with debounced GA search event
+ok 3 - custom.js tracks search queries with debounced GA search event
+  ---
+  duration_ms: 0.078584
+  ...
+# Subtest: custom.js tracks search result selection via select_content
+ok 4 - custom.js tracks search result selection via select_content
+  ---
+  duration_ms: 0.117875
+  ...
+# Subtest: custom.js tracks code block copy via copy_code event
+ok 5 - custom.js tracks code block copy via copy_code event
+  ---
+  duration_ms: 0.079
+  ...
+# Subtest: custom.js tracks social shares and copy link via share event
+ok 6 - custom.js tracks social shares and copy link via share event
+  ---
+  duration_ms: 0.189542
+  ...
+# Subtest: custom.js tracks table of contents interaction and anchor copy
+ok 7 - custom.js tracks table of contents interaction and anchor copy
+  ---
+  duration_ms: 0.100583
+  ...
+# Subtest: custom.js tracks Japanese speech synthesis audio playback
+ok 8 - custom.js tracks Japanese speech synthesis audio playback
+  ---
+  duration_ms: 0.387166
+  ...
+# Subtest: sitemap index lists all localized sitemap URLs
+ok 2 - sitemap index lists all localized sitemap URLs
+  ---
+  duration_ms: 0.531708
+  ...
+# Subtest: localized sitemap home URL uses the same trailing-slash canonical as HTML
+ok 3 - localized sitemap home URL uses the same trailing-slash canonical as HTML
+  ---
+  duration_ms: 0.210917
+  ...
+# Subtest: localized sitemap includes both searchable directories once
+ok 4 - localized sitemap includes both searchable directories once
+  ---
+  duration_ms: 0.195333
+  ...
+# Subtest: sitemap index refuses to hide a missing localized sitemap
+ok 5 - sitemap index refuses to hide a missing localized sitemap
+  ---
+  duration_ms: 0.938417
+  ...
+# Subtest: sitemap index is atomically written after all child maps exist
+ok 6 - sitemap index is atomically written after all child maps exist
+  ---
+  duration_ms: 1.926542
+  ...
+# Subtest: multilingual build writes all locale trees to an isolated output directory
+ok 7 - multilingual build writes all locale trees to an isolated output directory
+  ---
+  duration_ms: 2547.90975
+  ...
+# Subtest: mobile header keeps navigation compact and the language menu unclipped
+ok 8 - mobile header keeps navigation compact and the language menu unclipped
+  ---
+  duration_ms: 2361.444709
+  ...
+# Subtest: deployment removes stale public files before upload
+ok 3 - deployment removes stale public files before upload
+  ---
+  duration_ms: 0.515584
+  ...
+# Subtest: RSS escapes XML and excludes hidden or unpublished posts
+ok 4 - RSS escapes XML and excludes hidden or unpublished posts
+  ---
+  duration_ms: 1.207084
+  ...
+# Subtest: each homepage exposes four local-language guides and a matching RSS feed
+ok 5 - each homepage exposes four local-language guides and a matching RSS feed
+  ---
+  duration_ms: 3.796
+  ...
+# Subtest: locale helpers normalize configured language and home paths
+ok 5 - locale helpers normalize configured language and home paths
+  ---
+  duration_ms: 0.460083
+  ...
+# Subtest: absolute site URLs use the origin exactly once
+ok 6 - absolute site URLs use the origin exactly once
+  ---
+  duration_ms: 0.158125
+  ...
+# Subtest: all homepages advertise reciprocal locales and a Chinese x-default
+ok 7 - all homepages advertise reciprocal locales and a Chinese x-default
+  ---
+  duration_ms: 0.941166
+  ...
+# Subtest: paired posts advertise only real reciprocal translations
+ok 8 - paired posts advertise only real reciprocal translations
+  ---
+  duration_ms: 0.145
+  ...
+# Subtest: unpaired posts do not claim an alternate translation
+ok 9 - unpaired posts do not claim an alternate translation
+  ---
+  duration_ms: 0.076041
+  ...
+# Subtest: language switch targets a paired post and otherwise falls back to locale home
+ok 10 - language switch targets a paired post and otherwise falls back to locale home
+  ---
+  duration_ms: 0.049042
+  ...
+# Subtest: image optimizer accepts an explicit isolated public directory
+ok 6 - image optimizer accepts an explicit isolated public directory
+  ---
+  duration_ms: 0.457375
+  ...
+# Subtest: image optimizer accepts the test public directory environment variable
+ok 7 - image optimizer accepts the test public directory environment variable
+  ---
+  duration_ms: 0.056834
+  ...
+# Subtest: image optimizer rejects a missing public directory argument
+ok 8 - image optimizer rejects a missing public directory argument
+  ---
+  duration_ms: 0.141
+  ...
+# Subtest: loading the optimizer as a Hexo script ignores another command CLI arguments
+ok 9 - loading the optimizer as a Hexo script ignores another command CLI arguments
+  ---
+  duration_ms: 28.883334
+  ...
+# Subtest: traffic-loader normalizes paths and extracts post traffic properly
+ok 7 - traffic-loader normalizes paths and extracts post traffic properly
+  ---
+  duration_ms: 0.422417
+  ...
+# Subtest: extractPostCover returns the expected cover image path or null
+ok 8 - extractPostCover returns the expected cover image path or null
+  ---
+  duration_ms: 0.262291
+  ...
+# Subtest: getRelatedPosts prioritizes traffic when relevance scores match and falls back to popular posts
+ok 9 - getRelatedPosts prioritizes traffic when relevance scores match and falls back to popular posts
+  ---
+  duration_ms: 0.256917
+  ...
+# Subtest: public post pages render localized related posts and list pages omit them
+ok 10 - public post pages render localized related posts and list pages omit them
+  ---
+  duration_ms: 1.286042
+  ...
+# Subtest: robots.txt allows crawler access to render-critical assets
+ok 8 - robots.txt allows crawler access to render-critical assets
+  ---
+  duration_ms: 0.86375
+  ...
+# Subtest: site config provides non-empty SEO defaults
+ok 9 - site config provides non-empty SEO defaults
+  ---
+  duration_ms: 0.197167
+  ...
+# Subtest: head partial emits canonical and social metadata
+ok 10 - head partial emits canonical and social metadata
+  ---
+  duration_ms: 0.101417
+  ...
+# Subtest: theme templates define JSON-LD structured data for homepage, posts, and breadcrumbs
+ok 11 - theme templates define JSON-LD structured data for homepage, posts, and breadcrumbs
+  ---
+  duration_ms: 0.070292
+  ...
+# Subtest: legacy published URLs have PHP redirect stubs in source
+ok 12 - legacy published URLs have PHP redirect stubs in source
+  ---
+  duration_ms: 0.85225
+  ...
+# Subtest: priority posts expose description, updated, exact more tag, and non-empty alt text
+ok 13 - priority posts expose description, updated, exact more tag, and non-empty alt text
+  ---
+  duration_ms: 0.615583
+  ...
+# Subtest: generated pages expose JSON-LD for the homepage, a post, and a taxonomy page
+ok 14 - generated pages expose JSON-LD for the homepage, a post, and a taxonomy page
+  ---
+  duration_ms: 0.73925
+  ...
+# Subtest: generated post images reserve layout space before image load
+ok 15 - generated post images reserve layout space before image load
+  ---
+  duration_ms: 0.851916
+  ...
+# Subtest: content images are not modified by cover-only CLS metadata
+ok 16 - content images are not modified by cover-only CLS metadata
+  ---
+  duration_ms: 0.667125
+  ...
+# Subtest: stylesheet cache version is generated from style sources
+ok 17 - stylesheet cache version is generated from style sources
+  ---
+  duration_ms: 0.25125
+  ...
+# Subtest: homepage cover images use responsive card variants
+ok 18 - homepage cover images use responsive card variants
+  ---
+  duration_ms: 0.318833
+  ...
+# Subtest: homepage avoids post-only JavaScript libraries
+ok 19 - homepage avoids post-only JavaScript libraries
+  ---
+  duration_ms: 0.343083
+  ...
+# Subtest: third-party advertising and analytics scripts are delayed
+ok 20 - third-party advertising and analytics scripts are delayed
+  ---
+  duration_ms: 0.178458
+  ...
+# Subtest: privacy page omits consent-dependent advertising and analytics tags
+ok 21 - privacy page omits consent-dependent advertising and analytics tags
+  ---
+  duration_ms: 0.201833
+  ...
+# Subtest: privacy sitemap entry matches the canonical trailing-slash URL
+ok 22 - privacy sitemap entry matches the canonical trailing-slash URL
+  ---
+  duration_ms: 0.24975
+  ...
+# Subtest: post pages do not render the disabled Facebook comments integration
+ok 23 - post pages do not render the disabled Facebook comments integration
+  ---
+  duration_ms: 0.354667
+  ...
+# Subtest: data tables keep their markup and work without JavaScript, while code tables stay untouched
+ok 9 - data tables keep their markup and work without JavaScript, while code tables stay untouched
+  ---
+  duration_ms: 3.627375
+  ...
+# Subtest: wide comparison tables reserve readable column widths without forcing narrow tables to 720px
+ok 10 - wide comparison tables reserve readable column widths without forcing narrow tables to 720px
+  ---
+  duration_ms: 0.237958
+  ...
+# Subtest: taxonomy directories have real language counterparts without inventing translated tag names
+ok 11 - taxonomy directories have real language counterparts without inventing translated tag names
+  ---
+  duration_ms: 0.581
+  ...
+# Subtest: all three sites expose complete crawlable topic directories and bounded sidebar tags
+ok 12 - all three sites expose complete crawlable topic directories and bounded sidebar tags
+  ---
+  duration_ms: 4.17875
+  ...
+# Subtest: legacy article descriptions come from the article rather than the site introduction
+ok 13 - legacy article descriptions come from the article rather than the site introduction
+  ---
+  duration_ms: 0.430833
+  ...
+# Subtest: the repository contains the selected high-traffic reciprocal translation pairs
+ok 10 - the repository contains the selected high-traffic reciprocal translation pairs
+  ---
+  duration_ms: 17.993333
+  ...
+# Subtest: all English posts satisfy the multilingual content and SEO contract
+not ok 11 - all English posts satisfy the multilingual content and SEO contract
+  ---
+  duration_ms: 6.555459
+  failureType: 'testCodeFailure'
+  error: '2026-09-23-vibe-coding-app-store-google-play-guide.md cover exceeds 300 KB'
+  code: 'ERR_ASSERTION'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Volumes/X9Pro/project/blog/test/translation-pairs.test.mjs:145:16)
+    Test.runInAsyncScope (node:async_hooks:204:9)
+    Test.run (node:internal/test_runner/test:547:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:300:27)
+    Test.postRun (node:internal/test_runner/test:637:19)
+    Test.run (node:internal/test_runner/test:575:10)
+    async startSubtest (node:internal/test_runner/harness:184:3)
+  ...
+# Subtest: all Simplified Chinese posts satisfy the multilingual content and SEO contract
+not ok 12 - all Simplified Chinese posts satisfy the multilingual content and SEO contract
+  ---
+  duration_ms: 4.409625
+  failureType: 'testCodeFailure'
+  error: '2026-09-23-vibe-coding-app-store-google-play-guide.md cover exceeds 300 KB'
+  code: 'ERR_ASSERTION'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Volumes/X9Pro/project/blog/test/translation-pairs.test.mjs:187:16)
+    Test.runInAsyncScope (node:async_hooks:204:9)
+    Test.run (node:internal/test_runner/test:547:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:300:27)
+    Test.postRun (node:internal/test_runner/test:637:19)
+    Test.run (node:internal/test_runner/test:575:10)
+    async Test.processPendingSubtests (node:internal/test_runner/test:300:7)
+  ...
+# Subtest: duplicate translation keys within one locale are rejected
+ok 13 - duplicate translation keys within one locale are rejected
+  ---
+  duration_ms: 2.506875
+  ...
+# Subtest: a translation key with no peer is rejected
+ok 14 - a translation key with no peer is rejected
+  ---
+  duration_ms: 0.744917
+  ...
+# Subtest: declared alternate paths must match the peer public path in both directions
+ok 15 - declared alternate paths must match the peer public path in both directions
+  ---
+  duration_ms: 1.686292
+  ...
+1..59
+# tests 59
+# pass 57
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5565.744208

@@ -1,7 +1,8 @@
 ---
 title: 快速使用 Firebase Cloud Functions 創建網頁後端API
+description: "以文中的 Firebase Cloud Functions 範例，整理建立網頁後端 API 的主要步驟，包含專案準備、開發環境、函式撰寫與部署。適合想了解前端如何呼叫雲端函式的開發者，方案與計費則可透過文內官方連結確認。"
 date: 2023-07-08 00:14:32
-updated: 2026-08-17 15:20:00
+updated: 2026-09-26 12:30:39
 categories:
 - 前端開發
 tags:
@@ -11,9 +12,13 @@ tags:
 
 ![](cover.webp)
 
+以文中的 Firebase Cloud Functions 範例，整理建立網頁後端 API 的主要步驟，包含專案準備、開發環境、函式撰寫與部署。適合想了解前端如何呼叫雲端函式的開發者，方案與計費則可透過文內官方連結確認。
+
+<!--more-->
+
 ## Firebase Cloud Functions 介紹
 
-**Firebase Cloud Functions** 是 Firebase 的一項服務，能夠讓使用者在不需要考慮伺服器的情況下，建立可以在雲端執行的程式碼，並使用HTTPS或其他Firebase的服務進行調用，<!-- more -->但是若要使用這項服務，必須將專案升級成[Blaze Plan](https://firebase.google.com/pricing)才能夠使用，並且調用是需要費用的，但是每個月的免費額度對一般的開發者來說應該是相當夠用了(一個月200萬次呼叫)，費用詳情可以參考[這裡](https://firebase.google.com/pricing)，針對請求數、儲存空間、執行時間等都有詳細的價格說明。
+**Firebase Cloud Functions** 是 Firebase 的一項服務，能夠讓使用者在不需要考慮伺服器的情況下，建立可以在雲端執行的程式碼，並使用HTTPS或其他Firebase的服務進行調用，但是若要使用這項服務，必須將專案升級成[Blaze Plan](https://firebase.google.com/pricing)才能夠使用，並且調用是需要費用的，但是每個月的免費額度對一般的開發者來說應該是相當夠用了(一個月200萬次呼叫)，費用詳情可以參考[這裡](https://firebase.google.com/pricing)，針對請求數、儲存空間、執行時間等都有詳細的價格說明。
 
 ## 開始使用 Firebase Cloud Functions
 

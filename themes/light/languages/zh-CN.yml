@@ -53,3 +53,14 @@ topics_empty: 没有找到匹配的主题，请尝试其他关键词。
 topic_description: "浏览 6yuwei 博客中与“%s”相关的文章、教程和实测笔记。"
 table_scroll_label: 表格，可左右滚动
 table_scroll_hint: 左右滑动查看完整表格；也可使用键盘方向键。
+start_here_title: 从这里开始
+start_here_description: 选一个当前想解决的问题，直接阅读实用教程。
+subscribe_rss: 订阅 RSS
+guide_quota_title: 看懂 Codex 额度
+guide_quota_description: 查询用量，分清自动恢复与手动重置。
+guide_aseprite_title: 开始使用 Aseprite
+guide_aseprite_description: 安装工具，开始绘制像素美术。
+guide_games_title: 用 AI 开发游戏
+guide_games_description: 对比游戏引擎，选择适合的开发工具。
+guide_publish_title: 将 App 上架商店
+guide_publish_description: 梳理双平台发布前的准备、测试与审核。

@@ -1,7 +1,5 @@
-title: 'Claude Code and Codex Usage Limits: Resets, Credits, and Practical Strategies'
-description: >-
-  Understand Claude Code and Codex limits, five-hour and weekly windows, banked
-  resets, paid credits, CodexBar, and practical ways to preserve usage.
+title: "Codex Usage Limits: Five-Hour Resets, Weekly Limits, and Credits"
+description: "Check Codex usage and reset times, compare five-hour and weekly limits, and understand banked resets, credits, and Claude Code usage."
 permalink: 2026/06/18/claude-codex-usage-limits-guide/
 translation_key: claude-codex-usage-limits
 translations:
@@ -15,14 +13,26 @@ tags:
   - Usage Limits
   - CodexBar
 date: 2026-06-18 14:34:36
-updated: 2026-09-12 13:56:48
+updated: "2026-09-26 12:24:14"
 ---
 
 ![Claude Code and Codex usage limit management guide](cover.webp)
 
-Running out of Claude Code or Codex usage in the middle of a refactor is frustrating, but the limit is easier to manage once you separate four concepts: included plan usage, reset windows, one-time banked resets, and paid credits. They are not interchangeable, and the options shown to one account may not appear on another.
+To check Codex usage and reset times, open **Settings → Usage** or run **/status** in the CLI. Check the five-hour and weekly windows separately before deciding whether to wait, use an available reset, or use credits.
+
+The quick reference below separates these choices. The rest of the guide covers Codex and Claude Code usage, monitoring, and practical ways to reduce repeated work.
 
 <!--more-->
+
+## Quick Check: Five-Hour Limits, Weekly Limits, and Resets
+
+| What to check | Where to look | What matters |
+| --- | --- | --- |
+| Five-hour usage | The short window in **Settings → Usage** | Use the recovery time shown for that window |
+| Weekly usage | The weekly window in the same dashboard | Short-window recovery does not restore weekly capacity |
+| Banked reset | Your account's manual reset options | Check eligibility, expiration, and the resulting reset schedule |
+
+Open the [Codex usage dashboard](https://chatgpt.com/codex/settings/usage), or run **/status** in the CLI. [OpenAI's usage documentation](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits) points to these account-specific checks.
 
 This guide uses the current OpenAI and Anthropic documentation as its baseline. Exact allowances, eligible models, promotions, and prices can change, so your own usage dashboard is the final authority.
 

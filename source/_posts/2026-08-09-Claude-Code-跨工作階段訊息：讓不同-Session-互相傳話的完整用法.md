@@ -1,7 +1,5 @@
-title: Claude Code 跨工作階段訊息：讓不同 Session 互相傳話的完整用法
-description: >-
-  Claude Code v2.1.224 新增跨工作階段訊息，讓不同 Session
-  交換任務摘要、詢問進度並回覆答案。本文整理實際用法、跨機限制、Agent Teams 差異與安全設定。
+title: "Claude Code 跨 Session 傳訊息：操作範例、版本與跨機限制"
+description: "Claude Code 不同 Session 怎麼互相傳訊息？本文從可直接使用的詢問進度範例開始，整理版本需求、工作階段命名、同機與跨機傳遞方式，以及收件權限和常見問題，幫你在多個終端機之間交接工作。"
 translation_key: claude-code-cross-session-messaging
 translations:
   en: /en/2026/08/09/claude-code-cross-session-messaging/
@@ -14,18 +12,26 @@ tags:
   - AI Agent
   - 開發工具
 date: 2026-08-09 14:10:00
-updated: 2026-08-27 19:00:00
+updated: "2026-09-26 12:24:14"
 ---
 
 ![Claude Code 跨工作階段訊息讓多個 Session 交換任務摘要的示意圖](cover.jpg)
 
-Claude Code 最近出現一個很容易讓人第一眼誤會、但實際上相當實用的功能：**不同的 Claude Code Session 現在可以互相傳訊息**。
+Claude Code 的跨 Session 訊息可以讓不同終端機交換進度與工作摘要。你只要用自然語言說明要聯絡哪個 Session、想知道什麼，Claude 就會尋找對方並傳送訊息。
 
-它的實際用法很直覺：你可以在一個終端機裡工作到一半，請 Claude 去詢問另一個終端機裡的 Session；另一個 Session 也可以把剛完成的工作摘要傳回來，甚至在它發現自己的修改會影響其他 Session 時主動通知對方。
-
-不過，這個功能不是把兩段完整對話合併，也不是把整個專案檔案自動搬來搬去。它傳遞的是**文字訊息與摘要**，而且每個 Session 仍然保有自己的工作目錄、權限與對話脈絡。理解這個邊界，才不會把它和 `--resume`、子代理或 Agent Teams 混在一起。
+訊息不會合併完整對話或搬移檔案；每個 Session 仍保有自己的工作目錄與權限。
 
 <!--more-->
+
+## 先試一個詢問進度的範例
+
+在目前的 Claude Code Session 輸入：
+
+```text
+請詢問負責 API 的 Session：目前進度如何、有哪些介面變更，以及前端需要注意什麼。把回覆整理給我。
+```
+
+這是交給 Claude 的提示詞，不必自行呼叫 **ListAgents** 或 **SendMessage**。若找不到對方，再用 **/list-agents** 檢查可聯絡的 Session，並確認名稱與執行狀態。
 
 ## 先講結論：這是一個 Session 之間的訊息層
 
@@ -72,7 +78,7 @@ API Session 完成後，可以主動傳一則摘要給前端或測試 Session。
 
 官方文件也把跨機器回覆列為用途之一。比如你在筆電上的 Session 想知道桌機上的長時間測試是否完成，可以發出詢問，讓遠端 Session 回答狀態。
 
-但這裡有一個很重要的限制：**跨機器或 Claude Code Web 的 Session 目前主要是回覆型連線**。你不能把它當成任意方向、任意時間都能推送工作的遠端控制通道；通常要先有可回覆的訊息路徑，且 Remote Control 必須讓對方 Session 可被找到。
+**跨機主動傳訊從 v2.1.225 起可用，目標必須出現在可聯絡清單中。** 發送端若未連上 Remote Control，遠端收到的訊息可能沒有回覆地址，因此無法回信；這是單向訊息的情況，不代表跨機一律只能回覆。
 
 ## 實際怎麼用？
 
@@ -84,7 +90,7 @@ API Session 完成後，可以主動傳一則摘要給前端或測試 Session。
 claude --version
 ```
 
-官方要求是 **v2.1.224 或更新版本**，可用平台是 macOS、Linux 與 WSL2；原生 Windows 目前不在支援範圍內。這不是一個需要另外安裝 MCP 或啟用外掛的功能，符合版本與平台條件後，功能會隨 Claude Code 提供。
+macOS、Linux 與 WSL2 需要 **v2.1.224 或更新版本**；原生 Windows 則需要 **v2.1.234 或更新版本**。符合版本、平台與供應方式條件時，訊息功能會直接提供，不需另外安裝 MCP。
 
 我目前檢查這台工作環境得到的版本是 `2.1.186`，低於官方要求，因此本文把官方文件與變更紀錄確認到的用法整理出來，沒有把這台舊版本的結果冒充成跨 Session 實測。升級後可用下面的檢查清單驗證：
 
@@ -183,10 +189,10 @@ Claude 會在需要時使用 `ListAgents` 找到對象，再使用 `SendMessage`
 
 | 情境 | 傳遞方式 | 能做什麼 | 主要限制 |
 | --- | --- | --- | --- |
-| 同一台機器 | 每個 Session 的本機 socket | 可互傳新訊息與回覆 | 兩邊要看得到同一個可用的檔案系統與 inbox socket |
+| 同一台機器 | Unix socket；原生 Windows 使用 named pipe | 可互傳新訊息與回覆 | 必須能讀到同一組 Session 登錄檔與收件端點 |
 | 同一個 container | container 內的 Session socket | 可互傳訊息 | Host 與 container 之間的 Session 不會自動互相看見 |
-| 自己的另一台機器 | Anthropic 服務與 Remote Control | 主要是回覆訊息 | 需要建立可達連線，通常不是任意方向的主動推送 |
-| Claude Code Web | Anthropic 服務 | 主要是回覆訊息 | 不是同機 Session 的完整雙向 socket 通道 |
+| 自己的另一台機器 | Anthropic 服務與 Remote Control | v2.1.225 起可主動傳訊 | 目標須可被列出；缺回覆地址時為單向訊息 |
+| Claude Code Web | Anthropic 服務 | 傳訊至可聯絡的雲端 Session | 發送端須有 Remote Control 回覆地址，對方才能回信 |
 
 同機訊息不會經過 Anthropic 伺服器；跨機器與 Web 路徑則會經過 Anthropic 服務。因此，如果訊息可能跨機器，就不要把 API key、個人資料、密碼或不必要的原始碼直接塞進摘要裡。
 
@@ -309,7 +315,7 @@ claude -p "檢查 migration 是否完成" \
 
 ### `/list-agents` 找不到指令
 
-先確認 Claude Code 是否至少是 v2.1.224。若版本正確，仍要檢查平台是否為 macOS、Linux 或 WSL2，以及目前使用的 Claude Code 供應方式是否支援這項能力。官方文件列出 Amazon Bedrock、Claude Platform on AWS、Google Cloud 的 Agent Platform 與 Microsoft Foundry 等環境目前不提供這項功能。
+先確認版本門檻：macOS、Linux、WSL2 為 **v2.1.224**，原生 Windows 為 **v2.1.234**。若仍無法使用，依[官方可用性說明](https://code.claude.com/docs/en/cross-session-messaging#availability)核對供應方式與組織設定。
 
 ### 清單有 Session，但訊息沒有立刻出現
 
@@ -319,9 +325,9 @@ claude -p "檢查 migration 是否完成" \
 
 不會。官方明確說明，跨 Session 訊息是純文字，沒有對話歷史或檔案。需要完整上下文時，應該回到同一個 Session 使用 `/resume`；需要共同修改檔案時，則要先設計好 worktree、分支與測試責任。
 
-### 以為跨機器可以隨時主動呼叫
+### 遠端收得到，卻無法回覆
 
-目前跨機器與 Web Session 的主要用途是回覆。你需要先讓對方 Session 可被 Remote Control 找到，而且實際可用方向受官方訊息路徑限制。不要把它當成一般遠端執行 API，也不要把沒有回應誤判為對方正在執行你指定的工作。
+檢查發送端是否連上 Remote Control，以及目標是否出現在 **/list-agents**。發送端未連線時，訊息可能成功送出卻沒有回覆地址。收到訊息也不等於工作已執行完成，仍需核對對方的實際回覆。
 
 ### 以為訊息可以繞過權限
 

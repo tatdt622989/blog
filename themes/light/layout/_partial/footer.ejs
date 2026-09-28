@@ -5,4 +5,7 @@
   &copy; <%= new Date().getFullYear() %> <a class="copyright" href="https://6yuwei.com"><%= config.title %></a>
   <% } %>
 </div>
+<% if (config.feed) { %>
+<div class="alignright"><a class="rss-link" href="<%- url_for(config.feed.path) %>"><%= __('subscribe_rss') %></a></div>
+<% } %>
 <div class="clearfix"></div>

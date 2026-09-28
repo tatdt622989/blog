@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   initDataTables();
   initTaxonomyFilter();
+  initGuideTracking();
 
   if (articles.length === 1) {
     createTOC(articles[0]);
@@ -693,6 +694,21 @@ function initSearchModal() {
 /* -------------------------------------------------------------
  * 6. 相關文章曝光與點擊追蹤 (GA4 Related Posts Tracking)
  * ------------------------------------------------------------- */
+function initGuideTracking() {
+  document.querySelectorAll('.start-here__link, .rss-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var guide = link.getAttribute('data-guide-key');
+      trackGAEvent(guide ? 'click_start_here_guide' : 'click_rss_feed', {
+        item_id: guide || 'rss',
+        target_path: link.getAttribute('href'),
+        source_path: window.location.pathname,
+        locale: document.documentElement.lang,
+        index: Number(link.getAttribute('data-guide-position')) || undefined
+      });
+    });
+  });
+}
+
 function initRelatedPostsTracking() {
   var container = document.querySelector('.related-posts');
   if (!container) return;

@@ -5,13 +5,13 @@
   
   <title>前端常用scss整理 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="索引 RWD 置中 淡入淡出 樣式變數">
+  <meta name="description" content="整理前端開發常用的 SCSS 程式碼，包含響應式版面斷點、元素置中、淡入淡出與樣式變數。透過可重複使用的 mixin 和參數，把經常出現的樣式需求集中管理，方便在日常切版工作中查閱與調整。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2022/02/06/1/">
   
 
   <meta property="og:title" content="前端常用scss整理"/>
-  <meta property="og:description" content="索引 RWD 置中 淡入淡出 樣式變數"/>
+  <meta property="og:description" content="整理前端開發常用的 SCSS 程式碼，包含響應式版面斷點、元素置中、淡入淡出與樣式變數。透過可重複使用的 mixin 和參數，把經常出現的樣式需求集中管理，方便在日常切版工作中查閱與調整。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2022/02/06/1/"/>
@@ -20,10 +20,10 @@
   <meta property="og:image" content="https://blog.6yuwei.com/img/logo.svg?v=bdf79003" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="前端常用scss整理">
-  <meta name="twitter:description" content="索引 RWD 置中 淡入淡出 樣式變數">
+  <meta name="twitter:description" content="整理前端開發常用的 SCSS 程式碼，包含響應式版面斷點、元素置中、淡入淡出與樣式變數。透過可重複使用的 mixin 和參數，把經常出現的樣式需求集中管理，方便在日常切版工作中查閱與調整。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/img/logo.svg?v=bdf79003">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/06/1/","url":"https://blog.6yuwei.com/2022/02/06/1/","headline":"前端常用scss整理","description":"索引 RWD 置中 淡入淡出 樣式變數","datePublished":"2022-02-05T16:13:18.000Z","dateModified":"2026-08-17T07:20:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/img/logo.svg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/06/1/","url":"https://blog.6yuwei.com/2022/02/06/1/","headline":"前端常用scss整理","description":"整理前端開發常用的 SCSS 程式碼，包含響應式版面斷點、元素置中、淡入淡出與樣式變數。透過可重複使用的 mixin 和參數，把經常出現的樣式需求集中管理，方便在日常切版工作中查閱與調整。","datePublished":"2022-02-05T16:13:18.000Z","dateModified":"2026-09-26T04:30:39.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/img/logo.svg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"前端開發","item":"https://blog.6yuwei.com/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"前端常用scss整理","item":"https://blog.6yuwei.com/2022/02/06/1/"}]}</script>
   
@@ -86,7 +86,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
   <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
   
-  <link rel="stylesheet" href="/css/style.css?v=4a3d076f03">
+    <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/css/style.css?v=b7a11f5791">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -215,14 +217,15 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+        <p>整理前端開發常用的 SCSS 程式碼，包含響應式版面斷點、元素置中、淡入淡出與樣式變數。透過可重複使用的 mixin 和參數，把經常出現的樣式需求集中管理，方便在日常切版工作中查閱與調整。</p>
+<span id="more"></span>
+
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
 <li><a href="#rwd">RWD</a></li>
 <li><a href="#center">置中</a></li>
 <li><a href="#fade">淡入淡出</a></li>
 <li><a href="#style-var">樣式變數</a></li>
 </ul>
-<span id="more"></span>
-
 <h2 id="mixin"><a href="#mixin" class="headerlink" title="mixin"></a>mixin</h2><p><a name="rwd">RWD</a></p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> desktop &#123;</span><br><span class="line">  <span class="keyword">@media</span>(<span class="attribute">max-width</span>: <span class="number">1440px</span>) &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@mixin</span> tablet &#123;</span><br><span class="line">  <span class="keyword">@media</span>(<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@mixin</span> phone &#123;</span><br><span class="line">  <span class="keyword">@media</span>(<span class="attribute">max-width</span>: <span class="number">540px</span>) &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 自訂寬度</span><br><span class="line"><span class="keyword">@mixin</span> custom(<span class="variable">$width</span>) &#123;</span><br><span class="line">  <span class="keyword">@media</span>(<span class="attribute">max-width</span>: <span class="variable">$width</span> + <span class="string">&#x27;px&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 填入數字即可產生相應寬度的<span class="keyword">@media</span></span><br><span class="line">// 正數為<span class="attribute">max-width</span>、負數為<span class="attribute">min-width</span></span><br><span class="line">// <span class="variable">$w</span>: int</span><br><span class="line"><span class="keyword">@mixin</span> media(<span class="variable">$w</span>) &#123;</span><br><span class="line">    <span class="keyword">@if</span> (<span class="variable">$w</span> &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">@media</span> (<span class="attribute">min-width</span>: (-<span class="variable">$w</span> + px))  &#123;</span><br><span class="line">            <span class="keyword">@content</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">@else</span> &#123;</span><br><span class="line">        <span class="keyword">@media</span> (<span class="attribute">max-width</span>: (<span class="variable">$w</span> + px))  &#123;</span><br><span class="line">            <span class="keyword">@content</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -317,11 +320,34 @@
   <div class="related-posts-grid">
     
       <div class="related-post-card">
+        <a href="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/" class="related-post-link"
+           data-rel-title="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學"
+           data-rel-path="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/"
+           data-rel-tag="前端開發"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670" alt="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">前端開發</span>
+            
+            <h4 class="related-post-item-title">非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學</h4>
+            
+              <time class="related-post-date">2026-08-22</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
         <a href="/2022/02/06/2/" class="related-post-link"
            data-rel-title="前端常用按鈕特效合輯"
            data-rel-path="/2022/02/06/2/"
            data-rel-tag="SCSS"
-           data-rel-position="1">
+           data-rel-position="2">
           <div class="related-post-cover">
             
               <div class="related-post-placeholder">
@@ -336,29 +362,6 @@
             <h4 class="related-post-item-title">前端常用按鈕特效合輯</h4>
             
               <time class="related-post-date">2022-02-06</time>
-            
-          </div>
-        </a>
-      </div>
-    
-      <div class="related-post-card">
-        <a href="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/" class="related-post-link"
-           data-rel-title="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學"
-           data-rel-path="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/"
-           data-rel-tag="前端開發"
-           data-rel-position="2">
-          <div class="related-post-cover">
-            
-              <img src="/2026/08/22/%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%9F%E8%83%BD%E5%81%9A%EF%BC%81%E7%94%A8-AI-%E7%94%9F%E6%88%90%E7%B6%B2%E7%AB%99%E5%88%B0%E5%85%8D%E8%B2%BB%E5%AE%89%E5%85%A8%E4%B8%8A%E7%B7%9A%E7%9A%84%E5%AE%8C%E6%95%B4%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8/cover.jpg?v=ba1d9670" alt="非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學" loading="lazy" decoding="async">
-            
-          </div>
-          <div class="related-post-info">
-            
-              <span class="related-post-tag">前端開發</span>
-            
-            <h4 class="related-post-item-title">非工程師也能做！用 AI 生成網站到免費安全上線的完整實戰教學</h4>
-            
-              <time class="related-post-date">2026-08-22</time>
             
           </div>
         </a>
@@ -510,7 +513,11 @@
   &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
   
 </div>
-<div class="clearfix"></div></footer>
+
+<div class="alignright"><a class="rss-link" href="/rss.xml">RSS 訂閱</a></div>
+
+<div class="clearfix"></div>
+</footer>
   <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
 <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
   <div class="search-modal__backdrop" data-action="close-search"></div>
