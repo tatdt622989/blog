@@ -33,9 +33,7 @@ The research covered OpenAI announcements and API records, its public GitHub rep
 
 ## Ten predictions, ranked
 
-The ranking concerns **an announcement, demonstration, or preview at DevDay**. General availability and shipment are assessed separately. The available material does not support statistically calibrated percentages, so likelihood is expressed as high, relatively high, moderate, relatively low, or low.
-
-The assessment considers accessible official records, traceable original reporting, recency, and evidence of delays or conflicting plans. A public pull request establishes engineering preparation; interface clues suggest a feature in testing. Neither supplies a release date without additional evidence. Ordering within a category reflects differences in the evidence, not a measurable probability gap.
+The table below covers ten widely discussed DevDay rumors. Some features show signs of development or testing, but OpenAI has not confirmed an announcement at the event. Even if they appear, they may be previews or demos rather than features available that day.
 
 | Rank | Event being predicted | Likelihood | Strongest evidence and limitation |
 |---|---|---:|---|

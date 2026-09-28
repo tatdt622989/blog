@@ -304,6 +304,27 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/AI/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/OpenAI/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Claude/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/Aseprite/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -332,27 +353,6 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/AI/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Codex/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Claude/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/Claude-Code/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -374,21 +374,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/OpenAI/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/LLM/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Codex/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -396,6 +382,13 @@
 
   <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -416,7 +409,28 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/LLM/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/Grok/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Benchmark/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -472,27 +486,6 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/AI-%E8%AF%84%E6%B5%8B/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Benchmark/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -500,14 +493,14 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Godot/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/GPT-6/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/GPT-6/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Godot/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -542,14 +535,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Anthropic/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Artificial-Analysis/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -557,13 +543,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/ChatGPT/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Gemini/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -584,21 +563,28 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Anthropic/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Artificial-Analysis/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Gemini/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/%E6%95%B0%E5%AD%97%E5%B9%BF%E5%91%8A/</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/%E5%8F%B0%E6%B9%BE/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -632,6 +618,20 @@
     <priority>0.2</priority>
   </url>
 
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/%E6%95%B0%E5%AD%97%E5%B9%BF%E5%91%8A/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/%E5%8F%B0%E6%B9%BE/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
 
 
   <url>
@@ -642,14 +642,14 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
