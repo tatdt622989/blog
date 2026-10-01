@@ -1,0 +1,761 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Google 發表 Gemini 4 Argon，主打長任務軟體工程與專業工作。本文解析百萬 output tokens、API 上市優惠與後續費率、官方評測的優勢及落後項目，以及 Fairwind 有限開放與開發者導入前仍待確認的規格。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/01/gemini-4-argon-launch-pricing-access/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">
+  
+
+  <meta property="og:title" content="Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制"/>
+  <meta property="og:description" content="Google 發表 Gemini 4 Argon，主打長任務軟體工程與專業工作。本文解析百萬 output tokens、API 上市優惠與後續費率、官方評測的優勢及落後項目，以及 Fairwind 有限開放與開發者導入前仍待確認的規格。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover.jpg?v=3198e615" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制">
+  <meta name="twitter:description" content="Google 發表 Gemini 4 Argon，主打長任務軟體工程與專業工作。本文解析百萬 output tokens、API 上市優惠與後續費率、官方評測的優勢及落後項目，以及 Fairwind 有限開放與開發者導入前仍待確認的規格。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover.jpg?v=3198e615">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/","url":"https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/","headline":"Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制","description":"Google 發表 Gemini 4 Argon，主打長任務軟體工程與專業工作。本文解析百萬 output tokens、API 上市優惠與後續費率、官方評測的優勢及落後項目，以及 Fairwind 有限開放與開發者導入前仍待確認的規格。","datePublished":"2026-10-01T01:00:00.000Z","dateModified":"2026-10-01T01:00:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 工具","item":"https://blog.6yuwei.com/categories/AI-%E5%B7%A5%E5%85%B7/"},{"@type":"ListItem","position":3,"name":"Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制","item":"https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/css/style.css?v=b7a11f5791">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/01/gemini-4-argon-launch-pricing-access/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Gemini-4-Argon-發布：百萬輸出、API-價格與開放限制" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-01T01:00:00.000Z"><a href="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">2026-10-01</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover-card-720.jpg?v=d91f0aae" alt="Gemini 4 Argon 長任務軟體工程與受控資安防禦概念插圖" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover-card-480.jpg?v=f3e34cb0 480w, /2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover-card-720.jpg?v=d91f0aae 720w, /2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover-card-960.jpg?v=e5347509 960w, /2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover.jpg?v=3198e615 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>Google 在 9 月 30 日發表 <strong>Gemini 4 Argon</strong>，把重點放在長任務軟體工程、專業工作與資安防禦。最醒目的規格是 <strong>100 萬 output tokens</strong>，但目前仍是有限開放。對開發者而言，這次值得看的是模型能否持續處理複雜工作，以及長輸出背後的成本與使用條件。</p>
+<span id="more"></span>
+
+<p><strong>資料查核：2026 年 10 月 1 日，台灣時間。本文為官方資訊整理與開發者導入分析，沒有進行 Argon 實測。</strong> <a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Google 發布公告</a></p>
+<h2 id="現在誰能用？先看有限開放"><a href="#現在誰能用？先看有限開放" class="headerlink" title="現在誰能用？先看有限開放"></a>現在誰能用？先看有限開放</h2><p>Argon 正透過 <strong>Fairwind Program</strong> 向受信任的資安防禦者逐步開放。Google 表示後續擴大供應時，會先從<strong>付費 API 客戶與 Google AI Ultra 訂閱者</strong>開始，但沒有在公告中給出全面公開日期。</p>
+<p>因此，<strong>目前買 Ultra 不等於立即取得 Argon</strong>，也不能把這次發表理解成一般 Gemini 使用者都已能切換。Fairwind 本身有資格審核與受控存取規範，適合符合條件的組織申請。<a target="_blank" rel="noopener" href="https://deepmind.google/fairwind-program/">Fairwind 官方說明</a></p>
+<p>截至本文查核時，<a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/models">Gemini API 模型目錄</a>尚未列出 Argon 的公開模型 ID。正式整合前，還需要確認帳戶資格、地區、輸入上限與速率限制；這裡先不提供無法驗證的 API 呼叫範例。</p>
+<h2 id="百萬-tokens-指輸出，不能當成輸入規格"><a href="#百萬-tokens-指輸出，不能當成輸入規格" class="headerlink" title="百萬 tokens 指輸出，不能當成輸入規格"></a>百萬 tokens 指輸出，不能當成輸入規格</h2><p>Google 將 <strong>output token limit 從先前的 64K 提高到 1M</strong>，用來支撐更長的推理與多步驟工作。這項數字描述的是輸出上限，<strong>不能直接當成輸入 context window</strong>；也不能保證每次都會得到百萬 tokens 的可見答案。<a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">規格原文</a></p>
+<p>如果工作需要跨檔案修改、反覆查錯或大型遷移，更長的生成空間可能減少中途被截斷的情況。不過，模型能持續生成，不代表修改一定正確；版本控制、測試與審查仍要跟上。</p>
+<p>導入時可以把任務拆成可檢查的階段：先產出修改計畫，再提交一批小改動，最後跑測試並整理尚未解決的問題。長任務的價值應以<strong>可驗證的成果</strong>衡量，輸出越長本身不構成優勢。</p>
+<h2 id="官方評測有亮點，也有落後項目"><a href="#官方評測有亮點，也有落後項目" class="headerlink" title="官方評測有亮點，也有落後項目"></a>官方評測有亮點，也有落後項目</h2><p>下面是 <strong>Google 官方模型頁公布的分數</strong>，沒有在本文重跑。選取三個軟體工程項目並列，可以看出「在一項領先」與「各種開發任務都較強」之間的差距。<a target="_blank" rel="noopener" href="https://deepmind.google/models/gemini/">官方評測表</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:560px"><table>
+<thead>
+<tr>
+<th>評測</th>
+<th align="right">Gemini 4 Argon</th>
+<th align="right">GPT-6 Astra</th>
+<th align="right">Claude Opus 5.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DeepSWE v1.1</td>
+<td align="right">77.9%</td>
+<td align="right">74.1%</td>
+<td align="right">74.2%</td>
+</tr>
+<tr>
+<td>FrontierSWE v2</td>
+<td align="right">55.0%</td>
+<td align="right">65.5%</td>
+<td align="right">62.3%</td>
+</tr>
+<tr>
+<td>Terminal-bench 4.0</td>
+<td align="right">57.4%</td>
+<td align="right">58.2%</td>
+<td align="right">66.4%</td>
+</tr>
+</tbody></table></div>
+<p><strong>Argon 在這張表的 DeepSWE 項目較高，但 FrontierSWE 低於 Astra，Terminal-bench 低於 Opus。</strong> 不同評測有各自的題目、工作環境與完成標準，不能混成同一個成功率，也不能據此推定你的專案會得到相同比例。</p>
+<p>同一頁另列 **AutomationBench 51.3%**，反映端到端商務工作的測試結果。它有助於觀察模型在程式開發以外的工作能力，但不是生產環境可靠度保證。本文未核對評測方法文件的完整內容，因此不推測工具框架、重試次數或推理預算是否相同。</p>
+<p>對自己的 repo，較實用的比較是固定一組真實任務：一個已知 bug、一項跨模組修改、一份需要查證的文件。記錄完成時間、總費用、測試結果和人工修正量，才知道哪個模型適合自己的流程。也可參考本站的 <a href="/2026/08/31/AI-%E6%A8%A1%E5%9E%8B%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%80%8E%E9%BA%BC%E7%9C%8B%EF%BC%9FLMArena%E3%80%81SWE-bench%E3%80%81LiveBench-%E8%88%87-12-%E5%80%8B%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90/">AI 模型排行榜與評測指標解析</a>。</p>
+<h2 id="API-價格：上市優惠與優惠後要分開算"><a href="#API-價格：上市優惠與優惠後要分開算" class="headerlink" title="API 價格：上市優惠與優惠後要分開算"></a>API 價格：上市優惠與優惠後要分開算</h2><p>公告價格如下，單位為<strong>美元／每百萬 tokens</strong>。<a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">官方價格與註腳</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th align="right">上市優惠</th>
+<th align="right">優惠結束後</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>輸入</td>
+<td align="right">US$2</td>
+<td align="right">US$4</td>
+</tr>
+<tr>
+<td>輸出</td>
+<td align="right">US$10</td>
+<td align="right">US$20</td>
+</tr>
+</tbody></table></div>
+<p>Google 同時公布<strong>快取輸入享 95% 折扣</strong>。按優惠期輸入價計算，快取輸入約為 <strong>US$0.10／百萬 tokens</strong>；這是依折扣做的算術推導。公告未明列優惠截止日，正式預算應同時保留優惠後的情境。</p>
+<p>舉個純 token 費用試算：若一次工作累計 <strong>100 萬一般輸入 tokens、10 萬計費輸出 tokens</strong>，優惠期約 <strong>US$3</strong>，優惠後約 <strong>US$6</strong>。計算方式是輸入費加上輸出量乘單價，並非實測帳單；不含工具、儲存等額外服務。推理 tokens 的實際計費分類，仍待正式 API 文件確認。</p>
+<p>多輪代理常會重複傳入專案背景與工具結果，預算要看整段工作的累計用量。快取能否命中、失敗後重跑幾次，以及能否提早停止，都會影響最後帳單。</p>
+<h2 id="開發者現在可以先準備什麼？"><a href="#開發者現在可以先準備什麼？" class="headerlink" title="開發者現在可以先準備什麼？"></a>開發者現在可以先準備什麼？</h2><p>Argon 已經值得追蹤，正式接入則要等可核對的 API 文件與帳戶資格。現在可以先準備三件事：</p>
+<ol>
+<li><strong>建立任務基準。</strong> 挑出有明確驗收標準的 bug 修復、重構與文件工作，保存現有模型的結果。</li>
+<li><strong>設定長任務上限。</strong> 先定義費用、時間與重試預算，避免一次工作持續生成卻沒有交付。</li>
+<li><strong>保留操作邊界。</strong> 在隔離環境跑修改與測試；涉及正式部署、資料刪除與對外操作時，讓流程有清楚的核准點。</li>
+</ol>
+<p>這次發布提供了更長的工作空間與值得比較的能力，但開放時程、計費細節與實際專案表現仍需逐一確認。等取得存取資格後，先用小範圍、有測試的工作評估，再決定是否擴大導入。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI/">AI</a>, <a href="/tags/AI-Agent/">AI Agent</a>, <a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="複製連結" aria-label="複製連結">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>複製連結</span>
+    </button>
+
+    
+      <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
+      <a href="https://www.threads.net/intent/post?text=Gemini%204%20Argon%20%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API%20%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F01%2FGemini-4-Argon-%25E7%2599%25BC%25E5%25B8%2583%25EF%25BC%259A%25E7%2599%25BE%25E8%2590%25AC%25E8%25BC%25B8%25E5%2587%25BA%25E3%2580%2581API-%25E5%2583%25B9%25E6%25A0%25BC%25E8%2588%2587%25E9%2596%258B%25E6%2594%25BE%25E9%2599%2590%25E5%2588%25B6%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
+        </svg>
+        <span>Threads</span>
+      </a>
+      <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F01%2FGemini-4-Argon-%25E7%2599%25BC%25E5%25B8%2583%25EF%25BC%259A%25E7%2599%25BE%25E8%2590%25AC%25E8%25BC%25B8%25E5%2587%25BA%25E3%2580%2581API-%25E5%2583%25B9%25E6%25A0%25BC%25E8%2588%2587%25E9%2596%258B%25E6%2594%25BE%25E9%2599%2590%25E5%2588%25B6%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-line" title="Share on LINE" aria-label="Share on LINE">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33v-2.95c0-.349.28-.63.628-.63.349 0 .627.281.627.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINE</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F01%2FGemini-4-Argon-%25E7%2599%25BC%25E5%25B8%2583%25EF%25BC%259A%25E7%2599%25BE%25E8%2590%25AC%25E8%25BC%25B8%25E5%2587%25BA%25E3%2580%2581API-%25E5%2583%25B9%25E6%25A0%25BC%25E8%2588%2587%25E9%2596%258B%25E6%2594%25BE%25E9%2599%2590%25E5%2588%25B6%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Gemini%204%20Argon%20%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API%20%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F01%2FGemini-4-Argon-%25E7%2599%25BC%25E5%25B8%2583%25EF%25BC%259A%25E7%2599%25BE%25E8%2590%25AC%25E8%25BC%25B8%25E5%2587%25BA%25E3%2580%2581API-%25E5%2583%25B9%25E6%25A0%25BC%25E8%2588%2587%25E9%2596%258B%25E6%2594%25BE%25E9%2599%2590%25E5%2588%25B6%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制" data-url="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/09/17/typesafe-jev-system-one-model-guide/" class="related-post-link"
+           data-rel-title="Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策"
+           data-rel-path="/2026/09/17/typesafe-jev-system-one-model-guide/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" alt="Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策</h4>
+            
+              <time class="related-post-date">2026-09-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/" class="related-post-link"
+           data-rel-title="Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破"
+           data-rel-path="/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/cover.jpg?v=1a81b644" alt="Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破</h4>
+            
+              <time class="related-post-date">2026-09-03</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/" class="related-post-link"
+           data-rel-title="Claude Code 跨 Session 傳訊息：操作範例、版本與跨機限制"
+           data-rel-path="/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/cover.jpg?v=49ab829e" alt="Claude Code 跨 Session 傳訊息：操作範例、版本與跨機限制" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Code 跨 Session 傳訊息：操作範例、版本與跨機限制</h4>
+            
+              <time class="related-post-date">2026-08-09</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>3</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>34</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/tags/AI/"><span>AI</span><small>49</small></a></li>
+  
+    <li><a href="/tags/Claude/"><span>Claude</span><small>14</small></a></li>
+  
+    <li><a href="/tags/Codex/"><span>Codex</span><small>14</small></a></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
+  
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>13</small></a></li>
+  
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>13</small></a></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>9</small></a></li>
+  
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
+  
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>6</small></a></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
+  
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>5</small></a></li>
+  
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/rss.xml">RSS 訂閱</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>

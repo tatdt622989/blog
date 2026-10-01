@@ -1,0 +1,753 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Gemini 4 Argon 发布：百万输出、API 价格与开放限制 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Google 发布 Gemini 4 Argon，面向长任务软件工程与专业工作。本文梳理百万输出 tokens、API 首发优惠及后续价格、官方评测中的优势和落后项目，并说明 Fairwind 有限开放及开发者接入前尚未确认的规格。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/01/gemini-4-argon-launch-pricing-access/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">
+  
+
+  <meta property="og:title" content="Gemini 4 Argon 发布：百万输出、API 价格与开放限制"/>
+  <meta property="og:description" content="Google 发布 Gemini 4 Argon，面向长任务软件工程与专业工作。本文梳理百万输出 tokens、API 首发优惠及后续价格、官方评测中的优势和落后项目，并说明 Fairwind 有限开放及开发者接入前尚未确认的规格。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover.jpg?v=3198e615" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gemini 4 Argon 发布：百万输出、API 价格与开放限制">
+  <meta name="twitter:description" content="Google 发布 Gemini 4 Argon，面向长任务软件工程与专业工作。本文梳理百万输出 tokens、API 首发优惠及后续价格、官方评测中的优势和落后项目，并说明 Fairwind 有限开放及开发者接入前尚未确认的规格。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover.jpg?v=3198e615">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/","url":"https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/","headline":"Gemini 4 Argon 发布：百万输出、API 价格与开放限制","description":"Google 发布 Gemini 4 Argon，面向长任务软件工程与专业工作。本文梳理百万输出 tokens、API 首发优惠及后续价格、官方评测中的优势和落后项目，并说明 Fairwind 有限开放及开发者接入前尚未确认的规格。","datePublished":"2026-10-01T01:00:00.000Z","dateModified":"2026-10-01T01:00:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 工具","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/"},{"@type":"ListItem","position":3,"name":"Gemini 4 Argon 发布：百万输出、API 价格与开放限制","item":"https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b7a11f5791">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/01/Gemini-4-Argon-發布：百萬輸出、API-價格與開放限制/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/01/gemini-4-argon-launch-pricing-access/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-gemini-4-argon-launch-pricing-access" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-01T01:00:00.000Z"><a href="/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/">2026-10-01</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Gemini 4 Argon 发布：百万输出、API 价格与开放限制</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover-card-720.jpg?v=d91f0aae" alt="Gemini 4 Argon 长任务软件工程与受控网络安全防御概念插画" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover-card-480.jpg?v=f3e34cb0 480w, /zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover-card-720.jpg?v=d91f0aae 720w, /zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover-card-960.jpg?v=e5347509 960w, /zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/cover.jpg?v=3198e615 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>Google 于 9 月 30 日发布 <strong>Gemini 4 Argon</strong>，重点面向长任务软件工程、专业工作和网络安全防御。<strong>100 万输出 tokens</strong> 是最显眼的规格，但模型目前仍处于有限开放阶段。开发者更需要关注的是：它能否持续完成复杂任务，以及长输出会带来怎样的成本和接入条件。</p>
+<span id="more"></span>
+
+<p><strong>资料核查：2026 年 10 月 1 日，UTC+8。本文依据官方资料整理，并分析开发者接入时的考虑因素，未进行 Argon 实测。</strong> <a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Google 发布公告</a></p>
+<h2 id="当前开放范围：先面向可信防御团队"><a href="#当前开放范围：先面向可信防御团队" class="headerlink" title="当前开放范围：先面向可信防御团队"></a>当前开放范围：先面向可信防御团队</h2><p>Argon 正通过 <strong>Fairwind Program</strong> 向可信网络安全防御团队逐步开放。Google 表示，后续扩大供应会先覆盖<strong>付费 API 客户和 Google AI Ultra 订阅用户</strong>，但尚未公布全面开放日期。</p>
+<p><strong>现在订阅 Ultra 并不意味着立即获得 Argon。</strong> 普通 Gemini 用户也不能据此认定模型已经出现在自己的账号中。Fairwind 有资格审核和访问控制要求，符合条件的机构可以申请。<a target="_blank" rel="noopener" href="https://deepmind.google/fairwind-program/">Fairwind 官方说明</a></p>
+<p>截至核查时，<a target="_blank" rel="noopener" href="https://ai.google.dev/gemini-api/docs/models">Gemini API 模型目录</a>尚未列出 Argon 的公开模型 ID。接入前仍需确认账号资格、地区、输入上限和速率限制，本文不提供无法验证的调用示例。</p>
+<h2 id="百万-tokens-是输出上限"><a href="#百万-tokens-是输出上限" class="headerlink" title="百万 tokens 是输出上限"></a>百万 tokens 是输出上限</h2><p>Google 将 <strong>输出上限从此前的 64K 提升到 1M</strong>，为更长的推理和多步骤任务提供空间。这个数值<strong>不能直接用作输入上下文窗口规格</strong>，也不保证每次都生成百万 tokens 的可见答案。<a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">官方规格说明</a></p>
+<p>跨文件修改、持续排错和大型迁移可能受益于更长的生成空间，减少任务中途截断。不过，生成能继续，并不代表代码一定正确。版本管理、自动化测试和人工审核仍然需要跟进。</p>
+<p>接入流程可以按可验收的阶段组织：先提交修改计划，再完成一批小改动，最后执行测试并列出遗留问题。应以<strong>可以验证的交付结果</strong>判断长任务价值，不能把输出长度本身当作质量。</p>
+<h2 id="官方评测不能概括为全面领先"><a href="#官方评测不能概括为全面领先" class="headerlink" title="官方评测不能概括为全面领先"></a>官方评测不能概括为全面领先</h2><p>以下数据来自 <strong>Google 官方模型页面</strong>，不是本文实测。并列三个软件工程指标，可以更清楚地看到模型的强项和不足。<a target="_blank" rel="noopener" href="https://deepmind.google/models/gemini/">官方评测表</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
+<thead>
+<tr>
+<th>评测</th>
+<th align="right">Gemini 4 Argon</th>
+<th align="right">GPT-6 Astra</th>
+<th align="right">Claude Opus 5.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DeepSWE v1.1</td>
+<td align="right">77.9%</td>
+<td align="right">74.1%</td>
+<td align="right">74.2%</td>
+</tr>
+<tr>
+<td>FrontierSWE v2</td>
+<td align="right">55.0%</td>
+<td align="right">65.5%</td>
+<td align="right">62.3%</td>
+</tr>
+<tr>
+<td>Terminal-bench 4.0</td>
+<td align="right">57.4%</td>
+<td align="right">58.2%</td>
+<td align="right">66.4%</td>
+</tr>
+</tbody></table></div>
+<p>Argon 的 DeepSWE 分数较高，但在 FrontierSWE 上低于 Astra，在 Terminal-bench 上低于 Opus。各评测的题目、环境和验收标准不同，<strong>不能合并成同一个成功率</strong>，更不能直接套用到自己的项目。</p>
+<p>同一页面还给出 **AutomationBench 51.3%**，用于观察端到端业务任务表现。它有参考价值，但不能当作生产环境可靠性保证。本文未核对完整评测方法文件，因此不推测工具框架、重试次数或推理预算是否一致。</p>
+<p>更有用的模型对比，是固定一组真实工作：一个已知缺陷、一项跨模块修改、一份需要核实的文档。记录完成时间、总费用、测试结果和人工返工量，再判断模型是否适合团队。延伸阅读：<a href="/zh-cn/2026/08/31/ai-model-leaderboards-benchmark-metrics/">AI 模型排行榜与评测指标解析</a>。</p>
+<h2 id="API-价格要区分首发优惠和常规费率"><a href="#API-价格要区分首发优惠和常规费率" class="headerlink" title="API 价格要区分首发优惠和常规费率"></a>API 价格要区分首发优惠和常规费率</h2><p>公告费率以<strong>美元／每百万 tokens</strong>计价。<a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">官方价格及脚注</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th align="right">首发优惠</th>
+<th align="right">优惠结束后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入</td>
+<td align="right">US$2</td>
+<td align="right">US$4</td>
+</tr>
+<tr>
+<td>输出</td>
+<td align="right">US$10</td>
+<td align="right">US$20</td>
+</tr>
+</tbody></table></div>
+<p>官方还公布**缓存输入优惠 95%**。按优惠期输入费率计算，缓存输入约为 <strong>US$0.10／百万 tokens</strong>，这是根据折扣推算的结果。公告未明确优惠截止日期，做预算时应同时考虑常规费率。</p>
+<p>假设一次任务累计产生 <strong>100 万普通输入 tokens 和 10 万计费输出 tokens</strong>，纯 token 费用在优惠期约为 <strong>US$3</strong>，优惠结束后约为 <strong>US$6</strong>。这只是算术示例，并非实测账单，也不包含工具、存储等额外服务费用。推理 tokens 如何计费，仍需等待正式 API 文档确认。</p>
+<p>多轮智能体可能反复传入项目背景和工具结果，应核算整个任务的累计用量。缓存命中率、失败重跑次数和提前停止机制，都会影响最终成本。</p>
+<h2 id="接入前可以先做的准备"><a href="#接入前可以先做的准备" class="headerlink" title="接入前可以先做的准备"></a>接入前可以先做的准备</h2><p>Argon 值得关注，但正式集成需要公开 API 文档和账号资格作为依据。现在可以先完成三项准备：</p>
+<ol>
+<li><strong>保留任务基线。</strong> 用有明确验收标准的缺陷修复、重构和文档任务记录现有模型表现。</li>
+<li><strong>限制长任务投入。</strong> 设定费用、耗时和重试上限，避免持续生成却迟迟没有可交付结果。</li>
+<li><strong>明确操作权限。</strong> 在隔离环境修改和测试代码，对生产部署、数据删除及外部操作设置明确的审批节点。</li>
+</ol>
+<p>更大的输出空间提供了新的可能性，但开放时间、计费细节和实际项目表现仍有待确认。获得访问资格后，先用范围小、有测试保障的任务评估，再决定是否扩大使用。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Gemini 4 Argon 发布：百万输出、API 价格与开放限制" data-url="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F01%2Fgemini-4-argon-launch-pricing-access%2F&title=Gemini%204%20Argon%20%E5%8F%91%E5%B8%83%EF%BC%9A%E7%99%BE%E4%B8%87%E8%BE%93%E5%87%BA%E3%80%81API%20%E4%BB%B7%E6%A0%BC%E4%B8%8E%E5%BC%80%E6%94%BE%E9%99%90%E5%88%B6" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F01%2Fgemini-4-argon-launch-pricing-access%2F&title=Gemini%204%20Argon%20%E5%8F%91%E5%B8%83%EF%BC%9A%E7%99%BE%E4%B8%87%E8%BE%93%E5%87%BA%E3%80%81API%20%E4%BB%B7%E6%A0%BC%E4%B8%8E%E5%BC%80%E6%94%BE%E9%99%90%E5%88%B6" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Gemini%204%20Argon%20%E5%8F%91%E5%B8%83%EF%BC%9A%E7%99%BE%E4%B8%87%E8%BE%93%E5%87%BA%E3%80%81API%20%E4%BB%B7%E6%A0%BC%E4%B8%8E%E5%BC%80%E6%94%BE%E9%99%90%E5%88%B6&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F01%2Fgemini-4-argon-launch-pricing-access%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Gemini 4 Argon 发布：百万输出、API 价格与开放限制" data-url="https://blog.6yuwei.com/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/" class="related-post-link"
+           data-rel-title="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策"
+           data-rel-path="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" alt="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策</h4>
+            
+              <time class="related-post-date">2026-09-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/" class="related-post-link"
+           data-rel-title="Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破"
+           data-rel-path="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/cover.jpg?v=1a81b644" alt="Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破</h4>
+            
+              <time class="related-post-date">2026-09-03</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/09/claude-code-cross-session-messaging/" class="related-post-link"
+           data-rel-title="Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制"
+           data-rel-path="/zh-cn/2026/08/09/claude-code-cross-session-messaging/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e" alt="Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制</h4>
+            
+              <time class="related-post-date">2026-08-09</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>15</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>26</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>9</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/DevDay/"><span>DevDay</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/zh-cn/rss.xml">订阅 RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
