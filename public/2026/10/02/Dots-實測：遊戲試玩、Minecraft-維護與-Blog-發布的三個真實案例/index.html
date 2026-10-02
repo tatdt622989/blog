@@ -1,0 +1,734 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Dots 實測：遊戲試玩、Minecraft 維護與 Blog 發布的三個真實案例 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Dots 實際能接手哪些工作？從伊萊雅大漁祭首次試玩、Minecraft 安全重啟，到三語 Blog 查證與發布，記錄三個真實案例的成果、環境折騰與驗證界線，說明如何交付任務，以及哪些結果還不能當成人類體驗或通關證明。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/02/dots-real-world-game-server-blog-workflows/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/02/dots-real-world-game-server-blog-workflows/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/">
+  
+
+  <meta property="og:title" content="Dots 實測：遊戲試玩、Minecraft 維護與 Blog 發布的三個真實案例"/>
+  <meta property="og:description" content="Dots 實際能接手哪些工作？從伊萊雅大漁祭首次試玩、Minecraft 安全重啟，到三語 Blog 查證與發布，記錄三個真實案例的成果、環境折騰與驗證界線，說明如何交付任務，以及哪些結果還不能當成人類體驗或通關證明。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover.jpg?v=948c7fbd" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dots 實測：遊戲試玩、Minecraft 維護與 Blog 發布的三個真實案例">
+  <meta name="twitter:description" content="Dots 實際能接手哪些工作？從伊萊雅大漁祭首次試玩、Minecraft 安全重啟，到三語 Blog 查證與發布，記錄三個真實案例的成果、環境折騰與驗證界線，說明如何交付任務，以及哪些結果還不能當成人類體驗或通關證明。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover.jpg?v=948c7fbd">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/","url":"https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/","headline":"Dots 實測：遊戲試玩、Minecraft 維護與 Blog 發布的三個真實案例","description":"Dots 實際能接手哪些工作？從伊萊雅大漁祭首次試玩、Minecraft 安全重啟，到三語 Blog 查證與發布，記錄三個真實案例的成果、環境折騰與驗證界線，說明如何交付任務，以及哪些結果還不能當成人類體驗或通關證明。","datePublished":"2026-10-02T09:30:00.000Z","dateModified":"2026-10-02T09:30:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 工具","item":"https://blog.6yuwei.com/categories/AI-%E5%B7%A5%E5%85%B7/"},{"@type":"ListItem","position":3,"name":"Dots 實測：遊戲試玩、Minecraft 維護與 Blog 發布的三個真實案例","item":"https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/css/style.css?v=b7a11f5791">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/02/dots-real-world-game-server-blog-workflows/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/02/dots-real-world-game-server-blog-workflows/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Dots-實測：遊戲試玩、Minecraft-維護與-Blog-發布的三個真實案例" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-02T09:30:00.000Z"><a href="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/">2026-10-02</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Dots 實測：遊戲試玩、Minecraft 維護與 Blog 發布的三個真實案例</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover-card-720.jpg?v=b738f76d" alt="Dots 處理遊戲測試、伺服器維護與文章發布的概念插圖" width="1440" height="810" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover-card-480.jpg?v=2dd75361 480w, /2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover-card-720.jpg?v=b738f76d 720w, /2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover-card-960.jpg?v=07a51f81 960w, /2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover-card-1280.jpg?v=3c1ddf05 1280w, /2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/cover.jpg?v=948c7fbd 1440w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>Dots 的功能介紹已經很多了，我更想知道：<strong>把自己的工作交出去，最後能拿回什麼？</strong> 這次我讓它從頭試玩遊戲、維護 Minecraft 伺服器，也請它查資料寫文並發布到 blog。三件事都有進展，但遊戲還沒通關，環境和操作方式也花了不少時間調整。這篇就從這些實際經過談起。</p>
+<span id="more"></span>
+
+<p><strong>本文記錄截至 2026 年 10 月 2 日的個人使用經驗。</strong> 案例中的工具與環境調整只代表這次執行條件；封面是概念插圖，三張介面截圖則來自我的使用畫面，不是案例完成證明。</p>
+<h2 id="Dots-是什麼？先用一段話帶過"><a href="#Dots-是什麼？先用一段話帶過" class="headerlink" title="Dots 是什麼？先用一段話帶過"></a>Dots 是什麼？先用一段話帶過</h2><p>OpenAI 將 dots 定位為持續工作的個人代理：從 ChatGPT 桌面版建立，使用 Codex 與你連接的工具推進任務。它有自己的雲端電腦，也能在你選擇連接後使用你的電腦；哪些操作能自主完成、哪些需要核准，由權限和規則決定。<a target="_blank" rel="noopener" href="https://chatgpt.com/features/dots/">Dots 官方介紹</a></p>
+<p>我把自己的 dot 命名為 <strong>six</strong>。名字和外觀只是入口，真正值得看的，是任務交出去後有沒有留下可檢查的成果。</p>
+<p><img src="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/customize.png?v=97001990" alt="Dots 自訂介面中的 six、角色外觀與寵物選項"></p>
+<p><em>我的自訂畫面。本文不逐一介紹外觀選項，接下來看實際工作。</em></p>
+<h2 id="案例一：請它從頭玩遊戲，先卡住的是環境"><a href="#案例一：請它從頭玩遊戲，先卡住的是環境" class="headerlink" title="案例一：請它從頭玩遊戲，先卡住的是環境"></a>案例一：請它從頭玩遊戲，先卡住的是環境</h2><p>我交付的任務是試玩 <strong>《伊萊雅－大漁祭》</strong>：以普通玩家第一次接觸的方式開始，記錄進度、時間和疑似 bug。這種要求比「幫我測遊戲」具體，因為我要觀察的是新手從開始遊玩到資源用完，會遇到什麼。</p>
+<p>一開始要求用雲端、能看見桌面的 Android 環境。APK 裝成功了，卻不代表能玩：這次環境沒有硬體加速，軟體渲染和系統無回應拖住流程；舊版 WebView 83 又遇到 <strong>Object.hasOwn</strong> 相容問題，出現白屏。折騰很久，還沒進入有效的遊玩測試。</p>
+<p>後來改用我的 Mac，以 ARM64 模擬器、HVF 虛擬化與 GPU 加速，搭配 API 36、WebView 133，模擬器約 <strong>26 秒開機</strong>。這是本次環境的觀察，不能推論所有 dots 雲端電腦都跑不動 Android。真正的教訓是：<strong>測試紀錄要把環境準備和遊玩時間拆開，否則會把工具卡住誤算成遊戲不好玩。</strong></p>
+<p><img src="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/computers-safe.png?v=fc579d77" alt="Dots 的電腦連線卡片，顯示 dot 電腦與個人 Mac，桌面預覽已遮罩"></p>
+<p><em>電腦連線卡片；右側桌面縮圖已以實色遮罩。這張圖說明可選的工作環境，並非模擬器效能證據。</em></p>
+<h3 id="跑通流程，不等於像人一樣玩"><a href="#跑通流程，不等於像人一樣玩" class="headerlink" title="跑通流程，不等於像人一樣玩"></a>跑通流程，不等於像人一樣玩</h3><p>電腦操作工具抓不到模擬器畫面後，我授權改用 <strong>ADB</strong>。但每一個動作都讓模型判斷、等待工具回傳，往返太慢。後來改成在本地依可見像素回饋執行控制，AI 負責新畫面和策略判斷，才有比較穩定的進展。</p>
+<p>前期控制器校準也失敗過；這些失敗不能算成遊戲難度。校準可靠後，第一天記錄 <strong>62／62</strong>、第二天 <strong>86／86</strong>，合計 148 次控制器釣魚成功。這種結果<strong>不是典型人類成功率</strong>，更不是 AI 已經像普通玩家一樣掌握操作。</p>
+<p>時間紀錄也要小心：第一天 62 輪控制器流程為 <strong>641.089 秒</strong>，第二天 86 輪為 <strong>993.991 秒</strong>，包含工具與等待，部分計時區段重疊，不能加總成玩家通關時間，也不能拿來宣稱比人快。</p>
+<p>目前確實跑通了<strong>釣魚 → 販售 → 換票 → 抽餌 → 裝備</strong>，首池進度 <strong>48／160，尚未通關</strong>。這對檢查遊戲流程有用，對判定「新手玩起來是否自然」還不夠：反應式控制器會改變操作體驗，模型往返又加入真人沒有的等待。</p>
+<h3 id="資源卡住了，但還不能宣布遊戲有問題"><a href="#資源卡住了，但還不能宣布遊戲有問題" class="headerlink" title="資源卡住了，但還不能宣布遊戲有問題"></a>資源卡住了，但還不能宣布遊戲有問題</h3><p>第二天用同一存檔，等自然午夜補給後再玩，最後仍是<strong>餌與票都為 0、gold 46、魚桶空</strong>。這指出「全部售出，再換票抽餌」這條策略會遇到補給門檻；魚缸留魚等玩法並沒有充分探索，因此不能寫成所有玩家都必定卡死。</p>
+<p>我關心的是第一次玩的體驗，也提出過一次性免費機制的想法，<strong>當時尚未實作</strong>。測試可以帶出設計問題，但觀察、建議和已完成修改，必須分開。</p>
+<p>另一個疑點是魚桶多選。為了不影響試玩基線，另外做了 38 項單元／元件檢查和 8 項 UI 檢查，沒有重現問題，反而找到控制器誤認勾選框。最後沒有證明遊戲 bug，也沒有改程式碼。這種「懷疑後查證，最後撤回判斷」的紀錄，比多報一個不存在的 bug 更有價值。</p>
+<h2 id="案例二：Minecraft-重啟，完成標準是世界有保存"><a href="#案例二：Minecraft-重啟，完成標準是世界有保存" class="headerlink" title="案例二：Minecraft 重啟，完成標準是世界有保存"></a>案例二：Minecraft 重啟，完成標準是世界有保存</h2><p>另一個任務比較日常：請它安全停止並重啟 Oracle 上、跑在 <strong>tmux</strong> 裡的個人 Minecraft 伺服器，再看啟動紀錄。</p>
+<p>它透過我 Mac 既有的 SSH 別名找到伺服器。確認 <strong>0 位玩家在線</strong>後，從 console 正常送出 <strong>stop</strong>，等各維度保存、舊程序退出，再用原本的 <strong>start.sh</strong> 啟動一次。這次於 <strong>10 月 2 日台灣時間 16:44:55</strong> 完成，後續觀察 TPS 約 20。</p>
+<p>對這種任務，驗收不是「指令沒報錯」，而是<strong>世界保存了、舊程序確實結束、新程序只啟動一次、服務恢復運作</strong>。把這些條件放進交付要求，才有辦法檢查重啟是否安全。</p>
+<p>啟動後的 log 也分出不同層級：</p>
+<ul>
+<li><strong>已確認失效：</strong> <strong>&#x2F;sell</strong> 別名指向未安裝的插件，該指令無法正常使用。</li>
+<li><strong>仍需調查：</strong> BlueMap 的 nether／end 區域檔存在，卻顯示 <strong>No regions found</strong>，路徑問題只是疑點。</li>
+<li><strong>警告待評估：</strong> 插件相容性訊息需要逐項確認影響，不能直接視為伺服器故障。</li>
+</ul>
+<p>這次沒有擅自修插件、重裝服務或修改 world。它完成了重啟與診斷，保留要處理的問題；下一步修什麼，仍是另一項有範圍的工作。我不必逐行讀完 log 才知道重點，也沒有因為一句「有警告」就讓整個伺服器被重做。</p>
+<h2 id="案例三：一句「寫文發布」，交付的是正式網址"><a href="#案例三：一句「寫文發布」，交付的是正式網址" class="headerlink" title="案例三：一句「寫文發布」，交付的是正式網址"></a>案例三：一句「寫文發布」，交付的是正式網址</h2><p>10 月 1 日，我請它針對 Google 發表的新模型寫文章並發布。這件事最適合看 dots 能不能接完一段流程：查官方資料，整理哪些資訊已確認，再沿用 blog 既有規範製作繁中、簡中、英文、封面與 SEO 欄位，建置後部署並驗證頁面。</p>
+<p>最後交付的是已上線的 <a href="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/">Gemini 4 Argon 介紹文章</a>，不是對話裡一份等著我手動貼上的草稿。文章本身也有區分官方資訊與未驗證項目，沒有把整理公告寫成模型實測。</p>
+<p>這類工作的條件相對清楚：我已有 repo、文章樣式和部署流程，也明確要求發布。代理可以把查資料、寫作和建置串起來；<strong>資料是否可靠、文稿是否洩漏私人資訊、正式頁面是否真的可讀</strong>，仍然要逐項檢查。即使建置成功，也不代表網站已更新。</p>
+<p>如果換成沒有既定風格、資料來源互相矛盾的選題，可能仍要補很多判斷。這個案例證明它能沿現有流程交付文章，沒有證明一句指令就能產出任何題材的可靠專題。</p>
+<h2 id="我會怎麼交付下一個任務"><a href="#我會怎麼交付下一個任務" class="headerlink" title="我會怎麼交付下一個任務"></a>我會怎麼交付下一個任務</h2><p>這三次經驗讓我更在意任務的結束條件。比起只說「幫我處理」，下次我會一起寫清楚：</p>
+<ol>
+<li><strong>目標：</strong> 首次試玩、重啟或發布，這次要完成哪件事。</li>
+<li><strong>範圍：</strong> 可以用哪台電腦、哪個存檔、哪份 repo；可以動到哪裡。</li>
+<li><strong>驗收：</strong> 要交付進度紀錄、保存與重啟證據，還是能開啟的正式網址。</li>
+<li><strong>停止條件：</strong> 環境連續失敗、時間超過預算，或需要擴大修改時，先回報目前成果與阻礙。</li>
+</ol>
+<p><img src="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/calling.png?v=bbc187a6" alt="Dots 通話小卡，顯示 six 正在呼叫及靜音與掛斷按鈕"></p>
+<p><em>介面中的通話小卡顯示 Calling…。上述案例以文字指令與執行紀錄為依據，這張圖不代表已驗證通話品質。</em></p>
+<p><strong>適合交給 dots 的，是目標清楚、能保留證據、允許逐步檢查的工作。</strong> 遊戲流程檢查、例行維護、沿既有規範發布內容，都能用實際成果驗收。需要連續低延遲反應、要測量真人主觀體驗，或連成功長什麼樣都還沒定義的任務，這次經驗就沒有給我足夠理由直接放手。</p>
+<p>遊戲仍未通關、BlueMap 疑點仍待調查；blog 則已經有正式文章。這些差異正是我會留下的使用紀錄：完成到哪裡、付出哪些成本、還有什麼不能下結論。想補看產品發表背景，可以接著閱讀 <a href="/2026/09/30/OpenAI-DevDay-2026-%E7%B8%BD%E6%95%B4%E7%90%86%EF%BC%9ADots%E3%80%81Space%E3%80%81GPT-6-1-Sol-%E8%88%87-25-%E9%A0%85%E6%9B%B4%E6%96%B0/">OpenAI DevDay 2026 總整理</a>。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/OpenAI/">OpenAI</a>, <a href="/tags/AI/">AI</a>, <a href="/tags/AI-Agent/">AI Agent</a>, <a href="/tags/ChatGPT/">ChatGPT</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="複製連結" aria-label="複製連結">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>複製連結</span>
+    </button>
+
+    
+      <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
+      <a href="https://www.threads.net/intent/post?text=Dots%20%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft%20%E7%B6%AD%E8%AD%B7%E8%88%87%20Blog%20%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F02%2FDots-%25E5%25AF%25A6%25E6%25B8%25AC%25EF%25BC%259A%25E9%2581%258A%25E6%2588%25B2%25E8%25A9%25A6%25E7%258E%25A9%25E3%2580%2581Minecraft-%25E7%25B6%25AD%25E8%25AD%25B7%25E8%2588%2587-Blog-%25E7%2599%25BC%25E5%25B8%2583%25E7%259A%2584%25E4%25B8%2589%25E5%2580%258B%25E7%259C%259F%25E5%25AF%25A6%25E6%25A1%2588%25E4%25BE%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
+        </svg>
+        <span>Threads</span>
+      </a>
+      <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F02%2FDots-%25E5%25AF%25A6%25E6%25B8%25AC%25EF%25BC%259A%25E9%2581%258A%25E6%2588%25B2%25E8%25A9%25A6%25E7%258E%25A9%25E3%2580%2581Minecraft-%25E7%25B6%25AD%25E8%25AD%25B7%25E8%2588%2587-Blog-%25E7%2599%25BC%25E5%25B8%2583%25E7%259A%2584%25E4%25B8%2589%25E5%2580%258B%25E7%259C%259F%25E5%25AF%25A6%25E6%25A1%2588%25E4%25BE%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-line" title="Share on LINE" aria-label="Share on LINE">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33v-2.95c0-.349.28-.63.628-.63.349 0 .627.281.627.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINE</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F02%2FDots-%25E5%25AF%25A6%25E6%25B8%25AC%25EF%25BC%259A%25E9%2581%258A%25E6%2588%25B2%25E8%25A9%25A6%25E7%258E%25A9%25E3%2580%2581Minecraft-%25E7%25B6%25AD%25E8%25AD%25B7%25E8%2588%2587-Blog-%25E7%2599%25BC%25E5%25B8%2583%25E7%259A%2584%25E4%25B8%2589%25E5%2580%258B%25E7%259C%259F%25E5%25AF%25A6%25E6%25A1%2588%25E4%25BE%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Dots%20%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft%20%E7%B6%AD%E8%AD%B7%E8%88%87%20Blog%20%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F02%2FDots-%25E5%25AF%25A6%25E6%25B8%25AC%25EF%25BC%259A%25E9%2581%258A%25E6%2588%25B2%25E8%25A9%25A6%25E7%258E%25A9%25E3%2580%2581Minecraft-%25E7%25B6%25AD%25E8%25AD%25B7%25E8%2588%2587-Blog-%25E7%2599%25BC%25E5%25B8%2583%25E7%259A%2584%25E4%25B8%2589%25E5%2580%258B%25E7%259C%259F%25E5%25AF%25A6%25E6%25A1%2588%25E4%25BE%258B%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Dots 實測：遊戲試玩、Minecraft 維護與 Blog 發布的三個真實案例" data-url="https://blog.6yuwei.com/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/10/02/Dots-%E5%AF%A6%E6%B8%AC%EF%BC%9A%E9%81%8A%E6%88%B2%E8%A9%A6%E7%8E%A9%E3%80%81Minecraft-%E7%B6%AD%E8%AD%B7%E8%88%87-Blog-%E7%99%BC%E5%B8%83%E7%9A%84%E4%B8%89%E5%80%8B%E7%9C%9F%E5%AF%A6%E6%A1%88%E4%BE%8B/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/09/17/typesafe-jev-system-one-model-guide/" class="related-post-link"
+           data-rel-title="Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策"
+           data-rel-path="/2026/09/17/typesafe-jev-system-one-model-guide/"
+           data-rel-tag="OpenAI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" alt="Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">OpenAI</span>
+            
+            <h4 class="related-post-item-title">Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策</h4>
+            
+              <time class="related-post-date">2026-09-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/" class="related-post-link"
+           data-rel-title="Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制"
+           data-rel-path="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover.jpg?v=3198e615" alt="Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制</h4>
+            
+              <time class="related-post-date">2026-10-01</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/09/30/OpenAI-DevDay-2026-%E7%B8%BD%E6%95%B4%E7%90%86%EF%BC%9ADots%E3%80%81Space%E3%80%81GPT-6-1-Sol-%E8%88%87-25-%E9%A0%85%E6%9B%B4%E6%96%B0/" class="related-post-link"
+           data-rel-title="OpenAI DevDay 2026 總整理：Dots、Space、GPT-6.1 Sol 與 25 項更新"
+           data-rel-path="/2026/09/30/OpenAI-DevDay-2026-%E7%B8%BD%E6%95%B4%E7%90%86%EF%BC%9ADots%E3%80%81Space%E3%80%81GPT-6-1-Sol-%E8%88%87-25-%E9%A0%85%E6%9B%B4%E6%96%B0/"
+           data-rel-tag="OpenAI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/30/OpenAI-DevDay-2026-%E7%B8%BD%E6%95%B4%E7%90%86%EF%BC%9ADots%E3%80%81Space%E3%80%81GPT-6-1-Sol-%E8%88%87-25-%E9%A0%85%E6%9B%B4%E6%96%B0/cover.jpg?v=41a20929" alt="OpenAI DevDay 2026 總整理：Dots、Space、GPT-6.1 Sol 與 25 項更新" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">OpenAI</span>
+            
+            <h4 class="related-post-item-title">OpenAI DevDay 2026 總整理：Dots、Space、GPT-6.1 Sol 與 25 項更新</h4>
+            
+              <time class="related-post-date">2026-09-30</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>6</small></li>
+  
+    <li><a href="/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>4</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>34</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>8</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/tags/AI/"><span>AI</span><small>50</small></a></li>
+  
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>14</small></a></li>
+  
+    <li><a href="/tags/Claude/"><span>Claude</span><small>14</small></a></li>
+  
+    <li><a href="/tags/Codex/"><span>Codex</span><small>14</small></a></li>
+  
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>14</small></a></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>9</small></a></li>
+  
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>7</small></a></li>
+  
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
+  
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>5</small></a></li>
+  
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/rss.xml">RSS 訂閱</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
