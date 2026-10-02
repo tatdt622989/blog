@@ -1,8 +1,8 @@
 ---
-title: "Dots in Practice: Game Testing, Minecraft Maintenance, and Blog Publishing"
+title: "What Can Dots Do? Five Practical Tasks You Can Hand Over"
 date: 2026-10-02 17:30:00
-updated: 2026-10-02 17:30:00
-description: "Three real Dots workflows: fishing-game testing, safe Minecraft maintenance, and multilingual blog publishing, with setup costs and clear limits."
+updated: 2026-10-02 18:00:00
+description: "Five Dots examples: meeting prep, document cleanup, web publishing, update tracking, and log checks—with sample requests, outputs, and prerequisites."
 permalink: 2026/10/02/dots-real-world-game-server-blog-workflows/
 translation_key: dots-real-world-game-server-blog-workflows
 translations:
@@ -17,93 +17,96 @@ tags:
 - AI Agent
 ---
 
-![Concept illustration of Dots handling game testing, server maintenance, and blog publishing](cover.jpg)
+![Concept illustration of Dots helping with meeting preparation, documents, websites, and information tracking](cover.jpg)
 
-There are plenty of Dots feature introductions. What I wanted to know was simpler: **when I hand over my own work, what comes back?** I asked it to play a game from the beginning, maintain my Minecraft server, and research, write, and publish a blog post. All three tasks made progress, but the game remains unfinished, and getting the environment and controls working took considerable effort. Those details are the subject of this post.
+**What can Dots do?** Start with the small jobs you keep putting off: gathering material before a meeting, sorting several versions of a document, getting a finished article online, or checking a tool's updates. These five scenarios show how to assign the work, what to ask for in return, and which conditions need to be in place.
 
 <!--more-->
 
-**These are my personal usage notes through October 2, 2026.** The tool and environment adjustments describe this particular setup. The cover is a concept illustration; the three interface screenshots are from my own setup and do not prove completion of the tasks.
+**These are illustrative uses, not personal test results or guarantees of completion.** Product information was checked against official documentation on October 2, 2026. The interface images illustrate access points; the cover is a concept illustration.
 
-## What is Dots? A brief introduction
+## How Dots approaches work
 
-OpenAI describes dots as personal agents that keep working on responsibilities. You create one in the ChatGPT desktop app, and it uses Codex and connected tools to advance tasks. It has its own cloud computer, and you can choose to connect your computer. Permissions and rules determine what it can do independently and what needs approval. [Official Dots overview](https://chatgpt.com/features/dots/)
-
-I named my dot **six**. The name and appearance are an entry point; the useful question is whether a delegated task produces something I can check.
+Dots is a personal agent that can take on ongoing responsibilities using Codex, connected tools, and its own cloud computer. With permission, it can also use your computer. You describe the goal, supply sources, and define the scope, then return to review results or change direction. [Official Dots overview](https://chatgpt.com/features/dots/)
 
 ![Dots customization screen showing six, character styles, and pet options](customize.png)
 
-*My customization screen. This post moves straight from the appearance settings to the work itself.*
+*The character can be named and customized. The scenarios below focus on the work you can hand over.*
 
-## Case one: testing a game starts with getting it to run
+## 1. Prepare the questions that need a meeting
 
-The assignment was to play **《伊萊雅－大漁祭》**, a fishing game, from the beginning as an ordinary first-time player, recording progress, time, and suspected bugs. That is more specific than “test my game”: I wanted to see what happens between starting out and running out of resources.
+**Need:** Friday's website redesign meeting draws on earlier meeting notes, a design proposal, and a scattered task list. You want to know what has been decided and what still needs discussion.
 
-The initial request was for Android in a cloud environment with a visible desktop. The APK installed, but play did not follow. This particular environment lacked hardware acceleration; software rendering and system unresponsiveness held up the task. Its older WebView 83 also hit an **Object.hasOwn** compatibility problem and displayed a blank screen. A long stretch of troubleshooting produced no valid gameplay observation.
+You could ask:
 
-We then moved to my Mac, using an ARM64 emulator with HVF virtualization and GPU acceleration, API 36, and WebView 133. The emulator booted in about **26 seconds**. That is an observation about this setup, not evidence that every dots cloud computer cannot run Android. The practical lesson was to **record setup time separately from play time**, so tool failures do not become conclusions about the game experience.
+> Use the previous notes, design proposal, and task list I provided to prepare a short brief for Friday's redesign meeting. List agreed decisions, remaining disagreements, and three questions we need to resolve. Cite the source for each point, and flag anything the material does not establish.
 
-![Dots computer connection card showing the dot computer and personal Mac, with the desktop preview masked](computers-safe.png)
+**Expected output:** A meeting brief, a suggested agenda, and questions with traceable sources. This gives you a starting point for the unresolved decisions without rereading every document.
 
-*The computer connection card, with a solid mask over the desktop thumbnail. It illustrates the available environments, not emulator performance.*
+**Prerequisites:** Provide the right document versions or connect a file tool that can read them. Checking the meeting time also requires calendar access. Preparing a brief, rescheduling a meeting, and sending the brief to attendees are separate scopes of work; specify which you want.
 
-### Completing the loop is different from playing like a person
+## 2. Reconcile three versions of a document
 
-When the computer interaction tool could not capture the emulator, I authorized **ADB**. Having the model judge every action and wait for a tool response was too slow. Progress became steadier after switching to a local controller driven by visible pixel feedback, with AI handling unfamiliar screens and strategy.
+**Need:** An event plan has gone through several revisions. Dates, budgets, and owners have changed in different versions, and you need an organized draft you can continue editing.
 
-The controller initially failed calibration, too. Those failures cannot be counted as game difficulty. Once calibrated reliably, it recorded **62 out of 62** successful fishing attempts on day one and **86 out of 86** on day two, for 148 successes. That **is not a typical human success rate**, and it does not show that AI had learned to play as an ordinary player would.
+You could ask:
 
-Timing needs the same care. The 62 controller rounds on day one took **641.089 seconds**; the 86 on day two took **993.991 seconds**. These measurements include tools and waiting, and some timing intervals overlap. They cannot be added into a human completion time or used to claim faster play than a person.
+> Compare these three plans, using the one marked latest as the main draft. Show differences in dates, budgets, and owners, and retain additions. Where figures conflict, give me the source locations so I can decide. Save a separate consolidated draft without overwriting the originals.
 
-The tested loop was **fish → sell → exchange for tickets → draw bait → equip**. Progress in the first pool was **48 out of 160; the game was not completed**. This helps check the game flow, but it does not establish whether a beginner's experience feels natural. A feedback controller changes the controls, while model round trips introduce delays a human would not have.
+**Expected output:** A comparison table, a list of unresolved questions, and a consolidated document. The point is to identify what changed and what cannot yet be merged, rather than merely shorten the text.
 
-### Running out of resources does not settle the design question
+**Prerequisites:** Identify the main draft, what must be retained, and where to save the result. Files must be readable; updating a cloud document also requires the relevant tool's editing permissions. Connections extend the available material, subject to account permissions and execution environment. [Connecting computers and apps](https://learn.chatgpt.com/docs/dots/computers-and-apps)
 
-On day two, the same save was used after waiting for the natural midnight replenishment. After further play, the result was still **zero bait, zero tickets, 46 gold, and an empty fish bucket**. This exposes a replenishment barrier in the “sell everything, then exchange for tickets and draw bait” strategy. Alternatives such as keeping fish in the tank were not explored sufficiently, so this does not prove every player will get stuck.
+## 3. Take a website or article through to a working URL
 
-My focus was the first-time experience. I suggested a one-time free mechanism, but **it had not been implemented**. Testing can raise design questions; observations, suggestions, and completed changes need separate labels.
+**Need:** You want an event landing page or a new-tool article on an existing blog. Content is only part of the work: layout, images, mobile reading, and publication also need attention.
 
-A suspected fish-bucket multi-select problem was investigated separately to preserve the playtest baseline. Across 38 unit/component checks and eight UI checks, it did not reproduce. Instead, the controller was found to have misidentified a checkbox. No game bug was established, and no code was changed. Recording a suspicion and then withdrawing it after investigation is more useful than reporting a nonexistent bug.
+You could ask:
 
-## Case two: a Minecraft restart needs evidence that the world was saved
+> Build a one-page event introduction from this material, following my project's existing style. Keep the registration dates, location, and links. First provide a working preview and check the mobile layout and links. If publication is requested, use my specified deployment process and return the live URL.
 
-The next task was routine maintenance: safely stop and restart my personal Minecraft server running in **tmux** on Oracle, then review its startup logs.
+An article request can be equally concrete: “Research official sources, follow the existing editorial style, and include a cover and SEO fields. Maintain all three language versions if the blog requires them. Deliver a draft first, or publish within the scope I explicitly authorize.”
 
-It located the server through an existing SSH alias on my Mac. After confirming **zero players online**, it sent **stop** through the console, waited for all dimensions to save and the old process to exit, then launched the original **start.sh** once. This completed at **16:44:55 Taipei time on October 2**, with subsequent observed TPS around 20.
+**Expected output:** A readable draft or website preview, changed files, and check results. When publication is authorized, the deliverable extends to a live URL and deployment status.
 
-For this task, “the command did not error” is insufficient. Acceptance requires evidence that **the world was saved, the old process exited, the new process started only once, and the service resumed**. Including those conditions in the assignment makes the restart checkable.
+**Prerequisites:** Supply material, style references, an accessible project, and a working build environment. Publication also needs an explicit destination and authorization. If the project lives only on your computer, keep it online with the ChatGPT app open. Cloud coding work needs an appropriate environment prepared first. [Task execution environments](https://learn.chatgpt.com/docs/dots/tasks-and-memory)
 
-The log findings were also separated by certainty:
+![Dots computer connection card showing its computer and a personal Mac, with the desktop thumbnail masked](computers-safe.png)
 
-- **Confirmed broken:** the **/sell** alias targets a plugin that is not installed, so that command cannot work properly.
-- **Needs investigation:** BlueMap reported **No regions found** for nether/end despite region files being present. A path issue remained a suspicion.
-- **Warnings to assess:** plugin compatibility messages require individual impact checks; they do not automatically mean the server has failed.
+*Tasks can use different environments. Work involving local files and tools needs the corresponding computer connected.*
 
-There was no unrequested plugin repair, service reinstall, or world modification. The restart and diagnosis were completed, with unresolved findings preserved. Choosing the next repair remains a separate, scoped task. I could see the important findings without reading every log line, and a warning did not trigger a wholesale server rebuild.
+## 4. Follow selected updates and flag meaningful changes
 
-## Case three: “write and publish” ends with a live URL
+**Need:** You follow several developer tools but do not want to check every website daily or receive every announcement.
 
-On October 1, I asked it to write and publish an article about Google's newly announced model. This was a useful test of whether dots could carry a workflow through: consult official sources, distinguish confirmed information, follow the blog's existing Traditional Chinese, Simplified Chinese, and English conventions, prepare a cover and SEO fields, build, deploy, and verify the page.
+You could ask:
 
-The deliverable was the live [Gemini 4 Argon article](/en/2026/10/01/gemini-4-argon-launch-pricing-access/), rather than a draft waiting for me to paste it into the blog. The article also distinguished official information from unverified details; it did not present announcement research as hands-on model testing.
+> For the next four weeks, check the official update pages for the three tools I specify every Monday at 9 a.m. Taipei time. Maintain a summary of releases with source links. Notify me in ChatGPT only about breaking changes or removal of a feature I use. Confirm the saved schedule, sources, and notification conditions.
 
-The prerequisites were clear: I already had a repository, an editorial style, a deployment process, and an explicit request to publish. An agent can connect research, writing, and building, but **source reliability, private information in the draft, and whether the live page actually loads** still need individual checks. A successful build does not prove the website has updated.
+**Expected output:** An updated summary and notifications when the specified conditions are met. Defining the sources, duration, and threshold keeps the task focused.
 
-A topic with no established style or contradictory sources might require much more judgment. This case shows delivery through an existing publishing process, not that a single instruction can produce reliable coverage of any subject.
+**Prerequisites:** Specify accessible sources, a time zone, an end date, and a delivery location. Confirm that the schedule was actually saved. Responding to an event instead requires a connected service that supports that event. Connecting an app alone does not create a monitoring task, and periodic checks are different from real-time monitoring. [Schedules and event monitoring](https://learn.chatgpt.com/docs/dots/tasks-and-memory)
 
-## How I would assign the next task
+## 5. Inspect service logs before choosing a repair
 
-These three experiences made completion criteria more important to me. Instead of only saying “handle this,” I would include:
+**Need:** Your website slowed down yesterday evening. You want to investigate before changing configuration or restarting anything.
 
-1. **Goal:** specify whether this is a first-time playtest, a restart, or publication.
-2. **Scope:** identify the computer, save, or repository, and what can be changed.
-3. **Acceptance:** request progress notes, save and restart evidence, or a working public URL.
-4. **Stop conditions:** if setup repeatedly fails, the time budget is exceeded, or changes need a wider scope, report progress and blockers first.
+You could ask:
 
-![Dots call card showing six calling, with mute and hang-up buttons](calling.png)
+> Inspect yesterday evening's logs for this authorized service and compare them with deployment times. Summarize errors, their frequency, and potentially related changes. Separate confirmed findings from hypotheses, cite evidence, and suggest next steps. Inspect only; do not change configuration or restart the service.
 
-*The call card shows Calling…. The cases above rely on text instructions and execution records; this image is not verification of call quality.*
+**Expected output:** A diagnostic summary with a time range and supporting log excerpts. It should help distinguish an isolated failed request, recurring errors, and missing evidence. A specific repair can become a separate assignment.
 
-**Dots fits work with a clear goal, evidence to retain, and results that can be checked incrementally.** Game-flow checks, routine maintenance, and publication under existing conventions can all be accepted against concrete outputs. This experience gives me less reason to hand over tasks requiring continuous low-latency reactions, subjective human experience measurements, or an undefined standard of success.
+**Prerequisites:** Provide log files or authorized tool access to the named service, and specify the time zone and investigation window. Logs may contain sensitive information, so anything shared externally needs redaction. A warning does not establish a root cause, and finishing an inspection does not mean the service has been repaired.
 
-The game remains unfinished, the BlueMap question remains open, and the blog has a published article. Those differences belong in the usage record: what was completed, what it cost to get there, and which conclusions remain unsupported. For the launch background, see the [OpenAI DevDay 2026 recap](/en/2026/09/30/openai-devday-2026-announcements/).
+## How to ask for a useful deliverable
+
+The five scenarios share a simple approach: **state the goal, supply sources, name the deliverable, and define the scope.** “Consolidate these three documents into a new draft and list conflicts for me” is easier to evaluate than “handle my documents.”
+
+You can add material, change priorities, or stop work as it proceeds. For email, document sharing, publication, or service changes, specify the permitted recipients, destinations, and actions. Asking for a draft does not authorize sending it. [Reviewing and controlling work](https://learn.chatgpt.com/docs/dots/controls)
+
+![Dots call card showing six calling, with mute and hang-up controls](calling.png)
+
+*The call card illustrates the interface; it is not an execution record for these scenarios.*
+
+Start with a small task whose sources and output are easy to check: prepare the next meeting, consolidate a document, or draft an article. Once the first result meets your needs, add ongoing tracking and follow-through. For the launch background, see the [OpenAI DevDay 2026 recap](/en/2026/09/30/openai-devday-2026-announcements/).
