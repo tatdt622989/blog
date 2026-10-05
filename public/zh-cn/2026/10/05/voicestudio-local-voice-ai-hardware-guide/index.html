@@ -1,0 +1,757 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="VoiceStudio 将本地 AI 配音、声音克隆和视频配音整合为桌面应用。本文通过四档配置表说明 Windows、Linux 与 Apple Silicon 的适用场景，梳理显存、内存、模型选择及商用授权限制，帮助你判断现有电脑能否满足创作需求。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/05/VoiceStudio-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E6%9C%AC%E5%9C%B0-AI-%E9%85%8D%E9%9F%B3%E4%BB%8B%E7%B4%B9%E8%88%87%E9%9B%BB%E8%85%A6%E9%85%8D%E7%BD%AE%E5%88%86%E7%B4%9A/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/05/voicestudio-local-voice-ai-hardware-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/05/VoiceStudio-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E6%9C%AC%E5%9C%B0-AI-%E9%85%8D%E9%9F%B3%E4%BB%8B%E7%B4%B9%E8%88%87%E9%9B%BB%E8%85%A6%E9%85%8D%E7%BD%AE%E5%88%86%E7%B4%9A/">
+  
+
+  <meta property="og:title" content="VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级"/>
+  <meta property="og:description" content="VoiceStudio 将本地 AI 配音、声音克隆和视频配音整合为桌面应用。本文通过四档配置表说明 Windows、Linux 与 Apple Silicon 的适用场景，梳理显存、内存、模型选择及商用授权限制，帮助你判断现有电脑能否满足创作需求。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg?v=97053b40" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级">
+  <meta name="twitter:description" content="VoiceStudio 将本地 AI 配音、声音克隆和视频配音整合为桌面应用。本文通过四档配置表说明 Windows、Linux 与 Apple Silicon 的适用场景，梳理显存、内存、模型选择及商用授权限制，帮助你判断现有电脑能否满足创作需求。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg?v=97053b40">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/","headline":"VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级","description":"VoiceStudio 将本地 AI 配音、声音克隆和视频配音整合为桌面应用。本文通过四档配置表说明 Windows、Linux 与 Apple Silicon 的适用场景，梳理显存、内存、模型选择及商用授权限制，帮助你判断现有电脑能否满足创作需求。","datePublished":"2026-10-05T06:00:00.000Z","dateModified":"2026-10-05T06:00:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/zh-cn/categories/AI/"},{"@type":"ListItem","position":3,"name":"VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级","item":"https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b7a11f5791">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/05/VoiceStudio-是什麼？本地-AI-配音介紹與電腦配置分級/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/05/voicestudio-local-voice-ai-hardware-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+    <li><a href="https://atlas.6yuwei.com" target="_blank">Atlas</a></li>
+    <li><a href="https://6yuwei.com" target="_blank">作品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-voicestudio-local-voice-ai-hardware-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-05T06:00:00.000Z"><a href="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/">2026-10-05</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-720.jpg?v=024b773f" alt="VoiceStudio 本地 AI 配音工作台与电脑配置指南" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-480.jpg?v=917a5518 480w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-720.jpg?v=024b773f 720w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-960.jpg?v=a50eab40 960w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-1280.jpg?v=00061d80 1280w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg?v=97053b40 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>VoiceStudio 将文本转语音、声音克隆、视频配音和批量音频制作放进同一个桌面界面。对于想做游戏角色试音、视频旁白或语言学习素材的人，它的吸引力在于：可以直接在自己的电脑上运行受支持的语音模型。</p>
+<p>但安装成功，并不等于适合每天用来制作音频。下面先用一张四档配置表说明 Windows、Linux 和 Mac 分别适合哪些任务，再介绍功能与上手方法。</p>
+<span id="more"></span>
+
+<h2 id="VoiceStudio-是什么？重点是把制作流程串起来"><a href="#VoiceStudio-是什么？重点是把制作流程串起来" class="headerlink" title="VoiceStudio 是什么？重点是把制作流程串起来"></a>VoiceStudio 是什么？重点是把制作流程串起来</h2><p>本文介绍的是 <a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio">debpalash&#x2F;VoiceStudio</a>，一款以本地推理为主的 AI 语音桌面应用。它将模型选择、声音管理、脚本与音频生成整合到一起，目前默认文本转语音引擎是 <strong>OmniVoice</strong>。</p>
+<p>比较值得关注的能力包括：</p>
+<ul>
+<li><strong>文本配音与声音克隆</strong>：输入脚本生成语音，或使用有权使用的参考录音提取声音特征；是否支持克隆取决于引擎。</li>
+<li><strong>声音设计</strong>：按年龄、音高、口音等属性尝试不同音色，适合角色试音；具体控制项取决于模型。</li>
+<li><strong>视频配音</strong>：衔接转写、翻译、分段语音合成与音频组合，减少来回切换工具和搬运素材。</li>
+<li><strong>长文本与批量任务</strong>：处理有声书、旁白片段和任务队列，也提供 API 与 MCP 接口，便于接入自己的工作流。</li>
+</ul>
+<p>这些是官方列出的功能范围，不代表所有模型都有相同的语言覆盖、音质或情绪控制能力。制作中文或日语内容，最好先拿自己的脚本试听。<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/feature-catalog.md">官方功能目录</a></p>
+<p>本地运行仍有准备步骤：首次启动需要下载运行环境和模型。如果启用远程后端、云端翻译或外部服务，相关步骤仍会通过网络传输数据；希望素材留在本机，就需要检查整个流程采用了哪些服务。</p>
+<h2 id="电脑配置分四档，按任务量选择"><a href="#电脑配置分四档，按任务量选择" class="headerlink" title="电脑配置分四档，按任务量选择"></a>电脑配置分四档，按任务量选择</h2><p><strong>以下是本文整理的实用配置建议，不是官方统一最低要求，也不是不同机器的实测排名。</strong> 档位体现的是任务规模和内存余量，不代表配置越高，生成的声音就越自然。</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
+<thead>
+<tr>
+<th>档位</th>
+<th>Windows／Linux 配置建议</th>
+<th>Apple Silicon Mac 配置建议</th>
+<th>适合的任务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>第 0 档：体验功能</strong></td>
+<td>16GB 内存；没有可用 GPU 加速时使用 CPU</td>
+<td>已有 8GB 机型仅尝试轻量引擎与短句，不建议为此购买</td>
+<td>熟悉界面、少量短句；接受等待和模型限制</td>
+</tr>
+<tr>
+<td><strong>第 1 档：入门配音</strong></td>
+<td>NVIDIA 6–8GB 显存＋16GB 内存</td>
+<td>16GB 统一内存</td>
+<td>短旁白、角色试音，一次运行一个任务</td>
+</tr>
+<tr>
+<td><strong>第 2 档：日常创作</strong></td>
+<td>NVIDIA 12GB 显存＋32GB 内存</td>
+<td>24–32GB 统一内存</td>
+<td>频繁修改配音、分段长文本、短视频配音</td>
+</tr>
+<tr>
+<td><strong>第 3 档：批量制作</strong></td>
+<td>NVIDIA 16–24GB 及以上显存＋64GB 内存</td>
+<td>48–64GB 及以上统一内存</td>
+<td>长篇音频、批量任务队列、频繁切换模型</td>
+</tr>
+</tbody></table></div>
+<p><strong>个人创作者可以将第 2 档作为配置目标；已有第 1 档电脑，先试用再考虑升级。</strong> 第 3 档更适合已经有稳定制作量的用户。表中的 8GB Mac 只是针对现有设备的谨慎试用建议，不能理解为已验证能稳定运行默认模型。</p>
+<p>看表时注意三个区别：</p>
+<ol>
+<li><strong>PC 显存与系统内存是两回事。</strong> 32GB 内存不会让一张 4GB 显卡拥有 12GB 显存。</li>
+<li><strong>Mac 统一内存由系统、GPU 和其他程序共同使用。</strong> 24GB Mac 不等于配备 24GB 独立显存的 PC，这张表也不能用来比较两者速度。</li>
+<li><strong>完整视频配音比生成一句语音更复杂。</strong> 语音识别等步骤也会占用资源，余量不足会增加模型卸载与重新加载的次数。</li>
+</ol>
+<p>配置建议的依据是：<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/engines/omnivoice.md">OmniVoice 引擎说明</a>给出的独立 GPU 推荐显存下限为 <strong>6GB</strong>；<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/performance.md">官方性能指南</a>指出，16GB Apple Silicon 在配音流程中可能需要轮流卸载模型。较大显存的 NVIDIA 配置有更大的并行空间，而 Apple Silicon 当前按单次生成设计，更多内存主要减少资源争抢与模型加载切换。</p>
+<h2 id="先确认平台是否能使用-GPU-加速"><a href="#先确认平台是否能使用-GPU-加速" class="headerlink" title="先确认平台是否能使用 GPU 加速"></a>先确认平台是否能使用 GPU 加速</h2><p><strong>Windows 10／11 x64</strong>是常见安装路线。主要 PyTorch 引擎使用 <strong>NVIDIA CUDA</strong> 加速，也能在没有受支持 GPU 时使用 CPU。常规安装包会处理运行环境，不需要先手动安装一整套 CUDA Toolkit。</p>
+<p>Windows 下的 <strong>AMD Radeon 与 Intel 显卡，不能直接加速该安装环境中的 PyTorch 引擎</strong>。部分其他引擎采用不同后端，例如 audio.cpp 可以使用 Vulkan，所以不能按“有独显”就直接套用 NVIDIA 那一栏。<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/install/windows.md">Windows 安装文档</a>给出了具体区别；Windows ARM 仍属于实验性支持。</p>
+<p><strong>Apple Silicon Mac</strong>支持 MPS，部分模型还有 MLX 路径。官方要求 <strong>macOS 13.3 或更新版本</strong>，并应选择原生 <strong>arm64</strong> 安装包。<strong>Intel Mac 目前不支持本地后端</strong>，只能运行界面并连接其他电脑上的远程后端，不能将它当成“只是慢一点的 CPU 版 Mac”。<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/install/macos.md">macOS 安装文档</a></p>
+<p>Linux 可以使用 NVIDIA；AMD ROCm 则需要逐项确认显卡、系统和所选引擎的兼容性。初次体验建议从手头已有、明确受支持的平台开始。</p>
+<h2 id="模型选择：先满足语言需求，再考虑资源占用"><a href="#模型选择：先满足语言需求，再考虑资源占用" class="headerlink" title="模型选择：先满足语言需求，再考虑资源占用"></a>模型选择：先满足语言需求，再考虑资源占用</h2><p><strong>中文、日语或声音克隆，可以先试默认 OmniVoice。</strong> 用一小段文本检查发音和音色，再决定是否制作长内容。支持某种语言，不等于每种口音都有一致的质量。</p>
+<p><strong>只有 CPU，且只需英文旁白，可以考虑 KittenTTS。</strong> 这是轻量英文预设声音引擎，不支持声音克隆。它通过缩小任务范围降低资源需求，并不能让入门电脑获得所有模型的能力。<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/engines/kittentts.md">KittenTTS 引擎说明</a></p>
+<p>还要为模型和素材留出磁盘空间。官方 Windows 与 macOS 文档估计基础安装需要约 <strong>10GB 可用空间</strong>。本文建议首次体验保留 <strong>20GB 以上 SSD 空间</strong>；安装多套模型、积累视频素材时，预留 <strong>50–100GB 以上</strong>更方便。后两项是空间管理建议，不是固定安装体积，实际占用取决于模型和素材。</p>
+<h2 id="上手时，先完成一段短旁白"><a href="#上手时，先完成一段短旁白" class="headerlink" title="上手时，先完成一段短旁白"></a>上手时，先完成一段短旁白</h2><ol>
+<li>从 <a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/releases">官方 Releases</a> 下载与平台、处理器架构匹配的安装包，完成运行环境和模型下载。</li>
+<li>在 <strong>Settings → Performance</strong> 查看计算设备与 <strong>GPU active</strong> 状态，再运行 <strong>Settings → About → Run self-check</strong> 检查环境。</li>
+<li>在 <strong>Model Catalogue</strong> 选择支持目标语言的引擎，先生成三到五句，不要直接提交整篇长文或长视频。</li>
+<li>需要声音克隆时，使用自己的或已获授权的清晰录音，避免背景音乐、多人重叠说话和明显噪声。</li>
+<li>从第二次生成开始观察速度。第一次包含模型加载，不能作为常态速度；长文本按段处理，内存紧张时减少后台程序和同时驻留的模型。</li>
+</ol>
+<p>如果要比较设备，应保持引擎、文本、输出设置以及模型加载状态一致，再记录生成耗时。截至本文核查日期，官方<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/benchmarks.md">硬件基准页面</a>尚无已验证的测试记录，因此本文不会给出“某张显卡一定比某台 Mac 快几倍”的结论。</p>
+<h2 id="商业配音前，单独核对模型授权"><a href="#商业配音前，单独核对模型授权" class="headerlink" title="商业配音前，单独核对模型授权"></a>商业配音前，单独核对模型授权</h2><p>VoiceStudio 应用采用 <strong>AGPL-3.0-only</strong>，模型权重有独立条款。目前默认 OmniVoice 的代码为 Apache 2.0，预训练权重则采用 <strong>CC-BY-NC 非商业授权</strong>。不能仅因应用开源，就认定其生成内容可用于付费游戏、广告或商业项目；应核对所选模型和参考声音的使用权。购买应用付费方案也不会自动改变模型授权。<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/LICENSE-NOTICE.md">VoiceStudio 授权说明</a>、<a target="_blank" rel="noopener" href="https://huggingface.co/k2-fsa/OmniVoice">OmniVoice 模型卡</a></p>
+<p>VoiceStudio 值得关注的地方，是让本地语音模型更容易进入创作流程。先用现有电脑完成一段短旁白，确认发音、音色与等待时间都可以接受，再根据实际任务量升级，通常更容易做出合适的选择。</p>
+<p>若主要需求是实时口语互动，可参考本站的 <a href="/2026/08/17/ChatGPT-%E8%AA%9E%E9%9F%B3%E6%A8%A1%E5%BC%8F%E5%AD%B8%E6%97%A5%E8%AA%9E%E5%AF%A6%E6%88%B0%EF%BC%9A%E5%BE%9E%E6%83%85%E5%A2%83%E8%A8%AD%E5%AE%9A%E5%88%B0%E5%8D%B3%E6%99%82%E7%B3%BE%E9%8C%AF%E7%9A%84%E9%AB%98%E6%95%88%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">ChatGPT 语音模式日语练习指南</a>（繁体中文版），按“制作教材音频”或“对话练习”的目标选择工具。</p>
+<p>资料核查日期：2026 年 10 月 5 日。配置表是基于官方文档整理的实用建议，未在各档硬件上运行 VoiceStudio 实测。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/AI/">AI</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/VoiceStudio/">VoiceStudio</a>, <a href="/zh-cn/tags/AI-%E9%85%8D%E9%9F%B3/">AI 配音</a>, <a href="/zh-cn/tags/%E6%9C%AC%E5%9C%B0-AI/">本地 AI</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级" data-url="https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F05%2Fvoicestudio-local-voice-ai-hardware-guide%2F&title=VoiceStudio%20%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%AC%E5%9C%B0%20AI%20%E9%85%8D%E9%9F%B3%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%94%B5%E8%84%91%E9%85%8D%E7%BD%AE%E5%88%86%E7%BA%A7" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F05%2Fvoicestudio-local-voice-ai-hardware-guide%2F&title=VoiceStudio%20%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%AC%E5%9C%B0%20AI%20%E9%85%8D%E9%9F%B3%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%94%B5%E8%84%91%E9%85%8D%E7%BD%AE%E5%88%86%E7%BA%A7" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=VoiceStudio%20%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%AC%E5%9C%B0%20AI%20%E9%85%8D%E9%9F%B3%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%94%B5%E8%84%91%E9%85%8D%E7%BD%AE%E5%88%86%E7%BA%A7&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F05%2Fvoicestudio-local-voice-ai-hardware-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级" data-url="https://blog.6yuwei.com/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
+           data-rel-title="AI 编程工具怎么选？2026 年 9 月订阅方案对比"
+           data-rel-path="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb" alt="AI 编程工具怎么选？2026 年 9 月订阅方案对比" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">AI 编程工具怎么选？2026 年 9 月订阅方案对比</h4>
+            
+              <time class="related-post-date">2026-09-14</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/" class="related-post-link"
+           data-rel-title="让 AI 在云端替你打工！揭秘 xAI Grok Bot 的 4 大底层架构与 6 个高阶自动化工作流"
+           data-rel-path="/zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/cover.jpg?v=e37a9eb2" alt="让 AI 在云端替你打工！揭秘 xAI Grok Bot 的 4 大底层架构与 6 个高阶自动化工作流" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">让 AI 在云端替你打工！揭秘 xAI Grok Bot 的 4 大底层架构与 6 个高阶自动化工作流</h4>
+            
+              <time class="related-post-date">2026-08-28</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/" class="related-post-link"
+           data-rel-title="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策"
+           data-rel-path="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" alt="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策</h4>
+            
+              <time class="related-post-date">2026-09-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>7</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>15</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>27</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>9</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/DevDay/"><span>DevDay</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/zh-cn/rss.xml">订阅 RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
