@@ -218,8 +218,11 @@ function resolveImagePath(src, data) {
 
   sitePath = sitePath.replace(/^\/+/, '');
 
-  if (data.path && sitePath.startsWith(data.path)) {
-    return path.join(postAssetDir, sitePath.slice(data.path.length));
+  // A front-matter permalink may start with "/", which Hexo keeps in data.path.
+  const postPath = String(data.path || '').replace(/^\/+/, '');
+
+  if (postPath && sitePath.startsWith(postPath)) {
+    return path.join(postAssetDir, sitePath.slice(postPath.length));
   }
 
   if (data.slug) {

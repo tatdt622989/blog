@@ -4,7 +4,7 @@
   var title = [];
   var suppressThirdPartyTracking = page.no_tracking === true;
   if (page.current > 1) title.push(__('page', page.current));
-  if (page.title) title.push(page.title);
+  if (page.title) title.push(page.seo_title || page.title);
   if (page.taxonomy_index) title.push(__(page.taxonomy_index));
   if (page.category) title.push(page.category);
   if (page.tag) title.push(page.tag);
@@ -142,6 +142,37 @@
         "logo": siteLogo
       }),
       "image": ogImage ? [ogImage] : []
+    }));
+  }
+  if (page.layout === 'dev-map') {
+    var devMap = dev_map(page);
+    structuredData.push(compactObject({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": canonicalUrl + '#collection',
+      "url": canonicalUrl,
+      "name": cleanText(page.title || ''),
+      "description": metaDescription,
+      "inLanguage": currentLocale,
+      "dateModified": asIsoDate(devMap.latest),
+      "image": ogImage ? [ogImage] : [],
+      "isPartOf": {
+        "@type": "WebSite",
+        "url": homeUrl,
+        "name": config.title
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": devMap.posts.length,
+        "itemListElement": devMap.posts.map(function(post, index) {
+          return {
+            "@type": "ListItem",
+            "position": index + 1,
+            "url": toAbsoluteUrl(url_for(post.path)),
+            "name": cleanText(post.title)
+          };
+        })
+      }
     }));
   }
   var breadcrumbs = [];

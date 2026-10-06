@@ -171,7 +171,9 @@ function optimizeCoverTag(tag, htmlPath, variantsByImage) {
   let nextTag = tag;
   nextTag = setAttribute(nextTag, 'src', toPublicUrl(variants[Math.min(1, variants.length - 1)].path));
   nextTag = setAttribute(nextTag, 'srcset', srcset);
-  nextTag = setAttribute(nextTag, 'sizes', '(max-width: 820px) calc(100vw - 40px), 711px');
+  if (!getAttribute(nextTag, 'sizes')) {
+    nextTag = setAttribute(nextTag, 'sizes', '(max-width: 820px) calc(100vw - 40px), 711px');
+  }
 
   return nextTag;
 }

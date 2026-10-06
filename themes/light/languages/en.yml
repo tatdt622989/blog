@@ -12,7 +12,7 @@ page: Page %d
 recent_posts: Recent Posts
 nav_home: Home
 nav_archives: Archives
-nav_atlas: Atlas
+nav_dev_map: Dev Map
 nav_works: Works
 read_more: Read More
 breadcrumb_home: Home
@@ -55,6 +55,7 @@ table_scroll_label: Table, scroll horizontally for more columns
 table_scroll_hint: Scroll horizontally to view the full table. You can also use the arrow keys.
 start_here_title: Start here
 start_here_description: Pick a problem and go straight to a practical guide.
+start_here_dev_map: See the full dev map
 subscribe_rss: Subscribe via RSS
 guide_quota_title: Understand Codex limits
 guide_quota_description: Check usage, reset times, and manual reset options.

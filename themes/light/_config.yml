@@ -1,6 +1,7 @@
 menu:
   nav_home: /
   nav_archives: archives
+  nav_dev_map: ai-dev-map/
 
 widgets:
 - search

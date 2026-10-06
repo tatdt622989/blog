@@ -4,7 +4,10 @@
       <h2 id="start-here-title"><%= __('start_here_title') %></h2>
       <p><%= __('start_here_description') %></p>
     </div>
-    <a class="rss-link" href="<%- url_for(config.feed.path) %>"><%= __('subscribe_rss') %></a>
+    <div class="start-here__actions">
+      <a class="start-here__map" href="<%- url_for('ai-dev-map/') %>"><%= __('start_here_dev_map') %></a>
+      <a class="rss-link" href="<%- url_for(config.feed.path) %>"><%= __('subscribe_rss') %></a>
+    </div>
   </div>
   <ul class="start-here__guides">
     <% start_here_guides().forEach(function(guide, index) { %>

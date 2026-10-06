@@ -1,0 +1,13 @@
+<% var cover = entry.post.cover; var published = date(entry.post.date, 'YYYY-MM-DD'); %>
+<a class="dev-map-card dev-map-card--<%= variant %>" href="<%- url_for(entry.post.path) %>">
+  <span class="dev-map-card__media">
+    <% if (cover && cover.src) { %>
+    <img class="post-cover-image" src="<%- cover.src %>" width="<%= cover.width %>" height="<%= cover.height %>" sizes="<%= sizes %>" alt="" decoding="async"<% if (lazy) { %> loading="lazy"<% } %><% if (priority) { %> fetchpriority="high"<% } %>>
+    <% } %>
+  </span>
+  <span class="dev-map-card__body">
+    <span class="dev-map-card__title"><%= entry.post.title %></span>
+    <span class="dev-map-card__solves"><%= entry.solves %></span>
+    <time class="dev-map-card__date" datetime="<%= published %>"><%= published %></time>
+  </span>
+</a>

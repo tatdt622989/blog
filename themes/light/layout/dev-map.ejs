@@ -1,0 +1,104 @@
+<%
+var map = dev_map(page);
+var copy = page.dev_map;
+var titleParts = split_title(page.title);
+var updated = date(map.latest, 'YYYY-MM-DD');
+var firstTrack = map.tracks[0] ? map.tracks[0].id : '';
+var pin = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
+%>
+<div class="dev-map" data-dev-map>
+  <header class="dev-map__hero">
+    <h1 class="dev-map__title">
+      <span class="dev-map__title-main"><%= titleParts[0] %></span>
+      <% if (titleParts[1]) { %><span class="dev-map__title-sub"><%= titleParts[1] %></span><% } %>
+    </h1>
+    <p class="dev-map__lead dev-map__lead--full"><%= copy.lead %></p>
+    <p class="dev-map__lead dev-map__lead--short"><%= copy.lead_short %></p>
+
+    <div class="dev-map__route" data-route>
+      <div class="dev-map__tabs" role="tablist" aria-label="<%= copy.route_label %>">
+        <% map.tracks.forEach(function (track, index) { %>
+        <button type="button" class="dev-map__tab<%= index === 0 ? ' is-active' : '' %>" role="tab" id="dev-map-tab-<%= track.id %>" aria-controls="dev-map-track-<%= track.id %>" aria-selected="<%= index === 0 ? 'true' : 'false' %>" data-track="<%= track.id %>">
+          <%= track.label %><span><%= copy.track_count.replace('{count}', track.count) %></span>
+        </button>
+        <% }); %>
+      </div>
+      <p class="dev-map__hint"><%= copy.route_hint %></p>
+      <ol class="dev-map__stops">
+        <% copy.stops.forEach(function (stop, index) { %>
+        <li>
+          <a class="dev-map__stop" href="#<%= firstTrack %>-<%= stop.id %>" data-stop="<%= stop.id %>">
+            <span class="dev-map__pin"><%- pin %><%= copy.here %></span>
+            <span class="dev-map__dot"><%= index + 1 %></span>
+            <span class="dev-map__stop-label"><span class="dev-map__long"><%= stop.label %></span><span class="dev-map__short"><%= stop.short %></span></span>
+          </a>
+        </li>
+        <% }); %>
+      </ol>
+    </div>
+
+    <p class="dev-map__meta"><%= copy.stats.replace('{count}', map.count) %> · <%= copy.updated %> <time datetime="<%= updated %>"><%= updated %></time></p>
+  </header>
+
+  <section class="dev-map__section dev-map__featured" aria-labelledby="dev-map-featured">
+    <div class="dev-map__section-head">
+      <h2 id="dev-map-featured"><%= copy.featured_title %></h2>
+      <p><%= copy.featured_note %></p>
+    </div>
+    <div class="dev-map__featured-grid">
+      <% map.featured.forEach(function (entry, index) { %>
+      <%- partial('_partial/dev_map_card', { entry: entry, variant: 'feature', sizes: '(max-width: 720px) 82vw, 370px', lazy: index > 0, priority: index === 0 }) %>
+      <% }); %>
+    </div>
+  </section>
+
+  <div class="dev-map__tracks">
+    <% map.tracks.forEach(function (track) { %>
+    <section class="dev-map__track" id="dev-map-track-<%= track.id %>" role="tabpanel" aria-labelledby="dev-map-tab-<%= track.id %>" data-track="<%= track.id %>">
+      <h2 class="dev-map__track-title"><%= track.label %></h2>
+      <% track.stages.forEach(function (stage) { %>
+      <section class="dev-map__stage" id="<%= track.id %>-<%= stage.stop.id %>" data-stop="<%= stage.stop.id %>">
+        <header class="dev-map__stage-head">
+          <p class="dev-map__stage-num"><%= copy.stop_number.replace('{n}', stage.number) %><span class="dev-map__badge"><%- pin %><%= copy.here %></span></p>
+          <h3><%= stage.stop.label %></h3>
+          <span class="dev-map__stage-formal"><%= stage.stop.formal %></span>
+          <p class="dev-map__stage-note"><%= stage.note %></p>
+        </header>
+        <div class="dev-map__items">
+          <% stage.items.forEach(function (entry) { %>
+          <%- partial('_partial/dev_map_card', { entry: entry, variant: 'entry', sizes: '(max-width: 720px) 112px, 300px', lazy: true, priority: false }) %>
+          <% }); %>
+        </div>
+      </section>
+      <% }); %>
+    </section>
+    <% }); %>
+  </div>
+
+  <% if (map.more.length) { %>
+  <section class="dev-map__section dev-map__more" aria-labelledby="dev-map-more">
+    <div class="dev-map__section-head">
+      <h2 id="dev-map-more"><%= copy.more_title %></h2>
+      <p><%= copy.more_note %></p>
+    </div>
+    <div class="dev-map__more-grid">
+      <% map.more.forEach(function (entry) { %>
+      <%- partial('_partial/dev_map_card', { entry: entry, variant: 'entry', sizes: '(max-width: 720px) 112px, 280px', lazy: true, priority: false }) %>
+      <% }); %>
+    </div>
+  </section>
+  <% } %>
+
+  <section class="dev-map__closing" aria-labelledby="dev-map-closing">
+    <div>
+      <h2 id="dev-map-closing"><%= copy.closing_title %></h2>
+      <p><%= copy.closing_text %></p>
+    </div>
+    <div class="dev-map__closing-links">
+      <a href="<%- url_for(config.feed.path) %>"><%= __('subscribe_rss') %></a>
+      <a href="https://6yuwei.com" target="_blank" rel="noopener"><%= copy.works_label %></a>
+      <a href="https://atlas.6yuwei.com" target="_blank" rel="noopener"><%= copy.atlas_label %></a>
+    </div>
+  </section>
+</div>
+<script defer src="<%- url_for('js/dev-map.js?v=261006-1') %>"></script>

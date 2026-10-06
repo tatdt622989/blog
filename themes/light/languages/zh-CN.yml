@@ -12,7 +12,7 @@ page: 第 %d 页
 recent_posts: 最新文章
 nav_home: 首页
 nav_archives: 归档
-nav_atlas: Atlas
+nav_dev_map: 开发地图
 nav_works: 作品
 read_more: 阅读全文
 breadcrumb_home: 首页
@@ -55,6 +55,7 @@ table_scroll_label: 表格，可左右滚动
 table_scroll_hint: 左右滑动查看完整表格；也可使用键盘方向键。
 start_here_title: 从这里开始
 start_here_description: 选一个当前想解决的问题，直接阅读实用教程。
+start_here_dev_map: 查看完整开发地图
 subscribe_rss: 订阅 RSS
 guide_quota_title: 看懂 Codex 额度
 guide_quota_description: 查询用量，分清自动恢复与手动重置。
