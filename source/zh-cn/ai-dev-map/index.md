@@ -27,7 +27,7 @@ dev_map:
   works_label: 看作品集
   atlas_label: AI 工具 Atlas
   promo:
-    eyebrow: 作者的作品
+    eyebrow: 游戏与 App
     title: Iraiya 伊莱雅
     text: 像素游戏、浏览器小游戏与日语学习 App。打砖块、扫雷与 Nihongo Tango 日语单词 App 现在就能玩，像素钓鱼游戏大渔祭与放置 RPG 委托屋正在开发中。
     cta: 去看看 Iraiya

@@ -23,11 +23,11 @@ dev_map:
   more_title: Going further
   more_note: Useful once your project grows and you want it to hold up.
   closing_title: Want more?
-  closing_text: Subscribe via RSS for new guides, or browse my works and more AI tool roundups.
-  works_label: See my works
+  closing_text: Subscribe via RSS for new guides, or browse the portfolio and more AI tool roundups.
+  works_label: Browse the portfolio
   atlas_label: AI Tools Atlas
   promo:
-    eyebrow: From the author
+    eyebrow: Games and apps
     title: Iraiya
     text: Pixel games, browser games, and a Japanese learning app. Brick breaker, Minesweeper, and the Nihongo Tango vocabulary app are playable now, with the pixel fishing game Great Fishing Festival and the idle RPG Pocket Commissions in development.
     cta: Visit Iraiya

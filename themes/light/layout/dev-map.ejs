@@ -52,20 +52,6 @@ var pin = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fo
     </div>
   </section>
 
-  <% if (copy.promo) { %>
-  <section class="dev-map__promo" aria-labelledby="dev-map-promo">
-    <div class="dev-map__promo-media">
-      <img src="<%- url_for('img/iraiya-card.jpg') %>" width="960" height="504" alt="<%= copy.promo.image_alt %>" loading="lazy" decoding="async">
-    </div>
-    <div class="dev-map__promo-body">
-      <p class="dev-map__promo-eyebrow"><%= copy.promo.eyebrow %></p>
-      <h2 id="dev-map-promo"><%= copy.promo.title %></h2>
-      <p><%= copy.promo.text %></p>
-      <a class="dev-map__promo-cta" href="<%= copy.promo.href %>" target="_blank" rel="noopener"><%= copy.promo.cta %></a>
-    </div>
-  </section>
-  <% } %>
-
   <div class="dev-map__tracks">
     <% map.tracks.forEach(function (track) { %>
     <section class="dev-map__track" id="dev-map-track-<%= track.id %>" role="tabpanel" aria-labelledby="dev-map-tab-<%= track.id %>" data-track="<%= track.id %>">
@@ -114,5 +100,19 @@ var pin = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fo
       <a href="https://atlas.6yuwei.com" target="_blank" rel="noopener"><%= copy.atlas_label %></a>
     </div>
   </section>
+
+  <% if (copy.promo) { %>
+  <section class="dev-map__promo" aria-labelledby="dev-map-promo">
+    <div class="dev-map__promo-media">
+      <img src="<%- url_for('img/iraiya-card.jpg') %>" width="960" height="504" alt="<%= copy.promo.image_alt %>" loading="lazy" decoding="async">
+    </div>
+    <div class="dev-map__promo-body">
+      <p class="dev-map__promo-eyebrow"><%= copy.promo.eyebrow %></p>
+      <h2 id="dev-map-promo"><%= copy.promo.title %></h2>
+      <p><%= copy.promo.text %></p>
+      <a class="dev-map__promo-cta" href="<%= copy.promo.href %>" target="_blank" rel="noopener"><%= copy.promo.cta %></a>
+    </div>
+  </section>
+  <% } %>
 </div>
 <script defer src="<%- url_for('js/dev-map.js?v=261006-1') %>"></script>

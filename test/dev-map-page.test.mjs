@@ -143,7 +143,7 @@ test('the first featured cover is fetched eagerly with high priority', () => {
   }
 });
 
-test('every locale promotes Iraiya with a link to its own-language site', () => {
+test('every locale ends with the Iraiya games and apps section and a link to its own-language site', () => {
   for (const { dir, lang, iraiya } of [
     { dir: '', lang: 'zh-TW', iraiya: 'https://iraiya.com/zh-TW' },
     { dir: 'zh-cn', lang: 'zh-CN', iraiya: 'https://iraiya.com/zh-TW' },
@@ -154,6 +154,8 @@ test('every locale promotes Iraiya with a link to its own-language site', () => 
 
     assert.ok(promo.includes(`href="${iraiya}"`), `${lang} Iraiya link`);
     assert.match(promo, /<img [^>]*width="\d+" height="\d+"[^>]*alt="[^"]+"/, `${lang} Iraiya image`);
-    assert.ok(html.indexOf('dev-map__promo') < html.indexOf('dev-map__tracks'), `${lang} promo sits above the routes`);
+    assert.ok(html.indexOf('dev-map__promo') > html.indexOf('dev-map__closing'), `${lang} promo sits after the closing links`);
+    assert.match(html, /<section class="dev-map__promo"[\s\S]*?<\/section>\s*<\/div>\s*<script/, `${lang} promo is the final dev map section`);
+    assert.doesNotMatch(promo, /作者|\bauthor\b/i, `${lang} promo copy focuses on games and apps`);
   }
 });
