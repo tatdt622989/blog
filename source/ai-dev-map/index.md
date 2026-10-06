@@ -50,8 +50,12 @@ dev_map:
       label: 做遊戲
       stages:
         plan:
-          note: 先選對引擎，AI 才知道要幫你寫什麼。
+          note: 先定核心玩法與第一版範圍，拆好開發步驟，再選引擎。
           items:
+            - post: 2026-06-26-告別-AI-瞎寫程式的時代：用-Superpowers-框架為-Claude-Code-與-Codex-注入工程紀律
+              solves: 讓 AI 先問清楚玩法、功能邊界與限制，再拆出可驗證的開發步驟。
+            - post: agentic-sdlc-architecture-guide
+              solves: 開工前先寫規格、安排實作順序，約定怎樣才算完成。
             - post: gpt-6-game-engines-guide
               solves: 沒寫過程式，也能判斷該用 Godot、Unity 還是網頁引擎。
         build:
@@ -84,8 +88,12 @@ dev_map:
       label: 做 App 與工具
       stages:
         plan:
-          note: 工具選對，每個月少花錢，也少走冤枉路。
+          note: 先釐清使用者的問題、第一版功能與驗收條件，再選工具。
           items:
+            - post: 2026-06-26-告別-AI-瞎寫程式的時代：用-Superpowers-框架為-Claude-Code-與-Codex-注入工程紀律
+              solves: 把「我想做一個 App」拆成明確需求與第一版的實作計畫。
+            - post: agentic-sdlc-architecture-guide
+              solves: 先對齊功能邊界、架構與驗收條件，避免做到一半才發現方向錯了。
             - post: ai-coding-tools-comparison
               solves: Cursor、Codex、Claude Code 差在哪，哪個適合你。
             - post: how-to-buy-ai-subscriptions-best-value
@@ -123,8 +131,6 @@ dev_map:
             - post: chatgpt-ads-taiwan-guide
               solves: ChatGPT 開始有廣告了：誰看得到、能不能投放。
   more:
-    - post: agentic-sdlc-architecture-guide
-      solves: 專案一大就失控？讓 AI 照流程穩定交付。
     - post: e2e-testing-agentic-sdlc-ground-truth
       solves: 用自動驗收守住每一次 AI 改動。
     - post: artificial-analysis-definitive-guide-llm-selection

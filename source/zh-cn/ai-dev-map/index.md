@@ -50,8 +50,10 @@ dev_map:
       label: 做游戏
       stages:
         plan:
-          note: 先选对引擎，AI 才知道要帮你写什么。
+          note: 先明确核心玩法和首版范围，拆好开发任务，再选引擎。
           items:
+            - post: agentic-sdlc-architecture-guide
+              solves: 开工前写清需求、安排实现顺序，并约定怎样才算完成。
             - post: gpt-6-game-engines-guide
               solves: 没写过代码，也能判断该用 Godot、Unity 还是网页引擎。
         build:
@@ -82,8 +84,10 @@ dev_map:
       label: 做 App 与工具
       stages:
         plan:
-          note: 工具选对，每个月少花钱，也少走弯路。
+          note: 先明确用户要解决的问题、首版功能和验收标准，再选工具。
           items:
+            - post: agentic-sdlc-architecture-guide
+              solves: 开发前明确功能边界、架构和验收标准，避免中途才发现方向有误。
             - post: ai-coding-tools-comparison
               solves: Cursor、Codex、Claude Code 差在哪，哪个适合你。
             - post: how-to-buy-ai-subscriptions-best-value
@@ -117,8 +121,6 @@ dev_map:
             - post: chatgpt-ads-taiwan-guide
               solves: ChatGPT 开始有广告了：谁看得到、能不能投放。
   more:
-    - post: agentic-sdlc-architecture-guide
-      solves: 项目一大就失控？让 AI 按流程稳定交付。
     - post: artificial-analysis-definitive-guide-llm-selection
       solves: 用第三方评测挑出又快又便宜的模型。
     - post: open-source-ai-image-generation-pipeline-comfyui-guide

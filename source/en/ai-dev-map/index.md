@@ -50,8 +50,10 @@ dev_map:
       label: Make a game
       stages:
         plan:
-          note: Pick the right engine so AI knows what to write.
+          note: Define the core gameplay and first-version scope, break the work into steps, then choose an engine.
           items:
+            - post: agentic-sdlc-architecture-guide
+              solves: Write a clear spec, order the implementation steps, and agree on what counts as done before coding.
             - post: gpt-6-game-engines-guide
               solves: Never coded? You can still tell whether Godot, Unity, or a web engine fits your idea.
         build:
@@ -82,8 +84,10 @@ dev_map:
       label: Make an app or tool
       stages:
         plan:
-          note: Pick the right tools and spend less every month.
+          note: Define the user problem, first-version features, and acceptance criteria before choosing tools.
           items:
+            - post: agentic-sdlc-architecture-guide
+              solves: Agree on feature boundaries, architecture, and acceptance criteria before development starts.
             - post: ai-coding-tools-comparison
               solves: How Cursor, Codex, and Claude Code differ, and which one suits you.
             - post: how-to-buy-ai-subscriptions-best-value
@@ -117,8 +121,6 @@ dev_map:
             - post: chatgpt-ads-taiwan-guide
               solves: "ChatGPT now shows ads: who sees them and whether you can advertise there."
   more:
-    - post: agentic-sdlc-architecture-guide
-      solves: Project growing out of control? Keep AI delivering through a clear process.
     - post: artificial-analysis-definitive-guide-llm-selection
       solves: Use independent benchmarks to pick fast, affordable models.
     - post: open-source-ai-image-generation-pipeline-comfyui-guide
