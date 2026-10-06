@@ -52,6 +52,8 @@ dev_map:
         plan:
           note: 先明确核心玩法和首版范围，拆好开发任务，再选引擎。
           items:
+            - post: ai-game-planning-gdd-prototype-guide
+              solves: 把玩法收敛为能完整玩一局的原型，写好 GDD、规则和试玩清单。
             - post: agentic-sdlc-architecture-guide
               solves: 开工前写清需求、安排实现顺序，并约定怎样才算完成。
             - post: gpt-6-game-engines-guide
@@ -86,6 +88,8 @@ dev_map:
         plan:
           note: 先明确用户要解决的问题、首版功能和验收标准，再选工具。
           items:
+            - post: ai-app-planning-prd-mvp-guide
+              solves: 从点子整理一页需求文档，确定首版功能和可执行的验收标准。
             - post: agentic-sdlc-architecture-guide
               solves: 开发前明确功能边界、架构和验收标准，避免中途才发现方向有误。
             - post: ai-coding-tools-comparison

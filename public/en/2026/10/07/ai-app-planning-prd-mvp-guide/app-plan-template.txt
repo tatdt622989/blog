@@ -1,0 +1,28 @@
+First-Version App Plan / One-Page PRD
+
+Project name:
+Target users and context:
+Current approach and problem:
+Available evidence:
+Assumptions to investigate:
+What the first version should help us learn:
+Main user journey:
+Required features:
+Out of scope:
+Target platform and devices:
+Screens, empty states, and failure states:
+Data fields, storage, editing, and deletion rules:
+
+Acceptance checks (ID / precondition / action / expected result / actual evidence):
+A1:
+A2:
+A3:
+
+Implementation milestones (each needs a demonstrable result):
+1:
+2:
+3:
+
+Open questions and decision owner:
+Who will try it and what we want to observe:
+Update date and decision changes:

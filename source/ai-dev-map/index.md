@@ -52,6 +52,8 @@ dev_map:
         plan:
           note: 先定核心玩法與第一版範圍，拆好開發步驟，再選引擎。
           items:
+            - post: ai-game-planning-gdd-prototype-guide
+              solves: 把玩法縮成能完整玩一輪的原型，寫好 GDD、規則與試玩清單。
             - post: 2026-06-26-告別-AI-瞎寫程式的時代：用-Superpowers-框架為-Claude-Code-與-Codex-注入工程紀律
               solves: 讓 AI 先問清楚玩法、功能邊界與限制，再拆出可驗證的開發步驟。
             - post: agentic-sdlc-architecture-guide
@@ -90,6 +92,8 @@ dev_map:
         plan:
           note: 先釐清使用者的問題、第一版功能與驗收條件，再選工具。
           items:
+            - post: ai-app-planning-prd-mvp-guide
+              solves: 從點子寫出一頁需求文件，選定第一版功能與可驗收條件。
             - post: 2026-06-26-告別-AI-瞎寫程式的時代：用-Superpowers-框架為-Claude-Code-與-Codex-注入工程紀律
               solves: 把「我想做一個 App」拆成明確需求與第一版的實作計畫。
             - post: agentic-sdlc-architecture-guide

@@ -1,0 +1,29 @@
+First-Version Game Plan / One-Page GDD
+
+Project name:
+One-sentence concept:
+Target players, platform, and play context:
+Core loop (action / feedback / next decision):
+Gameplay hypothesis this prototype should investigate:
+First-version scenes, characters, and content:
+Out of scope:
+Input methods and viewport sizes:
+Scoring, misses, win/loss, and ending conditions:
+Restart and state-reset rules:
+Adjustable parameters and initial values (mark untested values):
+Placeholder assets and essential feedback:
+
+Rule checks (ID / action / expected result / device and version / actual result):
+G1:
+G2:
+G3:
+
+Playable milestones and completion criteria:
+1:
+2:
+3:
+
+Open questions:
+Playtesters, observation goals, and questions:
+Feedback notes and the next adjustment:
+Update date and rule changes:

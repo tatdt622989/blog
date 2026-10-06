@@ -52,6 +52,8 @@ dev_map:
         plan:
           note: Define the core gameplay and first-version scope, break the work into steps, then choose an engine.
           items:
+            - post: ai-game-planning-gdd-prototype-guide
+              solves: Scope a complete playable round, with a GDD, explicit rules, and a playtest checklist.
             - post: agentic-sdlc-architecture-guide
               solves: Write a clear spec, order the implementation steps, and agree on what counts as done before coding.
             - post: gpt-6-game-engines-guide
@@ -86,6 +88,8 @@ dev_map:
         plan:
           note: Define the user problem, first-version features, and acceptance criteria before choosing tools.
           items:
+            - post: ai-app-planning-prd-mvp-guide
+              solves: Turn an idea into a one-page PRD, a focused first version, and testable acceptance checks.
             - post: agentic-sdlc-architecture-guide
               solves: Agree on feature boundaries, architecture, and acceptance criteria before development starts.
             - post: ai-coding-tools-comparison
