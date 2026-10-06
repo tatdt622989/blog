@@ -140,3 +140,25 @@ test('language switch targets a paired post and otherwise falls back to locale h
   );
   assert.equal(languageSwitchTarget(page, 'zh-TW', baseConfig), '/2023/03/05/typescript/');
 });
+
+test('standalone pages with translations advertise and switch to their peers', () => {
+  const page = {
+    layout: 'dev-map',
+    path: 'ai-dev-map/index.html',
+    permalink: 'https://blog.6yuwei.com/ai-dev-map/index.html',
+    translations: {
+      'zh-CN': '/zh-cn/ai-dev-map/',
+      en: '/en/ai-dev-map/',
+    },
+  };
+
+  assert.deepEqual(alternateLinks(page, baseConfig), [
+    { hreflang: 'zh-TW', href: 'https://blog.6yuwei.com/ai-dev-map/' },
+    { hreflang: 'zh-CN', href: 'https://blog.6yuwei.com/zh-cn/ai-dev-map/' },
+    { hreflang: 'en', href: 'https://blog.6yuwei.com/en/ai-dev-map/' },
+    { hreflang: 'x-default', href: 'https://blog.6yuwei.com/ai-dev-map/' },
+  ]);
+  assert.equal(languageSwitchTarget(page, 'zh-CN', baseConfig), '/zh-cn/ai-dev-map/');
+  assert.equal(languageSwitchTarget(page, 'en', baseConfig), '/en/ai-dev-map/');
+  assert.equal(languageSwitchTarget(page, 'zh-TW', baseConfig), '/ai-dev-map/');
+});

@@ -37,3 +37,29 @@ test('loading the optimizer as a Hexo script ignores another command CLI argumen
 
   assert.equal(result.status, 0, result.stderr);
 });
+
+test('responsive covers keep a sizes hint chosen by the template', async () => {
+  const fs = await import('node:fs');
+  const os = await import('node:os');
+  const publicDir = fs.mkdtempSync(path.join(os.tmpdir(), 'blog-optimizer-sizes-'));
+
+  try {
+    const cover = path.join(process.cwd(), 'source/_posts/2026-09-09-GPT-6-做遊戲用什麼引擎？Godot、Unity、Unreal-與網頁遊戲工具怎麼選/cover.jpg');
+    const width = spawnSync('sips', ['-g', 'pixelWidth', cover], { encoding: 'utf8' }).stdout.match(/pixelWidth: (\d+)/)[1];
+    fs.mkdirSync(path.join(publicDir, 'img'));
+    fs.copyFileSync(cover, path.join(publicDir, 'img/card.jpg'));
+    fs.writeFileSync(
+      path.join(publicDir, 'index.html'),
+      `<img class="post-cover-image" src="/img/card.jpg" width="${width}" height="1" sizes="(max-width: 720px) 112px, 300px">`,
+    );
+
+    const result = spawnSync(process.execPath, ['scripts/optimize-public-images.js', '--public-dir', publicDir], { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+
+    const html = fs.readFileSync(path.join(publicDir, 'index.html'), 'utf8');
+    assert.match(html, /srcset="[^"]*card-card-480\.jpg/);
+    assert.match(html, /sizes="\(max-width: 720px\) 112px, 300px"/);
+  } finally {
+    fs.rmSync(publicDir, { recursive: true, force: true });
+  }
+});

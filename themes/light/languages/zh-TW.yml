@@ -12,7 +12,7 @@ page: 第 %d 頁
 recent_posts: 最新文章
 nav_home: 首頁
 nav_archives: 彙整
-nav_atlas: Atlas
+nav_dev_map: 開發地圖
 nav_works: 作品
 read_more: 閱讀全文
 breadcrumb_home: 首頁
@@ -55,6 +55,7 @@ table_scroll_label: 表格，可左右捲動
 table_scroll_hint: 左右滑動查看完整表格；鍵盤可使用方向鍵。
 start_here_title: 從這裡開始
 start_here_description: 挑一個現在想解決的問題，直接看實用教學。
+start_here_dev_map: 看完整開發地圖
 subscribe_rss: RSS 訂閱
 guide_quota_title: 看懂 Codex 額度
 guide_quota_description: 查用量、重置時間與手動重設的差別。
