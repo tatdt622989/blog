@@ -263,7 +263,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/2026/08/27/indie-game-ai-audio-workflow/</loc>
 
     <lastmod>2026-08-29</lastmod>
 
@@ -272,7 +272,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/2026/08/27/indie-game-ai-audio-workflow/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/</loc>
 
     <lastmod>2026-08-29</lastmod>
 
@@ -344,13 +344,6 @@
 
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/Suno/</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/TypeScript/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -359,6 +352,13 @@
 
   <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/JavaScript/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/Suno/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -554,7 +554,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/GPT-6/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -562,6 +562,13 @@
 
   <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/Godot/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/zh-cn/tags/GPT-6/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -590,13 +597,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/zh-cn/tags/PixiJS/</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -717,14 +717,14 @@
 
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/categories/AI/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/categories/AI/</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
