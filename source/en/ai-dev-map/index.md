@@ -23,8 +23,7 @@ dev_map:
   more_title: Going further
   more_note: Useful once your project grows and you want it to hold up.
   closing_title: Want more?
-  closing_text: Subscribe via RSS for new guides, or browse the portfolio and more AI tool roundups.
-  works_label: Browse the portfolio
+  closing_text: Subscribe via RSS for new guides, or explore more AI tools in Atlas.
   atlas_label: AI Tools Atlas
   promo:
     eyebrow: Games and apps

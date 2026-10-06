@@ -23,8 +23,7 @@ dev_map:
   more_title: 想走得更远再看
   more_note: 项目变大、想做得更稳时，这几篇会用得上。
   closing_title: 还想看更多？
-  closing_text: 追新文章可以订阅 RSS；想看作品或更多 AI 工具整理，也都在这里。
-  works_label: 看作品集
+  closing_text: 订阅 RSS 关注新文章，或到 Atlas 查找更多 AI 工具。
   atlas_label: AI 工具 Atlas
   promo:
     eyebrow: 游戏与 App
