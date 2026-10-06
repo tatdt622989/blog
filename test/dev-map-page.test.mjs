@@ -142,3 +142,18 @@ test('the first featured cover is fetched eagerly with high priority', () => {
     assert.ok(images.slice(1).every(img => !/fetchpriority/.test(img)), `${lang} only one priority image`);
   }
 });
+
+test('every locale promotes Iraiya with a link to its own-language site', () => {
+  for (const { dir, lang, iraiya } of [
+    { dir: '', lang: 'zh-TW', iraiya: 'https://iraiya.com/zh-TW' },
+    { dir: 'zh-cn', lang: 'zh-CN', iraiya: 'https://iraiya.com/zh-TW' },
+    { dir: 'en', lang: 'en', iraiya: 'https://iraiya.com/en' },
+  ]) {
+    const html = read(dir, 'ai-dev-map', 'index.html');
+    const promo = html.match(/<section class="dev-map__promo"[\s\S]*?<\/section>/)?.[0] || '';
+
+    assert.ok(promo.includes(`href="${iraiya}"`), `${lang} Iraiya link`);
+    assert.match(promo, /<img [^>]*width="\d+" height="\d+"[^>]*alt="[^"]+"/, `${lang} Iraiya image`);
+    assert.ok(html.indexOf('dev-map__promo') < html.indexOf('dev-map__tracks'), `${lang} promo sits above the routes`);
+  }
+});

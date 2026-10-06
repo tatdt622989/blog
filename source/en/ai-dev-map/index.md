@@ -26,6 +26,13 @@ dev_map:
   closing_text: Subscribe via RSS for new guides, or browse my works and more AI tool roundups.
   works_label: See my works
   atlas_label: AI Tools Atlas
+  promo:
+    eyebrow: From the author
+    title: Iraiya
+    text: Pixel games, browser games, and a Japanese learning app. Brick breaker, Minesweeper, and the Nihongo Tango vocabulary app are playable now, with the pixel fishing game Great Fishing Festival and the idle RPG Pocket Commissions in development.
+    cta: Visit Iraiya
+    href: https://iraiya.com/en
+    image_alt: Iraiya pixel art key visual for its games and apps
   stops:
     - { id: plan, label: Figure out what to build, short: Plan, formal: Planning }
     - { id: build, label: Build it, short: Build, formal: Development }

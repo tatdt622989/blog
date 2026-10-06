@@ -26,6 +26,13 @@ dev_map:
   closing_text: 追新文章可以订阅 RSS；想看作品或更多 AI 工具整理，也都在这里。
   works_label: 看作品集
   atlas_label: AI 工具 Atlas
+  promo:
+    eyebrow: 作者的作品
+    title: Iraiya 伊莱雅
+    text: 像素游戏、浏览器小游戏与日语学习 App。打砖块、扫雷与 Nihongo Tango 日语单词 App 现在就能玩，像素钓鱼游戏大渔祭与放置 RPG 委托屋正在开发中。
+    cta: 去看看 Iraiya
+    href: https://iraiya.com/zh-TW
+    image_alt: Iraiya 伊莱雅的像素风格游戏与 App 主视觉
   stops:
     - { id: plan, label: 想清楚要做什么, short: 想清楚, formal: 规划选型 }
     - { id: build, label: 把它做出来, short: 做出来, formal: 开发 }
