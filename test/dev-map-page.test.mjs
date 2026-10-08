@@ -6,9 +6,9 @@ import path from 'node:path';
 const output = process.env.BLOG_TEST_PUBLIC_DIR || path.resolve('public');
 const origin = 'https://blog.6yuwei.com';
 const locales = [
-  { dir: '', prefix: '/', lang: 'zh-TW', title: '用 AI 做出你的第一個 App' },
-  { dir: 'zh-cn', prefix: '/zh-cn/', lang: 'zh-CN', title: '用 AI 做出你的第一个 App' },
-  { dir: 'en', prefix: '/en/', lang: 'en', title: 'Build Your First App with AI' },
+  { dir: '', prefix: '/', lang: 'zh-TW', title: '用 AI 做遊戲、做 App，從零開始到上架賺錢' },
+  { dir: 'zh-cn', prefix: '/zh-cn/', lang: 'zh-CN', title: '用 AI 做游戏、做 App，从零开始到上线赚钱' },
+  { dir: 'en', prefix: '/en/', lang: 'en', title: 'Build Games and Apps with AI, from Scratch to Launch and Revenue' },
 ];
 
 function read(...parts) {

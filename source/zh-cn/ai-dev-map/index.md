@@ -1,7 +1,7 @@
 ---
-title: 用 AI 做出你的第一个 App：从点子、上线到赚钱的开发地图，看看你在哪一站
-description: 想用 AI 做游戏、App 或小工具？这张开发地图按想清楚、做出来、确认能用、上线与开始赚钱五站整理实战文章，每篇都写明能帮你解决什么，找到你现在卡住的位置。
-seo_title: 用 AI 做出你的第一个 App：从点子到赚钱的开发地图
+title: 用 AI 做游戏、做 App，从零开始到上线赚钱
+description: 工具怎么选、第一版怎么开发、怎么测试和发布上线、有哪些变现方式？按开发流程找到对应教程。游戏与 App 两条路线都适用。
+seo_title: 用 AI 做游戏、做 App，从零开始到上线赚钱
 layout: dev-map
 comments: false
 cover: /zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/cover.jpg
@@ -9,8 +9,8 @@ translations:
   zh-TW: /ai-dev-map/
   en: /en/ai-dev-map/
 dev_map:
-  lead: 你有一个想做的东西，也想让它带来收入。AI 能帮你写出第一版，但选对工具、确认真的能用、上线让别人用，才是真正的关卡。选好路线、点一下你现在的位置，下一步该看哪篇都标好了。
-  lead_short: AI 能帮你写出第一版，但选对工具、确认真的能用、上线让别人用，才是真正的关卡。点一下你现在的位置，下一步都标好了。
+  lead: 工具怎么选、第一版怎么开发、怎么测试和发布上线、有哪些变现方式？按开发流程找到对应教程。
+  lead_short: 工具怎么选、第一版怎么开发、怎么测试和发布上线、有哪些变现方式？按开发流程找到对应教程。
   route_label: 选择开发路线
   route_hint: 点一站，标出你现在的位置
   here: 你在这里

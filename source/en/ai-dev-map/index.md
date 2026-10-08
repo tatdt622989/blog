@@ -1,7 +1,7 @@
 ---
-title: "Build Your First App with AI: A Map from Idea to Launch to Revenue. Find Your Stop"
-seo_title: "Build Your First App with AI: Idea to Revenue Map"
-description: "Building a game, app, or tool with AI? This map sorts practical guides into five stops, from planning to launch and revenue, so you can find your next step."
+title: "Build Games and Apps with AI, from Scratch to Launch and Revenue"
+seo_title: "Make Games and Apps with AI: Build, Launch, Earn"
+description: "Learn which tools to use, how to build your first version, how to test and launch it, and how to monetize it. Find guides for each step of development."
 layout: dev-map
 comments: false
 cover: /en/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/cover.jpg
@@ -9,8 +9,8 @@ translations:
   zh-TW: /ai-dev-map/
   zh-CN: /zh-cn/ai-dev-map/
 dev_map:
-  lead: "You have something you want to build, and you would like it to bring in some income. AI can write the first version, but choosing the right tools, making sure it really works, and getting it into people's hands are the real hurdles. Pick a route, tap where you are now, and the next guide to read is already marked."
-  lead_short: "AI can write the first version. Choosing tools, making it work, and launching it are the real hurdles. Tap where you are, and your next step is marked."
+  lead: "Learn which tools to use, how to build your first version, how to test and launch it, and how to monetize it. Find guides for each step of development."
+  lead_short: "Learn which tools to use, how to build your first version, how to test and launch it, and how to monetize it. Find guides for each step of development."
   route_label: Choose a route
   route_hint: Tap a stop to mark where you are
   here: You are here
