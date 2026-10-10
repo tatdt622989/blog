@@ -1,7 +1,7 @@
 ---
 title: Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用
 date: 2026-10-10 20:24:21
-updated: 2026-10-10 22:43:02
+updated: 2026-10-10 23:21:28
 description: Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。
 permalink: 2026/10/10/claude-projects-dashboards-motion-guide/
 translation_key: claude-projects-dashboards-motion-guide
@@ -20,8 +20,6 @@ tags:
 ![Claude 新版 Projects 协调任务、Dashboards 数据图表与 Motion 动画的概念插画](cover.jpg)
 
 **Claude 最近值得关注的新产品，包括新版 Projects、Dashboards 和 Motion。** Projects 于 9 月 17 日推出新版 Beta；Dashboards 和 Motion 则在 10 月 8 日发布。这些更新把任务推进、数据分析和可视化讲解带进了 Claude 的产品界面。[Projects 公告](https://claude.com/resources/articles/projects-redesigned) · [Dashboards 与 Motion 公告](https://claude.com/resources/articles/dashboards-and-motion)
-
-本文依据 **2026 年 10 月 10 日** 查到的官方公告与文档整理，尚未进行产品实测。下面分别介绍功能、开放范围，以及适合拿来试用的小任务。
 
 <!--more-->
 

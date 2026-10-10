@@ -1,7 +1,7 @@
 ---
 title: "Claude's New Products: Projects, Dashboards, and Motion Explained"
 date: 2026-10-10 20:24:21
-updated: 2026-10-10 22:43:02
+updated: 2026-10-10 23:21:28
 description: "Explore Claude's redesigned Projects, Dashboards, and Motion: availability, starter prompts, practical limits, and Claude Design migration."
 permalink: 2026/10/10/claude-projects-dashboards-motion-guide/
 translation_key: claude-projects-dashboards-motion-guide
@@ -20,8 +20,6 @@ tags:
 ![Concept illustration of Claude Projects coordinating work alongside Dashboards charts and Motion animations](cover.jpg)
 
 **Claude's recent product updates include redesigned Projects, Dashboards, and Motion.** The Projects beta was announced on September 17, followed by Dashboards and Motion on October 8. Together, these updates add ways to manage ongoing work, explore data, and explain ideas visually. [Projects announcement](https://claude.com/resources/articles/projects-redesigned), [Dashboards and Motion announcement](https://claude.com/resources/articles/dashboards-and-motion).
-
-This article uses official announcements and documentation checked on **October 10, 2026**. I have not tested these products independently. The guide separates what each feature offers, who can access it, and the small tasks I would use to evaluate it.
 
 <!--more-->
 
