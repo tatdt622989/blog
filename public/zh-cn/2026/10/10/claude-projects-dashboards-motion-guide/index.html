@@ -1,0 +1,757 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/10/Claude-%E6%96%B0%E7%94%A2%E5%93%81%E4%BB%8B%E7%B4%B9%EF%BC%9A%E6%96%B0%E7%89%88-Projects%E3%80%81Dashboards-%E8%88%87-Motion-%E6%80%8E%E9%BA%BC%E7%94%A8/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/10/claude-projects-dashboards-motion-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/10/Claude-%E6%96%B0%E7%94%A2%E5%93%81%E4%BB%8B%E7%B4%B9%EF%BC%9A%E6%96%B0%E7%89%88-Projects%E3%80%81Dashboards-%E8%88%87-Motion-%E6%80%8E%E9%BA%BC%E7%94%A8/">
+  
+
+  <meta property="og:title" content="Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用"/>
+  <meta property="og:description" content="Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg?v=903de948" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用">
+  <meta name="twitter:description" content="Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg?v=903de948">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/","headline":"Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用","description":"Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。","datePublished":"2026-10-10T12:24:21.000Z","dateModified":"2026-10-10T14:43:02.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用","item":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=943446a26f">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/10/Claude-新產品介紹：新版-Projects、Dashboards-與-Motion-怎麼用/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/10/claude-projects-dashboards-motion-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+      <li><a href="/zh-cn/ai-dev-map/">开发地图</a></li>
+    
+    <li><a href="https://iraiya.com" target="_blank" rel="noopener">产品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-claude-projects-dashboards-motion-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-10T12:24:21.000Z"><a href="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/">2026-10-10</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-720.jpg?v=6e81f3f0" alt="Claude 新版 Projects 协调任务、Dashboards 数据图表与 Motion 动画的概念插画" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-480.jpg?v=e0b47242 480w, /zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-720.jpg?v=6e81f3f0 720w, /zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-960.jpg?v=a2b0af52 960w, /zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-1280.jpg?v=8af7db15 1280w, /zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg?v=903de948 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p><strong>Claude 最近值得关注的新产品，包括新版 Projects、Dashboards 和 Motion。</strong> Projects 于 9 月 17 日推出新版 Beta；Dashboards 和 Motion 则在 10 月 8 日发布。这些更新把任务推进、数据分析和可视化讲解带进了 Claude 的产品界面。<a target="_blank" rel="noopener" href="https://claude.com/resources/articles/projects-redesigned">Projects 公告</a> · <a target="_blank" rel="noopener" href="https://claude.com/resources/articles/dashboards-and-motion">Dashboards 与 Motion 公告</a></p>
+<p>本文依据 <strong>2026 年 10 月 10 日</strong> 查到的官方公告与文档整理，尚未进行产品实测。下面分别介绍功能、开放范围，以及适合拿来试用的小任务。</p>
+<span id="more"></span>
+
+<h2 id="先看用途和订阅要求"><a href="#先看用途和订阅要求" class="headerlink" title="先看用途和订阅要求"></a>先看用途和订阅要求</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>主要用途</th>
+<th>当前开放范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>新版 Projects</td>
+<td>协调多项任务和工作线程，持续推进项目</td>
+<td>部分 Claude Code Pro、Max 用户，分批开放 Beta</td>
+</tr>
+<tr>
+<td>Dashboards</td>
+<td>基于已连接的数据源创建看板</td>
+<td>Pro、Max、Team、Enterprise，Beta</td>
+</tr>
+<tr>
+<td>Motion</td>
+<td>把文字、图表和图片做成动画讲解</td>
+<td>Team、Enterprise，Beta</td>
+</tr>
+<tr>
+<td>Docs、Slides、Design</td>
+<td>文档、演示文稿和设计作品</td>
+<td>已结束 Beta，支持所有方案，包括 Free</td>
+</tr>
+</tbody></table></div>
+<p>新版 Projects 的资格以 <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/9517075-what-are-projects">Projects 帮助文档</a> 为准；其他作品模板参见 <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them">Artifacts 方案表</a>。Enterprise 用户还需要确认管理员是否启用了相关功能。</p>
+<p><img src="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/products-overview.jpg?v=ed38437c" alt="Claude 三项新产品用途图解：Projects 推进任务、Dashboards 分析数据、Motion 制作动画"></p>
+<p><em>图解 1：先按任务选择入口。Projects 对应“目标 → 并行任务 → 审查”；Dashboards 对应“数据 → 图表 → 核对”；Motion 对应“素材 → 动画 → MP4”。</em></p>
+<h2 id="Projects：在一个项目里持续分配和推进任务"><a href="#Projects：在一个项目里持续分配和推进任务" class="headerlink" title="Projects：在一个项目里持续分配和推进任务"></a>Projects：在一个项目里持续分配和推进任务</h2><p>原有 Projects 可以集中聊天记录、知识文件和项目指令；<strong>新版进一步加入了任务协调能力</strong>。你在主对话中描述目标，Claude 分配任务、协调并行工作，再汇总结果。云端工作线程会读取项目资料、指令与记忆，生成的文件集中保存在 <strong>Library</strong> 中。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/9517075-what-are-projects">原版与新版说明</a></p>
+<p><img src="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/projects-workflow.jpg?v=23fa89a0" alt="Claude Projects 任务协调图：目标交给协调者，修复、测试和文档线程共享背景信息，最后汇总结果供审查"></p>
+<p><em>图解 2：以一次游戏版本更新为例，主对话统筹修复、测试和文档三项任务。云端线程使用共享背景信息，结果汇总到审查与 Library；实际任务拆分取决于需求。</em></p>
+<p>对 App 或游戏开发者来说，我认为最适合先试的场景，是一次更新带来多件关联任务：修复登录问题、补充测试、编写发布说明。能否减少重复交代背景的时间，以及能否清楚看到等待审查的结果，比同时开多少线程更值得关注。</p>
+<p>可以先用一个边界清楚的任务验证：</p>
+<blockquote>
+<p>这个项目的目标是改善新玩家首次进入游戏的体验。先找出新手引导界面最容易误解的两个步骤，提出修改建议，再补充测试。先说明你的任务拆分；代码修改整理为可审查的 PR，合并前由我确认。</p>
+</blockquote>
+<p>获得新版入口后，可以从 <strong>claude.ai&#x2F;code → Projects</strong> 或桌面应用的 <strong>Code</strong> 标签页创建项目，添加需要的代码仓库和文件。云端代码任务需要相应的 GitHub 访问权限，也不会自动继承你本机的所有工具和配置。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/claude-projects">创建与配置指南</a></p>
+<p><strong>云端线程在合上笔记本后仍可继续运行；在本机执行的线程，则要求电脑保持唤醒和连接。</strong> 并行任务修改同一段代码时，仍可能产生合并冲突；同时运行多个线程也会更快消耗订阅额度。我会先从一两件小任务开始，检查交付质量和用量，再扩大范围。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/remote-control">云端与本机运行</a> · <a target="_blank" rel="noopener" href="https://claude.com/resources/articles/projects-redesigned">并行任务与用量</a></p>
+<p>只看到原有聊天 Projects，并不代表已经获得新版。官方仍在分批开放，Team 和 Enterprise 目前尚不支持新版，现有 Projects 继续正常使用。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/claude-projects">当前可用性</a></p>
+<h2 id="Dashboards：从一个数据问题开始创建看板"><a href="#Dashboards：从一个数据问题开始创建看板" class="headerlink" title="Dashboards：从一个数据问题开始创建看板"></a>Dashboards：从一个数据问题开始创建看板</h2><p>Claude Dashboards 可以连接 BigQuery、Snowflake 等数据平台，以及 Salesforce 等应用。用自然语言提出问题后，Claude 创建图表；每张图表都能查看查询语句和最后刷新时间。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454700-get-started-with-claude-dashboards">Dashboards 入门</a></p>
+<p><img src="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/dashboards-workflow.jpg?v=522576e0" alt="Claude Dashboards 使用流程图：连接数据并提出问题，生成图表后检查查询与最后刷新时间，再核对和分享"></p>
+<p><em>图解 3：结合数据与问题生成看板，再检查查询语句和最后刷新时间。确认统计口径后再分享。图中图表仅用于说明流程。</em></p>
+<p>对负责产品运营的人来说，一个明确的小问题通常更容易验证。例如“上个月付费用户增加，主要来自哪个套餐？”就比“做个好看的数据看板”更有帮助。</p>
+<blockquote>
+<p>使用已连接的订阅数据，对比最近八周各套餐新增付费用户和取消订阅的人数。先列出采用的日期字段、时区和统计定义，再创建每周趋势图。</p>
+</blockquote>
+<p><strong>看板做得漂亮，仍要核对统计口径。</strong> 新增订阅是否扣除了退款、取消订阅按申请日期还是到期日期计算，都会改变结论。我的建议是先用一周已知数据对账，再把它纳入日常分析。</p>
+<p>官方将 Dashboards 定位为快速探索问题的工具，深入分析可以转到其他分析平台继续。连接器会继承源服务的访问权限，数据是否可读仍取决于授权。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454700-get-started-with-claude-dashboards">产品定位</a> · <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities">连接器权限</a></p>
+<h2 id="Motion：把产品讲解做成便于修改的短动画"><a href="#Motion：把产品讲解做成便于修改的短动画" class="headerlink" title="Motion：把产品讲解做成便于修改的短动画"></a>Motion：把产品讲解做成便于修改的短动画</h2><p>Claude Motion 适合制作功能更新介绍、操作演示或动态图表。它通过代码安排文字、图形和图片的动画，方便修改内容和节奏；当前没有生成写实视频或人物的功能。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454997-get-started-with-claude-motion">Motion 入门</a></p>
+<p><img src="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/motion-workflow.jpg?v=e50246e7" alt="Claude Motion 四步图解：准备素材、描述故事、编辑动画、导出 MP4"></p>
+<p><em>图解 4：按顺序准备素材、描述故事、编辑动画，再导出 MP4。提前交代目标观众和预计时长，后续调整内容与节奏会更容易。</em></p>
+<p>介绍游戏新功能时，我会先交代观众和素材，再提出制作要求：</p>
+<blockquote>
+<p>使用我附上的游戏截图，制作一段面向新玩家的 20 秒教学动画。依次说明选择关卡、开始挑战、领取奖励，每个画面只呈现一个重点。保留素材里的按钮名称，让玩家能对照游戏界面操作。</p>
+</blockquote>
+<p>可以从聊天输入框的 <strong>Output → Motion</strong>，或 <strong>Artifacts</strong> 中的 Motion 模板开始。完成后可下载 <strong>MP4</strong>，也可以通过对话或编辑器调整动画。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454997-get-started-with-claude-motion">创建与导出步骤</a> · <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them">作品编辑方式</a></p>
+<p>Motion 计入原有方案的使用额度，较长或较复杂的动画消耗更多。先制作一个短片段，确认信息准确、节奏清楚，再扩展成完整介绍，更容易控制修改成本。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454997-get-started-with-claude-motion">Motion 用量说明</a></p>
+<h2 id="Docs、Slides-和-Design-的同步变化"><a href="#Docs、Slides-和-Design-的同步变化" class="headerlink" title="Docs、Slides 和 Design 的同步变化"></a>Docs、Slides 和 Design 的同步变化</h2><p>10 月 8 日的公告还宣布 <strong>Docs、Slides、Design 结束 Beta，向所有方案开放</strong>。Enterprise 的这三种模板预计于 <strong>10 月 15 日</strong> 默认启用；Dashboards 和 Motion 在 Enterprise 中仍默认关闭，需要管理员在 <strong>Organization settings → Artifacts</strong> 中启用。<a target="_blank" rel="noopener" href="https://claude.com/resources/articles/dashboards-and-motion">官方公告</a> · <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/16994751-artifacts-admin-guide-for-team-and-enterprise-plans">管理员配置</a></p>
+<p>已有 Claude Design 项目的用户还要留意：<strong>独立站 claude.ai&#x2F;design 将于 2026 年 12 月 14 日关闭</strong>。官方已提供设计系统迁移入口，项目暂时留在独立站，后续迁移方式有待公布。聊天记录和评论不会一并转移，独立站项目的公开链接也将失效，需要的内容应提前保存。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude">Design 迁移指南</a></p>
+<h2 id="按手头的任务选择试用入口"><a href="#按手头的任务选择试用入口" class="headerlink" title="按手头的任务选择试用入口"></a>按手头的任务选择试用入口</h2><ul>
+<li><strong>一个开发目标持续产生多项任务</strong>：先试新版 Projects，观察任务拆分、结果审查和额度消耗。</li>
+<li><strong>需要解释产品数据的变化</strong>：先试 Dashboards，从定义清楚的单个指标开始。</li>
+<li><strong>需要让玩家或同事快速理解功能</strong>：使用 Team、Enterprise 方案的人可以先试 Motion。</li>
+</ul>
+<p>作为独立开发者，我最想先验证的是 Projects 的协调效果：需求变化时，任务是否仍朝同一个方向推进，结果是否方便审查。Dashboards 和 Motion 则可以先用在已有周报和产品介绍中，用熟悉的工作判断它们能节省多少整理时间。</p>
+<p>如果还想比较开发工具，可以接着看本站的 <a href="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/">Claude Code、Codex、Cursor 使用场景比较</a>。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Claude/">Claude</a>, <a href="/zh-cn/tags/Claude-Code/">Claude Code</a>, <a href="/zh-cn/tags/Anthropic/">Anthropic</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用" data-url="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F10%2Fclaude-projects-dashboards-motion-guide%2F&title=Claude%20%E6%96%B0%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%9A%E6%96%B0%E7%89%88%20Projects%E3%80%81Dashboards%20%E5%92%8C%20Motion%20%E6%80%8E%E4%B9%88%E7%94%A8" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F10%2Fclaude-projects-dashboards-motion-guide%2F&title=Claude%20%E6%96%B0%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%9A%E6%96%B0%E7%89%88%20Projects%E3%80%81Dashboards%20%E5%92%8C%20Motion%20%E6%80%8E%E4%B9%88%E7%94%A8" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Claude%20%E6%96%B0%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%9A%E6%96%B0%E7%89%88%20Projects%E3%80%81Dashboards%20%E5%92%8C%20Motion%20%E6%80%8E%E4%B9%88%E7%94%A8&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F10%2Fclaude-projects-dashboards-motion-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用" data-url="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/" class="related-post-link"
+           data-rel-title="Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读"
+           data-rel-path="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/cover.jpg?v=123e4c05" alt="Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读</h4>
+            
+              <time class="related-post-date">2026-09-23</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/29/claude-sonnet-5-5-launch-pricing-upgrade/" class="related-post-link"
+           data-rel-title="Claude Sonnet 5.5 发布：价格、功能与升级要点"
+           data-rel-path="/zh-cn/2026/09/29/claude-sonnet-5-5-launch-pricing-upgrade/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/29/claude-sonnet-5-5-launch-pricing-upgrade/cover.jpg?v=59d00cb9" alt="Claude Sonnet 5.5 发布：价格、功能与升级要点" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Sonnet 5.5 发布：价格、功能与升级要点</h4>
+            
+              <time class="related-post-date">2026-09-29</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" class="related-post-link"
+           data-rel-title="Codex 额度与 5 小时限制：重置时间、用量查询与节省方法"
+           data-rel-path="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" alt="Codex 额度与 5 小时限制：重置时间、用量查询与节省方法" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Codex 额度与 5 小时限制：重置时间、用量查询与节省方法</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>7</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>16</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>5</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>30</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>10</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/DevDay/"><span>DevDay</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/GPT-6/"><span>GPT-6</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/zh-cn/rss.xml">订阅 RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
