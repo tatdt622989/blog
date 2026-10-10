@@ -1,7 +1,7 @@
 ---
 title: Claude 新產品介紹：新版 Projects、Dashboards 與 Motion 怎麼用
 date: 2026-10-10 20:24:21
-updated: 2026-10-10 23:21:28
+updated: 2026-10-10 23:41:11
 description: Claude 最近有哪些新產品？本文介紹新版 Projects 的雲端任務協調、Dashboards 資料儀表板與 Motion 動畫解說，整理支援方案、入門提示詞和使用限制，也說明 Docs、Slides、Design 正式開放及獨立 Design 站的遷移時程。
 translation_key: claude-projects-dashboards-motion-guide
 translations:
@@ -81,9 +81,21 @@ Claude Motion 適合把更新亮點、功能操作或圖表變化做成短動畫
 
 *圖解 4：依序準備素材、說清楚故事、修改動畫，再匯出 MP4。先交代觀眾與預期長度，會比較容易把各段內容與節奏調整到位。*
 
-如果要介紹遊戲新功能，我會先寫清楚觀眾與素材，再請它製作：
+想先試試 Motion，可以從 5 秒的純圖形動畫開始。下面的提示詞只用圓球與波紋，生成的短片也能在不同語系共用：
 
-> 使用我附上的遊戲畫面，製作一段給新玩家看的 20 秒教學動畫。依序說明選擇關卡、開始挑戰、領取獎勵，每個畫面只呈現一個重點。保留素材中的按鈕名稱，讓玩家能對照遊戲介面。
+> 請用 Motion 製作一支 5 秒、16:9 的極簡動畫。深藍背景，一顆淺藍色圓球。
+>
+> 0–3 秒：圓球從左側移動到中央，輕輕彈跳一次。
+> 3–5 秒：圓球停在中央，一圈波紋向外擴散後淡出。
+>
+> 只用簡單幾何圖形，不含文字、字幕、Logo 或音訊。直接生成一個版本，片長固定 5 秒。
+
+<video controls playsinline preload="metadata" width="1920" height="1080" aria-label="Claude Motion 5 秒動畫範例" style="display:block;width:100%;height:auto;margin:1rem auto;">
+  <source src="motion-demo.mp4?v=187309d9" type="video/mp4">
+  <a href="motion-demo.mp4?v=187309d9">下載 Motion 動畫範例</a>
+</video>
+
+*5 秒 Motion 動畫範例，點擊播放即可觀看。*
 
 可以從聊天輸入框的 **Output → Motion**，或 **Artifacts** 裡的 Motion 模板開始。完成後能下載 **MP4**；動畫內容也能透過對話或編輯器調整。[建立與匯出方式](https://support.claude.com/en/articles/17454997-get-started-with-claude-motion) · [作品編輯方式](https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them)
 

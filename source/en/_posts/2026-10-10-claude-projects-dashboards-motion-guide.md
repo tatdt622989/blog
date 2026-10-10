@@ -1,7 +1,7 @@
 ---
 title: "Claude's New Products: Projects, Dashboards, and Motion Explained"
 date: 2026-10-10 20:24:21
-updated: 2026-10-10 23:21:28
+updated: 2026-10-10 23:41:11
 description: "Explore Claude's redesigned Projects, Dashboards, and Motion: availability, starter prompts, practical limits, and Claude Design migration."
 permalink: 2026/10/10/claude-projects-dashboards-motion-guide/
 translation_key: claude-projects-dashboards-motion-guide
@@ -82,9 +82,21 @@ Claude Motion makes short explainers, product walkthroughs, and animated charts.
 
 *Figure 4. Supply assets, describe the story, edit the animation, then export MP4. Naming the audience and intended duration helps you refine the content and pacing.*
 
-For a game tutorial, I would specify the audience and supply the material first:
+For a first try, start with a five-second animation using simple shapes. This prompt uses only a ball and a ripple, so the resulting video can be shared across language versions:
 
-> Use the attached game screenshots to make a 20-second tutorial for new players. Show choosing a level, starting a challenge, and collecting rewards in that order, with one point per scene. Preserve the button names so players can match the animation to the game interface.
+> Use Motion to create a minimalist five-second animation in 16:9. Use a dark blue background and one light blue ball.
+>
+> 0–3 seconds: Move the ball from the left to the center with one gentle bounce.
+> 3–5 seconds: Keep the ball in the center while a circular ripple expands outward and fades.
+>
+> Use only simple geometric shapes, with no text, subtitles, logos, or audio. Generate one version, exactly five seconds long.
+
+<video controls playsinline preload="metadata" width="1920" height="1080" aria-label="Five-second Claude Motion animation example" style="display:block;width:100%;height:auto;margin:1rem auto;">
+  <source src="motion-demo.mp4?v=187309d9" type="video/mp4">
+  <a href="motion-demo.mp4?v=187309d9">Download the Motion animation example</a>
+</video>
+
+*A five-second Motion animation example. Press play to watch.*
 
 Start through **Output → Motion** in the message box, or choose a Motion template in **Artifacts**. You can adjust the result through chat or the editor and export it as **MP4**. [Creation and export](https://support.claude.com/en/articles/17454997-get-started-with-claude-motion), [editing artifacts](https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them).
 

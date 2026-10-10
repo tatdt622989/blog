@@ -35,7 +35,7 @@
   <meta name="twitter:description" content="Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg?v=903de948">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/","headline":"Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用","description":"Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。","datePublished":"2026-10-10T12:24:21.000Z","dateModified":"2026-10-10T15:21:28.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/","headline":"Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用","description":"Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。","datePublished":"2026-10-10T12:24:21.000Z","dateModified":"2026-10-10T15:41:11.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用","item":"https://blog.6yuwei.com/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/"}]}</script>
   
@@ -290,10 +290,18 @@
 <h2 id="Motion：把产品讲解做成便于修改的短动画"><a href="#Motion：把产品讲解做成便于修改的短动画" class="headerlink" title="Motion：把产品讲解做成便于修改的短动画"></a>Motion：把产品讲解做成便于修改的短动画</h2><p>Claude Motion 适合制作功能更新介绍、操作演示或动态图表。它通过代码安排文字、图形和图片的动画，方便修改内容和节奏；当前没有生成写实视频或人物的功能。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454997-get-started-with-claude-motion">Motion 入门</a></p>
 <p><img src="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/motion-workflow.jpg?v=e50246e7" alt="Claude Motion 四步图解：准备素材、描述故事、编辑动画、导出 MP4"></p>
 <p><em>图解 4：按顺序准备素材、描述故事、编辑动画，再导出 MP4。提前交代目标观众和预计时长，后续调整内容与节奏会更容易。</em></p>
-<p>介绍游戏新功能时，我会先交代观众和素材，再提出制作要求：</p>
+<p>初次体验 Motion，可以先做一个 5 秒的纯图形动画。下面的提示词只用小球和波纹，生成的视频也能在不同语言版本中共用：</p>
 <blockquote>
-<p>使用我附上的游戏截图，制作一段面向新玩家的 20 秒教学动画。依次说明选择关卡、开始挑战、领取奖励，每个画面只呈现一个重点。保留素材里的按钮名称，让玩家能对照游戏界面操作。</p>
+<p>请用 Motion 制作一段 5 秒、16:9 的极简动画。深蓝背景，一个浅蓝色小球。</p>
+<p>0–3 秒：小球从左侧移动到中央，轻轻弹跳一次。<br>3–5 秒：小球停在中央，一圈波纹向外扩散后淡出。</p>
+<p>只用简单几何图形，不包含文字、字幕、Logo 或音频。直接生成一个版本，时长固定为 5 秒。</p>
 </blockquote>
+<video controls playsinline preload="metadata" width="1920" height="1080" aria-label="Claude Motion 5 秒动画示例" style="display:block;width:100%;height:auto;margin:1rem auto;">
+  <source src="motion-demo.mp4?v=187309d9" type="video/mp4">
+  <a href="motion-demo.mp4?v=187309d9">下载 Motion 动画示例</a>
+</video>
+
+<p><em>5 秒 Motion 动画示例，点击播放即可观看。</em></p>
 <p>可以从聊天输入框的 <strong>Output → Motion</strong>，或 <strong>Artifacts</strong> 中的 Motion 模板开始。完成后可下载 <strong>MP4</strong>，也可以通过对话或编辑器调整动画。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454997-get-started-with-claude-motion">创建与导出步骤</a> · <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them">作品编辑方式</a></p>
 <p>Motion 计入原有方案的使用额度，较长或较复杂的动画消耗更多。先制作一个短片段，确认信息准确、节奏清楚，再扩展成完整介绍，更容易控制修改成本。<a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17454997-get-started-with-claude-motion">Motion 用量说明</a></p>
 <h2 id="Docs、Slides-和-Design-的同步变化"><a href="#Docs、Slides-和-Design-的同步变化" class="headerlink" title="Docs、Slides 和 Design 的同步变化"></a>Docs、Slides 和 Design 的同步变化</h2><p>10 月 8 日的公告还宣布 <strong>Docs、Slides、Design 结束 Beta，向所有方案开放</strong>。Enterprise 的这三种模板预计于 <strong>10 月 15 日</strong> 默认启用；Dashboards 和 Motion 在 Enterprise 中仍默认关闭，需要管理员在 <strong>Organization settings → Artifacts</strong> 中启用。<a target="_blank" rel="noopener" href="https://claude.com/resources/articles/dashboards-and-motion">官方公告</a> · <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/16994751-artifacts-admin-guide-for-team-and-enterprise-plans">管理员配置</a></p>

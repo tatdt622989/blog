@@ -1,7 +1,7 @@
 ---
 title: Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用
 date: 2026-10-10 20:24:21
-updated: 2026-10-10 23:21:28
+updated: 2026-10-10 23:41:11
 description: Claude 最近推出了哪些新产品？本文介绍新版 Projects 的云端任务协调、Dashboards 数据看板与 Motion 动画讲解，梳理支持的订阅方案、入门提示词和使用限制，并说明 Docs、Slides、Design 正式开放及独立 Design 站的迁移安排。
 permalink: 2026/10/10/claude-projects-dashboards-motion-guide/
 translation_key: claude-projects-dashboards-motion-guide
@@ -82,9 +82,21 @@ Claude Motion 适合制作功能更新介绍、操作演示或动态图表。它
 
 *图解 4：按顺序准备素材、描述故事、编辑动画，再导出 MP4。提前交代目标观众和预计时长，后续调整内容与节奏会更容易。*
 
-介绍游戏新功能时，我会先交代观众和素材，再提出制作要求：
+初次体验 Motion，可以先做一个 5 秒的纯图形动画。下面的提示词只用小球和波纹，生成的视频也能在不同语言版本中共用：
 
-> 使用我附上的游戏截图，制作一段面向新玩家的 20 秒教学动画。依次说明选择关卡、开始挑战、领取奖励，每个画面只呈现一个重点。保留素材里的按钮名称，让玩家能对照游戏界面操作。
+> 请用 Motion 制作一段 5 秒、16:9 的极简动画。深蓝背景，一个浅蓝色小球。
+>
+> 0–3 秒：小球从左侧移动到中央，轻轻弹跳一次。
+> 3–5 秒：小球停在中央，一圈波纹向外扩散后淡出。
+>
+> 只用简单几何图形，不包含文字、字幕、Logo 或音频。直接生成一个版本，时长固定为 5 秒。
+
+<video controls playsinline preload="metadata" width="1920" height="1080" aria-label="Claude Motion 5 秒动画示例" style="display:block;width:100%;height:auto;margin:1rem auto;">
+  <source src="motion-demo.mp4?v=187309d9" type="video/mp4">
+  <a href="motion-demo.mp4?v=187309d9">下载 Motion 动画示例</a>
+</video>
+
+*5 秒 Motion 动画示例，点击播放即可观看。*
 
 可以从聊天输入框的 **Output → Motion**，或 **Artifacts** 中的 Motion 模板开始。完成后可下载 **MP4**，也可以通过对话或编辑器调整动画。[创建与导出步骤](https://support.claude.com/en/articles/17454997-get-started-with-claude-motion) · [作品编辑方式](https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them)
 
