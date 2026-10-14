@@ -61,19 +61,27 @@ dev_map:
             - post: gpt-6-game-engines-guide
               solves: 沒寫過程式，也能判斷該用 Godot、Unity 還是網頁引擎。
         build:
-          note: 不會畫圖、不會配樂，也有辦法補齊。
+          note: 從角色素材到動畫、配樂與配音，一步步補齊。
           items:
             - post: 2026-06-15-pixellab-ai-pixel-art-game-assets
               solves: 不會畫圖，也能用 AI 生成角色、動畫與地圖磚塊。
+            - post: open-source-ai-image-generation-pipeline-comfyui-guide
+              solves: 用 ComfyUI 控制角色姿勢與風格，讓一批遊戲素材保持一致。
             - post: aseprite-install-guide
               solves: 裝好像素繪圖軟體並接上 AI 外掛，先避開試用版的坑。
+            - post: aseprite-extensions-pixel-art-workflow
+              solves: 用 Aseprite 擴充套件加快配色、描邊、等角網格與動畫製作。
             - post: indie-game-ai-audio-workflow
               solves: 不花大錢，用 AI 補齊遊戲音效與背景音樂。
+            - post: voicestudio-local-voice-ai-hardware-guide
+              solves: 在自己的電腦替角色試音，先確認配音工具與硬體是否合適。
         test:
           note: 遊戲好不好玩要看畫面，讓 AI 也能自己檢查。
           items:
             - post: open-source-game-engine-architectures-for-ai-agents
               solves: 讓 AI 看得到畫面、能自己檢查，不再交出一堆疊在一起的方塊。
+            - post: e2e-testing-agentic-sdlc-ground-truth
+              solves: 分清固定驗收與 AI 探索，讓每次遊戲改動都有可重查的測試紀錄。
         ship:
           note: 從自己能玩，到別人裝得起來。
           items:
@@ -118,6 +126,8 @@ dev_map:
               solves: AI 一直改壞東西？讓它先寫測試再動手。
             - post: vibe-coding-pr-review-engineering-shift
               solves: AI 一次改一大堆，怎麼檢查才不會出事。
+            - post: e2e-testing-agentic-sdlc-ground-truth
+              solves: 用自動驗收守住每一次 AI 改動，分清固定測試與探索測試。
         ship:
           note: 從只有你看得到，到任何人都能用。
           items:
@@ -135,10 +145,6 @@ dev_map:
             - post: chatgpt-ads-taiwan-guide
               solves: ChatGPT 開始有廣告了：誰看得到、能不能投放。
   more:
-    - post: e2e-testing-agentic-sdlc-ground-truth
-      solves: 用自動驗收守住每一次 AI 改動。
     - post: artificial-analysis-definitive-guide-llm-selection
       solves: 用第三方評測挑出又快又便宜的模型。
-    - post: open-source-ai-image-generation-pipeline-comfyui-guide
-      solves: 讓 AI 出圖穩定、角色不再換臉。
 ---

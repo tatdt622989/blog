@@ -59,10 +59,14 @@ dev_map:
             - post: gpt-6-game-engines-guide
               solves: 没写过代码，也能判断该用 Godot、Unity 还是网页引擎。
         build:
-          note: 不会画画、不会配乐，也有办法补齐。
+          note: 从角色素材到动画、配乐和配音，逐步补齐。
           items:
+            - post: open-source-ai-image-generation-pipeline-comfyui-guide
+              solves: 用 ComfyUI 控制角色姿势和风格，让整批游戏素材保持一致。
             - post: aseprite-install-guide
               solves: 装好像素绘图软件并接入 AI 插件，先避开试用版的坑。
+            - post: aseprite-extensions-pixel-art-workflow
+              solves: 用 Aseprite 扩展加快配色、描边、等距网格和动画制作。
             - post: indie-game-ai-audio-workflow
               solves: 不花大钱，用 AI 补齐游戏音效与背景音乐。
             - post: voicestudio-local-voice-ai-hardware-guide
@@ -72,6 +76,8 @@ dev_map:
           items:
             - post: open-source-game-engine-architectures-for-ai-agents
               solves: 让 AI 看得到画面、能自己检查，不再交出一堆叠在一起的方块。
+            - post: e2e-testing-agentic-sdlc-ground-truth
+              solves: 区分固定验收和 AI 探索，让每次游戏改动都有可复查的测试记录。
         ship:
           note: 从自己能玩，到别人装得上。
           items:
@@ -127,8 +133,6 @@ dev_map:
   more:
     - post: artificial-analysis-definitive-guide-llm-selection
       solves: 用第三方评测挑出又快又便宜的模型。
-    - post: open-source-ai-image-generation-pipeline-comfyui-guide
-      solves: 让 AI 出图稳定、角色不再换脸。
     - post: open-source-ai-image-models-selection-guide
       solves: 按显卡显存与风格，选出跑得动的开源绘图模型。
 ---

@@ -59,10 +59,14 @@ dev_map:
             - post: gpt-6-game-engines-guide
               solves: Never coded? You can still tell whether Godot, Unity, or a web engine fits your idea.
         build:
-          note: Cannot draw or compose? You can still fill the gaps.
+          note: Build your asset workflow, from characters and animation to music and voice.
           items:
+            - post: open-source-ai-image-generation-pipeline-comfyui-guide
+              solves: Control character poses and style with ComfyUI to keep a set of game assets consistent.
             - post: aseprite-install-guide
               solves: Install a pixel art editor, connect the AI extension, and avoid the trial version trap.
+            - post: aseprite-extensions-pixel-art-workflow
+              solves: Speed up palettes, outlines, isometric guides, and animation with Aseprite extensions.
             - post: indie-game-ai-audio-workflow
               solves: Fill in sound effects and music with AI without a big budget.
             - post: voicestudio-local-voice-ai-hardware-guide
@@ -72,6 +76,8 @@ dev_map:
           items:
             - post: open-source-game-engine-architectures-for-ai-agents
               solves: Let AI see the screen and check its own work instead of handing back overlapping blocks.
+            - post: e2e-testing-agentic-sdlc-ground-truth
+              solves: Separate fixed acceptance tests from AI exploration and keep evidence for every game change.
         ship:
           note: From playable on your machine to installable for everyone.
           items:
@@ -127,8 +133,6 @@ dev_map:
   more:
     - post: artificial-analysis-definitive-guide-llm-selection
       solves: Use independent benchmarks to pick fast, affordable models.
-    - post: open-source-ai-image-generation-pipeline-comfyui-guide
-      solves: Get consistent AI images where characters keep the same face.
     - post: open-source-ai-image-models-selection-guide
       solves: Choose an open-source image model that runs on your GPU and fits your style.
 ---
