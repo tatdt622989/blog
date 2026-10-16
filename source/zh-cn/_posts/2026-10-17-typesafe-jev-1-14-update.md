@@ -1,7 +1,7 @@
 ---
 title: "Jev 1.14 更新解读：图像输入、Box 定位与 262k 长上下文"
 date: 2026-10-17 01:35:00
-updated: 2026-10-17 01:35:00
+updated: 2026-10-17 01:55:03
 description: "Jev 1.14.0 最新更新解读：TypeSafe AI 开放实验性图像输入、Box 目标定位与 262k 长上下文。本文梳理 jev-latest 与新版本的区别、SDK 升级要求和接入注意事项，并衔接此前的 Jev 入门介绍。"
 permalink: 2026/10/17/typesafe-jev-1-14-update/
 translation_key: typesafe-jev-1-14-update
@@ -70,7 +70,7 @@ curl https://api.typesafe.ai/v1/systemone \
       "location": {"type": "box", "instructions": "The mug in photo"}
     }
   };type=application/json' \
-  -F 'photo-upload=@product.jpg;type=image/jpeg'
+  -F 'photo-upload=@./product.jpg;type=image/jpeg'
 ```
 
 拿到合法坐标只是第一步。我会把目标缺失、图片模糊、多个相似物体同时出现的情况，都加入测试集。

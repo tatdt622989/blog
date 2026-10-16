@@ -1,7 +1,7 @@
 ---
 title: "Jev 1.14 Update: Images, Box Localization, and 262k Context"
 date: 2026-10-17 01:35:00
-updated: 2026-10-17 01:35:00
+updated: 2026-10-17 01:55:03
 description: "Explore Jev 1.14's experimental images, Box localization, and 262k context, plus model aliases, SDK requirements, and our original Jev guide."
 permalink: 2026/10/17/typesafe-jev-1-14-update/
 translation_key: typesafe-jev-1-14-update
@@ -70,7 +70,7 @@ curl https://api.typesafe.ai/v1/systemone \
       "location": {"type": "box", "instructions": "The mug in photo"}
     }
   };type=application/json' \
-  -F 'photo-upload=@product.jpg;type=image/jpeg'
+  -F 'photo-upload=@./product.jpg;type=image/jpeg'
 ```
 
 Valid coordinates are only the starting point. I would include absent objects, blurred images, and multiple similar objects in the test set before using the result downstream.
