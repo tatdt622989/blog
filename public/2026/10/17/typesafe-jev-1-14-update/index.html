@@ -1,0 +1,741 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jev 1.14 更新整理：圖片輸入、Box 定位與 262k 長上下文 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Jev 1.14.0 最新更新整理：TypeSafe AI 開放實驗性圖片輸入、Box 物件定位與 262k 長上下文。本文釐清 jev-latest 和新版的差別、SDK 升級限制與導入注意事項，並銜接先前的 Jev 入門介紹。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/17/typesafe-jev-1-14-update/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/17/typesafe-jev-1-14-update/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/">
+  
+
+  <meta property="og:title" content="Jev 1.14 更新整理：圖片輸入、Box 定位與 262k 長上下文"/>
+  <meta property="og:description" content="Jev 1.14.0 最新更新整理：TypeSafe AI 開放實驗性圖片輸入、Box 物件定位與 262k 長上下文。本文釐清 jev-latest 和新版的差別、SDK 升級限制與導入注意事項，並銜接先前的 Jev 入門介紹。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/"/>
+  <meta property="og:locale" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/cover.jpg?v=897c7c9b" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jev 1.14 更新整理：圖片輸入、Box 定位與 262k 長上下文">
+  <meta name="twitter:description" content="Jev 1.14.0 最新更新整理：TypeSafe AI 開放實驗性圖片輸入、Box 物件定位與 262k 長上下文。本文釐清 jev-latest 和新版的差別、SDK 升級限制與導入注意事項，並銜接先前的 Jev 入門介紹。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/cover.jpg?v=897c7c9b">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/","url":"https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/","headline":"Jev 1.14 更新整理：圖片輸入、Box 定位與 262k 長上下文","description":"Jev 1.14.0 最新更新整理：TypeSafe AI 開放實驗性圖片輸入、Box 物件定位與 262k 長上下文。本文釐清 jev-latest 和新版的差別、SDK 升級限制與導入注意事項，並銜接先前的 Jev 入門介紹。","datePublished":"2026-10-16T17:35:00.000Z","dateModified":"2026-10-16T17:35:00.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/categories/AI/"},{"@type":"ListItem","position":3,"name":"Jev 1.14 更新整理：圖片輸入、Box 定位與 262k 長上下文","item":"https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/css/style.css?v=943446a26f">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/">
+      <img src="/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切換語言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/17/typesafe-jev-1-14-update/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>繁體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/17/typesafe-jev-1-14-update/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>簡體中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/17/typesafe-jev-1-14-update/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首頁</a></li>
+    
+      <li><a href="/archives">彙整</a></li>
+    
+      <li><a href="/ai-dev-map/">開發地圖</a></li>
+    
+    <li><a href="https://iraiya.com" target="_blank" rel="noopener">產品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜尋">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜尋</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Jev-1-14-更新整理" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-16T17:35:00.000Z"><a href="/2026/10/17/typesafe-jev-1-14-update/">2026-10-17</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Jev 1.14 更新整理：圖片輸入、Box 定位與 262k 長上下文</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/2026/10/17/typesafe-jev-1-14-update/cover-card-720.jpg?v=18da00a5" alt="Jev 1.14 多模態決策示意：圖片中的杯子以邊界框定位，並連接結構化決策選項" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/17/typesafe-jev-1-14-update/cover-card-480.jpg?v=185c9182 480w, /2026/10/17/typesafe-jev-1-14-update/cover-card-720.jpg?v=18da00a5 720w, /2026/10/17/typesafe-jev-1-14-update/cover-card-960.jpg?v=f4e1fb05 960w, /2026/10/17/typesafe-jev-1-14-update/cover-card-1280.jpg?v=18c774ae 1280w, /2026/10/17/typesafe-jev-1-14-update/cover.jpg?v=897c7c9b 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>Jev 1.14.0 在 2026 年 10 月 14 日推出。這次 TypeSafe AI 除了更新模型，也開放圖片輸入、Box 位置定位，以及更長的上下文。原本專注文字判斷的決策介面，開始能接進視覺工作流。</p>
+<p>如果你第一次聽到 Jev，可以先讀前一篇 <a href="/2026/09/17/typesafe-jev-system-one-model-guide/">Jev 是什麼？System One 模型與機率決策入門</a>，了解 Choice、Score、Noul 的用途。這篇接著整理新版本的變化，資料查核至 <strong>2026 年 10 月 17 日</strong>；內容依據官方公告與文件，未執行付費 API 評測。</p>
+<span id="more"></span>
+
+<h2 id="先確認版本：jev-latest-還不等於-1-14"><a href="#先確認版本：jev-latest-還不等於-1-14" class="headerlink" title="先確認版本：jev-latest 還不等於 1.14"></a>先確認版本：jev-latest 還不等於 1.14</h2><p>截至查核日，<a target="_blank" rel="noopener" href="https://docs.typesafe.ai/models">官方模型文件</a> 的對應如下：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>呼叫時填入的名稱</th>
+<th>目前對應版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>jev-latest</strong></td>
+<td><strong>jev-1.13.0</strong></td>
+</tr>
+<tr>
+<td><strong>jev-preview</strong></td>
+<td><strong>jev-1.14.0</strong></td>
+</tr>
+<tr>
+<td><strong>jev-1.14.0</strong></td>
+<td>明確指定 1.14.0</td>
+</tr>
+</tbody></table></div>
+<p>想重現新版行為，我會直接填固定版本。否則程式碼沒改，別名更新後結果也可能跟著變動。兩版目前都維持 <strong>每百萬輸入 token 0.042 美元，輸出免費</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://typesafe.ai/blog/jev-1-14">1.14 官方公告</a> 將多語言支援列為預期改善最大的部分，也預告一週後更新 <strong>jev-latest</strong>。這是後續切換計畫，不能當成今天已完成；中文任務的改善幅度仍要用自己的資料驗證。</p>
+<h2 id="圖片能放進輸入，也能成為判斷標準"><a href="#圖片能放進輸入，也能成為判斷標準" class="headerlink" title="圖片能放進輸入，也能成為判斷標準"></a>圖片能放進輸入，也能成為判斷標準</h2><p><a target="_blank" rel="noopener" href="https://docs.typesafe.ai/images">圖片文件</a> 說明，圖片可以放進 <strong>state、instructions、criteria</strong>。例如整理商品照片時，輸入待分類圖片，再把不同分類的參考圖放進判斷標準，讓問題更具體。</p>
+<p>這次也替 <strong>1.13</strong> 開放圖片能力。真正要留意的是：圖片仍屬於 <strong>Danger Zone 實驗功能</strong>，需要在請求標頭加入 <strong>TypeSafe-Danger-Zone-Images: true</strong>。它適合先做原型，官方尚未將可靠度列為正式生產標準。</p>
+<p>我的看法是，先從一種範圍小、定義清楚的視覺判斷開始，會更容易找到問題。</p>
+<h2 id="Box-新增位置輸出，但找不到物件也會回傳框"><a href="#Box-新增位置輸出，但找不到物件也會回傳框" class="headerlink" title="Box 新增位置輸出，但找不到物件也會回傳框"></a>Box 新增位置輸出，但找不到物件也會回傳框</h2><p>新增的 <strong>Box</strong> 只支援 <strong>1.14</strong>，用來回傳單一物件的邊界框。<strong>top、bottom、left、right</strong> 都是 0 到 1 的相對座標，分別對應圖片高度或寬度。<a target="_blank" rel="noopener" href="https://docs.typesafe.ai/primitives/box">官方 Box 文件</a> 有完整格式。</p>
+<p>這裡有個容易踩到的坑：<strong>Box 沒有「找不到」的答案，目標不存在時仍會回傳一個框。</strong> 因此可以在同一次請求加問 Noul「目標是否存在」，由程式決定要不要採用座標。</p>
+<p>下面是依 <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/images#over-http">HTTP 圖片上傳格式</a> 撰寫的介面範例，未執行實測。先準備自己的 <strong>product.jpg</strong>，並在環境變數設定 <strong>TYPESAFE_API_KEY</strong>；真正執行會使用帳號額度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.typesafe.ai/v1/systemone \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$TYPESAFE_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;TypeSafe-Danger-Zone-Images: true&quot;</span> \</span><br><span class="line">  -F <span class="string">&#x27;request=&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;jev-1.14.0&quot;,</span></span><br><span class="line"><span class="string">    &quot;state&quot;: &#123;&quot;photo&quot;: &quot;d96b219e-product-photo&quot;&#125;,</span></span><br><span class="line"><span class="string">    &quot;assets&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;d96b219e-product-photo&quot;: &#123;&quot;type&quot;: &quot;image&quot;, &quot;part&quot;: &quot;photo-upload&quot;&#125;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &quot;questions&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;present&quot;: &#123;&quot;type&quot;: &quot;noul&quot;, &quot;instructions&quot;: &quot;Is there a mug in photo?&quot;&#125;,</span></span><br><span class="line"><span class="string">      &quot;location&quot;: &#123;&quot;type&quot;: &quot;box&quot;, &quot;instructions&quot;: &quot;The mug in photo&quot;&#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;;type=application/json&#x27;</span> \</span><br><span class="line">  -F <span class="string">&#x27;photo-upload=@product.jpg;type=image/jpeg&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>不要只看到有座標就執行後續動作。我會把「目標不存在、畫面模糊、同時有多個杯子」都放進測試資料。</p>
+<h2 id="長上下文開到-262k，仍要控制輸入範圍"><a href="#長上下文開到-262k，仍要控制輸入範圍" class="headerlink" title="長上下文開到 262k，仍要控制輸入範圍"></a>長上下文開到 262k，仍要控制輸入範圍</h2><p>依 <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/models#context-length">上下文限制文件</a>，預設是<strong>整個請求 64k、單一問題 32k</strong>；加入 <strong>TypeSafe-Danger-Zone-Long-Context: true</strong> 後，兩個上限都可提高到 <strong>262k token</strong>，1.13 與 1.14 都能使用。</p>
+<p>這項能力同樣需要主動開啟。官方提醒，長上下文會更慢、準確度也會降低。以客服分類為例，我仍會先取出與當前問題相關的紀錄，再決定是否需要放大上下文。</p>
+<h2 id="SDK-也更新了，JavaScript-專案先看-Node-js-版本"><a href="#SDK-也更新了，JavaScript-專案先看-Node-js-版本" class="headerlink" title="SDK 也更新了，JavaScript 專案先看 Node.js 版本"></a>SDK 也更新了，JavaScript 專案先看 Node.js 版本</h2><p>這次不能只看模型名稱，套件環境也有變化：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.typesafe.ai/sdk/python/changelog">Python SDK 0.7.5</a> 加入圖片資產與 Box 支援，並預設啟用 zstd 請求壓縮。</li>
+<li><a target="_blank" rel="noopener" href="https://docs.typesafe.ai/sdk/javascript/changelog">JavaScript SDK 0.7.0</a> 加入圖片與 Box，同時將最低執行環境提高到 <strong>Node.js 22</strong>，並停止匯出請求 payload 型別。</li>
+</ul>
+<p>如果服務仍用 Node.js 18 或 20，我會分別驗證環境升級與模型切換。出了問題時，也比較容易找出原因。</p>
+<h2 id="真實案例值得參考，成本數字要看適用範圍"><a href="#真實案例值得參考，成本數字要看適用範圍" class="headerlink" title="真實案例值得參考，成本數字要看適用範圍"></a>真實案例值得參考，成本數字要看適用範圍</h2><p>TypeSafe 10 月 7 日發布的 <a target="_blank" rel="noopener" href="https://typesafe.ai/blog/jack-jill-jev-case-study">Jack &amp; Jill 案例</a> 提到，候選人初篩流程每千人的成本由 <strong>0.755 美元降到 0.092 美元</strong>。這是廠商發布的特定客戶案例，不能直接推算成任何專案都能省下相同比例。</p>
+<p>這個案例讓我想到，可以先挑出一個量大、輸出固定的判斷步驟。再比較成本與品質，決定是否擴大使用。</p>
+<h2 id="導入前，先把判斷錯誤和格式錯誤分清楚"><a href="#導入前，先把判斷錯誤和格式錯誤分清楚" class="headerlink" title="導入前，先把判斷錯誤和格式錯誤分清楚"></a>導入前，先把判斷錯誤和格式錯誤分清楚</h2><p>即使輸出符合型別，內容仍可能判斷錯。<a target="_blank" rel="noopener" href="https://docs.typesafe.ai/concepts/system-one">System One 文件</a> 也說明，機率校準不保證每個答案都正確。前篇提到的「零幻覺」，應聚焦理解為輸出受型別與選項約束，不能延伸成業務判斷永遠正確。</p>
+<p>另外，<a target="_blank" rel="noopener" href="https://docs.typesafe.ai/confidence">目前的 Confidence 文件</a> 明確區分：Choice、Score 有 <strong>confidence</strong>，Noul 直接提供是非機率，沒有獨立的 <strong>confidence</strong> 欄位。接續前篇範例實作時，請以現在的官方回應格式為準。</p>
+<p>我會先保留舊版當比較基準，用同一批資料檢查新版的錯分、漏判、延遲與費用，再調整自動處理的門檻。圖片、Box 與長上下文則各自測試，通過後才加入原有流程。</p>
+<p>若還在思考 Jev 該放進系統的哪個位置，接著讀 <a href="/2026/09/17/typesafe-jev-system-one-model-guide/">Jev 入門介紹：三種決策原語、五大應用場景與開源工具鏈</a>。先選好模型負責的判斷，再挑需要的新功能，成果也更容易驗證。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/AI/">AI</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/AI-Agent/">AI Agent</a>, <a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a>, <a href="/tags/Jev/">Jev</a>, <a href="/tags/TypeSafe-AI/">TypeSafe AI</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="複製連結" aria-label="複製連結">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>複製連結</span>
+    </button>
+
+    
+      <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
+      <a href="https://www.threads.net/intent/post?text=Jev%201.14%20%E6%9B%B4%E6%96%B0%E6%95%B4%E7%90%86%EF%BC%9A%E5%9C%96%E7%89%87%E8%BC%B8%E5%85%A5%E3%80%81Box%20%E5%AE%9A%E4%BD%8D%E8%88%87%20262k%20%E9%95%B7%E4%B8%8A%E4%B8%8B%E6%96%87%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F17%2Ftypesafe-jev-1-14-update%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
+        </svg>
+        <span>Threads</span>
+      </a>
+      <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F17%2Ftypesafe-jev-1-14-update%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-line" title="Share on LINE" aria-label="Share on LINE">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33v-2.95c0-.349.28-.63.628-.63.349 0 .627.281.627.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        <span>LINE</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F17%2Ftypesafe-jev-1-14-update%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Jev%201.14%20%E6%9B%B4%E6%96%B0%E6%95%B4%E7%90%86%EF%BC%9A%E5%9C%96%E7%89%87%E8%BC%B8%E5%85%A5%E3%80%81Box%20%E5%AE%9A%E4%BD%8D%E8%88%87%20262k%20%E9%95%B7%E4%B8%8A%E4%B8%8B%E6%96%87&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F10%2F17%2Ftypesafe-jev-1-14-update%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Jev 1.14 更新整理：圖片輸入、Box 定位與 262k 長上下文" data-url="https://blog.6yuwei.com/2026/10/17/typesafe-jev-1-14-update/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/2026/10/17/typesafe-jev-1-14-update/">
+  <h3 class="related-posts-title">相關文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/2026/09/17/typesafe-jev-system-one-model-guide/" class="related-post-link"
+           data-rel-title="Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策"
+           data-rel-path="/2026/09/17/typesafe-jev-system-one-model-guide/"
+           data-rel-tag="AI Agent"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" alt="Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI Agent</span>
+            
+            <h4 class="related-post-item-title">Jev 是什麼？ChatGPT 共同發明人打造的 System One 模型，不生成文字只給機率決策</h4>
+            
+              <time class="related-post-date">2026-09-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/" class="related-post-link"
+           data-rel-title="Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制"
+           data-rel-path="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/"
+           data-rel-tag="AI Agent"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/2026/10/01/Gemini-4-Argon-%E7%99%BC%E5%B8%83%EF%BC%9A%E7%99%BE%E8%90%AC%E8%BC%B8%E5%87%BA%E3%80%81API-%E5%83%B9%E6%A0%BC%E8%88%87%E9%96%8B%E6%94%BE%E9%99%90%E5%88%B6/cover.jpg?v=3198e615" alt="Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI Agent</span>
+            
+            <h4 class="related-post-item-title">Gemini 4 Argon 發布：百萬輸出、API 價格與開放限制</h4>
+            
+              <time class="related-post-date">2026-10-01</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/" class="related-post-link"
+           data-rel-title="Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破"
+           data-rel-path="/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/"
+           data-rel-tag="AI Agent"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/2026/09/03/Gemini-3-8-Flash-%E7%AA%81%E8%A5%B2%E7%99%BB%E5%A0%B4%EF%BC%81%E7%B6%AD%E6%8C%81-3-7-%E6%A5%B5%E4%BD%8E%E8%B2%BB%E7%8E%87%E3%80%81%E9%95%B7%E6%99%82%E7%A8%8B%E4%BB%A3%E7%90%86%E8%BF%B4%E5%9C%88%E8%88%87-DeepSWE-%E9%97%9C%E9%8D%B5%E7%AA%81%E7%A0%B4/cover.jpg?v=1a81b644" alt="Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI Agent</span>
+            
+            <h4 class="related-post-item-title">Gemini 3.8 Flash 突襲登場！維持 3.7 極低費率、長時程代理迴圈與 DeepSWE 關鍵突破</h4>
+            
+              <time class="related-post-date">2026-09-03</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜尋">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜尋</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/AI/">AI</a><small>8</small></li>
+  
+    <li><a href="/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>4</small></li>
+  
+    <li><a href="/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>36</small></li>
+  
+    <li><a href="/categories/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%88%87%E6%9E%B6%E7%AB%99/">伺服器與架站</a><small>2</small></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a><small>11</small></li>
+  
+    <li><a href="/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/categories/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/">日語學習</a><small>6</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>2</small></li>
+  
+    <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
+  
+    <li><a href="/categories/%E7%94%A2%E5%93%81%E9%81%8B%E7%87%9F/">產品運營</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%A7%80%E9%BB%9E%E8%88%87%E6%80%9D%E7%B6%AD/">觀點與思維</a><small>1</small></li>
+  
+    <li><a href="/categories/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/">軟體工程</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a><small>9</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/categories/">查看所有分類</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用標籤</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/tags/AI/"><span>AI</span><small>53</small></a></li>
+  
+    <li><a href="/tags/Claude/"><span>Claude</span><small>16</small></a></li>
+  
+    <li><a href="/tags/AI-Agent/"><span>AI Agent</span><small>15</small></a></li>
+  
+    <li><a href="/tags/Codex/"><span>Codex</span><small>14</small></a></li>
+  
+    <li><a href="/tags/OpenAI/"><span>OpenAI</span><small>14</small></a></li>
+  
+    <li><a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/"><span>獨立開發者</span><small>13</small></a></li>
+  
+    <li><a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"><span>前端開發</span><small>12</small></a></li>
+  
+    <li><a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/"><span>開發工具</span><small>10</small></a></li>
+  
+    <li><a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"><span>遊戲開發</span><small>8</small></a></li>
+  
+    <li><a href="/tags/JavaScript/"><span>JavaScript</span><small>8</small></a></li>
+  
+    <li><a href="/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
+  
+    <li><a href="/tags/Claude-Code/"><span>Claude Code</span><small>7</small></a></li>
+  
+    <li><a href="/tags/%E6%97%A5%E8%AA%9E%E5%AD%B8%E7%BF%92/"><span>日語學習</span><small>6</small></a></li>
+  
+    <li><a href="/tags/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B/"><span>軟體工程</span><small>5</small></a></li>
+  
+    <li><a href="/tags/LLM/"><span>LLM</span><small>5</small></a></li>
+  
+    <li><a href="/tags/Anthropic/"><span>Anthropic</span><small>4</small></a></li>
+  
+    <li><a href="/tags/AI-%E7%B9%AA%E5%9C%96/"><span>AI 繪圖</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Aseprite/"><span>Aseprite</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Pixel-Art/"><span>Pixel Art</span><small>3</small></a></li>
+  
+    <li><a href="/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/tags/">查看所有標籤</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/rss.xml">RSS 訂閱</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"複製","codeCopied":"已複製","toastCodeCopied":"已複製程式碼至剪貼簿","copyLinkLabel":"複製連結","linkCopied":"已複製文章連結","headingCopied":"已複製章節連結","tocTitle":"目次","searchLoading":"載入中...","searchEmpty":"輸入關鍵字開始搜尋...","searchNoResults":"找不到符合「%s」的相關文章","tableScrollLabel":"表格，可左右捲動","tableScrollHint":"左右滑動查看完整表格；鍵盤可使用方向鍵。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜尋文章標題、標籤或關鍵字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">輸入關鍵字開始搜尋...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 關閉，↑↓ 選擇，Enter 開啟</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/js/jquery-3.4.1.min.js"></script>
+<script defer src="/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
