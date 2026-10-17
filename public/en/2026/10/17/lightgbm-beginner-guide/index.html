@@ -1,0 +1,866 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>LightGBM for Beginners: From Decision Trees to a Working Python Model | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Learn what LightGBM does through a coffee sales example, then run Python code to train, validate, and test a model against a simple baseline.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/17/lightgbm-beginner-guide/">
+  
+
+  <meta property="og:title" content="LightGBM for Beginners: From Decision Trees to a Working Python Model"/>
+  <meta property="og:description" content="Learn what LightGBM does through a coffee sales example, then run Python code to train, validate, and test a model against a simple baseline."/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/cover.jpg?v=1d9ee2ae" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LightGBM for Beginners: From Decision Trees to a Working Python Model">
+  <meta name="twitter:description" content="Learn what LightGBM does through a coffee sales example, then run Python code to train, validate, and test a model against a simple baseline.">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/cover.jpg?v=1d9ee2ae">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/","url":"https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/","headline":"LightGBM for Beginners: From Decision Trees to a Working Python Model","description":"Learn what LightGBM does through a coffee sales example, then run Python code to train, validate, and test a model against a simple baseline.","datePublished":"2026-10-17T14:54:52.000Z","dateModified":"2026-10-17T14:54:52.000Z","inLanguage":"en","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/en/categories/AI/"},{"@type":"ListItem","position":3,"name":"LightGBM for Beginners: From Decision Trees to a Working Python Model","item":"https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/en/css/style.css?v=943446a26f">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/en/">
+      <img src="/en/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="Switch language">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">English</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/17/lightgbm-beginner-guide/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>Traditional Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/17/lightgbm-beginner-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>Simplified Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/17/lightgbm-beginner-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/en/">Home</a></li>
+    
+      <li><a href="/en/archives">Archives</a></li>
+    
+      <li><a href="/en/ai-dev-map/">Dev Map</a></li>
+    
+    <li><a href="https://iraiya.com" target="_blank" rel="noopener">Products</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="Search">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">Search</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-lightgbm-beginner-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-17T14:54:52.000Z"><a href="/en/2026/10/17/lightgbm-beginner-guide/">2026-10-17</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">LightGBM for Beginners: From Decision Trees to a Working Python Model</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/en/2026/10/17/lightgbm-beginner-guide/cover-card-720.jpg?v=bc94a444" alt="Coffee shop records passing through several decision trees to produce a daily sales forecast with LightGBM" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/10/17/lightgbm-beginner-guide/cover-card-480.jpg?v=b480207a 480w, /en/2026/10/17/lightgbm-beginner-guide/cover-card-720.jpg?v=bc94a444 720w, /en/2026/10/17/lightgbm-beginner-guide/cover-card-960.jpg?v=5c0ffe8e 960w, /en/2026/10/17/lightgbm-beginner-guide/cover-card-1280.jpg?v=a9a77db9 1280w, /en/2026/10/17/lightgbm-beginner-guide/cover.jpg?v=1d9ee2ae 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>LightGBM learns patterns from historical tables and uses them to predict outcomes for new rows. Imagine running a coffee shop: you have daily weather forecasts, promotion records, and sales counts. You want to ask, “Saturday should reach 28°C, and we have a promotion. How many cups should we prepare?”</p>
+<p>This guide follows that question from the idea to working Python code. You will learn what the model learns, how to train it, and how to judge its predictions. The explanation needs no calculus; the practical section assumes basic familiarity with running Python.</p>
+<span id="more"></span>
+
+<h2 id="Turn-the-question-into-a-table"><a href="#Turn-the-question-into-a-table" class="headerlink" title="Turn the question into a table"></a>Turn the question into a table</h2><p>These rows are <strong>invented to explain the columns</strong>. They are not output from the code later in the article.</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:560px"><table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Forecast temperature</th>
+<th>Promotion</th>
+<th>Cups sold</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Monday</td>
+<td>24°C</td>
+<td>No</td>
+<td>150</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>28°C</td>
+<td>Yes</td>
+<td>220</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>20°C</td>
+<td>No</td>
+<td>165</td>
+</tr>
+</tbody></table></div>
+<p>Each row describes one day. The first three columns are <strong>features</strong>: information available when you make a prediction. Code usually calls this input table <strong>X</strong>. The final column is the <strong>target</strong>, usually called <strong>y</strong>.</p>
+<p>During <strong>training</strong>, you supply both X and the known y so the model can learn relationships. During <strong>prediction</strong>, you supply only the new day’s X and receive an estimated sales count. The actual sales for that future day cannot be part of the input.</p>
+<p>Learning from examples with known answers is called <strong>supervised learning</strong>. LightGBM supports three common tasks, with separate interfaces in its <a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Python-API.html">official Python API</a>.</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Task</th>
+<th>Python interface</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>How many cups will we sell?</td>
+<td>Regression: predict a number</td>
+<td><strong>LGBMRegressor</strong></td>
+</tr>
+<tr>
+<td>Will this customer buy again?</td>
+<td>Classification: predict a class or probability</td>
+<td><strong>LGBMClassifier</strong></td>
+</tr>
+<tr>
+<td>How should products within a search be ordered?</td>
+<td>Ranking: learn relative order</td>
+<td><strong>LGBMRanker</strong></td>
+</tr>
+</tbody></table></div>
+<p>Ranking also requires grouping candidates by query. Changing the class name in a sales example does not create a ranking system. We will start with regression.</p>
+<h2 id="How-it-learns-rules-followed-by-corrections"><a href="#How-it-learns-rules-followed-by-corrections" class="headerlink" title="How it learns: rules, followed by corrections"></a>How it learns: rules, followed by corrections</h2><p>A <strong>decision tree</strong> asks a sequence of questions: “Is there a promotion?” “Is the temperature above this threshold?” Each question divides historical examples into smaller groups, ending with a numerical output. Training finds the questions, thresholds, and output values from the data.</p>
+<p>With its default boosting setup, LightGBM adds trees in sequence. Each new tree learns a correction based on the current model’s errors. That is the central idea behind <strong>gradient boosting</strong>.</p>
+<p>For squared-error regression, you can think of the correction direction as the residual: actual value minus current prediction. Other objectives, including classification, use gradients of their respective loss functions. The <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosted-trees">scikit-learn gradient boosting guide</a> explains the general method.</p>
+<p>Suppose one day actually produced 130 sales. These numbers are <strong>an illustration of the mechanism</strong>, not measurements:</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Correction added</th>
+<th>Combined prediction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Initial estimate</td>
+<td>Start at 100 cups</td>
+<td>100 cups</td>
+</tr>
+<tr>
+<td>First correction tree</td>
+<td>Add 20 cups</td>
+<td>120 cups</td>
+</tr>
+<tr>
+<td>Second correction tree</td>
+<td>Add 8 cups</td>
+<td>128 cups</td>
+</tr>
+</tbody></table></div>
+<p>The corrections shown already include learning-rate scaling. Real training considers many rows together. A tree can raise or lower a prediction, and validation error will not necessarily improve at every round.</p>
+<p>Once training finishes, the trees form a single model. To predict a new row, the model follows the learned rules and combines the trees’ contributions. It does not retrain for each prediction.</p>
+<h2 id="What-makes-LightGBM-efficient"><a href="#What-makes-LightGBM-efficient" class="headerlink" title="What makes LightGBM efficient?"></a>What makes LightGBM efficient?</h2><p>Two ideas are enough to get started:</p>
+<ul>
+<li><strong>Histogram binning</strong> groups continuous values into fewer intervals, reducing the work and memory needed to search for splits.</li>
+<li><strong>Leaf-wise growth</strong> chooses the leaf whose next split gives the greatest reduction in training loss, rather than expanding a whole level together.</li>
+</ul>
+<p>The <a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Features.html">official features guide</a> describes both. A leaf is an endpoint that supplies a value. Excessively detailed trees can memorize accidental patterns in a few examples, causing <strong>overfitting</strong>.</p>
+<p>Measure speed and prediction error on your own data. Small samples, uninformative features, and changing conditions can all affect results.</p>
+<h2 id="Keep-training-validation-and-testing-separate"><a href="#Keep-training-validation-and-testing-separate" class="headerlink" title="Keep training, validation, and testing separate"></a>Keep training, validation, and testing separate</h2><p>We are predicting future sales, so we preserve chronological order. The example uses 1,000 days: the first 700 for training, the next 150 for validation, and the last 150 for testing.</p>
+<pre class="mermaid">
+flowchart TD
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+    A["Prepare features known at prediction time"]:::plan
+    B["Split chronologically into three sets"]:::plan
+    C["Learn trees from the training set"]:::dev
+    D["Use validation to decide when to stop"]:::gate
+    E["Compare against a baseline on the test set"]:::test
+    F["Predict sales for a new day"]:::done
+    A --> B --> C --> D --> E --> F
+</pre>
+
+<p>Think of <strong>training as practice, validation as progress checks, and testing as a sealed final exam</strong>. Use validation for early stopping and parameter choices. Repeatedly changing the model in response to test results compromises that final assessment.</p>
+<p>One chronological split is enough to demonstrate the workflow. A real project can evaluate several time windows; the <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html">TimeSeriesSplit documentation</a> explains why time-ordered evaluation matters.</p>
+<h2 id="Python-example-predict-coffee-sales"><a href="#Python-example-predict-coffee-sales" class="headerlink" title="Python example: predict coffee sales"></a>Python example: predict coffee sales</h2><p>The example <strong>generates synthetic data locally</strong>, so no dataset download is required. We deliberately make temperature, weekends, and promotions influence sales, then add random noise. This lets us check whether the model recovers those relationships.</p>
+<h3 id="1-Install-the-packages-and-create-a-file"><a href="#1-Install-the-packages-and-create-a-file" class="headerlink" title="1. Install the packages and create a file"></a>1. Install the packages and create a file</h3><p>Start with Python 3.12. If you need a virtual environment, run <strong>python -m venv .venv</strong>. Activate it with <strong>source .venv&#x2F;bin&#x2F;activate</strong> on macOS or Linux, or <strong>.venv\Scripts\Activate.ps1</strong> in Windows PowerShell.</p>
+<p>Install these packages in the activated environment:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install lightgbm==4.7.0 pandas==3.0.6 scikit-learn==1.9.1</span><br></pre></td></tr></table></figure>
+
+<p>If importing LightGBM on macOS reports a missing OpenMP library, follow the <a target="_blank" rel="noopener" href="https://github.com/lightgbm-org/LightGBM/tree/main/python-package#installation">official installation instructions</a> to install <strong>libomp</strong>.</p>
+<p>Put the next three Python blocks into one file named <strong>lightgbm_coffee_demo.py</strong>, in order. You can also <a href="lightgbm_coffee_demo.py">download the complete example</a>. Run it with <strong>python lightgbm_coffee_demo.py</strong>.</p>
+<h3 id="2-Build-the-features-X-and-target-y"><a href="#2-Build-the-features-X-and-target-y" class="headerlink" title="2. Build the features X and target y"></a>2. Build the features X and target y</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.dummy <span class="keyword">import</span> DummyRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"></span><br><span class="line">rng = np.random.default_rng(<span class="number">42</span>)</span><br><span class="line">n = <span class="number">1000</span></span><br><span class="line">dates = pd.date_range(<span class="string">&quot;2024-01-01&quot;</span>, periods=n, freq=<span class="string">&quot;D&quot;</span>)</span><br><span class="line">X = pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">&quot;day_of_week&quot;</span>: dates.dayofweek,</span><br><span class="line">    <span class="string">&quot;forecast_temp&quot;</span>: rng.uniform(<span class="number">10</span>, <span class="number">35</span>, n),</span><br><span class="line">    <span class="string">&quot;promotion&quot;</span>: rng.integers(<span class="number">0</span>, <span class="number">2</span>, n),</span><br><span class="line">&#125;)</span><br><span class="line">y = pd.Series(np.maximum(<span class="number">0</span>, np.<span class="built_in">round</span>(</span><br><span class="line">    <span class="number">80</span> + <span class="number">3</span> * X[<span class="string">&quot;forecast_temp&quot;</span>]</span><br><span class="line">    + <span class="number">20</span> * (X[<span class="string">&quot;day_of_week&quot;</span>] &gt;= <span class="number">5</span>)</span><br><span class="line">    + <span class="number">35</span> * X[<span class="string">&quot;promotion&quot;</span>]</span><br><span class="line">    + rng.normal(<span class="number">0</span>, <span class="number">8</span>, n)</span><br><span class="line">)), name=<span class="string">&quot;cups_sold&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>day_of_week</strong> uses 0 for Monday and 6 for Sunday. <strong>promotion</strong> uses 0 for no promotion and 1 for a promotion. <strong>forecast_temp</strong> represents a weather forecast already available when predicting.</p>
+<p>You can see the target-generating formula because this is a teaching example. <strong>The model receives X and y, not that formula.</strong> In a real project, you would read these columns from historical records.</p>
+<h3 id="3-Split-the-data-and-train"><a href="#3-Split-the-data-and-train" class="headerlink" title="3. Split the data and train"></a>3. Split the data and train</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">X_train, y_train = X.iloc[:<span class="number">700</span>], y.iloc[:<span class="number">700</span>]</span><br><span class="line">X_valid, y_valid = X.iloc[<span class="number">700</span>:<span class="number">850</span>], y.iloc[<span class="number">700</span>:<span class="number">850</span>]</span><br><span class="line">X_test, y_test = X.iloc[<span class="number">850</span>:], y.iloc[<span class="number">850</span>:]</span><br><span class="line"></span><br><span class="line">model = lgb.LGBMRegressor(</span><br><span class="line">    objective=<span class="string">&quot;regression&quot;</span>, metric=<span class="string">&quot;mae&quot;</span>,</span><br><span class="line">    n_estimators=<span class="number">800</span>, learning_rate=<span class="number">0.05</span>,</span><br><span class="line">    num_leaves=<span class="number">15</span>, min_child_samples=<span class="number">20</span>,</span><br><span class="line">    random_state=<span class="number">42</span>, n_jobs=<span class="number">2</span>, verbosity=-<span class="number">1</span>,</span><br><span class="line">)</span><br><span class="line">model.fit(</span><br><span class="line">    X_train, y_train,</span><br><span class="line">    eval_X=X_valid, eval_y=y_valid,</span><br><span class="line">    callbacks=[lgb.early_stopping(<span class="number">30</span>, verbose=<span class="literal">False</span>)],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>fit</strong> trains the model. <strong>eval_X</strong> and <strong>eval_y</strong> supply validation data. <strong>early_stopping(30)</strong> stops training after 30 consecutive rounds without an improvement in validation MAE and records the best round. It requires validation data, as the <a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/pythonapi/lightgbm.early_stopping.html">early-stopping documentation</a> explains.</p>
+<p>This example targets <strong>LightGBM 4.7.0</strong>. That release introduced <strong>eval_X</strong> and <strong>eval_y</strong> and deprecated <strong>eval_set</strong>. Older installations may reject the new arguments, so match the installation version before running the example. See the <a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/pythonapi/lightgbm.LGBMRegressor.html#lightgbm.LGBMRegressor.fit">fit API reference</a>.</p>
+<h3 id="4-Measure-the-error-and-predict-a-new-day"><a href="#4-Measure-the-error-and-predict-a-new-day" class="headerlink" title="4. Measure the error and predict a new day"></a>4. Measure the error and predict a new day</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">baseline = DummyRegressor(strategy=<span class="string">&quot;mean&quot;</span>)</span><br><span class="line">baseline.fit(X_train, y_train)</span><br><span class="line">baseline_mae = mean_absolute_error(y_test, baseline.predict(X_test))</span><br><span class="line">model_mae = mean_absolute_error(y_test, model.predict(X_test))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Baseline MAE: <span class="subst">&#123;baseline_mae:<span class="number">.2</span>f&#125;</span> cups&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;LightGBM MAE: <span class="subst">&#123;model_mae:<span class="number">.2</span>f&#125;</span> cups&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Best iteration: <span class="subst">&#123;model.best_iteration_&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">tomorrow = pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">&quot;day_of_week&quot;</span>: [<span class="number">5</span>],</span><br><span class="line">    <span class="string">&quot;forecast_temp&quot;</span>: [<span class="number">28.0</span>],</span><br><span class="line">    <span class="string">&quot;promotion&quot;</span>: [<span class="number">1</span>],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;New-day prediction: <span class="subst">&#123;model.predict(tomorrow)[<span class="number">0</span>]:<span class="number">.1</span>f&#125;</span> cups&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Here, <strong>DummyRegressor</strong> always predicts the training set’s mean sales. It provides a deliberately simple <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyRegressor.html">baseline</a>. <strong>predict</strong> is the operation that turns new features into estimated sales.</p>
+<h2 id="What-the-results-mean"><a href="#What-the-results-mean" class="headerlink" title="What the results mean"></a>What the results mean</h2><p>We ran the example on October 17, 2026, with Python 3.12.10, LightGBM 4.7.0, pandas 3.0.6, scikit-learn 1.9.1, and NumPy 2.5.4. It produced:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Baseline MAE: 24.40 cups</span><br><span class="line">LightGBM MAE: 7.15 cups</span><br><span class="line">Best iteration: 104</span><br><span class="line">New-day prediction: 220.3 cups</span><br></pre></td></tr></table></figure>
+
+<p><strong>MAE means mean absolute error; lower is better.</strong> Across these 150 test days, the absolute difference between prediction and actual sales averaged 7.15 cups. That does not cap each day’s error at 7.15 cups, and it does not mean “92.85% accuracy.” The <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html">official MAE definition</a> gives the calculation.</p>
+<p>A best iteration of 104 means validation selected a model with 104 boosting rounds, rather than all 800. The 220.3-cup forecast is a numerical estimate. Turning it into a preparation decision also requires considering the costs of shortages and leftovers.</p>
+<p><strong>These results apply to our synthetic example.</strong> Real shops face forecast errors, unexpected events, and changes in demand. Evaluate those conditions using real records, and compare stronger baselines such as sales on the same weekday last week.</p>
+<h2 id="Five-settings-to-understand-first"><a href="#Five-settings-to-understand-first" class="headerlink" title="Five settings to understand first"></a>Five settings to understand first</h2><div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Example value</th>
+<th>What it controls</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>n_estimators</strong></td>
+<td>800</td>
+<td>Maximum boosting rounds; one added tree per round here</td>
+</tr>
+<tr>
+<td><strong>learning_rate</strong></td>
+<td>0.05</td>
+<td>The size of each correction step</td>
+</tr>
+<tr>
+<td><strong>num_leaves</strong></td>
+<td>15</td>
+<td>Maximum leaves per tree</td>
+</tr>
+<tr>
+<td><strong>min_child_samples</strong></td>
+<td>20</td>
+<td>The sample-count constraint for leaves</td>
+</tr>
+<tr>
+<td><strong>early_stopping</strong></td>
+<td>30</td>
+<td>Consecutive rounds allowed without validation improvement</td>
+</tr>
+</tbody></table></div>
+<p>Start with these settings and inspect the gap between training and validation performance. If training looks excellent but validation is poor, try fewer leaves or a higher minimum sample count. <strong>min_child_samples</strong> corresponds to the core parameter <strong>min_data_in_leaf</strong>; <strong>max_depth</strong> can also limit tree depth. See the <a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Parameters-Tuning.html">tuning guide</a> and <a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Parameters.html#min_data_in_leaf">parameter reference</a>.</p>
+<p>In the example, <strong>objective&#x3D;”regression”</strong> trains with squared error, while <strong>metric&#x3D;”mae”</strong> evaluates validation predictions with MAE. The training objective and the evaluation metric have different jobs.</p>
+<h2 id="Before-replacing-the-example-with-your-own-data"><a href="#Before-replacing-the-example-with-your-own-data" class="headerlink" title="Before replacing the example with your own data"></a>Before replacing the example with your own data</h2><p>Suppose <strong>sales.csv</strong> contains one row per day, with <strong>date</strong>, <strong>forecast_temp</strong>, <strong>promotion</strong>, and <strong>cups_sold</strong> columns. Keep the imports, then replace the synthetic data generation in step 2 with:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">&quot;sales.csv&quot;</span>, parse_dates=[<span class="string">&quot;date&quot;</span>]).sort_values(<span class="string">&quot;date&quot;</span>)</span><br><span class="line">df[<span class="string">&quot;day_of_week&quot;</span>] = df[<span class="string">&quot;date&quot;</span>].dt.dayofweek</span><br><span class="line">X = df[[<span class="string">&quot;day_of_week&quot;</span>, <span class="string">&quot;forecast_temp&quot;</span>, <span class="string">&quot;promotion&quot;</span>]]</span><br><span class="line">y = df[<span class="string">&quot;cups_sold&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Keep <strong>promotion</strong> encoded as 0 or 1. The original split positions, 700 and 850, assume 1,000 rows. Adjust the training, validation, and test boundaries to your actual row count before fitting.</p>
+<p><strong>Check when each feature becomes available.</strong> Tomorrow’s forecast and a scheduled promotion are available in advance. Tomorrow’s final revenue and actual customer count are not. Including information unavailable at prediction time causes <strong>data leakage</strong> and misleading test results. The <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/common_pitfalls.html#data-leakage">scikit-learn leakage guide</a> explains common ways this happens.</p>
+<p><strong>Check the column types.</strong> LightGBM supports numerical missing values and categorical features, but ordinary string columns still need preparation. For example, a store-type column can use pandas’ <strong>category</strong> dtype, with consistent category mappings between training and prediction. Native missing-value support does not remove the need to inspect data quality. See the <a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Advanced-Topics.html">categorical and missing-value documentation</a>.</p>
+<p><strong>Make evaluation resemble real use.</strong> Sort historical rows by date before splitting. Keep feature names, column order, and meanings consistent when predicting. Leave the <strong>cups_sold</strong> target out of the input passed to <strong>predict</strong>.</p>
+<p>For a first project, complete the sequence: prepare X and y, split, fit, compare with a baseline, and predict. Once you can explain why each feature is available and what each error means, you have a useful foundation for adding features and tuning the model.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/en/categories/AI/">AI</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/en/tags/LightGBM/">LightGBM</a>, <a href="/en/tags/Machine-Learning/">Machine Learning</a>, <a href="/en/tags/Python/">Python</a>, <a href="/en/tags/Data-Analysis/">Data Analysis</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">Share</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="Copy Link" aria-label="Copy Link">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>Copy Link</span>
+    </button>
+
+    
+      <!-- 英文（全球開發者生態）：X、LinkedIn、Reddit、Hacker News、Facebook -->
+      <a href="https://twitter.com/intent/tweet?text=LightGBM%20for%20Beginners%3A%20From%20Decision%20Trees%20to%20a%20Working%20Python%20Model&url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F17%2Flightgbm-beginner-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F17%2Flightgbm-beginner-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-linkedin" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63z"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://reddit.com/submit?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F17%2Flightgbm-beginner-guide%2F&title=LightGBM%20for%20Beginners%3A%20From%20Decision%20Trees%20to%20a%20Working%20Python%20Model" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-reddit" title="Share on Reddit" aria-label="Share on Reddit">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.197-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+        </svg>
+        <span>Reddit</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F17%2Flightgbm-beginner-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="LightGBM for Beginners: From Decision Trees to a Working Python Model" data-url="https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/" title="Share" aria-label="Share" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>Share...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/en/2026/10/17/lightgbm-beginner-guide/">
+  <h3 class="related-posts-title">Related Posts</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/en/2026/10/17/typesafe-jev-1-14-update/" class="related-post-link"
+           data-rel-title="Jev 1.14 Update: Images, Box Localization, and 262k Context"
+           data-rel-path="/en/2026/10/17/typesafe-jev-1-14-update/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/10/17/typesafe-jev-1-14-update/cover.jpg?v=897c7c9b" alt="Jev 1.14 Update: Images, Box Localization, and 262k Context" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Jev 1.14 Update: Images, Box Localization, and 262k Context</h4>
+            
+              <time class="related-post-date">2026-10-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/10/05/voicestudio-local-voice-ai-hardware-guide/" class="related-post-link"
+           data-rel-title="VoiceStudio Explained — A Simple Hardware Guide for Local AI Voice Work"
+           data-rel-path="/en/2026/10/05/voicestudio-local-voice-ai-hardware-guide/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg?v=97053b40" alt="VoiceStudio Explained — A Simple Hardware Guide for Local AI Voice Work" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">VoiceStudio Explained — A Simple Hardware Guide for Local AI Voice Work</h4>
+            
+              <time class="related-post-date">2026-10-05</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/22/open-source-ai-image-models-selection-guide/" class="related-post-link"
+           data-rel-title="The Definitive Open-Source AI Image Model Selection Guide: VRAM, Quality, and Style Matrix"
+           data-rel-path="/en/2026/09/22/open-source-ai-image-models-selection-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/22/open-source-ai-image-models-selection-guide/cover.jpg?v=d19679ea" alt="The Definitive Open-Source AI Image Model Selection Guide: VRAM, Quality, and Style Matrix" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">The Definitive Open-Source AI Image Model Selection Guide: VRAM, Quality, and Style Matrix</h4>
+            
+              <time class="related-post-date">2026-09-22</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/categories/AI/">AI</a><small>10</small></li>
+  
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>7</small></li>
+  
+    <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>13</small></li>
+  
+    <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Game-Development/">Game Development</a><small>6</small></li>
+  
+    <li><a href="/en/categories/Independent-Development/">Independent Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Indie-Development/">Indie Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Indie-Hacker/">Indie Hacker</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>3</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/categories/">View all categories</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">Popular tags</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/en/tags/AI/"><span>AI</span><small>26</small></a></li>
+  
+    <li><a href="/en/tags/Claude/"><span>Claude</span><small>9</small></a></li>
+  
+    <li><a href="/en/tags/Codex/"><span>Codex</span><small>9</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agent/"><span>AI Agent</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/Claude-Code/"><span>Claude Code</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/ChatGPT/"><span>ChatGPT</span><small>6</small></a></li>
+  
+    <li><a href="/en/tags/Developer-Tools/"><span>Developer Tools</span><small>6</small></a></li>
+  
+    <li><a href="/en/tags/OpenAI/"><span>OpenAI</span><small>6</small></a></li>
+  
+    <li><a href="/en/tags/Game-Development/"><span>Game Development</span><small>5</small></a></li>
+  
+    <li><a href="/en/tags/Anthropic/"><span>Anthropic</span><small>4</small></a></li>
+  
+    <li><a href="/en/tags/Indie-Developer/"><span>Indie Developer</span><small>4</small></a></li>
+  
+    <li><a href="/en/tags/AI-Image-Generation/"><span>AI Image Generation</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/Software-Engineering/"><span>Software Engineering</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agents/"><span>AI Agents</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/AI-Coding/"><span>AI Coding</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Aseprite/"><span>Aseprite</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/DevDay/"><span>DevDay</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/tags/">View all tags</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/en/rss.xml">Subscribe via RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"Copy","codeCopied":"Copied","toastCodeCopied":"Code copied to clipboard","copyLinkLabel":"Copy Link","linkCopied":"Article link copied","headingCopied":"Section link copied","tocTitle":"Table of Contents","searchLoading":"Loading...","searchEmpty":"Type keywords to start searching...","searchNoResults":"No articles matching \"%s\"","tableScrollLabel":"Table, scroll horizontally for more columns","tableScrollHint":"Scroll horizontally to view the full table. You can also use the arrow keys."};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="Search articles, tags, or keywords..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">Type keywords to start searching...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">ESC to close, ↑↓ to navigate, Enter to open</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/en/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/en/js/jquery-3.4.1.min.js"></script>
+<script defer src="/en/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/en/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/en/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>

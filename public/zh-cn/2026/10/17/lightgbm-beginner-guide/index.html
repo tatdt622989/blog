@@ -1,0 +1,868 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="LightGBM 是什么，适合解决哪些问题？以咖啡店销量预测为例，用通俗语言讲清决策树和梯度提升，再通过能直接运行的 Python 代码，学会数据划分、模型训练、早停和误差评估，并了解接入真实表格数据时的注意事项。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/17/lightgbm-beginner-guide/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/17/lightgbm-beginner-guide/">
+  
+
+  <meta property="og:title" content="LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战"/>
+  <meta property="og:description" content="LightGBM 是什么，适合解决哪些问题？以咖啡店销量预测为例，用通俗语言讲清决策树和梯度提升，再通过能直接运行的 Python 代码，学会数据划分、模型训练、早停和误差评估，并了解接入真实表格数据时的注意事项。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/cover.jpg?v=1d9ee2ae" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战">
+  <meta name="twitter:description" content="LightGBM 是什么，适合解决哪些问题？以咖啡店销量预测为例，用通俗语言讲清决策树和梯度提升，再通过能直接运行的 Python 代码，学会数据划分、模型训练、早停和误差评估，并了解接入真实表格数据时的注意事项。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/cover.jpg?v=1d9ee2ae">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/","headline":"LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战","description":"LightGBM 是什么，适合解决哪些问题？以咖啡店销量预测为例，用通俗语言讲清决策树和梯度提升，再通过能直接运行的 Python 代码，学会数据划分、模型训练、早停和误差评估，并了解接入真实表格数据时的注意事项。","datePublished":"2026-10-17T14:54:52.000Z","dateModified":"2026-10-17T14:54:52.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/zh-cn/categories/AI/"},{"@type":"ListItem","position":3,"name":"LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战","item":"https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=943446a26f">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/17/lightgbm-beginner-guide/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/17/lightgbm-beginner-guide/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/17/lightgbm-beginner-guide/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+      <li><a href="/zh-cn/ai-dev-map/">开发地图</a></li>
+    
+    <li><a href="https://iraiya.com" target="_blank" rel="noopener">产品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-lightgbm-beginner-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-17T14:54:52.000Z"><a href="/zh-cn/2026/10/17/lightgbm-beginner-guide/">2026-10-17</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/17/lightgbm-beginner-guide/cover-card-720.jpg?v=bc94a444" alt="LightGBM 入门示意：咖啡店的表格数据经过多棵决策树，输出每日销量预测" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/17/lightgbm-beginner-guide/cover-card-480.jpg?v=b480207a 480w, /zh-cn/2026/10/17/lightgbm-beginner-guide/cover-card-720.jpg?v=bc94a444 720w, /zh-cn/2026/10/17/lightgbm-beginner-guide/cover-card-960.jpg?v=5c0ffe8e 960w, /zh-cn/2026/10/17/lightgbm-beginner-guide/cover-card-1280.jpg?v=a9a77db9 1280w, /zh-cn/2026/10/17/lightgbm-beginner-guide/cover.jpg?v=1d9ee2ae 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>LightGBM 能从已有的表格数据中学习规律，用来预测新样本的结果。比如你开了一家咖啡店，记录了每天的气温预报、促销安排和实际销量，就可以尝试预测：“周六预计 28 度，还有促销，该准备多少杯？”</p>
+<p>这篇教程围绕这个问题，讲清模型在学什么、代码怎么写，以及怎样判断预测是否有用。理解原理不需要微积分，动手部分只需要会运行基础 Python 代码。</p>
+<span id="more"></span>
+
+<h2 id="先把业务问题变成一张表"><a href="#先把业务问题变成一张表" class="headerlink" title="先把业务问题变成一张表"></a>先把业务问题变成一张表</h2><p>下面是<strong>用于解释字段的虚构数据，不是后面代码的运行结果</strong>：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
+<thead>
+<tr>
+<th>星期</th>
+<th>当天的气温预报</th>
+<th>是否促销</th>
+<th>实际售出杯数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>周一</td>
+<td>24 度</td>
+<td>否</td>
+<td>150</td>
+</tr>
+<tr>
+<td>周六</td>
+<td>28 度</td>
+<td>是</td>
+<td>220</td>
+</tr>
+<tr>
+<td>周日</td>
+<td>20 度</td>
+<td>否</td>
+<td>165</td>
+</tr>
+</tbody></table></div>
+<p>一行就是一天的记录。前三列是预测时可以提供的<strong>特征</strong>，代码里通常记作 <strong>X</strong>；最后一列是想预测的<strong>目标值或标签</strong>，记作 <strong>y</strong>。</p>
+<p><strong>训练</strong>时，把 X 和已知的 y 一起交给模型，让它学习规律。<strong>预测</strong>时，只输入新一天的 X，模型返回预计销量。还没发生的实际销量，不能提前混进输入字段。</p>
+<p>这种用“带答案的历史样本”学习的方法，叫<strong>监督学习</strong>。LightGBM 可以处理下面三类任务，<a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Python-API.html">官方 Python API</a> 提供了各自的接口。</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>业务问题</th>
+<th>任务类型</th>
+<th>Python 接口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>明天能卖多少杯？</td>
+<td>回归，预测数值</td>
+<td><strong>LGBMRegressor</strong></td>
+</tr>
+<tr>
+<td>用户会不会再次购买？</td>
+<td>分类，预测类别或概率</td>
+<td><strong>LGBMClassifier</strong></td>
+</tr>
+<tr>
+<td>同一次搜索的商品如何排序？</td>
+<td>排序，学习相对次序</td>
+<td><strong>LGBMRanker</strong></td>
+</tr>
+</tbody></table></div>
+<p>排序还要按查询组织候选样本，不能把销量示例里的类名换一下就直接使用。我们先从最容易理解的销量回归开始。</p>
+<h2 id="它怎么学习？先用树找规则，再逐步纠正偏差"><a href="#它怎么学习？先用树找规则，再逐步纠正偏差" class="headerlink" title="它怎么学习？先用树找规则，再逐步纠正偏差"></a>它怎么学习？先用树找规则，再逐步纠正偏差</h2><p>把<strong>决策树</strong>想象成一连串问题：“今天有促销吗？”“气温高于某个值吗？”每问一次，就把历史样本分成不同组，最后输出一个数值。这些问题、阈值和输出值，都是训练时从数据中学出来的。</p>
+<p>LightGBM 的默认训练方式会依次加入多棵树。新加入的树根据当前整个模型的不足，学习该往哪个方向修正。这就是<strong>梯度提升</strong>最直观的含义。</p>
+<p>对于平方误差回归，可以先把修正方向理解为“真实值减去当前预测值”，也就是残差。分类或其他任务使用相应损失函数的梯度来确定修正方向。<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosted-trees">scikit-learn 的梯度提升文档</a> 给出了更完整的解释。</p>
+<p>假设某天实际卖了 130 杯。下面的数字<strong>只是原理示意</strong>：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>本次修正</th>
+<th>累计预测</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初始预测</td>
+<td>从 100 杯起步</td>
+<td>100 杯</td>
+</tr>
+<tr>
+<td>第一棵修正树</td>
+<td>增加 20 杯</td>
+<td>120 杯</td>
+</tr>
+<tr>
+<td>第二棵修正树</td>
+<td>增加 8 杯</td>
+<td>128 杯</td>
+</tr>
+</tbody></table></div>
+<p>这里的修正量已经包含学习率的缩放。真实训练要同时照顾很多条样本，新树可能调高预测，也可能调低预测；验证集误差不一定每轮都变好。</p>
+<p>训练完成后，这些树组成一个模型。预测新记录时，模型沿着各棵树的规则计算，再合并它们的贡献，无需为每条新记录重新训练。</p>
+<h2 id="LightGBM-为什么注重训练效率？"><a href="#LightGBM-为什么注重训练效率？" class="headerlink" title="LightGBM 为什么注重训练效率？"></a>LightGBM 为什么注重训练效率？</h2><p>先记住两个设计：</p>
+<ul>
+<li><strong>直方图分箱</strong>：把连续特征归入较少的区间，减少寻找分裂点时的计算量和内存开销。</li>
+<li><strong>优先分裂收益最大的叶子节点</strong>：每次选择最能降低训练损失的位置继续生长，不要求整层同时展开。这叫 <strong>leaf-wise</strong> 生长。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Features.html">LightGBM 官方功能文档</a> 介绍了这两种机制。叶子节点就是一条路径的终点，负责给出数值。如果分得过细，模型可能连少量样本的偶然特点也记下来，出现<strong>过拟合</strong>。</p>
+<p>具体速度和效果仍然需要在自己的数据上测量。样本太少、字段没有预测信号，或者未来的情况发生变化，都会影响模型表现。</p>
+<h2 id="开始写代码前，先留好三份数据"><a href="#开始写代码前，先留好三份数据" class="headerlink" title="开始写代码前，先留好三份数据"></a>开始写代码前，先留好三份数据</h2><p>我们的目标是预测未来销量，因此按时间顺序切分 1000 天的数据：前 700 天训练，中间 150 天验证，最后 150 天测试。</p>
+<pre class="mermaid">
+flowchart TD
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+    A["整理预测时已经知道的特征"]:::plan
+    B["按时间划分训练、验证、测试集"]:::plan
+    C["用训练集学习决策树"]:::dev
+    D["用验证集决定何时停止"]:::gate
+    E["在保留的测试集上比较基线"]:::test
+    F["输入新一天的数据，生成预测"]:::done
+    A --> B --> C --> D --> E --> F
+</pre>
+
+<p><strong>训练集是练习题，验证集是练习过程中的测验，测试集是最后才打开的试卷。</strong> 早停和调参都看验证集。反复根据测试集成绩调整模型，会让最后的评估失去客观性。</p>
+<p>本例只做一次时间划分，目的是学会流程。实际项目还可以用多个时间窗口回测；<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html">TimeSeriesSplit 官方文档</a> 解释了为什么时间序列需要这种评估方式。</p>
+<h2 id="Python-实战：完整跑通一次销量预测"><a href="#Python-实战：完整跑通一次销量预测" class="headerlink" title="Python 实战：完整跑通一次销量预测"></a>Python 实战：完整跑通一次销量预测</h2><p>示例会<strong>直接生成模拟数据</strong>，不用另外下载数据集。我们人为设置气温、周末和促销对销量的影响，再加入随机噪声，用来观察模型能否学到这些关系。</p>
+<h3 id="1-安装依赖，创建示例文件"><a href="#1-安装依赖，创建示例文件" class="headerlink" title="1. 安装依赖，创建示例文件"></a>1. 安装依赖，创建示例文件</h3><p>先准备 Python 3.12。如果还没创建虚拟环境，运行 <strong>python -m venv .venv</strong>。macOS／Linux 用 <strong>source .venv&#x2F;bin&#x2F;activate</strong> 激活；Windows PowerShell 用 <strong>.venv\Scripts\Activate.ps1</strong> 激活。</p>
+<p>在已激活的环境中安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install lightgbm==4.7.0 pandas==3.0.6 scikit-learn==1.9.1</span><br></pre></td></tr></table></figure>
+
+<p>如果 macOS 导入时报 OpenMP 缺失，按<a target="_blank" rel="noopener" href="https://github.com/lightgbm-org/LightGBM/tree/main/python-package#installation">官方安装说明</a> 安装 <strong>libomp</strong>。</p>
+<p>把接下来的三段 Python 按顺序放进同一个 <strong>lightgbm_coffee_demo.py</strong>，或者<a href="lightgbm_coffee_demo.py">下载完整示例代码</a>。运行 <strong>python lightgbm_coffee_demo.py</strong> 即可。</p>
+<h3 id="2-准备特征-X-和目标值-y"><a href="#2-准备特征-X-和目标值-y" class="headerlink" title="2. 准备特征 X 和目标值 y"></a>2. 准备特征 X 和目标值 y</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.dummy <span class="keyword">import</span> DummyRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"></span><br><span class="line">rng = np.random.default_rng(<span class="number">42</span>)</span><br><span class="line">n = <span class="number">1000</span></span><br><span class="line">dates = pd.date_range(<span class="string">&quot;2024-01-01&quot;</span>, periods=n, freq=<span class="string">&quot;D&quot;</span>)</span><br><span class="line">X = pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">&quot;day_of_week&quot;</span>: dates.dayofweek,</span><br><span class="line">    <span class="string">&quot;forecast_temp&quot;</span>: rng.uniform(<span class="number">10</span>, <span class="number">35</span>, n),</span><br><span class="line">    <span class="string">&quot;promotion&quot;</span>: rng.integers(<span class="number">0</span>, <span class="number">2</span>, n),</span><br><span class="line">&#125;)</span><br><span class="line">y = pd.Series(np.maximum(<span class="number">0</span>, np.<span class="built_in">round</span>(</span><br><span class="line">    <span class="number">80</span> + <span class="number">3</span> * X[<span class="string">&quot;forecast_temp&quot;</span>]</span><br><span class="line">    + <span class="number">20</span> * (X[<span class="string">&quot;day_of_week&quot;</span>] &gt;= <span class="number">5</span>)</span><br><span class="line">    + <span class="number">35</span> * X[<span class="string">&quot;promotion&quot;</span>]</span><br><span class="line">    + rng.normal(<span class="number">0</span>, <span class="number">8</span>, n)</span><br><span class="line">)), name=<span class="string">&quot;cups_sold&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>day_of_week</strong> 用 0 表示周一，6 表示周日；<strong>promotion</strong> 用 0／1 表示没有／有促销。<strong>forecast_temp</strong> 模拟的是预测时已获取的气温预报。</p>
+<p>生成 y 的公式是为教学设计的。<strong>模型只会拿到 X 和 y，并不知道这条生成公式。</strong> 换成实际项目时，这些字段来自历史业务记录。</p>
+<h3 id="3-划分数据并训练模型"><a href="#3-划分数据并训练模型" class="headerlink" title="3. 划分数据并训练模型"></a>3. 划分数据并训练模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">X_train, y_train = X.iloc[:<span class="number">700</span>], y.iloc[:<span class="number">700</span>]</span><br><span class="line">X_valid, y_valid = X.iloc[<span class="number">700</span>:<span class="number">850</span>], y.iloc[<span class="number">700</span>:<span class="number">850</span>]</span><br><span class="line">X_test, y_test = X.iloc[<span class="number">850</span>:], y.iloc[<span class="number">850</span>:]</span><br><span class="line"></span><br><span class="line">model = lgb.LGBMRegressor(</span><br><span class="line">    objective=<span class="string">&quot;regression&quot;</span>, metric=<span class="string">&quot;mae&quot;</span>,</span><br><span class="line">    n_estimators=<span class="number">800</span>, learning_rate=<span class="number">0.05</span>,</span><br><span class="line">    num_leaves=<span class="number">15</span>, min_child_samples=<span class="number">20</span>,</span><br><span class="line">    random_state=<span class="number">42</span>, n_jobs=<span class="number">2</span>, verbosity=-<span class="number">1</span>,</span><br><span class="line">)</span><br><span class="line">model.fit(</span><br><span class="line">    X_train, y_train,</span><br><span class="line">    eval_X=X_valid, eval_y=y_valid,</span><br><span class="line">    callbacks=[lgb.early_stopping(<span class="number">30</span>, verbose=<span class="literal">False</span>)],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>fit</strong> 执行训练，<strong>eval_X／eval_y</strong> 指定验证数据。<strong>early_stopping(30)</strong> 的意思是：验证 MAE 连续 30 轮没有改善就停止训练，同时记录最佳轮次。早停需要验证集，<a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/pythonapi/lightgbm.early_stopping.html">官方回调文档</a> 解释了具体条件。</p>
+<p>本文固定使用 <strong>LightGBM 4.7.0</strong>。这个版本引入 <strong>eval_X／eval_y</strong>，并弃用旧的 <strong>eval_set</strong> 参数；老版本可能不认识新参数，所以请先对齐依赖版本。<a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/pythonapi/lightgbm.LGBMRegressor.html#lightgbm.LGBMRegressor.fit">对应 API 文档</a></p>
+<h3 id="4-比较误差，再预测一个新样本"><a href="#4-比较误差，再预测一个新样本" class="headerlink" title="4. 比较误差，再预测一个新样本"></a>4. 比较误差，再预测一个新样本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">baseline = DummyRegressor(strategy=<span class="string">&quot;mean&quot;</span>)</span><br><span class="line">baseline.fit(X_train, y_train)</span><br><span class="line">baseline_mae = mean_absolute_error(y_test, baseline.predict(X_test))</span><br><span class="line">model_mae = mean_absolute_error(y_test, model.predict(X_test))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Baseline MAE: <span class="subst">&#123;baseline_mae:<span class="number">.2</span>f&#125;</span> cups&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;LightGBM MAE: <span class="subst">&#123;model_mae:<span class="number">.2</span>f&#125;</span> cups&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Best iteration: <span class="subst">&#123;model.best_iteration_&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">tomorrow = pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">&quot;day_of_week&quot;</span>: [<span class="number">5</span>],</span><br><span class="line">    <span class="string">&quot;forecast_temp&quot;</span>: [<span class="number">28.0</span>],</span><br><span class="line">    <span class="string">&quot;promotion&quot;</span>: [<span class="number">1</span>],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;New-day prediction: <span class="subst">&#123;model.predict(tomorrow)[<span class="number">0</span>]:<span class="number">.1</span>f&#125;</span> cups&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <strong>DummyRegressor</strong> 始终预测训练集的平均销量，提供一个最简单的<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyRegressor.html">基线模型</a>。<strong>predict</strong> 则把新样本的特征转换成预计销量。</p>
+<h2 id="如何理解运行结果？"><a href="#如何理解运行结果？" class="headerlink" title="如何理解运行结果？"></a>如何理解运行结果？</h2><p>2026 年 10 月 17 日，我们在 Python 3.12.10、LightGBM 4.7.0、pandas 3.0.6、scikit-learn 1.9.1 和 NumPy 2.5.4 环境实际运行了代码，输出如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Baseline MAE: 24.40 cups</span><br><span class="line">LightGBM MAE: 7.15 cups</span><br><span class="line">Best iteration: 104</span><br><span class="line">New-day prediction: 220.3 cups</span><br></pre></td></tr></table></figure>
+
+<p><strong>MAE 是平均绝对误差，越小越好。</strong> 7.15 杯表示在这 150 个测试日里，预测与实际销量的绝对差平均为 7.15 杯。它不表示每天最多错 7.15 杯，更不能换算成“准确率 92.85%”。<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html">MAE 官方定义</a> 给出了计算规则。</p>
+<p>最佳轮次 104 表示验证集选出的模型使用了 104 轮，而不是全部 800 轮。220.3 杯是新一天的预测值；如何据此备货，还要结合缺货和剩余库存的成本。</p>
+<p><strong>这些指标只适用于本文构造的模拟数据。</strong> 真实经营中存在天气预报偏差、临时活动和需求变化，不能照搬这个误差。实际项目还应比较更强的基线，例如“上周同一天的销量”。</p>
+<h2 id="新手先认识五个设置"><a href="#新手先认识五个设置" class="headerlink" title="新手先认识五个设置"></a>新手先认识五个设置</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>设置</th>
+<th>本例取值</th>
+<th>它控制什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>n_estimators</strong></td>
+<td>800</td>
+<td>最大训练轮数，本例每轮增加一棵树</td>
+</tr>
+<tr>
+<td><strong>learning_rate</strong></td>
+<td>0.05</td>
+<td>每轮修正的步长</td>
+</tr>
+<tr>
+<td><strong>num_leaves</strong></td>
+<td>15</td>
+<td>每棵树最多的叶子节点数</td>
+</tr>
+<tr>
+<td><strong>min_child_samples</strong></td>
+<td>20</td>
+<td>控制叶子节点至少需要的样本量</td>
+</tr>
+<tr>
+<td><strong>early_stopping</strong></td>
+<td>30</td>
+<td>验证指标连续几轮不改善就停止</td>
+</tr>
+</tbody></table></div>
+<p>可以从这组设置起步，先观察训练和验证表现的差距。如果训练很好、验证很差，尝试减小叶子数或提高叶子节点的样本门槛。<strong>min_child_samples</strong> 对应核心参数 <strong>min_data_in_leaf</strong>，<strong>max_depth</strong> 则可限制树的深度。<a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Parameters-Tuning.html">调参指南</a> 和<a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Parameters.html#min_data_in_leaf">参数定义</a> 提供了详细解释。</p>
+<p>注意，<strong>objective&#x3D;”regression”</strong> 让模型按平方误差学习，<strong>metric&#x3D;”mae”</strong> 让我们按 MAE 检查验证表现。训练目标和评估指标承担的是不同职责。</p>
+<h2 id="换成真实数据前，确认三个问题"><a href="#换成真实数据前，确认三个问题" class="headerlink" title="换成真实数据前，确认三个问题"></a>换成真实数据前，确认三个问题</h2><p>假设已有 <strong>sales.csv</strong>，一行一天，包含日期 <strong>date</strong>、气温预报 <strong>forecast_temp</strong>、促销 <strong>promotion</strong> 和销量 <strong>cups_sold</strong>。保留导入依赖的代码，用这段替换步骤 2 生成模拟数据的部分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">&quot;sales.csv&quot;</span>, parse_dates=[<span class="string">&quot;date&quot;</span>]).sort_values(<span class="string">&quot;date&quot;</span>)</span><br><span class="line">df[<span class="string">&quot;day_of_week&quot;</span>] = df[<span class="string">&quot;date&quot;</span>].dt.dayofweek</span><br><span class="line">X = df[[<span class="string">&quot;day_of_week&quot;</span>, <span class="string">&quot;forecast_temp&quot;</span>, <span class="string">&quot;promotion&quot;</span>]]</span><br><span class="line">y = df[<span class="string">&quot;cups_sold&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>promotion</strong> 继续用 0／1。原示例的 700／850 切分位置针对 1000 行；记录数不同，需要先按实际数据量重新划分训练、验证和测试区间，再开始训练。</p>
+<p><strong>预测时能拿到这个字段吗？</strong> 明天的气温预报和已经安排好的促销可以作为输入；明天结束后才产生的营业额、实际客流不能用。否则就出现了<strong>数据泄漏</strong>，测试分数会产生误导。<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/common_pitfalls.html#data-leakage">scikit-learn 的数据泄漏说明</a> 是接入真实数据前值得读的一页。</p>
+<p><strong>字段类型处理正确了吗？</strong> 星期、温度和促销要保持一致格式。LightGBM 支持数值缺失值和类别特征，但普通字符串列仍需处理；例如把门店类型转成 pandas 的 <strong>category</strong> 类型，并保证训练和预测时类别映射一致。支持缺失值不等于可以不检查数据质量。<a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/stable/Advanced-Topics.html">类别特征与缺失值文档</a></p>
+<p><strong>评估方式接近实际使用吗？</strong> 先按日期排序，再划分训练集、验证集和测试集。预测时保持相同的特征名称、列顺序和含义，不要把 <strong>cups_sold</strong> 标签列一起交给 <strong>predict</strong>。</p>
+<p>第一次动手，先走通“准备 X／y → 划分数据 → fit → 比较基线 → predict”。等你能说清楚每个特征为什么可用、每个误差代表什么，再继续增加特征和调参，才知道自己究竟改善了哪个问题。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/AI/">AI</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/LightGBM/">LightGBM</a>, <a href="/zh-cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>, <a href="/zh-cn/tags/Python/">Python</a>, <a href="/zh-cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战" data-url="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F17%2Flightgbm-beginner-guide%2F&title=LightGBM%20%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%9A%E7%94%A8%E5%92%96%E5%95%A1%E9%94%80%E9%87%8F%E7%9C%8B%E6%87%82%E5%8E%9F%E7%90%86%E3%80%81%E8%AE%AD%E7%BB%83%E4%B8%8E%20Python%20%E5%AE%9E%E6%88%98" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F17%2Flightgbm-beginner-guide%2F&title=LightGBM%20%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%9A%E7%94%A8%E5%92%96%E5%95%A1%E9%94%80%E9%87%8F%E7%9C%8B%E6%87%82%E5%8E%9F%E7%90%86%E3%80%81%E8%AE%AD%E7%BB%83%E4%B8%8E%20Python%20%E5%AE%9E%E6%88%98" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=LightGBM%20%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%9A%E7%94%A8%E5%92%96%E5%95%A1%E9%94%80%E9%87%8F%E7%9C%8B%E6%87%82%E5%8E%9F%E7%90%86%E3%80%81%E8%AE%AD%E7%BB%83%E4%B8%8E%20Python%20%E5%AE%9E%E6%88%98&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F10%2F17%2Flightgbm-beginner-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="LightGBM 入门教程：用咖啡销量看懂原理、训练与 Python 实战" data-url="https://blog.6yuwei.com/zh-cn/2026/10/17/lightgbm-beginner-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/10/17/lightgbm-beginner-guide/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/10/17/typesafe-jev-1-14-update/" class="related-post-link"
+           data-rel-title="Jev 1.14 更新解读：图像输入、Box 定位与 262k 长上下文"
+           data-rel-path="/zh-cn/2026/10/17/typesafe-jev-1-14-update/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/10/17/typesafe-jev-1-14-update/cover.jpg?v=897c7c9b" alt="Jev 1.14 更新解读：图像输入、Box 定位与 262k 长上下文" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Jev 1.14 更新解读：图像输入、Box 定位与 262k 长上下文</h4>
+            
+              <time class="related-post-date">2026-10-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/" class="related-post-link"
+           data-rel-title="VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级"
+           data-rel-path="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg?v=97053b40" alt="VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">VoiceStudio 是什么？本地 AI 配音介绍与电脑配置分级</h4>
+            
+              <time class="related-post-date">2026-10-05</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/" class="related-post-link"
+           data-rel-title="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策"
+           data-rel-path="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980" alt="Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策</h4>
+            
+              <time class="related-post-date">2026-09-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>9</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>17</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>2</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>30</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>11</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>9</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Aseprite/"><span>Aseprite</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/DevDay/"><span>DevDay</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/zh-cn/rss.xml">订阅 RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
