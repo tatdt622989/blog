@@ -1,8 +1,8 @@
 ---
-title: "Making Games with GPT-6: Choosing Godot, Unity, Unreal, or Web Tools"
+title: "How to Make a Game with GPT-6: Godot, Unity, Unreal, or Web Engines"
 date: 2026-09-09 15:00:00
-updated: 2026-09-09 15:19:28
-description: "Compare Godot, Unity, Unreal, Phaser, PixiJS, GDevelop, and Three.js for GPT-6 game dev, with practical tradeoffs and a small first-project brief."
+updated: 2026-10-19 16:00:00
+description: "Making a game with GPT-6? Use GPT-6.1 Sol or Astra in Codex, pick Phaser for 2D web, Godot for indie, Unity (official Codex plugin) for C#, then build one level."
 translation_key: gpt-6-game-engines-guide
 permalink: 2026/09/09/gpt-6-game-engines-guide/
 translations:
@@ -12,6 +12,7 @@ categories:
 - Game Development
 tags:
 - GPT-6
+- ChatGPT
 - Codex
 - Godot
 - Unity
@@ -22,122 +23,93 @@ tags:
 
 ![Concept illustration of GPT-6 helping build a platformer, a forest adventure, and a space exploration game](cover.jpg)
 
-Watching GPT-6 build a game makes it tempting to ask for one of your own. But if you have never written code, names like Godot, Unity, and Phaser raise an earlier question: **if AI can write the code, why do you need a game engine?**
+**The fastest way to make a game with GPT-6 is to let GPT-6.1 Sol (or the more capable GPT-6 Astra) work directly on your project in Codex, then pick the engine by goal: Phaser for a 2D browser game, Godot for an ongoing indie project, Unity if you know C#, and Unreal only for a clear 3D target. Make the first version a single level you can finish and restart.** Asking for code in a ChatGPT chat also works, but project setup, running, and error reporting stay with you.
 
-A tiny game about collecting coins is enough to explain what these tools do, before choosing one for your idea.
+Below: the GPT-6 lineup as of October 2026, seven tools compared, and the official way each engine connects to an AI agent.
 
 <!--more-->
 
-## What is a game engine? Start with collecting a coin
+## Four steps to start a game with GPT-6
 
-Imagine a simple game: press right to move a character, stop when it hits a wall, and collect a coin to increase the score and play a sound.
+1. **Write a one-page plan**: what the player repeats, how they win, and what version one leaves out. See [Plan before making a game with AI: core loop, prototype, and GDD template](/en/2026/10/07/ai-game-planning-gdd-prototype-guide/).
+2. **Use a tool that can run code**: Codex (desktop app, CLI, IDE extension) can edit files, run commands, and run tests. A chat window only hands you code.
+3. **Pick an engine** from the table below, choosing the one you are most likely to finish a first project with.
+4. **Close the feedback loop**: the agent should be able to launch the game, run tests, and see errors and screenshots. OpenAI's [Astra game development case study](https://developers.openai.com/blog/how-to-build-games-with-astra) settled the art direction with image generation first, used Vitest and Playwright for tests and screenshots, and relied on a human playtester to report how it felt.
 
-Those few actions require several jobs:
+For architectures that make agent verification easier, see [open-source game engine architectures for AI agents](/en/2026/09/11/open-source-game-engine-architectures-for-ai-agents/).
 
-- **Draw the scene:** place the character, walls, and coins, with the right objects in front.
-- **Handle input:** turn a key press or touch into a character action.
-- **Detect collisions:** stop the character crossing a wall or collecting a distant coin.
-- **Apply the rules:** decide how many points a coin is worth and when the player wins.
-- **Give feedback:** animate the character, play a sound, and update the displayed score.
+## Which GPT-6 model for game dev: Astra, Sol, or Luna?
 
-**A game engine packages common game-making functionality so you do not have to build every foundation yourself.** Features vary, but engines commonly help with graphics, input, objects, and assets. Some include visual editors for placing characters and walls in a level.
+As of October 19, 2026, the [OpenAI API model overview](https://developers.openai.com/api/docs/models) lists three GPT-6 family models:
 
-The engine still needs your decisions. Collision detection needs configuration; sound playback needs a chosen sound and a trigger. **Rules such as “each coin earns 10 points; collecting five wins the level” are the part you and the AI still need to create.**
+| Model | API ID | Official positioning | API price per 1M tokens (input / output) | Use in game dev |
+|---|---|---|---|---|
+| GPT-6 Astra | gpt-6-astra | Most capable, for the most demanding work | $10 / $50 | Architecture, hard performance or physics bugs |
+| GPT-6.1 Sol | gpt-6.1-sol | Near-Astra performance at lower cost | $2 / $10 | Day-to-day gameplay code and fixes |
+| GPT-6 Luna | gpt-6-luna | Most efficient, for focused high-volume tasks | $0.10 / $0.50 | Small edits, data and text batches |
 
-## What do GPT-6 and the engine each do?
+Prices come from the official model pages ([Astra](https://developers.openai.com/api/docs/models/gpt-6-astra), [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol)); requests over 272K input tokens cost more.
 
-In this workflow, **you decide the game you want, GPT-6 helps write code and change configuration, and the engine runs the relevant systems while the game is played.**
+In Codex, the [official models page](https://learn.chatgpt.com/docs/models) recommends **GPT-6.1 Sol** for complex coding and agent work on Plus, Pro, Business, Enterprise, and Edu (Enterprise and Edu need an admin to enable it). **Free and Go users can choose GPT-6 Luna in the desktop app.** The Sol the API overview now features is GPT-6.1 Sol from late September, not the original September 22 GPT-6 Sol; background in the [OpenAI DevDay 2026 recap](/en/2026/09/30/openai-devday-2026-announcements/).
 
-Ask the AI to award points when the character touches a coin, and it can help implement that rule using the engine's collision and display features. Then run the game to check whether collecting works, points are awarded only once, and the controls feel right.
+**The model helps during development; the finished game does not call GPT-6.** A fixed-rule game runs on the engine alone. Only features such as a model-driven conversational character connect to a model at play time and add API cost.
 
-An ordinary game with fixed rules **does not need to call GPT-6 for every player movement**. AI can be used only during development. The finished program and engine handle play. Features such as a model-powered conversational character would be a separate decision.
+## Seven tools compared
 
-### Is an engine mandatory?
+| Tool | Good for | AI entry point | Official agent integration | Watch out for |
+|---|---|---|---|---|
+| Phaser | 2D browser puzzles and arcade games | JavaScript or TypeScript logic | Not needed: code-only project | Touch, scaling, phone testing |
+| PixiJS | Custom 2D visuals, cards, effects | Rendering and interaction code | Not needed: code-only project | Build game state and collisions yourself |
+| Godot | 2D indie games, small 3D | Scripts and text scene files | None official; community MCP add-ons | Nodes, resource references, game feel |
+| Unity | Mobile or 3D projects with C# experience | C# systems and editor tools | Yes: official Codex plugin (Unity 6+) | Scene setup, package versions, devices |
+| Unreal Engine | Projects focused on 3D visuals | C++ and editor automation | Yes: Unreal MCP (experimental) | Blueprint wiring, assets, performance |
+| GDevelop | Starting from event rules | Breaking mechanics into conditions and actions | Depends on the product's own features | Event order, checked in the editor |
+| Three.js | Custom 3D browser experiences | Code-driven scenes and interactions | Not needed: code-only project | Physics and game systems are extra |
 
-No. A number-guessing or text-choice game can be built with ordinary web code. You can also combine smaller libraries that handle individual jobs. As the game grows, however, more of that integration becomes your responsibility.
+My default: **start with Phaser for a shareable 2D browser game; choose Godot for an ongoing 2D or small 3D project.** If you already know an engine, stay with it. This is a workflow recommendation based on official documentation, not a controlled benchmark of the seven tools.
 
-That is why this article distinguishes **game engines such as Godot and Unity, a game framework such as Phaser, and graphics libraries such as PixiJS and Three.js**. A framework supplies structure and reusable functionality; a graphics library focuses on drawing without necessarily providing a full set of game systems.
+### What does a game engine actually do?
 
-For a first shareable 2D browser game, I would start with Phaser. For an ongoing 2D or modest 3D project, I would look at Godot. Existing experience with another engine remains a good reason to keep using it.
+AI can write code, but "the player collects a coin" needs rendering, input, collision detection, rules, and audio feedback. **An engine provides those foundations so you and the AI only write rules such as "each coin is worth 10 points; five coins win the level."** A number-guessing or text-choice game can skip the engine. Phaser is a game framework; PixiJS and Three.js are graphics libraries, so game systems are yours to add.
 
-## What makes an engine suitable for GPT-6?
+## GPT-6 with Phaser or PixiJS: 2D browser games
 
-OpenAI's September 4 [Astra game development case study](https://developers.openai.com/blog/how-to-build-games-with-astra) uses **TypeScript, Vite, and Three.js**. An appealing game does not necessarily start with a large desktop editor.
+Phaser is a web game framework with official [JavaScript and TypeScript templates](https://phaser.io/tutorials/create-game-app); its [scene system](https://docs.phaser.io/phaser/concepts/scenes) brings together cameras, loading, input, timing, and optional physics. A code-only project lets Codex run the whole edit-run-inspect loop. Start with one character, one obstacle type, and a restart button.
 
-This is a selection guide based on official documentation checked on September 9, 2026, **not a controlled GPT-6 benchmark across seven tools**. “Suitable” describes the workflow; it does not mean an engine includes GPT-6. The discussion assumes a coding agent such as Codex can access project files and development tools. A chat-only session still leaves project setup, execution, and error reporting to you.
+PixiJS is a **2D rendering library**; its [official FAQ](https://pixijs.com/faq/FAQPage) says it is not a complete game engine. Use it for card displays or custom effects, but agree with the agent on screen transitions, game state, and collisions first, or you will end up with only a rendering layer.
 
-I would ask three questions: can the agent understand and edit the project, can it run changes promptly, and can it get useful errors and images when something breaks? That feedback loop matters more than an elaborate opening prompt.
+**A finished web game is not automatically playable on a phone**: check in portrait mode that controls do not cover the player, touch works, and restarting clears the previous round. Before sharing, read [why a localhost link will not work for friends](/en/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/).
 
-## Seven starting points
+## GPT-6 with Godot: the friendliest open-source option
 
-| Tool | What I would build | Useful AI entry point | What needs your attention |
-|---|---|---|---|
-| Phaser | 2D browser puzzles and arcade games | JavaScript or TypeScript logic | Touch input, scaling, browser testing |
-| PixiJS | Custom 2D visuals, card displays, interactive effects | Rendering and interaction code | Organizing game state, collisions, and screen transitions |
-| Godot | 2D indie games and small 3D adventures | Scripts and text scene files | Nodes, resource references, game feel |
-| Unity | Mobile or 3D projects with existing C# experience | C# systems and editor tools | Scene setup, package versions, device testing |
-| Unreal Engine | Projects focused on 3D environments | C++ and editor automation | Blueprint wiring, assets, performance |
-| GDevelop | Small games built around event rules | Breaking mechanics into conditions and actions | Editor setup and event order |
-| Three.js | Custom browser-based 3D experiences | Code-driven scenes and interactions | Assembling the remaining game systems |
+Godot's [TSCN scene format](https://docs.godotengine.org/en/stable/engine_details/file_formats/tscn.html) is plain text, so Codex can read and edit scene structure directly, and the [command line](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html) handles running and exporting. As of October the latest stable release is [Godot 4.7.2](https://godotengine.org/download/archive/4.7.2-stable/); tell the agent the exact version so it does not mix Godot 3 and 4 nodes or APIs.
 
-These are starting recommendations, not capability limits. Choose a route that helps you finish a first project instead of preparing for a hypothetical enormous one.
+**Godot has no official AI agent integration.** Community MCP add-ons in the asset library, such as Godot AI, let agents drive the editor, but they are third-party, so review their permissions first. GPT-6 Astra or Sol work with Godot without any add-on: the agent edits scripts and .tscn files and launches from the command line to catch errors. You still check game feel and camera in the running game.
 
-## Phaser: a shareable 2D first project
+A good first task: walk to a tree, press a key to gather, and see the inventory count go up. Add a shop once that loop is reliable.
 
-For a brick breaker, memory game, or simple obstacle course, I would consider Phaser first. It is a web game framework with official [JavaScript and TypeScript project templates](https://phaser.io/tutorials/create-game-app).
+## GPT-6 with Unity: smoothest if you know C#
 
-The appeal for AI collaboration is the edit-run-inspect loop. Start with one character, one obstacle type, and a restart button. Add levels, sound, and touch controls once that works.
+Unity now has an official route for Codex: the [Unity AI page](https://unity.com/features/ai) offers an **official plugin for Claude Code, Codex, and Grok** that bundles the Unity CLI, skills, and an MCP server, and supports **Unity 6.0 and later**. Unity says the CLI, MCP server, and plugin are free. A separate AI Gateway connects a third-party agent you already subscribe to inside the editor without using Unity credits. [Batch mode and command-line methods](https://docs.unity3d.com/6000.0/Documentation/Manual/EditorCommandLineArguments.html) remain available for automation.
 
-**Finishing a web game does not mean finishing a mobile app.** Even a browser-only release needs phone testing: controls might cover the player, touch input might fail, or restarting might retain state from the previous round.
+**Compiling is not the same as working**: a missing component or broken Prefab reference can leave the player motionless. Ask the agent for the script change, the required scene setup, and a way to verify it in one answer. An existing Unity project is no reason to start over with a new model; give it one bounded task first.
 
-## PixiJS or Phaser? Rendering versus a game framework
+## GPT-6 with Unreal Engine: for a clear 3D goal
 
-PixiJS, also written as pixi.js, belongs on this shortlist too. It focuses on **2D rendering**; its [official FAQ](https://pixijs.com/faq/FAQPage) explicitly says it is not a complete game engine. You can build games with it, but must arrange the game systems around it.
+Unreal combines [Blueprint and C++](https://dev.epicgames.com/documentation/unreal-engine/coding-in-unreal-engine-blueprint-vs-cplusplus?lang=en-US). The UE 5.8 documentation describes **[Unreal MCP](https://dev.epicgames.com/documentation/unreal-engine/unreal-mcp-in-unreal-editor?lang=en-US)**, a plugin that runs an MCP server inside the editor so compatible agents can spawn actors, configure lighting, and create material instances. It is marked **experimental**, accepts local connections only by default, and has no authentication layer, so never expose it beyond your machine.
 
-[Phaser scenes](https://docs.phaser.io/phaser/concepts/scenes) bring together cameras, loading, input, timing, and configurable physics plugins. That existing structure is a useful starting point for a first game.
-
-**I would choose Phaser for a brick breaker, platformer, or obstacle game; PixiJS for custom 2D visuals, card displays, or interactive effects when I am willing to organize the game systems myself.** This is a workflow recommendation, not a performance or GPT-6 success-rate ranking.
-
-Give the agent an exact version and project structure either way. With PixiJS, agree on how screen transitions, game state, and collisions will work before implementation. Otherwise, a finished rendering layer can hide an unfinished game. Integrating other libraries is an option; you need not rebuild every system yourself.
-
-## Godot: growing a prototype into your own game
-
-Godot would be high on my list for a pixel adventure, gathering game, or modest 3D project. Its [TSCN format](https://docs.godotengine.org/en/stable/engine_details/file_formats/tscn.html) describes scenes in text, giving a file-based agent useful project structure to work with alongside scripts.
-
-Its [command-line interface](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html) also supports running and exporting projects. A check without a visible game window, however, cannot establish whether the camera, collisions, or interface feel right.
-
-My first task would be walking to a tree, collecting a resource, and seeing the inventory count increase. A shop can come later. Give the agent your exact engine version so it does not mix APIs or node types from different releases.
-
-## Unity: a sensible choice with C# experience
-
-A Unity project can give an agent bounded C# tasks: player controls, item data, or saving and loading. The editor also offers [batch mode and command-line method execution](https://docs.unity3d.com/6000.0/Documentation/Manual/EditorCommandLineArguments.html) for repeatable workflows.
-
-Successful compilation is only part of the result. A missing component or incorrect Prefab reference can still leave the player motionless. Ask for the code change, required scene configuration, and a concrete way to verify the behavior together.
-
-An existing Unity project is not a reason to start over when a new model arrives. Give GPT-6 a small useful task there before expanding its responsibilities.
-
-## Unreal Engine: choose it for a clear 3D goal
-
-Unreal supports combining [Blueprint and C++](https://dev.epicgames.com/documentation/unreal-engine/coding-in-unreal-engine-blueprint-vs-cplusplus?lang=en-US). I would consider it for a project centered on 3D environments, but not as my default recommendation for a first memory-card game.
-
-AI can help with C++, explain Blueprint construction, or write editor utilities. One important distinction: [Unreal's Python scripting](https://dev.epicgames.com/documentation/unreal-engine/scripting-the-unreal-editor-using-python) is for the editor environment, not a substitute for gameplay code running in a packaged game.
-
-One interactive mechanism is a manageable first task. An entire open world combines level design, art, performance, and gameplay problems before you have a dependable starting point.
+A common mix-up: [Unreal's Python scripting is for the editor](https://dev.epicgames.com/documentation/unreal-engine/scripting-the-unreal-editor-using-python), not gameplay code in a packaged game. Make one interactive mechanism your first task, not an open world.
 
 ## GDevelop and Three.js: two different alternatives
 
-**GDevelop is worth considering if you want to begin with event rules.** Its [event system](https://wiki.gdevelop.io/gdevelop5/events/) expresses behavior through conditions and actions: touch a coin, add a point, remove the coin. GPT-6 can help organize those rules, but direct project manipulation depends on your tool connection. Do not assume access to the editor, or equate the product's own AI features with GPT-6 support.
+**GDevelop** expresses logic through its [event system](https://wiki.gdevelop.io/gdevelop5/events/) of conditions and actions: touch a coin, add a point, remove the coin. GPT-6 can turn your idea into an event list, but whether an external agent can edit the project depends on your tool connection, and the product's own AI is not GPT-6.
 
-**Three.js is an option for a custom 3D browser experience.** Its [official manual](https://threejs.org/manual/en/game.html) explicitly distinguishes the 3D library from a full game engine. Collision, physics, and other game systems need additional work. I would choose it with web development experience and a willingness to assemble the architecture, rather than simply copying the stack from a successful demo.
+**Three.js** powers the Astra case study (with TypeScript, Vite, and Rapier physics), yet its [official manual](https://threejs.org/manual/en/game.html) calls it a 3D library, not a game engine. Choose it with web development experience and a willingness to build the architecture, not just because a demo used it.
 
-## Make the first brief small enough to finish
-
-Instead of asking for a game resembling a major commercial release, try this:
+## The first brief to give GPT-6
 
 > Use my specified engine and version to build a single-level gathering game. The player can move and collect one resource. Collecting five items shows a success state, and the game can restart. Use placeholder assets. Leave out accounts, stores, and multiplayer. Before editing, list the files you need to change. When finished, explain how to launch it, which interactions you actually verified, and what remains unconfirmed.
 
-This is a suggested starting brief, not a tested guarantee. Play through starting, moving, collecting, winning, and restarting yourself. A polished still image cannot confirm that loop works.
+This is a starting brief, not a guarantee. Play through start, move, collect, win, and restart yourself. Once that loop holds, add music and sound effects with an [AI game audio workflow](/en/2026/08/27/indie-game-ai-audio-workflow/).
 
-Once the prototype is dependable, add audio and a sharing workflow. Related posts cover [AI game audio production](/en/2026/08/27/indie-game-ai-audio-workflow/) and [why a localhost link will not work for friends](/en/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/).
-
-I would use Phaser to explore a 2D web idea and Godot to grow an indie project. If you already know another engine, invite GPT-6 into that workflow. A small game you can keep improving and finish is a better first outcome than choosing the most impressive tool on paper.
+**For a first project, a small game you can keep changing, testing, and finishing matters more than picking the strongest model or engine.**

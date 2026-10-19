@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制 | 6yuwei</title>
+  <title>Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="Claude Code 的不同 Session 如何互发消息？本文先给出可直接使用的进度查询示例，再介绍版本要求、会话命名、本机与跨设备通信方式，以及接收权限和常见故障，帮助你在多个终端之间交接任务并核对执行结果。">
+  <meta name="description" content="Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/">
   
@@ -18,8 +18,8 @@
   <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/08/09/Claude-Code-%E8%B7%A8%E5%B7%A5%E4%BD%9C%E9%9A%8E%E6%AE%B5%E8%A8%8A%E6%81%AF%EF%BC%9A%E8%AE%93%E4%B8%8D%E5%90%8C-Session-%E4%BA%92%E7%9B%B8%E5%82%B3%E8%A9%B1%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%A8%E6%B3%95/">
   
 
-  <meta property="og:title" content="Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制"/>
-  <meta property="og:description" content="Claude Code 的不同 Session 如何互发消息？本文先给出可直接使用的进度查询示例，再介绍版本要求、会话命名、本机与跨设备通信方式，以及接收权限和常见故障，帮助你在多个终端之间交接任务并核对执行结果。"/>
+  <meta property="og:title" content="Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息"/>
+  <meta property="og:description" content="Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/"/>
@@ -31,13 +31,13 @@
   
   <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制">
-  <meta name="twitter:description" content="Claude Code 的不同 Session 如何互发消息？本文先给出可直接使用的进度查询示例，再介绍版本要求、会话命名、本机与跨设备通信方式，以及接收权限和常见故障，帮助你在多个终端之间交接任务并核对执行结果。">
+  <meta name="twitter:title" content="Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息">
+  <meta name="twitter:description" content="Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","url":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","headline":"Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制","description":"Claude Code 的不同 Session 如何互发消息？本文先给出可直接使用的进度查询示例，再介绍版本要求、会话命名、本机与跨设备通信方式，以及接收权限和常见故障，帮助你在多个终端之间交接任务并核对执行结果。","datePublished":"2026-08-09T06:10:00.000Z","dateModified":"2026-09-26T04:24:14.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","url":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","headline":"Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息","description":"Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。","datePublished":"2026-08-09T06:10:00.000Z","dateModified":"2026-10-19T08:00:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg"]}</script>
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制","item":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息","item":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/"}]}</script>
   
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -225,238 +225,204 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制</h1>
+    <h1 class="p-name title" itemprop="headline name">Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息</h1>
   
 
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c" alt="Claude Code 跨会话消息让多个 Session 交换任务摘要的示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-480.jpg?v=c4ec80f1 480w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-720.jpg?v=1d6fdf4c 720w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-960.jpg?v=6b3e647c 960w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover-card-1280.jpg?v=17a867cc 1280w, /zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p>Claude Code 跨会话消息让不同终端中的 Session 交换进度和任务摘要。用自然语言说明目标会话和问题，Claude 就能查找对方并发送消息。</p>
-<p>它不会合并完整对话或同步文件，每个会话仍使用自己的工作目录、上下文和权限。</p>
+<p>想让两个 Claude Code 会话互相通信，只要版本不低于 <strong>v2.1.224</strong>（原生 Windows 为 <strong>v2.1.234</strong>），在其中一个会话里说”告诉 @api：migration 已经跑完了”，Claude 就会自动调用 <strong>ListAgents</strong> 找到对方、调用 <strong>SendMessage</strong> 发送，对方的回复也会原路返回。查看能联系哪些会话，输入 <strong>&#x2F;list-agents</strong>（别名 <strong>&#x2F;peers</strong>）；查看所有在后台运行的会话，在终端执行 <strong>claude agents</strong>。</p>
+<p>发过去的只是一段文本，不包含对话历史和文件；每个会话依然使用自己的工作目录和权限。本文依据官方文档 <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/cross-session-messaging">Message your other Claude Code sessions</a> 整理，核对日期为 2026-10-19。</p>
 <span id="more"></span>
 
-<h2 id="先用一个提示词查询进度"><a href="#先用一个提示词查询进度" class="headerlink" title="先用一个提示词查询进度"></a>先用一个提示词查询进度</h2><p>在当前 Claude Code 会话中输入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请询问负责 API 的 Session：当前进度如何、接口有哪些变更、前端需要注意什么。将对方的回复整理给我。</span><br></pre></td></tr></table></figure>
+<h2 id="三步实现两个会话互发消息"><a href="#三步实现两个会话互发消息" class="headerlink" title="三步实现两个会话互发消息"></a>三步实现两个会话互发消息</h2><p><strong>1. 检查版本</strong>（满足版本要求即默认开启，无需安装 MCP，也不用改配置）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude --version</span><br></pre></td></tr></table></figure>
 
-<p>你无需手动调用 <strong>ListAgents</strong> 或 <strong>SendMessage</strong>。如果找不到目标，先用 <strong>&#x2F;list-agents</strong> 检查可联系的会话，并核对名称和运行状态。</p>
-<h2 id="先说结论：这是一个专为-Session-之间打造的轻量消息通信层"><a href="#先说结论：这是一个专为-Session-之间打造的轻量消息通信层" class="headerlink" title="先说结论：这是一个专为 Session 之间打造的轻量消息通信层"></a>先说结论：这是一个专为 Session 之间打造的轻量消息通信层</h2><p>Claude Code 官方将此项能力命名为 <strong>cross-session messaging（跨会话消息传递）</strong>。根据官方发布的更新日志，该项架构能力自 <strong>Claude Code v2.1.224</strong> 版本起正式合入，全面覆盖 macOS、Linux 以及 Windows 平台下的 WSL2 环境。</p>
-<p>整套消息流转机制可清晰拆解为以下四个时序环节：</p>
-<ol>
-<li>开发者在当前 Session 中输入自然语言诉求，例如“问一下隔壁负责数据库 migration 的那个 Session 到底跑完了没有”。</li>
-<li>Claude 自动在后台调用 <code>ListAgents</code> 接口扫描当前网络中处于活动状态的可联络 Session，并借助 <code>SendMessage</code> 工具派发结构化文本。</li>
-<li>接收端 Session 收到的并不是发送端包含几万行冗余历史的上下文快照或全量代码，而仅仅是当前本次定向投递的消息载荷。</li>
-<li>接收端在研读消息后做出推演应答，该回复数据再依托同一套通信总线精准路由回最初的发起方 Session。</li>
-</ol>
-<p>从系统架构层面来看，它更像是在多个原本互不相通的独立开发者工位之间，专门配置了一位高敏捷度的信使，而不是试图用蛮力把多个大模型的心智粗暴焊死成一个臃肿的共享大脑。</p>
-<p>官方技术文档直达：<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/cross-session-messaging">Message your other Claude Code sessions</a>、<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/changelog">Claude Code v2.1.224 changelog</a>。</p>
-<h2 id="它究竟能解决日常开发中的哪些核心痛点？"><a href="#它究竟能解决日常开发中的哪些核心痛点？" class="headerlink" title="它究竟能解决日常开发中的哪些核心痛点？"></a>它究竟能解决日常开发中的哪些核心痛点？</h2><h3 id="1-彻底告别人肉复制粘贴与重复解释背景"><a href="#1-彻底告别人肉复制粘贴与重复解释背景" class="headerlink" title="1. 彻底告别人肉复制粘贴与重复解释背景"></a>1. 彻底告别人肉复制粘贴与重复解释背景</h3><p>在典型的全栈开发中，一个非常普遍的工作范式是：左侧终端窗口开着一个 Session 专门修改数据库 Schema 与 ORM 映射，右侧终端窗口开着另一个 Session 负责编写前端页面表单。在以往，前端 Session 若想确认后端字段的微调细节，开发者往往需要充当人肉搬运工：先切到后端窗口通读输出，手动总结一段话，再复制粘贴到前端窗口重新向 AI 交代背景。</p>
-<p>现在，你完全可以直接在前端窗口向 Claude 下达指令：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请向负责数据库 migration 的那个 Session 发起询问：核心 schema 调整是否已经全部落地，具体变更了哪些字段名与空值约束，前端表单对接时有哪些向下兼容注意事项。请将核心要点整理后回复我。</span><br></pre></td></tr></table></figure>
+<p><strong>2. 在两个终端分别启动并命名会话</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">claude -n api        <span class="comment"># 终端 A</span></span><br><span class="line">claude -n frontend   <span class="comment"># 终端 B</span></span><br></pre></td></tr></table></figure>
 
-<p>当前 Session 会自主完成寻址、组织语言、异步等待对端回执，并将提炼后的精确信息无缝沉淀进当前会话中。这对于日常习惯分屏多开终端作业的工程师而言，体验提升立竿见影。</p>
-<h3 id="2-多模块并行开发时优雅同步进度"><a href="#2-多模块并行开发时优雅同步进度" class="headerlink" title="2. 多模块并行开发时优雅同步进度"></a>2. 多模块并行开发时优雅同步进度</h3><p>开发者可以将复杂的大型项目拆解并委派给拥有清晰职责边界的各个终端 Session：</p>
+<p>已经在会话中的话，用 <strong>&#x2F;rename api</strong> 重命名。会话名就是其他会话找到你的地址；不命名时，Claude Code 会生成”目录名 + 两位后缀”形式的默认名，例如 <strong>my-app-3f</strong>（见 <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/sessions#name-your-sessions">Manage sessions</a>）。如果两个会话要改同一个仓库，建议先用 Git worktree 隔离工作目录，消息功能本身不会帮你解决 Git 冲突。</p>
+<p><strong>3. 在 frontend 会话中输入提示词</strong>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">问一下 @api：当前进度、接口有哪些变更、前端需要注意什么。把回复整理给我。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入 <strong>@</strong> 加名称的前几个字符会弹出会话选择列表（<strong>v2.1.232</strong> 起支持）；名称带空格时要加双引号，例如 **@”release notes”**。</li>
+<li>不用 @ 也行，直接用自然语言描述目标，例如”另一个终端里跑 migration 的那个会话”。</li>
+<li><strong>ListAgents</strong> 和 <strong>SendMessage</strong> 是 Claude 内部调用的工具，你无需手动调用，消息内容也由 Claude 自己撰写。当 Claude 发现自己的改动会影响其他会话时，也可能主动发消息提醒。</li>
+</ul>
+<h2 id="如何列出-Claude-Code-的会话？"><a href="#如何列出-Claude-Code-的会话？" class="headerlink" title="如何列出 Claude Code 的会话？"></a>如何列出 Claude Code 的会话？</h2><p>“列出会话”根据你想看的内容，对应三个不同的命令：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
-<th>会话 Session</th>
-<th>负责的研发工作</th>
-<th>需向外同步的关键信息</th>
+<th>想查看</th>
+<th>命令</th>
+<th>输出内容</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>API 后端</td>
-<td>调整 API 接口与数据模型定义</td>
-<td>endpoint 地址、字段变更、单元测试验证结果</td>
+<td>当前能给谁发消息</td>
+<td><strong>&#x2F;list-agents</strong>（**&#x2F;peers**）</td>
+<td>第一行是本会话的名称，下面列出子代理、Agent Teams 成员、本机其他会话；连接 Remote Control 时还会列出云端和其他设备上的会话</td>
 </tr>
 <tr>
-<td>前端 UI</td>
-<td>同步视图渲染与 TypeScript 类型</td>
-<td>API 响应结构的实际 Diff 变更</td>
+<td>所有后台运行的会话</td>
+<td><strong>claude agents</strong>、<strong>claude agents –json</strong></td>
+<td><a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/agent-view">Agent View</a>（研究预览版），可 attach、查看日志、停止；加 <strong>–all</strong> 会包含已结束的会话</td>
 </tr>
 <tr>
-<td>测试验证</td>
-<td>补充回归用例与边界压测</td>
-<td>测试套件执行结果、失败用例详情、阻断发布原因</td>
+<td>历史对话记录</td>
+<td><strong>claude –resume</strong>、**&#x2F;resume**</td>
+<td>打开会话选择器恢复旧对话，与发消息无关</td>
 </tr>
 </tbody></table></div>
-<p>当后端的 API Session 跑通全部测试后，可以主动向负责前端或测试的对端发送一条轻量变更摘要。这种模式最大程度还原了敏捷研发团队中资深工程师之间的默契交接，远比让每个 Session 无休止地对整个代码仓库执行全量重扫描更加优雅节能。</p>
-<h3 id="3-跨设备查询远程工作站的长任务执行状态"><a href="#3-跨设备查询远程工作站的长任务执行状态" class="headerlink" title="3. 跨设备查询远程工作站的长任务执行状态"></a>3. 跨设备查询远程工作站的长任务执行状态</h3><p>官方技术文档明确将“跨设备远程状态回传”列为核心落地场景之一。例如你在随身笔记本上的 Session，希望了解部署在公司高性能台式机或云端开发机上正在跑的大型模型全量编译或高并发压测是否已经完工，可以直接发起远程跨机寻址，由远端会话回传执行结论。</p>
-<p><strong>从 v2.1.225 起，可以主动向可联系列表中的其他设备发送消息。</strong> 但发送方未连接 Remote Control 时，消息可能不带回复地址，接收方就无法回信。跨设备通信并非一律只能被动回复。</p>
-<h2 id="实战操作：跨会话通信的完整步骤"><a href="#实战操作：跨会话通信的完整步骤" class="headerlink" title="实战操作：跨会话通信的完整步骤"></a>实战操作：跨会话通信的完整步骤</h2><h3 id="第一步：检查并确认环境版本与系统支持"><a href="#第一步：检查并确认环境版本与系统支持" class="headerlink" title="第一步：检查并确认环境版本与系统支持"></a>第一步：检查并确认环境版本与系统支持</h3><p>首先在操作系统终端中确认 CLI 工具版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude --version</span><br></pre></td></tr></table></figure>
-
-<p>macOS、Linux 和 WSL2 需要 <strong>v2.1.224 或更高版本</strong>；原生 Windows 需要 <strong>v2.1.234 或更高版本</strong>。符合平台、版本和服务提供方式要求后即可使用，不必额外安装 MCP 插件。</p>
-<p>验证当前环境是否具备该能力，进入 Claude Code 交互界面后，直接输入斜杠指令：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/list-agents</span><br></pre></td></tr></table></figure>
-
-<p>若终端提示命令不存在，或者未能检索出同机活跃的会话节点，请依次排查：客户端软件版本、操作系统运行平台、Remote Control 授权状态，以及是否因企业托管组织策略被统一关闭了相关通信权限。</p>
-<h3 id="第二步：开启两个独立的-Claude-Code-会话"><a href="#第二步：开启两个独立的-Claude-Code-会话" class="headerlink" title="第二步：开启两个独立的 Claude Code 会话"></a>第二步：开启两个独立的 Claude Code 会话</h3><p>在两个独立的系统终端窗口中，分别进入目标项目所在的代码仓库路径，或者进入独立的 Git Worktree：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude</span><br></pre></td></tr></table></figure>
-
-<p>为了防止后续多会话寻址混淆，<strong>强烈建议在会话初始化阶段就显式完成重命名</strong>。进入第一个终端的 Claude Code 交互行后，执行：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/rename api</span><br></pre></td></tr></table></figure>
-
-<p>而在第二个终端窗口中，将其规范命名为：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/rename frontend</span><br></pre></td></tr></table></figure>
-
-<p>若两个分支存在同时修改底层代码的诉求，务必依托 Git Worktree 实现工作树的物理级磁盘隔离：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git worktree add ../project-api feature/api</span><br><span class="line">git worktree add ../project-frontend feature/frontend</span><br></pre></td></tr></table></figure>
-
-<p>必须牢记：跨会话消息机制自身并不承担 Git 代码层面的合并冲突仲裁，也不会在两个独立的终端进程间强行共享未提交的脏工作区。物理磁盘的隔离与分支开发边界，依然需要工程师在架构层面做好预先设计。</p>
-<h3 id="第三步：查看当前网络中可通信的对端-Session"><a href="#第三步：查看当前网络中可通信的对端-Session" class="headerlink" title="第三步：查看当前网络中可通信的对端 Session"></a>第三步：查看当前网络中可通信的对端 Session</h3><p>在 Claude Code 对话界面中随时输入：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/list-agents</span><br></pre></td></tr></table></figure>
-
-<p>该指令同时支持简写别名：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/peers</span><br></pre></td></tr></table></figure>
-
-<p>命令返回的列表中可能包含三类通信目标：</p>
-<ul>
-<li>运行在同一台本地物理机上的其他活跃交互式 Session。</li>
-<li>绑定了独立 Inbox Socket 套接字的后台常驻进程或无头（Non-interactive）会话。</li>
-<li>经过 Remote Control 建立安全双向隧道后可连通的远程工作站或 Web 会话。</li>
-</ul>
-<p>会话节点的标识名称优先取自 <code>/rename</code> 显式设置或启动时传入的 <code>--name</code> 参数；若未命名，系统会自动根据当前工作目录生成具有辨识度的名称，并在遭遇同名冲突时追加短哈希标识。</p>
-<p>同时需要厘清一对极其相似的终端概念：<code>/list-agents</code> 指令专用于在交互对话中“查看可通信的对端目标列表”；而终端命令行下的 <code>claude agents</code> 则是另一个用于在外部查看或管理本地运行中 Agent 进程状态的 CLI 管理入口，二者处于不同的调用分层。</p>
-<h3 id="第四步：使用自然语言驱动-Claude-自动交接"><a href="#第四步：使用自然语言驱动-Claude-自动交接" class="headerlink" title="第四步：使用自然语言驱动 Claude 自动交接"></a>第四步：使用自然语言驱动 Claude 自动交接</h3><p>在日常开发中，工程师完全无需手动拼装 JSON 去底层调用 <code>ListAgents</code> 或 <code>SendMessage</code>。你只需以清晰专业的口吻描述协作诉求：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请把刚才调整好的用户登录接口规范摘要发送给 frontend 会话，重点告知变更后的 API 路径、全新的错误码结构体，以及前端界面需要配套更新的类型声明。请切记不要直接发送整个文件内容，只传递核心变更摘要。</span><br></pre></td></tr></table></figure>
-
-<p>同样也可以发起反向查询：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请帮我问一下 tests 会话那边的全量回归测试是否已经执行完毕？若有执行失败，请让对方将失败的测试用例名称、堆栈报错根因以及是否阻断版本发布的核心结论整理回复过来。</span><br></pre></td></tr></table></figure>
-
-<p>Claude 会在底层自主研判意图，调用 <code>ListAgents</code> 锁定目标节点，并通过 <code>SendMessage</code> 投递高度压缩的高信噪比信息。</p>
-<h3 id="第五步：理解接收端的消息处理行为与流转逻辑"><a href="#第五步：理解接收端的消息处理行为与流转逻辑" class="headerlink" title="第五步：理解接收端的消息处理行为与流转逻辑"></a>第五步：理解接收端的消息处理行为与流转逻辑</h3><p>当对端接收方 Session 处于等待人类输入的空闲状态时，它会立刻感知到新消息到达并触发思考；而若对端当前正在高负荷调用底层工具执行耗时操作，消息会被平稳暂存在队列中，直到当前工具操作执行完毕的间隙才会被安全拉取，绝不会强行暴力切断正在运行的磁盘读写或编译脚本。</p>
-<p>对端给出结论后，发送方窗口会实时刷新，呈现形如 <strong>Message from [Session_Name]</strong> 的专属通信卡片；若希望研读完整通信报文，可随时按下 <strong>Ctrl + O</strong> 快捷键展开查看详细上下文。</p>
-<p>这一设计在工程上极具美感：既保障了对端操作的连续性与原子性，又确保了每个 Session 严格坚守自身的权限沙箱。哪怕发送方在消息中诱导接收方执行某种危险操作，若接收方自身的安全策略禁止该指令，也绝对无法通过跨会话通信实现越权突破。</p>
-<h2 id="单机与跨机通信：底层实现机制截然不同"><a href="#单机与跨机通信：底层实现机制截然不同" class="headerlink" title="单机与跨机通信：底层实现机制截然不同"></a>单机与跨机通信：底层实现机制截然不同</h2><p>在深入落地该功能时，必须对不同网络拓扑下的底层传输通道具备清晰的认知：</p>
-<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
-<thead>
-<tr>
-<th>通信场景</th>
-<th>底层传输方式</th>
-<th>支持的核心能力</th>
-<th>关键边界与限制</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>同一台物理机</td>
-<td>macOS、Linux、WSL2 使用 Unix Domain Socket；原生 Windows 使用命名管道</td>
-<td>自由收发新消息与回复</td>
-<td>双方必须能够访问彼此的本地消息端点</td>
-</tr>
-<tr>
-<td>同一容器内部</td>
-<td>容器内部的独立 Session Socket</td>
-<td>容器内自由互发消息通信</td>
-<td>宿主机与容器隔离层之间的 Session 默认无法自动互相感知</td>
-</tr>
-<tr>
-<td>自己的另一台设备</td>
-<td>Anthropic 服务与 Remote Control</td>
-<td>v2.1.225 起支持主动发消息</td>
-<td>目标须出现在列表中；没有回复地址时只能单向发送</td>
-</tr>
-<tr>
-<td>Claude Code Web 云端</td>
-<td>Anthropic 服务</td>
-<td>向可联系的云端会话发送消息</td>
-<td>发送方需要 Remote Control 回复地址，接收方才能回信</td>
-</tr>
-</tbody></table></div>
-<p>同机通信纯粹基于操作系统底层的本地套接字完成闭环，数据绝对不会流经外部云端服务器；而一旦消息流转触发了跨设备通道或 Web 端，通信数据就必须经过 Anthropic 的云端中间服务进行中继路由。因此，若研发流程涉及跨设备协作，<strong>严禁在跨会话通信的摘要文本中直接硬编码投递 API 私钥、线上敏感配置、用户生产数据或涉密核心源码</strong>。</p>
-<p>此外必须重申：即便两个 Session 处于同一个本地 Git 仓库，它们也绝不共享对话历史。所谓跨会话通信，本质上只是把一段额外的纯文本投递进对端的提示词队列中。</p>
-<h2 id="它与-resume、子代理、Agent-Teams-有何本质区别？"><a href="#它与-resume、子代理、Agent-Teams-有何本质区别？" class="headerlink" title="它与 --resume、子代理、Agent Teams 有何本质区别？"></a>它与 <code>--resume</code>、子代理、Agent Teams 有何本质区别？</h2><p>社区中不少开发者容易将这几种看似都能处理多任务的机制搞混，我们可以通过下表看透其架构差异：</p>
-<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
-<thead>
-<tr>
-<th>技术机制</th>
-<th>核心应用场景</th>
-<th>是否共享完整上下文对话史</th>
-<th>是否维护全局统一任务看板</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>跨会话消息通信</td>
-<td>独立 Session 之间轻量询问与任务摘要交接</td>
-<td>否，仅传输纯文本消息与结构化摘要</td>
-<td>否</td>
-</tr>
-<tr>
-<td><code>--resume</code> 或 <code>/resume</code></td>
-<td>恢复并回到同一段历史交互会话</td>
-<td>是，无缝恢复原 Session 的完整上下文窗口</td>
-<td>不适用</td>
-</tr>
-<tr>
-<td>子代理 (Sub-agent)</td>
-<td>主会话向下分流委派特定临时子任务</td>
-<td>否，子代理完成后向父 Session 回传结果</td>
-<td>不适用</td>
-</tr>
-<tr>
-<td>Agent Teams 团队协作</td>
-<td>组建具备 Lead 与多个 Teammates 的协同小组</td>
-<td>各自拥有独立上下文，原生支持团队广播通信</td>
-<td>是，维护共享的任务进度看板</td>
-</tr>
-</tbody></table></div>
-<p>若你的诉求仅仅是“我在两个终端窗口各开一个 Claude 实例，希望它们在关键节点互相通报一两句进度”，跨会话通信是最轻盈、开销最小的选择。</p>
-<p>而如果你需要的是一个全局总指挥主代理负责拆解巨型需求、动态分派工单、全程追踪各个子队友的执行状态，那应当接入 <strong>Agent Teams</strong>。目前 Agent Teams 依然处于实验性预览阶段，需要通过系统环境变量显式开启：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</span><br></pre></td></tr></table></figure>
-
-<p>它们是针对不同复杂度场景专门设计的两套体系，千万不要因为二者底层都复用了 <code>SendMessage</code> 接口，就误以为它们拥有相同的任务调度语义。</p>
-<p>扩展阅读：<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/agent-teams">Agent Teams 官方架构文档</a>、<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/tools-reference">Tools reference 全量工具参考</a>。</p>
-<h2 id="权限隔离与安全策略：严禁盲目放开默认信任"><a href="#权限隔离与安全策略：严禁盲目放开默认信任" class="headerlink" title="权限隔离与安全策略：严禁盲目放开默认信任"></a>权限隔离与安全策略：严禁盲目放开默认信任</h2><p>跨会话传递的虽然只是字符文本，但接收方解析后可能会直接触发后续工具执行。在企业级研发场景下，必须合理配置以下安全防护基线：</p>
-<h3 id="控制收到消息时的响应策略-crossSessionInbound"><a href="#控制收到消息时的响应策略-crossSessionInbound" class="headerlink" title="控制收到消息时的响应策略 (crossSessionInbound)"></a>控制收到消息时的响应策略 (<code>crossSessionInbound</code>)</h3><p>在系统配置文件中，<code>crossSessionInbound</code> 字段支持三档控制模式：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;crossSessionInbound&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hold&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>如果提示 <strong>&#x2F;list-agents</strong> 命令不存在，说明当前会话不支持跨会话消息，先升级版本。**&#x2F;status** 中的 <strong>Peer address</strong> 一行显示本会话的收件地址；显示 <strong>unavailable</strong> 则表示收件套接字创建失败。</p>
+<p>更多会话相关命令（插话、回退、定时巡检）可以参考 <a href="/zh-cn/2026/10/14/claude-code-fun-commands/">Claude Code 趣味命令指南</a>。</p>
+<h2 id="等另一个会话完成后再通知我"><a href="#等另一个会话完成后再通知我" class="headerlink" title="等另一个会话完成后再通知我"></a>等另一个会话完成后再通知我</h2><p>等待耗时任务时，可以让 Claude 订阅”对方下次空闲或退出时通知一次”：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">migration 那个会话把手头的任务做完后告诉我</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>accept</code>：对合法来源发来的入站消息直接自动放行，适合无人值守且逻辑封闭的后台流水线。</li>
-<li><code>hold</code>：将接收到的消息置入待审队列，并在界面显著提醒人类工程师手动审核放行，交互式日常研发推荐使用此配置。</li>
-<li><code>refuse</code>：坚决拒绝并静默丢弃所有来自外部会话的入站消息。</li>
+<li>双方都需要 <strong>v2.1.236</strong> 及以上版本，且只能订阅<strong>同一台机器</strong>上的会话。</li>
+<li>单独订阅不会在被监听的会话里触发新一轮对话，也不消耗 token；12 小时内没收到通知会自动取消订阅。</li>
+<li>任意一方把入站消息设为 <strong>refuse</strong>，都收不到通知。</li>
 </ul>
-<p>当该配置缺省时，系统的默认响应策略会受到发起端与接收端当前运行时权限模式的制约。处于 <code>hold</code> 状态的消息具有等待响应超时限制；若接收端属于无法展示确认交互弹窗的静默环境，切忌盲目依赖 <code>hold</code> 模式设计自动化流水线。</p>
-<h3 id="拦截跨设备消息未经审批直接穿透-isolatePeerMachines"><a href="#拦截跨设备消息未经审批直接穿透-isolatePeerMachines" class="headerlink" title="拦截跨设备消息未经审批直接穿透 (isolatePeerMachines)"></a>拦截跨设备消息未经审批直接穿透 (<code>isolatePeerMachines</code>)</h3><p>为防止远端未受严密信任的外部机器随意向本地环境注入高危意图，可在配置中启用强隔离开关：</p>
+<h2 id="消息如何投递，接收方如何处理"><a href="#消息如何投递，接收方如何处理" class="headerlink" title="消息如何投递，接收方如何处理"></a>消息如何投递，接收方如何处理</h2><ul>
+<li><strong>接收方空闲</strong>：直接以这条消息开启新一轮对话。<strong>接收方正忙</strong>：在两次工具调用之间读取，不会打断正在执行的工具。</li>
+<li><strong>界面显示</strong>：一行灰色预览，例如 <strong>› Message from @api-worker: Schema migration finished</strong>；按 <strong>Ctrl + O</strong> 打开对话记录查看器阅读全文。</li>
+<li><strong>安全边界</strong>：消息不能代你批准权限，不能让对方修改权限配置或 CLAUDE.md；消息中的 <strong>&#x2F;compact</strong> 等命令只是普通文本，不会执行；接收方需要权限时照常弹出确认。</li>
+<li><strong>用量</strong>：投递成功的消息和你手动输入的提示词一样，计入接收方的用量。</li>
+<li><strong>限制</strong>：仅支持纯文本；本机单条消息上限约 100 万字符；短时间内连续发送会在发送端被拒绝；接收方最多排队 50 条，两个会话之间的消息死循环会被自动限流。</li>
+</ul>
+<h2 id="本机与跨设备通信的区别"><a href="#本机与跨设备通信的区别" class="headerlink" title="本机与跨设备通信的区别"></a>本机与跨设备通信的区别</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>对方在哪里运行</th>
+<th>传输路径</th>
+<th>条件与限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>同一台机器</td>
+<td>每个会话独立的 Unix 套接字（原生 Windows 为命名管道），<strong>不经过 Anthropic 服务器</strong></td>
+<td>所有模型供应商均可用；Amazon Bedrock、Google Cloud Agent Platform、Microsoft Foundry 等需要 <strong>v2.1.248</strong></td>
+</tr>
+<tr>
+<td>同一个容器内</td>
+<td>容器内的套接字</td>
+<td>容器与宿主机之间、WSL 2 与原生 Windows 之间互不可见</td>
+</tr>
+<tr>
+<td>你的另一台设备</td>
+<td>经 Anthropic 服务器，通过对方的 <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/remote-control">Remote Control</a> 连接送达</td>
+<td><strong>v2.1.225</strong> 起；双方都连接 Remote Control 才会出现在列表中；需要 claude.ai 账号登录，API Key 不行</td>
+</tr>
+<tr>
+<td>云端（Claude Code on the web）</td>
+<td>经 Anthropic 服务器</td>
+<td>发送方需要连接 Remote Control</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li>发送方<strong>未连接</strong> Remote Control 时，跨设备消息仍会发出，但不带回复地址，对方无法回复。</li>
+<li>列表中标记为 <strong>offline</strong> 的会话，消息会在其重新连接后送达。</li>
+<li>标记为 <strong>can’t receive cross-session messages</strong> 的会话不会被发送，结果以 <strong>Not sent</strong> 开头。</li>
+<li>跨设备消息会经过服务器，不要在消息里放 API Key、密码或个人信息。</li>
+</ul>
+<h2 id="权限配置：入站模式、跨设备审批与彻底关闭"><a href="#权限配置：入站模式、跨设备审批与彻底关闭" class="headerlink" title="权限配置：入站模式、跨设备审批与彻底关闭"></a>权限配置：入站模式、跨设备审批与彻底关闭</h2><p><strong>入站模式 crossSessionInbound</strong>（也可以在 <strong>&#x2F;config</strong> 的 <strong>Messages from your other sessions</strong> 中设置，v2.1.232 起）：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>取值</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>accept</strong></td>
+<td>每条消息都直接交给 Claude</td>
+</tr>
+<tr>
+<td><strong>hold</strong></td>
+<td>只显示通知、不投递；之后若改为 accept 才会放行</td>
+</tr>
+<tr>
+<td><strong>refuse</strong></td>
+<td>直接丢弃</td>
+</tr>
+</tbody></table></div>
+<p><strong>未配置时的默认行为</strong>取决于双方的权限模式：接收方处于需要确认的模式（包括 auto、acceptEdits）时直接投递，只有发送方是 bypassPermissions 才会暂存；接收方是 bypassPermissions 时一律暂存待审批，除非发送方也是。暂存的消息会弹出审批对话框，默认 <strong>5 分钟</strong>（<strong>dialogExpiry</strong>）无响应即丢弃。</p>
+<p><strong>所有跨设备消息都必须经你审批</strong>（bypassPermissions 模式下同样生效）：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;isolatePeerMachines&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>开启该开关后，所有跨越物理设备边界的网络消息在被执行前，无论当前的 Session 授权等级多么宽松，系统都会强制要求人工点击确认；而同机内部的低风险通信则保持原有的高效流畅。</p>
-<h3 id="项目级全局禁用跨会话通信工具"><a href="#项目级全局禁用跨会话通信工具" class="headerlink" title="项目级全局禁用跨会话通信工具"></a>项目级全局禁用跨会话通信工具</h3><p>若当前业务项目具有极其严苛的代码隔离保密等级，完全不需要跨会话联动，可直接在项目配置中禁用对应工具链：</p>
+<p><strong>彻底关闭发送、列出和接收</strong>：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;permissions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;deny&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;SendMessage&quot;</span><span class="punctuation">,</span> <span class="string">&quot;ListAgents&quot;</span><span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;crossSessionInbound&quot;</span><span class="punctuation">:</span> <span class="string">&quot;refuse&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>注意：显式封禁 <code>SendMessage</code> 会同时剥夺 Claude 向子代理或 Agent Teams 队友发送消息的通信能力，它属于底层全局通信断路器，需谨慎配置。</p>
-<h3 id="非交互式无头模式-claude-p-的特殊注意事项"><a href="#非交互式无头模式-claude-p-的特殊注意事项" class="headerlink" title="非交互式无头模式 claude -p 的特殊注意事项"></a>非交互式无头模式 <code>claude -p</code> 的特殊注意事项</h3><p>无头批处理会话如果要接收跨会话通知，必须具备可通信的 Inbox Socket。官方文档指出，标准无头指令 <code>claude -p</code> 会默认完成套接字挂载，但更极端的裸模式（Bare mode）则不会；加之 <code>-p</code> 模式下不存在人工二次确认窗口，若要在自动化脚本中安全监听入站事件，必须显式显式声明自动放行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">claude -p <span class="string">&quot;检查当前全量回归测试集是否已全部通过&quot;</span> \</span><br><span class="line">  --settings <span class="string">&#x27;&#123;&quot;crossSessionInbound&quot;:&quot;accept&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>注意：禁用 <strong>SendMessage</strong> 也会同时关闭 Claude 给子代理和 Agent Teams 成员发消息的能力。</p>
+<p><strong>非交互模式 claude -p</strong>：会创建收件套接字（bare 模式不会），但没有审批对话框。要让后台 worker 在无人值守时接收消息，需要在启动时显式配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">claude -p <span class="string">&quot;检查 migration 是否完成&quot;</span> \</span><br><span class="line">  --settings <span class="string">&#x27;&#123;&quot;crossSessionInbound&quot;:&quot;accept&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>最后，必须时刻恪守三条不可逾越的安全底线：</p>
-<ol>
-<li>对端发送过来的消息指令，绝对无法绕过接收端本地已配置的系统权限拦截墙。</li>
-<li>消息内容中夹带的 <code>/compact</code>、<code>/resume</code> 等斜杠控制指令仅被视作普通纯文本，接收端绝对不会直接触发系统级宏解析。</li>
-<li>跨会话接收到的所有文字内容，均会全额计入接收端会话的模型 Token 消耗量；滥发过长的冗余垃圾消息同样会迅速挤爆上下文窗口并产生多余账单。</li>
-</ol>
-<h2 id="生产环境最佳工作流规范：传递结构化摘要，杜绝整包搬运"><a href="#生产环境最佳工作流规范：传递结构化摘要，杜绝整包搬运" class="headerlink" title="生产环境最佳工作流规范：传递结构化摘要，杜绝整包搬运"></a>生产环境最佳工作流规范：传递结构化摘要，杜绝整包搬运</h2><p>在日常团队协作中，强烈建议将每一次跨会话通信的数据载荷严格约束为以下结构化模板：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">任务范畴：完成用户登录模块的核心 API 契约重构</span><br><span class="line">当前状态：全量通过，单元测试覆盖率 18/18 PASS</span><br><span class="line">变更细节：POST /api/v1/auth/login 的异常响应新增 code 错误码字段，成功响应结构保持原状</span><br><span class="line">协同动作：请协助更新前端代码中的 LoginError 接口定义与 UI 异常提示文案</span><br><span class="line">特别提醒：当前老版 APP 客户端可能依然仅针对 message 字段做兜底解析</span><br></pre></td></tr></table></figure>
-
-<p>这种标准协议化交接具备极佳的工程优势：</p>
-<ul>
-<li>接收方 AI 毫秒级即可提炼出行为指引，零上下文推测成本。</li>
-<li>发送方无需大费周章地向外狂倒原始代码或倾泻数万行无意义的排错日志。</li>
-<li>当工程师后续复盘终端通信记录时，系统演进状态与执行链路一目了然。</li>
-</ul>
-<h2 id="常见排查疑难与故障排错顺序"><a href="#常见排查疑难与故障排错顺序" class="headerlink" title="常见排查疑难与故障排错顺序"></a>常见排查疑难与故障排错顺序</h2><h3 id="list-agents-指令无法识别"><a href="#list-agents-指令无法识别" class="headerlink" title="/list-agents 指令无法识别"></a><code>/list-agents</code> 指令无法识别</h3><p>先核对版本：macOS、Linux、WSL2 至少需要 <strong>v2.1.224</strong>，原生 Windows 至少需要 <strong>v2.1.234</strong>。再按<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/cross-session-messaging#availability">官方可用性说明</a>检查服务提供方式和组织设置。</p>
-<h3 id="通信节点列表中存在对端，但发送消息后对端界面毫无动静"><a href="#通信节点列表中存在对端，但发送消息后对端界面毫无动静" class="headerlink" title="通信节点列表中存在对端，但发送消息后对端界面毫无动静"></a>通信节点列表中存在对端，但发送消息后对端界面毫无动静</h3><p>对端 Session 若正在调用底层工具执行耗时命令，消息会滞留在内部队列中，需等待当前工具执行完毕才会安全出队；若对端属于交互式会话，很可能由于配置了 <code>hold</code> 策略正在默默等待人类开发者在对端终端敲击回车审批。请先切到对端窗口查看提示，切忌急躁地狂发重复消息。</p>
-<h3 id="误以为跨会话能够自动完成文件与代码热同步"><a href="#误以为跨会话能够自动完成文件与代码热同步" class="headerlink" title="误以为跨会话能够自动完成文件与代码热同步"></a>误以为跨会话能够自动完成文件与代码热同步</h3><p>坚决不会。官方定义跨会话通信为纯文本通信通道。若需要回溯历史完整语境，请使用 <code>/resume</code>；若需要多分支协同编码，必须在底层借由 Git Worktree 划分工作区。</p>
-<h3 id="误以为跨设备通信可充当全功能长连接远程-Shell"><a href="#误以为跨设备通信可充当全功能长连接远程-Shell" class="headerlink" title="误以为跨设备通信可充当全功能长连接远程 Shell"></a>误以为跨设备通信可充当全功能长连接远程 Shell</h3><p>确认发送方已经连接 Remote Control，并在 <strong>&#x2F;list-agents</strong> 中找到目标。若消息缺少回复地址，接收方能收到但无法回信；发送成功也不代表目标任务已经完成，需要检查实际回复。</p>
-<h2 id="深度思考：这项功能背后折射出的架构进化"><a href="#深度思考：这项功能背后折射出的架构进化" class="headerlink" title="深度思考：这项功能背后折射出的架构进化"></a>深度思考：这项功能背后折射出的架构进化</h2><p>在过去，开发者面对稍微复杂一点的研发项目，常常陷入两难：要么在一个超级长会话里把所有问题混在一起聊，直到上下文严重膨胀、模型彻底发生思维退化；要么在多个终端窗口间来回切换，自己充当疲于奔命的人肉消息路由器。</p>
-<p>跨会话消息机制的加入，恰到好处地在二者之间搭建起了一道极薄却极其高效的协作缓冲层。它没有虚妄地声称所有 Agent 共享一套没有边界的巨型记忆，更没有粗暴抹平代码物理隔离与安全权限防线；它只是赋予了一个独立的编码会话在面临阻塞时，能够像人类工程师转过身向身后的队友轻声问一句“接口改好了吗”的能力。</p>
-<p>理解并用好这层轻量通信机制，你手头的多个 Claude Code 实例便能从互不相干的孤岛，真正串联为一支进退有度、协同顺畅的现代化轻型开发小组。</p>
-<h2 id="官方参考资料与权威链接"><a href="#官方参考资料与权威链接" class="headerlink" title="官方参考资料与权威链接"></a>官方参考资料与权威链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/cross-session-messaging">Claude Code：跨会话消息官方使用手册</a></li>
-<li><a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/tools-reference">Claude Code 全量内置工具清单参考</a></li>
-<li><a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/settings">Claude Code 系统全局配置选项解析</a></li>
-<li><a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/agent-teams">Claude Code Agent Teams 实验性多代理协同指南</a></li>
-<li><a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/changelog">Claude Code 官方版本迭代 Changelog</a></li>
-<li><a target="_blank" rel="noopener" href="https://x.com/ClaudeDevs/status/2085817074816070014">Anthropic ClaudeDevs 团队官方发布声明</a></li>
-</ul>
+<p>配置优先级见 <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/settings-reference#crosssessioninbound">Settings reference</a>。</p>
+<h2 id="跨会话消息、-x2F-resume、子代理、Agent-Teams-怎么选"><a href="#跨会话消息、-x2F-resume、子代理、Agent-Teams-怎么选" class="headerlink" title="跨会话消息、&#x2F;resume、子代理、Agent Teams 怎么选"></a>跨会话消息、&#x2F;resume、子代理、Agent Teams 怎么选</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>机制</th>
+<th>适用场景</th>
+<th>是否共享上下文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>跨会话消息</td>
+<td>你自己开的多个会话之间同步进度、预警、决策</td>
+<td>否，只传文本</td>
+</tr>
+<tr>
+<td><strong>&#x2F;resume</strong>、<strong>claude –resume</strong></td>
+<td>回到之前的对话继续</td>
+<td>是，完整历史</td>
+</tr>
+<tr>
+<td>子代理（subagents）</td>
+<td>当前会话把小任务委派出去，结果回传主对话</td>
+<td>否，只返回结果</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/agent-teams">Agent Teams</a></td>
+<td>由 lead 拆分任务、带共享任务列表的多智能体团队</td>
+<td>各自独立，团队内互发消息</td>
+</tr>
+</tbody></table></div>
+<p>Agent Teams 仍是<strong>实验性功能</strong>，需要设置 <strong>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS&#x3D;1</strong> 才会启用，token 消耗也明显更高。如果只是让两个终端交换几句进度，跨会话消息就够用了。想进一步设计多智能体研发流程，可以看 <a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/">Agentic SDLC 完整架构解析</a>；还在选型的话，参考 <a href="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/">Claude Code、Codex、Cursor 对比</a>。</p>
+<h2 id="常见问题排查"><a href="#常见问题排查" class="headerlink" title="常见问题排查"></a>常见问题排查</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>提示 <strong>&#x2F;list-agents</strong> 命令不存在</td>
+<td>版本：macOS／Linux／WSL 2 需要 v2.1.224，原生 Windows 需要 v2.1.234；可执行 <strong>claude update</strong> 升级</td>
+</tr>
+<tr>
+<td>列表里看不到某个本机会话</td>
+<td>该会话是否以 bare 模式启动；它的 <strong>&#x2F;status</strong> 中 <strong>Peer address</strong> 是否为 unavailable</td>
+</tr>
+<tr>
+<td>看不到其他设备或云端会话</td>
+<td>双方是否都连接了 Remote Control、是否用 claude.ai 账号登录（API Key、Bedrock 等无法跨设备）</td>
+</tr>
+<tr>
+<td>消息发出但对方没反应</td>
+<td>对方是否设为 hold／refuse、是否有审批对话框在等待、是否超过 5 分钟被丢弃</td>
+</tr>
+<tr>
+<td>找不到 SendMessage 工具</td>
+<td>权限配置中是否有禁用 <strong>SendMessage</strong>、<strong>ListAgents</strong> 的 deny 规则</td>
+</tr>
+<tr>
+<td>想把整段对话交给另一个会话</td>
+<td>消息只能传文本，改用 <strong>claude –resume</strong> 恢复该对话</td>
+</tr>
+</tbody></table></div>
 
       
     </div>
@@ -471,7 +437,7 @@
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/Claude-Code/">Claude Code</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Claude-Code/">Claude Code</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
   </div>
 
         
@@ -489,25 +455,25 @@
 
     
       <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
-      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制" data-url="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/" title="微信分享" aria-label="微信分享">
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息" data-url="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/" title="微信分享" aria-label="微信分享">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
           <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
         </svg>
         <span>微信</span>
       </button>
-      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F&title=Claude%20Code%20%E8%B7%A8%20Session%20%E5%8F%91%E6%B6%88%E6%81%AF%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E3%80%81%E7%89%88%E6%9C%AC%E4%B8%8E%E8%B7%A8%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F&title=Claude%20Code%20%E8%B7%A8%20Session%20%E9%80%9A%E4%BF%A1%EF%BC%9A%E7%94%A8%20%2Flist-agents%20%E5%88%97%E5%87%BA%E4%BC%9A%E8%AF%9D%E5%B9%B6%E4%BA%92%E5%8F%91%E6%B6%88%E6%81%AF" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
           <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
         </svg>
         <span>微博</span>
       </a>
-      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F&title=Claude%20Code%20%E8%B7%A8%20Session%20%E5%8F%91%E6%B6%88%E6%81%AF%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E3%80%81%E7%89%88%E6%9C%AC%E4%B8%8E%E8%B7%A8%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F&title=Claude%20Code%20%E8%B7%A8%20Session%20%E9%80%9A%E4%BF%A1%EF%BC%9A%E7%94%A8%20%2Flist-agents%20%E5%88%97%E5%87%BA%E4%BC%9A%E8%AF%9D%E5%B9%B6%E4%BA%92%E5%8F%91%E6%B6%88%E6%81%AF" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
           <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
         </svg>
         <span>知乎</span>
       </a>
-      <a href="https://twitter.com/intent/tweet?text=Claude%20Code%20%E8%B7%A8%20Session%20%E5%8F%91%E6%B6%88%E6%81%AF%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E3%80%81%E7%89%88%E6%9C%AC%E4%B8%8E%E8%B7%A8%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+      <a href="https://twitter.com/intent/tweet?text=Claude%20Code%20%E8%B7%A8%20Session%20%E9%80%9A%E4%BF%A1%EF%BC%9A%E7%94%A8%20%2Flist-agents%20%E5%88%97%E5%87%BA%E4%BC%9A%E8%AF%9D%E5%B9%B6%E4%BA%92%E5%8F%91%E6%B6%88%E6%81%AF&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F08%2F09%2Fclaude-code-cross-session-messaging%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
@@ -516,7 +482,7 @@
     
 
     <!-- 原生分享（行動裝置自動啟用） -->
-    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Claude Code 跨 Session 发消息：操作示例、版本与跨设备限制" data-url="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/" title="分享文章" aria-label="分享文章" style="display: none;">
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息" data-url="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/" title="分享文章" aria-label="分享文章" style="display: none;">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="18" cy="5" r="3"></circle>
         <circle cx="6" cy="12" r="3"></circle>
@@ -585,23 +551,23 @@
       </div>
     
       <div class="related-post-card">
-        <a href="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" class="related-post-link"
-           data-rel-title="Codex 额度用完怎么办？重置时间与节省用量的方法"
-           data-rel-path="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"
+        <a href="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
+           data-rel-title="AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度"
+           data-rel-path="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/"
            data-rel-tag="AI"
            data-rel-position="3">
           <div class="related-post-cover">
             
-              <img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" alt="Codex 额度用完怎么办？重置时间与节省用量的方法" loading="lazy" decoding="async">
+              <img src="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb" alt="AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度" loading="lazy" decoding="async">
             
           </div>
           <div class="related-post-info">
             
               <span class="related-post-tag">AI</span>
             
-            <h4 class="related-post-item-title">Codex 额度用完怎么办？重置时间与节省用量的方法</h4>
+            <h4 class="related-post-item-title">AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度</h4>
             
-              <time class="related-post-date">2026-06-18</time>
+              <time class="related-post-date">2026-09-14</time>
             
           </div>
         </a>
@@ -640,17 +606,21 @@
   
     <li><a href="/zh-cn/categories/AI/">AI</a><small>9</small></li>
   
-    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>4</small></li>
+    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>5</small></li>
   
-    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>17</small></li>
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>18</small></li>
   
     <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
   
     <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
   
+    <li><a href="/zh-cn/categories/%E6%97%A5%E8%AF%AD%E5%AD%A6%E4%B9%A0/">日语学习</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BB%BA%E7%AB%99/">服务器与建站</a><small>1</small></li>
+  
     <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>6</small></li>
   
-    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>3</small></li>
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>4</small></li>
   
     <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
   
@@ -669,45 +639,45 @@
   <h3 class="title">常用标签</h3>
   <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>30</small></a></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>32</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>11</small></a></li>
   
     <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>11</small></a></li>
   
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>9</small></a></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>10</small></a></li>
   
     <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>9</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>8</small></a></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>7</small></a></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
   
     <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>6</small></a></li>
-  
     <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>5</small></a></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>5</small></a></li>
   
     <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
     <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>4</small></a></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>3</small></a></li>
   
     <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
+    <li><a href="/zh-cn/tags/%E5%85%8D%E8%B4%B9%E8%B5%84%E6%BA%90/"><span>免费资源</span><small>2</small></a></li>
+  
     <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+    <li><a href="/zh-cn/tags/AI-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>AI 开发工具</span><small>2</small></a></li>
   
     <li><a href="/zh-cn/tags/Aseprite/"><span>Aseprite</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
-  
-    <li><a href="/zh-cn/tags/DevDay/"><span>DevDay</span><small>2</small></a></li>
-  
-    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+    <li><a href="/zh-cn/tags/Cursor/"><span>Cursor</span><small>2</small></a></li>
   
   </ul>
   <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>

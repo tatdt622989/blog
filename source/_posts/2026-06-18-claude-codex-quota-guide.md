@@ -1,5 +1,5 @@
-title: "Codex 額度用完怎麼辦？重置時間與節省用量的方法"
-description: "Codex 額度在哪裡查、用完何時恢復？本文提供官方用量面板入口，區分 5 小時與每週限制，補充 Pro 目前沒有 5 小時上限的方案差異，再說明 Banked Reset、Credits 與排查順序，幫你依帳戶顯示的重置時間安排工作。"
+title: "Codex 5 小時限制與額度查詢：重置時間、用完怎麼辦"
+description: "Codex 額度到官方用量面板或 CLI 的 /status 查詢。Plus 與 Business 有 5 小時與每週限制，Pro 目前沒有 5 小時上限，重置時間以面板為準。用完可等待、套用 banked reset 或改用 Credits。"
 translation_key: claude-codex-usage-limits
 translations:
   en: /en/2026/06/18/claude-codex-usage-limits-guide/
@@ -11,153 +11,121 @@ tags:
   - Codex
   - Claude
 date: 2026-06-18 14:34:36
-updated: "2026-10-15 13:34:24"
+updated: "2026-10-19 16:00:00"
 ---
 
 ![Codex 額度與用量管理指南封面](cover.webp)
 
-要查 **Codex 剩餘額度與重置時間**，直接開啟 [官方用量面板](https://chatgpt.com/codex/settings/usage)，或在 Codex CLI 輸入 **/status**。先看方案與耗盡的視窗，再依面板顯示的時間安排工作；不能一律認定等五小時就會恢復。
-
-Codex 並不是每次對話扣固定次數。模型、任務執行位置、工作複雜度、上下文、推理強度、速度與工具使用都會影響消耗，因此同一個方案能完成的任務數可能差很多。本文整理官方可確認的規則，以及真正能降低浪費的做法。
+**Codex 剩餘額度與重置時間，到 [官方用量面板](https://chatgpt.com/codex/settings/usage) 或在 Codex CLI 輸入 /status 查詢。** Plus 與 Standard Business 有 5 小時與每週兩個視窗；Pro 目前沒有 5 小時上限，但每週限制仍可能適用。額度何時恢復，以面板上該視窗顯示的時間為準，不是從報錯當下倒數五小時。用完時有三條路：等自動重置、套用 banked reset，或使用 Credits。
 
 <!--more-->
 
-## 5 小時、每週與手動重設，先看哪一個？
+## Codex 額度在哪裡查？
 
-| 你要確認的項目 | 到哪裡看 | 判斷重點 |
+| 查詢方式 | 能看到什麼 |
+| --- | --- |
+| **Codex App / 網頁：Settings → Usage**（[直接開啟](https://chatgpt.com/codex/settings/usage)） | 各視窗使用比例、重置時間、Credits 餘額；有可用 banked reset 時會出現 **1 reset available** 或 **Full reset** |
+| **Codex CLI：/status** | 目前工作階段的帳戶與剩餘額度 |
+
+[OpenAI 官方定價頁](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits)也以這兩處為查詢入口。App、網頁與 CLI 數字不同時，先確認登入的是同一個帳戶與工作區，再重新整理面板。不要拿別人的截圖推算自己的額度。
+
+## Codex 5 小時限制怎麼算？各方案差異
+
+依 [OpenAI 定價頁](https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan)（2026 年 10 月 19 日查核）：
+
+| 方案 | 5 小時限制 | 每週限制 |
 | --- | --- | --- |
-| 5 小時用量（方案適用時） | **Settings → Usage** 的短期視窗 | 依該列顯示的恢復時間安排工作；Pro 目前沒有此上限 |
-| 每週用量 | 同一面板的每週視窗 | 短期視窗恢復，不代表每週額度也恢復 |
-| Banked reset | 帳戶可用的手動重設選項 | 先確認有效期限、使用條件與重設後的週期 |
+| Plus、Standard Business | 有，見下表估計值 | 可能適用 |
+| Pro（$100 / $200 / $500 每月） | **目前沒有** | 可能適用，官方未公布數字 |
+| Enterprise / Edu（彈性計價） | 無固定限制，依 Credits 計費 | 無固定限制 |
+| Enterprise / Edu（非彈性計價） | 多數功能與 Plus 相同 | 同 Plus |
 
-只想查剩餘額度，可以直接開啟 [Codex 用量面板](https://chatgpt.com/codex/settings/usage)，或在 CLI 輸入 **/status**。不要把別人的重置時間套在自己的帳戶上；[官方用量說明](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits)也以帳戶面板為查詢入口。
+Plus 與 Standard Business 每 5 小時的本機訊息估計值：
+
+| 模型 | 每 5 小時本機訊息 |
+| --- | --- |
+| GPT-6 Luna | 350–3,000 |
+| GPT-6 Sol | 15–150 |
+| GPT-6.1 Sol | 15–160 |
+| GPT-6 Astra | 5–45 |
+
+官方強調這些**不是固定的訊息上限**。範圍差這麼大，是因為消耗取決於模型、推理強度、上下文大小、讀取的檔案數、工具呼叫與任務長度；雲端任務通常比本機任務更耗額度。各模型的定位與價格可參考 [GPT-6 Sol、Luna 評分與選型](/2026/09/23/GPT-6-Sol%E3%80%81Luna-%E4%B8%8A%E7%B7%9A%EF%BC%9AArtificial-Analysis-%E8%A9%95%E5%88%86%E3%80%81%E5%83%B9%E6%A0%BC%E8%88%87%E9%81%B8%E5%9E%8B/)。
+
+另外兩點：
+
+- 方案支援時，Codex、ChatGPT Work、ChatGPT for Excel 與 Workspace Agents **共用同一份 agentic 額度與 Credits**；一般 ChatGPT 的圖片、語音等限制則另外計算。
+- 進行中的回合碰到上限，官方說明 agent **仍可把這一輪做完**，不會立刻中斷。
 
 ### 為什麼等了五小時，Codex 還是不能用？
 
-先確認你碰到的是哪一項限制。短期視窗恢復，並不代表每週額度也恢復；也不要從錯誤訊息出現時自行倒數五小時。依序核對**登入的帳戶與工作區、面板中耗盡的視窗、該列顯示的重置時間**，再查看帳戶是否提供 reset 或 Credits 選項。
+通常是**每週額度也用完了**：5 小時視窗恢復，不代表每週視窗恢復。依序核對登入的帳戶與工作區、面板上耗盡的是哪個視窗、該視窗顯示的重置時間。若是每週視窗耗盡，就只能等每週重置、套用 banked reset 或使用 Credits。
 
-## Codex 額度在哪裡看
+## Codex 重置時間：自動重置與 banked reset
 
-最直接的方式有兩種：
+| 類型 | 怎麼發生 | 重點 |
+| --- | --- | --- |
+| 自動重置 | 視窗到期自動恢復 | 時間以面板顯示為準 |
+| 全域重置 | OpenAI 直接套用到符合資格的帳戶 | 立即生效，無法保留，不會變成 banked reset |
+| Banked reset | 存在帳戶裡，由你在 **Settings → Usage** 手動套用 | Full reset **會改變每週重置日** |
 
-1. **Codex App 或網頁版：Settings → Usage**
-   - 查看目前使用比例、已耗盡的限制、可用 Credits，以及介面顯示的重設時間。
-   - 若帳戶有可用的 banked reset，這裡也可能顯示 **1 reset available** 或 **Full reset**。
-2. **Codex CLI：/status**
-   - 在正在進行的 CLI 工作階段輸入 **/status**，快速查看目前帳戶與用量狀態。
+依 [OpenAI 官方說明](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)：
 
-OpenAI 會依方案、帳戶、工作區與活動調整可用選項，所以不要把別人的截圖當成自己的固定上限。若 App、網頁與 CLI 顯示不同，先確認是否登入同一個帳戶或工作區，再重新整理 **Settings → Usage**。
+- **Full banked reset 會同時補滿 5 小時與每週視窗，並把每週重置日改到新的約七天週期。** 用完後請到面板核對新時間。
+- 只有在確實刷新至少一個視窗時才會扣掉；沒有東西可重置，reset 會保留。
+- 它不是購買的 Credits，也不會永久提高方案上限。
+- 每個 reset 有自己的到期日，以面板或活動視窗顯示為準。不要把某次活動的 30 天期限套到所有 reset 上。
 
-## 5 小時限制怎麼計算
-
-**截至 2026 年 10 月 15 日，官方將 5 小時用量估計列於 Plus 與 Standard Business，Pro 方案目前沒有 5 小時上限；每週限制仍可能適用。** 因此，沒有看到短期視窗不一定是異常。方案與規則可能調整，請核對 [OpenAI 目前的方案用量說明](https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan)與自己的面板。
-
-若帳戶同時有短期與每週視窗，任一限制耗盡，都可能需要等待重設、使用 Credits、套用帳戶提供的 reset，或改用方案允許的其他選項。
-
-官方沒有把每個任務換算成固定的「訊息次數」。實際消耗會受到以下因素影響：
-
-- **模型**：不同模型的使用成本與可用量不同。
-- **執行位置**：本機、雲端或其他功能的計量方式可能不同。
-- **任務複雜度與時間**：大型重構、長時間任務通常比單一小修改消耗更多。
-- **上下文**：需要讀取的檔案、對話歷史與輸入內容越多，通常越容易提高消耗。
-- **推理、速度與工具**：較高推理強度、較快服務層級或大量工具操作都可能增加用量。
-
-Codex、ChatGPT Work、ChatGPT for Excel 與 Workspace Agents 在你的方案支援這些功能時，可能共用 agentic usage 與 Credits。一般 ChatGPT 的圖片、檔案上傳或語音限制則可能是另一套配額，不能直接拿來推算 Codex。
-
-規則與數字會調整，請以 [OpenAI 的 Codex 方案說明](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan) 與帳戶用量面板為準。
-
-## Credits 是什麼，什麼時候會使用
-
-Credits 是超過方案內含額度後，讓支援功能繼續執行的按量付費額度。系統會先使用方案內含用量，達到限制後才從 Credits 餘額扣除。
-
-是否能購買 Credits、可購買金額、自動加值與支援功能，會依方案、帳戶與地區而異。只有在你的 **Settings → Usage** 或 **Usage & Billing** 顯示相關選項時，才代表目前帳戶可用；沒有看到按鈕不等於操作錯誤。
-
-使用前應注意：
-
-- Credits 與 API credits 不同，也不會提高方案原本的內含上限。
-- 支援的個人方案可在 **Settings → Usage** 查看餘額與近期用量。
-- 自動加值若對你的帳戶開放，可設定最低餘額、目標餘額與每月上限；開啟時餘額已低於門檻，可能立即產生一筆購買。
-- 購買的 Credits 通常不可退款，並有使用期限；下單前應確認畫面上的最新條款。
-
-詳細規則可查看 [OpenAI Credits 說明](https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans)。
-
-## Banked reset 什麼時候用？先看週期與個別到期日
-
-**對同時具有 5 小時與每週視窗的帳戶，full banked reset 會補回這兩項額度，也會重新安排下一次每週重設時間，進入新一輪約七天的週期。** 所以按下重置前，最重要的是看「原本還要多久自動恢復」，而不只是看剩下幾次 reset。[OpenAI 官方規則](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)已明確說明，每週重設日期會改變；使用後請確認 **Settings → Usage** 顯示的新時間。
-
-例如，原本週一就會恢復每週額度，如果你在週日使用 banked reset，就不能再把原本週一的恢復時間算進工作安排。若工作可以等到週一，保留這次重置可能更有用；如果週日就有必須完成的工作，則要把新週期一併考慮。
-
-這和 [Claude Pro 的固定每週重設時間](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan)不同：Claude Pro 的一般週期由帳戶指定固定時間；Codex 使用 full banked reset 則會改變週期安排。同時使用兩者時，應分別記錄各自的下一次重設時間。
-
-**另一個要看的日期，是 reset 本身何時到期。** [官方邀請活動說明](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers)要求以邀請視窗顯示的獎勵、資格與到期日為準。不要把特定活動的 30 天期限套用到所有 reset，也不要把使用期限理解成重置後能連續用 30 天。
-
-我的建議是把三件事一起看：**距離自動重設還有多久、reset 還剩幾天有效、近期是否真的需要額度。** 快自動恢復且不趕工，可以先等；近期有大量工作、又離恢復時間很遠，重置的價值就比較高。若 reset 即將到期，則在期限內安排原本就要做的工作，避免留到失效。
+**什麼時候該用？** 比較三件事：距離自動重置還有多久、reset 還剩幾天有效、近期工作量。例如原本週一就會恢復每週額度，週日套用 reset 後，週一不會再恢復，新週期從週日重算；工作能等到週一就先保留。若 reset 快到期，就排在到期前原本就要做的工作上。
 
 ![使用 banked reset 前，先確認到期日；使用後再核對新的每週重設時間](reset-quota.png)
 
+我也會在 X 和 Reddit 追蹤 OpenAI 與 Codex 團隊成員的發文：**看到預告即將全域重置，就把開發、測試或程式碼審查提前到重置前做完**，避免上一輪額度白白浪費。OpenAI 頻繁重置額度的背景，可參考 [OpenAI 為什麼不停重置 Codex 額度？](/2026/07/13/OpenAI-%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8D%E5%81%9C%E9%87%8D%E7%BD%AE-Codex-%E9%A1%8D%E5%BA%A6/)
+
+## Codex 與 Claude 的 banked reset 不一樣
+
+兩家都有可保留、手動套用的重置，但規則不同，同時訂閱時要分開記：
+
+| | Codex banked reset | Claude 限額重置（Reset for free） |
+| --- | --- | --- |
+| 補回什麼 | Full reset 同時補滿 5 小時與每週 | 依該次重置，只補 5 小時**或**每週其中一項 |
+| 每週重置日 | 改成新的七天週期 | **不變**，仍在原本的固定時間 |
+| 在哪裡套用 | Codex App、CLI 或網頁的 **Settings → Usage** | 網頁或 Claude Desktop 的 **Settings → Usage**；Claude Code 終端機與 IDE 內沒有按鈕 |
+
+Claude 的規則見 [Anthropic 官方說明](https://support.claude.com/en/articles/17007452-what-is-a-limit-reset)；完整用法與使用時機，請看 [Claude banked reset 怎麼用？](/2026/10/19/claude-banked-reset-guide/)。
+
+## Credits 是什麼？
+
+Credits 是方案內含額度用完後，讓支援功能繼續執行的按量付費額度：**先扣方案額度，達到上限後才扣 Credits。** 依 [OpenAI 定價頁](https://learn.chatgpt.com/docs/pricing)，Plus 與 Pro 可加購 Credits，Business、Edu 與 Enterprise 的彈性計價工作區則購買工作區 Credits。
+
+- Credits 和 API 額度是兩回事，也不會提高方案上限。
+- 開啟自動加值時，若餘額已低於門檻，可能立即扣款。
+- 購買的 Credits 通常不可退款且有期限，下單前看清畫面上的條款。
+
+細節見 [OpenAI Credits 說明](https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans)。若在考慮升級方案，可對照 [AI 寫程式工具訂閱方案比較](/2026/09/14/ai-coding-tools-subscription-comparison/)。
+
+## Codex 額度用完：等待、重置還是 Credits？
+
+| 狀況 | 建議 | 決定前要看 |
+| --- | --- | --- |
+| 工作能等到自動恢復 | 等待，保留 reset 與 Credits | 恢復時間是否趕得上期限 |
+| 不能等，且有未到期的 banked reset | 套用 reset | reset 到期日、原本的恢復時間，以及新的七天週期 |
+| 不能等，沒有 reset 或想保留原本週期 | 使用 Credits | 價格、餘額與預算；不划算就調整時程 |
+
+Reset 會改變下週的重置時間，Credits 則是額外付費，兩者要分開比較。
+
+## 節省 Codex 額度的做法
+
+- **任務寫清楚完成條件。**「檢查整個專案順便優化」沒有終點。改成：「修正手機版選單打開後無法關閉。重現：390px 寬度打開選單再點背景；預期選單關閉，桌面版不受影響。先查選單元件與點擊事件，完成後驗證這兩個操作並回報，其他版面調整下次再做。」這是任務範例，不是節省比例的實測。
+- **一個主題一個工作階段。** 長對話會累積上下文，做完一件事就帶著摘要開新階段；排除 build 產物、依賴目錄與大型媒體。
+- **依任務選模型與推理強度。** 格式調整、單檔小改用較輕的模型；跨模組設計或難重現的錯誤再提高。
+- **少做沒有新資訊的重跑。** 先跑聚焦測試，修改穩定後再跑完整套件。
+
 ## 用 CodexBar 在選單列監控
 
-[CodexBar](https://github.com/steipete/CodexBar) 是第三方開源工具，可在 macOS 選單列顯示 Codex、Claude Code 等服務的用量、重設時間與使用速度，適合同時管理多個 AI 工具的人。
+[CodexBar](https://github.com/steipete/CodexBar) 是第三方開源 macOS 選單列工具，可同時顯示 Codex、Claude Code 等服務的用量與重置倒數。
 
 ![CodexBar 在選單列顯示 Codex 與 Claude 的用量比例及重設時間](codexbar-panel.jpg)
 
-CodexBar 預設以裝置端解析為主，會依你啟用的資料來源讀取特定位置，例如 CLI 設定、已知的本機日誌、OAuth 狀態或瀏覽器 Cookie。瀏覽器 Cookie 匯入可能需要 macOS Keychain，Safari 資料來源也可能需要完整磁碟存取。
+它預設在本機解析，視你啟用的資料來源讀取 CLI 設定、本機日誌、OAuth 狀態或瀏覽器 Cookie；Cookie 匯入可能需要 Keychain 權限。它不是 OpenAI 或 Anthropic 官方產品，建議只開必要的資料來源，也不要把含 Cookie 或 token 的截圖貼到公開 issue。只想看官方數字，用 **Settings → Usage** 或 **/status** 就夠了。
 
-它不是 OpenAI 官方產品。安裝前請先閱讀專案的隱私與權限說明，採取最小權限原則：
-
-- 優先使用你能理解的 CLI 或 OAuth 資料來源。
-- 不需要瀏覽器資料時，關閉 Cookie 匯入或 Keychain 存取。
-- 不要把 Cookie、token、設定檔或可讀取秘密的除錯截圖貼到公開 issue。
-- 更新後若出現新的權限要求，先確認請求程式與用途再允許。
-
-若只想確認官方數字，直接查看 **Settings → Usage** 或使用 **/status** 即可，不必另外安裝工具。
-
-## 真正能節省 Codex 額度的做法
-
-### 先縮小任務，再交給 Codex
-
-「幫我檢查整個專案，順便優化」沒有明確的完成條件，容易把一個小問題擴大成全面整理。以修正手機版選單為例，可以這樣交代：
-
-> 修正手機版選單打開後無法關閉的問題。重現方式：在 390px 寬度打開選單，再點背景。預期是選單關閉，且桌面版操作不受影響。先從選單元件與點擊事件查起，有需要再追相關檔案。完成後驗證這兩個操作，回報修改與結果；其他版面調整留待下一次。
-
-這段指令給了問題、重現方式、預期結果與查找起點，也定義了何時可以收工。不要為了省額度禁止必要的調查或測試；要減少的是與目標無關的工作。這是可套用的任務範例，並非節省比例的實測；實際用量仍受模型、上下文與工具操作影響。
-
-### 控制上下文與輸出範圍
-
-長對話會累積上下文。完成一個主題後，以清楚摘要開新工作階段，通常比讓無關歷史持續膨脹更有效。也應排除 build 產物、依賴目錄、大型媒體與與任務無關的檔案。
-
-### 依任務選模型與推理強度
-
-格式調整、單檔小改與明確測試修正，不一定需要最高成本的模型或推理設定。先用足以完成任務的選項；遇到跨模組設計、難以重現的錯誤或高風險變更，再提高模型能力或推理強度。
-
-### 減少沒有資訊增量的重跑
-
-反覆執行相同測試、重新讀取整個專案或要求多份近似答案，都會消耗額度。把驗證對準變更風險：先跑聚焦測試，確定修改穩定後再跑完整套件。
-
-### 在使用 reset 或 Credits 前看兩個視窗
-
-先看 5 小時與每週視窗各自剩餘多少，以及何時重設。如果短視窗即將恢復，等待可能比消耗一次 banked reset 更划算；若每週視窗已耗盡且工作有明確商業價值，再比較 reset、Credits、升級或延後工作的成本。
-
-## 追蹤重要人物，提前安排重置前的工作
-
-我會在 X 和 Reddit 留意 OpenAI、Codex 產品負責人與團隊成員的發文。**看到他們預告額度將自動重置，就提早安排工作，善用重置前的剩餘額度。**
-
-例如，已知明天會重置，就把原本要做的開發、測試或程式碼審查提前到今天，重置後再接著做下一批。追蹤這些消息，是為了留出時間把額度用在實際工作上，避免等到重置才發現上一輪還剩很多沒用。
-
-## 額度用完後，該等待、重置還是用 Credits？
-
-先到 **Settings → Usage** 或用 **/status** 確認目前用完的是哪一項額度，以及何時自動恢復。接著判斷：**手上的工作能不能等到那個時間？**
-
-| 工作與帳戶狀況 | 怎麼選 | 決定前要看什麼 |
-|---|---|---|
-| 工作可以等到額度自動恢復 | 等待恢復，保留 reset 與 Credits | 確認恢復時間是否趕得上工作期限 |
-| 工作不能等，而且有尚未到期的 banked reset | 考慮使用 reset 補回額度 | 比較 reset 到期日與原本的恢復時間，並把重置後的新七天週期算進安排 |
-| 工作不能等，但沒有可用 reset，或希望保留原本的每週週期 | 查看帳戶是否提供 Credits | 先確認價格、餘額與自己願意支付的預算，再決定是否繼續；若不適合付費，就調整工作時程 |
-
-**不要只看「現在能不能繼續用」，也要看這次選擇對下一週與費用的影響。** Reset 會改變每週重設時間；Credits 則是為額外用量付費，兩者應分開比較。
-
-## 結語
-
-管理 Codex 額度，要把任務交代清楚，也要安排好使用時間。提前掌握重置消息、善用剩餘額度，並在使用 banked reset 前算好新的七天週期與到期日，才能讓額度用在真正需要完成的工作上。
-
-如果你還在比較不同 AI 程式工具的定位，也可以接著閱讀 [AI coding 工具比較：Claude Code、Codex、Cursor 怎麼選？](/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/)。
+還在比較各家工具定位，可以接著看 [AI coding 工具比較：Claude Code、Codex、Cursor 怎麼選？](/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/)。

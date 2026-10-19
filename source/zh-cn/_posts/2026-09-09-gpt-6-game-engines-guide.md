@@ -1,8 +1,8 @@
 ---
-title: "用 GPT-6 做游戏选什么引擎？Godot、Unity、Unreal 与网页游戏工具对比"
+title: "用 GPT-6 做游戏怎么入门？Godot、Unity、Unreal 与网页引擎选型"
 date: 2026-09-09 15:00:00
-updated: 2026-09-09 15:19:28
-description: "想用 GPT-6 做游戏，该选 Godot、Unity、Unreal，还是 Phaser、PixiJS？本文围绕网页分享、独立开发和 3D 制作，对比七种工具与 AI 配合的方式、需要手动处理的环节，以及如何从一个可玩的最小原型开始。"
+updated: 2026-10-19 16:00:00
+description: "用 GPT-6 做游戏怎么入门？在 Codex 中选 GPT-6.1 Sol 或 Astra，2D 网页游戏用 Phaser、独立游戏用 Godot、有 C# 基础用 Unity（官方 Codex 插件）、3D 大作考虑 Unreal，再从单关卡原型做起。附七种工具对比与起步提示词。"
 translation_key: gpt-6-game-engines-guide
 permalink: 2026/09/09/gpt-6-game-engines-guide/
 translations:
@@ -12,6 +12,7 @@ categories:
 - 游戏开发
 tags:
 - GPT-6
+- ChatGPT
 - Codex
 - Godot
 - Unity
@@ -22,122 +23,93 @@ tags:
 
 ![GPT-6 辅助制作 2D 平台、森林冒险与太空探索游戏的引擎选型概念图](cover.jpg)
 
-看完 GPT-6 制作游戏的演示，很容易想让 AI 帮自己做一款。但如果从没写过代码，看到 Godot、Unity、Phaser 这些名字，可能会先问：**AI 已经能写代码了，为什么还需要游戏引擎？**
+**用 GPT-6 做游戏，最省事的路线是：在 Codex 里让 GPT-6.1 Sol（或能力最强的 GPT-6 Astra）直接读写项目，再按目标选引擎：2D 网页小游戏用 Phaser，长期做独立游戏用 Godot，会 C# 就用 Unity，明确要 3D 画面再上 Unreal。第一版只做一个能玩完、能重开的单关卡。** 只在 ChatGPT 对话框里要代码也行，但搭项目、运行和反馈报错都得自己来。
 
-从一个角色捡金币的小游戏出发，就能理解这些工具负责什么，再选择适合自己创意的方案。
+下面整理 2026 年 10 月的模型版本、七种工具对比，以及各引擎接入 AI 智能体的官方方案。
 
 <!--more-->
 
-## 游戏引擎是什么？从角色捡金币说起
+## 用 GPT-6 做游戏的四个步骤
 
-假设你想做一个小游戏：按右键，角色向右移动；碰到墙就停下来；碰到金币，金币消失、分数增加，并播放一段音效。
+1. **先写一页策划**：玩家反复做什么、怎样算赢、第一版不做什么。方法见[用 AI 做游戏前先规划：核心玩法、可玩原型与 GDD 模板](/zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/)。
+2. **选能跑代码的工具**：Codex（桌面端、CLI、IDE 插件）可以直接改文件、执行命令和跑测试；对话框只能给你代码。
+3. **选引擎**：参考下方表格，挑你最有把握做完第一个作品的那套。
+4. **打通反馈链路**：让智能体能启动游戏、跑测试、拿到报错和截图。OpenAI 的 [Astra 游戏开发案例](https://developers.openai.com/blog/how-to-build-games-with-astra)先用图像生成确定美术风格，再用 Vitest 和 Playwright 做浏览器测试与截图，手感则由人来试玩反馈。
 
-这些动作看起来简单，但计算机需要完成不少工作：
+想让智能体更稳定地自动验证，可以接着看[适合 AI 开发的开源游戏架构](/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/)。
 
-- **绘制画面**：角色、墙和金币放在哪里，谁显示在前面。
-- **处理输入**：按键或触摸操作发生后，应该控制哪个角色。
-- **检测碰撞**：角色不能穿墙，也不能隔着很远就捡到金币。
-- **执行规则**：每枚金币加多少分，满足什么条件才算过关。
-- **呈现反馈**：播放动画和音效，更新画面上的分数。
+## GPT-6 有哪些版本？做游戏选 Astra、Sol 还是 Luna
 
-**游戏引擎把游戏开发中常用的基础功能整合成一套工具，让你不必每次从零实现。**不同引擎覆盖的范围不同，通常能协助处理画面、输入、对象和资源。有些还提供可视化编辑器，让你直接把角色和墙摆进关卡。
+截至 2026 年 10 月 19 日，[OpenAI API 模型总览](https://developers.openai.com/api/docs/models)列出的 GPT-6 系列共三款：
 
-引擎不会自动理解你的创意。它提供碰撞检测，你仍要配置哪些对象可以碰撞；它能播放声音，你仍要选择捡金币时播放哪段音效。**“每枚金币加 10 分，集齐五枚过关”这样的玩法规则，才是你和 AI 需要一起完成的部分。**
+| 模型 | API ID | 官方定位 | API 价格（每百万 tokens，输入／输出） | 做游戏怎么用 |
+|---|---|---|---|---|
+| GPT-6 Astra | gpt-6-astra | 能力最强，应对最复杂的任务 | $10／$50 | 架构设计、棘手的性能和物理问题 |
+| GPT-6.1 Sol | gpt-6.1-sol | 接近 Astra，成本更低 | $2／$10 | 日常写玩法、修 Bug 的主力 |
+| GPT-6 Luna | gpt-6-luna | 性价比最高，适合聚焦、高频任务 | $0.10／$0.50 | 小改动、批量处理数据和文案 |
 
-## GPT-6 和游戏引擎如何分工
+价格取自官方模型页（[Astra](https://developers.openai.com/api/docs/models/gpt-6-astra)、[GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol)），输入超过 272K tokens 的长请求按更高费率计费。
 
-在这种开发方式中，**你决定游戏目标，GPT-6 协助编写代码和调整配置，引擎在游戏运行时执行相关功能。**
+在 Codex 中，[官方模型说明](https://learn.chatgpt.com/docs/models)推荐用 **GPT-6.1 Sol** 处理复杂编程和智能体任务，面向 Plus、Pro、Business、Enterprise、Edu 开放（Enterprise／Edu 需管理员开启）；**Free 和 Go 用户可在桌面端选择 GPT-6 Luna**。API 总览目前主推的 Sol 是 9 月底发布的 GPT-6.1 Sol，而不是 9 月 22 日的初版 GPT-6 Sol，来龙去脉见 [OpenAI DevDay 2026 发布汇总](/zh-cn/2026/09/30/openai-devday-2026-announcements/)。
 
-你告诉 AI“角色碰到金币就加分”，它可以编写对应逻辑，调用引擎的碰撞和显示功能。但仍要实际运行游戏，确认金币能不能捡到、分数是否重复增加，以及操作是否流畅。
+**模型只参与开发，游戏运行时不需要调用 GPT-6。**规则固定的小游戏做完后由引擎独立运行；只有额外设计了 AI 对话 NPC 之类的功能，才会在游玩时调用模型、产生 API 费用。
 
-普通的固定规则小游戏，**不需要玩家每走一步就调用 GPT-6**。AI 可以只参与开发，完成后由程序和引擎运行。只有另外设计了 AI 对话角色等功能，才需要考虑游玩时连接模型。
+## 七种工具怎么选
 
-### 必须使用游戏引擎吗
+| 工具 | 适合做什么 | 交给 AI 的切入点 | 官方 AI 智能体接入 | 需要自己把关 |
+|---|---|---|---|---|
+| Phaser | 2D 网页、解谜、打砖块 | JavaScript／TypeScript 逻辑 | 不需要：纯代码项目 | 触控、屏幕适配、真机测试 |
+| PixiJS | 自定义 2D 画面、卡牌、特效 | 渲染与交互代码 | 不需要：纯代码项目 | 游戏状态、碰撞需自行搭建 |
+| Godot | 2D 独立游戏、小型 3D | 脚本与文本场景文件 | 无官方方案，有社区 MCP 插件 | 节点、资源引用、手感 |
+| Unity | 有 C# 基础的移动端或 3D 项目 | C# 逻辑与编辑器工具 | 有：官方 Codex 插件（Unity 6+） | 场景配置、包版本、真机 |
+| Unreal Engine | 重视 3D 画面的项目 | C++ 与编辑器自动化 | 有：Unreal MCP（实验性） | 蓝图、素材、性能 |
+| GDevelop | 用事件规则入门 | 把玩法拆成条件和动作 | 取决于产品内置功能 | 在编辑器里确认事件顺序 |
+| Three.js | 自定义 3D 网页体验 | 用代码描述场景与交互 | 不需要：纯代码项目 | 物理和游戏系统要另外集成 |
 
-不一定。猜数字或文字选项游戏，可以直接用普通网页代码实现。也可以选择只负责部分功能的库，再集成其他工具。只是游戏越复杂，需要自己组织的环节通常越多。
+我的默认建议：**想先做一款能分享的 2D 网页小游戏，从 Phaser 起步；想长期打磨 2D 或小型 3D 作品，优先看 Godot。**已经熟悉某个引擎就继续用。这是基于官方文档的流程建议，并非七种工具同条件实测的排名。
 
-因此，本文会区分**Godot、Unity 这样的游戏引擎，Phaser 这样的游戏框架，以及 PixiJS、Three.js 这样的图形库**。框架主要提供代码组织方式和常用功能；图形库侧重画面，不一定包含完整的游戏系统。
+### 游戏引擎到底帮你做了什么
 
-想先完成能分享的 2D 网页小游戏，我会从 Phaser 入手；准备长期开发自己的 2D 或小型 3D 作品，我会先看 Godot。已经熟悉其他引擎，也可以继续使用现有工具。
+AI 能写代码，但“角色捡金币”背后涉及画面绘制、输入处理、碰撞检测、规则判定和音效反馈。**引擎把这些底层能力封装好，你和 AI 只需要写“每枚金币加 10 分、集齐五枚过关”这样的玩法规则。**猜数字、文字选项类小游戏可以不用引擎；Phaser 属于游戏框架，PixiJS 和 Three.js 是图形库，游戏系统需要自己补齐。
 
-## 判断是否适合 GPT-6，先看开发流程
+## GPT-6 + Phaser 或 PixiJS：2D 网页游戏
 
-OpenAI 9 月 4 日发布的 [Astra 游戏开发案例](https://developers.openai.com/blog/how-to-build-games-with-astra)采用 **TypeScript、Vite 和 Three.js**。这提醒我们：有吸引力的游戏，并不一定要从大型编辑器起步。
+Phaser 是网页游戏框架，官方提供 [JavaScript 和 TypeScript 项目模板](https://phaser.io/tutorials/create-game-app)，[场景系统](https://docs.phaser.io/phaser/concepts/scenes)整合了摄像机、资源加载、输入、计时和可选物理插件。纯代码项目能让 Codex 完整跑通“改代码、运行、看画面”的闭环。第一版只放一个角色、一种障碍和重开按钮。
 
-本文依据截至 2026 年 9 月 9 日核对的官方资料提出选型建议，**没有对七种工具进行 GPT-6 同条件横向实测**。这里的“适合”是指协作流程，并不表示引擎内置 GPT-6。讨论以能够读写项目、运行工具的 Codex 类编程智能体为前提；如果只在聊天窗口获取代码，还需要自己搭建项目、运行并反馈错误。
+PixiJS 是 **2D 渲染库**，[官方 FAQ](https://pixijs.com/faq/FAQPage)明确说它不是完整的游戏引擎。做卡牌展示或自定义特效可以用它，但要先和 AI 约定场景切换、游戏状态和碰撞的实现方式，否则很容易只做出一层渲染。
 
-我会优先判断三件事：AI 能否读懂并修改项目，修改后能否快速运行，出错时能否获取日志和画面。反馈链路清楚，往往比提示词更复杂有效。
+**网页版跑通不代表手机上能玩**：要在竖屏下确认按钮不挡角色、触控有效、重开后上一局状态被清空。准备发给朋友前，先看 [localhost 链接为什么别人打不开](/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/)。
 
-## 七种工具的选型起点
+## GPT-6 + Godot：对独立开发最友好的开源方案
 
-| 工具 | 我会用来做什么 | 适合交给 AI 的任务 | 需要自己关注的部分 |
-|---|---|---|---|
-| Phaser | 2D 网页、解谜、打砖块 | JavaScript／TypeScript 逻辑 | 触控、缩放和浏览器测试 |
-| PixiJS | 自定义 2D 画面、卡牌展示、交互特效 | 渲染与交互代码 | 游戏状态、碰撞和画面切换需要另外组织 |
-| Godot | 2D 独立游戏、小型 3D 冒险 | 脚本与文本场景文件 | 节点、资源引用和操作手感 |
-| Unity | 有 C# 基础的移动端或 3D 项目 | C# 逻辑与编辑器工具 | 场景配置、包版本和真机验证 |
-| Unreal Engine | 重视 3D 画面与场景制作的项目 | C++ 和编辑器自动化 | 蓝图连接、素材整合与性能 |
-| GDevelop | 希望通过事件规则入门的小游戏 | 将玩法拆成条件和动作 | 在编辑器中配置并检查执行顺序 |
-| Three.js | 自定义 3D 网页体验 | 用代码描述场景与交互 | 额外搭建游戏系统 |
+Godot 的 [TSCN 场景格式](https://docs.godotengine.org/en/stable/engine_details/file_formats/tscn.html)是纯文本，Codex 可以直接读懂并修改场景结构；[命令行](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html)可用于运行和导出。截至 10 月，官方最新稳定版是 [Godot 4.7.2](https://godotengine.org/download/archive/4.7.2-stable/)。记得把准确版本号告诉 AI，避免它把 Godot 3 和 4 的节点、API 混着用。
 
-表格提供的是起点，并非能力上限。先选择最容易完成首个作品的路线，没必要为遥远的大型项目提前增加复杂度。
+**Godot 没有官方的 AI 智能体集成**；资源库里有 Godot AI 等社区 MCP 插件，可让智能体操作编辑器，但都是第三方方案，安装前先评估权限范围。不装插件，用 Astra 或 Sol 也能配合 Godot：让智能体改脚本和 .tscn，再通过命令行启动排查报错；手感和镜头还是得自己进游戏确认。
 
-## Phaser：先做一个能分享的 2D 小游戏
+起步任务可以是“走到树旁按键采集，背包数量加一”。这个循环稳定后，再加商店和升级。
 
-打砖块、翻牌、简单塔防或躲避障碍，都可以考虑 Phaser。它是网页游戏框架，官方提供 [JavaScript 和 TypeScript 项目模板](https://phaser.io/tutorials/create-game-app)，不用从空目录搭建全部结构。
+## GPT-6 + Unity：有 C# 基础时最顺手
 
-我看重的是修改代码、运行项目、查看画面的反馈流程。首个版本只保留一个角色、一种障碍和重新开始按钮，跑通后再加关卡、音效与触控。
+Unity 现在提供了让 Codex 操作编辑器的官方通道：[Unity AI 页面](https://unity.com/features/ai)上有面向 Claude Code、Codex 和 Grok 的**官方插件**，打包了 Unity CLI、skills 和 MCP server，支持 **Unity 6.0 及以上**；官方表示 CLI、MCP server 和插件均可免费使用。另有 AI Gateway，可在编辑器内接入你已订阅的第三方智能体，不消耗 Unity 点数。原有的[批处理模式命令行参数](https://docs.unity3d.com/6000.0/Documentation/Manual/EditorCommandLineArguments.html)依然可以用来做自动化。
 
-**网页游戏完成，不等于移动 App 已经完成。**即使只发布网页版，也要在手机上检查按钮是否挡住角色、触控是否有效，以及重开一局会不会遗留上局状态。
+**编译通过不等于功能正常**：组件没挂、Prefab 引用接错，角色照样一动不动。让 AI 一次讲清楚“改了哪个脚本、场景里要配什么、怎么验收”。已有 Unity 项目也没必要因为换了模型就推倒重来，先交给它一个边界清晰的小任务。
 
-## PixiJS 还是 Phaser？先区分渲染库与游戏框架
+## GPT-6 + Unreal Engine：明确要 3D 画面再选
 
-PixiJS（也常写作 pixi.js）同样值得考虑。它主要是 **2D 渲染库**；[官方 FAQ](https://pixijs.com/faq/FAQPage)明确指出，它不是完整的游戏引擎。可以用它开发游戏，但游戏规则和系统需要另外组织。
+Unreal 支持 [Blueprint 与 C++](https://dev.epicgames.com/documentation/unreal-engine/coding-in-unreal-engine-blueprint-vs-cplusplus?lang=en-US) 混合开发。Epic 在 UE 5.8 文档中提供了 **[Unreal MCP](https://dev.epicgames.com/documentation/unreal-engine/unreal-mcp-in-unreal-editor?lang=en-US)** 插件，在编辑器进程内启动 MCP server，让兼容的智能体生成 Actor、配置灯光、创建材质实例。它目前标记为**实验性**，默认只接受本机连接、没有鉴权层，切勿暴露到外网。
 
-[Phaser 的场景系统](https://docs.phaser.io/phaser/concepts/scenes)则整合了摄像机、资源加载，以及输入、计时和可配置的物理插件。对于希望尽快完成首款游戏的人，已有框架通常更容易上手。
+另一个常见误区：[Unreal 的 Python 脚本只用于编辑器](https://dev.epicgames.com/documentation/unreal-engine/scripting-the-unreal-editor-using-python)，不能当作打包后游戏的玩法语言。第一个任务做一个可交互机关即可，别一上来就要开放世界。
 
-我的建议是：**想让 GPT-6 帮忙完成打砖块、平台跳跃或躲避障碍游戏，先选 Phaser；主要需求是自定义 2D 画面、卡牌展示或交互特效，并且愿意自己组织游戏系统，再考虑 PixiJS。**这是开发流程建议，不是性能或 AI 成功率的排名。
+## GDevelop 与 Three.js：两条不同的替代路线
 
-无论选哪个，都要告诉 AI 准确版本和项目结构。用 PixiJS 时，尤其要先确定画面切换、游戏状态和碰撞的实现方案，避免只做好了渲染才发现玩法系统尚未搭建。可以集成其他工具，不必全部从零实现。
+**GDevelop** 用[事件系统](https://wiki.gdevelop.io/gdevelop5/events/)的条件和动作描述逻辑，比如“角色碰到金币，加分并删除金币”。GPT-6 可以帮你把创意拆成事件清单，但外部智能体能否直接改项目取决于工具对接；产品自带的 AI 也不等于 GPT-6。
 
-## Godot：把小原型持续做成完整作品
+**Three.js** 是 Astra 游戏案例采用的方案（搭配 TypeScript、Vite 和 Rapier 物理引擎），但[官方手册](https://threejs.org/manual/en/game.html)明确说它是 3D 库而不是完整游戏引擎。更适合有前端基础、愿意自己搭架构的人；第一次做游戏，别因为官方演示用了它就照搬技术栈。
 
-像素冒险、采集经营和小型 3D 项目，是我会优先考虑 Godot 的方向。它的 [TSCN 场景格式](https://docs.godotengine.org/en/stable/engine_details/file_formats/tscn.html)通过文本描述场景，配合脚本，方便基于文件工作的 AI 智能体理解项目结构。
-
-Godot 的[命令行接口](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html)还能参与运行和导出流程。但无界面检查通过，并不能证明碰撞、镜头和 UI 正常，更无法判断游戏好不好玩。
-
-我会从“走到树边，按键采集，背包数量增加”开始，等这个循环可靠后再加入商店。把准确的引擎版本交给 AI 也很关键，避免混用不同版本的节点和 API。
-
-## Unity：已有 C# 经验或项目时更顺手
-
-Unity 的 C# 逻辑可以拆成角色控制、物品数据、存档等小任务。它还提供[批处理模式和调用编辑器方法的命令行参数](https://docs.unity3d.com/6000.0/Documentation/Manual/EditorCommandLineArguments.html)，方便建立可重复的处理流程。
-
-但代码编译成功后，角色仍可能不动：场景里可能没挂组件，Prefab 引用也可能接错。因此，我会要求 AI 同时说明修改的脚本、必要的场景配置以及验收方法。
-
-如果已经有 Unity 项目，不必因为新模型发布就推倒重来。先让 GPT-6 完成一个范围清楚的任务，再逐步扩大协作范围。
-
-## Unreal Engine：明确需要 3D 场景表现时再选
-
-Unreal 支持搭配使用 [Blueprint 和 C++](https://dev.epicgames.com/documentation/unreal-engine/coding-in-unreal-engine-blueprint-vs-cplusplus?lang=en-US)。对于强调 3D 场景的作品，它值得考虑；但首次接触游戏编辑器、只想做翻牌游戏的人，我不会建议从这里起步。
-
-AI 可以辅助 C++ 开发、解释蓝图搭建步骤或编写编辑器工具。需要区分：[Unreal 的 Python 脚本用于编辑器环境](https://dev.epicgames.com/documentation/unreal-engine/scripting-the-unreal-editor-using-python)，不能直接把它当成打包后游戏的玩法运行语言。
-
-先完成一个可交互机关，比一次要求完整开放世界更容易定位问题。否则关卡、美术、性能和玩法会同时成为待办项。
-
-## GDevelop 与 Three.js：分别解决不同需求
-
-**不想先学习大量语法，可以了解 GDevelop。**它的[事件系统](https://wiki.gdevelop.io/gdevelop5/events/)通过条件和动作描述行为，比如“角色碰到金币后加分并删除金币”。GPT-6 可以帮忙整理事件清单，但能否直接修改项目取决于工具连接，不能默认外部 AI 已能操作编辑器。产品自己的 AI 功能，也不等于内置 GPT-6。
-
-**想自定义 3D 网页世界，可以研究 Three.js。**不过，[官方明确说明它是 3D 库，而不是完整游戏引擎](https://threejs.org/manual/en/game.html)。碰撞、物理等系统需要另外集成。它更适合有网页开发基础、愿意自己搭建架构的人，不建议仅因为官方案例用了它，就直接照搬技术栈。
-
-## 第一个任务，缩小到能完整玩一局
-
-比起“做一款像某某大作的游戏”，我会先给 GPT-6 这样的任务：
+## 第一个任务：给 GPT-6 的起步提示词
 
 > 使用我指定的引擎和版本，制作单关卡采集小游戏。玩家可以移动、采集一种资源，收集五个后显示成功，并可以重新开始。先用占位素材，不加入登录、商城和多人联机。开始前列出需要修改的文件；完成后说明启动方法、实际验证过的操作和未确认的部分。
 
-这只是起步示例，不是经过实测的万能提示词。仍要亲自完成开始、操作、成功、重玩，才能知道项目是否真正可玩。
+这只是起步示例，不保证一次成功。开始、操作、成功、重开这一轮仍要亲自玩一遍。循环稳定后，再用 [AI 游戏音效工作流](/zh-cn/2026/08/27/indie-game-ai-audio-workflow/)补上配乐和音效。
 
-原型稳定后，再补声音和发布流程。可继续阅读本站的 [AI 游戏音效文章](/zh-cn/2026/08/27/indie-game-ai-audio-workflow/)与 [localhost 分享问题说明](/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/)。
-
-我会用 Phaser 验证 2D 网页创意，用 Godot 持续开发独立游戏。已经熟悉其他引擎，就从现有项目接入 GPT-6。对首个作品来说，能持续修改、测试并完成，比选到参数最漂亮的工具更重要。
+**对第一个作品来说，能持续修改、测试并最终完成的小游戏，比选中最强的模型或引擎更重要。**

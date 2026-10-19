@@ -1,8 +1,8 @@
 ---
-title: Aseprite 扩展与脚本实战：五款工具改善像素素材工作流
+title: Aseprite 插件推荐：五款必装扩展提升像素画效率（附安装教程）
 date: 2026-08-18 21:00:00
-updated: 2026-10-13 17:33:17
-description: 介绍五款适用于独立游戏美术的 Aseprite 扩展与 Lua 脚本，覆盖调色板导入、自动描边、等距网格、波浪动画和视差背景预览。结合开发者文档说明安装步骤、功能边界、付费工具价格与素材检查方法，帮助你把工具接入像素画工作流。
+updated: 2026-10-19 16:00:00
+description: Aseprite 插件（扩展）推荐：Lospec 调色板导入、Magic Pencil 自动描边、等距网格、Wave Warp 波浪动画、Parallixel 视差背景，附价格、版本要求、下载地址与 Add Extension 安装步骤。
 permalink: 2026/08/18/aseprite-extensions-pixel-art-workflow/
 translation_key: aseprite-extensions-pixel-art-workflow
 translations:
@@ -19,80 +19,122 @@ tags:
 
 ![Aseprite 扩展与 Lua 脚本工作流指南封面](cover.jpg)
 
-做独立游戏的像素素材，耗时的不只是画角色。反复切换调色板、修整轮廓、搭建等距网格，以及检查动画和背景接缝，都会打断创作节奏。
+值得装的五款 **Aseprite 插件**：可免费下载的 **Lospec Palette Importer**（搜索导入调色板）、**Magic Pencil**（自动描边、喷溅、图层拆分）、**Isometric Guidelines**（等距网格），以及 5 美元起的 **Wave Warp**（波浪动画）和 **Parallixel**（视差背景）。安装入口是 **Edit → Preferences → Extensions → Add Extension**。试用版不能运行脚本，这些插件都用不了。
 
-**Aseprite 扩展与 Lua 脚本**适合接管这些重复操作。本文整理五款工具，说明各自解决什么问题、如何安装，以及怎样把它们接入素材制作流程。插图沿用开发者公开展示的界面与效果，并标注来源。
+下文按工具列出官方下载页、版本要求、核心功能和使用限制（2026 年 10 月核对）。
 
 <!--more-->
 
-## 先区分扩展包与 Lua 脚本
+## Aseprite 插件推荐对比表
 
-**.aseprite-extension** 是封装好的扩展包。可以把文件拖进 Aseprite 安装，或打开 **Edit → Preferences → Extensions**，使用 **Add Extension** 选择文件，再确认扩展已启用。安装方式可参照 [Aseprite 扩展文档](https://www.aseprite.org/docs/extensions/)。
+| 插件 | 用途 | 格式 | 价格 | Aseprite 版本 |
+| --- | --- | --- | --- | --- |
+| **Lospec Palette Importer** | 搜索并导入 Lospec 调色板 | 扩展 | 自愿付费（可 0 元）、MIT 开源 | 1.3.7 及以上 |
+| **Magic Pencil** | 自动描边、喷溅、图层拆分、改色 | 扩展 | 自愿付费（可 0 元） | v2 需 1.3-rc4 及以上 |
+| **Isometric Guidelines** | 生成 2.5D 等距网格 | Lua 脚本 | 自愿付费（可 0 元） | 未注明 |
+| **Wave Warp** | 水面、旗帜、热浪扭曲动画 | 扩展 | 5 美元起 | 1.3-rc1 及以上 |
+| **Parallixel** | 视差滚动背景与循环预览 | 扩展 | 5 美元起 | 基于 1.3.14-beta1 开发测试 |
 
-**.lua** 是脚本文件。打开 **File → Scripts → Open Scripts Folder**，把脚本放进该文件夹，再使用 **File → Scripts → Rescan Scripts Folder** 刷新列表。之后从 **File → Scripts** 运行脚本。[官方脚本文档](https://www.aseprite.org/docs/scripting/)说明了脚本目录与刷新流程。
+价格和版本要求以各开发者 itch.io 页面为准。
 
-正式版或自行编译的版本才能使用这些扩展功能；试用版不支持。还没安装软件，可以先看本站的 [Aseprite 安装与 PixelLab 插件指南](/zh-cn/2026/06/15/how-to-install-aseprite/)。
+## Aseprite 插件怎么安装？
 
-## Lospec Palette Importer：把配色方案带进编辑器
+**.aseprite-extension 扩展包**（上表除 Isometric Guidelines 外都是）：
+
+1. 下载文件；如果是 **.zip**（比如 Magic Pencil），先解压出 **.aseprite-extension**。
+2. 打开 **Edit → Preferences → Extensions**，点击 **Add Extension** 选择文件（参见[官方扩展文档](https://www.aseprite.org/docs/extensions/)）。也可以双击文件，或直接拖进 Aseprite 窗口后确认。
+3. 在列表里确认已勾选启用；Magic Pencil 等插件建议重启 Aseprite。
+
+**.lua 脚本**（Isometric Guidelines）：
+
+1. 点击 **File → Scripts → Open Scripts Folder**（参见[官方脚本文档](https://www.aseprite.org/docs/scripting/)），把 **.lua** 文件放进去。
+2. 点击 **File → Scripts → Rescan Scripts Folder** 或重启软件，然后在 **File → Scripts** 里运行。
+
+扩展包不能当脚本用：把 Wave Warp、Parallixel 放进 Scripts 文件夹是加载不了的。
+
+## Aseprite 下载与试用版限制
+
+- **试用版**：[官方试用页](https://www.aseprite.org/trial/)目前提供 v1.3.18.6，限制是不能保存文件；据开发者和社区反馈，试用版还禁用了脚本功能，所以**本文的插件在试用版上都无法运行**。
+- **正式版**：在[官网购买](https://www.aseprite.org/buy/)（可选附带 Steam key），或直接在 [Steam](https://store.steampowered.com/app/431730/Aseprite/) 购买。
+- **源码编译**：源码托管在 [GitHub](https://github.com/aseprite/aseprite)，自行编译的版本可以使用插件。
+
+各种获取方式的具体步骤见 [Aseprite 安装指南：连接 PixelLab 迈入 AI 像素画创作](/zh-cn/2026/06/15/how-to-install-aseprite/)。
+
+## Lospec Palette Importer：一键导入社区调色板
 
 ![Lospec Palette Importer 的调色板搜索与导入窗口，来源：sudo whoami](lospec-palette-importer-search.png)
 
-John Riggles 的 [Lospec Palette Importer](https://sudo-whoami.itch.io/lospec-palette-importer)支持按名称搜索 Lospec 调色板、预览并保存，也可以查看随机配色。项目采用 MIT 许可证，下载页面支持自愿付费。
+- **开发者**：sudo whoami（John Riggles），最新版本 v1.6.0（2026 年 3 月）
+- **下载**：[itch.io 项目页](https://sudo-whoami.itch.io/lospec-palette-importer) / [GitHub 源码](https://github.com/JRiggles/Lospec-Palette-Importer)
 
-安装后，在调色板上方的菜单中选择 **Import Palette from Lospec**。先试一套适合项目的调色板，再把它用于角色、道具和背景。这样检查风格时，就有明确的颜色范围可对照。
+不用再走“浏览器搜索 Lospec → 下载 **.gpl** → 手动导入”这套流程：
 
-工具访问网络和保存文件时可能请求相应权限。开发者页面列出了运行环境要求；Linux 并非官方支持平台，部分功能需单独核对。
+1. **编辑器内搜索**：点击调色板上方的 **≡** 菜单 → **Import Palette from Lospec**，输入名称（如 Endesga 32、PICO-8）。
+2. **相近名称推荐**：没有完全匹配时给出相近结果，默认 5 个，可在设置里调成 3 到 10 个。
+3. **找灵感**：支持随机调色板和 Lospec 每日调色板。
+4. **保留来源信息**：默认保存为 **.gpl**，会带上作者、颜色数量和 Lospec 链接；保存为 **.aseprite** 则不含这些元数据。
 
-## Magic Pencil：减少描边和图层整理的重复操作
+首次运行需要选择 **Give full trust to this script**，授权它调用 curl 访问 Lospec 并写入文件。官方只支持 Windows 和 macOS；Linux 上除 **Open In App** 外基本可用，但不在官方支持范围内。
+
+## Magic Pencil：Aseprite 自动描边与图层拆分插件
 
 ![Magic Pencil 的笔刷效果与像素处理面板，来源：Kacper Woźniak](magic-pencil-panel.png)
 
-[Magic Pencil](https://thkaspar.itch.io/magic-pencil)由 Kacper Woźniak 开发，可以从 **Edit → Magic Pencil** 打开，选择模式后使用绘图工具。下载支持自愿付费。
+- **开发者**：Kacper Woźniak，最新版本 v2.0.5
+- **下载**：[itch.io 项目页](https://thkaspar.itch.io/magic-pencil)（Windows / macOS / Linux）
 
-- **Brush Outline** 给笔刷添加轮廓，**Graffiti** 添加喷溅效果。
-- **Lift** 把笔刷经过的像素移到新图层；**Merge** 将相关可见像素复制合并。
-- **Shift** 调整像素的颜色属性；**Indexed Mode** 限制颜色修改使用现有调色板。
+从 **Edit → Magic Pencil** 打开面板，选好模式后用任意绘图工具涂抹即可生效，省掉来回切工具的操作：
 
-建议先在一个角色或道具上试用。把手工修整后的结果与工具输出对照，再决定哪些操作适合整个素材集。
+| 分组 | 模式 | 效果 |
+| --- | --- | --- |
+| Effect | **Brush Outline** / **Graffiti** | 每一笔自动加轮廓；随机喷溅噪点，适合做脏污、磨损、岩石质感 |
+| Transform | **Lift** / **Merge** / **Select** | 把涂过的像素移到新图层；把涂抹区域的可见图层合并到新图层；用笔刷做选区 |
+| Change | **Outline** / **Colorize** / **Desaturate** / **Shift** | 对涂过的像素描边、着色、去饱和或偏移色相明度 |
+| 选项 | **Indexed Mode** | 改色时只用调色板里的颜色，不引入新颜色 |
 
-## Isometric Guidelines：先建立可核对的等距网格
+v2.x 不兼容 1.3-rc4 之前的 Aseprite，开发者建议用最新版本。
+
+## Isometric Guidelines：2.5D 等距网格生成脚本
 
 ![Aseprite Isometric Guidelines 生成的等距网格预览，来源：Noesteryo](isometric-guidelines-preview.png)
 
-Noesteryo 的 [Isometric Guidelines](https://noesteryo.itch.io/aseprite-isometric-guidelines)是 Lua 脚本，可以设置网格尺寸、是否需要墙面，以及地面和左右墙面的颜色。页面支持自愿付费下载。
+- **开发者**：Noesteryo
+- **下载**：[itch.io 项目页](https://noesteryo.itch.io/aseprite-isometric-guidelines)（**.lua** 脚本）
 
-**脚本会创建新的 Sprite。**先在新文件中核对网格尺寸，再把需要的辅助网格带进素材项目。制作等距地板或建筑时，先约定项目的透视规则，避免不同素材各自使用不同的比例。
+等距像素画要严格遵循 2:1 斜线，而 Aseprite 自带的网格只有矩形，手动拉辅助线很容易歪。这个脚本可以设置地面或墙面的格子大小、是否生成墙面，并分别指定地面、左墙、右墙的线条颜色。运行后会**新建一个 Sprite**，先在新文件里核对尺寸，再把网格带进素材工程。
 
-## Wave Warp：先预览波浪效果，再生成动画
+## Wave Warp：像素水面、旗帜与热浪扭曲动画
 
 ![Wave Warp 的像素波浪变形动画，来源：Devkidd](wave-warp-animation.gif)
 
-Devkidd 的 [Wave Warp](https://devkidd.itch.io/wave-warp)可以生成多帧波浪变形，支持调整波形、振幅、方向和速度，并用固定点限制部分区域的运动。它适合尝试旗帜、水面和热浪等效果。
+- **开发者**：Devkidd，最新版本 v1.0.1（2025 年 7 月）
+- **下载**：[itch.io 项目页](https://devkidd.itch.io/wave-warp)，5 美元起
 
-先用少量帧和简单素材调整参数，再生成完整动画。检查首尾衔接及边缘像素；工具生成了帧序列，并不代表任何参数组合都能无缝循环。
+1. **波形**：正弦波、三角波、方波、锯齿波、圆形波等。
+2. **参数**：振幅、频率、方向、速度、相位，应用前可实时预览。
+3. **Pinning 固定点**：固定顶部、底部、侧边或中心，比如做旗帜时固定旗杆一侧。
+4. **光影**：支持光照和阴影、可选抗锯齿，支持多图层和图层组。
 
-这是付费工具，页面原价为 **5 美元**。促销价会变化，以开发者页面为准。
+限制：开发者在评论区说明，目前只能基于**单个选中的 Cel** 生成动画，不会作用于已有的多帧动画。生成后首尾帧是否衔接，还得自己检查。
 
-## Parallixel：在导入引擎前检查视差背景
+## Parallixel：在 Aseprite 里生成无缝视差背景
 
 ![Parallixel 的多层视差背景动画预览，来源：Devkidd](parallixel-preview.gif)
 
-Devkidd 的 [Parallixel](https://devkidd.itch.io/parallixel)用于在 Aseprite 中生成和预览视差滚动。可以用它比较远景、中景与近景的运动，再检查背景循环时的接缝。
+- **开发者**：Devkidd，最新版本 v1.2.0（2026 年 3 月）
+- **下载**：[itch.io 项目页](https://devkidd.itch.io/parallixel)，5 美元起
 
-先把背景拆成清楚的层次，保持相同画布尺寸，再调整相对速度。预览完成后，仍需在实际游戏引擎中核对相机运动、素材平铺及最终分辨率。
+1. **自动视差**：对所有图层应用视差并可调速度，也可以只滚动选中的图层、Cel 或区域。
+2. **方向与角度**：支持八个方向，以及等距、45 度和自定义角度。
+3. **静态图层和动画图层都能用**：生成无缝循环，导入 Unity、Godot 之前就能发现接缝问题。
+4. **其他**：Tiled Mode 平铺预览，以及 MotionPath 运动路径（直线、弧线、波浪、抖动、圆形等）。
 
-它也是付费工具，页面原价为 **5 美元**，促销价格以开发者页面为准。
+注意：开发者基于 Aseprite 1.3.14-beta1 开发测试，并提示 1.3.15 及之后的版本可能表现异常，购买前先看页面上的最新兼容说明。
 
-## 按素材阶段选择工具
+## 按制作阶段组合使用
 
-| 工具 | 主要任务 | 适合使用的阶段 | 获取方式 |
-| --- | --- | --- | --- |
-| Lospec Palette Importer | 搜索与保存调色板 | 项目前期确定配色 | 自愿付费／MIT 开源 |
-| Magic Pencil | 描边、笔刷效果与像素处理 | 角色及道具制作 | 自愿付费 |
-| Isometric Guidelines | 创建等距辅助网格 | 地板、墙面与建筑制作 | 自愿付费 |
-| Wave Warp | 波浪变形动画 | 水面、旗帜与特效制作 | 付费 |
-| Parallixel | 视差滚动预览 | 多层背景与接缝检查 | 付费 |
+1. **定配色**：Lospec Palette Importer。
+2. **画静态素材**：Isometric Guidelines 搭透视框架，Magic Pencil 描边和改色。
+3. **加动态效果**：Wave Warp 做特效动画，Parallixel 检查背景循环。
 
-先确定调色板和透视规则，再制作静态素材，最后加入动画与背景运动。每个阶段保留源文件和导出结果，便于回到同一组素材核对修改。
-
-扩展能减少重复工作，素材尺寸、颜色和动画效果仍由你验收。完成后回到[开发地图](/zh-cn/ai-dev-map/)，继续查看游戏测试与发布步骤。
+如果还在选引擎或规划素材量，可以先看 [用 GPT-6 做游戏选什么引擎？](/zh-cn/2026/09/09/gpt-6-game-engines-guide/) 和 [用 AI 做游戏前先规划：核心玩法、可玩原型与 GDD 模板](/zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/)。

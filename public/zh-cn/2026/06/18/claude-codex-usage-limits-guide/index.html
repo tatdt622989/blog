@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Codex 额度用完怎么办？重置时间与节省用量的方法 | 6yuwei</title>
+  <title>Codex 5 小时限制与额度查询：重置时间、用完怎么办 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="Codex 剩余额度在哪里查，用完后何时恢复？本文提供官方用量面板入口，区分 5 小时和每周限制，说明 Pro 目前没有 5 小时上限的套餐差异，再介绍 Banked Reset、Credits 和排查步骤，帮助你按账号显示的重置时间安排任务。">
+  <meta name="description" content="Codex 额度可在官方用量面板或 CLI 的 /status 查看。Plus 和 Business 有 5 小时与每周限制，Pro 目前没有 5 小时上限，重置时间以面板为准。用完后可以等待、使用 banked reset 或改用 Credits。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/">
   
@@ -18,8 +18,8 @@
   <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/">
   
 
-  <meta property="og:title" content="Codex 额度用完怎么办？重置时间与节省用量的方法"/>
-  <meta property="og:description" content="Codex 剩余额度在哪里查，用完后何时恢复？本文提供官方用量面板入口，区分 5 小时和每周限制，说明 Pro 目前没有 5 小时上限的套餐差异，再介绍 Banked Reset、Credits 和排查步骤，帮助你按账号显示的重置时间安排任务。"/>
+  <meta property="og:title" content="Codex 5 小时限制与额度查询：重置时间、用完怎么办"/>
+  <meta property="og:description" content="Codex 额度可在官方用量面板或 CLI 的 /status 查看。Plus 和 Business 有 5 小时与每周限制，Pro 目前没有 5 小时上限，重置时间以面板为准。用完后可以等待、使用 banked reset 或改用 Credits。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"/>
@@ -31,13 +31,13 @@
   
   <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Codex 额度用完怎么办？重置时间与节省用量的方法">
-  <meta name="twitter:description" content="Codex 剩余额度在哪里查，用完后何时恢复？本文提供官方用量面板入口，区分 5 小时和每周限制，说明 Pro 目前没有 5 小时上限的套餐差异，再介绍 Banked Reset、Credits 和排查步骤，帮助你按账号显示的重置时间安排任务。">
+  <meta name="twitter:title" content="Codex 5 小时限制与额度查询：重置时间、用完怎么办">
+  <meta name="twitter:description" content="Codex 额度可在官方用量面板或 CLI 的 /status 查看。Plus 和 Business 有 5 小时与每周限制，Pro 目前没有 5 小时上限，重置时间以面板为准。用完后可以等待、使用 banked reset 或改用 Credits。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","headline":"Codex 额度用完怎么办？重置时间与节省用量的方法","description":"Codex 剩余额度在哪里查，用完后何时恢复？本文提供官方用量面板入口，区分 5 小时和每周限制，说明 Pro 目前没有 5 小时上限的套餐差异，再介绍 Banked Reset、Credits 和排查步骤，帮助你按账号显示的重置时间安排任务。","datePublished":"2026-06-18T06:34:36.000Z","dateModified":"2026-10-15T05:34:24.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/","headline":"Codex 5 小时限制与额度查询：重置时间、用完怎么办","description":"Codex 额度可在官方用量面板或 CLI 的 /status 查看。Plus 和 Business 有 5 小时与每周限制，Pro 目前没有 5 小时上限，重置时间以面板为准。用完后可以等待、使用 banked reset 或改用 Credits。","datePublished":"2026-06-18T06:34:36.000Z","dateModified":"2026-10-19T08:00:00.000Z","inLanguage":"zh-CN","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp"]}</script>
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Codex 额度用完怎么办？重置时间与节省用量的方法","item":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Codex 5 小时限制与额度查询：重置时间、用完怎么办","item":"https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"}]}</script>
   
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -225,134 +225,197 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">Codex 额度用完怎么办？重置时间与节省用量的方法</h1>
+    <h1 class="p-name title" itemprop="headline name">Codex 5 小时限制与额度查询：重置时间、用完怎么办</h1>
   
 
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover-card-720.jpg?v=27d27a07" alt="Codex 额度与用量管理指南封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover-card-480.jpg?v=b47cd599 480w, /zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover-card-720.jpg?v=27d27a07 720w, /zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover-card-960.jpg?v=bfab22e3 960w, /zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover-card-1280.jpg?v=d8186778 1280w, /zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p>查询 <strong>Codex 剩余额度与重置时间</strong>，可以直接打开 <a target="_blank" rel="noopener" href="https://chatgpt.com/codex/settings/usage">官方用量面板</a>，或在 Codex CLI 输入 <strong>&#x2F;status</strong>。先确认套餐和已经耗尽的窗口，再按面板显示的时间安排任务，不要一概认为等待五小时就能恢复。</p>
-<p>下面先给出速查表，再说明如何管理重置期限、监控用量和减少重复工作。</p>
+<p><strong>Codex 剩余额度和重置时间，可以在 <a target="_blank" rel="noopener" href="https://chatgpt.com/codex/settings/usage">官方用量面板</a> 查看，或在 Codex CLI 里执行 &#x2F;status。</strong> Plus 和 Standard Business 有 5 小时与每周两个窗口；Pro 目前没有 5 小时上限，但仍可能有每周限制。额度什么时候恢复，以面板上对应窗口显示的时间为准，而不是从报错那一刻起算五小时。额度用完有三种选择：等待自动重置、使用 banked reset，或者消耗 Credits。</p>
 <span id="more"></span>
 
-<h2 id="先区分-5-小时、每周和手动重置"><a href="#先区分-5-小时、每周和手动重置" class="headerlink" title="先区分 5 小时、每周和手动重置"></a>先区分 5 小时、每周和手动重置</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<h2 id="Codex-额度在哪里查看？"><a href="#Codex-额度在哪里查看？" class="headerlink" title="Codex 额度在哪里查看？"></a>Codex 额度在哪里查看？</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
-<th>要查询的项目</th>
-<th>查询位置</th>
-<th>需要注意什么</th>
+<th>查看入口</th>
+<th>能看到的信息</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>5 小时用量（适用套餐）</td>
-<td><strong>Settings → Usage</strong> 中的短期窗口</td>
-<td>按该栏显示的时间恢复；Pro 目前没有此上限</td>
+<td><strong>Codex 客户端 &#x2F; 网页端：Settings → Usage</strong>（<a target="_blank" rel="noopener" href="https://chatgpt.com/codex/settings/usage">直接打开</a>）</td>
+<td>各窗口用量比例、重置时间、Credits 余额；有可用 banked reset 时会显示 <strong>1 reset available</strong> 或 <strong>Full reset</strong></td>
 </tr>
 <tr>
-<td>每周用量</td>
-<td>同一面板中的每周窗口</td>
-<td>短期用量恢复，不代表每周额度也恢复</td>
-</tr>
-<tr>
-<td>Banked reset</td>
-<td>账号提供的手动重置选项</td>
-<td>先核对有效期、使用条件和重置后的周期</td>
+<td><strong>Codex CLI：&#x2F;status</strong></td>
+<td>当前会话对应的账号和剩余额度</td>
 </tr>
 </tbody></table></div>
-<p>查询剩余额度可直接打开 <a target="_blank" rel="noopener" href="https://chatgpt.com/codex/settings/usage">Codex 用量面板</a>，或在 CLI 中输入 <strong>&#x2F;status</strong>。<a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits">官方说明</a>也以账号面板为查询入口，不要用其他用户的截图推算自己的恢复时间。</p>
-<h3 id="为什么等了五小时，Codex-仍然不能用？"><a href="#为什么等了五小时，Codex-仍然不能用？" class="headerlink" title="为什么等了五小时，Codex 仍然不能用？"></a>为什么等了五小时，Codex 仍然不能用？</h3><p>短期窗口恢复，并不代表每周额度也恢复；也不要从报错时刻自行倒数五小时。依次核对<strong>登录的账号和工作区、已经耗尽的窗口、该栏显示的重置时间</strong>，再查看账号是否提供手动重置或 Credits 选项。</p>
-<h2 id="在哪里查看-Codex-剩余额度"><a href="#在哪里查看-Codex-剩余额度" class="headerlink" title="在哪里查看 Codex 剩余额度"></a>在哪里查看 Codex 剩余额度</h2><p>最直接的查询方式有两种：</p>
-<ol>
-<li><strong>Codex 桌面应用或网页端：Settings → Usage</strong><ul>
-<li>查看当前已使用的比例、已耗尽的窗口、可用 Credits 余额，以及界面明确标注的重置时间。</li>
-<li>如果当前账号享有可用的转存重置权益，页面还会出现 <strong>1 reset available</strong> 或 <strong>Full reset</strong> 按钮。</li>
-</ul>
-</li>
-<li><strong>Codex CLI 终端工具：&#x2F;status</strong><ul>
-<li>在正在运行的 CLI 会话中输入 <strong>&#x2F;status</strong> 命令，能够快速调出当前账号信息与用量状态摘要。</li>
-</ul>
-</li>
-</ol>
-<p>OpenAI 会依据用户的订阅套餐、账号历史、工作区类型及阶段性活动调整可见选项，因此切勿将其他用户的配置截图误当成自己账号的硬性上限。如果发现桌面端、网页端与 CLI 终端显示的数值不一致，首先排查是否登录了同一个账号或工作区，随后手动刷新 <strong>Settings → Usage</strong> 页面确认。</p>
-<h2 id="5-小时限制与每周窗口如何计算"><a href="#5-小时限制与每周窗口如何计算" class="headerlink" title="5 小时限制与每周窗口如何计算"></a>5 小时限制与每周窗口如何计算</h2><p><strong>截至 2026 年 10 月 15 日，官方将 5 小时用量估计列于 Plus 和 Standard Business，Pro 套餐目前没有 5 小时上限；每周限制仍可能适用。</strong> 因此，没有看到短期用量窗口不一定是故障。请核对 <a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan">OpenAI 当前的套餐用量说明</a>与自己的面板。</p>
-<p>如果账号同时具有短期与每周窗口，需要分别检查。达到限制后，可用选项取决于账号与套餐。官方说明，正在执行的当前轮次仍可能在合理使用限制内继续完成，因此不能把达到上限理解为任务必然立即中断。</p>
-<p>官方并未将任务简单折算为固定的对话消息条数。实际的资源消耗由以下关键技术变量共同决定：</p>
-<ul>
-<li><strong>模型选型</strong>：不同参数规模与架构的模型，其单位 token 成本及可用配额存在显著差异。</li>
-<li><strong>执行环境</strong>：本地终端执行与云端沙盒（Cloud Task）环境在计费与计量维度上各有侧重。</li>
-<li><strong>任务复杂度与执行时长</strong>：跨多个模块的大型代码重构、长时间运行的批处理任务，其消耗往往远高于单文件微调。</li>
-<li><strong>上下文体积</strong>：项目索引范围越广、需要载入的历史会话与关联代码越多，单次交互吞吐的上下文 token 就会急剧攀升。</li>
-<li><strong>推理强度与工具调用</strong>：开启高强度深度思考（Reasoning）、启用高优先级快速响应通道，或是频繁触发终端命令执行与文件检索等工具，都会成倍加速额度消耗。</li>
-</ul>
-<p>在支持企业与团队协作的套餐中，Codex、ChatGPT Work、ChatGPT for Excel 以及 Workspace Agents 可能会共享底层的 Agentic Usage 配额与 Credits 资金池。但普通 ChatGPT 会话中的图片生成、文档解析或实时语音通话，通常走的是另一套独立的配额规则，不可直接套算到 Codex 的消耗中。</p>
-<p>具体规则与数值会随着产品迭代动态微调，请随时以 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan">OpenAI 官方 Codex 套餐说明</a> 以及个人后台用量面板的数据为准。</p>
-<h2 id="Credits-是什么，在什么时机扣除"><a href="#Credits-是什么，在什么时机扣除" class="headerlink" title="Credits 是什么，在什么时机扣除"></a>Credits 是什么，在什么时机扣除</h2><p>Credits 是一种按量计费的弹性额度，用于在套餐内含配额耗尽后，保障核心功能不中断运行。系统的扣减机制非常明确：<strong>优先使用套餐内含的免费用量，仅在对应窗口达到上限后，才开始从 Credits 余额中扣费</strong>。</p>
-<p>能否自行购买 Credits、支持的单次充值面额、自动充值功能以及适用场景，会因套餐级别、账号信誉及所在地区而有所不同。只有当你的 <strong>Settings → Usage</strong> 或 <strong>Usage &amp; Billing</strong> 界面中明确出现了购买入口时，才代表当前账号具备该权限；未看到入口仅代表当前环境暂未开放，并非配置失误。</p>
-<p>在启用 Credits 前，务必明确以下规则：</p>
-<ul>
-<li>Credits 与 OpenAI 开发者平台（Platform API）的 API 余额完全独立，二者互不相通，且购买 Credits 并不会永久提高套餐原本的固定配额。</li>
-<li>个人订阅用户可以在 <strong>Settings → Usage</strong> 模块中实时跟踪余额变动与近期消耗明细。</li>
-<li>若账号支持自动充值（Auto-recharge），用户可自主设定触发阈值、单次充值目标金额及每月消费上限。需注意，若在开启该功能时当前余额已经低于阈值，系统会立即执行扣款。</li>
-<li>已购买的 Credits 通常不支持退款，并且存在固定的有效期限制。下单前请务必仔细阅读结算界面的最新服务条款。</li>
-</ul>
-<p>更多扣费细节可查阅 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans">OpenAI 官方关于灵活使用 Credits 的说明</a>。</p>
-<h2 id="Banked-Reset-什么时候用？先看周期与具体到期日"><a href="#Banked-Reset-什么时候用？先看周期与具体到期日" class="headerlink" title="Banked Reset 什么时候用？先看周期与具体到期日"></a>Banked Reset 什么时候用？先看周期与具体到期日</h2><p><strong>对于同时具有 5 小时与每周窗口的账号，Full Banked Reset 会恢复这两项额度，同时改变下一次每周重置时间，进入新一轮约七天的周期。</strong> 因此，使用前应先看原本距离自动恢复还有多久，而不只是看账号里还剩几次 reset。<a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work">OpenAI 官方规则</a>明确说明每周重置日期会改变，使用后请在 <strong>Settings → Usage</strong> 核对新时间。</p>
-<p>例如，原本周一恢复每周额度，如果周日使用了 banked reset，就不能继续按原来的周一恢复时间安排工作。如果任务能等到周一，可以保留这次重置；如果周日必须交付，就应把新周期也纳入安排。</p>
-<p>这与 <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/8325606-what-is-the-pro-plan">Claude Pro 的固定每周重置时间</a>不同：Claude Pro 的常规周配额在账号指定的固定时间恢复，Codex 使用 Full Banked Reset 则会改变周期。两种工具应分别记录下一次恢复时间。</p>
-<p><strong>还要区分 reset 本身的有效期。</strong> <a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers">官方邀请活动说明</a>要求以邀请窗口显示的奖励、资格和到期日为准。不要把某次活动的 30 天期限套用到所有 reset，也不要把使用期限理解为重置后获得 30 天不限量调用。</p>
-<p>选择使用时机时，我会同时看<strong>距离自动恢复的时间、reset 的剩余有效期，以及近期任务量</strong>。即将自动恢复且没有紧急任务，可以先等；需要集中工作、又离恢复时间较远，重置更有价值。即将到期的 reset 则可以配合原本就计划完成的任务使用，避免过期闲置。</p>
-<p><img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/reset-quota.png?v=ce0b8259" alt="使用 banked reset 前确认有效期，使用后核对新的每周重置时间"></p>
-<h2 id="使用-CodexBar-在系统菜单栏实时监控"><a href="#使用-CodexBar-在系统菜单栏实时监控" class="headerlink" title="使用 CodexBar 在系统菜单栏实时监控"></a>使用 CodexBar 在系统菜单栏实时监控</h2><p><a target="_blank" rel="noopener" href="https://github.com/steipete/CodexBar">CodexBar</a> 是一款备受开发者好评的开源第三方实用工具，它能常驻在 macOS 系统菜单栏，直观呈现 Codex、Claude Code 等主流 AI 编程助手的配额消耗进度、下次重置倒计时与消耗速率，非常适合在多工具之间来回切换的高频开发者。</p>
-<p><img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/codexbar-panel.jpg?v=f8f748a1" alt="CodexBar 在菜单栏显示 Codex 与 Claude 的用量比例及重置时间"></p>
-<p>CodexBar 默认完全在本地端完成数据解析。它会根据用户开启的数据源，精准读取本地存储的凭证信息，例如 CLI 工具的本地配置文件、已知的系统日志、OAuth 认证状态或指定浏览器的 Cookie。需要说明的是，导入浏览器 Cookie 可能需要唤起 macOS Keychain（钥匙串）授权，而读取 Safari 数据源则依赖系统的完全磁盘访问权限。</p>
-<p>该工具并非 OpenAI 或 Anthropic 官方产品。在安装配置时，建议严格遵循最小权限原则以确保系统与凭据安全：</p>
-<ul>
-<li>优先选用逻辑透明、权限单一的 CLI 终端或 OAuth 授权数据源。</li>
-<li>无需读取浏览器数据时，主动关闭 Cookie 抓取或 Keychain 授权。</li>
-<li>严禁将包含个人 Cookie、敏感 Token、配置文件内容或未经脱敏的调试截图公开上传至 GitHub Issues。</li>
-<li>每次工具版本更新若申请了新的系统权限，必须仔细核对请求程序与实际用途后再行批准。</li>
-</ul>
-<p>若仅仅是为了获取精准官方数值，直接打开后台 <strong>Settings → Usage</strong> 页面或在终端敲入 <strong>&#x2F;status</strong> 即可，无需额外引入外部工具。</p>
-<h2 id="真正能节省-Codex-额度的工程实践"><a href="#真正能节省-Codex-额度的工程实践" class="headerlink" title="真正能节省 Codex 额度的工程实践"></a>真正能节省 Codex 额度的工程实践</h2><h3 id="先缩小任务范围，再指派给-Codex"><a href="#先缩小任务范围，再指派给-Codex" class="headerlink" title="先缩小任务范围，再指派给 Codex"></a>先缩小任务范围，再指派给 Codex</h3><p>“检查整个项目，顺便优化一下”没有明确的完成标准，容易让一次小修复变成全面重构。以移动端菜单为例，可以换成具体的任务描述：</p>
-<blockquote>
-<p>修复移动端菜单打开后无法关闭的问题。复现步骤：在 390px 宽度下打开菜单，再点击背景。预期菜单关闭，桌面端操作保持正常。先检查菜单组件和点击事件，必要时再追踪关联文件。完成后验证这两个操作，说明修改和结果；其他布局调整另开任务。</p>
-</blockquote>
-<p>这段指令明确了问题、复现步骤、预期行为和排查入口，也给出了结束条件。不要为了省额度跳过必要的调查与测试，应减少的是与目标无关的工作。这是任务描述示例，不是节省比例的实测；实际消耗仍取决于模型、上下文和工具调用。</p>
-<h3 id="严格控制上下文与输出体量"><a href="#严格控制上下文与输出体量" class="headerlink" title="严格控制上下文与输出体量"></a>严格控制上下文与输出体量</h3><p>长期的连续对话会导致上下文体量无节制膨胀。在完成一个功能模块的改动后，及时总结核心结论并开启崭新的工作会话，其资源利用效率远高于让无意义的冗长历史反复参与推理。同时，务必在项目根目录中妥善配置忽略规则，将构建产物、依赖包目录、大型媒体静态文件及与当前任务无关的测试数据排除在分析之外。</p>
-<h3 id="根据任务类型适配模型与推理强度"><a href="#根据任务类型适配模型与推理强度" class="headerlink" title="根据任务类型适配模型与推理强度"></a>根据任务类型适配模型与推理强度</h3><p>格式化代码、单文件小修小补或针对清晰单测的修正，完全不需要动用最高成本的大参数模型或极高推理强度配置。日常任务优先采用足以胜任的高性价比模型；唯有涉及跨模块系统架构设计、极度棘手的并发 Bug 或是高风险核心逻辑重构时，再按需调高模型级别或推理深度。</p>
-<h3 id="消除缺乏信息增量的无谓重跑"><a href="#消除缺乏信息增量的无谓重跑" class="headerlink" title="消除缺乏信息增量的无谓重跑"></a>消除缺乏信息增量的无谓重跑</h3><p>反复执行完全相同的全量测试、在未做变更的前提下要求 AI 多次重复扫描工程、或是索取多份语义高度雷同的方案，都会造成额度的剧烈浪费。测试与验证应与代码改动的风险边界严格对齐：开发阶段优先运行聚焦当前变动的小型单元测试，待逻辑稳定收敛后，再在 CI 流程或上线前统一运行全量测试套件。</p>
-<h3 id="在消耗重置或-Credits-前统筹评估双窗口"><a href="#在消耗重置或-Credits-前统筹评估双窗口" class="headerlink" title="在消耗重置或 Credits 前统筹评估双窗口"></a>在消耗重置或 Credits 前统筹评估双窗口</h3><p>在决定使用 Banked Reset 或充值 Credits 之前，务必先对比 5 小时滚动窗口与每周窗口的剩余状态及重置时间。如果短周期窗口在半小时内即将恢复，稍作等待的性价比远高于仓促消耗珍贵的一次性转存机会；若每周硬性配额已告罄且当前任务具有紧迫的业务交付价值，再审慎评估使用转存重置、消耗 Credits、升级套餐规格或合理拆分延期推进的实际成本。</p>
-<h2 id="关注关键人物，提前安排重置前的工作"><a href="#关注关键人物，提前安排重置前的工作" class="headerlink" title="关注关键人物，提前安排重置前的工作"></a>关注关键人物，提前安排重置前的工作</h2><p>我会在 X 和 Reddit 关注 OpenAI、Codex 产品负责人及团队成员的发帖。<strong>看到他们预告额度将自动重置，就提前安排任务，用好重置前的剩余额度。</strong></p>
-<p>例如，已知明天会重置，就把原定的开发、测试或代码审查提前到今天，重置后再处理下一批任务。关注这些消息，是为了给自己留出安排工作的时间，避免等到重置时才发现上一轮还有大量额度没用。</p>
-<h2 id="额度用完后，该等待、重置还是使用-Credits？"><a href="#额度用完后，该等待、重置还是使用-Credits？" class="headerlink" title="额度用完后，该等待、重置还是使用 Credits？"></a>额度用完后，该等待、重置还是使用 Credits？</h2><p>先打开 <strong>Settings → Usage</strong> 或使用 <strong>&#x2F;status</strong>，确认耗尽的是哪项额度、何时自动恢复。然后判断：<strong>当前任务能否等到恢复时间？</strong></p>
+<p><a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits">OpenAI 官方定价页</a>给出的也是这两个入口。客户端、网页端和 CLI 数值对不上时，先确认登录的是同一个账号和工作区，再刷新面板。别人的截图不能用来推算你自己的额度。</p>
+<h2 id="Codex-5-小时限制怎么算？各套餐差异"><a href="#Codex-5-小时限制怎么算？各套餐差异" class="headerlink" title="Codex 5 小时限制怎么算？各套餐差异"></a>Codex 5 小时限制怎么算？各套餐差异</h2><p>根据 <a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan">OpenAI 定价页</a>（2026 年 10 月 19 日核对）：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
-<th>任务与账号情况</th>
-<th>建议选择</th>
-<th>决定前需要确认</th>
+<th>套餐</th>
+<th>5 小时限制</th>
+<th>每周限制</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>任务可以等到额度自动恢复</td>
-<td>等待恢复，保留 reset 和 Credits</td>
-<td>自动恢复时间是否满足交付期限</td>
+<td>Plus、Standard Business</td>
+<td>有，估算值见下表</td>
+<td>可能有</td>
 </tr>
 <tr>
-<td>任务不能等，且有未过期的 banked reset</td>
-<td>考虑使用 reset 恢复额度</td>
-<td>对比 reset 有效期与原定恢复时间，并考虑重置后的新七天周期</td>
+<td>Pro（每月 $100 &#x2F; $200 &#x2F; $500）</td>
+<td><strong>目前没有</strong></td>
+<td>可能有，官方未公布具体数值</td>
 </tr>
 <tr>
-<td>任务不能等，但没有可用 reset，或希望保留原有每周周期</td>
-<td>查看账号是否支持 Credits</td>
-<td>确认价格、余额及可接受的预算后再决定是否继续；如果不适合付费，就调整任务安排</td>
+<td>Enterprise &#x2F; Edu（弹性计费）</td>
+<td>无固定限制，按 Credits 计费</td>
+<td>无固定限制</td>
+</tr>
+<tr>
+<td>Enterprise &#x2F; Edu（非弹性计费）</td>
+<td>大部分功能与 Plus 相同</td>
+<td>同 Plus</td>
 </tr>
 </tbody></table></div>
-<p><strong>除了当前能否继续工作，还要考虑对下一周和费用的影响。</strong> Reset 会改变每周重置时间；Credits 用于支付额外用量，两者需要分别评估。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>管理 Codex 额度，既要明确任务，也要安排好使用时间。提前掌握重置消息、用好剩余额度，并在使用 banked reset 前考虑新的七天周期与到期日，才能把额度用在真正需要完成的工作上。</p>
-<p>如果你正在全面评估不同 AI 辅助编程方案的适用场景，推荐延伸阅读 <a href="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/">AI 编程工具对比：Claude Code、Codex、Cursor 怎么选？</a>。</p>
+<p>Plus 和 Standard Business 每 5 小时的本地消息估算值：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>每 5 小时本地消息数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GPT-6 Luna</td>
+<td>350–3,000</td>
+</tr>
+<tr>
+<td>GPT-6 Sol</td>
+<td>15–150</td>
+</tr>
+<tr>
+<td>GPT-6.1 Sol</td>
+<td>15–160</td>
+</tr>
+<tr>
+<td>GPT-6 Astra</td>
+<td>5–45</td>
+</tr>
+</tbody></table></div>
+<p>官方特别说明这些<strong>不是固定的消息条数上限</strong>。区间跨度这么大，是因为实际消耗取决于模型、推理强度、上下文长度、读取的文件数量、工具调用次数和任务时长；云端任务一般比本地任务更耗额度。各模型的定位和价格可参考 <a href="/zh-cn/2026/09/23/gpt-6-sol-luna-pricing-aa-review/">GPT-6 Sol 与 Luna 评分与选型</a>。</p>
+<p>另外两条规则：</p>
+<ul>
+<li>在套餐支持的前提下，Codex、ChatGPT Work、ChatGPT for Excel 和 Workspace Agents <strong>共用同一份 agentic 额度和 Credits</strong>；普通 ChatGPT 的图片、语音等限制单独计算。</li>
+<li>正在执行的轮次触顶时，官方表示 agent <strong>仍可以把这一轮跑完</strong>，不会被立即打断。</li>
+</ul>
+<h3 id="为什么等了五小时，Codex-还是用不了？"><a href="#为什么等了五小时，Codex-还是用不了？" class="headerlink" title="为什么等了五小时，Codex 还是用不了？"></a>为什么等了五小时，Codex 还是用不了？</h3><p>多半是<strong>每周额度也耗尽了</strong>：5 小时窗口恢复，不等于每周窗口恢复。依次检查登录的账号和工作区、面板上耗尽的是哪个窗口、该窗口显示的重置时间。如果是每周窗口耗尽，就只能等每周重置、使用 banked reset 或消耗 Credits。</p>
+<h2 id="Codex-重置时间：自动重置与-banked-reset"><a href="#Codex-重置时间：自动重置与-banked-reset" class="headerlink" title="Codex 重置时间：自动重置与 banked reset"></a>Codex 重置时间：自动重置与 banked reset</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>触发方式</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自动重置</td>
+<td>窗口到期后自动恢复</td>
+<td>时间以面板显示为准</td>
+</tr>
+<tr>
+<td>全局重置</td>
+<td>OpenAI 直接对符合条件的账号生效</td>
+<td>立即生效，不能保留，也不会变成 banked reset</td>
+</tr>
+<tr>
+<td>Banked reset</td>
+<td>存放在账号中，由你在 <strong>Settings → Usage</strong> 手动使用</td>
+<td>Full reset <strong>会改变每周重置日</strong></td>
+</tr>
+</tbody></table></div>
+<p>根据 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work">OpenAI 官方说明</a>：</p>
+<ul>
+<li><strong>Full banked reset 会同时重置 5 小时和每周窗口，并把每周重置日挪到新的约七天周期。</strong> 使用后记得去面板确认新的时间。</li>
+<li>只有真正刷新了至少一个窗口才会被扣除；没有可重置的额度时，reset 会继续保留。</li>
+<li>它不是付费购买的 Credits，也不会永久提高套餐上限。</li>
+<li>每个 reset 有各自的有效期，以面板或活动弹窗显示为准。不要把某次活动的 30 天期限套到所有 reset 上。</li>
+</ul>
+<p><strong>什么时候用最划算？</strong> 同时比较三项：距离自动重置还有多久、reset 还剩几天有效期、近期的任务量。比如原本周一恢复每周额度，周日用了 reset 之后，周一就不会再恢复，新周期从周日开始算；任务能拖到周一，就先留着。reset 快过期了，就安排到期前本来就要做的任务。</p>
+<p><img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/reset-quota.png?v=ce0b8259" alt="使用 banked reset 前确认有效期，使用后核对新的每周重置时间"></p>
+<p>我也会在 X 和 Reddit 关注 OpenAI 和 Codex 团队成员的动态：<strong>一旦看到全局重置的预告，就把开发、测试和代码评审提前到重置之前完成</strong>，避免上一轮额度白白浪费。</p>
+<h2 id="Codex-和-Claude-的-banked-reset-有什么区别"><a href="#Codex-和-Claude-的-banked-reset-有什么区别" class="headerlink" title="Codex 和 Claude 的 banked reset 有什么区别"></a>Codex 和 Claude 的 banked reset 有什么区别</h2><p>两家都提供可保存、手动使用的重置，但规则不同，两边都订阅的话要分开记录：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th></th>
+<th>Codex banked reset</th>
+<th>Claude 限额重置（Reset for free）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>恢复哪些额度</td>
+<td>Full reset 同时恢复 5 小时和每周窗口</td>
+<td>视该次重置而定，只恢复 5 小时<strong>或</strong>每周中的一项</td>
+</tr>
+<tr>
+<td>每周重置日</td>
+<td>变为新的七天周期</td>
+<td><strong>不变</strong>，仍按原来的固定时间</td>
+</tr>
+<tr>
+<td>在哪里使用</td>
+<td>Codex 客户端、CLI 或网页端的 <strong>Settings → Usage</strong></td>
+<td>网页端或 Claude Desktop 的 <strong>Settings → Usage</strong>；终端和 IDE 里的 Claude Code 没有该按钮</td>
+</tr>
+</tbody></table></div>
+<p>Claude 的规则见 <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/17007452-what-is-a-limit-reset">Anthropic 官方说明</a>；详细用法和使用时机，请看 <a href="/zh-cn/2026/10/19/claude-banked-reset-guide/">Claude banked reset 怎么用？</a>。</p>
+<h2 id="Credits-是什么？"><a href="#Credits-是什么？" class="headerlink" title="Credits 是什么？"></a>Credits 是什么？</h2><p>Credits 是套餐内含额度用完后，让支持的功能继续运行的按量付费额度：<strong>先扣套餐额度，触顶后才扣 Credits。</strong> 根据 <a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing">OpenAI 定价页</a>，Plus 和 Pro 用户可以加购 Credits，Business、Edu 和 Enterprise 的弹性计费工作区则购买工作区 Credits。</p>
+<ul>
+<li>Credits 与 API 余额是两套体系，也不会提高套餐上限。</li>
+<li>开启自动充值时，如果余额已低于阈值，可能会立即扣款。</li>
+<li>已购买的 Credits 一般不退款且有有效期，下单前请看清结算页条款。</li>
+</ul>
+<p>详见 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans">OpenAI Credits 说明</a>。如果在考虑升级套餐，可以对照 <a href="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/">AI 编程工具订阅方案对比</a>。</p>
+<h2 id="Codex-额度用完：等待、重置还是-Credits？"><a href="#Codex-额度用完：等待、重置还是-Credits？" class="headerlink" title="Codex 额度用完：等待、重置还是 Credits？"></a>Codex 额度用完：等待、重置还是 Credits？</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>建议</th>
+<th>决定前确认</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>任务可以等到自动恢复</td>
+<td>等待，保留 reset 和 Credits</td>
+<td>恢复时间能否赶上交付期限</td>
+</tr>
+<tr>
+<td>等不了，且有未过期的 banked reset</td>
+<td>使用 reset</td>
+<td>reset 有效期、原定恢复时间，以及新的七天周期</td>
+</tr>
+<tr>
+<td>等不了，没有 reset 或想保留原有周期</td>
+<td>消耗 Credits</td>
+<td>价格、余额和预算；不划算就调整排期</td>
+</tr>
+</tbody></table></div>
+<p>Reset 会改变下周的重置时间，Credits 则是额外付费，两者要分开评估。</p>
+<h2 id="节省-Codex-额度的做法"><a href="#节省-Codex-额度的做法" class="headerlink" title="节省 Codex 额度的做法"></a>节省 Codex 额度的做法</h2><ul>
+<li><strong>给任务明确的完成标准。</strong> “检查整个项目顺便优化一下”没有终点。可以改成：“修复移动端菜单打开后无法关闭的问题。复现：390px 宽度下打开菜单再点击背景；预期菜单关闭，桌面端不受影响。先排查菜单组件和点击事件，完成后验证这两个操作并汇报，其他布局调整另开任务。”这只是任务描述示例，不代表实测节省比例。</li>
+<li><strong>一个主题一个会话。</strong> 长对话会不断累积上下文，做完一件事就带着摘要开新会话；把构建产物、依赖目录和大体积媒体文件排除在外。</li>
+<li><strong>按任务选模型和推理强度。</strong> 格式化、单文件小改动用轻量模型；跨模块设计或难以复现的 Bug 再调高。</li>
+<li><strong>减少没有增量信息的重跑。</strong> 先跑聚焦当前改动的测试，改动稳定后再跑全量用例。</li>
+</ul>
+<h2 id="用-CodexBar-在菜单栏监控用量"><a href="#用-CodexBar-在菜单栏监控用量" class="headerlink" title="用 CodexBar 在菜单栏监控用量"></a>用 CodexBar 在菜单栏监控用量</h2><p><a target="_blank" rel="noopener" href="https://github.com/steipete/CodexBar">CodexBar</a> 是第三方开源的 macOS 菜单栏工具，可以同时显示 Codex、Claude Code 等服务的用量和重置倒计时。</p>
+<p><img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/codexbar-panel.jpg?v=f8f748a1" alt="CodexBar 在菜单栏显示 Codex 与 Claude 的用量比例及重置时间"></p>
+<p>它默认在本地解析数据，按你开启的数据源读取 CLI 配置、本地日志、OAuth 状态或浏览器 Cookie；导入 Cookie 可能需要钥匙串（Keychain）授权。它不是 OpenAI 或 Anthropic 的官方产品，建议只开启必要的数据源，也不要把含 Cookie 或 Token 的截图发到公开 Issue。只想看官方数据的话，<strong>Settings → Usage</strong> 或 <strong>&#x2F;status</strong> 就够了。</p>
+<p>还在对比各家工具的定位，可以继续阅读 <a href="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/">AI 编程工具对比：Claude Code、Codex、Cursor 怎么选？</a>。</p>
 
       
     </div>
@@ -385,25 +448,25 @@
 
     
       <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
-      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Codex 额度用完怎么办？重置时间与节省用量的方法" data-url="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" title="微信分享" aria-label="微信分享">
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Codex 5 小时限制与额度查询：重置时间、用完怎么办" data-url="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" title="微信分享" aria-label="微信分享">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
           <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
         </svg>
         <span>微信</span>
       </button>
-      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F06%2F18%2Fclaude-codex-usage-limits-guide%2F&title=Codex%20%E9%A2%9D%E5%BA%A6%E7%94%A8%E5%AE%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%E9%87%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E4%B8%8E%E8%8A%82%E7%9C%81%E7%94%A8%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F06%2F18%2Fclaude-codex-usage-limits-guide%2F&title=Codex%205%20%E5%B0%8F%E6%97%B6%E9%99%90%E5%88%B6%E4%B8%8E%E9%A2%9D%E5%BA%A6%E6%9F%A5%E8%AF%A2%EF%BC%9A%E9%87%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E3%80%81%E7%94%A8%E5%AE%8C%E6%80%8E%E4%B9%88%E5%8A%9E" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
           <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
         </svg>
         <span>微博</span>
       </a>
-      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F06%2F18%2Fclaude-codex-usage-limits-guide%2F&title=Codex%20%E9%A2%9D%E5%BA%A6%E7%94%A8%E5%AE%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%E9%87%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E4%B8%8E%E8%8A%82%E7%9C%81%E7%94%A8%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F06%2F18%2Fclaude-codex-usage-limits-guide%2F&title=Codex%205%20%E5%B0%8F%E6%97%B6%E9%99%90%E5%88%B6%E4%B8%8E%E9%A2%9D%E5%BA%A6%E6%9F%A5%E8%AF%A2%EF%BC%9A%E9%87%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E3%80%81%E7%94%A8%E5%AE%8C%E6%80%8E%E4%B9%88%E5%8A%9E" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
           <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
         </svg>
         <span>知乎</span>
       </a>
-      <a href="https://twitter.com/intent/tweet?text=Codex%20%E9%A2%9D%E5%BA%A6%E7%94%A8%E5%AE%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%E9%87%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E4%B8%8E%E8%8A%82%E7%9C%81%E7%94%A8%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F06%2F18%2Fclaude-codex-usage-limits-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+      <a href="https://twitter.com/intent/tweet?text=Codex%205%20%E5%B0%8F%E6%97%B6%E9%99%90%E5%88%B6%E4%B8%8E%E9%A2%9D%E5%BA%A6%E6%9F%A5%E8%AF%A2%EF%BC%9A%E9%87%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E3%80%81%E7%94%A8%E5%AE%8C%E6%80%8E%E4%B9%88%E5%8A%9E&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F06%2F18%2Fclaude-codex-usage-limits-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
@@ -412,7 +475,7 @@
     
 
     <!-- 原生分享（行動裝置自動啟用） -->
-    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Codex 额度用完怎么办？重置时间与节省用量的方法" data-url="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Codex 5 小时限制与额度查询：重置时间、用完怎么办" data-url="https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="18" cy="5" r="3"></circle>
         <circle cx="6" cy="12" r="3"></circle>
@@ -458,46 +521,46 @@
       </div>
     
       <div class="related-post-card">
-        <a href="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
-           data-rel-title="AI 编程工具怎么选？2026 年 9 月订阅方案对比"
-           data-rel-path="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/"
+        <a href="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/" class="related-post-link"
+           data-rel-title="Claude Code vs Codex vs Cursor 对比：2026 年 10 月价格、模型与选型"
+           data-rel-path="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/"
            data-rel-tag="AI"
            data-rel-position="2">
           <div class="related-post-cover">
             
-              <img src="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb" alt="AI 编程工具怎么选？2026 年 9 月订阅方案对比" loading="lazy" decoding="async">
+              <img src="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/cover-v2.jpg?v=4beac131" alt="Claude Code vs Codex vs Cursor 对比：2026 年 10 月价格、模型与选型" loading="lazy" decoding="async">
             
           </div>
           <div class="related-post-info">
             
               <span class="related-post-tag">AI</span>
             
-            <h4 class="related-post-item-title">AI 编程工具怎么选？2026 年 9 月订阅方案对比</h4>
+            <h4 class="related-post-item-title">Claude Code vs Codex vs Cursor 对比：2026 年 10 月价格、模型与选型</h4>
             
-              <time class="related-post-date">2026-09-14</time>
+              <time class="related-post-date">2026-05-06</time>
             
           </div>
         </a>
       </div>
     
       <div class="related-post-card">
-        <a href="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/" class="related-post-link"
-           data-rel-title="适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析"
-           data-rel-path="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"
+        <a href="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
+           data-rel-title="AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度"
+           data-rel-path="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/"
            data-rel-tag="AI"
            data-rel-position="3">
           <div class="related-post-cover">
             
-              <img src="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg?v=c7d67a68" alt="适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析" loading="lazy" decoding="async">
+              <img src="/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb" alt="AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度" loading="lazy" decoding="async">
             
           </div>
           <div class="related-post-info">
             
               <span class="related-post-tag">AI</span>
             
-            <h4 class="related-post-item-title">适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析</h4>
+            <h4 class="related-post-item-title">AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度</h4>
             
-              <time class="related-post-date">2026-09-11</time>
+              <time class="related-post-date">2026-09-14</time>
             
           </div>
         </a>
@@ -536,17 +599,21 @@
   
     <li><a href="/zh-cn/categories/AI/">AI</a><small>9</small></li>
   
-    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>4</small></li>
+    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>5</small></li>
   
-    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>17</small></li>
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>18</small></li>
   
     <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
   
     <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
   
+    <li><a href="/zh-cn/categories/%E6%97%A5%E8%AF%AD%E5%AD%A6%E4%B9%A0/">日语学习</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BB%BA%E7%AB%99/">服务器与建站</a><small>1</small></li>
+  
     <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>6</small></li>
   
-    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>3</small></li>
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>4</small></li>
   
     <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
   
@@ -565,45 +632,45 @@
   <h3 class="title">常用标签</h3>
   <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>30</small></a></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>32</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>11</small></a></li>
   
     <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>11</small></a></li>
   
-    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>9</small></a></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>10</small></a></li>
   
     <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>9</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>8</small></a></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>8</small></a></li>
   
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>7</small></a></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
   
     <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>7</small></a></li>
   
-    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>6</small></a></li>
-  
     <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>5</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>5</small></a></li>
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>5</small></a></li>
   
     <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
   
     <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
-    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>4</small></a></li>
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>3</small></a></li>
   
     <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
+    <li><a href="/zh-cn/tags/%E5%85%8D%E8%B4%B9%E8%B5%84%E6%BA%90/"><span>免费资源</span><small>2</small></a></li>
+  
     <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>2</small></a></li>
+    <li><a href="/zh-cn/tags/AI-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>AI 开发工具</span><small>2</small></a></li>
   
     <li><a href="/zh-cn/tags/Aseprite/"><span>Aseprite</span><small>2</small></a></li>
   
-    <li><a href="/zh-cn/tags/Command-Code/"><span>Command Code</span><small>2</small></a></li>
-  
-    <li><a href="/zh-cn/tags/DevDay/"><span>DevDay</span><small>2</small></a></li>
-  
-    <li><a href="/zh-cn/tags/Godot/"><span>Godot</span><small>2</small></a></li>
+    <li><a href="/zh-cn/tags/Cursor/"><span>Cursor</span><small>2</small></a></li>
   
   </ul>
   <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>

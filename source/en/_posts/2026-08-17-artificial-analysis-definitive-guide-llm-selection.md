@@ -1,9 +1,8 @@
-title: >-
-  Stop Guessing LLMs: The Definitive Guide to Artificial Analysis for Balancing
-  Quality, Latency, and Cost
+title: "What Is Artificial Analysis? How to Read the Intelligence Index, Speed and Cost"
 description: >-
-  Use Artificial Analysis to compare AI models by quality, response speed,
-  latency, cost, and the Pareto frontier before choosing a production model.
+  Artificial Analysis benchmarks LLMs on intelligence, speed, latency and cost.
+  Learn to read Intelligence Index v4.3.2 and Cost per Task, with an Oct 2026
+  snapshot.
 permalink: 2026/08/17/artificial-analysis-definitive-guide-llm-selection/
 translation_key: artificial-analysis-definitive-guide-llm-selection
 translations:
@@ -14,121 +13,133 @@ categories:
 tags:
   - AI
   - LLM
+  - Artificial Analysis
   - Software Engineering
 date: 2026-08-17 14:13:06
-updated: 2026-08-29 19:08:22
+updated: 2026-10-19 16:00:00
 ---
 
 ![Artificial Analysis Independent Benchmarking Platform Cover](cover.jpg)
 
-During AI developer keynotes, radar charts and cherry-picked bar graphs are everywhere. Whether a model claims to beat competitors on an academic benchmark or boasts a 5x speed boost, engineers and product managers know the reality: vendor-reported scores are often measured under curated conditions that rarely match day-to-day API performance in production.
-
-If you are evaluating large language models (LLMs) and trying to find the sweet spot between reasoning depth, response speed, and infrastructure budget, you need an unbiased, standardized source: [Artificial Analysis](https://artificialanalysis.ai/), the industry's most reputable independent benchmarking platform.
-
-This guide breaks down how to navigate the platform's core metrics, read the Pareto frontier, and match the right model to your specific production workload.
+**[Artificial Analysis](https://artificialanalysis.ai/) (artificialanalysis.ai) is an independent AI benchmarking site. It runs every LLM through the same evaluations and the same API speed tests, then compares how smart (Intelligence Index), how fast (output speed and latency) and how expensive (Cost per Task) each model is.** If you want to know whether a new model is actually better, or which API fits your budget, the **Leaderboards → Models** page gives you a first answer in one table. This guide explains each metric, how the index is scored as of October 2026, and which chart to use for which job.
 
 <!--more-->
 
-## Why Artificial Analysis Is Essential for LLM Selection
+## What Pages Does Artificial Analysis Have?
 
-In the past, model evaluation relied heavily on Hugging Face leaderboards or community blind tests (Chatbot Arena). However, as AI applications mature into production systems, raw answer accuracy is only part of the equation. Developers care equally about: **Under standardized hardware, how fast does the model generate tokens? What is the Time to First Token (TTFT)? How much does a complete task actually cost on the monthly invoice?**
+Public pages are free to browse (a paid Premium tier also exists). For choosing an LLM, these matter most:
 
-[Artificial Analysis](https://artificialanalysis.ai/) operates an independent benchmarking environment, regularly testing proprietary models (OpenAI, Anthropic, Google) and open-source weights (Meta Llama, DeepSeek, Qwen) under standardized scripts:
+| Page | What it is for |
+|------|------|
+| [Models](https://artificialanalysis.ai/models) | Every chart: intelligence, token use, cost, speed, latency, end-to-end time, context window |
+| [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) | One table with Intelligence Index, Cost per Task, output speed and latency |
+| [Coding Agents](https://artificialanalysis.ai/agents/coding-agents) | Coding Agent Index, time per task and cost per task |
+| [Model Recommender](https://artificialanalysis.ai/models/recommend) | Weight intelligence, speed and cost with sliders to get recommendations |
+| Leaderboards → Providers | Speed and price of the same open-weights model across cloud providers |
+| Image, Video, Speech | Blind-vote arenas and leaderboards for media models |
 
-1. **Independent and Objective Benchmarking**: Tests run in a unified, automated testing harness with zero vendor sponsorship bias.
-2. **Multi-Dimensional Metrics in One Dashboard**: Tracks intelligence quality, generation speed, first-token latency, true price per task, and context windows simultaneously.
-3. **Dynamic Pareto Frontiers**: Visualizes which models define the boundary of peak cost-to-performance efficiency.
+For how it compares with LMArena, SWE-bench and other leaderboards, see [How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter](/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/).
 
-![Artificial Analysis Homepage Key Golden Metrics: Intelligence Index, Output Speed, and Cost per Task](01_homepage_highlights.jpg)
+## What Is the Artificial Analysis Intelligence Index? The 10 Evaluations in v4.3.2
 
----
+The **Artificial Analysis Intelligence Index** is a weighted composite of several evaluations; higher is better. According to the official [Intelligence Benchmarking methodology](https://artificialanalysis.ai/methodology/intelligence-benchmarking), **v4.3.2** (current since September 2026) has 10 evaluations in four categories:
 
-## The Three Golden Dimensions Demystified
+| Category (weight) | Evaluations and weights |
+|------|------|
+| Agents (30%) | AA-Briefcase v1.1 15%, GDPval-AA v2.1 10%, AutomationBench-AA 5% |
+| Coding (20%) | Terminal-Bench 4.0 10%, SciCode 10% |
+| General (30%) | AA-Omniscience 15%, GDP.pdf 10%, AA-LCR v1.1 5% |
+| Scientific Reasoning (20%) | Humanity's Last Exam 10%, CritPt 10% |
 
-When landing on Artificial Analysis, three core indicators represent the foundational pillars of model evaluation:
+Three things to keep in mind:
 
-### 1. Intelligence Index: How Smart Is the Model?
-The **Intelligence Index** is a weighted composite score designed to assess real-world capabilities across complex reasoning (e.g., **GPQA Diamond**), terminal tool usage (**Terminal-Bench**), coding, and long-context comprehension.
-* **Higher Is Better**: Reflects overall performance on programming, logical deduction, and complex prompt following.
-* **Lightbulb Icon**: Denotes models equipped with explicit deep reasoning / Chain-of-Thought capabilities.
+- **Versions change, and scores across versions are not comparable.** In 2026 alone the index went from v4.0 to v4.3.2; v4.2 dropped GPQA Diamond and v4.3 replaced Terminal-Bench 2.1 with 4.0. Scores in older articles or screenshots (including the August screenshots below) cannot be compared with today's.
+- **One model appears several times, once per reasoning effort.** **Claude Opus 5.5 (max)**, **(xhigh)** and **(high)** are the same model with very different scores, costs and latency. Match the row to the setting you will actually run.
+- **A lightbulb icon marks reasoning models**, which spend thinking tokens before answering. That affects both cost and latency.
 
-### 2. Speed and Latency: How Fast Does It Respond?
-Response speed directly dictates end-user UX. The platform tracks two critical metrics:
-* **Tokens per Second (Throughput)**: Measures generative speed. 60–80 Tokens/s matches human silent reading speed; 150+ Tokens/s delivers instantaneous text streams ideal for autocomplete and interactive voice bots.
-* **Time to First Token (TTFT)**: Measures the latency between submitting a prompt and receiving the very first token. High TTFT makes applications feel sluggish or frozen.
+## How to Read Speed, Latency and Cost
 
-### 3. Cost per Task: What Is the True Operational Bill?
- многие developers look only at nominal list prices ($/1M tokens), which often undercounts the actual invoice. Modern reasoning models generate extensive internal thinking tokens before producing an answer—tokens billed on your API account even if hidden from UI output.
-* **Cost per Task**: Calculates the true dollar cost of executing standardized end-to-end tasks across models, providing an accurate baseline for budgeting.
+![Artificial Analysis homepage highlights: Intelligence, Speed and Cost per Task (August 2026 screenshot)](01_homepage_highlights.jpg)
 
----
+Definitions from the official [Performance Benchmarking methodology](https://artificialanalysis.ai/methodology/performance-benchmarking) and chart notes:
 
-## 4 Practical Scenarios for Model Selection
+| Metric | Definition | Use it for |
+|------|------|------|
+| **Output Speed** (tokens/s) | Tokens per second received after the first chunk arrives | Long generations, streaming feel |
+| **Latency / Time to First Token** | Seconds from sending the request to the first token | Live chat, autocomplete |
+| **Time to First Answer Token** | Seconds to the first answer token, including a reasoning model's thinking time | Real wait time for reasoning models |
+| **End-to-End Response Time** | Seconds to output 500 tokens, including latency and thinking time | Total wait per request |
+| **Cost per Task** (USD) | Weighted average cost of one Intelligence Index task, covering input, cache, reasoning and answer tokens | Real cost of getting work done |
+| **Price** (USD per 1M tokens) | Cache-hit, input and output list prices, plus a Blended Price | Estimating your own bill |
 
-Here is how to navigate the platform's visual charts for four common deployment scenarios:
+Speed figures come from the model creator's first-party API, or the median across providers where there is none. Tests run 8 times a day and the site shows the **median (P50) over the past 72 hours**, so numbers move with peak hours and provider load.
 
-### Scenario 1: High-Volume Production APIs—Reading the Pareto Frontier
-If you run high-volume customer support bots or batch document pipelines, toggle to the **Intelligence Index vs. Cost per Task** scatter plot under the **Cost** tab.
+**Cost per Task beats list price.** A reasoning model with cheap per-token pricing can still cost more per task than a pricier model if it burns many thinking tokens. For totals, the Models page's **Cost to Run Artificial Analysis Intelligence Index** chart breaks the full run into output, reasoning and cache costs.
 
-![Quality and Cost Pareto Frontier Scatter Plot: Identifying the Cost-Performance Sweet Spot](02_pareto_quality_cost.jpg)
+![Cost to Run Artificial Analysis Intelligence Index, stacked by output, reasoning and cache cost (August 2026 screenshot)](02_pareto_quality_cost.jpg)
 
-* **Y-Axis**: Model intelligence (higher is smarter).
-* **X-Axis**: Cost per task (left is cheaper).
-* **Upper-Left Green Quadrant**: The ideal "smart and affordable" zone.
-* **Pareto Frontier Line**: The dashed line connecting models that offer the highest intelligence for a given cost, or the lowest cost for a given intelligence level.
+## Leaderboard Snapshot: October 2026
 
-**Selection Rule**:
-* **On the Pareto Line**: Models on this boundary represent the absolute best value in their respective price tiers.
-* **Below / Right of the Line**: Models far from the frontier are dominated by alternatives that are both smarter and cheaper.
+Selected rows from [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) on October 19, 2026 (Intelligence Index v4.3.2; figures update continuously):
 
----
+| Model (setting) | Intelligence Index | Cost per Task | Output speed (t/s) | First-chunk latency (s) |
+|------|------|------|------|------|
+| Claude Opus 5.5 (max) | 58 | $5.98 | 98 | 562.75 |
+| Claude Sonnet 5.5 (max) | 56 | $5.46 | 136 | 391.60 |
+| Claude Opus 5.5 (xhigh) | 56 | $3.46 | 85 | 115.10 |
+| Claude Opus 5.5 (high) | 54 | $1.82 | 82 | 40.49 |
+| GPT-6 Astra (max) | 53 | $3.26 | 69 | 292.33 |
+| Gemini 4 Argon (high) | 53 | $1.99 | n/a | n/a |
+| GPT-6.1 Sol (max) | 52 | $0.72 | 60 | 239.97 |
+| Claude Sonnet 5.5 (xhigh) | 52 | $2.01 | 112 | 36.17 |
 
-### Scenario 2: Real-Time Voice & IDE Autocomplete—Speed and Latency First
-For inline code completion or conversational voice agents, any delay over 1 second degrades user experience.
+Two takeaways:
 
-![Inference Speed and Latency Analysis: Comparing Tokens per Second and Task Duration](03_speed_latency.jpg)
+- **The top score is not the best value.** GPT-6.1 Sol (max) is 6 points behind the leader at under one-eighth of the Cost per Task.
+- **Max settings often take minutes to the first chunk.** They suit background batch and agent jobs, not interfaces that need an instant reply.
 
-Categorize models by throughput:
-* **Ultra-Fast Tier (>140 Tokens/s)**: Instant streaming for inline code completion and real-time agents.
-* **Balanced Tier (60–100 Tokens/s)**: Smooth text delivery for web chats and document generation.
-* **Deep Thinking Tier (<50 Tokens/s)**: Reserved for offline batch tasks, complex planning, and non-blocking audits.
+Launch-day details: [Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis](/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/) and [GPT-6 Sol and Luna: Artificial Analysis Scores, API Prices, and How to Choose](/en/2026/09/23/gpt-6-sol-luna-pricing-aa-review/).
 
----
+## Using the Pareto Frontier to Find Value
 
-### Scenario 3: Software Engineers—The Coding Agent Leaderboard
-For pairing with tools like Claude Code or Codex, consult the **Coding Agent Benchmarks** tab.
+The **Intelligence Index vs. Cost per Task** scatter plot on the Models page is the most useful chart for selection:
 
-![Coding Agent Benchmark Leaderboard: Comparing Autonomous Problem-Solving and Run Costs](04_coding_agents.jpg)
+- The **Y-axis** is intelligence (higher is smarter); the **X-axis** is Cost per Task (further left is cheaper).
+- The upper-left **Most attractive quadrant** is smart and cheap.
+- The **Pareto line** connects models that are the smartest at their price or the cheapest at their score. Models on the line are the best option in their tier; models far below it are beaten by something both smarter and cheaper.
 
-This evaluation tests three critical capabilities:
-1. **DeepSWE**: Evaluates fixing 113 complex, real-world GitHub issues end-to-end.
-2. **Terminal-Bench v2**: Measures shell proficiency, package installation, and environment management.
-3. **SWE-Atlas-QnA**: Evaluates multi-file architectural understanding across large repos.
+The same section has **Intelligence Index vs. Time per Task**, **vs. Output Speed** and **vs. End-to-End Response Time**. Read them the same way, with time instead of cost.
 
-**Key Tip**: Always balance solve rate against **Time per Task** and **Cost per Task**. An agent with a 2% higher solve rate that takes 25 minutes and $10 per task may be far less practical than one solving tasks in 8 minutes for $1.50.
+## Which Chart to Use for Your Use Case
 
----
+| Use case | Look at | How to decide |
+|------|------|------|
+| Live chat, voice assistants, IDE autocomplete | **Latency**, **Output Speed** | Low time to first token, high speed, or a low reasoning setting |
+| High-volume APIs, batch document work | **Intelligence Index vs. Cost per Task** | Cheapest model on the Pareto line that scores high enough |
+| Coding agents (tools like Claude Code or Codex) | **Coding Agents** page | Score, time per task and cost per task together |
+| Finance, legal, healthcare and other industries | **Capability Indexes** | The matching industry sub-index, not the overall score |
+| Self-hosting or picking a provider for an open model | **Leaderboards → Providers** | Speed and price of one model across providers |
+| Still unsure | **Model Recommender** | Recommendations from your weights |
 
-### Scenario 4: The Model Recommender Tool
-If you need tailored guidance, the interactive **Model Recommender** allows you to input priority weights (e.g., 50% Quality, 30% Cost, 20% Speed) to generate a personalized ranking.
+![Artificial Analysis output speed bar chart and Time per Task chart (August 2026 screenshot)](03_speed_latency.jpg)
 
-![Model Recommender Tool: Tailoring Recommendations Based on Custom Priorities](05_model_recommender.jpg)
+On the **Coding Agents** page, **Coding Agent Index v1.5** weights three benchmarks equally, averaging pass@1 over three attempts per task:
 
----
+- **DeepSWE v1.1** (Datacurve): 113 real software engineering tasks
+- **Terminal-Bench 4.0** (Laude Institute): 66 agentic terminal tasks
+- **SWE-Atlas-QnA** (Scale AI): 124 technical Q&A tasks about codebases
 
-## Conclusion: Data-Driven AI Architecture
+The page also shows time per task, cost per task, token usage, and newly added safety-refusal and reward-hacking rates. When scores differ by a few points, time and cost usually decide what is practical day to day. For tool-level differences, see [Claude Code vs Codex vs Cursor](/en/2026/05/06/claude-code-vs-codex-vs-cursor/).
 
-In an era of hyper-competitive model releases, relying on marketing claims leads to inflated API bills or degraded user experiences.
+![Artificial Analysis Coding Agent Benchmarks page (August 2026 screenshot, index v1.3 at the time)](04_coding_agents.jpg)
 
-Using **Artificial Analysis** allows engineering teams to make disciplined, data-driven decisions:
-* Choose **Pareto-optimal models** for high-volume pipelines.
-* Choose **low-TTFT, high-throughput models** for interactive user surfaces.
-* Deploy **reasoning models** selectively where complex multi-step planning justifies the cost.
+The **Model Recommender** is a 5-step flow: the first step sets the importance of Intelligence, Speed and Cost with sliders, and the last produces recommendations from those weights.
 
----
+![Artificial Analysis Model Recommender priority sliders (August 2026 screenshot)](05_model_recommender.jpg)
 
-### Related Reading
+## Limitations of Artificial Analysis
 
-- [Beyond Vibe Coding: The Complete Guide to Agentic SDLC, State Machines, and Verification Gates](/en/2026/08/24/agentic-sdlc-architecture-guide/)
-- [Put AI to Work in the Cloud: Inside xAI Grok Bot's 4 Core Architectures & 6 Mind-Blowing Workflows](/en/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/)
-- [Grok 4.6 in Grok Build: What Changes for Long-Running AI Developer Workflows?](/en/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/)
+- **The overall score is an average.** The index leans toward agentic work (Agents is 30%). If your workload is translation, support replies or classification, the overall rank may not reflect real performance.
+- **Speed varies by provider and time of day.** A 72-hour median is good for comparison, not a promise of your production P95 latency.
+- **Official price pages are the source of truth.** Check each vendor's pricing before committing, and factor in your own caching and batch discounts.
+- **Test on your own data.** Artificial Analysis also offers **Optima** for building custom benchmarks from your own tasks, or you can run your top 2–3 candidates on 20–50 real examples.

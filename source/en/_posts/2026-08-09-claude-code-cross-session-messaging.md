@@ -1,5 +1,5 @@
-title: "Claude Code Cross-Session Messaging: Examples and Limits"
-description: "Send messages between Claude Code sessions with a practical prompt, then check versions, session names, cross-machine delivery, and permissions."
+title: "Claude Code Cross-Session Messaging: List Sessions and Send Messages"
+description: "Make two Claude Code sessions talk: on v2.1.224+, ask Claude or @-mention a session to message it, list reachable sessions with /list-agents, and fix common issues."
 permalink: 2026/08/09/claude-code-cross-session-messaging/
 translation_key: claude-code-cross-session-messaging
 translations:
@@ -13,199 +13,105 @@ tags:
   - Developer Tools
   - Parallel Work
 date: 2026-08-09 14:10:00
-updated: "2026-09-26 12:24:14"
+updated: 2026-10-19 16:00:00
 ---
 
 ![Claude Code cross-session messaging between independent development sessions](cover.jpg)
 
-Claude Code cross-session messaging lets independent sessions exchange progress and task summaries. Tell Claude which session to contact and what you need to know. Each session keeps its own files, context, and permissions.
+To make two Claude Code sessions talk, run **v2.1.224 or later** (**v2.1.234** on native Windows) and tell one session something like "let @api know the migration finished." Claude finds the target with **ListAgents**, sends the text with **SendMessage**, and the reply comes back the same way. To list the sessions you can reach, type **/list-agents** (alias **/peers**); to see every session running in the background, run **claude agents** in your shell.
+
+Only a piece of text crosses over, never conversation history or files, and each session keeps its own working directory and permissions. Everything below follows the official [Message your other Claude Code sessions](https://code.claude.com/docs/en/cross-session-messaging) page, checked on 2026-10-19.
 
 <!--more-->
 
-## Try a Progress Check First
+## Make Two Sessions Talk in Three Steps
 
-Enter this prompt in your current Claude Code session:
-
-```text
-Ask the session working on the API for its progress, interface changes, and anything the frontend needs to know. Summarize its reply.
-```
-
-You do not need to call **ListAgents** or **SendMessage** yourself. If Claude cannot find the target, use **/list-agents** to check reachable sessions and confirm its name.
-
-This feature does not merge conversations, transfer files, or create shared memory. Each session keeps its own working directory, permissions, and context. Messaging adds a coordination layer between independent workers.
-
-## Requirements and Availability
-
-According to the current [Claude Code cross-session messaging documentation](https://code.claude.com/docs/en/cross-session-messaging):
-
-- macOS, Linux, and Linux inside WSL 2 require Claude Code **2.1.224 or later**;
-- native Windows requires Claude Code **2.1.234 or later**;
-- messaging is available automatically when the session and authentication provider meet the requirements;
-- some managed or third-party provider environments may not support it.
-
-Check your installed version:
+**1. Check your version.** Messaging turns on automatically once you meet the requirement; there is no MCP server or setting to add.
 
 ```bash
 claude --version
 ```
 
-Update Claude Code before troubleshooting missing commands or unreachable peers.
-
-## What Cross-Session Messaging Actually Sends
-
-A message is a piece of text written by one Claude and delivered to another. The receiving session gets the sender's session name and the message text. It does not receive:
-
-- the sender's full conversation history;
-- files that only exist in the sender's worktree;
-- uncommitted changes from another filesystem;
-- approval to bypass permissions;
-- a shared task list.
-
-Claude Code uses two tools internally:
-
-- `ListAgents` discovers reachable sessions and agents;
-- `SendMessage` sends text to a named target.
-
-You normally do not invoke these tools yourself. Ask Claude in natural language to contact the appropriate session.
-
-## A Basic Two-Session Workflow
-
-Open two terminals in the same project or, preferably, in separate worktrees. Name each session so it is easy to identify:
-
-```text
-/rename api
-```
-
-In the other terminal:
-
-```text
-/rename frontend
-```
-
-You can also assign a name when starting or resuming an interactive session with the appropriate Claude Code command-line option.
-
-From the frontend session, ask:
-
-```text
-Ask the api session whether the migration is complete. Return the changed endpoint, response fields, compatibility concerns, and test status.
-```
-
-Claude finds the target, writes a focused message, and sends it. If the API session is idle, Claude Code starts a new turn with the message. If it is busy, the message is delivered between tool calls so an active tool operation is not interrupted.
-
-## See Which Sessions Are Reachable
-
-Run this inside Claude Code:
-
-```text
-/list-agents
-```
-
-The list can contain:
-
-- subagents in the current session;
-- Agent Teams teammates;
-- other local interactive or background sessions;
-- reachable Claude Code web sessions;
-- Remote Control sessions on another machine.
-
-Local sessions appear only when they have bound an inbox socket or named pipe. Two sessions also need access to the registration files used for discovery. A host session and a session inside an isolated container do not automatically see one another because they use different filesystems and endpoints.
-
-## Mention a Session Directly
-
-Claude Code 2.1.232 and later can suggest live local sessions after you type `@` followed by part of the session name. A prompt can then be as direct as:
-
-```text
-Tell @api-worker that the schema migration is complete and the new field is tenant_id.
-```
-
-If several sessions share a name, Claude Code asks which one you mean or uses the short identifier shown in the agent list.
-
-## Get a Notice When Another Session Finishes
-
-Claude Code 2.1.236 and later can request a one-time notice when another local session next becomes idle or exits. This is useful for a long build, migration, or test run.
-
-Ask in natural language:
-
-```text
-Tell me when the migration session finishes its current work and include a one-line status.
-```
-
-Claude subscribes through `SendMessage` using an idle-notification option. The watched session does not need to be polled repeatedly. The notice is one-shot and expires if no qualifying event arrives within the documented time limit.
-
-This idle-notification mechanism is limited to sessions on the same machine. It does not apply to subagents, teammates, or sessions beyond the machine.
-
-## Local, Cross-Machine, and Web Delivery
-
-The route depends on where the target runs.
-
-| Target | Delivery path | Important consequence |
-| --- | --- | --- |
-| Same macOS or Linux machine | Per-session Unix socket | Message does not pass through Anthropic servers |
-| Same native Windows machine | Per-session named pipe | Connection authenticates with a per-session key |
-| Another of your machines | Anthropic service through Remote Control | Cross-machine approval controls can apply |
-| Claude Code on the web | Anthropic service | Message goes directly to the cloud session |
-
-Cross-machine conversation initiation requires Claude Code 2.1.225 or later and a target that appears in the reachable-session list. If the sending session is not connected to Remote Control, a message may arrive without a reply address, making it one-way.
-
-Do not include API keys, credentials, personal information, or unnecessary proprietary code in a cross-machine summary.
-
-## Use Worktrees for Parallel Code Changes
-
-Messaging coordinates work but does not isolate files. If two sessions modify the same checkout, they can still overwrite changes or create a confusing working tree.
-
-Create separate Git worktrees for substantial parallel tasks:
+**2. Start and name two sessions in separate terminals:**
 
 ```bash
-git worktree add ../project-api feature/api
-git worktree add ../project-frontend feature/frontend
+claude -n api        # terminal A
+claude -n frontend   # terminal B
 ```
 
-Give each session a clear boundary. For example:
+Inside a running session, use **/rename api** instead. The name is the address other sessions use. Unnamed interactive sessions get a default such as **my-app-3f** (directory name plus a two-character suffix), per [Manage sessions](https://code.claude.com/docs/en/sessions#name-your-sessions). If both sessions edit the same repository, give each its own Git worktree; messaging does not resolve Git conflicts.
 
-| Session | Owns | Sends when complete |
+**3. In the frontend session, type a prompt:**
+
+```text
+Ask @api for its progress, any interface changes, and what the frontend needs to know. Summarize the reply for me.
+```
+
+- Typing **@** plus the first letters of a name opens a session picker (**v2.1.232+**). Quote names with spaces, such as **@"release notes"**.
+- Plain language works too: "the session running the migration in my other terminal."
+- **ListAgents** and **SendMessage** are Claude's internal tools, so you never call them yourself, and Claude writes the message. Claude may also message another session unprompted when its own change affects that session's work.
+
+## How to List Claude Code Sessions
+
+"List sessions" means three different commands depending on what you want:
+
+| What you want | Command | What it shows |
 | --- | --- | --- |
-| API | endpoint and schema changes | response contract and test result |
-| Frontend | components and client types | expected API fields and UI status |
-| Tests | regression and integration checks | failures, evidence, and release blockers |
+| Who can I message right now | **/list-agents** (**/peers**) | Your own name on the first line, then subagents, agent-team teammates, and other local sessions; cloud and other-machine sessions appear while connected to Remote Control |
+| Every background session | **claude agents**, **claude agents --json** | [Agent view](https://code.claude.com/docs/en/agent-view) (research preview): attach, read logs, stop; add **--all** to include finished ones |
+| Past conversations | **claude --resume**, **/resume** | The session picker for resuming old transcripts, not messaging |
 
-Cross-session messages should carry decisions and status. Git remains responsible for code history, merging, and conflict resolution.
+If **/list-agents** is not recognized, the session lacks cross-session messaging, so update first. The **Peer address** row in **/status** shows the session's inbox; **unavailable** means the inbox socket could not be created.
 
-## Cross-Session Messaging vs Other Claude Code Features
+For more session commands (interjecting, rewinding, scheduled checks), see [Claude Code fun commands](/en/2026/10/14/claude-code-fun-commands/).
 
-Several Claude Code features involve more than one worker, but their responsibilities differ.
+## Get Notified When Another Session Finishes
 
-| Feature | Primary purpose | Shared conversation | Shared task list |
-| --- | --- | --- | --- |
-| Cross-session messaging | Coordinate independent sessions | No | No |
-| `/resume` | Continue an existing conversation | Yes | Not applicable |
-| Subagents | Delegate focused work from one parent session | Results return to parent | No shared team list |
-| Agent Teams | Coordinate a lead and multiple teammates | Separate contexts with team messaging | Yes |
-| Agent view | Watch and steer multiple sessions | No | Depends on sessions |
-| Remote Control | Personally steer a session from another device | Same controlled session | Not applicable |
+While waiting on a long task, ask Claude for a one-time notice when the other session next goes idle or exits:
 
-Use `/resume` when you need the earlier conversation itself. Use a subagent when the current session should delegate a bounded investigation. Use Agent Teams when Claude should coordinate workers through a shared task system. Use cross-session messaging when you started and control independent sessions that need occasional handoffs.
-
-## Control Incoming Messages
-
-The `crossSessionInbound` setting controls how a session treats incoming peer messages:
-
-```json
-{
-  "crossSessionInbound": "hold"
-}
+```text
+Tell me when the migration session finishes what it's working on
 ```
 
-The supported values are:
+- Both sessions need **v2.1.236+**, and it only works for sessions on **this machine**.
+- Subscribing on its own does not start a turn or spend tokens in the watched session. Unanswered subscriptions expire after 12 hours.
+- If either side sets inbound messages to **refuse**, no notice arrives.
 
-- `accept`: deliver messages to Claude automatically;
-- `hold`: display and retain them until the applicable rules allow delivery;
-- `refuse`: drop incoming peer messages.
+## How Messages Arrive and What the Receiver Can Do
 
-For an interactive session, **hold** is a cautious choice when you do not want another session to create a new turn automatically. For a controlled unattended worker, **accept** may be appropriate only when you understand the senders and task boundary.
+- **Idle receiver**: Claude Code starts a new turn with the message. **Busy receiver**: Claude reads it between tool calls, so a running tool is never interrupted.
+- **On screen**: a dim one-line preview such as **› Message from @api-worker: Schema migration finished**; press **Ctrl + O** for the full text.
+- **Safety rules**: a message cannot approve permission prompts, cannot get the receiver to change permission settings or CLAUDE.md, and commands such as **/compact** inside it are plain text that never run. The receiver's own permission prompts still fire.
+- **Usage**: a delivered message counts toward the receiver's usage like a prompt you type.
+- **Limits**: plain text only; same-machine messages are capped at roughly one million characters; rapid bursts are refused at the sender; the receiver queues at most 50 messages, so message loops throttle themselves.
 
-## Require Approval for Cross-Machine Messages
+## Same Machine vs. Other Machines
 
-Set `isolatePeerMachines` when messages leaving the current machine should always require explicit approval:
+| Where the other session runs | Path | Requirements and limits |
+| --- | --- | --- |
+| This machine | Per-session Unix socket (named pipe on native Windows), **never through Anthropic servers** | Works on every provider; Amazon Bedrock, Google Cloud Agent Platform, Microsoft Foundry and similar need **v2.1.248** |
+| Same container | Socket inside the container | Host and container can't reach each other; neither can WSL 2 and native Windows |
+| Another of your machines | Anthropic servers, over that machine's [Remote Control](https://code.claude.com/docs/en/remote-control) connection | **v2.1.225+**; both sides must be on Remote Control to appear in the list; needs a claude.ai sign-in, not an API key |
+| Cloud (Claude Code on the web) | Anthropic servers | The sending session must be connected to Remote Control |
+
+- If the sender is **not** on Remote Control, a cross-machine message still goes out but carries no reply address, so the receiver can't answer.
+- A session marked **offline** gets the message after it reconnects.
+- A session marked **can't receive cross-session messages** is never sent to; the result begins with **Not sent**.
+- Cross-machine messages pass through servers, so keep API keys, passwords, and personal data out of them.
+
+## Permission Settings: Inbound Mode, Cross-Machine Approval, Off Switch
+
+**Inbound mode, crossSessionInbound** (also in **/config** under **Messages from your other sessions**, v2.1.232+):
+
+| Value | Behavior |
+| --- | --- |
+| **accept** | Every message goes to Claude |
+| **hold** | Shows a notice, doesn't deliver; released if an accept applies later |
+| **refuse** | Drops every message |
+
+**Default when unset** depends on both permission modes. A receiver in a prompting mode (including auto and acceptEdits) delivers each message, holding it only if the sender bypasses permissions. A receiver in bypassPermissions holds each message unless the sender also bypasses. Held messages open an approval dialog that drops the message after **5 minutes** by default (**dialogExpiry**).
+
+**Require approval for every cross-machine message**, even in bypassPermissions mode:
 
 ```json
 {
@@ -213,11 +119,7 @@ Set `isolatePeerMachines` when messages leaving the current machine should alway
 }
 ```
 
-This setting does not add an approval prompt to same-machine messaging. It protects the boundary where a message would travel through Anthropic's service to another machine.
-
-## Disable Messaging
-
-Receiving and sending are controlled separately. To refuse inbound messages and prevent Claude from listing or messaging peers:
+**Turn off sending, listing, and receiving:**
 
 ```json
 {
@@ -228,79 +130,35 @@ Receiving and sending are controlled separately. To refuse inbound messages and 
 }
 ```
 
-Denying `SendMessage` also affects messages to subagents and Agent Teams teammates because the same tool is used for those targets. Treat it as a broad messaging restriction.
+Denying **SendMessage** also removes messaging to subagents and agent-team teammates.
 
-## Security Boundaries Remain Per Session
-
-An incoming message is not user authorization. The receiving session still applies its own permission rules, project instructions, and tool restrictions.
-
-Claude Code specifically prevents peer messages from:
-
-- approving a pending permission request;
-- changing permission settings or project instructions;
-- executing slash commands contained in the message text;
-- bypassing a restriction that applied to the sending session.
-
-If acting on a message needs permission, the receiving session prompts normally. This preserves the distinction between coordination from another agent and approval from the user.
-
-## Non-Interactive Sessions
-
-A long-running `claude -p` process can bind an inbox and appear in the reachable-session list. A minimal bare-mode process does not bind one and cannot receive cross-session messages.
-
-A non-interactive process cannot show an approval dialog. For a controlled worker that must receive messages unattended, the inbound setting needs to allow delivery explicitly:
+**Non-interactive claude -p** binds an inbox socket (bare mode does not) but has no approval dialog. To let a worker take messages unattended, set it explicitly:
 
 ```bash
-claude -p "Run the migration checks and report the result" \
+claude -p "check whether the migration finished" \
   --settings '{"crossSessionInbound":"accept"}'
 ```
 
-Use this only in a trusted workflow. An explicit **accept** at user scope affects every session, so a narrowly supplied setting is safer than enabling it globally without review.
+See the [settings reference](https://code.claude.com/docs/en/settings-reference#crosssessioninbound) for precedence rules.
 
-## Write Better Handoff Messages
+## Cross-Session Messaging vs. /resume, Subagents, and Agent Teams
 
-The best message is brief, factual, and actionable:
+| Mechanism | Best for | Shared context |
+| --- | --- | --- |
+| Cross-session messaging | Your own sessions swapping status, warnings, decisions | No, text only |
+| **/resume**, **claude --resume** | Continuing an old conversation | Yes, full history |
+| Subagents | Delegating a focused task from the current session | No, result only |
+| [Agent teams](https://code.claude.com/docs/en/agent-teams) | A lead plus teammates with a shared task list | Separate contexts, team messaging |
 
-```text
-Work: login API schema update
-Status: complete; 18 tests passed
-Change: POST /api/login errors now include a code field
-Compatibility: message remains present for older clients
-Action: update LoginError and the frontend error mapping
-```
-
-Avoid vague requests such as “look at what I changed” or “take over the other session's work.” The receiving session does not have the sender's context. Include the decision, evidence, impact, and expected next action.
+Agent teams are still **experimental** and need **CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1**, and they use noticeably more tokens. For two terminals trading a few updates, messaging is enough. For designing a full multi-agent workflow, read the [Agentic SDLC architecture guide](/en/2026/08/24/agentic-sdlc-architecture-guide/); if you're still choosing tools, see [Claude Code vs Codex vs Cursor](/en/2026/05/06/claude-code-vs-codex-vs-cursor/).
 
 ## Troubleshooting
 
-### `/list-agents` Is Missing
-
-Check the Claude Code version and platform requirements. Native Windows support begins later than macOS and Linux support. Also verify that the authentication provider and organization policy permit messaging.
-
-### A Local Session Does Not Appear
-
-Confirm that it is still running, has an inbox endpoint, and can see the same session-registration files. Containers, WSL 2, and the Windows host have separate filesystem and socket boundaries.
-
-### A Message Is Held
-
-Inspect `crossSessionInbound`, the permission modes of both sessions, and any managed settings. A held message is not delivered to Claude until approved or until a higher-precedence setting allows it.
-
-### The Other Session Cannot See My Files
-
-That is expected when the files are uncommitted in another worktree or live on another machine. Send a summary, commit the required changes, or use the normal Git integration flow. Messaging never transfers files.
-
-### A Cross-Machine Session Cannot Reply
-
-The original message may have been sent without a Remote Control reply address. Reconnect the sending session to Remote Control and confirm that both sessions appear in `/list-agents`.
-
-## Final Takeaway
-
-Cross-session messaging is valuable because it stays narrow. It gives independent Claude Code sessions a way to exchange progress, decisions, and blockers without pretending that they share memory, files, permissions, or a task system.
-
-Use it for concise engineering handoffs. Use worktrees to isolate code, Git to integrate it, and the receiving session's permissions to protect execution. When the work needs central coordination rather than occasional messages, switch to Agent Teams or another purpose-built workflow.
-
-## Official References
-
-- [Claude Code: Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging)
-- [Claude Code: Agent Teams](https://code.claude.com/docs/en/agent-teams)
-- [Claude Code: Isolate sessions with worktrees](https://code.claude.com/docs/en/worktrees)
-- [Claude Code: Settings reference](https://code.claude.com/docs/en/settings)
+| Symptom | Check |
+| --- | --- |
+| **/list-agents** not recognized | Version: v2.1.224 on macOS/Linux/WSL 2, v2.1.234 on native Windows; run **claude update** |
+| A local session is missing from the list | Was it started in bare mode? Does its **/status** show **Peer address** as unavailable? |
+| Other-machine or cloud sessions missing | Are both sides on Remote Control with a claude.ai sign-in? (API keys and Bedrock etc. can't reach other machines) |
+| Message sent but nothing happens | Receiver set to hold or refuse, an approval dialog waiting, or the 5-minute expiry passed |
+| SendMessage is unavailable | A permission deny rule on **SendMessage** or **ListAgents** |
+| Want to hand over a whole conversation | Messages carry text only; use **claude --resume** instead |

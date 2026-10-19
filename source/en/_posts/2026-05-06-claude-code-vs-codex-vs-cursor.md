@@ -1,9 +1,8 @@
-title: >-
-  Claude Code vs Codex vs Cursor: Which AI Coding Tool Should You Choose in
-  2026?
+title: 'Claude Code vs Codex vs Cursor (2026): Pricing, Models, and Which to Choose'
 description: >-
-  Compare Claude Code, Codex, and Cursor by pricing, usage limits, IDE, CLI, and
-  cloud-agent workflows, plus which development tasks each handles best.
+  Claude Code vs Codex vs Cursor, October 2026: current prices, models, and
+  limits, how Cursor's new X Subscription affects Claude and GPT, and which to
+  pick.
 permalink: 2026/05/06/claude-code-vs-codex-vs-cursor/
 translation_key: ai-coding-tools-comparison
 translations:
@@ -17,140 +16,131 @@ tags:
   - Codex
   - Cursor
 date: 2026-05-06 21:30:00
-updated: 2026-08-30 09:30:00
+updated: 2026-10-19 16:00:00
 ---
 
 ![Claude Code, Codex, and Cursor AI coding workflow comparison](cover-v2.jpg)
 
-AI coding tools have moved far beyond autocomplete. Claude Code, OpenAI Codex, and Cursor can all inspect a repository, edit multiple files, and help with debugging, but they are designed around different working habits. The right choice depends less on a benchmark score than on where you want the agent to work, how much control you want during a change, and how your plan meters usage.
+**Short answer:** pick **Claude Code** (from Claude Pro at $20/month) for deep work across a large repository, such as refactors and long debugging sessions. Pick **Codex** (from ChatGPT Plus at $20/month, with a Free tier to try) if you already pay for ChatGPT and want to hand off whole tasks locally or in the cloud. Pick **Cursor** if you want to stay inside an editor and review every change, but note that since October 12, 2026, new Cursor customers join xAI's X Subscription: the included pool covers Grok and Composer models, while Claude and GPT require Premium ($30/month) or higher and are billed at API list price.
 
 <!--more-->
 
-This comparison focuses on those practical differences. Pricing and limits change frequently, so the account dashboard and official pricing page should always be treated as the final source of truth.
+## October 2026 Update: Claude Code vs Codex vs Cursor at a Glance
 
-**Updated August 30, 2026:** The old editor-versus-terminal distinction is no longer enough. Cursor now offers a CLI and Cloud Agents, Claude Code integrates with Cursor, VS Code, and JetBrains, and Codex spans desktop, web, CLI, IDE, and cloud environments. The more useful question is how closely you want to supervise the work.
+Prices and models below come from official pages checked on **October 19, 2026** (USD, monthly billing).
 
-## The Short Answer
-
-- Choose **Claude Code** if you want a terminal-first engineering agent that can also work inside a supported IDE for repository-wide changes and debugging.
-- Choose **Codex** if you already use ChatGPT and want an agent that can work locally, in an IDE, on the web, or through the desktop app.
-- Choose **Cursor** if you want AI deeply integrated into an editor while retaining access to CLI, Cloud Agents, and background tasks.
-
-Many developers eventually use two of them. An editor can handle quick feedback loops while a terminal or cloud agent takes on longer, well-scoped tasks.
-
-## Claude Code: A Terminal-First Engineering Agent
-
-[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) is built around the terminal. It can read the project tree, modify files, run commands, inspect test failures, and keep a multi-step task moving without forcing every interaction through an editor panel.
-
-That makes it especially useful for work such as:
-
-- tracing a bug through several modules;
-- carrying out a repository-wide refactor;
-- running tests and adjusting the implementation from the result;
-- examining an unfamiliar codebase before proposing a plan;
-- separating concurrent tasks across Git worktrees.
-
-The terminal-first approach is powerful, but it also rewards precise scope. Claude Code performs best when the repository has clear instructions, the requested outcome is testable, and the agent knows which areas it should not touch.
-
-### Usage and Billing Considerations
-
-Claude Code can use a Claude subscription or API-based billing, depending on how you authenticate. Anthropic states that Claude and Claude Code share the same plan usage allowance. Long conversations, larger context, more capable models, and higher effort settings consume that allowance faster.
-
-One detail is easy to miss: when **ANTHROPIC_API_KEY** is present in the environment, Claude Code may use API billing instead of the included Pro or Max allocation. Check your login method before assuming a session is covered by the subscription.
-
-Anthropic recommends using **Sonnet** for most development work and reserving **Opus** for difficult debugging, architectural decisions, and large cross-cutting changes. Commands such as `/clear`, `/compact`, `/model`, and `/usage` also help control context and usage.
-
-See Anthropic's current [Claude Code plan guide](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan) and [models, usage, and limits documentation](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code) before choosing a tier.
-
-## Codex: The Natural First Choice for ChatGPT Users
-
-[OpenAI Codex](https://openai.com/codex/) is a coding agent available through several surfaces, including the CLI, IDE integration, web, and the ChatGPT desktop app. It can work against a local checkout or handle a longer task in an isolated environment, depending on the client and workflow you choose.
-
-Codex is the easiest place to start when you already have a ChatGPT account because Codex access is included across ChatGPT plans, although the available usage differs by plan. You can try the workflow before deciding whether a higher allowance or additional credits are worthwhile.
-
-Codex is a strong fit when you prefer to:
-
-- describe an outcome and let an agent complete a coherent unit of work;
-- review a finished diff rather than approve every small edit;
-- run several isolated tasks without mixing their working trees;
-- use the same agent from the desktop app, terminal, IDE, and web;
-- keep reusable project instructions in **AGENTS.md**.
-
-### Usage Is Task-Dependent
-
-OpenAI no longer presents Codex usage as a simple universal message count. Consumption depends on the model, task complexity, context, reasoning effort, tools, execution location, and duration. A small local edit and a long cloud task can consume very different amounts.
-
-Use `/status` in an active Codex CLI session or open **Settings → Usage** to see the limits and reset times that apply to your account. When included usage runs out, the available choices may include waiting for a reset, applying an eligible banked reset, purchasing credits, or changing plans.
-
-The current rules are documented in [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/11369540). For a more detailed usage workflow, see this site's [Claude and Codex usage limits guide](/en/2026/06/18/claude-codex-usage-limits-guide/).
-
-## Cursor: An Editor-First Experience With CLI and Cloud Agents
-
-[Cursor](https://cursor.com/) remains the most editor-oriented option of the three, but it is no longer only an AI editor. The product combines tab completion, inline changes, chat, agent workflows, CLI, Cloud Agents, MCP, skills, hooks, code review features, and background work inside an environment that feels familiar to Visual Studio Code users.
-
-Cursor is often the most comfortable choice when your day consists of many small feedback loops:
-
-- write a function manually, then ask AI to finish a branch;
-- inspect an inline diff and adjust it immediately;
-- move between autocomplete and agent mode without leaving the editor;
-- make a series of small UI or application changes while watching the code evolve;
-- use models from several providers through one interface.
-
-Cursor's plans include different amounts of model usage. The model you select matters because included agent usage is tied to inference cost rather than a fixed number of identical requests. Background Agents and on-demand usage can also create additional charges, so check the usage dashboard instead of assuming every agent run is included.
-
-Consult the current [Cursor pricing documentation](https://docs.cursor.com/account/pricing) before subscribing. Cursor's own guidance positions Pro for lighter agent use, Pro+ for daily agent users, and Ultra for power users.
-
-## Side-by-Side Workflow Comparison
-
-| Question | Claude Code | Codex | Cursor |
+| | Claude Code | Codex | Cursor |
 | --- | --- | --- | --- |
-| Primary experience | Terminal and supported IDE agent | Desktop, CLI, IDE, web, and cloud agent | AI-first editor, CLI, and Cloud Agents |
-| Best fit | Repository-wide engineering work | Delegated local or isolated tasks | Fast editor feedback loops |
-| Manual editing | Uses your existing editor | Uses your existing editor or desktop review | Central part of the product |
-| Multi-task workflow | Multiple sessions and worktrees | Multiple tasks and worktrees | Editor agents and background agents |
-| Usage visibility | `/usage`, plan settings, or API cost | `/status` and usage dashboard | Editor and account dashboard |
-| Main risk | Long context or expensive models drain usage | Large tasks can consume shared allowance quickly | Model-dependent usage can be hard to estimate |
+| Vendor | Anthropic | OpenAI | Anysphere (plans now part of xAI's X Subscription) |
+| Free option | No (Claude Free excludes Claude Code) | Yes: Free and Go ($8) with GPT-6 Luna | Yes: limited Grok / Composer usage |
+| Entry paid plan | Pro **$20** (about $17 billed annually) | Plus **$20** | Plus **$8** (Grok models only) |
+| Heavy-use plans | Max 5x **$100**, Max 20x **$200** | Pro **$100 / $200 / $500** | Premium **$30**, Super **$100**, Ultra **$200** |
+| Models | Opus 5.5, Sonnet 5.5, Haiku 5.5; Fable 5.1 with extra limits | GPT-6.1 Sol, GPT-6 Sol, GPT-6 Astra, GPT-6 Luna | Composer 2.5 and Grok 4.7 included; Claude / GPT / Gemini at API price |
+| Usage model | 5-hour session plus weekly cap, shared with Claude chat | 5-hour limits on Plus; Pro currently has none | Weekly pool shared with Grok apps |
+| Where it runs | Terminal, VS Code / Cursor / JetBrains, desktop app, web, mobile | Desktop app, CLI, IDE extension, web, mobile, Codex Cloud | Editor, CLI, Cloud Agents |
+| Best for | Large repos, multi-file refactors, long debugging | Delegated tasks, parallel work, existing ChatGPT users | Fast edit loops, UI work, reviewing inline diffs |
 
-## Which Tool Should You Pay For?
+Sources: [Claude pricing](https://claude.com/pricing), [Codex pricing](https://learn.chatgpt.com/docs/pricing), [Cursor models and billing](https://cursor.com/docs/models), [xAI's X Subscription announcement](https://x.ai/news/x-subscription).
 
-### Start With Codex If You Already Pay for ChatGPT
+## Claude Code vs Codex: What Is the Difference?
 
-If your current ChatGPT plan includes enough Codex usage to evaluate real work, begin there. Give it one contained feature, one bug investigation, and one repository review. That provides a useful baseline without immediately adding another subscription.
+Both are coding agents that read a repository, edit several files, and run commands. The real differences are models, billing, and working rhythm.
 
-### Choose Claude Code for Deep Terminal Work
+| | Claude Code | Codex |
+| --- | --- | --- |
+| Minimum plan | Claude Pro $20 | ChatGPT Free to try; Plus $20 for CLI, IDE, and cloud integrations |
+| Usage risk | Allowance is **shared** with Claude web and desktop chat | Varies by model; Plus gets roughly 15–160 local GPT-6.1 Sol messages per 5 hours |
+| Top-tier extra | Max plans can use Fable 5.1 (separate weekly limit) | Pro $500 is the only Pro tier with Ultrafast mode |
+| Project instructions | **CLAUDE.md** (can also read **AGENTS.md**) | **AGENTS.md** |
+| Working rhythm | Plan, edit, and verify step by step with the agent | Define the goal and acceptance criteria, then review the finished diff |
 
-Claude Code makes the strongest case when you regularly ask an agent to understand a large repository, reason through an architectural change, run commands, and stay with a problem across several iterations. It is less compelling if most of your needs are single-line completion or tiny visual edits.
+Gotchas worth knowing:
 
-### Choose Cursor When the Editor Is the Workflow
+- If Claude Code finds **ANTHROPIC_API_KEY** and you approve it, usage is billed to the API instead of your subscription. [Anthropic](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan)
+- GPT-5.5 retired from Codex with ChatGPT sign-in on **October 14, 2026**, so switch older configs to the GPT-6 family. [OpenAI](https://learn.chatgpt.com/docs/pricing)
+- New ChatGPT Pro $200 subscriptions that are not eligible for grandfathering get a lower allowance than the previous Pro $200 plan. Check [OpenAI's Pro tiers article](https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) before upgrading.
 
-Cursor is usually the easiest choice for developers who want to remain hands-on. If you constantly alternate between typing, inspecting, and accepting small changes, an editor-native experience can matter more than which agent wins a single benchmark.
+For reset times and how to read your quota, see the [Claude and Codex usage limits guide](/en/2026/06/18/claude-codex-usage-limits-guide/). For the latest models behind each tool, see the [Claude Opus 5.5 review](/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/) and the [OpenAI DevDay 2026 roundup](/en/2026/09/30/openai-devday-2026-announcements/).
 
-### Consider a Two-Tool Setup
+## Codex vs Cursor: What Is the Difference?
 
-A practical combination is Cursor for daily editing plus Claude Code or Codex for larger tasks. The important part is to give each tool a clear role. Running several agents against the same uncommitted files without worktree isolation creates more conflict than productivity.
+Cursor is **editor-first**: completion, inline diffs, the agent, and manual editing share one screen, which suits people who want to inspect and adjust each step. Codex is **task-first**: describe the goal, let the agent finish locally or in Codex Cloud, then review.
 
-## A Better Evaluation Method
+| | Cursor | Codex |
+| --- | --- | --- |
+| Main interface | AI editor (plus CLI and Cloud Agents) | Desktop app, CLI, IDE extension, web |
+| Included models | Composer 2.5, Grok 4.7 | GPT-6.1 Sol and other OpenAI models |
+| Using GPT / Claude | New plans need Premium $30+, billed at API list price from the first request | GPT models included; no Claude |
+| Cloud agents / code review | Cloud Agents and Bugbot from Premium | Cloud tasks and automatic code review from Plus |
+| Cheapest paid plan | Plus $8 (Grok only) | Go $8 (GPT-6 Luna in the desktop app) |
 
-Do not choose from marketing pages alone. Run the same three tasks in each tool:
+**What the October change means:** if you mainly want GPT or Claude inside Cursor, a new plan now costs a subscription plus API usage. For GPT-heavy work, Codex is usually cheaper. Existing Cursor Pro, Pro+, and Ultra customers keep their current plan, price, and features unless they switch, and switching to the X Subscription cannot be undone. [Cursor](https://cursor.com/help/the-x-subscription/overview)
 
-1. Ask it to explain an unfamiliar part of a real repository.
-2. Give it a small feature with an objective test.
-3. Give it a multi-file bug and see how it investigates before editing.
+## Claude Code vs Cursor: Can You Use Both?
 
-Compare the correctness of the final diff, the number of corrective prompts, how clearly it reports uncertainty, and how safely it handles unrelated files. Also record the usage consumed. The cheapest plan is not cheap if it repeatedly produces work you must rewrite.
+Yes. Anthropic's Claude Code extension for VS Code also installs in Cursor, so you can run Claude Code inside the Cursor editor on your Claude subscription instead of paying API rates for Claude through Cursor. [Claude Code docs](https://code.claude.com/docs/en/overview)
 
-## Final Recommendation
+A common split is Cursor for completion and small edits, Claude Code for refactors and debugging. Two agents editing the same uncommitted files will collide, so isolate them with git worktrees.
 
-There is no universal winner because these tools optimize different interactions. Claude Code is a focused terminal engineering agent, Codex is a flexible agent across the ChatGPT ecosystem, and Cursor is an editor where AI is present throughout the coding loop.
+## Plan Details by Tool
 
-Start with the tool already included in a service you use, evaluate it on your own repository, and upgrade only after you understand the bottleneck. Workflow fit, controllability, and the quality of the final diff matter more than a headline model ranking.
+### Claude Code
+
+| Plan | Price | Notes |
+| --- | --- | --- |
+| Pro | **$20** | Includes Claude Code; Opus, Sonnet, Haiku; Fable through usage credits |
+| Max 5x | **$100** | 5x Pro usage; Fable has its own weekly limit on Max |
+| Max 20x | **$200** | 20x Pro usage |
+
+Both Pro and Max have a 5-hour session limit and a weekly limit shared across Claude, Claude Code, and IDE use. Usage credits let you continue past a limit. [Max plan](https://support.claude.com/en/articles/11049741-what-is-the-max-plan)
+
+### Codex
+
+| Plan | Price | Notes |
+| --- | --- | --- |
+| Free / Go | **$0 / $8** | GPT-6 Luna in the desktop app for quick tasks |
+| Plus | **$20** | Web, CLI, IDE, iOS; GPT-6.1 Sol and GPT-6 Luna; extra credits available |
+| Pro | **$100 / $200 / $500** | No 5-hour limit at present; Ultrafast only on $500 |
+| Business | **$25/user** ($20 billed annually) | Larger cloud VMs, SSO, no training on business data by default |
+
+Check real usage under **Settings → Usage** or with **/status** in the CLI.
+
+### Cursor (X Subscription)
+
+| Plan | Price | Notes |
+| --- | --- | --- |
+| Free | **$0** | Limited Agent and Chat requests |
+| Plus | **$8** | Grok models only; no Cloud Agents or Bugbot |
+| Premium | **$30** | 4x Plus usage; Cloud Agents, Bugbot, third-party models at API price |
+| Super | **$100** | 15x Plus usage, priority access at peak times |
+| Ultra | **$200** | 50x Plus usage |
+
+The pool refreshes weekly and is shared with Grok apps. [Cursor pricing](https://cursor.com/pricing)
+
+## Which One Should You Choose?
+
+| Your situation | Recommendation |
+| --- | --- |
+| You already pay for ChatGPT Plus and want to try AI coding | **Start with Codex** at no extra cost |
+| Large repos, multi-file refactors, and long debugging are routine | **Claude Code**, ideally Max 5x for serious projects |
+| You mostly edit as you go and like reviewing inline diffs | **Cursor Premium**, or free Cursor plus the Claude Code extension |
+| You want GPT or Claude as your main model inside Cursor | Estimate API costs first; for GPT-heavy work, **Codex** is usually cheaper |
+| You often hand off work from a phone or browser | **Codex Cloud** or **Claude Code on the web** |
+| You code intensively and run many tasks in parallel | **Claude Max 20x** or **ChatGPT Pro** |
+
+To compare how much API-equivalent usage each subscription buys per dollar, see the [September 2026 AI coding subscription comparison](/en/2026/09/14/ai-coding-tools-subscription-comparison/).
 
 ## Official References
 
+- [Anthropic: Claude plans and pricing](https://claude.com/pricing)
 - [Anthropic: Use Claude Code with your Pro or Max plan](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan)
-- [Anthropic: Models, usage, and limits in Claude Code](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code)
-- [OpenAI: Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/11369540)
-- [OpenAI: Codex pricing](https://developers.openai.com/codex/pricing)
-- [Cursor: Models and pricing](https://docs.cursor.com/account/pricing)
-- [Cursor: Agent CLI](https://docs.cursor.com/en/cli/using)
-- [Cursor: Cloud Agents](https://docs.cursor.com/background-agent)
+- [Anthropic: What is the Max plan](https://support.claude.com/en/articles/11049741-what-is-the-max-plan)
+- [Anthropic: Claude Code documentation](https://code.claude.com/docs/en/overview)
+- [Anthropic: Models overview](https://platform.claude.com/docs/en/about-claude/models/overview)
+- [OpenAI: Codex pricing](https://learn.chatgpt.com/docs/pricing)
+- [OpenAI: About ChatGPT Pro tiers](https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers)
+- [OpenAI: Codex Cloud](https://learn.chatgpt.com/docs/cloud)
+- [Cursor: Pricing](https://cursor.com/pricing)
+- [Cursor: Models](https://cursor.com/docs/models)
+- [Cursor: The X Subscription](https://cursor.com/help/the-x-subscription/overview)
+- [xAI: Introducing The X Subscription](https://x.ai/news/x-subscription)

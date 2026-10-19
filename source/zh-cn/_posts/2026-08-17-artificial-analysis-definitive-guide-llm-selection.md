@@ -1,6 +1,6 @@
 ---
-title: 选模型别再凭感觉！Artificial Analysis 完整指南：从质量、速度到成本，场景化挑出最适合你的 AI
-description: 深度解析第三方独立大模型基准评测平台 Artificial Analysis 的实用指南。通过通俗易懂的场景案例与真实数据图表，带你读懂模型智能指数、推理吞吐速度、首字延迟、单次任务实际成本与 Coding Agent 榜单，教你利用帕累托前沿选出最具性价比的 AI 模型方案。
+title: Artificial Analysis 是什么？Intelligence Index、速度与成本怎么看
+description: Artificial Analysis 是独立的大模型评测网站，用同一套测试横向对比数百个 LLM 的智能水平、输出速度、延迟与成本。本文讲清 Intelligence Index v4.3.2 的 10 项评测、Cost per Task 和延迟指标怎么读，并附 2026 年 10 月榜单快照与按场景选型方法。
 permalink: 2026/08/17/artificial-analysis-definitive-guide-llm-selection/
 translation_key: artificial-analysis-definitive-guide-llm-selection
 translations:
@@ -11,114 +11,133 @@ categories:
 tags:
   - AI
   - LLM
+  - Artificial Analysis
   - 软件工程
 date: 2026-08-17 14:13:06
-updated: 2026-08-17 15:20:00
+updated: 2026-10-19 16:00:00
 ---
 
 ![Artificial Analysis 大模型选型指南封面](cover.jpg)
 
-每次各大 AI 科技巨头召开新品发布会时，演示幻灯片上的雷达图与柱状对比图总是令人目不暇接。无论是宣称在某个权威学术跑分上全面超越竞品，还是号称推理速度飙升数倍，常年奋战在研发一线的工程师与产品经理心里往往十分清楚：官方公布的亮眼跑分，大多是在极其严苛且精心挑选的基准条件下跑出来的，与日常在真实业务项目中调用 API 的真实体感往往存在着不小的温差。
-
-如果你正在为业务项目挑选最合适的大语言模型（LLM），或者期望在推理能力、响应速度与调用预算之间寻找到最完美的平衡点，那么你绝对不能错过目前业内公认最具公信力的第三方独立评测平台——[Artificial Analysis](https://artificialanalysis.ai/)。本文将以最通俗生动的语言结合真实的评测界面图表，带你全面掌握各项评测指标的深层逻辑，为不同的业务场景量身定制出最具性价比的模型组合。
+**[Artificial Analysis](https://artificialanalysis.ai/)（artificialanalysis.ai）是一个独立的 AI 模型评测网站：它在自己的测试环境里，用同一套评测集和同样的 API 测速条件跑各家大模型，横向对比“有多聪明（Intelligence Index）、有多快（输出速度与延迟）、要花多少钱（Cost per Task）”。** 想判断新模型是不是真的更强，或者预算内该接哪家 API，打开 **Leaderboards → Models** 一张表就能完成第一轮筛选。本文讲清各项指标的口径、2026 年 10 月当前的计分方式，以及不同场景该看哪张图。
 
 <!--more-->
 
-## 什么是 Artificial Analysis？为什么它是大模型选型的必备神器
+## Artificial Analysis 网站有哪些页面
 
-在过去，开发者评估模型实力往往依赖 Hugging Face 社区排行榜或是社区盲测盲评。然而，随着大模型应用全面切入深水区，单纯看模型“能不能回答出问题”已经远远不够。在生产环境中，团队更关心的是工程底层的硬核现实：**在完全相同的硬件环境与并发标准下，这个模型的推理吞吐速度到底有多快？点击发送请求后到底需要等待多少毫秒才会吐出第一个字？驱动它跑完一项完整的复杂业务任务，账单上究竟会产生多少美元的花费？**
+公开页面可以免费查看（另有付费的 Premium）。做模型选型时最常用的是这几个页面：
 
-[Artificial Analysis](https://artificialanalysis.ai/) 正是为解决这一行业痛点而生。平台独立搭建并维护着专属的基准测试集群，定期对市面上所有主流的商用模型（如 OpenAI、Anthropic、Google）以及主流开源模型（如 Meta Llama、DeepSeek、Qwen 系列）展开全自动化的标准化基准压测，其核心价值体现在以下三方面：
+| 页面 | 用途 |
+|------|------|
+| [Models](https://artificialanalysis.ai/models) | 全部图表：智能、Token 消耗、成本、速度、延迟、端到端耗时、上下文窗口 |
+| [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) | 一张表汇总 Intelligence Index、Cost per Task、输出速度和延迟 |
+| [Coding Agents](https://artificialanalysis.ai/agents/coding-agents) | 编程智能体的 Coding Agent Index、单题耗时与费用 |
+| [Model Recommender](https://artificialanalysis.ai/models/recommend) | 用滑块设置智能／速度／成本权重，生成推荐模型 |
+| Leaderboards → Providers | 同一个开源模型在不同云厂商上的速度和价格 |
+| Image、Video、Speech | 图像、视频、语音模型的盲测竞技场与榜单 |
 
-1. **完全中立透明的标准化基准测试**：杜绝各家模型厂商自吹自擂的营销水分，所有指标均在统一标准配置的运行环境下通过自动化测试脚本采集。
-2. **全生命周期的多维指标整合**：将智能质量指数、输出吞吐速度、首字响应延迟、真实调用单价与上下文窗口长度聚合于同一个交互式大盘中。
-3. **动态追踪的性价比帕累托前沿**：依托直观的可视化散点图，明确标注出当前市场上处于综合性价比最优平衡带上的标杆模型。
+如果还想了解它和 LMArena、SWE-bench 等榜单的区别，可以先看[AI 模型排行榜到底怎么看？LMArena、SWE-bench、LiveBench 与 12 个关键评测指标深度解析](/zh-cn/2026/08/31/ai-model-leaderboards-benchmark-metrics/)。
 
-![Artificial Analysis 首页三大核心黄金指标卡片：智能指数、输出速度与单次任务成本](01_homepage_highlights.jpg)
+## Intelligence Index 是什么？v4.3.2 包含的 10 项评测
 
-## 三大黄金维度通俗拆解：看懂基准指标背后的真实含义
+**Artificial Analysis Intelligence Index** 是多项评测加权后的综合得分，分数越高代表综合能力越强。根据官方 [Intelligence Benchmarking 方法论](https://artificialanalysis.ai/methodology/intelligence-benchmarking)，2026 年 9 月起启用的 **v4.3.2** 由 4 个大类、10 项评测构成：
 
-打开 Artificial Analysis 官网首页，最先映入眼帘的是三个核心卡片指标，分别对应了评估大语言模型时最为关键的三大维度：
+| 类别（权重） | 评测及权重 |
+|------|------|
+| Agents（30%） | AA-Briefcase v1.1 15%、GDPval-AA v2.1 10%、AutomationBench-AA 5% |
+| Coding（20%） | Terminal-Bench 4.0 10%、SciCode 10% |
+| General（30%） | AA-Omniscience 15%、GDP.pdf 10%、AA-LCR v1.1 5% |
+| Scientific Reasoning（20%） | Humanity's Last Exam 10%、CritPt 10% |
 
-### 1. 智能指数（Intelligence Index）：模型究竟有多聪明？
-**Intelligence Index** 是平台依托多项严苛学术与工业基准综合加权计算得出的整体能力得分。它摒弃了依靠死记硬背即可轻松做对的基础常识题，而是全面整合了极具挑战性的高难度测试集（例如考查博士级复杂推理的 **GPQA Diamond**、考查真实终端系统指令与环境排错的 **Terminal-Bench**，以及长文本复杂逻辑推导能力等）。
-* **分数越高质量越强**：直观反映了模型在面对代码编写、多步逻辑推导、数学证明以及长篇复杂系统指令时的综合应对能力。
-* **小灯泡专属标记**：若模型名称下方标有小灯泡图标，说明该模型属于具备原生“深度思考与复杂推演（Reasoning）”机制的推理模型。
+看分数时有三个坑要避开：
 
-### 2. 速度与延迟（Speed & Latency）：模型吐字快不快？
-响应速度直接决定了终端用户的交互流畅度。平台主要全链路监控两项硬核指标：
-* **每秒输出 Token 吞吐量（Tokens per second）**：Token 可以理解为大模型输出文本时的“语法积木”（1 个 Token 大致对应 1 个汉字或约 0.75 个英文单词）。每秒输出 60–80 个 Token 已经基本等同于人类默读的极限速度；如果突破 150+ Tokens/s，文本便会如机关枪扫射般瞬间喷涌而出，非常适合用于实时交互式对话或 IDE 内的代码实时补全。
-* **首字延迟时间（Time to First Token, TTFT）**：好比在餐厅点完餐后等待第一道菜上桌的时间。指的是当你点击发送请求后，界面需要经历多久的白屏等待才会吐出第一个字符。如果这项数值过大，用户就会产生系统卡死或网络超时的糟糕体验。
+- **指数会改版，不同版本的分数没有可比性。** 仅 2026 年就从 v4.0 迭代到 v4.3.2，比如 v4.2 去掉了 GPQA Diamond，v4.3 把 Terminal-Bench 2.1 换成了 4.0。旧文章、旧截图里的分数（包括本文 8 月的截图）不能和现在直接对比。
+- **同一个模型会按推理强度拆成多行。** **Claude Opus 5.5 (max)**、**(xhigh)**、**(high)** 是同一模型的不同档位，得分、成本、延迟差距很大，选型时要对准你线上实际使用的档位。
+- **带小灯泡图标的是推理（Reasoning）模型**，回答前会先消耗思考 Token，成本和延迟都会受影响。
 
-### 3. 单次任务实际成本（Cost per Task）：办成一件事究竟花多少钱？
-很多团队在进行技术选型时，往往只看云厂商官方公布的“每百万 Token 输入/输出售价”，但这极其容易导致实际账单严重超支。原因在于，现代具备深度推理能力的大模型，在向用户输出最终答案之前，会在后台默默生成海量的“思维链文字（Reasoning Tokens）”进行推导。这部分思考过程虽然未必会在前端直接展示，但 API 计费系统却会分文不差地全额计入账单。
-* **Cost per Task**：平台通过运行一套标准化的真实工程任务集，精确测算各款模型在完整跑通同等复杂度任务时的“真实综合账单（美元）”。唯有参考这项指标，才能彻底规避被纸面低廉单价蒙蔽的潜在陷阱。
+## 速度、延迟与成本怎么看
 
----
+![Artificial Analysis 首页 Intelligence、Speed、Cost per Task 三张重点图（2026 年 8 月截图）](01_homepage_highlights.jpg)
 
-## 四大实战场景：手把手带你看懂图表科学选型
+首页和 Models 页的指标口径如下（来自官方 [Performance Benchmarking 方法论](https://artificialanalysis.ai/methodology/performance-benchmarking)及图表说明）：
 
-在理清上述三大黄金指标后，我们来看看在实际工程研发的四种典型业务场景下，该如何依托平台图表做出科学合理的选型决策。
+| 指标 | 口径 | 适用场景 |
+|------|------|------|
+| **Output Speed**（tokens/s） | 收到第一个 chunk 之后，每秒收到的 Token 数 | 长文本生成、流式输出体验 |
+| **Latency / Time to First Token** | 从发出请求到收到第一个 Token 的秒数 | 实时对话、代码补全 |
+| **Time to First Answer Token** | 计入推理模型“思考时间”后，收到第一个答案 Token 的秒数 | 推理模型的真实等待时长 |
+| **End-to-End Response Time** | 输出 500 个 Token 所需秒数，含首包延迟和思考时间 | 单次请求的总耗时 |
+| **Cost per Task**（美元） | 跑一道 Intelligence Index 评测题的加权平均费用，含输入、缓存、推理和答案 Token | 衡量“把活干完”的真实成本 |
+| **Price**（美元 / 百万 Token） | 缓存命中、输入、输出的官方单价，以及 Blended Price | 估算自己的 API 账单 |
 
-### 场景一：高并发 API 与企业级系统——读懂“帕累托前沿”挑出性价比之王
+速度数据取自模型厂商的官方 API，没有官方 API 时取多家服务商的中位数；每天测 8 次，页面展示**过去 72 小时的中位数（P50）**，因此会随高峰时段和服务商负载波动。
 
-如果你正在为企业搭建智能客服矩阵或海量合同文档知识库，每月 API 调用量高达数亿 Token，那么请立即切换至 **Cost** 标签页下的 **Intelligence Index vs. Cost per Task** 散点图。
+**Cost per Task 比官方单价更有参考意义**：推理模型单价看着便宜，但思考 Token 一多，单题成本可能反而超过单价更贵的模型。想看总账，可以用 Models 页的 **Cost to Run Artificial Analysis Intelligence Index**，它把跑完整套评测的费用拆成 Output、Reasoning、Cache 等部分。
 
-![质量与成本帕累托前沿散点图：寻找高性价比模型最佳甜蜜点](02_pareto_quality_cost.jpg)
+![Cost to Run Artificial Analysis Intelligence Index 堆叠图，拆分输出、推理与缓存成本（2026 年 8 月截图）](02_pareto_quality_cost.jpg)
 
-这张图是整个评测体系中含金量最高的可视化分析图：
-* **纵轴（Y 轴）**：模型智能指数（越往上代表综合能力越强悍）。
-* **横轴（X 轴）**：单次任务实际花销（越往左代表调用成本越低廉）。
-* **左上方绿色高价值区（Most attractive quadrant）**：代表“能力既出众、调用又便宜”的理想最佳区间。
-* **虚线边界（Pareto Line，帕累托前沿线）**：将当前市场上所有**在同等价位下能力最强、或在同等智力水平下价格最低**的模型节点连成的一道边界包络线。
+## 2026 年 10 月榜单快照
 
-**图表解读核心技巧**：
-1. **稳居虚线之上的选手（最优解集）**：例如在极低成本区间领跑的 **GPT-5.6 Luna** 与 **DeepSeek V4 Pro**，以及在旗舰深度推理区间傲视群雄的 **Claude Opus 5** 与 **GPT-5.6 Sol**。只要位于帕累托前沿线上，就代表其属于当前价格梯队中的性价比天花板。
-2. **处于虚线右下方的选手（可直接淘汰）**：如果某款模型远离帕累托前沿线并深陷右下方，说明市场上早已存在其他模型“能力比它更强，价格却比它更低”，这类模型在选型评估时可直接予以过滤。
+以下是 2026 年 10 月 19 日 [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) 的部分数据（Intelligence Index v4.3.2，数据持续更新）：
 
-### 场景二：实时语音助手与 IDE 代码补全——极致速度与首字延迟优先
+| 模型（档位） | Intelligence Index | Cost per Task | 输出速度（t/s） | 首个 chunk 延迟（秒） |
+|------|------|------|------|------|
+| Claude Opus 5.5 (max) | 58 | $5.98 | 98 | 562.75 |
+| Claude Sonnet 5.5 (max) | 56 | $5.46 | 136 | 391.60 |
+| Claude Opus 5.5 (xhigh) | 56 | $3.46 | 85 | 115.10 |
+| Claude Opus 5.5 (high) | 54 | $1.82 | 82 | 40.49 |
+| GPT-6 Astra (max) | 53 | $3.26 | 69 | 292.33 |
+| Gemini 4 Argon (high) | 53 | $1.99 | 暂无数据 | 暂无数据 |
+| GPT-6.1 Sol (max) | 52 | $0.72 | 60 | 239.97 |
+| Claude Sonnet 5.5 (xhigh) | 52 | $2.01 | 112 | 36.17 |
 
-如果你的产品定位于开发工具编辑器中的行内代码实时预测补全，或是模拟真人语速的双向全双工语音助手，那么任何超过 1 秒钟的交互停顿，都会引发极强的挫败感。
+这张表能直接得出两个选型结论：
 
-![推理速度与延迟分析图：对比不同模型的每秒 Token 吞吐与任务耗时](03_speed_latency.jpg)
+- **最高分不等于性价比最高。** GPT-6.1 Sol (max) 只比榜首低 6 分，Cost per Task 却不到其八分之一。
+- **max 档位的首个 chunk 延迟往往以分钟计**，更适合后台批处理和智能体任务，不适合要求秒级响应的交互界面。
 
-在 **Speed** 分析区中，可以依据实际时延要求划分梯队：
-* **超音速梯队（>140 Tokens/s）**：文本呈飞射状即时生成，完美契合低延迟即时交互、输入联想与行内代码自动补全。
-* **均衡主力梯队（60–100 Tokens/s）**：输出连贯稳定，非常适合常规 Web 问答对话、邮件起草与技术文档润色。
-* **重度推理梯队（<50 Tokens/s）**：模型需要预留充足的时间进行思维链自洽反思，更适合作为后台异步任务，用于离线数据清洗、系统安全合规审计或复杂的批处理分析。
+各模型发布时的详细评测可参考[Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读](/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/)和[GPT-6 Sol 与 Luna 发布：Artificial Analysis 评分、API 价格与选型](/zh-cn/2026/09/23/gpt-6-sol-luna-pricing-aa-review/)。
 
-### 场景三：软件工程师必看——Coding Agent 综合基准榜单
+## 用帕累托前沿找高性价比模型
 
-对于日常重度依赖 AI 协同编写代码、排查系统异常的工程师，Artificial Analysis 专门设立了 **Coding Agent Benchmarks** 评测板块。所谓 Coding Agent，特指具备自主读取工程代码库、在真实终端执行命令、根据测试用例反馈自动迭代修复的智能编码代理（如 Claude Code 或 Codex）。
+Models 页的 **Intelligence Index vs. Cost per Task** 散点图是选型最实用的一张图：
 
-![Coding Agent 基准测试排行榜：对比各大 AI 编程代理的解题能力与运行成本](04_coding_agents.jpg)
+- **纵轴**是智能得分（越高越强），**横轴**是 Cost per Task（越靠左越便宜）。
+- **左上角的 Most attractive quadrant** 就是又强又便宜的区域。
+- **Pareto line（帕累托前沿线）** 把“同价位最强、同分数最便宜”的模型连成一条边界。线上的模型是各自价位的最优解；离线越远，说明已经有模型比它更强也更便宜，可以直接排除。
 
-该榜单主要依托三大工业级高难度评测集进行考察：
-1. **DeepSWE**：直接投喂提取自真实 GitHub 开源仓库的 113 个高难度疑难 Bug，全面检验 Agent 能否自主理清上下文依赖并修复代码直至测试绿灯。
-2. **Terminal-Bench v2**：专项测试 Agent 在真实 Linux 终端环境中执行 Shell 命令、排查环境依赖与配置运行时的综合工程素养。
-3. **SWE-Atlas-QnA**：全方位考察 Agent 对超大型复杂系统跨模块调用关系的架构理解力。
+同一区域还有 **Intelligence Index vs. Time per Task**、**vs. Output Speed**、**vs. End-to-End Response Time**，读法一样，只是把成本换成了耗时。
 
-**避坑指南**：研读该榜单时，切忌只盯解题成功率的单项数值，必须同步综合考量右侧的 **Time per Task（平均解题耗时）** 与 **Cost per Task（平均任务成本）**。部分 Agent 尽管解题成功率高出微弱的 2%，但单次解题往往需要漫长等待 25 分钟且耗资超过 10 美元；相比之下，能在 8 分钟内以 1–2 美元低成本搞定任务的 Agent，在实际日常开发流水线中反而更具工程落地价值。
+## 不同场景该看哪张图
 
-### 场景四：选择困难症？让模型推荐器（Model Recommender）为你量身定制
+| 场景 | 优先看 | 判断方法 |
+|------|------|------|
+| 实时对话、语音助手、IDE 补全 | **Latency**、**Output Speed** | 选首 Token 延迟低、吞吐高的模型或低推理档位 |
+| 高并发 API 调用、批量文档处理 | **Intelligence Index vs. Cost per Task** | 在帕累托前沿上找分数够用的最便宜模型 |
+| 编程智能体（Claude Code、Codex 这类工具） | **Coding Agents** 页 | 得分、单题耗时、单题费用一起看 |
+| 金融、法律、医疗等垂直行业 | **Capability Indexes** | 看对应行业的子指数，而不是总分 |
+| 私有化部署开源模型或挑选云厂商 | **Leaderboards → Providers** | 同一模型在不同服务商上的速度与价格 |
+| 仍然拿不定主意 | **Model Recommender** | 按权重生成推荐列表 |
 
-如果你面对复杂的指标矩阵依然难以决断，平台还内置了非常人性化的“模型推荐器（Model Recommender）”。
+![Artificial Analysis 输出速度柱状图与 Time per Task 图表（2026 年 8 月截图）](03_speed_latency.jpg)
 
-![Artificial Analysis 模型推荐器交互界面：通过权重滑块自定义推荐模型组合](05_model_recommender.jpg)
+**Coding Agents 页**的 **Coding Agent Index v1.5** 由三项评测等权重构成，每题跑 3 次，取 pass@1 平均值：
 
-只需简单三步：
-1. 依据具体项目的核心诉求，拖动 **Intelligence（智能）**、**Speed（速度）** 与 **Cost（成本）** 三个维度的权重滑块（从“不太关键”拖动至“至关重要”）。
-2. 输入预估的平均输入与输出字符量。
-3. 算法底层会即时动态计算并精准推荐综合匹配度最高的前三款模型，并清晰列出每一项推荐理由。
+- **DeepSWE v1.1**（Datacurve）：113 道真实软件工程任务
+- **Terminal-Bench 4.0**（Laude Institute）：66 道终端智能体任务
+- **SWE-Atlas-QnA**（Scale AI）：124 道代码库技术问答
 
----
+页面还提供单题耗时、费用、Token 消耗，以及新增的安全拒答率和 Reward Hacking 比例。几个模型分数只差几分时，耗时和费用往往才决定日常开发是否顺手。工具层面的差异可以看[AI 编程工具对比：Claude Code、Codex、Cursor 怎么选？](/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/)。
 
-## 结语与日常选型建议：像排兵布阵一样组合你的模型矩阵
+![Artificial Analysis Coding Agent Benchmarks 页面（2026 年 8 月截图，当时为 v1.3）](04_coding_agents.jpg)
 
-在当下的 AI 系统架构设计中，早已彻底告别了“单一大模型包打天下”的粗放阶段。依托 [Artificial Analysis](https://artificialanalysis.ai/) 沉淀的客观评测数据，我们能够构建出更为精细科学的**模型分流路由体系（Model Routing）**：
+**Model Recommender** 一共 5 步：第一步用滑块设定 Intelligence、Speed、Cost 的重要程度，最后按权重输出推荐模型。
 
-* **核心决策大脑（顶尖推理智能）**：部署处于帕累托前沿顶部的旗舰推理模型（如 Claude 或 GPT 系列顶级版本），专司负责系统架构规划、业务契约拆解与核心逻辑建模。若想深入了解当下主流编码工具的技术差异，推荐查阅我们早前的深度评测：[AI 编程工具对比：Claude Code、Codex、Cursor 怎么选？](/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/)。
-* **敏捷执行中枢（超高速与极致性价比）**：将输入格式归一化、测试用例补全、代码格式化与异常初筛等高频且琐碎的辅助工作，分流路由给单价极低、吞吐破百 Tokens/s 的轻量化模型。
-* **跨会话协同链路**：配合现代多代理协同工作流，例如在 [Claude Code 跨会话消息实践指南](/zh-cn/2026/08/09/claude-code-cross-session-messaging/) 中所介绍的通信技巧，让专攻不同维度的 Agent 会话各展所长。
+![Artificial Analysis Model Recommender 优先级滑块（2026 年 8 月截图）](05_model_recommender.jpg)
 
-下次再遇到新模型密集发布、各大社交平台营销话术铺天盖地之时，不妨先打开 Artificial Analysis 看看它在帕累托前沿上的真实物理坐标，让客观严谨的基准数据成为你进行技术架构选型时最坚固的导航底座。
+## Artificial Analysis 的局限
+
+- **总分是平均值**：Intelligence Index 偏重智能体任务（Agents 占 30%），如果你的业务是翻译、客服或简单分类，总分排名不一定反映真实效果。
+- **速度随服务商和时段波动**：72 小时中位数适合横向对比，不代表上线后的 P95 延迟。
+- **价格以官方定价为准**：上线前去各家官方定价页核实，并把缓存、批处理折扣算进去。
+- **最终还是要用自己的数据测**：官方提供 **Optima**，可以用自己的任务构建自定义评测；也可以挑出前 2–3 名候选模型，拿 20–50 条真实业务样本实测。
