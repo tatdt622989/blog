@@ -1,6 +1,6 @@
 ---
-title: "Codex 额度与 5 小时限制：重置时间、用量查询与节省方法"
-description: "Codex 剩余额度在哪里查，5 小时和每周限制何时重置？本文用速查表区分自动恢复与 Banked Reset，再说明用量面板、Credits、重置有效期和 CodexBar 监控方法，帮助你判断应该等待、手动重置还是调整任务安排。"
+title: "Codex 额度用完怎么办？重置时间与节省用量的方法"
+description: "Codex 剩余额度在哪里查，用完后何时恢复？本文提供官方用量面板入口，区分 5 小时和每周限制，说明 Pro 目前没有 5 小时上限的套餐差异，再介绍 Banked Reset、Credits 和排查步骤，帮助你按账号显示的重置时间安排任务。"
 permalink: 2026/06/18/claude-codex-usage-limits-guide/
 translation_key: claude-codex-usage-limits
 translations:
@@ -13,12 +13,12 @@ tags:
   - Codex
   - Claude
 date: 2026-06-18 14:34:36
-updated: "2026-09-26 12:24:14"
+updated: "2026-10-15 13:34:24"
 ---
 
 ![Codex 额度与用量管理指南封面](cover.webp)
 
-想知道 Codex 额度何时恢复，先打开 **Settings → Usage**，或在 CLI 输入 **/status**。需要分别查看 5 小时和每周窗口，再判断账号是否有可用的手动重置或 Credits。
+查询 **Codex 剩余额度与重置时间**，可以直接打开 [官方用量面板](https://chatgpt.com/codex/settings/usage)，或在 Codex CLI 输入 **/status**。先确认套餐和已经耗尽的窗口，再按面板显示的时间安排任务，不要一概认为等待五小时就能恢复。
 
 下面先给出速查表，再说明如何管理重置期限、监控用量和减少重复工作。
 
@@ -28,11 +28,15 @@ updated: "2026-09-26 12:24:14"
 
 | 要查询的项目 | 查询位置 | 需要注意什么 |
 | --- | --- | --- |
-| 5 小时用量 | **Settings → Usage** 中的短期窗口 | 以这一栏显示的恢复时间安排任务 |
+| 5 小时用量（适用套餐） | **Settings → Usage** 中的短期窗口 | 按该栏显示的时间恢复；Pro 目前没有此上限 |
 | 每周用量 | 同一面板中的每周窗口 | 短期用量恢复，不代表每周额度也恢复 |
 | Banked reset | 账号提供的手动重置选项 | 先核对有效期、使用条件和重置后的周期 |
 
 查询剩余额度可直接打开 [Codex 用量面板](https://chatgpt.com/codex/settings/usage)，或在 CLI 中输入 **/status**。[官方说明](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits)也以账号面板为查询入口，不要用其他用户的截图推算自己的恢复时间。
+
+### 为什么等了五小时，Codex 仍然不能用？
+
+短期窗口恢复，并不代表每周额度也恢复；也不要从报错时刻自行倒数五小时。依次核对**登录的账号和工作区、已经耗尽的窗口、该栏显示的重置时间**，再查看账号是否提供手动重置或 Credits 选项。
 
 ## 在哪里查看 Codex 剩余额度
 
@@ -48,7 +52,9 @@ OpenAI 会依据用户的订阅套餐、账号历史、工作区类型及阶段�
 
 ## 5 小时限制与每周窗口如何计算
 
-许多 Codex 账号会同时受到较短的 5 小时滚动窗口与周期较长的每周窗口双重约束。达到限制后，可用选项取决于账号与套餐。官方说明，正在执行的当前轮次仍可能在合理使用限制内继续完成，因此不能把达到上限理解为任务必然立即中断。
+**截至 2026 年 10 月 15 日，官方将 5 小时用量估计列于 Plus 和 Standard Business，Pro 套餐目前没有 5 小时上限；每周限制仍可能适用。** 因此，没有看到短期用量窗口不一定是故障。请核对 [OpenAI 当前的套餐用量说明](https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan)与自己的面板。
+
+如果账号同时具有短期与每周窗口，需要分别检查。达到限制后，可用选项取决于账号与套餐。官方说明，正在执行的当前轮次仍可能在合理使用限制内继续完成，因此不能把达到上限理解为任务必然立即中断。
 
 官方并未将任务简单折算为固定的对话消息条数。实际的资源消耗由以下关键技术变量共同决定：
 
@@ -77,15 +83,15 @@ Credits 是一种按量计费的弹性额度，用于在套餐内含配额耗尽
 
 更多扣费细节可查阅 [OpenAI 官方关于灵活使用 Credits 的说明](https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans)。
 
-## Banked Reset 什么时候用？先看七天周期与 30 天有效期
+## Banked Reset 什么时候用？先看周期与具体到期日
 
-**使用 Full Banked Reset 会恢复 5 小时和每周额度，同时改变下一次每周重置时间，进入新一轮约七天的周期。** 因此，使用前应先看原本距离自动恢复还有多久，而不只是看账号里还剩几次 reset。[OpenAI 官方规则](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)明确说明每周重置日期会改变，使用后请在 **Settings → Usage** 核对新时间。
+**对于同时具有 5 小时与每周窗口的账号，Full Banked Reset 会恢复这两项额度，同时改变下一次每周重置时间，进入新一轮约七天的周期。** 因此，使用前应先看原本距离自动恢复还有多久，而不只是看账号里还剩几次 reset。[OpenAI 官方规则](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)明确说明每周重置日期会改变，使用后请在 **Settings → Usage** 核对新时间。
 
 例如，原本周一恢复每周额度，如果周日使用了 banked reset，就不能继续按原来的周一恢复时间安排工作。如果任务能等到周一，可以保留这次重置；如果周日必须交付，就应把新周期也纳入安排。
 
 这与 [Claude Pro 的固定每周重置时间](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan)不同：Claude Pro 的常规周配额在账号指定的固定时间恢复，Codex 使用 Full Banked Reset 则会改变周期。两种工具应分别记录下一次恢复时间。
 
-**还要区分 reset 本身的有效期。** OpenAI 公布的 [30 天活动规则](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers)指发放后 30 天内使用，不是使用后获得 30 天不限量调用。不同活动可能有不同期限，收到后先确认账号中显示的到期日。
+**还要区分 reset 本身的有效期。** [官方邀请活动说明](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers)要求以邀请窗口显示的奖励、资格和到期日为准。不要把某次活动的 30 天期限套用到所有 reset，也不要把使用期限理解为重置后获得 30 天不限量调用。
 
 选择使用时机时，我会同时看**距离自动恢复的时间、reset 的剩余有效期，以及近期任务量**。即将自动恢复且没有紧急任务，可以先等；需要集中工作、又离恢复时间较远，重置更有价值。即将到期的 reset 则可以配合原本就计划完成的任务使用，避免过期闲置。
 

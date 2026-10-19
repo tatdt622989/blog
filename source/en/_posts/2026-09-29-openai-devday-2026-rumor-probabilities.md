@@ -1,8 +1,8 @@
 ---
-title: "OpenAI DevDay 2026 Preview: Ten Rumors Ranked by Probability"
+title: "OpenAI DevDay 2026 Rumors: Archived Preview and Announcements"
 date: 2026-09-29 00:18:36
-updated: 2026-09-29 00:46:12
-description: "An evidence-based OpenAI DevDay 2026 preview: ten rumors ranked by likelihood, from o and Pro Max to Ultrafast, new models, and hardware."
+updated: 2026-10-15 13:20:25
+description: "Read the OpenAI DevDay 2026 announcement recap, then revisit this archived preview of ten rumors about o, Pro Max, Ultrafast, models, and hardware."
 permalink: 2026/09/29/openai-devday-2026-rumor-probabilities/
 translation_key: openai-devday-2026-rumor-probabilities
 translations:
@@ -19,11 +19,13 @@ tags:
 
 ![Evidence gathering and connected AI agents at a developer conference](cover.jpg)
 
-OpenAI DevDay 2026 approaches with reports of a persistent agent called o, a Pro Max subscription, broader Ultrafast access, and new models. The evidence varies: some claims have public code or interface clues, while others originate in community speculation.
+**OpenAI DevDay 2026 has ended.** For what was announced, start with our [DevDay 2026 announcement recap](/en/2026/09/30/openai-devday-2026-announcements/).
 
-This article examines ten rumors against official announcements, original reporting, and GitHub records. They are ranked by the available evidence for an event announcement, with the remaining uncertainties, potential implications, and specific details to verify afterward.
+This page preserves ten predictions and their original sources from before the event. Use it to review the evidence available at the time. Names such as o and Pro Max, projected availability, and rumored prices are historical claims rather than a current product guide.
 
 <!--more-->
+
+> **Archive note, October 15, 2026:** The analysis below retains its original research cutoff. Livestream details, unconfirmed claims, and probability rankings describe the period before the event. See the recap above for the announcements.
 
 ## Livestream time and research cutoff
 

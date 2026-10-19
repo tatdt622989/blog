@@ -1,5 +1,5 @@
-title: "Codex Usage Limits: Five-Hour Resets, Weekly Limits, and Credits"
-description: "Check Codex usage and reset times, compare five-hour and weekly limits, and understand banked resets, credits, and Claude Code usage."
+title: "Hit Your Codex Limit? Check Reset Times and Reduce Usage"
+description: "Check Codex quota and reset times, compare five-hour and weekly limits, and learn why Pro has no five-hour cap. Includes banked resets and credits."
 permalink: 2026/06/18/claude-codex-usage-limits-guide/
 translation_key: claude-codex-usage-limits
 translations:
@@ -13,12 +13,12 @@ tags:
   - Usage Limits
   - CodexBar
 date: 2026-06-18 14:34:36
-updated: "2026-09-26 12:24:14"
+updated: "2026-10-15 13:34:24"
 ---
 
 ![Claude Code and Codex usage limit management guide](cover.webp)
 
-To check Codex usage and reset times, open **Settings → Usage** or run **/status** in the CLI. Check the five-hour and weekly windows separately before deciding whether to wait, use an available reset, or use credits.
+To check **Codex quota and reset times**, open the [official usage dashboard](https://chatgpt.com/codex/settings/usage) or run **/status** in the CLI. Check your plan and the exhausted window first. Waiting five hours does not always restore access, and Pro currently has no five-hour cap.
 
 The quick reference below separates these choices. The rest of the guide covers Codex and Claude Code usage, monitoring, and practical ways to reduce repeated work.
 
@@ -28,13 +28,17 @@ The quick reference below separates these choices. The rest of the guide covers 
 
 | What to check | Where to look | What matters |
 | --- | --- | --- |
-| Five-hour usage | The short window in **Settings → Usage** | Use the recovery time shown for that window |
+| Five-hour usage, where applicable | The short window in **Settings → Usage** | Use its displayed reset time; Pro currently has no five-hour cap |
 | Weekly usage | The weekly window in the same dashboard | Short-window recovery does not restore weekly capacity |
 | Banked reset | Your account's manual reset options | Check eligibility, expiration, and the resulting reset schedule |
 
 Open the [Codex usage dashboard](https://chatgpt.com/codex/settings/usage), or run **/status** in the CLI. [OpenAI's usage documentation](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits) points to these account-specific checks.
 
 This guide uses the current OpenAI and Anthropic documentation as its baseline. Exact allowances, eligible models, promotions, and prices can change, so your own usage dashboard is the final authority.
+
+### Why Is Codex Still Limited After Five Hours?
+
+A short-window reset does not restore an exhausted weekly allowance. Check that you are in the intended account and workspace, identify the exhausted window, and read its displayed reset time. Do not start a five-hour countdown from the error message. Then check which reset or credit options your account offers.
 
 ## Start With the Usage Dashboard
 
@@ -87,6 +91,8 @@ Use `/compact` when you need to continue the same task but the conversation has 
 
 Codex is available through ChatGPT plans, with usage that varies by plan. OpenAI advises users to inspect the current pricing page and usage dashboard rather than rely on a permanent prompt-count table.
 
+**As of October 15, 2026, OpenAI lists five-hour usage estimates for Plus and Standard Business. Pro plans currently have no five-hour limit; weekly limits may still apply.** A missing short-window meter is therefore not necessarily an error. Check [OpenAI's current plan limits](https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan) and your own dashboard.
+
 Codex, ChatGPT Work, ChatGPT for Excel, and Workspace Agents can share an agentic allowance and credit pool when those features are available on the plan. A long Codex task can therefore affect the capacity available to another supported agentic surface.
 
 When the included allowance is exhausted, your account may offer one or more of these choices:
@@ -98,15 +104,15 @@ When the included allowance is exhausted, your account may offer one or more of 
 
 The actual options depend on account eligibility, plan, workspace, and region.
 
-## When to Use a Banked Reset: The Weekly Clock and the 30-Day Deadline
+## When to Use a Banked Reset: The Weekly Clock and Your Expiration Date
 
-**A full banked reset restores five-hour and weekly capacity and moves your next weekly reset into a new, roughly seven-day cycle.** Before redeeming one, check how close you are to your existing automatic reset. [OpenAI explicitly says the weekly reset date changes](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work); confirm the new time in **Settings → Usage** afterward.
+**For accounts with both five-hour and weekly windows, a full banked reset restores both and moves the next weekly reset into a new, roughly seven-day cycle.** Before redeeming one, check how close you are to your existing automatic reset. [OpenAI explicitly says the weekly reset date changes](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work); confirm the new time in **Settings → Usage** afterward.
 
 For example, if your weekly allowance was due to recover on Monday and you redeem a reset on Sunday, do not continue planning around that old Monday reset. If the work can wait, saving the reset may be more useful. If Sunday delivery matters, account for the new weekly schedule.
 
 This differs from [Claude Pro's regular weekly schedule](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan), which uses a fixed day and time assigned to the account. Keep separate reset schedules when using both tools.
 
-**The reset's expiration is a different clock.** OpenAI's published [30-day promotion terms](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers) count from when the reset is granted, not from redemption. They do not provide 30 days of unlimited use. Expiration can vary by offer, so check the date shown for the reset you received.
+**The reset's expiration is a different clock.** [OpenAI's invitation terms](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers) direct you to the invitation dialog for the reward, eligibility, and expiration. Do not apply a particular offer's 30-day deadline to every reset, or interpret a redemption deadline as 30 days of unlimited use.
 
 My timing rule is to compare **time until automatic recovery, time until the reset expires, and upcoming workload**. Wait when recovery is close and the task can wait. Redeem when immediate capacity is valuable. If expiration is approaching, schedule work you already need to do within that deadline.
 

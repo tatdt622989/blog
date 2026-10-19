@@ -1,5 +1,5 @@
-title: "Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法"
-description: "Codex 額度在哪裡查、5 小時與每週限制何時重置？本文先用速查表區分自動恢復與 Banked Reset，再整理用量面板、Credits、重置期限和 CodexBar 監控方式，幫你判斷該等待、重設還是調整工作安排。"
+title: "Codex 額度用完怎麼辦？重置時間與節省用量的方法"
+description: "Codex 額度在哪裡查、用完何時恢復？本文提供官方用量面板入口，區分 5 小時與每週限制，補充 Pro 目前沒有 5 小時上限的方案差異，再說明 Banked Reset、Credits 與排查順序，幫你依帳戶顯示的重置時間安排工作。"
 translation_key: claude-codex-usage-limits
 translations:
   en: /en/2026/06/18/claude-codex-usage-limits-guide/
@@ -11,12 +11,12 @@ tags:
   - Codex
   - Claude
 date: 2026-06-18 14:34:36
-updated: "2026-09-26 12:24:14"
+updated: "2026-10-15 13:34:24"
 ---
 
 ![Codex 額度與用量管理指南封面](cover.webp)
 
-先說答案：要查 Codex 剩餘額度與重設時間，請開啟 **Settings → Usage**；正在使用 Codex CLI 時，輸入 **/status** 也能查看目前限制。面板顯示的時間才是你帳戶當下最可靠的答案。
+要查 **Codex 剩餘額度與重置時間**，直接開啟 [官方用量面板](https://chatgpt.com/codex/settings/usage)，或在 Codex CLI 輸入 **/status**。先看方案與耗盡的視窗，再依面板顯示的時間安排工作；不能一律認定等五小時就會恢復。
 
 Codex 並不是每次對話扣固定次數。模型、任務執行位置、工作複雜度、上下文、推理強度、速度與工具使用都會影響消耗，因此同一個方案能完成的任務數可能差很多。本文整理官方可確認的規則，以及真正能降低浪費的做法。
 
@@ -26,11 +26,15 @@ Codex 並不是每次對話扣固定次數。模型、任務執行位置、工�
 
 | 你要確認的項目 | 到哪裡看 | 判斷重點 |
 | --- | --- | --- |
-| 5 小時用量 | **Settings → Usage** 的短期視窗 | 依該列顯示的恢復時間安排工作 |
+| 5 小時用量（方案適用時） | **Settings → Usage** 的短期視窗 | 依該列顯示的恢復時間安排工作；Pro 目前沒有此上限 |
 | 每週用量 | 同一面板的每週視窗 | 短期視窗恢復，不代表每週額度也恢復 |
 | Banked reset | 帳戶可用的手動重設選項 | 先確認有效期限、使用條件與重設後的週期 |
 
 只想查剩餘額度，可以直接開啟 [Codex 用量面板](https://chatgpt.com/codex/settings/usage)，或在 CLI 輸入 **/status**。不要把別人的重置時間套在自己的帳戶上；[官方用量說明](https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits)也以帳戶面板為查詢入口。
+
+### 為什麼等了五小時，Codex 還是不能用？
+
+先確認你碰到的是哪一項限制。短期視窗恢復，並不代表每週額度也恢復；也不要從錯誤訊息出現時自行倒數五小時。依序核對**登入的帳戶與工作區、面板中耗盡的視窗、該列顯示的重置時間**，再查看帳戶是否提供 reset 或 Credits 選項。
 
 ## Codex 額度在哪裡看
 
@@ -46,7 +50,9 @@ OpenAI 會依方案、帳戶、工作區與活動調整可用選項，所以不�
 
 ## 5 小時限制怎麼計算
 
-許多 Codex 帳戶會同時看到較短的 5 小時視窗與較長的每週視窗。任一限制耗盡，都可能讓你必須等待重設、使用 Credits、套用帳戶提供的 reset，或改用方案允許的其他選項。
+**截至 2026 年 10 月 15 日，官方將 5 小時用量估計列於 Plus 與 Standard Business，Pro 方案目前沒有 5 小時上限；每週限制仍可能適用。** 因此，沒有看到短期視窗不一定是異常。方案與規則可能調整，請核對 [OpenAI 目前的方案用量說明](https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan)與自己的面板。
+
+若帳戶同時有短期與每週視窗，任一限制耗盡，都可能需要等待重設、使用 Credits、套用帳戶提供的 reset，或改用方案允許的其他選項。
 
 官方沒有把每個任務換算成固定的「訊息次數」。實際消耗會受到以下因素影響：
 
@@ -75,15 +81,15 @@ Credits 是超過方案內含額度後，讓支援功能繼續執行的按量付
 
 詳細規則可查看 [OpenAI Credits 說明](https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans)。
 
-## Banked reset 什麼時候用？先看七天週期與 30 天期限
+## Banked reset 什麼時候用？先看週期與個別到期日
 
-**使用 full banked reset，會補回 5 小時與每週額度，也會重新安排下一次每週重設時間，進入新一輪約七天的週期。** 所以按下重置前，最重要的是看「原本還要多久自動恢復」，而不只是看剩下幾次 reset。[OpenAI 官方規則](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)已明確說明，每週重設日期會改變；使用後請確認 **Settings → Usage** 顯示的新時間。
+**對同時具有 5 小時與每週視窗的帳戶，full banked reset 會補回這兩項額度，也會重新安排下一次每週重設時間，進入新一輪約七天的週期。** 所以按下重置前，最重要的是看「原本還要多久自動恢復」，而不只是看剩下幾次 reset。[OpenAI 官方規則](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)已明確說明，每週重設日期會改變；使用後請確認 **Settings → Usage** 顯示的新時間。
 
 例如，原本週一就會恢復每週額度，如果你在週日使用 banked reset，就不能再把原本週一的恢復時間算進工作安排。若工作可以等到週一，保留這次重置可能更有用；如果週日就有必須完成的工作，則要把新週期一併考慮。
 
 這和 [Claude Pro 的固定每週重設時間](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan)不同：Claude Pro 的一般週期由帳戶指定固定時間；Codex 使用 full banked reset 則會改變週期安排。同時使用兩者時，應分別記錄各自的下一次重設時間。
 
-**另一個要看的日期，是 reset 本身何時到期。** OpenAI 公布的 [30 天重置活動規則](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers)是從發放日起算 30 天內使用，並非按下重置後能連續用 30 天。各次活動的期限可能不同，收到後先看帳戶標示的到期日。
+**另一個要看的日期，是 reset 本身何時到期。** [官方邀請活動說明](https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers)要求以邀請視窗顯示的獎勵、資格與到期日為準。不要把特定活動的 30 天期限套用到所有 reset，也不要把使用期限理解成重置後能連續用 30 天。
 
 我的建議是把三件事一起看：**距離自動重設還有多久、reset 還剩幾天有效、近期是否真的需要額度。** 快自動恢復且不趕工，可以先等；近期有大量工作、又離恢復時間很遠，重置的價值就比較高。若 reset 即將到期，則在期限內安排原本就要做的工作，避免留到失效。
 

@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法 | 6yuwei</title>
+  <title>Codex 額度用完怎麼辦？重置時間與節省用量的方法 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="Codex 額度在哪裡查、5 小時與每週限制何時重置？本文先用速查表區分自動恢復與 Banked Reset，再整理用量面板、Credits、重置期限和 CodexBar 監控方式，幫你判斷該等待、重設還是調整工作安排。">
+  <meta name="description" content="Codex 額度在哪裡查、用完何時恢復？本文提供官方用量面板入口，區分 5 小時與每週限制，補充 Pro 目前沒有 5 小時上限的方案差異，再說明 Banked Reset、Credits 與排查順序，幫你依帳戶顯示的重置時間安排工作。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/">
   
@@ -18,8 +18,8 @@
   <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/">
   
 
-  <meta property="og:title" content="Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法"/>
-  <meta property="og:description" content="Codex 額度在哪裡查、5 小時與每週限制何時重置？本文先用速查表區分自動恢復與 Banked Reset，再整理用量面板、Credits、重置期限和 CodexBar 監控方式，幫你判斷該等待、重設還是調整工作安排。"/>
+  <meta property="og:title" content="Codex 額度用完怎麼辦？重置時間與節省用量的方法"/>
+  <meta property="og:description" content="Codex 額度在哪裡查、用完何時恢復？本文提供官方用量面板入口，區分 5 小時與每週限制，補充 Pro 目前沒有 5 小時上限的方案差異，再說明 Banked Reset、Credits 與排查順序，幫你依帳戶顯示的重置時間安排工作。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/"/>
@@ -31,13 +31,13 @@
   
   <meta property="og:image" content="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/cover.webp?v=fa6a9f8f" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法">
-  <meta name="twitter:description" content="Codex 額度在哪裡查、5 小時與每週限制何時重置？本文先用速查表區分自動恢復與 Banked Reset，再整理用量面板、Credits、重置期限和 CodexBar 監控方式，幫你判斷該等待、重設還是調整工作安排。">
+  <meta name="twitter:title" content="Codex 額度用完怎麼辦？重置時間與節省用量的方法">
+  <meta name="twitter:description" content="Codex 額度在哪裡查、用完何時恢復？本文提供官方用量面板入口，區分 5 小時與每週限制，補充 Pro 目前沒有 5 小時上限的方案差異，再說明 Banked Reset、Credits 與排查順序，幫你依帳戶顯示的重置時間安排工作。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/cover.webp?v=fa6a9f8f">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/","url":"https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/","headline":"Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法","description":"Codex 額度在哪裡查、5 小時與每週限制何時重置？本文先用速查表區分自動恢復與 Banked Reset，再整理用量面板、Credits、重置期限和 CodexBar 監控方式，幫你判斷該等待、重設還是調整工作安排。","datePublished":"2026-06-18T06:34:36.000Z","dateModified":"2026-09-26T04:24:14.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/cover.webp"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/","url":"https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/","headline":"Codex 額度用完怎麼辦？重置時間與節省用量的方法","description":"Codex 額度在哪裡查、用完何時恢復？本文提供官方用量面板入口，區分 5 小時與每週限制，補充 Pro 目前沒有 5 小時上限的方案差異，再說明 Banked Reset、Credits 與排查順序，幫你依帳戶顯示的重置時間安排工作。","datePublished":"2026-06-18T06:34:36.000Z","dateModified":"2026-10-15T05:34:24.000Z","inLanguage":"zh-TW","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":"https://blog.6yuwei.com/img/logo.svg"},"image":["https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/cover.webp"]}</script>
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法","item":"https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Codex 額度用完怎麼辦？重置時間與節省用量的方法","item":"https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/"}]}</script>
   
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -225,14 +225,14 @@
       
       
   
-    <h1 class="p-name title" itemprop="headline name">Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法</h1>
+    <h1 class="p-name title" itemprop="headline name">Codex 額度用完怎麼辦？重置時間與節省用量的方法</h1>
   
 
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2026/06/18/claude-codex-quota-guide/cover-card-720.jpg?v=27d27a07" alt="Codex 額度與用量管理指南封面" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/06/18/claude-codex-quota-guide/cover-card-480.jpg?v=b47cd599 480w, /2026/06/18/claude-codex-quota-guide/cover-card-720.jpg?v=27d27a07 720w, /2026/06/18/claude-codex-quota-guide/cover-card-960.jpg?v=bfab22e3 960w, /2026/06/18/claude-codex-quota-guide/cover-card-1280.jpg?v=d8186778 1280w, /2026/06/18/claude-codex-quota-guide/cover.webp?v=fa6a9f8f 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p>先說答案：要查 Codex 剩餘額度與重設時間，請開啟 <strong>Settings → Usage</strong>；正在使用 Codex CLI 時，輸入 <strong>&#x2F;status</strong> 也能查看目前限制。面板顯示的時間才是你帳戶當下最可靠的答案。</p>
+<p>要查 <strong>Codex 剩餘額度與重置時間</strong>，直接開啟 <a target="_blank" rel="noopener" href="https://chatgpt.com/codex/settings/usage">官方用量面板</a>，或在 Codex CLI 輸入 <strong>&#x2F;status</strong>。先看方案與耗盡的視窗，再依面板顯示的時間安排工作；不能一律認定等五小時就會恢復。</p>
 <p>Codex 並不是每次對話扣固定次數。模型、任務執行位置、工作複雜度、上下文、推理強度、速度與工具使用都會影響消耗，因此同一個方案能完成的任務數可能差很多。本文整理官方可確認的規則，以及真正能降低浪費的做法。</p>
 <span id="more"></span>
 
@@ -245,9 +245,9 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>5 小時用量</td>
+<td>5 小時用量（方案適用時）</td>
 <td><strong>Settings → Usage</strong> 的短期視窗</td>
-<td>依該列顯示的恢復時間安排工作</td>
+<td>依該列顯示的恢復時間安排工作；Pro 目前沒有此上限</td>
 </tr>
 <tr>
 <td>每週用量</td>
@@ -261,6 +261,7 @@
 </tr>
 </tbody></table></div>
 <p>只想查剩餘額度，可以直接開啟 <a target="_blank" rel="noopener" href="https://chatgpt.com/codex/settings/usage">Codex 用量面板</a>，或在 CLI 輸入 <strong>&#x2F;status</strong>。不要把別人的重置時間套在自己的帳戶上；<a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#where-can-i-see-my-current-usage-limits">官方用量說明</a>也以帳戶面板為查詢入口。</p>
+<h3 id="為什麼等了五小時，Codex-還是不能用？"><a href="#為什麼等了五小時，Codex-還是不能用？" class="headerlink" title="為什麼等了五小時，Codex 還是不能用？"></a>為什麼等了五小時，Codex 還是不能用？</h3><p>先確認你碰到的是哪一項限制。短期視窗恢復，並不代表每週額度也恢復；也不要從錯誤訊息出現時自行倒數五小時。依序核對<strong>登入的帳戶與工作區、面板中耗盡的視窗、該列顯示的重置時間</strong>，再查看帳戶是否提供 reset 或 Credits 選項。</p>
 <h2 id="Codex-額度在哪裡看"><a href="#Codex-額度在哪裡看" class="headerlink" title="Codex 額度在哪裡看"></a>Codex 額度在哪裡看</h2><p>最直接的方式有兩種：</p>
 <ol>
 <li><strong>Codex App 或網頁版：Settings → Usage</strong><ul>
@@ -274,7 +275,8 @@
 </li>
 </ol>
 <p>OpenAI 會依方案、帳戶、工作區與活動調整可用選項，所以不要把別人的截圖當成自己的固定上限。若 App、網頁與 CLI 顯示不同，先確認是否登入同一個帳戶或工作區，再重新整理 <strong>Settings → Usage</strong>。</p>
-<h2 id="5-小時限制怎麼計算"><a href="#5-小時限制怎麼計算" class="headerlink" title="5 小時限制怎麼計算"></a>5 小時限制怎麼計算</h2><p>許多 Codex 帳戶會同時看到較短的 5 小時視窗與較長的每週視窗。任一限制耗盡，都可能讓你必須等待重設、使用 Credits、套用帳戶提供的 reset，或改用方案允許的其他選項。</p>
+<h2 id="5-小時限制怎麼計算"><a href="#5-小時限制怎麼計算" class="headerlink" title="5 小時限制怎麼計算"></a>5 小時限制怎麼計算</h2><p><strong>截至 2026 年 10 月 15 日，官方將 5 小時用量估計列於 Plus 與 Standard Business，Pro 方案目前沒有 5 小時上限；每週限制仍可能適用。</strong> 因此，沒有看到短期視窗不一定是異常。方案與規則可能調整，請核對 <a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#what-are-the-usage-limits-for-my-plan">OpenAI 目前的方案用量說明</a>與自己的面板。</p>
+<p>若帳戶同時有短期與每週視窗，任一限制耗盡，都可能需要等待重設、使用 Credits、套用帳戶提供的 reset，或改用方案允許的其他選項。</p>
 <p>官方沒有把每個任務換算成固定的「訊息次數」。實際消耗會受到以下因素影響：</p>
 <ul>
 <li><strong>模型</strong>：不同模型的使用成本與可用量不同。</li>
@@ -295,10 +297,10 @@
 <li>購買的 Credits 通常不可退款，並有使用期限；下單前應確認畫面上的最新條款。</li>
 </ul>
 <p>詳細規則可查看 <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/12642688-using-credits-for-flexible-usage-in-chatgpt-personal-plans">OpenAI Credits 說明</a>。</p>
-<h2 id="Banked-reset-什麼時候用？先看七天週期與-30-天期限"><a href="#Banked-reset-什麼時候用？先看七天週期與-30-天期限" class="headerlink" title="Banked reset 什麼時候用？先看七天週期與 30 天期限"></a>Banked reset 什麼時候用？先看七天週期與 30 天期限</h2><p><strong>使用 full banked reset，會補回 5 小時與每週額度，也會重新安排下一次每週重設時間，進入新一輪約七天的週期。</strong> 所以按下重置前，最重要的是看「原本還要多久自動恢復」，而不只是看剩下幾次 reset。<a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work">OpenAI 官方規則</a>已明確說明，每週重設日期會改變；使用後請確認 <strong>Settings → Usage</strong> 顯示的新時間。</p>
+<h2 id="Banked-reset-什麼時候用？先看週期與個別到期日"><a href="#Banked-reset-什麼時候用？先看週期與個別到期日" class="headerlink" title="Banked reset 什麼時候用？先看週期與個別到期日"></a>Banked reset 什麼時候用？先看週期與個別到期日</h2><p><strong>對同時具有 5 小時與每週視窗的帳戶，full banked reset 會補回這兩項額度，也會重新安排下一次每週重設時間，進入新一輪約七天的週期。</strong> 所以按下重置前，最重要的是看「原本還要多久自動恢復」，而不只是看剩下幾次 reset。<a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work">OpenAI 官方規則</a>已明確說明，每週重設日期會改變；使用後請確認 <strong>Settings → Usage</strong> 顯示的新時間。</p>
 <p>例如，原本週一就會恢復每週額度，如果你在週日使用 banked reset，就不能再把原本週一的恢復時間算進工作安排。若工作可以等到週一，保留這次重置可能更有用；如果週日就有必須完成的工作，則要把新週期一併考慮。</p>
 <p>這和 <a target="_blank" rel="noopener" href="https://support.claude.com/en/articles/8325606-what-is-the-pro-plan">Claude Pro 的固定每週重設時間</a>不同：Claude Pro 的一般週期由帳戶指定固定時間；Codex 使用 full banked reset 則會改變週期安排。同時使用兩者時，應分別記錄各自的下一次重設時間。</p>
-<p><strong>另一個要看的日期，是 reset 本身何時到期。</strong> OpenAI 公布的 <a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers">30 天重置活動規則</a>是從發放日起算 30 天內使用，並非按下重置後能連續用 30 天。各次活動的期限可能不同，收到後先看帳戶標示的到期日。</p>
+<p><strong>另一個要看的日期，是 reset 本身何時到期。</strong> <a target="_blank" rel="noopener" href="https://learn.chatgpt.com/docs/pricing#invite-friends-and-coworkers">官方邀請活動說明</a>要求以邀請視窗顯示的獎勵、資格與到期日為準。不要把特定活動的 30 天期限套用到所有 reset，也不要把使用期限理解成重置後能連續用 30 天。</p>
 <p>我的建議是把三件事一起看：<strong>距離自動重設還有多久、reset 還剩幾天有效、近期是否真的需要額度。</strong> 快自動恢復且不趕工，可以先等；近期有大量工作、又離恢復時間很遠，重置的價值就比較高。若 reset 即將到期，則在期限內安排原本就要做的工作，避免留到失效。</p>
 <p><img src="/2026/06/18/claude-codex-quota-guide/reset-quota.png?v=ce0b8259" alt="使用 banked reset 前，先確認到期日；使用後再核對新的每週重設時間"></p>
 <h2 id="用-CodexBar-在選單列監控"><a href="#用-CodexBar-在選單列監控" class="headerlink" title="用 CodexBar 在選單列監控"></a>用 CodexBar 在選單列監控</h2><p><a target="_blank" rel="noopener" href="https://github.com/steipete/CodexBar">CodexBar</a> 是第三方開源工具，可在 macOS 選單列顯示 Codex、Claude Code 等服務的用量、重設時間與使用速度，適合同時管理多個 AI 工具的人。</p>
@@ -383,7 +385,7 @@
 
     
       <!-- 繁體中文（台灣/港澳）：Threads、LINE、Facebook、X -->
-      <a href="https://www.threads.net/intent/post?text=Codex%20%E9%A1%8D%E5%BA%A6%E8%88%87%205%20%E5%B0%8F%E6%99%82%E9%99%90%E5%88%B6%EF%BC%9A%E9%87%8D%E7%BD%AE%E6%99%82%E9%96%93%E3%80%81%E7%94%A8%E9%87%8F%E6%9F%A5%E8%A9%A2%E8%88%87%E7%AF%80%E7%9C%81%E6%96%B9%E6%B3%95%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F06%2F18%2Fclaude-codex-quota-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
+      <a href="https://www.threads.net/intent/post?text=Codex%20%E9%A1%8D%E5%BA%A6%E7%94%A8%E5%AE%8C%E6%80%8E%E9%BA%BC%E8%BE%A6%EF%BC%9F%E9%87%8D%E7%BD%AE%E6%99%82%E9%96%93%E8%88%87%E7%AF%80%E7%9C%81%E7%94%A8%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95%20https%3A%2F%2Fblog.6yuwei.com%2F2026%2F06%2F18%2Fclaude-codex-quota-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-threads" title="Share on Threads" aria-label="Share on Threads">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
           <path d="M12.186 24C5.467 24 0 18.533 0 11.814 0 5.094 5.467 0 12.186 0c6.72 0 12.187 5.094 12.187 11.814 0 4.636-2.617 8.356-6.84 9.718-.518.167-1.077-.123-1.244-.641-.167-.518.123-1.077.641-1.244 3.51-1.132 5.688-4.225 5.688-8.1 0-5.656-4.597-10.059-10.432-10.059-5.835 0-10.432 4.403-10.432 10.059 0 5.655 4.597 10.058 10.432 10.058 3.57 0 6.643-1.636 8.225-4.379.288-.498.92-.667 1.418-.38.498.288.667.92.38 1.418-1.92 3.329-5.654 5.318-10.023 5.318zm.134-7.487c-2.454 0-4.444-1.99-4.444-4.444s1.99-4.444 4.444-4.444c2.454 0 4.444 1.99 4.444 4.444 0 .484-.393.877-.877.877s-.877-.393-.877-.877c0-1.483-1.208-2.69-2.69-2.69-1.483 0-2.69 1.207-2.69 2.69s1.207 2.69 2.69 2.69c.484 0 .877.393.877.877s-.393.877-.877.877z"/>
         </svg>
@@ -401,7 +403,7 @@
         </svg>
         <span>Facebook</span>
       </a>
-      <a href="https://twitter.com/intent/tweet?text=Codex%20%E9%A1%8D%E5%BA%A6%E8%88%87%205%20%E5%B0%8F%E6%99%82%E9%99%90%E5%88%B6%EF%BC%9A%E9%87%8D%E7%BD%AE%E6%99%82%E9%96%93%E3%80%81%E7%94%A8%E9%87%8F%E6%9F%A5%E8%A9%A2%E8%88%87%E7%AF%80%E7%9C%81%E6%96%B9%E6%B3%95&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F06%2F18%2Fclaude-codex-quota-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+      <a href="https://twitter.com/intent/tweet?text=Codex%20%E9%A1%8D%E5%BA%A6%E7%94%A8%E5%AE%8C%E6%80%8E%E9%BA%BC%E8%BE%A6%EF%BC%9F%E9%87%8D%E7%BD%AE%E6%99%82%E9%96%93%E8%88%87%E7%AF%80%E7%9C%81%E7%94%A8%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95&url=https%3A%2F%2Fblog.6yuwei.com%2F2026%2F06%2F18%2Fclaude-codex-quota-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
@@ -410,7 +412,7 @@
     
 
     <!-- 原生分享（行動裝置自動啟用） -->
-    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Codex 額度與 5 小時限制：重置時間、用量查詢與節省方法" data-url="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Codex 額度用完怎麼辦？重置時間與節省用量的方法" data-url="https://blog.6yuwei.com/2026/06/18/claude-codex-quota-guide/" title="分享文章" aria-label="分享文章" style="display: none;">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="18" cy="5" r="3"></circle>
         <circle cx="6" cy="12" r="3"></circle>
