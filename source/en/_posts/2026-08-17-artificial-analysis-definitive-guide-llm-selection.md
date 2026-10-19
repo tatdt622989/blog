@@ -1,8 +1,5 @@
 title: "What Is Artificial Analysis? How to Read the Intelligence Index, Speed and Cost"
-description: >-
-  Artificial Analysis benchmarks LLMs on intelligence, speed, latency and cost.
-  Learn to read Intelligence Index v4.3.2 and Cost per Task, with an Oct 2026
-  snapshot.
+description: "Artificial Analysis benchmarks LLMs on intelligence, speed, latency and cost. How to read Intelligence Index v4.3.2 and Cost per Task, Oct 2026."
 permalink: 2026/08/17/artificial-analysis-definitive-guide-llm-selection/
 translation_key: artificial-analysis-definitive-guide-llm-selection
 translations:

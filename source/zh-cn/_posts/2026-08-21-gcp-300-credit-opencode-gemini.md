@@ -16,7 +16,7 @@ tags:
 - 开发工具
 ---
 
-![](cover.jpg)
+![用 GCP 300 美元免费额度在 OpenCode 中调用 Gemini 模型](cover.jpg)
 
 **GCP 300 美元免费额度可以直接拿来在 OpenCode 里写代码。** Google Cloud 新用户的 300 美元试用赠金（有效期 90 天）可以抵扣 **Agent Platform（原 Vertex AI）** 上的 Gemini 调用费用：在 **Agent Studio** 创建一个 API Key，填进 OpenCode 的 Vertex 配置，就能调用 **Gemini 3.8 Flash** 等模型，试用期内不会自动扣费。有两个例外：**AI Studio 的 Gemini API** 和 **Claude 等合作伙伴模型**都不能用这笔赠金抵扣。
 

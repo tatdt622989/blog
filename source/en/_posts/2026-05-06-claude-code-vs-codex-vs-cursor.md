@@ -1,8 +1,5 @@
 title: 'Claude Code vs Codex vs Cursor (2026): Pricing, Models, and Which to Choose'
-description: >-
-  Claude Code vs Codex vs Cursor, October 2026: current prices, models, and
-  limits, how Cursor's new X Subscription affects Claude and GPT, and which to
-  pick.
+description: "Claude Code vs Codex vs Cursor in October 2026: prices, models and limits, what Cursor's X Subscription changes, and which tool to pick."
 permalink: 2026/05/06/claude-code-vs-codex-vs-cursor/
 translation_key: ai-coding-tools-comparison
 translations:

@@ -2,7 +2,7 @@
 title: "How to Make a Game with GPT-6: Godot, Unity, Unreal, or Web Engines"
 date: 2026-09-09 15:00:00
 updated: 2026-10-19 16:00:00
-description: "Making a game with GPT-6? Use GPT-6.1 Sol or Astra in Codex, pick Phaser for 2D web, Godot for indie, Unity (official Codex plugin) for C#, then build one level."
+description: "Making a game with GPT-6? Use GPT-6.1 Sol or Astra in Codex, Phaser for 2D web, Godot for indie or Unity with the Codex plugin, then build a level."
 translation_key: gpt-6-game-engines-guide
 permalink: 2026/09/09/gpt-6-game-engines-guide/
 translations:

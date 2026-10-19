@@ -2,7 +2,7 @@
 title: "Google Cloud 300 美元免费额度：申请条件、90 天期限、可用范围与防扣费"
 date: 2026-10-19 16:45:00
 updated: 2026-10-19 16:45:00
-description: "Google Cloud（GCP）新用户可领取 US$300 免费试用金，有效期 90 天，不手动升级就不会扣费。本文梳理申请条件、哪些服务不能抵扣（AI Studio 的 Gemini API 不行，Agent Platform 上的 Gemini 可以）、到期后资源如何处理、升级前后的区别、Always Free 额度、剩余额度的查看入口和预算设置。"
+description: "Google Cloud 新用户可领取 US$300 免费试用金，有效期 90 天，不升级就不会扣费。本文梳理申请条件、哪些服务不能抵扣、Gemini 能否使用、到期后的处理、剩余额度查询与预算设置。"
 permalink: 2026/10/19/google-cloud-300-free-trial-guide/
 translation_key: google-cloud-300-free-trial-guide
 translations:

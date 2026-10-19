@@ -2,7 +2,7 @@
 title: "Best Aseprite Extensions: 5 Plugins for Pixel Art and How to Install Them"
 date: 2026-08-18 21:00:00
 updated: 2026-10-19 16:00:00
-description: "Best Aseprite extensions: Lospec Palette Importer, Magic Pencil, Wave Warp, Parallixel, and an isometric grid script, with prices, versions, and install steps."
+description: "Best Aseprite extensions: Lospec Palette Importer, Magic Pencil, Wave Warp, Parallixel and an isometric grid, with prices and install steps."
 permalink: 2026/08/18/aseprite-extensions-pixel-art-workflow/
 translation_key: aseprite-extensions-pixel-art-workflow
 translations:

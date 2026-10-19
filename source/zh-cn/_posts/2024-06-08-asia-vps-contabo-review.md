@@ -85,7 +85,7 @@ Contabo 是德国服务商，亚洲有东京和新加坡机房。
 
 ## Vultr 和 Contabo 怎么选
 
-![](vultr.webp)
+![Vultr 东京 VPS 价格页面](vultr.webp)
 
 | 对比项 | Contabo | Vultr |
 | --- | --- | --- |
@@ -99,7 +99,7 @@ Vultr 东京最便宜是 **5 美元**（1 vCPU、1 GB、25 GB SSD、1 TB 流量�
 
 ## ConoHa VPS 价格与特点
 
-![](conoha.png)
+![ConoHa VPS 套餐与价格页面](conoha.png)
 
 ConoHa 是 GMO 旗下的日本服务商，机房在东京，控制台以日文为主。支持**按小时计费**（有月费上限），也可以买长期套餐打折。我 2024 年实测台湾延迟约 **50 ms**。
 
@@ -116,7 +116,7 @@ ConoHa 从 2026 年 7 月 1 日起取消 10% 的服务维护调整费并调整�
 
 ## OVH 有日本机房吗？
 
-![](ovhcloud.webp)
+![OVHcloud VPS 价格页面](ovhcloud.webp)
 
 **没有。** OVHcloud 的 VPS 在亚太区只有新加坡、悉尼和孟买，我 2024 年实测台湾到新加坡约 **50 ms**。
 
@@ -133,7 +133,7 @@ ConoHa 从 2026 年 7 月 1 日起取消 10% 的服务维护调整费并调整�
 
 ## DigitalOcean
 
-![](digitalocean.png)
+![DigitalOcean Droplet 价格页面](digitalocean.png)
 
 DigitalOcean 亚洲有新加坡和班加罗尔机房，控制台和内置的网页 SSH 很好用。2026 年 1 月 1 日起改为**按秒计费**，月费有上限。Basic 套餐：512 MB **4 美元**、1 GB **6 美元**、2 GB **12 美元**、4 GB（2 vCPU）**24 美元**。价格和 Vultr 一个档次，配置同样偏小。
 

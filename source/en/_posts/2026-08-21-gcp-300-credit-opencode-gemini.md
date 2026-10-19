@@ -2,7 +2,7 @@
 title: "GCP $300 Free Credit in OpenCode: Run Gemini 3.8 Flash via Vertex AI"
 date: 2026-08-21 10:45:00
 updated: 2026-10-19 16:00:00
-description: "Use the GCP $300 free trial credit to run Gemini in OpenCode via Agent Platform (formerly Vertex AI): API key setup, token math, and what happens after 90 days."
+description: "Use the GCP $300 free trial credit to run Gemini in OpenCode via Agent Platform: API key setup, token math, and what happens after 90 days."
 permalink: 2026/08/21/gcp-300-credit-opencode-gemini/
 translation_key: gcp-300-credit-opencode-gemini
 translations:
@@ -16,7 +16,7 @@ tags:
 - Developer Tools
 ---
 
-![](cover.jpg)
+![Using the GCP $300 free credit to run Gemini models in OpenCode](cover.jpg)
 
 **Yes, the GCP $300 free trial credit works for coding in OpenCode.** The Google Cloud credit for new customers (valid for 90 days) covers Gemini usage on **Agent Platform (formerly Vertex AI)**. Create an API key in **Agent Studio**, paste it into OpenCode's Vertex provider, and you can run **Gemini 3.8 Flash** and other Gemini models. You are not charged automatically during the trial. Two exceptions: the credit does not pay for the **Gemini API in AI Studio** or for **partner models such as Claude**.
 

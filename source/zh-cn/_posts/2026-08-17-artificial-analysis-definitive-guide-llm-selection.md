@@ -1,6 +1,6 @@
 ---
 title: Artificial Analysis 是什么？Intelligence Index、速度与成本怎么看
-description: Artificial Analysis 是独立的大模型评测网站，用同一套测试横向对比数百个 LLM 的智能水平、输出速度、延迟与成本。本文讲清 Intelligence Index v4.3.2 的 10 项评测、Cost per Task 和延迟指标怎么读，并附 2026 年 10 月榜单快照与按场景选型方法。
+description: "Artificial Analysis 是独立的大模型评测网站，横向对比 LLM 的智能、速度、延迟与成本。本文讲清 Intelligence Index v4.3.2 和 Cost per Task 怎么读，并附 2026 年 10 月榜单快照与选型方法。"
 permalink: 2026/08/17/artificial-analysis-definitive-guide-llm-selection/
 translation_key: artificial-analysis-definitive-guide-llm-selection
 translations:

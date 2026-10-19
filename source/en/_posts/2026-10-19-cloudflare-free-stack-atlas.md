@@ -2,7 +2,7 @@
 title: "Cloudflare Free Stack: Free Tiers, Limits, and Starter Stacks for 41 Services"
 date: 2026-10-19 14:00:00
 updated: 2026-10-19 15:00:00
-description: "I built Cloudflare Free Stack, a guide for indie developers covering 41 Cloudflare services, including Workers, Pages, R2, D1, Workers AI, and Tunnel. It lists free allowances, billing units, and limits, plus five starter stacks for Vue, Capacitor, Node / Coolify, multiplayer games, and AI knowledge bases."
+description: "Free tiers, billing units and limits for 41 Cloudflare services, from Workers and R2 to D1 and Tunnel, plus five starter stacks for indie developers."
 permalink: 2026/10/19/cloudflare-free-stack-atlas/
 translation_key: cloudflare-free-stack-atlas
 translations:

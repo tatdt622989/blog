@@ -2,7 +2,7 @@
 title: "Contabo Review 2026: Tokyo VPS vs Vultr, ConoHa, and OVH"
 date: 2024-06-08 00:14:20
 updated: 2026-10-19 16:00:00
-description: "Contabo review: the Tokyo Cloud VPS 4 gets 4 vCPU and 8 GB RAM for €4.40/mo (first 24 months), but CPU is shared. Oct 2026 prices vs Vultr, ConoHa, OVH."
+description: "Contabo review 2026: the Tokyo Cloud VPS 4 offers 4 vCPU and 8 GB RAM from €4.40/mo, but CPU is shared. Prices compared with Vultr, ConoHa and OVH."
 permalink: 2024/06/08/asia-vps-contabo-review/
 translation_key: asia-vps-contabo-review
 translations:
@@ -85,7 +85,7 @@ Tokyo plans from [Contabo's Japan location page](https://contabo.com/en/location
 
 ## Vultr vs Contabo: which one?
 
-![](vultr.webp)
+![Vultr Tokyo VPS pricing page](vultr.webp)
 
 | | Contabo | Vultr |
 | --- | --- | --- |
@@ -99,7 +99,7 @@ Vultr's cheapest Tokyo plan is **US$5** (1 vCPU, 1 GB, 25 GB SSD, 1 TB). The US$
 
 ## ConoHa VPS: prices and features
 
-![](conoha.png)
+![ConoHa VPS plan and pricing page](conoha.png)
 
 ConoHa is a Japanese host run by GMO, with data centers in Tokyo and a mostly Japanese interface. You can pay **by the hour** (with a monthly cap) or prepay for a discount. In 2024 I measured about **50 ms** from Taiwan.
 
@@ -116,7 +116,7 @@ The 36-month prepaid plan gives the biggest discount. Default bandwidth is 100 M
 
 ## Does OVH have a data center in Japan?
 
-![](ovhcloud.webp)
+![OVHcloud VPS pricing page](ovhcloud.webp)
 
 **No.** OVHcloud VPS in Asia-Pacific is available in Singapore, Sydney, and Mumbai. Singapore was about **50 ms** from Taiwan in my 2024 test.
 
@@ -133,7 +133,7 @@ Traffic is unlimited in Europe and North America, but the [OVHcloud VPS page](ht
 
 ## DigitalOcean
 
-![](digitalocean.png)
+![DigitalOcean Droplet pricing page](digitalocean.png)
 
 DigitalOcean's Asian regions are Singapore and Bangalore, and I like its dashboard and built-in browser SSH. Since January 1, 2026, Droplets are **billed per second** with a monthly cap. Basic plans: 512 MB **US$4**, 1 GB **US$6**, 2 GB **US$12**, 4 GB (2 vCPU) **US$24**. Pricing is in line with Vultr, with similarly small specs.
 

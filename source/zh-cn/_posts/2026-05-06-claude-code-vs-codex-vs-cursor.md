@@ -1,6 +1,6 @@
 ---
 title: Claude Code vs Codex vs Cursor 对比：2026 年 10 月价格、模型与选型
-description: Claude Code vs Codex vs Cursor 怎么选？2026 年 10 月对比：Claude Code 随 Claude Pro $20 起提供，擅长深度改造代码仓库；Codex 含在 ChatGPT Plus $20 起，可委派云端任务；Cursor 新套餐用 Claude、GPT 需 Premium $30 并按 API 价计费。
+description: "Claude Code vs Codex vs Cursor 怎么选？2026 年 10 月对比价格、模型与额度：Claude Code 擅长深度改造代码仓库，Codex 可委派云端任务，Cursor 新套餐调用 Claude、GPT 需按 API 价计费。"
 permalink: 2026/05/06/claude-code-vs-codex-vs-cursor/
 translation_key: ai-coding-tools-comparison
 translations:

@@ -2,7 +2,7 @@
 title: "Claude Banked Reset: How to Use Your Free Usage Limit Reset"
 date: 2026-10-19 16:30:00
 updated: 2026-10-19 16:30:00
-description: "Claude's banked reset refills your five-hour or weekly limit from Settings → Usage on web or Desktop, reportedly until Oct 22, 2026. Steps, Claude Code impact, and Codex comparison."
+description: "Claude's banked reset refills your 5-hour or weekly limit from Settings → Usage on web or Desktop: steps, deadline, Claude Code impact, vs Codex."
 permalink: 2026/10/19/claude-banked-reset-guide/
 translation_key: claude-banked-reset-guide
 translations:

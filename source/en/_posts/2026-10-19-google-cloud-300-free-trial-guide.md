@@ -2,7 +2,7 @@
 title: "Google Cloud $300 Free Credit: Eligibility, 90-Day Limit, Coverage, and Avoiding Charges"
 date: 2026-10-19 16:45:00
 updated: 2026-10-19 16:45:00
-description: "New Google Cloud (GCP) customers get US$300 in free trial credit for 90 days, and you are not charged unless you upgrade. This guide covers eligibility, what the credit cannot pay for (Gemini API in AI Studio is excluded, Gemini on Agent Platform is covered), what happens at the end of the trial, upgrading, Always Free limits, where to check your remaining credit, and budgets."
+description: "Google Cloud's $300 free trial lasts 90 days and won't charge you unless you upgrade. Eligibility, what it covers, Gemini, and how to avoid bills."
 permalink: 2026/10/19/google-cloud-300-free-trial-guide/
 translation_key: google-cloud-300-free-trial-guide
 translations:

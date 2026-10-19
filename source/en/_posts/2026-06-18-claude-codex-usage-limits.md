@@ -1,6 +1,6 @@
 ---
 title: "Codex Usage Limits: 5-Hour Window, Reset Times, and Banked Resets"
-description: "Check Codex usage in the dashboard or with /status. Plus has 5-hour and weekly limits; Pro has no 5-hour cap. Plus how Codex and Claude banked resets differ."
+description: "Check Codex usage in the dashboard or with /status. Plus has 5-hour and weekly limits, Pro has no 5-hour cap, and banked resets work differently."
 permalink: 2026/06/18/claude-codex-usage-limits-guide/
 translation_key: claude-codex-usage-limits
 translations:

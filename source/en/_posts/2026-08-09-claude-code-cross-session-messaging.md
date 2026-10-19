@@ -1,5 +1,5 @@
 title: "Claude Code Cross-Session Messaging: List Sessions and Send Messages"
-description: "Make two Claude Code sessions talk: on v2.1.224+, ask Claude or @-mention a session to message it, list reachable sessions with /list-agents, and fix common issues."
+description: "Make two Claude Code sessions talk on v2.1.224+: @-mention a session to message it, list sessions with /list-agents, and fix common issues."
 permalink: 2026/08/09/claude-code-cross-session-messaging/
 translation_key: claude-code-cross-session-messaging
 translations:

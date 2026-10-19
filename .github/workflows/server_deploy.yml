@@ -26,3 +26,7 @@ jobs:
             source: "public"
             strip_components: 1
             target: "~/php-site/blog"
+
+        - name: Notify IndexNow
+          continue-on-error: true
+          run: node tools/indexnow.mjs --days 2

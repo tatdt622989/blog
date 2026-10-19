@@ -3,7 +3,7 @@ title: "Plan a Game with AI: Core Loop, Playable Prototype, and GDD"
 seo_title: "Plan a Game with AI: Core Loop, Prototype, and GDD"
 date: 2026-10-07 00:23:48
 updated: 2026-10-07 00:23:48
-description: "Define a core loop, scope a playable prototype, and write a one-page GDD before coding with AI. Includes a star-catching example, a template, and test checks."
+description: "Define a core loop, scope a playable prototype and write a one-page GDD before coding with AI, with a worked example, template and test checks."
 permalink: 2026/10/07/ai-game-planning-gdd-prototype-guide/
 translation_key: ai-game-planning-gdd-prototype-guide
 translations:

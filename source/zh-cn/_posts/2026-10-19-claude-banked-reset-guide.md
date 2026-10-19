@@ -2,7 +2,7 @@
 title: "Claude Banked Reset 怎么用？免费重置额度的步骤、期限与限制"
 date: 2026-10-19 16:30:00
 updated: 2026-10-19 16:30:00
-description: "Claude banked reset 是 Anthropic 随 Opus 5.5 发放给 Pro、Max、Team 用户的一次性额度重置，在网页端或桌面端 Settings → Usage 点击 Reset for free 即可把 5 小时或每周额度恢复满格，据报道可用到 10 月 22 日。本文梳理操作步骤、为什么在 Claude Code 里点不了、每周周期会不会变，以及它和 Codex banked reset 的区别。"
+description: "Claude banked reset 是随 Opus 5.5 发放的一次性额度重置，在网页端或桌面端 Settings → Usage 点击 Reset for free 即可恢复 5 小时或每周额度。本文说明操作步骤、期限、对 Claude Code 的影响及与 Codex 的区别。"
 permalink: 2026/10/19/claude-banked-reset-guide/
 translation_key: claude-banked-reset-guide
 translations:

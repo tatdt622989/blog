@@ -3,7 +3,7 @@ title: "Plan an App with AI: PRD, MVP Scope, and Acceptance Checks"
 seo_title: "Plan an App with AI: PRD, MVP, Acceptance Checks"
 date: 2026-10-07 00:23:48
 updated: 2026-10-07 00:23:48
-description: "Turn an app idea into a focused MVP, a one-page PRD, and testable acceptance checks. Includes a reading-list example, a downloadable template, and an AI prompt."
+description: "Turn an app idea into a focused MVP, a one-page PRD and testable acceptance checks, with a worked example, a template and an AI prompt."
 permalink: 2026/10/07/ai-app-planning-prd-mvp-guide/
 translation_key: ai-app-planning-prd-mvp-guide
 translations:

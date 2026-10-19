@@ -2,7 +2,7 @@
 title: "AI Tools to Learn Japanese in 2026: What Works, Prices, and Prompts"
 date: 2023-11-07 23:34:17
 updated: 2026-10-19 16:00:00
-description: "AI tools to learn Japanese in 2026: free ChatGPT, Gemini and Claude voice modes vs Aoi, TalkMe and Duolingo, plus prompts for speaking, reading and the JLPT."
+description: "AI tools to learn Japanese in 2026: ChatGPT, Gemini and Claude voice modes vs Aoi, TalkMe and Duolingo, plus prompts for speaking and JLPT prep."
 permalink: 2023/11/07/ai-tools-learn-japanese/
 translation_key: ai-tools-learn-japanese
 translations:
