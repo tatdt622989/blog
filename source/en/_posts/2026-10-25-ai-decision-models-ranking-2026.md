@@ -40,11 +40,11 @@ These are **editorial test priorities by use case**, not fabricated apples-to-ap
 
 | Model / service | Provider | Category | Availability | Pricing status (Oct 25, 2026) |
 | --- | --- | --- | --- | --- |
-| 1. **GLiDE v1.2** | Fastino | 專門決策 / specialized | 供應商 API / vendor API | 官方平台詢價；未查核定價 |
-| 2. **Mammoth-1** | Base Labs | 專門決策 / specialized | Vercel 等託管入口，依實際型號 | 逐平台查價；活動價非長期價 |
-| 3. **Elephant-1** | Base Labs | 專門決策 / specialized | Vercel 等託管入口 | 逐平台查價 |
-| 4. **Decider V1.2** | Perplexity | 專門決策 / specialized | 供應商／託管平台，依上架狀態 | 逐版本查價 |
-| 5. **d1-ultra** | Liquid AI | 專門決策 / specialized | 供應商平台／第三方 | 需向實際提供商確認 |
+| 1. **GLiDE v1.2** | Fastino | 專門決策 / specialized | 供應商 API / vendor API | Fastino 宣傳價 US$0.04／百萬輸入 tokens（確認促銷條件） |
+| 2. **Mammoth-1** | Baseten / Base Labs | 專門決策 / specialized | Vercel 等託管入口，依實際型號 | Vercel 免費至 2026-10-27；之後依平台定價 |
+| 3. **Elephant-1** | Baseten / Base Labs | 專門決策 / specialized | Vercel 等託管入口 | Vercel 免費至 2026-10-27；之後依平台定價 |
+| 4. **Decider V1.2** | Perplexity | 專門決策 / specialized | 供應商／託管平台，依上架狀態 | Decider V1.2：US$0.02／百萬輸入 tokens；Flash V1.2：US$0.01；輸出免費 |
+| 5. **d1-ultra** | Liquid AI | 專門決策 / specialized | 供應商平台／第三方 | Liquid API：US$0.042／百萬輸入 tokens |
 | 6. **Jev 1.14** | TypeSafe AI | 專門決策／Agent | TypeSafe / 整合平台 | 依訂閱及平台實際帳單 |
 | 7. **Laya** | 獨立／社群專案 | 專門決策候選 | 自架或社群入口（先驗來源） | 自架按硬體成本，託管另計 |
 | 8. **Drex** | Nace AI／第三方 | 專門決策候選 | 實際上架平台 | 未核實，勿作價格排名 |
@@ -65,31 +65,31 @@ These are **editorial test priorities by use case**, not fabricated apples-to-ap
 
 **Type:** 專門決策 / specialized. **Access:** 供應商 API / vendor API. **Good first use case:** 比較候選方案、風險決策. **What to validate:** 官方公布新版本；先確認 GLiDE v1.2 是否可用、計價單位與限流。
 
-**Price:** 官方平台詢價；未查核定價. **Primary starting source:** [vendor or directory](https://fastino.ai/). Availability, license and model ID must be rechecked before integration.
+**Price:** Fastino 宣傳價 US$0.04／百萬輸入 tokens（確認促銷條件）. **Primary starting source:** [vendor or directory](https://fastino.ai/). Availability, license and model ID must be rechecked before integration.
 
-### Mammoth-1 — Base Labs
+### Mammoth-1 — Baseten / Base Labs
 
 **Type:** 專門決策 / specialized. **Access:** Vercel 等託管入口，依實際型號. **Good first use case:** 複雜方案權衡. **What to validate:** 較大型的候選方案；留意完整版本名稱與上下文限制。
 
-**Price:** 逐平台查價；活動價非長期價. **Primary starting source:** [vendor or directory](https://vercel.com/ai-gateway). Availability, license and model ID must be rechecked before integration.
+**Price:** Vercel 免費至 2026-10-27；之後依平台定價. **Primary starting source:** [vendor or directory](https://vercel.com/changelog/basetens-mammoth-1-and-elephant-1-now-available-on-ai-gateway-for-free). Availability, license and model ID must be rechecked before integration.
 
-### Elephant-1 — Base Labs
+### Elephant-1 — Baseten / Base Labs
 
 **Type:** 專門決策 / specialized. **Access:** Vercel 等託管入口. **Good first use case:** 低延遲批次分類. **What to validate:** 精簡任務可列入測試；不得以尺寸推定準確率。
 
-**Price:** 逐平台查價. **Primary starting source:** [vendor or directory](https://vercel.com/ai-gateway). Availability, license and model ID must be rechecked before integration.
+**Price:** Vercel 免費至 2026-10-27；之後依平台定價. **Primary starting source:** [vendor or directory](https://vercel.com/changelog/basetens-mammoth-1-and-elephant-1-now-available-on-ai-gateway-for-free). Availability, license and model ID must be rechecked before integration.
 
 ### Decider V1.2 — Perplexity
 
 **Type:** 專門決策 / specialized. **Access:** 供應商／託管平台，依上架狀態. **Good first use case:** 結構化決策、成本比較. **What to validate:** 須區分 Flash 與標準版，不能混用榜單成績。
 
-**Price:** 逐版本查價. **Primary starting source:** [vendor or directory](https://docs.perplexity.ai/). Availability, license and model ID must be rechecked before integration.
+**Price:** Decider V1.2：US$0.02／百萬輸入 tokens；Flash V1.2：US$0.01；輸出免費. **Primary starting source:** [vendor or directory](https://docs.perplexity.ai/docs/decisions/quickstart). Availability, license and model ID must be rechecked before integration.
 
 ### d1-ultra — Liquid AI
 
 **Type:** 專門決策 / specialized. **Access:** 供應商平台／第三方. **Good first use case:** 帶不確定性的決策. **What to validate:** 注意校準、信心值與概率輸出是否可用。
 
-**Price:** 需向實際提供商確認. **Primary starting source:** [vendor or directory](https://www.liquid.ai/). Availability, license and model ID must be rechecked before integration.
+**Price:** Liquid API：US$0.042／百萬輸入 tokens. **Primary starting source:** [vendor or directory](https://www.liquid.ai/blog/d1-ultra). Availability, license and model ID must be rechecked before integration.
 
 ### Jev 1.14 — TypeSafe AI
 
