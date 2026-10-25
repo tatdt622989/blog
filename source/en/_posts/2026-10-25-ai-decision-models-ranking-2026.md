@@ -18,7 +18,7 @@ tags:
 - Model Comparison
 ---
 
-![2026 decision model comparison guide cover](cover.svg)
+![2026 decision model comparison guide cover](cover.webp)
 
 Is the largest model always the best decision-maker? This guide compares 16 candidates by real-world use case, clearly distinguishing model weights, API providers and benchmarks from unverified vendor claims.
 
