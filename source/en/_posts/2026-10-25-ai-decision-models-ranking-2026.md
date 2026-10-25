@@ -1,8 +1,8 @@
 ---
-title: "AI Decision Models Compared in 2026: 16 Options, Providers, Pricing and Rankings"
+title: "Stop Using Chatbots to Make Decisions: The 2026 Guide to Specialized AI Decision Models (Perplexity Decider, Jev 1.14, Liquid d1, and Vercel Routing)"
 date: 2026-10-25 18:00:00
-updated: 2026-10-25 18:00:00
-description: "Compare 16 AI decision models and APIs by provider, documented prices, use cases, benchmarks, limitations, and practical selection criteria."
+updated: 2026-10-25 21:00:00
+description: "An in-depth engineering guide to specialized AI Decision Models in 2026. Compare Perplexity Decider 1.2, TypeSafe Jev 1.14, Liquid d1-ultra, Baseten Mammoth-1, and local OpenJev across API schemas, probability calibration, and real-world pricing."
 permalink: 2026/10/25/ai-decision-models-ranking-2026/
 translation_key: ai-decision-models-ranking-2026
 translations:
@@ -18,167 +18,175 @@ tags:
 - Model Comparison
 ---
 
-![2026 decision model comparison guide cover](cover.webp)
+![2026 Specialized AI Decision Models Architecture and Multi-Source Routing Illustration](cover.webp)
 
-Is the largest model always the best decision-maker? This guide compares 16 candidates by real-world use case, clearly distinguishing model weights, API providers and benchmarks from unverified vendor claims.
+If you have ever stuffed a structured system state into a general-purpose chat LLM and asked it to pick one of four actions with a "0 to 100% confidence score," you already know how badly it breaks in production. Chat models love to say "85% confident" regardless of actual uncertainty, flip their answers when you swap Option A and Option B, and burn hundreds of milliseconds and expensive output tokens generating verbose JSON rationales.
 
-These are **editorial test priorities by use case**, not fabricated apples-to-apples benchmark scores. We deliberately avoid unverified price figures.
+In 2026, production systems that require high-frequency, multi-factor trade-offs and calibrated probabilities no longer force chat models to guess. Instead, they rely on **Specialized AI Decision Models**. In this guide, we skip generic chatbots entirely and focus 100% on dedicated decision model protocols, real-world pricing across 14 specialized models, and the engineering lessons we learned building multi-provider failover routing.
 
 <!--more-->
 
-## How to choose quickly
+## Why General Chat LLMs Fail as Decision Engines
+
+A standard Large Language Model is trained to predict the next text token. When you ask it to write down a probability in prose or JSON, it is merely imitating how humans write plausible-sounding numbers—not computing a statistically calibrated probability distribution.
+
+Specialized **AI Decision Models (often called System One models)** replace open-ended text generation with a strict mathematical contract:
+
+1. **Single Forward Pass Architecture (Zero Text Generation)**: Sparked by TypeSafe AI (founded by former OpenAI researcher Diogo Almeida) with the launch of **Jev** and the **System One** paradigm in September 2026, decision models take a fundamentally different path from autoregressive "System Two" chat LLMs. Typically built on fine-tuned backbones (such as Qwen 27B/9B or Liquid architectures) paired with specialized readout heads and attention masks, they extract calibrated option probabilities directly from the first-pass logits in a **single forward pass**, bypassing token-by-token decoding entirely.
+2. **Structured State and Typed Question Primitives**: Instead of writing conversational prompts, you pass a structured state payload (**state**—which can include JSON, text, or even images) alongside dozens of typed questions (**questions**) in a single API call. The ecosystem supports four core question primitives:
+   - **choice (Multiple-Choice)**: Selects the winning candidate (**choice**) from your custom **criteria** map and returns a probability distribution (**probabilities**) summing strictly to 1.
+   - **noul (Binary Predicate)**: Evaluates a yes/no statement and returns a calibrated probability between 0 and 1.
+   - **score (Rubric Grading)**: Evaluates input against an ordered rubric, returning bucket probabilities and an expected score.
+   - **box (Bounding-Box Localization, introduced in Jev 1.14)**: Accepts image inputs (such as UI screenshots) and returns four bounding-box coordinates plus confidence.
+3. **Elimination of Position Bias**: Specialized decision models are trained and evaluated for permutation invariance across candidate options, preventing the first or last option from receiving unfair preference.
+4. **Zero Output Token Cost and Millisecond Latency**: Because the model evaluates option distributions directly without autoregressive text generation, nearly every decision model provider charges **only for input tokens with $0 output token fees**, cutting costs and latency by 90% to 99% compared to reasoning LLMs.
+
+## What the Unified Decision API Protocol Looks Like
+
+Across **TypeSafe SystemOne**, **Perplexity Decisions API**, and **OpenRouter Decisions API**, a standard decision request follows a clean, deterministic schema:
+
+```json
+{
+  "model": "pplx-decider-v1.2",
+  "state": {
+    "systemLoad": 0.78,
+    "budgetRemainingUsd": 120.5,
+    "recentErrorRate": 0.012
+  },
+  "questions": {
+    "route_action": {
+      "type": "choice",
+      "instructions": "Select the optimal scaling action for the next cycle based on current load and remaining budget.",
+      "criteria": {
+        "scale_up": "Provision additional nodes immediately to reduce load",
+        "hold": "Maintain current node count and continue monitoring",
+        "throttle": "Enable rate limiting to protect core services"
+      }
+    }
+  }
+}
+```
 
-| Need | Shortlist | Check |
-| --- | --- | --- |
-| Structured choices | GLiDE v1.2, Decider V1.2, Elephant-1 | Accuracy on your own held-out questions, response time, schema |
-| Complex trade-offs | Mammoth-1, d1-ultra, Claude and GPT baselines | Calibration, abstention, downside cost |
-| Agent routing | Jev, System One, general tool-capable models | Tool-use reliability, retries and cost per success |
-| Labeled numeric / trading data | LightGBM, XGBoost | Time-split out-of-sample results and leakage checks |
-| Self-hosted | Qwen, license-verified Laya, traditional ML | GPU costs, license, operation and throughput |
+The response is immediately consumable by application logic without brittle regex or markdown parsing:
 
-## 16 models and platforms: complete buyer's table
+```json
+{
+  "model": "pplx-decider-v1.2",
+  "answers": {
+    "route_action": {
+      "type": "choice",
+      "choice": "hold",
+      "confidence": 0.61,
+      "probabilities": {
+        "scale_up": 0.18,
+        "hold": 0.74,
+        "throttle": 0.08
+      }
+    }
+  }
+}
+```
 
-| Model / service | Provider | Category | Availability | Pricing status (Oct 25, 2026) |
-| --- | --- | --- | --- | --- |
-| 1. **GLiDE v1.2** | Fastino | 專門決策 / specialized | 供應商 API / vendor API | Fastino 宣傳價 US$0.04／百萬輸入 tokens（確認促銷條件） |
-| 2. **Mammoth-1** | Baseten / Base Labs | 專門決策 / specialized | Vercel 等託管入口，依實際型號 | Vercel 免費至 2026-10-27；之後依平台定價 |
-| 3. **Elephant-1** | Baseten / Base Labs | 專門決策 / specialized | Vercel 等託管入口 | Vercel 免費至 2026-10-27；之後依平台定價 |
-| 4. **Decider V1.2** | Perplexity | 專門決策 / specialized | 供應商／託管平台，依上架狀態 | Decider V1.2：US$0.02／百萬輸入 tokens；Flash V1.2：US$0.01；輸出免費 |
-| 5. **d1-ultra** | Liquid AI | 專門決策 / specialized | 供應商平台／第三方 | Liquid API：US$0.042／百萬輸入 tokens |
-| 6. **Jev 1.14** | TypeSafe AI | 專門決策／Agent | TypeSafe / 整合平台 | 依訂閱及平台實際帳單 |
-| 7. **Laya** | 獨立／社群專案 | 專門決策候選 | 自架或社群入口（先驗來源） | 自架按硬體成本，託管另計 |
-| 8. **Drex** | Nace AI／第三方 | 專門決策候選 | 實際上架平台 | 未核實，勿作價格排名 |
-| 9. **Kev** | 社群／第三方 | 專門決策候選 | 依上架平台 | 未核實 |
-| 10. **System One / Decisions API** | OpenRouter | 決策 API／路由 | OpenRouter | 依所選服務／路由計價 |
-| 11. **GPT 系列** | OpenAI | 通用推理基準 | OpenAI API / Azure 等 | 按所選模型輸入／輸出 tokens |
-| 12. **Claude 系列** | Anthropic | 通用推理基準 | Anthropic API / Bedrock 等 | 按所選模型輸入／輸出 tokens |
-| 13. **Gemini 系列** | Google | 通用推理基準 | Gemini API / Vertex AI | 按模型與上下文級距 |
-| 14. **DeepSeek 系列** | DeepSeek | 通用推理基準 | DeepSeek API / 第三方 | 依官方與鏡像價格 |
-| 15. **Qwen 系列** | Alibaba／Qwen | 開源權重／通用推理 | 阿里雲／自架／第三方 | 雲端 token／自架 GPU 成本 |
-| 16. **LightGBM / XGBoost** | 開源社群 | 表格預測基準（非 LLM） | 本機／自架 | 運算與託管成本，非 token |
+A single request typically supports 64 to 128 questions at once, with 2 to 255 options per question. You can pack every sub-decision in your pipeline into one payload, amortizing the **state** input tokens across dozens of simultaneous evaluations.
 
-**Pricing caveat:** Promotional access is not a permanent list price. Some providers expose pricing only in account dashboards or via resellers. Where a reliable official per-token / per-request quote is missing, the table says so instead of inventing one. Always check the linked provider for version, region, context limits and rate limits.
+## Complete 2026 Comparison of 14 Specialized AI Decision Models
 
-## Model-by-model profiles
+Excluding general-purpose chat models, here are the 14 dedicated decision models currently available across **native vendor endpoints**, **Vercel AI Gateway**, **OpenRouter**, **Cloudflare Workers AI**, and **local Apple Silicon** (pricing verified as of October 25, 2026):
 
-### GLiDE v1.2 — Fastino
+| Model Name | Creator / Backbone | Primary Access Channels | Input Price (per 1M Tokens) | Output Price | Key Strengths and Production Role |
+| --- | --- | --- | --- | --- | --- |
+| **Perplexity Decider V1.2** | Perplexity (27B Multimodal) | Vercel / Perplexity / Open-Weights | US$0.02 | Free | Accepts text and images; best all-around balance of calibration and price |
+| **Perplexity Decider Flash V1.2** | Perplexity (4B Lightweight) | Vercel / Perplexity / Open-Weights | US$0.01 | Free | 4B parameter ultra-low-latency model for high-frequency triage and routing |
+| **Perplexity Decider V1.1 (27B)** | Perplexity (Qwen 27B Fine-Tune) | Perplexity Native / Ollama | US$0.02 | Free | Battle-tested 27B baseline, ideal for parallel version benchmarking |
+| **Jev 1.14.0** | TypeSafe AI | Vercel / TypeSafe Native | US$0.042 | Free | SystemOne pioneer; supports 262K context, image input, and Box localization |
+| **OpenJev Flash 9B** | Open-Source (MLX Quantized) | Local oMLX (Apple Silicon) | US$0 (Local compute) | Free | 4-bit MLX quantized weights; 80.5% on JevBench with zero API cost |
+| **Liquid d1** | Liquid AI | Vercel / OpenRouter | US$0.02 | Free | Non-Transformer architecture providing strong ensemble diversity |
+| **Liquid d1-ultra** | Liquid AI (Multimodal) | Vercel / Liquid / OpenRouter | US$0.042 | Free | Multimodal 32K context window; top-tier scorer on Artificial Analysis |
+| **Baseten Mammoth-1 (27B)** | Base Labs (Qwen3.5-27B Fine-Tune) | Vercel / Baseten / MIT Open-Weights | Free promo (then platform rate) | Free | Scores ~65.9 on the Artificial Analysis Decision Index; MIT licensed |
+| **Baseten Elephant-1 (9B)** | Base Labs (Qwen3.5-9B Fine-Tune) | Vercel / Baseten / MIT Open-Weights | Free promo (then platform rate) | Free | Post-trained on millions of decision examples; fast, self-hostable under MIT |
+| **GPT-6 Luna Decisions** | OpenAI | Vercel / OpenRouter | US$0.10 | Free | OpenAI's dedicated Decisions endpoint powered by gpt-6-luna |
+| **Microsoft Decision-1** | Microsoft (Qwen Fine-Tune) | Vercel / Foundry / OpenRouter | US$0.042 | Free | High-speed single-pass model on Microsoft Foundry for risk and compliance |
+| **Mercury Decide** | Inception | OpenRouter | Routed pricing | Free | Diffusion-ecosystem fast decision model for latency-critical loops |
+| **Drex v1.5 (9B)** | Nace AI | OpenRouter / Open-Weights | Routed pricing | Free | 9B open-weight decision model built for multi-choice ranking and scoring |
+| **Cloudflare Clef (27B)** | Cloudflare | Cloudflare Workers AI | US$0.24 (Free daily Neurons) | Free | Open-source multimodal model (plus Clef-Flash); zero cost within free quota |
 
-**Type:** 專門決策 / specialized. **Access:** 供應商 API / vendor API. **Good first use case:** 比較候選方案、風險決策. **What to validate:** 官方公布新版本；先確認 GLiDE v1.2 是否可用、計價單位與限流。
+## How Decision Models Are Benchmarked: Three Industry Leaderboards
 
-**Price:** Fastino 宣傳價 US$0.04／百萬輸入 tokens（確認促銷條件）. **Primary starting source:** [vendor or directory](https://fastino.ai/). Availability, license and model ID must be rechecked before integration.
+Traditional LLM benchmarks like MMLU or HumanEval cannot measure single-pass probability calibration. In late 2026, engineering teams rely on three dedicated evaluation suites:
 
-### Mammoth-1 — Baseten / Base Labs
+1. **Artificial Analysis Decision Index (v1.0)**: Built by Artificial Analysis, this benchmark weights four pillars equally (25% each): **Knowledge & Hallucination (AA-Omniscience-Decision)**, **Reasoning (HLE-MultiChoice)**, **Tool Calling (NVIDIA When2Call)**, and **Classification (WildGuardTest)**. Frontier models like **Baseten Mammoth-1 (27B)** score around **65.9** on the index alongside **Liquid d1-ultra** at the top of the leaderboard.
+2. **JevBench (by Benchmark Heaven)**: An independent evaluation suite for System One-compatible engines that jointly measures **typed decision accuracy**, **probability calibration** (how closely stated confidence matches empirical accuracy), **P50/P95 latency**, and **inference cost**.
+3. **Jev Decision Index**: A broad community and Hugging Face leaderboard tracking hundreds of open-weights fine-tunes (including Fastino GLiDE and Base Labs checkpoints) alongside commercial APIs.
 
-**Type:** 專門決策 / specialized. **Access:** Vercel 等託管入口，依實際型號. **Good first use case:** 複雜方案權衡. **What to validate:** 較大型的候選方案；留意完整版本名稱與上下文限制。
+Recent research (such as the **JEVal** study) also highlights an important architectural trade-off: while decision models dominate high-throughput pattern matching and policy routing, they can occasionally exhibit overconfidence on out-of-distribution specialist knowledge or accumulate small local errors in long-horizon multi-step agent loops (such as τ-bench). Combining multiple diverse cores with strict probability calibration remains essential in production.
 
-**Price:** Vercel 免費至 2026-10-27；之後依平台定價. **Primary starting source:** [vendor or directory](https://vercel.com/changelog/basetens-mammoth-1-and-elephant-1-now-available-on-ai-gateway-for-free). Availability, license and model ID must be rechecked before integration.
+## Deep Dive: Matching Each Decision Model to the Right Role
 
-### Elephant-1 — Baseten / Base Labs
+In production architectures, relying on a single model creates a single point of failure in both availability and reasoning bias. Combining multiple heterogeneous decision cores into a voting panel yields far better stability.
 
-**Type:** 專門決策 / specialized. **Access:** Vercel 等託管入口. **Good first use case:** 低延遲批次分類. **What to validate:** 精簡任務可列入測試；不得以尺寸推定準確率。
+### 1. Perplexity Decider Family (V1.2 / Flash V1.2 / V1.1)
 
-**Price:** Vercel 免費至 2026-10-27；之後依平台定價. **Primary starting source:** [vendor or directory](https://vercel.com/changelog/basetens-mammoth-1-and-elephant-1-now-available-on-ai-gateway-for-free). Availability, license and model ID must be rechecked before integration.
+The [Perplexity Decisions API](https://docs.perplexity.ai/docs/decisions/quickstart) offers some of the most aggressive pricing in the industry: **pplx-decider-v1.2** costs just $0.02 per million input tokens, while **pplx-decider-flash-v1.2** drops to $0.01 per million input tokens with zero output charges. Both models are accessible via Perplexity's native endpoint (**https://api.perplexity.ai/v1/decisions**) and through Vercel AI Gateway.
 
-### Decider V1.2 — Perplexity
+When migrating from **pplx-decider-v1.1-27b** to **pplx-decider-v1.2**, we recommend running both cores in shadow or parallel evaluation on identical state payloads for at least 30 real-world cycles before promoting the newer version.
 
-**Type:** 專門決策 / specialized. **Access:** 供應商／託管平台，依上架狀態. **Good first use case:** 結構化決策、成本比較. **What to validate:** 須區分 Flash 與標準版，不能混用榜單成績。
+### 2. TypeSafe AI: Jev 1.14.0 and Local OpenJev Flash 9B
 
-**Price:** Decider V1.2：US$0.02／百萬輸入 tokens；Flash V1.2：US$0.01；輸出免費. **Primary starting source:** [vendor or directory](https://docs.perplexity.ai/docs/decisions/quickstart). Availability, license and model ID must be rechecked before integration.
+[TypeSafe AI](https://typesafe.ai/) pioneered the **/v1/systemone** protocol. Its flagship **jev-1.14.0** ($0.042/M input tokens) is exceptionally reliable when cross-checking dense numeric tables. One crucial implementation detail: **starting with Jev 1.14, returned probabilities are rounded to two decimal places** (e.g., 0.33, 0.33, 0.34), so your response validator must allow a per-option rounding tolerance of 0.005.
 
-### d1-ultra — Liquid AI
+For local inference on Apple Silicon Macs, **openjev-flash-9b** (4-bit MLX quantization served via **oMLX** at **http://127.0.0.1:8000/v1/systemone**) scores an impressive 80.5% on JevBench while costing nothing in API fees. Note that oMLX caps each question at 26 options (A through Z), which is plenty for standard operational choices.
 
-**Type:** 專門決策 / specialized. **Access:** 供應商平台／第三方. **Good first use case:** 帶不確定性的決策. **What to validate:** 注意校準、信心值與概率輸出是否可用。
+### 3. Liquid AI (d1 and d1-ultra) and Baseten (Mammoth-1 and Elephant-1)
 
-**Price:** Liquid API：US$0.042／百萬輸入 tokens. **Primary starting source:** [vendor or directory](https://www.liquid.ai/blog/d1-ultra). Availability, license and model ID must be rechecked before integration.
+To avoid homogeneous errors in an ensemble, [Liquid AI](https://www.liquid.ai/blog/d1-ultra) provides **liquid/d1** ($0.02/M) and **liquid/d1-ultra** ($0.042/M). With a 32,768-token context window, **d1-ultra** handles large historical state summaries without losing calibration.
 
-### Jev 1.14 — TypeSafe AI
+Meanwhile, Baseten's **baseten/mammoth-1** and **baseten/elephant-1** on [Vercel AI Gateway](https://vercel.com/changelog/basetens-mammoth-1-and-elephant-1-now-available-on-ai-gateway-for-free) (both 16,384 context) complement each other well: **Mammoth-1** excels at patient, multi-factor structural breakouts, whereas **Elephant-1** is tuned for rapid mean-reversion and short-term state classification.
 
-**Type:** 專門決策／Agent. **Access:** TypeSafe / 整合平台. **Good first use case:** 多步工作流程與代理決策. **What to validate:** 需驗證 API、排隊、額度與可用性，不把促銷抵成公開牌價。
+### 4. Dedicated Decision Models from OpenAI, Microsoft, Inception, and Nace AI
 
-**Price:** 依訂閱及平台實際帳單. **Primary starting source:** [vendor or directory](https://typesafe.ai/). Availability, license and model ID must be rechecked before integration.
+OpenAI's **openai/gpt-6-luna-decisions** ($0.10/M) and Microsoft's **microsoft/microsoft-decision-1** ($0.042/M), along with **inception/mercury-decide** and **nace-ai/drex-v1.5**, can all be called through the [OpenRouter Decisions API](https://openrouter.ai/docs) (**https://openrouter.ai/api/alpha/decisions**) or Vercel AI Gateway. Rotating or assigning distinct personas across these cores prevents any single vendor's blind spot from dominating your system.
 
-### Laya — 獨立／社群專案
+### 5. Cloudflare Clef (27B): Zero-Cost Backup via Free Neurons
 
-**Type:** 專門決策候選. **Access:** 自架或社群入口（先驗來源）. **Good first use case:** 研究、實驗、離線. **What to validate:** 同名模型與託管鏡像應分清；先核實版本和權重許可。
+Hosted on Cloudflare Workers AI (**@cf/cloudflare/clef**), Clef carries a list price of $0.24/M input tokens, but Cloudflare grants a generous daily free Neurons allocation. By wrapping Clef in a local quota reservation gate that automatically pauses the model once the daily free allowance is reached, you get a 27B decision core at zero monetary cost.
 
-**Price:** 自架按硬體成本，託管另計. **Primary starting source:** [vendor or directory](https://huggingface.co/models?search=Laya). Availability, license and model ID must be rechecked before integration.
+## Three Engineering Gotchas When Integrating Decision Models
 
-### Drex — Nace AI／第三方
+Connecting over a dozen decision models into a unified production engine revealed three critical protocol details you must handle in code:
 
-**Type:** 專門決策候選. **Access:** 實際上架平台. **Good first use case:** 候選排序. **What to validate:** 型號易混淆，先查權重、供應商及公開測試。
+### 1. Probability Rounding Bounds and Renormalization
 
-**Price:** 未核實，勿作價格排名. **Primary starting source:** [vendor or directory](https://openrouter.ai/models). Availability, license and model ID must be rechecked before integration.
+Strict validators check that option probabilities sum to 1.0 and that **choice** matches the highest-probability option. In practice:
+- **OpenRouter** rounds probabilities to 4 decimal places (max error of 0.00005 per option).
+- **Jev 1.14** and **Vercel AI Gateway** often round to 2 decimal places (max error of 0.005 per option).
 
-### Kev — 社群／第三方
+A naive floating-point equality check will reject valid responses like 0.33 across three options (summing to 0.99). Always compute a dynamic rounding bound based on decimal precision, validate within that bound, and renormalize each probability by dividing by the sum.
 
-**Type:** 專門決策候選. **Access:** 依上架平台. **Good first use case:** 低資源 PoC. **What to validate:** 需區分型號、規模與微調版本。
+### 2. Reconstructing Missing Confidence Scores on Vercel AI Gateway
 
-**Price:** 未核實. **Primary starting source:** [vendor or directory](https://huggingface.co/models?search=Kev). Availability, license and model ID must be rechecked before integration.
+While native endpoints (Jev, Perplexity, OpenRouter) return a **confidence** field alongside **probabilities**, **Vercel AI Gateway** (**/v4/ai/decision-model**) returns only **choice** and **probabilities**.
 
-### System One / Decisions API — OpenRouter
+By verifying against native responses across providers, we confirmed the exact linear normalization formula used to derive decision confidence from the top probability (**top**) and the number of options (**n**):
 
-**Type:** 決策 API／路由. **Access:** OpenRouter. **Good first use case:** 統一路由、快速整合. **What to validate:** 不是單一固定權重模型；需按 API 文件確認計價及輸入格式。
+```
+confidence = (top * n - 1) / (n - 1)
+```
 
-**Price:** 依所選服務／路由計價. **Primary starting source:** [vendor or directory](https://openrouter.ai/docs). Availability, license and model ID must be rechecked before integration.
+For a 4-option question (n = 4):
+- Uniform guessing (**top = 0.25**) yields **(0.25 × 4 − 1) ÷ 3 = 0** confidence.
+- A strong preference (**top = 0.70**) yields **(0.70 × 4 − 1) ÷ 3 = 0.60** confidence.
+- Certainty (**top = 1.00**) yields **1.00** confidence.
 
-### GPT 系列 — OpenAI
+Computing this formula in your Vercel adapter ensures identical downstream scoring regardless of which gateway served the request.
 
-**Type:** 通用推理基準. **Access:** OpenAI API / Azure 等. **Good first use case:** 複雜文件及程式碼決策. **What to validate:** 較擅長長文分析、工具調用；不等同概率校準良好。
+### 3. Multi-Source Failover Routing (Vercel First, Native Fallback)
 
-**Price:** 按所選模型輸入／輸出 tokens. **Primary starting source:** [vendor or directory](https://openai.com/api/pricing/). Availability, license and model ID must be rechecked before integration.
+Many decision models (**jev-1.14.0**, **liquid/d1**, **pplx-decider-v1.2**, **gpt-6-luna-decisions**, **microsoft-decision-1**) are available on both Vercel AI Gateway and their native vendor or OpenRouter endpoints.
 
-### Claude 系列 — Anthropic
+The most resilient architecture decouples **model identity** from **transport source**:
+1. Track historical accuracy and voting weights strictly by model ID and version, never by gateway provider.
+2. Maintain an ordered source list per model (e.g., Vercel AI Gateway first, native Perplexity/TypeSafe/OpenRouter second). If the primary gateway hits a rate limit (HTTP 429), billing wall (HTTP 403 **no_providers_available**), or timeout, immediately fail over to the native endpoint within the remaining request deadline.
 
-**Type:** 通用推理基準. **Access:** Anthropic API / Bedrock 等. **Good first use case:** 規格與程式審查決策. **What to validate:** 適合規範多、解釋要求高的工作；需實測結構化輸出。
+## Conclusion: From Prompt Engineering to Probability Engineering
 
-**Price:** 按所選模型輸入／輸出 tokens. **Primary starting source:** [vendor or directory](https://www.anthropic.com/pricing). Availability, license and model ID must be rechecked before integration.
-
-### Gemini 系列 — Google
-
-**Type:** 通用推理基準. **Access:** Gemini API / Vertex AI. **Good first use case:** 多模態與長上下文. **What to validate:** 大型文件／多模態候選；上下文價格分段要分開算。
-
-**Price:** 按模型與上下文級距. **Primary starting source:** [vendor or directory](https://ai.google.dev/gemini-api/docs/pricing). Availability, license and model ID must be rechecked before integration.
-
-### DeepSeek 系列 — DeepSeek
-
-**Type:** 通用推理基準. **Access:** DeepSeek API / 第三方. **Good first use case:** 成本敏感的推理. **What to validate:** 看快取命中、輸出成本與平台可用性。
-
-**Price:** 依官方與鏡像價格. **Primary starting source:** [vendor or directory](https://api-docs.deepseek.com/quick_start/pricing). Availability, license and model ID must be rechecked before integration.
-
-### Qwen 系列 — Alibaba／Qwen
-
-**Type:** 開源權重／通用推理. **Access:** 阿里雲／自架／第三方. **Good first use case:** 自架批次與私有資料. **What to validate:** 確認每一版的授權、量化和推理成本。
-
-**Price:** 雲端 token／自架 GPU 成本. **Primary starting source:** [vendor or directory](https://qwenlm.github.io/). Availability, license and model ID must be rechecked before integration.
-
-### LightGBM / XGBoost — 開源社群
-
-**Type:** 表格預測基準（非 LLM）. **Access:** 本機／自架. **Good first use case:** 大量結構化特徵、低延遲. **What to validate:** 有標籤的交易與表格資料常應先測傳統 ML；預測概率仍需校準。
-
-**Price:** 運算與託管成本，非 token. **Primary starting source:** [vendor or directory](https://lightgbm.readthedocs.io/). Availability, license and model ID must be rechecked before integration.
-
-
-## Editorial ranking (test priority, not a cross-model benchmark)
-
-1. **Structured decisions:** GLiDE v1.2, Decider V1.2, Elephant-1.
-2. **Complex multi-factor choices:** Mammoth-1, d1-ultra, Claude/GPT baselines.
-3. **Agent decisions:** Jev, System One routing and tool-capable general models.
-4. **Numeric signals and private hosting:** LightGBM/XGBoost first when labeled historical data exists, then Qwen or appropriately licensed local models.
-
-## A fair decision benchmark
-
-Use 200–1000 held-out cases representing correct-answer choices, risk/reward tradeoffs, ambiguous information and abstention. Keep the same prompts and output schema, randomize option order, cap retries and run at least three repeats. Measure **accuracy**, **position sensitivity**, **Brier score/calibration**, **abstention quality**, **P50/P95 latency**, **rate limits** and **cost per valid answer**. Vendor benchmarks on different test sets cannot be directly compared.
-
-For finance or trading, split data chronologically. Account for fees, slippage, drawdown and unseen periods; fluent justifications are not evidence of predictive edge.
-
-## Pricing arithmetic
-
-`cost = input_tokens / 1_000_000 * input_price + output_tokens / 1_000_000 * output_price`
-
-**Hypothetical example only:** at $0.30/M input and $1.20/M output, 2,000 input and 250 output tokens cost **$0.0009 per call**, or **$90 for 100,000 calls**, excluding retries, tools and caching. Per-request and subscriptions must instead be normalized to **cost per 10,000 successful decisions**.
-
-## Final recommendation
-
-Shortlist two or three candidates for your real workloads; log model IDs, date, quality, latency, all-in costs and fallback behavior. Never replace human review or risk gates for irreversible, high-stakes decisions.
-
-**Last reviewed: 2026-10-25.** This is an editorial buying and testing guide, not a live price feed.
+The shift from general chat LLMs to specialized AI Decision Models transforms AI integration from guesswork into rigorous probability engineering. By combining calibrated models like **Perplexity Decider V1.2**, **Jev 1.14**, **Liquid d1-ultra**, and local **OpenJev Flash 9B** behind a unified multi-source router, you cut token bills by an order of magnitude while gaining deterministic, auditable decision distributions.

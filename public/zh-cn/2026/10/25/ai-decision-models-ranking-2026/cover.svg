@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Decision Models 2026 comparison cover">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c1531"/><stop offset="0.58" stop-color="#18254b"/><stop offset="1" stop-color="#154753"/></linearGradient>
+  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#78dbfd"/><stop offset="1" stop-color="#79f5ba"/></linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<g opacity=".14" stroke="#c3e6ff" stroke-width="2"><path d="M-80 155 H1690M-80 280 H1690M-80 405 H1690M-80 530 H1690M-80 655 H1690M-80 780 H1690"/><path d="M150 -80V990M350 -80V990M550 -80V990M750 -80V990M950 -80V990M1150 -80V990M1350 -80V990M1550 -80V990"/></g>
+<rect x="100" y="92" width="330" height="50" rx="25" stroke="#74dbe6" fill="#153d59" stroke-width="2"/>
+<text x="265" y="125" text-anchor="middle" font-size="24" font-family="Arial,sans-serif" letter-spacing="5" fill="#9dd9f7" font-weight="700">2026 BUYER'S GUIDE</text>
+<text x="100" y="266" font-family="Arial,sans-serif" fill="#ffffff" font-size="92" font-weight="800">DECISION</text>
+<text x="100" y="367" font-family="Arial,sans-serif" fill="#ffffff" font-size="92" font-weight="800">MODELS</text>
+<rect x="100" y="406" width="530" height="9" rx="4" fill="url(#accent)"/>
+<text x="100" y="490" font-family="Arial,sans-serif" fill="#c6deef" font-size="32">16 MODELS  /  RANKINGS  /  PRICING</text>
+<text x="100" y="538" font-family="Arial,sans-serif" fill="#9ebcce" font-size="28">Accuracy · Calibration · API · Hosting</text>
+<g transform="translate(860 170)">
+<rect width="600" height="118" rx="26" fill="#263d5a" stroke="#4e8bb0" stroke-width="2"/>
+<text x="35" y="45" font-family="Arial,sans-serif" font-size="24" fill="#8ad8ee">01  QUALITY</text>
+<text x="35" y="85" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#ffffff">GLiDE v1.2</text>
+<rect x="455" y="45" width="105" height="14" rx="7" fill="#76e0c5"/>
+<rect x="455" y="71" width="78" height="12" rx="6" fill="#3b8bb1"/>
+<g transform="translate(0 138)"><rect width="600" height="118" rx="26" fill="#263d5a" stroke="#4e8bb0" stroke-width="2"/><text x="35" y="45" font-family="Arial,sans-serif" font-size="24" fill="#8ad8ee">02  CAPABILITY</text><text x="35" y="85" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#ffffff">Mammoth-1</text><rect x="455" y="45" width="92" height="14" rx="7" fill="#76e0c5"/><rect x="455" y="71" width="114" height="12" rx="6" fill="#3b8bb1"/></g>
+<g transform="translate(0 276)"><rect width="600" height="118" rx="26" fill="#263d5a" stroke="#4e8bb0" stroke-width="2"/><text x="35" y="45" font-family="Arial,sans-serif" font-size="24" fill="#8ad8ee">03  CALIBRATION</text><text x="35" y="85" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#ffffff">d1-ultra</text><rect x="455" y="45" width="110" height="14" rx="7" fill="#76e0c5"/><rect x="455" y="71" width="88" height="12" rx="6" fill="#3b8bb1"/></g>
+<g transform="translate(0 414)"><rect width="600" height="118" rx="26" fill="#263d5a" stroke="#4e8bb0" stroke-width="2"/><text x="35" y="45" font-family="Arial,sans-serif" font-size="24" fill="#8ad8ee">04  VALUE</text><text x="35" y="85" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#ffffff">Decider V1.2</text><rect x="455" y="45" width="98" height="14" rx="7" fill="#76e0c5"/><rect x="455" y="71" width="66" height="12" rx="6" fill="#3b8bb1"/></g>
+</g>
+<text x="100" y="805" font-family="Arial,sans-serif" font-size="27" letter-spacing="2" fill="#abcee5">blog.6yuwei.com</text>
+<path d="M100 823H1500" stroke="#4c8aa7" stroke-width="2"/>
+</svg>
