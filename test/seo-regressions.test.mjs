@@ -172,7 +172,25 @@ test('homepage cover images use responsive card variants', () => {
   const homepage = read('public/index.html');
   const latestCover = homepage.match(/<img\b[^>]+\bpost-cover-image\b[^>]+>/);
 
-  assert.ok(latestCover, 'homepage should render a post cover image');});
+  assert.ok(latestCover, 'homepage should render a post cover image');
+  const candidateSrc = latestCover[0].match(/\\bsrc="([^"]+)"/)?.[1]?.split(/[?#]/)[0];
+  const candidateFile = candidateSrc && path.join(generatedPublicRoot, decodeURIComponent(candidateSrc));
+  if (candidateSrc?.toLowerCase().endsWith('.svg')) {
+    assert.ok(candidateFile && fs.existsSync(candidateFile), 'vector cover must exist in generated output');
+    assert.match(fs.readFileSync(candidateFile, 'utf8'), /<svg\\b/, 'vector cover must contain SVG markup');
+    return;
+  }
+
+  assert.match(latestCover[0], /\bsrc="[^"]*-card-720\.jpg(?:\?v=[a-f0-9]{8})?"/, 'cover image fallback should use a smaller card file');
+  assert.match(latestCover[0], /\bsrcset="[^"]*-card-480\.jpg(?:\?v=[a-f0-9]{8})? 480w[^"]*-card-960\.jpg(?:\?v=[a-f0-9]{8})? 960w/, 'cover image should expose responsive width candidates');
+  assert.match(latestCover[0], /\bsizes="\([^"]*711px"/, 'cover image should advertise the rendered content width');
+
+  const fallbackPath = latestCover[0].match(/\bsrc="([^"]+)"/)?.[1]?.split(/[?#]/)[0];
+  assert.ok(
+    fallbackPath && fs.existsSync(path.join(generatedPublicRoot, decodeURIComponent(fallbackPath))),
+    'homepage cover fallback should exist in the generated public directory',
+  );
+});
 
 test('homepage avoids post-only JavaScript libraries', () => {
   const homepage = read('public/index.html');
