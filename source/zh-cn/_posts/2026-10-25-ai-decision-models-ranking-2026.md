@@ -40,11 +40,11 @@ tags:
 
 | 模型／方案 | 开发者 | 分類 | API／取得管道 | 价格口徑（截至 2026-10-25） |
 | --- | --- | --- | --- | --- |
-| 1. **GLiDE v1.2** | Fastino | 專門决策 / specialized | 供应商 API / vendor API | 官方平台詢價；未核对定價 |
-| 2. **Mammoth-1** | Base Labs | 專門决策 / specialized | Vercel 等托管入口，依實際型號 | 逐平台查價；活動價非長期價 |
-| 3. **Elephant-1** | Base Labs | 專門决策 / specialized | Vercel 等托管入口 | 逐平台查價 |
-| 4. **Decider V1.2** | Perplexity | 專門决策 / specialized | 供应商／托管平台，依上架狀態 | 逐版本查價 |
-| 5. **d1-ultra** | Liquid AI | 專門决策 / specialized | 供应商平台／第三方 | 需向實際提供商確認 |
+| 1. **GLiDE v1.2** | Fastino | 專門决策 / specialized | 供应商 API / vendor API | Fastino 宣傳價 US$0.04／百萬輸入 tokens（確認促銷條件） |
+| 2. **Mammoth-1** | Baseten / Base Labs | 專門决策 / specialized | Vercel 等托管入口，依實際型號 | Vercel 免費至 2026-10-27；之後依平台定價 |
+| 3. **Elephant-1** | Baseten / Base Labs | 專門决策 / specialized | Vercel 等托管入口 | Vercel 免費至 2026-10-27；之後依平台定價 |
+| 4. **Decider V1.2** | Perplexity | 專門决策 / specialized | 供应商／托管平台，依上架狀態 | Decider V1.2：US$0.02／百萬輸入 tokens；Flash V1.2：US$0.01；輸出免費 |
+| 5. **d1-ultra** | Liquid AI | 專門决策 / specialized | 供应商平台／第三方 | Liquid API：US$0.042／百萬輸入 tokens |
 | 6. **Jev 1.14** | TypeSafe AI | 專門决策／Agent | TypeSafe / 整合平台 | 依訂閱及平台實際帳單 |
 | 7. **Laya** | 獨立／社群專案 | 專門决策候選 | 自架或社群入口（先驗来源） | 自架按硬體成本，托管另計 |
 | 8. **Drex** | Nace AI／第三方 | 專門决策候選 | 實際上架平台 | 未核實，勿作价格排名 |
@@ -67,23 +67,23 @@ tags:
 
 **優點與選用情境：** 比较候選方案、风险决策。官方公布新版本；先確認 GLiDE v1.2 是否可用、計價單位與限流。
 
-**費用：** 官方平台詢價；未核对定價。**来源與核對入口：** [官方／托管產品頁](https://fastino.ai/)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
+**費用：** Fastino 宣傳價 US$0.04／百萬輸入 tokens（確認促銷條件）。**来源與核對入口：** [官方／托管產品頁](https://fastino.ai/)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
 
-### Mammoth-1 — Base Labs
+### Mammoth-1 — Baseten / Base Labs
 
 **定位：** 專門决策 / specialized。**取得方式：** Vercel 等托管入口，依實際型號。
 
 **優點與選用情境：** 複雜方案權衡。较大型的候選方案；留意完整版本名稱與上下文限制。
 
-**費用：** 逐平台查價；活動價非長期價。**来源與核對入口：** [官方／托管產品頁](https://vercel.com/ai-gateway)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
+**費用：** Vercel 免費至 2026-10-27；之後依平台定價。**来源與核對入口：** [官方／托管產品頁](https://vercel.com/changelog/basetens-mammoth-1-and-elephant-1-now-available-on-ai-gateway-for-free)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
 
-### Elephant-1 — Base Labs
+### Elephant-1 — Baseten / Base Labs
 
 **定位：** 專門决策 / specialized。**取得方式：** Vercel 等托管入口。
 
 **優點與選用情境：** 低延迟批次分類。精簡任務可列入测试；不得以尺寸推定準確率。
 
-**費用：** 逐平台查價。**来源與核對入口：** [官方／托管產品頁](https://vercel.com/ai-gateway)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
+**費用：** Vercel 免費至 2026-10-27；之後依平台定價。**来源與核對入口：** [官方／托管產品頁](https://vercel.com/changelog/basetens-mammoth-1-and-elephant-1-now-available-on-ai-gateway-for-free)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
 
 ### Decider V1.2 — Perplexity
 
@@ -91,7 +91,7 @@ tags:
 
 **優點與選用情境：** 結構化决策、成本比较。須區分 Flash 與标准版，不能混用榜單成績。
 
-**費用：** 逐版本查價。**来源與核對入口：** [官方／托管產品頁](https://docs.perplexity.ai/)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
+**費用：** Decider V1.2：US$0.02／百萬輸入 tokens；Flash V1.2：US$0.01；輸出免費。**来源與核對入口：** [官方／托管產品頁](https://docs.perplexity.ai/docs/decisions/quickstart)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
 
 ### d1-ultra — Liquid AI
 
@@ -99,7 +99,7 @@ tags:
 
 **優點與選用情境：** 帶不確定性的决策。注意校準、信心值與概率输出是否可用。
 
-**費用：** 需向實際提供商確認。**来源與核對入口：** [官方／托管產品頁](https://www.liquid.ai/)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
+**費用：** Liquid API：US$0.042／百萬輸入 tokens。**来源與核對入口：** [官方／托管產品頁](https://www.liquid.ai/blog/d1-ultra)。這不是對實際可購買性的保證；請檢查型號、版本、上下文、地域與限流。
 
 ### Jev 1.14 — TypeSafe AI
 
