@@ -2,7 +2,7 @@
 title: "2026 AI 决策模型大评比：16 种模型来源、价格、能力与选型指南"
 date: 2026-10-25 18:00:00
 updated: 2026-10-25 18:00:00
-description: "整理 16 种专用决策模型、通用推理模型及表格预测方案，对比供应商、API、价格依据、校准、延迟和选型优先级。"
+description: "2026 年 AI 决策模型选型指南：对比 16 种模型的开发者、API 来源、公开价格、实际应用场景和基准测试限制，帮助开发者根据成本、稳定性与任务类型挑选合适方案，而非盲目追逐排行榜。"
 permalink: 2026/10/25/ai-decision-models-ranking-2026/
 translation_key: ai-decision-models-ranking-2026
 translations:
