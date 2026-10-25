@@ -1,32 +1,101 @@
-name: Deploy to server
+name: Build and deploy blog
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Do not interrupt an SCP upload midway through a deployment.
+concurrency:
+  group: blog-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout
-          uses: actions/checkout@v4
+  build:
+    # The existing responsive-cover optimizer uses macOS's sips utility.
+    runs-on: macos-15
+    env:
+      TZ: Asia/Taipei
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        - name: Copy api.php to public
-          run: cp api.php public/api.php
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
 
-        - name: Deploy to server
-          uses: appleboy/scp-action@v0.1.4
-          with: 
-            host: ${{ secrets.SERVER_IP }}
-            username: ${{ secrets.SERVER_USER }}
-            key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
-            passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
-            rm: true
-            source: "public"
-            strip_components: 1
-            target: "~/php-site/blog"
+      - name: Install dependencies
+        run: npm ci
 
-        - name: Notify IndexNow
-          continue-on-error: true
-          run: node tools/indexnow.mjs --days 2
+      - name: Test
+        run: npm test
+
+      - name: Generate fresh multilingual site
+        run: |
+          # public/ is historically tracked in Git; never ship stale checked-in output.
+          rm -rf public
+          npm run build
+          cp api.php public/api.php
+
+      - name: Verify generated site
+        run: |
+          test -s public/index.html
+          test -s public/zh-cn/index.html
+          test -s public/en/index.html
+          test -s public/api.php
+
+      - name: Upload built site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-public
+          path: public/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download built site
+        uses: actions/download-artifact@v4
+        with:
+          name: blog-public
+          path: public/
+
+      - name: Verify deployment artifact
+        run: |
+          test -s public/index.html
+          test -s public/zh-cn/index.html
+          test -s public/en/index.html
+          test -s public/api.php
+
+      - name: Deploy to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
+          rm: true
+          source: "public"
+          strip_components: 1
+          target: "~/php-site/blog"
+
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: node tools/indexnow.mjs --days 2

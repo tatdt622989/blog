@@ -1,3 +1,4 @@
+---
 title: Aseprite 安裝教學：踏進 AI Pixel Art 的第一步
 description: >-
   Aseprite 像素繪圖軟體安裝與 PixelLab AI 像素外掛串接教學。本文為你整理 Steam

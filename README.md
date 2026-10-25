@@ -65,3 +65,20 @@ hexo generate && git add . && git commit -m "Updated Articles" && git push origi
 - 部署前必須先確認沒有夾帶其他無關變更
 
 如果沒有先檢查 working tree，就很容易把不該上線的檔案一起推上去。
+
+## GitHub Actions 自動建置與部署（建議發文方式）
+
+文章與圖片只需提交來源檔，不需要本機編譯或提交新的 `public/`：
+
+1. 修改 `source/_posts/`、`source/zh-cn/_posts/`、`source/en/_posts/`，文章與圖片按三語系規範一起維護。
+2. 建立 PR，GitHub Actions 會在 **macOS** 執行 `npm ci`、`npm test`、`npm run build` 並檢查三語系輸出。PR 不會連線到正式伺服器。
+3. 合併到 `main` 後，Actions **重新產生** `public/`（不依賴 Git 裡既有的編譯檔），上傳成 workflow artifact，然後下載到 Ubuntu 部署工作並以 SCP 發布到 `~/php-site/blog`。
+4. 成功部署後通知 IndexNow。也可在 GitHub Actions 手動執行 **Build and deploy blog**（workflow_dispatch）。
+
+部署沿用 `SERVER_IP`、`SERVER_USER`、`SERVER_SSH_PRIVATE_KEY`、`SERVER_SSH_PASSPHRASE` 四個既有 Secrets。部署前需確保設定仍有效。現在圖片最佳化依賴 macOS `sips`，所以建置 job 使用 macOS runner；未來若換成跨平台圖片程式可改 Ubuntu 降低 CI 成本。
+
+`public/` 為歷史上已納入版控的產物，**CI 會在每次建置前刪除舊內容並重建**，不必將新生成檔案 commit。對於未來新增的文章，建議直接用 PR 提交來源檔。舊版 `npm run deploy` 仍含 `git add .` 與直接推送 `main`，不建議繼續用於正常發文。
+
+為避免 GitHub checkout 的檔案 mtime 讓所有舊文章被誤判為最近更新，`updated_option` 設成 `date`；需要標示修訂時間時請在文章 front matter 明確設定 `updated:`。
+
+注意：目前 SCP 步驟仍沿用既有 `rm: true`，會在上傳前清理目的目錄。正式部署建議在第一次切換時檢查伺服器備份及 GitHub Actions 執行結果。
