@@ -1,8 +1,8 @@
 ---
-title: "別再用聊天模型硬湊答案！2026 專用 AI 決策模型實戰全解析：榜單冠軍 GLiDE v1.2、Perplexity Decider、Jev 1.14 與多源路由深度評比"
+title: "別再用聊天模型硬湊答案！2026 專用 AI 決策模型實戰解析：Fastino GLiDE、Perplexity Decider、Jev 1.14 與多源路由選型指南"
 date: 2026-10-25 18:00:00
-updated: 2026-10-25 23:55:00
-description: "深入解析 2026 年專用 AI 決策模型（Decision Models），完整評比榜單第一名 Fastino GLiDE v1.2、Perplexity Decider 1.2、Jev 1.14、Mammoth-1 與本機 OpenJev 的架構與價格。"
+updated: 2026-10-26 00:20:00
+description: "深入解析 2026 年專用 AI 決策模型（Decision Models），完整對比 Fastino GLiDE v1.2、Perplexity Decider 1.2、Jev 1.14、Mammoth-1 與本機 OpenJev 的架構與價格。"
 permalink: 2026/10/25/ai-decision-models-ranking-2026/
 translation_key: ai-decision-models-ranking-2026
 translations:
@@ -22,7 +22,7 @@ tags:
 
 如果你曾經把結構化的系統狀態塞進通用聊天大模型，叫它在四個動作裡選一個並給出「0 到 100% 的信心分數」，你一定踩過這些坑：模型不管怎麼問都愛回答「85% 信心」、把選項 A 跟 B 對調位置答案就跟著翻盤，甚至為了吐出一小段 JSON 理由，耗掉幾百毫秒延遲與昂貴的輸出 Token 費用。
 
-到了 2026 年，真正需要高頻率、多條件權衡與嚴格機率分佈的生產系統，早就不再拿通用聊天模型硬湊答案，而是轉向專門為「結構化選擇」訓練的 **AI 決策模型（Specialized Decision Models）**。這篇文章不談泛用聊天模型，我們將 100% 聚焦在專用決策模型的底層協定、包含目前榜單第一名 **Fastino GLiDE v1.2** 在內的 17 款真實決策模型價格與能力差異，以及我們在實戰中建構跨平台自動備援路由的踩坑經驗。
+到了 2026 年，真正需要高頻率、多條件權衡與嚴格機率分佈的生產系統，早就不再拿通用聊天模型硬湊答案，而是轉向專門為「結構化選擇」訓練的 **AI 決策模型（Specialized Decision Models）**。這篇文章不談泛用聊天模型，我們將 100% 聚焦在專用決策模型的底層協定、17 款真實決策模型的價格與能力差異，以及我們在實戰中建構跨平台自動備援路由的踩坑經驗。
 
 <!--more-->
 
@@ -89,53 +89,53 @@ tags:
 
 單次請求通常支援同時塞入 64 到 128 道問題，每個問題可包含 2 到 255 個選項。這代表你可以把整個系統所有待決策的子任務打包成一次 API 呼叫，共用同一份 **state** 輸入成本，一次拿回所有判斷。
 
-## 2026 年 17 款專用 AI 決策模型完整評比表（含目前榜單第一名）
+## 2026 年 17 款專用 AI 決策模型完整評比表
 
-我們排除所有通用聊天模型，整理目前在 **Jev Decision Index** 與 **Artificial Analysis** 奪冠的 **Fastino GLiDE v1.2**，以及在 **原生供應商**、**Vercel AI Gateway**、**OpenRouter**、**Cloudflare Workers AI** 與 **自架／本機端** 實際可用的 17 款專用決策模型（資料與價格查核截至 2026-10-25）：
+我們排除所有通用聊天模型，整理目前在各評測基準與 **原生供應商**、**Vercel AI Gateway**、**OpenRouter**、**Cloudflare Workers AI** 與 **自架／本機端** 實際可用的 17 款專用決策模型（資料與價格查核截至 2026-10-25）：
 
 | 模型名稱 | 研發團隊／基底 | 主要呼叫入口 | 輸入單價（每百萬 Tokens） | 輸出單價 | 核心特色與實戰定位 |
 | --- | --- | --- | --- | --- | --- |
-| **1. GLiDE v1.2（榜單第一名）** | Fastino Labs（28B 適應性推理） | Fastino API / 權重開源 | US$0.04 | 免費 | **Jev Decision Index 冠軍（71.5 分）**，首創 Fast/Deep 雙路徑適應性思考 |
-| **2. Baseten Mammoth-1 (27B)** | Base Labs（Qwen3.5-27B 微調） | Vercel / Baseten / MIT 開源 | 促銷免費（依平台牌價） | 免費 | **Artificial Analysis 榜單頂尖（65.9 分）**，針對複雜多因子情境設計 |
-| **3. Liquid d1-ultra** | Liquid AI（多模態） | Vercel / Liquid / OpenRouter | US$0.042 | 免費 | 支援圖文輸入與 32K 上下文，在 Artificial Analysis 榜單與 Mammoth-1 並列前茅 |
-| **4. Perplexity Decider V1.2** | Perplexity（27B 多模態） | Vercel / Perplexity / 權重開源 | US$0.02 | 免費 | 支援文字與圖片輸入，綜合校準度與性價比最均衡的主力決策模型 |
-| **5. Perplexity Decider Flash V1.2** | Perplexity（4B 輕量版） | Vercel / Perplexity / 權重開源 | US$0.01 | 免費 | 4B 參數超低延遲與極致低價，適合高頻率初步篩選與意圖路由 |
-| **6. Perplexity Decider V1.1 (27B)** | Perplexity（Qwen 27B 微調） | Perplexity 原生 / Ollama | US$0.02 | 免費 | 穩定運作的 27B 基準版，適合與 V1.2 做平行版本對照 |
-| **7. Jev 1.14.0** | TypeSafe AI | Vercel / TypeSafe 原生 | US$0.042 | 免費 | SystemOne 開創者，支援 262K 長上下文、圖片輸入與 Box 座標定位 |
-| **8. OpenJev Flash 9B** | 開源社群（MLX 量化） | 本機 oMLX（Apple Silicon） | US$0（本機電力） | 免費 | 4-bit MLX 量化版，JevBench 達 80.5%，Mac 離線推論零 API 成本 |
-| **9. Liquid d1** | Liquid AI | Vercel / OpenRouter | US$0.02 | 免費 | 非傳統 Transformer 架構的高效決策核心，與 Qwen 系模型互補性強 |
-| **10. Baseten Elephant-1 (9B)** | Base Labs（Qwen3.5-9B 微調） | Vercel / Baseten / MIT 開源 | 促銷免費（依平台牌價） | 免費 | 百萬級決策樣本後訓練的 9B 輕快核心，MIT 授權可商用自架 |
-| **11. GPT-6 Luna Decisions** | OpenAI | Vercel / OpenRouter | US$0.10 | 免費 | OpenAI 基於 gpt-6-luna 打造的專用 Decisions 端點，判斷果斷 |
-| **12. Microsoft Decision-1** | Microsoft（Qwen 基底微調） | Vercel / Foundry / OpenRouter | US$0.042 | 免費 | 微軟針對單次前向計分特化的高速模型，風控與合規表現突出 |
-| **13. Mercury Decide** | Inception | OpenRouter | 依路由計價 | 免費 | Mercury 擴散式生態系衍生出的快速決策模型，適合極低延遲迴圈 |
-| **14. Drex v1.5 (9B)** | Nace AI | OpenRouter / 權重開源 | 依路由計價 | 免費 | 9B 參數開源權重決策模型，擅長多選機率評估與高吞吐量任務 |
-| **15. Cloudflare Clef (27B)** | Cloudflare | Cloudflare Workers AI | US$0.24（含每日免費額度） | 免費 | 開源多模態決策模型（另有 Clef-Flash），搭配每日免費 Neurons 零成本 |
-| **16. Laya** | Convai Innovations（ModernBERT） | Hugging Face（Apache 2.0） | 自架硬體成本 | 免費 | 基於 ModernBERT 架構的超輕量開源決策模型，適合企業內網微調與無網路環境 |
-| **17. Kev 系列** | 開源社群（Qwen 基底微調） | Hugging Face（開源權重） | 自架硬體成本 | 免費 | 從 Sub-1B 到 27B 的開源 SystemOne 相容模型家族，適合低資源 PoC 自架 |
+| **GLiDE v1.2** | Fastino Labs（28B 適應性推理） | Fastino API / 權重開源 | US$0.04 | 免費 | Jev Decision Index 高分代表（71.5 分），首創 Fast/Deep 雙路徑適應性思考 |
+| **Baseten Mammoth-1 (27B)** | Base Labs（Qwen3.5-27B 微調） | Vercel / Baseten / MIT 開源 | 促銷免費（依平台牌價） | 免費 | Artificial Analysis 評測高分（65.9 分），針對複雜多因子情境設計 |
+| **Liquid d1-ultra** | Liquid AI（多模態） | Vercel / Liquid / OpenRouter | US$0.042 | 免費 | 支援圖文輸入與 32K 上下文，在長狀態權衡與多模態場景表現穩定 |
+| **Perplexity Decider V1.2** | Perplexity（27B 多模態） | Vercel / Perplexity / 權重開源 | US$0.02 | 免費 | 支援文字與圖片輸入，綜合校準度與性價比最均衡的主力決策模型 |
+| **Perplexity Decider Flash V1.2** | Perplexity（4B 輕量版） | Vercel / Perplexity / 權重開源 | US$0.01 | 免費 | 4B 參數超低延遲與極致低價，適合高頻率初步篩選與意圖路由 |
+| **Perplexity Decider V1.1 (27B)** | Perplexity（Qwen 27B 微調） | Perplexity 原生 / Ollama | US$0.02 | 免費 | 穩定運作的 27B 基準版，適合與 V1.2 做平行版本對照 |
+| **Jev 1.14.0** | TypeSafe AI | Vercel / TypeSafe 原生 | US$0.042 | 免費 | SystemOne 開創者，支援 262K 長上下文、圖片輸入與 Box 座標定位 |
+| **OpenJev Flash 9B** | 開源社群（MLX 量化） | 本機 oMLX（Apple Silicon） | US$0（本機電力） | 免費 | 4-bit MLX 量化版，JevBench 達 80.5%，Mac 離線推論零 API 成本 |
+| **Liquid d1** | Liquid AI | Vercel / OpenRouter | US$0.02 | 免費 | 非傳統 Transformer 架構的高效決策核心，與 Qwen 系模型互補性強 |
+| **Baseten Elephant-1 (9B)** | Base Labs（Qwen3.5-9B 微調） | Vercel / Baseten / MIT 開源 | 促銷免費（依平台牌價） | 免費 | 百萬級決策樣本後訓練的 9B 輕快核心，MIT 授權可商用自架 |
+| **GPT-6 Luna Decisions** | OpenAI | Vercel / OpenRouter | US$0.10 | 免費 | OpenAI 基於 gpt-6-luna 打造的專用 Decisions 端點，判斷果斷 |
+| **Microsoft Decision-1** | Microsoft（Qwen 基底微調） | Vercel / Foundry / OpenRouter | US$0.042 | 免費 | 微軟針對單次前向計分特化的高速模型，風控與合規表現突出 |
+| **Mercury Decide** | Inception | OpenRouter | 依路由計價 | 免費 | Mercury 擴散式生態系衍生出的快速決策模型，適合極低延遲迴圈 |
+| **Drex v1.5 (9B)** | Nace AI | OpenRouter / 權重開源 | 依路由計價 | 免費 | 9B 參數開源權重決策模型，擅長多選機率評估與高吞吐量任務 |
+| **Cloudflare Clef (27B)** | Cloudflare | Cloudflare Workers AI | US$0.24（含每日免費額度） | 免費 | 開源多模態決策模型（另有 Clef-Flash），搭配每日免費 Neurons 零成本 |
+| **Laya** | Convai Innovations（ModernBERT） | Hugging Face（Apache 2.0） | 自架硬體成本 | 免費 | 基於 ModernBERT 架構的超輕量開源決策模型，適合企業內網微調與無網路環境 |
+| **Kev 系列** | 開源社群（Qwen 基底微調） | Hugging Face（開源權重） | 自架硬體成本 | 免費 | 從 Sub-1B 到 27B 的開源 SystemOne 相容模型家族，適合低資源 PoC 自架 |
 
-## 決策模型怎麼跑分？認識三大權威評測基準與目前第一名
+## 決策模型怎麼跑分？認識三大權威評測基準
 
 傳統大模型的 MMLU 或 HumanEval 根本測不出「單次前向傳播的機率校準度」。在 2026 年底挑選決策模型時，業界主要看以下三個專用排行榜：
 
-1. **Jev Decision Index**：追蹤數百款開源權重微調版與商業 API 的綜合排行榜。目前位居榜首第一名的是 **Fastino Labs 的 GLiDE v1.2（Generalized Lightweight Decision Engine，約 71.5 分）**，領先原版 Jev 基準高達 6.9 分，與 **Baseten Mammoth-1 (27B)**、**Perplexity Decider V1.2** 並列最受矚目的領先群。
-2. **Artificial Analysis Decision Index（v1.0）**：由知名獨立評測機構 Artificial Analysis 建立，將分數平均拆為四大支柱（各佔 25%）：**知識與抗幻覺（AA-Omniscience-Decision）**、**複雜推理（HLE-MultiChoice）**、**工具呼叫判斷（NVIDIA When2Call）** 與 **安全分類（WildGuardTest）**。在此榜單中，**Fastino GLiDE** 在 When2Call 工具呼叫（約 84 分）與 WildGuardTest 安全分類（約 95 分）拿下最高分，而 **Baseten Mammoth-1 (27B)**（總分約 **65.9 分**）與 **Liquid d1-ultra** 則穩居綜合排行榜第一梯隊。
-3. **JevBench（Benchmark Heaven）**：專門針對相容 System One 協定的決策系統所設計的獨立評測框架，同時衡量 **結構化決策準確率**、**機率校準度（Calibration，模型說 80% 把握時是否真的有 80% 答對）**、**P50/P95 延遲** 與 **推論成本**（商業 API 榜單上除了 **GLiDE** 與 **Jev** 外，Levanto Labs 的 **Sage 1.3.0** 也是高分常客）。
+1. **Jev Decision Index**：追蹤數百款開源權重微調版與商業 API 的綜合排行榜。其中 **Fastino Labs 的 GLiDE v1.2（Generalized Lightweight Decision Engine，約 71.5 分）** 與 **Baseten Mammoth-1 (27B)**、**Perplexity Decider V1.2** 並列最受矚目的領先群。
+2. **Artificial Analysis Decision Index（v1.0）**：由知名獨立評測機構 Artificial Analysis 建立，將分數平均拆為四大支柱（各佔 25%）：**知識與抗幻覺（AA-Omniscience-Decision）**、**複雜推理（HLE-MultiChoice）**、**工具呼叫判斷（NVIDIA When2Call）** 與 **安全分類（WildGuardTest）**。在此榜單中，**Fastino GLiDE** 在 When2Call 工具呼叫（約 84 分）與 WildGuardTest 安全分類（約 95 分）表現優異，而 **Baseten Mammoth-1 (27B)**（總分約 **65.9 分**）與 **Liquid d1-ultra** 則穩居綜合表現第一梯隊。
+3. **JevBench（Benchmark Heaven）**：專門針對相容 System One 協定的決策系統所設計的獨立評測框架，同時衡量 **結構化決策準確率**、**機率校準度（Calibration，模型說 80% 把握時是否真的有 80% 答對）**、**P50/P95 延遲** 與 **推論成本**（商業 API 榜單上除了 **GLiDE** 與 **Jev** 外，Levanto Labs 的 **Sage 1.3.0** 也是高分代表）。
 
-值得注意的是，最新學術研究（如 **JEVal** 評測報告）也提醒工程團隊：傳統單次前向（Single-Pass）決策模型在「證據明確的模式識別與多條件路由」上擁有壓倒性的速度與成本優勢，但在遇到算術、日期換算或跨越多步驟的複雜邏輯時容易失準——而這正是目前第一名的 **GLiDE v1.2** 之所以能奪冠的關鍵突破。
+值得注意的是，最新學術研究（如 **JEVal** 評測報告）也提醒工程團隊：傳統單次前向（Single-Pass）決策模型在「證據明確的模式識別與多條件路由」上擁有壓倒性的速度與成本優勢，但在遇到算術、日期換算或跨越多步驟的複雜邏輯時容易失準——這也促成了 **GLiDE v1.2** 這類具備思考路徑的架構誕生。
 
 ## 主流決策模型深度剖析：誰適合放在哪個位置？
 
 在生產環境中，我們強烈建議不要只綁死單一顆模型，而是把不同架構的決策模型組合成「多核心決策委員會」，原因在於每顆模型的訓練基底與風險偏好截然不同。
 
-### 1. 目前榜單第一名：Fastino GLiDE v1.2（Thinking Decision Model）
+### 1. Fastino GLiDE v1.2：引入適應性推理的思考型決策模型
 
-為什麼 [Fastino Labs](https://fastino.ai/) 推出的 **GLiDE v1.2（Generalized Lightweight Decision Engine，28B 規模）** 能夠在 **Jev Decision Index** 衝上第一名（71.5 分），並在 JevBench 拿到高達 84.5 的能力分？
+[Fastino Labs](https://fastino.ai/) 推出的 **GLiDE v1.2（Generalized Lightweight Decision Engine，28B 規模）** 在 **Jev Decision Index**（71.5 分）與 JevBench（能力分達 84.5）表現亮眼，其核心關鍵在於解決了第一代決策模型常見的短板：**「純單次前向傳播無法應對多步驟數學與符號邏輯」**。
 
-因為它解決了第一代決策模型最大的痛點：**「單次前向傳播無法算數學與多步邏輯」**。GLiDE v1.2 首創了 **適應性推理（Adaptive Reasoning）** 雙路徑架構：
+GLiDE v1.2 採用了 **適應性推理（Adaptive Reasoning）** 雙路徑設計：
 - **快速路徑（Fast Path）**：每一筆決策請求都先跑極速的單次前向評估。如果模型對答案已經具備高度把握（實測約三分之二的常規路由題目會走這條路），就直接毫秒級回傳結構化機率。
 - **深度路徑（Deep Path）**：當模型偵測到題目涉及算術比較、日期計算、程式碼邏輯或多事實交叉驗證且不確定性較高時，會自動觸發內部的適應性思考步驟（Thinking Step），再將推理結果折算回最終的校準機率分佈。
 
-它的 API 定價約為每百萬輸入 Token **0.04 美元**（與 Jev 1.14 的 0.042 美元相當），是追求極致單模準確率的首選；不過目前它主要透過 Fastino 官方 API 與 Hugging Face 提供，若要整合進 Vercel 或 OpenRouter 統一閘道，需留意平台路由上架進度與限流條件。
+它的 API 定價約為每百萬輸入 Token **0.04 美元**（與 Jev 1.14 的 0.042 美元相當），適合對複雜邏輯判斷有嚴格要求的單元；不過目前它主要透過 Fastino 官方 API 與 Hugging Face 提供，若要整合進 Vercel 或 OpenRouter 統一閘道，需留意平台路由上架進度與限流條件。
 
 ### 2. Perplexity Decider 系列（V1.2 / Flash V1.2 / V1.1）
 
