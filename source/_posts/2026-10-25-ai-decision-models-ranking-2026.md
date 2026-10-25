@@ -2,7 +2,7 @@
 title: "別再用聊天模型硬湊答案！2026 專用 AI 決策模型實戰全解析：Perplexity Decider、Jev 1.14、Liquid d1 與 Vercel 路由深度評比"
 date: 2026-10-25 18:00:00
 updated: 2026-10-25 21:00:00
-description: "深入解析 2026 年專用 AI 決策模型（Decision Models）與一般聊天 LLM 的本質差異，完整實測對比 Perplexity Decider 1.2、TypeSafe Jev 1.14、Liquid d1-ultra、Baseten Mammoth-1 與本機 OpenJev 的 API 規格、機率校準與真實價格。"
+description: "深入解析 2026 年專用 AI 決策模型（Decision Models）與一般聊天模型的本質差異，對比 Perplexity Decider 1.2、Jev 1.14、Liquid d1-ultra、Mammoth-1 與本機 OpenJev 的 API 規格與真實價格。"
 permalink: 2026/10/25/ai-decision-models-ranking-2026/
 translation_key: ai-decision-models-ranking-2026
 translations:

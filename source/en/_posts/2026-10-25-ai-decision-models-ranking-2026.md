@@ -2,7 +2,7 @@
 title: "Stop Using Chatbots to Make Decisions: The 2026 Guide to Specialized AI Decision Models (Perplexity Decider, Jev 1.14, Liquid d1, and Vercel Routing)"
 date: 2026-10-25 18:00:00
 updated: 2026-10-25 21:00:00
-description: "An in-depth engineering guide to specialized AI Decision Models in 2026. Compare Perplexity Decider 1.2, TypeSafe Jev 1.14, Liquid d1-ultra, Baseten Mammoth-1, and local OpenJev across API schemas, probability calibration, and real-world pricing."
+description: "Deep dive into specialized AI Decision Models in 2026: compare Perplexity Decider 1.2, Jev 1.14, Liquid d1-ultra, Mammoth-1, and OpenJev."
 permalink: 2026/10/25/ai-decision-models-ranking-2026/
 translation_key: ai-decision-models-ranking-2026
 translations:
