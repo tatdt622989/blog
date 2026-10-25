@@ -7,7 +7,8 @@ permalink: 2026/10/25/ai-decision-models-ranking-2026/
 translation_key: ai-decision-models-ranking-2026
 translations:
   zh-TW: /2026/10/25/ai-decision-models-ranking-2026/
-  zh-CN: /zh-cn/2026/10/25/ai-decision-models-ranking-2026/categories:
+  zh-CN: /zh-cn/2026/10/25/ai-decision-models-ranking-2026/
+categories:
 - AI Tools
 tags:
 - AI
