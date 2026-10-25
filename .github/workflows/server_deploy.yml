@@ -21,6 +21,8 @@ jobs:
   build:
     # The existing responsive-cover optimizer uses macOS's sips utility.
     runs-on: macos-15
+    env:
+      TZ: Asia/Taipei
     steps:
       - name: Checkout
         uses: actions/checkout@v4
