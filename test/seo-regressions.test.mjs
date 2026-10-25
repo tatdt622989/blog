@@ -173,11 +173,11 @@ test('homepage cover images use responsive card variants', () => {
   const latestCover = homepage.match(/<img\b[^>]+\bpost-cover-image\b[^>]+>/);
 
   assert.ok(latestCover, 'homepage should render a post cover image');
-  const candidateSrc = latestCover[0].match(/\\bsrc="([^"]+)"/)?.[1]?.split(/[?#]/)[0];
+  const candidateSrc = latestCover[0].match(/\bsrc="([^"]+)"/)?.[1]?.split(/[?#]/)[0];
   const candidateFile = candidateSrc && path.join(generatedPublicRoot, decodeURIComponent(candidateSrc));
   if (candidateSrc?.toLowerCase().endsWith('.svg')) {
     assert.ok(candidateFile && fs.existsSync(candidateFile), 'vector cover must exist in generated output');
-    assert.match(fs.readFileSync(candidateFile, 'utf8'), /<svg\\b/, 'vector cover must contain SVG markup');
+    assert.match(fs.readFileSync(candidateFile, 'utf8'), /<svg\b/, 'vector cover must contain SVG markup');
     return;
   }
 
