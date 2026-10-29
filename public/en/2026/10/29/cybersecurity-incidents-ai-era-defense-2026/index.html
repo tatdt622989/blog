@@ -1,0 +1,748 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Security Incidents Keep Coming: How to Protect Yourself in the AI Era | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Recent PHP and LiteLLM incidents show why AI-era security needs scoped permissions, safer accounts, careful updates, and a recovery plan.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/">
+  
+
+  <meta property="og:title" content="Security Incidents Keep Coming: How to Protect Yourself in the AI Era"/>
+  <meta property="og:description" content="Recent PHP and LiteLLM incidents show why AI-era security needs scoped permissions, safer accounts, careful updates, and a recovery plan."/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover.jpg?v=a65334af" />
+  <meta property="og:image:alt" content="Security Incidents Keep Coming: How to Protect Yourself in the AI Era" />
+  
+  <meta property="article:published_time" content="2026-10-29T06:48:35.000Z" />
+  <meta property="article:modified_time" content="2026-10-29T06:48:35.000Z" />
+  <meta property="article:section" content="Information Security" />
+  
+  <meta property="article:tag" content="AI" />
+  
+  <meta property="article:tag" content="AI Agents" />
+  
+  <meta property="article:tag" content="Cybersecurity" />
+  
+  <meta property="article:tag" content="Supply Chain Security" />
+  
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Security Incidents Keep Coming: How to Protect Yourself in the AI Era">
+  <meta name="twitter:description" content="Recent PHP and LiteLLM incidents show why AI-era security needs scoped permissions, safer accounts, careful updates, and a recovery plan.">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover.jpg?v=a65334af">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/","url":"https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/","headline":"Security Incidents Keep Coming: How to Protect Yourself in the AI Era","description":"Recent PHP and LiteLLM incidents show why AI-era security needs scoped permissions, safer accounts, careful updates, and a recovery plan.","datePublished":"2026-10-29T06:48:35.000Z","dateModified":"2026-10-29T06:48:35.000Z","inLanguage":"en","articleSection":"Information Security","keywords":"AI, AI Agents, Cybersecurity, Supply Chain Security","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Information Security","item":"https://blog.6yuwei.com/en/categories/Information-Security/"},{"@type":"ListItem","position":3,"name":"Security Incidents Keep Coming: How to Protect Yourself in the AI Era","item":"https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/en/css/style.css?v=4131163397">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/en/">
+      <img src="/en/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="Switch language">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">English</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/10/29/AI時代資安應對指南/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>Traditional Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>Simplified Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/en/">Home</a></li>
+    
+      <li><a href="/en/archives">Archives</a></li>
+    
+      <li><a href="/en/ai-dev-map/">Dev Map</a></li>
+    
+    <li><a href="https://iraiya.com" target="_blank" rel="noopener">Products</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="Search">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">Search</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-cybersecurity-incidents-ai-era-defense-2026" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-10-29T06:48:35.000Z"><a href="/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/">2026-10-29</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Security Incidents Keep Coming: How to Protect Yourself in the AI Era</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-720.jpg?v=e0fd4d2d" alt="AI-era security illustration: a shield connects a laptop, phone, and cloud service, with a separate backup vault" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-480.jpg?v=381813c6 480w, /en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-720.jpg?v=e0fd4d2d 720w, /en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-960.jpg?v=fe474a16 960w, /en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-1280.jpg?v=b2659817 1280w, /en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover.jpg?v=a65334af 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p>The recent stream of <strong>security incidents</strong> can make patch notices feel endless. Critical PHP flaws prompted urgent updates, while LiteLLM, a familiar name in AI development, suffered a supply chain compromise. Everyday tools suddenly deserve another look.</p>
+<p>AI can write code, read email, and connect cloud services. That convenience also carries data and permissions across more systems. These recent cases offer a useful starting point for individuals and small teams who want to keep one mistake from becoming a chain of losses.</p>
+<span id="more"></span>
+
+<p><strong>Sources checked through October 29, 2026, Taipei time.</strong> This article analyzes public official material. It does not report hands-on testing of the affected systems, and incident findings may develop further.</p>
+<h2 id="Recent-incidents-expose-different-weaknesses"><a href="#Recent-incidents-expose-different-weaknesses" class="headerlink" title="Recent incidents expose different weaknesses"></a>Recent incidents expose different weaknesses</h2><h3 id="PHP-runtime-flaws-reach-the-services-built-on-top"><a href="#PHP-runtime-flaws-reach-the-services-built-on-top" class="headerlink" title="PHP: runtime flaws reach the services built on top"></a>PHP: runtime flaws reach the services built on top</h3><p>On <strong>October 21</strong>, PHP published security updates for two critical vulnerabilities that could allow unauthenticated remote code execution. Updating application dependencies alone may leave a vulnerable runtime in place. Follow-up notices on <strong>October 23 and 26</strong> addressed particular configurations and Windows dependencies, showing why patch work requires continued attention. <a target="_blank" rel="noopener" href="https://www.php.net/archive/2026.php">PHP announcements and follow-up notices</a></p>
+<p>For an operator, the practical questions are straightforward: <strong>Which services use this component? Who maintains them? How do we confirm that production is running the fix?</strong> Without an asset inventory, an emergency becomes a search exercise.</p>
+<h3 id="LiteLLM-an-unrevoked-key-reached-the-release-pipeline"><a href="#LiteLLM-an-unrevoked-key-reached-the-release-pipeline" class="headerlink" title="LiteLLM: an unrevoked key reached the release pipeline"></a>LiteLLM: an unrevoked key reached the release pipeline</h3><p>On <strong>October 21</strong>, LiteLLM distributed malicious <strong>1.107.0</strong> packages and related container images. Its incident notice describes credential theft and remote-code loading. Exposure depends on the specific artifacts, versions, and execution history. <a target="_blank" rel="noopener" href="https://docs.litellm.ai/blog/security-incident-oct-21-2026">Official impact and response notice</a></p>
+<p>The <strong>October 23 postmortem</strong> traced the chain to an exposed administrative key that remained valid. It gave the attacker access to an overprivileged GitHub credential and, eventually, the release process. The findings also corrected earlier assumptions. <strong>Removing a key from a file must be followed by revoking the key itself.</strong> <a target="_blank" rel="noopener" href="https://docs.litellm.ai/blog/security-incident-oct-21-2026-attack-chain">Official attack-chain report</a></p>
+<h3 id="AI-misuse-reports-need-careful-interpretation"><a href="#AI-misuse-reports-need-careful-interpretation" class="headerlink" title="AI misuse reports need careful interpretation"></a>AI misuse reports need careful interpretation</h3><p>Anthropic’s <strong>September 2026 threat report</strong> describes AI-assisted reconnaissance, tooling, and attack orchestration in selected operations it disrupted between December 2025 and August 2026. These vendor-observed cases do not establish a global attack growth rate or show that AI caused the PHP or LiteLLM incidents above. <a target="_blank" rel="noopener" href="https://www.anthropic.com/threat-intelligence-report-september-2026">Anthropic’s original report</a></p>
+<h2 id="AI-connects-speed-permissions-and-financial-exposure"><a href="#AI-connects-speed-permissions-and-financial-exposure" class="headerlink" title="AI connects speed, permissions, and financial exposure"></a>AI connects speed, permissions, and financial exposure</h2><p>My reading of these cases is that <strong>AI can amplify management failures that already matter</strong>. Three changes deserve attention.</p>
+<p><strong>Repetitive work becomes cheaper.</strong> Tools that help research targets, generate content, and revise code can let attackers try more paths with fewer people. A small website cannot rely on its size to stay unnoticed.</p>
+<p><strong>Permissions become a more consequential boundary.</strong> Imagine an assistant that can read email, query customer records, run programs, and send messages. A malicious document could influence its later actions. This is an illustrative scenario; the actual damage depends on the capabilities the system grants.</p>
+<p><strong>Stolen resources can become direct expenses.</strong> An API key for a paid service creates billing and capacity exposure as well as data risk. Small teams have accounts, compute resources, and customer trust worth protecting.</p>
+<h2 id="Individuals-secure-accounts-and-limit-data-access"><a href="#Individuals-secure-accounts-and-limit-data-access" class="headerlink" title="Individuals: secure accounts and limit data access"></a>Individuals: secure accounts and limit data access</h2><p>I would start with the main email account. It often controls password resets elsewhere, so it needs a unique password and a protected recovery process. Use <strong>passkeys</strong> where supported. FIDO Alliance classifies them as phishing-resistant authentication, while emphasizing the importance of recovery methods. Device security still matters. <a target="_blank" rel="noopener" href="https://fidoalliance.org/wp-content/uploads/2025/03/Passkeys-The-Journey-to-Prevent-Phishing-Pt1.pdf">FIDO’s guidance</a></p>
+<p>A few repeatable habits help:</p>
+<ul>
+<li><strong>Open official apps or saved bookmarks yourself.</strong> Verify requests involving payments, account changes, or verification codes through contact details you already know.</li>
+<li><strong>Inspect AI connections before granting access.</strong> Start with a single folder when that is sufficient, and revoke connections you no longer use.</li>
+<li><strong>Share the minimum information needed.</strong> Remove names, contact details, customer records, and credentials from task excerpts. Check attachments and metadata too.</li>
+<li><strong>Keep an independent copy of important files.</strong> Sync may propagate deletion or encryption, leaving you without the recovery history you need.</li>
+</ul>
+<h2 id="Developers-and-small-teams-enforce-least-privilege"><a href="#Developers-and-small-teams-enforce-least-privilege" class="headerlink" title="Developers and small teams: enforce least privilege"></a>Developers and small teams: enforce least privilege</h2><p>An assistant modifying one project can usually work with permissions limited to that project. Putting organization-wide credentials, production databases, and deployment access into one environment gives mistakes and intrusions more room to spread.</p>
+<p><strong>Prompt injection</strong> adds another route: instructions hidden in a webpage, email, or document may redirect an assistant’s behavior. OWASP recommends least privilege, separation of external content, and human review for high-risk operations. Tools and services should enforce authorization outside the model. <a target="_blank" rel="noopener" href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">OWASP risk guidance</a>, <a target="_blank" rel="noopener" href="https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html">implementation guidance</a></p>
+<p>I would prioritize the following:</p>
+<ul>
+<li><strong>Separate development, test, and production credentials.</strong> Use scoped, revocable access. Suspected exposure calls for revocation and log review, beyond deleting a public file.</li>
+<li><strong>Record what actually runs.</strong> Keep dependency versions, lockfiles, and container digests. Pinning supports traceability and controlled changes; you still need to assess the pinned artifact.</li>
+<li><strong>Prioritize updates by risk.</strong> Evaluate urgent vendor notices, active exploitation, public exposure, and access to sensitive data. Verify artifact sources instead of treating automatic upgrades as a complete defense.</li>
+<li><strong>Test important authorization boundaries.</strong> One user must not read another user’s records. Show concrete effects before authorized people approve production deletion, payments, or permission changes.</li>
+<li><strong>Monitor unusual activity and spending.</strong> Watch logins, permission changes, exports, and API usage. Check whether budget alerts actually stop service; a notification is not necessarily a spending cap.</li>
+</ul>
+<h2 id="Write-a-short-response-plan-before-an-incident"><a href="#Write-a-short-response-plan-before-an-incident" class="headerlink" title="Write a short response plan before an incident"></a>Write a short response plan before an incident</h2><p>Deciding whom to call, what to isolate, and where to restore under pressure makes omissions more likely. A small team can begin with a one-page plan:</p>
+<ol>
+<li><strong>Contain spread and preserve necessary evidence.</strong> Isolate affected environments, restrict suspicious access, and retain relevant logs and a timeline.</li>
+<li><strong>Revoke credentials from a trusted management environment.</strong> Review keys, sessions, connected-app grants, and potentially related accounts.</li>
+<li><strong>Rebuild from trusted artifacts and verify recovery.</strong> Address the vulnerability and persistence paths, test data and critical functions, and monitor for further anomalies.</li>
+<li><strong>Communicate confirmed impact.</strong> State what is known, what remains uncertain, and what action is underway. Distinguish absence of findings from proof of absence.</li>
+</ol>
+<p>Test restores as well. HHS’s ransomware guidance recommends verifying recovery and considering offline backups inaccessible from the original network. This reference supports the technical recommendation here. <strong>Backups help restore service; copied data still needs a separate response.</strong> <a target="_blank" rel="noopener" href="https://www.hhs.gov/hipaa/for-professionals/security/guidance/cybersecurity/ransomware-fact-sheet/index.html">Backup and recovery guidance</a></p>
+<h2 id="Use-AI-to-help-verify-and-keep-the-evidence"><a href="#Use-AI-to-help-verify-and-keep-the-evidence" class="headerlink" title="Use AI to help verify, and keep the evidence"></a>Use AI to help verify, and keep the evidence</h2><p>AI can organize official notices, compare sanitized asset inventories, and draft remediation tasks. Ask for sources, publication dates, affected conditions, and unresolved questions, then check the originals against the actual environment.</p>
+<p>Individuals can begin with their main email account, AI access grants, and one tested backup. Developers can identify their most powerful credentials, internet-facing components, and the person responsible for urgent fixes.</p>
+<p>Some of the time AI saves can go toward this easily postponed work. Knowing what a tool can access, who will spot unusual behavior, and how to withdraw access makes new tools easier to use with confidence.</p>
+<p>Further reading: <a href="/en/2026/10/21/php-critical-vulnerabilities-japan-shutdowns-2026/">PHP vulnerabilities and emergency patching</a>, <a href="/en/2026/10/21/nodejs-october-2026-security-analysis/">Node.js October security update analysis</a>.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/en/categories/Information-Security/">Information Security</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/AI-Agents/">AI Agents</a>, <a href="/en/tags/Cybersecurity/">Cybersecurity</a>, <a href="/en/tags/Supply-Chain-Security/">Supply Chain Security</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">Share</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="Copy Link" aria-label="Copy Link">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>Copy Link</span>
+    </button>
+
+    
+      <!-- 英文（全球開發者生態）：X、LinkedIn、Reddit、Hacker News、Facebook -->
+      <a href="https://twitter.com/intent/tweet?text=Security%20Incidents%20Keep%20Coming%3A%20How%20to%20Protect%20Yourself%20in%20the%20AI%20Era&url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F29%2Fcybersecurity-incidents-ai-era-defense-2026%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F29%2Fcybersecurity-incidents-ai-era-defense-2026%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-linkedin" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63z"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://reddit.com/submit?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F29%2Fcybersecurity-incidents-ai-era-defense-2026%2F&title=Security%20Incidents%20Keep%20Coming%3A%20How%20to%20Protect%20Yourself%20in%20the%20AI%20Era" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-reddit" title="Share on Reddit" aria-label="Share on Reddit">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.197-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+        </svg>
+        <span>Reddit</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F10%2F29%2Fcybersecurity-incidents-ai-era-defense-2026%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Security Incidents Keep Coming: How to Protect Yourself in the AI Era" data-url="https://blog.6yuwei.com/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/" title="Share" aria-label="Share" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>Share...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/">
+  <h3 class="related-posts-title">Related Posts</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/" class="related-post-link"
+           data-rel-title="How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness"
+           data-rel-path="/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg?v=de8aafbd" alt="How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">How Should E2E Testing Evolve in the AI Era? From Fixed Scripts to an AI-Native Harness</h4>
+            
+              <time class="related-post-date">2026-09-01</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
+           data-rel-title="AI Coding Subscriptions Compared (2026): Claude Code vs Codex vs Cursor vs Copilot Pricing"
+           data-rel-path="/en/2026/09/14/ai-coding-tools-subscription-comparison/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb" alt="AI Coding Subscriptions Compared (2026): Claude Code vs Codex vs Cursor vs Copilot Pricing" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">AI Coding Subscriptions Compared (2026): Claude Code vs Codex vs Cursor vs Copilot Pricing</h4>
+            
+              <time class="related-post-date">2026-09-14</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/" class="related-post-link"
+           data-rel-title="How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter"
+           data-rel-path="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/08/31/ai-model-leaderboards-benchmark-metrics/cover.jpg?v=330a3459" alt="How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">How to Read AI Model Leaderboards: LMArena, SWE-bench, LiveBench, and 12 Metrics That Matter</h4>
+            
+              <time class="related-post-date">2026-08-31</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/categories/AI/">AI</a><small>10</small></li>
+  
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>7</small></li>
+  
+    <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>16</small></li>
+  
+    <li><a href="/en/categories/Cybersecurity/">Cybersecurity</a><small>2</small></li>
+  
+    <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Game-Development/">Game Development</a><small>6</small></li>
+  
+    <li><a href="/en/categories/Independent-Development/">Independent Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Indie-Development/">Indie Development</a><small>3</small></li>
+  
+    <li><a href="/en/categories/Indie-Hacker/">Indie Hacker</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Information-Security/">Information Security</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Japanese-Learning/">Japanese Learning</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Servers-Hosting/">Servers &amp; Hosting</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>3</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/categories/">View all categories</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">Popular tags</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/en/tags/AI/"><span>AI</span><small>30</small></a></li>
+  
+    <li><a href="/en/tags/Codex/"><span>Codex</span><small>10</small></a></li>
+  
+    <li><a href="/en/tags/Claude/"><span>Claude</span><small>9</small></a></li>
+  
+    <li><a href="/en/tags/Claude-Code/"><span>Claude Code</span><small>9</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agent/"><span>AI Agent</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/Developer-Tools/"><span>Developer Tools</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/Indie-Developer/"><span>Indie Developer</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/OpenAI/"><span>OpenAI</span><small>6</small></a></li>
+  
+    <li><a href="/en/tags/Anthropic/"><span>Anthropic</span><small>5</small></a></li>
+  
+    <li><a href="/en/tags/Game-Development/"><span>Game Development</span><small>5</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agents/"><span>AI Agents</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/AI-Image-Generation/"><span>AI Image Generation</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/Software-Engineering/"><span>Software Engineering</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/AI-Coding/"><span>AI Coding</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/AI-Development-Tools/"><span>AI Development Tools</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Aseprite/"><span>Aseprite</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Cursor/"><span>Cursor</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/tags/">View all tags</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/en/rss.xml">Subscribe via RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"Copy","codeCopied":"Copied","toastCodeCopied":"Code copied to clipboard","copyLinkLabel":"Copy Link","linkCopied":"Article link copied","headingCopied":"Section link copied","tocTitle":"Table of Contents","searchLoading":"Loading...","searchEmpty":"Type keywords to start searching...","searchNoResults":"No articles matching \"%s\"","tableScrollLabel":"Table, scroll horizontally for more columns","tableScrollHint":"Scroll horizontally to view the full table. You can also use the arrow keys."};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="Search articles, tags, or keywords..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">Type keywords to start searching...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">ESC to close, ↑↓ to navigate, Enter to open</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/en/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/en/js/jquery-3.4.1.min.js"></script>
+<script defer src="/en/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/en/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/en/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>

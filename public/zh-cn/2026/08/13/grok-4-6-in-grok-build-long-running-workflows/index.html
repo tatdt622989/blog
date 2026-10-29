@@ -36,9 +36,9 @@
   <meta property="article:modified_time" content="2026-08-17T07:20:00.000Z" />
   <meta property="article:section" content="AI 科技" />
   
-  <meta property="article:tag" content="AI Agent" />
-  
   <meta property="article:tag" content="Grok" />
+  
+  <meta property="article:tag" content="AI Agent" />
   
   
   <meta name="twitter:card" content="summary_large_image">
@@ -46,7 +46,7 @@
   <meta name="twitter:description" content="Grok 4.6 已成为 Grok Build 的核心模型。本文厘清 Grok 4.6、Grok Build 与 Build Mode 的定位差异，深入剖析长周期任务持续性、并行子代理、Plan 模式、500K 超长上下文与阶梯 API 成本对真实项目研发的影响。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover.jpg?v=18f0d70b">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/","url":"https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/","headline":"Grok 4.6 接入 Grok Build：长时运行开发工作流带来了哪些改变？","description":"Grok 4.6 已成为 Grok Build 的核心模型。本文厘清 Grok 4.6、Grok Build 与 Build Mode 的定位差异，深入剖析长周期任务持续性、并行子代理、Plan 模式、500K 超长上下文与阶梯 API 成本对真实项目研发的影响。","datePublished":"2026-08-13T02:25:34.000Z","dateModified":"2026-08-17T07:20:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI Agent, Grok","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/","url":"https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/","headline":"Grok 4.6 接入 Grok Build：长时运行开发工作流带来了哪些改变？","description":"Grok 4.6 已成为 Grok Build 的核心模型。本文厘清 Grok 4.6、Grok Build 与 Build Mode 的定位差异，深入剖析长周期任务持续性、并行子代理、Plan 模式、500K 超长上下文与阶梯 API 成本对真实项目研发的影响。","datePublished":"2026-08-13T02:25:34.000Z","dateModified":"2026-08-17T07:20:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"Grok, AI Agent","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Grok 4.6 接入 Grok Build：长时运行开发工作流带来了哪些改变？","item":"https://blog.6yuwei.com/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/"}]}</script>
   
@@ -242,7 +242,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=006e5ba9" alt="Grok 4.6 驱动 Grok Build 执行长时运行开发与并行代理工作流示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-480.jpg?v=c2726092 480w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=006e5ba9 720w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-960.jpg?v=7b93e024 960w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-1280.jpg?v=d7a022a3 1280w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover.jpg?v=18f0d70b 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=38a4a471" alt="Grok 4.6 驱动 Grok Build 执行长时运行开发与并行代理工作流示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-480.jpg?v=3d11094a 480w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-720.jpg?v=38a4a471 720w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-960.jpg?v=5935025a 960w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover-card-1280.jpg?v=02800e37 1280w, /zh-cn/2026/08/13/grok-4-6-in-grok-build-long-running-workflows/cover.jpg?v=18f0d70b 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>xAI 在 8 月 12 日正式推出了新一代旗舰模型 <strong>Grok 4.6</strong>，并迅速将其设为终端工具 <strong>Grok Build</strong> 的底层默认核心引擎。这一软硬件协同组合最值得一线技术人关注的，绝非发布会幻灯片上又多出的一长串 Benchmark 跑分，而是 xAI 将一款具备前沿推理能力的新模型，无缝集成进了一个能够自主读取本地仓库、精准修改文件、直接在终端运行命令、灵活调用外部工具，并能统筹调度多个子代理的完整工程环境之中。</p>
 <p>换言之，Grok 4.6 专精于深层逻辑推理与代码决策，而 Grok Build 则负责将模型能力平稳接驳进真实的研发工作流。当开发任务从简单的“写一个工具函数”，延伸为通读整个大型代码库、制定涉及数十个文件的重构方案、并行分流调研子任务、自动运行单元测试并根据报错信息迭代自愈时，模型与代理宿主框架之间能否稳定高效地配合，远比单一题目的理论答题准确率更贴近程序员每日的真实开发痛点。</p>
 <p>先抛出核心结论：<strong>Grok 4.6 问世的核心意义绝非一蹴而就取代所有现存的 AI 编程工具，而是让 Grok Build 在长周期自主 Agent 研发的第一线竞争中，具备了更强劲的系统级续航与工程把控力。</strong>当然，本文所引述的技术细节主要基于 xAI 截至 2026 年 8 月 13 日公开披露的技术文档与官方公告，厂商宣称的基准表现仍应作为技术评估的参考基线。</p>
@@ -347,7 +347,7 @@
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/Grok/">Grok</a>
+    <a href="/zh-cn/tags/Grok/">Grok</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>
   </div>
 
         
@@ -520,7 +520,7 @@
   
     <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>18</small></li>
   
-    <li><a href="/zh-cn/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a><small>2</small></li>
+    <li><a href="/zh-cn/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a><small>3</small></li>
   
     <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
   
@@ -551,15 +551,15 @@
   <h3 class="title">常用标签</h3>
   <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>33</small></a></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>34</small></a></li>
   
     <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>11</small></a></li>
   
     <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>11</small></a></li>
   
-    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>10</small></a></li>
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>10</small></a></li>
   
-    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>9</small></a></li>
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>10</small></a></li>
   
     <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>8</small></a></li>
   
