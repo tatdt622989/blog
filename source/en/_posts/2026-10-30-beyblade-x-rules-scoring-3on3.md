@@ -148,4 +148,4 @@ Start with 1on1 to learn the finish points, then try a three-Bey deck. When you 
 
 **[Open the free BEYBLADE X scoreboard: full-screen scoring, 3on3, and combo statistics](https://tool.6yuwei.com/beyblade-x-scorer/)**
 
-*Features and screenshots checked on October 30, 2026. Screenshots were taken in a browser at iPhone 16 Pro Max size (440×956 upright, 956×440 sideways), not on individual devices. This is a fan-made tool, not an official TAKARA TOMY service. Current event rules and judge decisions take precedence.*
+*Features and screenshots checked on October 30, 2026. This is a fan-made tool, not an official TAKARA TOMY service. Current event rules and judge decisions take precedence.*
