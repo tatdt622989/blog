@@ -2,7 +2,7 @@
 title: "Taiwan Public Holidays 2027: All 9 Long Weekends and How to Turn 5 Days Off Into 16"
 date: 2026-10-30 10:00:00
 updated: 2026-10-30 10:00:00
-description: "Taiwan's 2027 holiday calendar: 121 days off, 9 long weekends of 3 days or more, a 7-day Lunar New Year break and no make-up workdays. Full dates, how substitute days work, and the best days to take leave."
+description: "Taiwan's 2027 holidays: 121 days off, 9 long weekends, a 7-day Lunar New Year and no make-up workdays, plus the best days to take leave."
 permalink: 2026/10/30/taiwan-2027-holidays-leave-guide/
 translation_key: taiwan-2027-holidays-leave-guide
 translations:
