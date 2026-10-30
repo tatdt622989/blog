@@ -72,7 +72,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -213,6 +214,18 @@
         <div class="post-content">
           <header>
             <div class="icon" style="display: none"></div>
+            <time datetime="2026-05-06T13:30:00.000Z"><a href="/en/2026/05/06/claude-code-vs-codex-vs-cursor/">2026-05-06</a></time>
+            
+              <h1 class="title"><a href="/en/2026/05/06/claude-code-vs-codex-vs-cursor/">Claude Code vs Codex vs Cursor (2026): Pricing, Models, and Which to Choose</a></h1>
+            
+          </header>
+        </div>
+      </article>
+    
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon" style="display: none"></div>
             <time datetime="2024-06-07T16:14:20.000Z"><a href="/en/2024/06/08/asia-vps-contabo-review/">2024-06-08</a></time>
             
               <h1 class="title"><a href="/en/2024/06/08/asia-vps-contabo-review/">Contabo Review 2026: Tokyo VPS vs Vultr, ConoHa, and OVH</a></h1>
@@ -288,6 +301,8 @@
     <li><a href="/en/categories/Information-Security/">Information Security</a><small>1</small></li>
   
     <li><a href="/en/categories/Japanese-Learning/">Japanese Learning</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Life/">Life</a><small>1</small></li>
   
     <li><a href="/en/categories/Servers-Hosting/">Servers &amp; Hosting</a><small>1</small></li>
   

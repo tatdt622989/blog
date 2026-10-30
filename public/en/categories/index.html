@@ -84,7 +84,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -228,7 +229,7 @@
   <div class="taxonomy-directory__tools" hidden>
     <label for="taxonomy-filter">Filter by name</label>
     <input type="search" id="taxonomy-filter" autocomplete="off" placeholder="Enter a tag or category name" aria-controls="taxonomy-list">
-    <p class="taxonomy-directory__status" role="status" aria-live="polite" data-count-template="%s topics">13 topics</p>
+    <p class="taxonomy-directory__status" role="status" aria-live="polite" data-count-template="%s topics">14 topics</p>
   </div>
   <ul id="taxonomy-list" class="taxonomy-directory__list">
     
@@ -280,6 +281,10 @@
       <a href="/en/categories/Japanese-Learning/"><span>Japanese Learning</span><span class="taxonomy-directory__count">1 posts</span></a>
     </li>
     
+    <li data-topic="Life">
+      <a href="/en/categories/Life/"><span>Life</span><span class="taxonomy-directory__count">1 posts</span></a>
+    </li>
+    
     <li data-topic="Servers &amp; Hosting">
       <a href="/en/categories/Servers-Hosting/"><span>Servers &amp; Hosting</span><span class="taxonomy-directory__count">1 posts</span></a>
     </li>
@@ -329,6 +334,8 @@
     <li><a href="/en/categories/Information-Security/">Information Security</a><small>1</small></li>
   
     <li><a href="/en/categories/Japanese-Learning/">Japanese Learning</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Life/">Life</a><small>1</small></li>
   
     <li><a href="/en/categories/Servers-Hosting/">Servers &amp; Hosting</a><small>1</small></li>
   

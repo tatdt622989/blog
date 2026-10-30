@@ -72,7 +72,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -213,6 +214,18 @@
         <div class="post-content">
           <header>
             <div class="icon" style="display: none"></div>
+            <time datetime="2026-10-14T03:38:45.000Z"><a href="/zh-cn/2026/10/14/claude-code-fun-commands/">2026-10-14</a></time>
+            
+              <h1 class="title"><a href="/zh-cn/2026/10/14/claude-code-fun-commands/">Claude Code 趣味命令指南：临时提问、回滚、定时检查与终端彩蛋</a></h1>
+            
+          </header>
+        </div>
+      </article>
+    
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon" style="display: none"></div>
             <time datetime="2026-10-10T12:24:21.000Z"><a href="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/">2026-10-10</a></time>
             
               <h1 class="title"><a href="/zh-cn/2026/10/10/claude-projects-dashboards-motion-guide/">Claude 新产品介绍：新版 Projects、Dashboards 和 Motion 怎么用</a></h1>
@@ -317,18 +330,6 @@
         </div>
       </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon" style="display: none"></div>
-            <time datetime="2026-09-26T00:21:35.000Z"><a href="/zh-cn/2026/09/26/chatgpt-ads-taiwan-guide/">2026-09-26</a></time>
-            
-              <h1 class="title"><a href="/zh-cn/2026/09/26/chatgpt-ads-taiwan-guide/">ChatGPT 广告进入台湾：谁会看到，企业如何投放？</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
   </div>
 </div></div>
     <aside id="sidebar" class="alignright">
@@ -372,6 +373,8 @@
     <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>4</small></li>
   
     <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%94%9F%E6%B4%BB/">生活</a><small>1</small></li>
   
     <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
   
@@ -422,11 +425,11 @@
   
     <li><a href="/zh-cn/tags/%E5%85%8D%E8%B4%B9%E8%B5%84%E6%BA%90/"><span>免费资源</span><small>2</small></a></li>
   
+    <li><a href="/zh-cn/tags/%E5%8F%B0%E6%B9%BE/"><span>台湾</span><small>2</small></a></li>
+  
     <li><a href="/zh-cn/tags/%E7%BD%91%E7%AB%99%E8%BF%90%E7%BB%B4/"><span>网站运维</span><small>2</small></a></li>
   
     <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
-  
-    <li><a href="/zh-cn/tags/AI-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>AI 开发工具</span><small>2</small></a></li>
   
   </ul>
   <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>

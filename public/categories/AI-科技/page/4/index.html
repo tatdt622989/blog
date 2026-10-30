@@ -72,7 +72,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -332,6 +333,8 @@
     <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>4</small></li>
   
     <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><small>1</small></li>
   
     <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
   

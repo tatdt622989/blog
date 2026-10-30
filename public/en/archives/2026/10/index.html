@@ -72,7 +72,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -213,6 +214,18 @@
         <div class="post-content">
           <header>
             <div class="icon" style="display: none"></div>
+            <time datetime="2026-10-30T02:00:00.000Z"><a href="/en/2026/10/30/taiwan-2027-holidays-leave-guide/">2026-10-30</a></time>
+            
+              <h1 class="title"><a href="/en/2026/10/30/taiwan-2027-holidays-leave-guide/">Taiwan Public Holidays 2027: All 9 Long Weekends and How to Turn 5 Days Off Into 16</a></h1>
+            
+          </header>
+        </div>
+      </article>
+    
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon" style="display: none"></div>
             <time datetime="2026-10-29T06:48:35.000Z"><a href="/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/">2026-10-29</a></time>
             
               <h1 class="title"><a href="/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/">Security Incidents Keep Coming: How to Protect Yourself in the AI Era</a></h1>
@@ -317,18 +330,6 @@
         </div>
       </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon" style="display: none"></div>
-            <time datetime="2026-10-14T03:38:45.000Z"><a href="/en/2026/10/14/claude-code-fun-commands/">2026-10-14</a></time>
-            
-              <h1 class="title"><a href="/en/2026/10/14/claude-code-fun-commands/">Fun Claude Code Commands: Side Questions, Rewind, Loops, and Terminal Extras</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
   </div>
 </div></div>
     <aside id="sidebar" class="alignright">
@@ -372,6 +373,8 @@
     <li><a href="/en/categories/Information-Security/">Information Security</a><small>1</small></li>
   
     <li><a href="/en/categories/Japanese-Learning/">Japanese Learning</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Life/">Life</a><small>1</small></li>
   
     <li><a href="/en/categories/Servers-Hosting/">Servers &amp; Hosting</a><small>1</small></li>
   

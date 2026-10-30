@@ -99,7 +99,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -246,7 +247,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-720.jpg?v=6e81f3f0" alt="Concept illustration of Claude Projects coordinating work alongside Dashboards charts and Motion animations" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-480.jpg?v=e0b47242 480w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-720.jpg?v=6e81f3f0 720w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-960.jpg?v=a2b0af52 960w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-1280.jpg?v=8af7db15 1280w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg?v=903de948 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-720.jpg?v=f7eec3a4" alt="Concept illustration of Claude Projects coordinating work alongside Dashboards charts and Motion animations" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-480.jpg?v=ffbf8dcd 480w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-720.jpg?v=f7eec3a4 720w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-960.jpg?v=8874e003 960w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover-card-1280.jpg?v=19b4a731 1280w, /en/2026/10/10/claude-projects-dashboards-motion-guide/cover.jpg?v=903de948 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p><strong>Claude’s recent product updates include redesigned Projects, Dashboards, and Motion.</strong> The Projects beta was announced on September 17, followed by Dashboards and Motion on October 8. Together, these updates add ways to manage ongoing work, explore data, and explain ideas visually. <a target="_blank" rel="noopener" href="https://claude.com/resources/articles/projects-redesigned">Projects announcement</a>, <a target="_blank" rel="noopener" href="https://claude.com/resources/articles/dashboards-and-motion">Dashboards and Motion announcement</a>.</p>
 <span id="more"></span>
 
@@ -530,6 +531,8 @@
     <li><a href="/en/categories/Information-Security/">Information Security</a><small>1</small></li>
   
     <li><a href="/en/categories/Japanese-Learning/">Japanese Learning</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Life/">Life</a><small>1</small></li>
   
     <li><a href="/en/categories/Servers-Hosting/">Servers &amp; Hosting</a><small>1</small></li>
   

@@ -84,7 +84,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -228,7 +229,7 @@
   <div class="taxonomy-directory__tools" hidden>
     <label for="taxonomy-filter">篩選名稱</label>
     <input type="search" id="taxonomy-filter" autocomplete="off" placeholder="輸入標籤或分類名稱" aria-controls="taxonomy-list">
-    <p class="taxonomy-directory__status" role="status" aria-live="polite" data-count-template="%s 個主題">96 個主題</p>
+    <p class="taxonomy-directory__status" role="status" aria-live="polite" data-count-template="%s 個主題">100 個主題</p>
   </div>
   <ul id="taxonomy-list" class="taxonomy-directory__list">
     
@@ -384,6 +385,14 @@
       <a href="/tags/VPS/"><span>VPS</span><span class="taxonomy-directory__count">2 篇</span></a>
     </li>
     
+    <li data-topic="2027 行事曆">
+      <a href="/tags/2027-%E8%A1%8C%E4%BA%8B%E6%9B%86/"><span>2027 行事曆</span><span class="taxonomy-directory__count">1 篇</span></a>
+    </li>
+    
+    <li data-topic="2027 連假">
+      <a href="/tags/2027-%E9%80%A3%E5%81%87/"><span>2027 連假</span><span class="taxonomy-directory__count">1 篇</span></a>
+    </li>
+    
     <li data-topic="工具">
       <a href="/tags/%E5%B7%A5%E5%85%B7/"><span>工具</span><span class="taxonomy-directory__count">1 篇</span></a>
     </li>
@@ -412,6 +421,10 @@
       <a href="/tags/%E5%8E%9F%E5%9E%8B/"><span>原型</span><span class="taxonomy-directory__count">1 篇</span></a>
     </li>
     
+    <li data-topic="國定假日">
+      <a href="/tags/%E5%9C%8B%E5%AE%9A%E5%81%87%E6%97%A5/"><span>國定假日</span><span class="taxonomy-directory__count">1 篇</span></a>
+    </li>
+    
     <li data-topic="產品規劃">
       <a href="/tags/%E7%94%A2%E5%93%81%E8%A6%8F%E5%8A%83/"><span>產品規劃</span><span class="taxonomy-directory__count">1 篇</span></a>
     </li>
@@ -434,6 +447,10 @@
     
     <li data-topic="模型評比">
       <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%A9%95%E6%AF%94/"><span>模型評比</span><span class="taxonomy-directory__count">1 篇</span></a>
+    </li>
+    
+    <li data-topic="請假攻略">
+      <a href="/tags/%E8%AB%8B%E5%81%87%E6%94%BB%E7%95%A5/"><span>請假攻略</span><span class="taxonomy-directory__count">1 篇</span></a>
     </li>
     
     <li data-topic="機器學習">
@@ -657,6 +674,8 @@
     <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>4</small></li>
   
     <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><small>1</small></li>
   
     <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
   

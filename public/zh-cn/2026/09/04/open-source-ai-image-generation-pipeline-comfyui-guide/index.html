@@ -38,9 +38,9 @@
   
   <meta property="article:tag" content="AI" />
   
-  <meta property="article:tag" content="独立开发者" />
-  
   <meta property="article:tag" content="开发工具" />
+  
+  <meta property="article:tag" content="独立开发者" />
   
   <meta property="article:tag" content="AI 绘图" />
   
@@ -50,7 +50,7 @@
   <meta name="twitter:description" content="深入解析开源 AI 绘图精准控制架构：从 Checkpoint、LoRA、ControlNet 到 ADetailer，解密专业创作者保持角色一致性与 ComfyUI 五层工业级流水线，告别盲目随机试错。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/","headline":"开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线","description":"深入解析开源 AI 绘图精准控制架构：从 Checkpoint、LoRA、ControlNet 到 ADetailer，解密专业创作者保持角色一致性与 ComfyUI 五层工业级流水线，告别盲目随机试错。","datePublished":"2026-09-04T08:00:00.000Z","dateModified":"2026-09-04T08:00:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI, 独立开发者, 开发工具, AI 绘图","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/","headline":"开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线","description":"深入解析开源 AI 绘图精准控制架构：从 Checkpoint、LoRA、ControlNet 到 ADetailer，解密专业创作者保持角色一致性与 ComfyUI 五层工业级流水线，告别盲目随机试错。","datePublished":"2026-09-04T08:00:00.000Z","dateModified":"2026-09-04T08:00:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI, 开发工具, 独立开发者, AI 绘图","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"开源 AI 绘图精准控制全解析：从 Checkpoint、LoRA 到 ComfyUI 工业级流水线","item":"https://blog.6yuwei.com/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/"}]}</script>
   
@@ -99,7 +99,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -404,7 +405,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/">AI 绘图</a>
   </div>
 
         
@@ -593,6 +594,8 @@ flowchart TD
   
     <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
   
+    <li><a href="/zh-cn/categories/%E7%94%9F%E6%B4%BB/">生活</a><small>1</small></li>
+  
     <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
   
     <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
@@ -642,11 +645,11 @@ flowchart TD
   
     <li><a href="/zh-cn/tags/%E5%85%8D%E8%B4%B9%E8%B5%84%E6%BA%90/"><span>免费资源</span><small>2</small></a></li>
   
+    <li><a href="/zh-cn/tags/%E5%8F%B0%E6%B9%BE/"><span>台湾</span><small>2</small></a></li>
+  
     <li><a href="/zh-cn/tags/%E7%BD%91%E7%AB%99%E8%BF%90%E7%BB%B4/"><span>网站运维</span><small>2</small></a></li>
   
     <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
-  
-    <li><a href="/zh-cn/tags/AI-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>AI 开发工具</span><small>2</small></a></li>
   
   </ul>
   <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>

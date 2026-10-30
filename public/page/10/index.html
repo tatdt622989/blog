@@ -72,7 +72,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -209,6 +210,45 @@
   <a href="/categories/">分類</a>
   <a href="/tags/">查看所有標籤</a>
 </nav>
+
+  <article id="post-2" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2022-02-05T18:06:37.000Z"><a href="/2022/02/06/2/">2022-02-06</a></time>
+      
+      
+  
+    <p class="title"><a href="/2022/02/06/2/">前端常用按鈕特效合輯</a></p>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>前端工程師在職場上常常會使用各種不同的按鈕特效，為了方便自己在工作時能迅速地套用，所以整理出一些常用的按鈕特效，也歡迎大家使用我撰寫的這些按鈕程式碼！</p>
+<p style="color: blue">※文章內的特效按鈕皆使用scss</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2022/02/06/2/#more" class="more-link">閱讀全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+
+
 
   <article id="post-1" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -449,6 +489,8 @@
     <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC/">獨立開發</a><small>4</small></li>
   
     <li><a href="/categories/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a><small>1</small></li>
+  
+    <li><a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><small>1</small></li>
   
     <li><a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%A8%E7%AD%86/">生活隨筆</a><small>4</small></li>
   

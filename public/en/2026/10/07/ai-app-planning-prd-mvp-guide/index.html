@@ -99,7 +99,8 @@
   </script>
 
   <script>
-  loadBlogThirdParty(function(){
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
@@ -246,7 +247,7 @@
     </header>
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-720.jpg?v=72dc29aa" alt="A phone with a reading list, a product brief, and small planning cards on a desk" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-480.jpg?v=42d507ca 480w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-720.jpg?v=72dc29aa 720w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-960.jpg?v=92d0af3d 960w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-1280.jpg?v=c041d4cd 1280w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover.jpg?v=19042bda 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-720.jpg?v=825b16c9" alt="A phone with a reading list, a product brief, and small planning cards on a desk" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-480.jpg?v=77126e40 480w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-720.jpg?v=825b16c9 720w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-960.jpg?v=e994408b 960w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover-card-1280.jpg?v=088e7b1c 1280w, /en/2026/10/07/ai-app-planning-prd-mvp-guide/cover.jpg?v=19042bda 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>“Build me an app” can produce attractive screens without answering who will use them, which problem matters, or where the first version should stop. A short requirements document gives the AI something concrete to work toward. This guide uses a reading-list app to turn an idea into a focused first version, an implementation sequence, and acceptance checks.</p>
 <span id="more"></span>
 
@@ -583,6 +584,8 @@
     <li><a href="/en/categories/Information-Security/">Information Security</a><small>1</small></li>
   
     <li><a href="/en/categories/Japanese-Learning/">Japanese Learning</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Life/">Life</a><small>1</small></li>
   
     <li><a href="/en/categories/Servers-Hosting/">Servers &amp; Hosting</a><small>1</small></li>
   
