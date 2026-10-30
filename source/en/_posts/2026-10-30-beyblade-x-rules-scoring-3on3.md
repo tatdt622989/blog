@@ -1,7 +1,7 @@
 ---
 title: "How to Play BEYBLADE X: Scoring, 3on3 Rules, and a Free Full-Screen Scoreboard"
 date: 2026-10-30 13:00:00
-updated: 2026-10-30 14:30:00
+updated: 2026-10-30 17:30:00
 description: "Learn BEYBLADE X scoring and 3on3 rules. Use a free full-screen scoreboard with combo statistics, undo, and CSV export."
 permalink: 2026/10/30/beyblade-x-rules-scoring-3on3/
 translation_key: beyblade-x-rules-scoring-3on3
@@ -20,7 +20,7 @@ tags:
 
 New to **BEYBLADE X**? Start with the scoring: **Spin Finish earns 1 point, Over and Burst earn 2 each, and Xtreme earns 3. The standard two-player format is first to 4 points.** In 3on3, two players each bring three Beys and arrange a deck order.
 
-This guide explains the basics, then demonstrates my **[free BEYBLADE X scoreboard](https://tool.6yuwei.com/beyblade-x-scorer/)**. Its full-screen mode turns your device into a scoreboard you can watch and operate beside the stadium. Every tool image below is a real website screenshot. Scores and statistics are demonstration data.
+This guide explains the basics, then demonstrates my **[free BEYBLADE X scoreboard](https://tool.6yuwei.com/beyblade-x-scorer/)**. Its full-screen mode turns your device into a scoreboard you can watch and operate beside the stadium. Every tool image below is a real screenshot taken at phone size. Scores and statistics are demonstration data.
 
 <!--more-->
 
@@ -47,25 +47,27 @@ The zone matters: every stadium exit is not an Xtreme Finish. Under the standard
 
 Open the **[BEYBLADE X scoreboard](https://tool.6yuwei.com/beyblade-x-scorer/)**, select **1on1**, and set the target. Enter both player names and, for combo statistics, a complete combo name such as **DranSword 3-60F**.
 
-The screenshots use the Traditional Chinese interface: **旋轉** means Spin, **擊飛** Over, **爆裂** Burst, and **極限** Xtreme. Select the winning player's finish after each battle. Players or a judge still determine the result; the tool does the arithmetic.
+After each battle, tap the winning player's finish: **Spin**, **Over**, **Burst**, or **Xtreme**. Players or a judge still determine the result; the tool does the arithmetic.
 
 ![The BEYBLADE X 1on1 scoreboard with player scores, combo names, and finish buttons](1on1-score.jpg)
 
 *A real scoring demonstration. Enter combo names before battling if you want them included in statistics.*
 
-**平手** records a draw without points. **復原** undoes the last battle. Once a player reaches the target, the tool shows the winner, stops further scoring, and adds the completed match to the statistics. **開始下一場** starts the next match.
+**Draw** records a draw without points. **Undo** removes the last battle. Once a player reaches the target, the tool shows the winner, stops further scoring, and adds the completed match to the statistics. **Next match** starts the next one.
 
 Targets of **3, 4, 5, or 7** accommodate different practice agreements. These settings do not establish official tournament formats.
 
 ## Full-screen scoring you can operate beside the stadium
 
-Select **全螢幕計分** to emphasize the players, large scores, current Bey names, and finish buttons. Draw, undo, and restart remain available. **離開全螢幕** returns to the ordinary page.
+Tap **Full screen** to emphasize the players, large scores, current Bey names, and finish buttons. Draw, undo, and restart remain available. **Exit full screen** returns to the ordinary page.
 
-![The updated BEYBLADE X full-screen scoreboard with large scores and finish buttons](fullscreen-score.jpg)
+![The BEYBLADE X full-screen scoreboard on a phone turned sideways, with a large score and four big finish buttons for each player](fullscreen-score.jpg)
 
-*Captured after entering the real full-screen mode. The finish buttons remain interactive.*
+*Full screen on a phone turned sideways: a large score on the left and four big finish buttons on the right for each player.*
 
-The tool **attempts to keep the screen awake** in full-screen mode. Browser support, permissions, and power-saving settings can affect this. Devices without native webpage full-screen support use an expanded in-page layout. Desktop full-screen was tested for this article; check the presentation on your own phone or tablet.
+Held upright, the score sits on top and each finish gets a full-width button. On tablets and computers, text and buttons grow with the screen.
+
+The tool **attempts to keep the screen awake** in full-screen mode. Browser support, permissions, and power-saving settings can affect this. Devices without native webpage full-screen support use an expanded in-page layout. Check the layout on your own phone or tablet before a match.
 
 **[Use the free full-screen scoreboard for your next match](https://tool.6yuwei.com/beyblade-x-scorer/)**
 
@@ -79,7 +81,7 @@ Choose **3on3** in the tool and enter three names per side. The radio button mar
 
 *A real deck-entry demonstration. The selectors can be changed manually.*
 
-**A draw keeps the same Beys.** After **平手** (Draw), both selectors stay on the Beys that just battled, matching the official same-Bey rematch rule, so you can launch again right away.
+**A draw keeps the same Beys.** After **Draw**, both selectors stay on the Beys that just battled, matching the official same-Bey rematch rule, so you can launch again right away.
 
 **If three battles end without a winner**, the tool cycles back to the first Bey. If your rules have you rearrange the order, leave full-screen mode, edit the deck or move the selectors so they match the Beys actually in play. Follow the judge's instructions during formal events.
 
@@ -93,11 +95,11 @@ Only completed matches contribute to statistics, and unnamed Bey entries are exc
 
 ![BEYBLADE X statistics showing battles, wins-losses-draws, win rate, intervals, points per battle, and finishes](win-rate-stats.jpg)
 
-*Real demonstration data from two matches and seven battles, not a Bey performance benchmark.*
+*Real demonstration data from two matches and seven battles; the first three Beys are shown. On phones each Bey gets its own card, so nothing scrolls sideways. This is not a Bey performance benchmark.*
 
 **Win rate is battles won divided by battles played, including draws in the denominator.** DranDagger's one win and one draw therefore produce 50%. This is not a match win rate.
 
-Entries below ten battles receive a small-sample label. The UI's **95% 可信區間** column uses a Wilson confidence interval. A wide interval signals considerable uncertainty, not a guaranteed future win rate. Even the displayed 75% comes from just four battles.
+Entries below ten battles receive a small-sample label. The **95% range** uses a Wilson confidence interval. A wide interval signals considerable uncertainty, not a guaranteed future win rate. Even the displayed 75% comes from just four battles.
 
 Points per battle add useful context: a Spin win earns one point, while an Xtreme win earns three. Keep stadium, opponent, and launch conditions comparable when evaluating changes.
 
@@ -146,4 +148,4 @@ Start with 1on1 to learn the finish points, then try a three-Bey deck. When you 
 
 **[Open the free BEYBLADE X scoreboard: full-screen scoring, 3on3, and combo statistics](https://tool.6yuwei.com/beyblade-x-scorer/)**
 
-*Features and screenshots checked on October 30, 2026. Desktop full-screen was tested; mobile behavior is described from the implementation and was not verified on individual devices. This is a fan-made tool, not an official TAKARA TOMY service. Current event rules and judge decisions take precedence.*
+*Features and screenshots checked on October 30, 2026. Screenshots were taken in a browser at iPhone 16 Pro Max size (440×956 upright, 956×440 sideways), not on individual devices. This is a fan-made tool, not an official TAKARA TOMY service. Current event rules and judge decisions take precedence.*
