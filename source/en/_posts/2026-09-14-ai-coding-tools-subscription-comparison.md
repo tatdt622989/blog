@@ -3,7 +3,7 @@ title: "AI Coding Subscriptions Compared (2026): Claude Code vs Codex vs Cursor 
 date: 2026-09-14 01:45:00
 updated: 2026-11-03 12:00:00
 translation_key: ai-frontend-coding-subscriptions-value-guide
-description: "November 2026 AI coding plan prices: Copilot Pro $10, Claude Code and Codex from $20, Claude Max 20× renamed Ultra, Cursor in the X Subscription. Which is the best value?"
+description: "Nov 2026 AI coding plans: Copilot Pro $10, Claude Code and Codex from $20, Claude Max 20× is now Ultra, Cursor joined X. Which is the best value?"
 permalink: 2026/09/14/ai-coding-tools-subscription-comparison/
 translations:
   zh-TW: "/2026/09/14/ai-coding-tools-subscription-comparison/"
