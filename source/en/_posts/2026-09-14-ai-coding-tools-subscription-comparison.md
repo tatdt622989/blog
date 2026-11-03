@@ -1,9 +1,9 @@
 ---
 title: "AI Coding Subscriptions Compared (2026): Claude Code vs Codex vs Cursor vs Copilot Pricing"
 date: 2026-09-14 01:45:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-03 12:00:00
 translation_key: ai-frontend-coding-subscriptions-value-guide
-description: "October 2026 AI coding plan prices: Copilot Pro $10, Claude Code and Codex from $20, Cursor now in the X Subscription. Which is the best value?"
+description: "November 2026 AI coding plan prices: Copilot Pro $10, Claude Code and Codex from $20, Claude Max 20× renamed Ultra, Cursor in the X Subscription. Which is the best value?"
 permalink: 2026/09/14/ai-coding-tools-subscription-comparison/
 translations:
   zh-TW: "/2026/09/14/ai-coding-tools-subscription-comparison/"
@@ -21,18 +21,18 @@ tags:
 
 ![AI coding subscription pricing comparison for 2026](cover.jpg)
 
-**Short answer (checked against official pricing pages on October 19, 2026):** on a $10 budget, pick **GitHub Copilot Pro**. At $20, **Claude Pro** (includes Claude Code) or **ChatGPT Plus** (includes Codex) gives the most agent usage. Heavy daily users should move up to **Claude Max** or **ChatGPT Pro** at $100 to $200. Since October 12, **Cursor** is sold as the X Subscription: the included allowance covers Grok models only, and Claude or GPT usage is billed separately at API list prices.
+**Short answer (checked against official pricing pages on November 3, 2026):** on a $10 budget, pick **GitHub Copilot Pro**. At $20, **Claude Pro** (includes Claude Code) or **ChatGPT Plus** (includes Codex) gives the most agent usage. Heavy daily users should move up to **Claude Max** at $100, **Claude Ultra** at $200, or **ChatGPT Pro**. On October 30, Claude renamed Max 20× to Ultra and dropped the 5-hour limit for verified accounts. Since October 12, **Cursor** is sold as the X Subscription: the included allowance covers Grok models only, and Claude or GPT usage is billed separately at API list prices.
 
 <!--more-->
 
-## October 2026 price table
+## November 2026 price table
 
-Individual plans, USD per month, excluding tax. Data as of **2026-10-19**.
+Individual plans, USD per month, excluding tax. Data as of **2026-11-03**.
 
 | Tool | Plans and monthly price | How usage is measured | Models |
 | --- | --- | --- | --- |
-| **Claude Code** | Pro $20 (about $17/mo billed annually), Max 5× $100, Max 20× $200 | 5-hour session limit plus weekly limit, shared with the Claude apps; Max is 5× or 20× Pro | Opus, Sonnet, Haiku; Fable up to 50% of weekly limits on Max |
-| **Codex** | Free, Go $8, Plus $20, Pro $100 / $200 / $500 | Plus has estimated messages per 5 hours by model; Pro currently has no 5-hour limit, only a weekly allowance | GPT-6.1 Sol, GPT-6 Astra, GPT-6 Luna |
+| **Claude Code** | Pro $20 (about $17/mo billed annually), Max $100, Ultra $200 | 5-hour session limit plus weekly limit, shared with the Claude apps; Max is 5× Pro; Ultra has 10× Pro weekly usage and no 5-hour limit on verified accounts | Opus, Sonnet, Haiku; Fable up to 50% of weekly limits on Max and Ultra |
+| **Codex** | Free, Go $8, Plus $20, Pro $100 / $200 / $500 | Plus has estimated messages per 5 hours by model; Pro currently has no 5-hour limit, only a weekly allowance | GPT-6.1 Sol, GPT-6.1 Terra, GPT-6 Astra, GPT-6 Luna |
 | **GitHub Copilot** | Free, Pro $10, Pro+ $39, Max $100 | Monthly AI Credits (1 credit = $0.01): 1,500 / 7,000 / 20,000; code completions are not charged | A selection of models on Pro; premium models from Pro+ |
 | **Cursor (X Subscription)** | Plus $8, Premium $30, Super $100, Ultra $200 | Weekly pool shared with Grok; Premium, Super and Ultra are 4×, 15× and 50× Plus | Included usage is Grok only; third-party models need Premium or above and are billed at API list price |
 
@@ -45,20 +45,22 @@ Sources: [Claude pricing](https://claude.com/pricing), [Max plan](https://suppor
 | Under $10 | **Copilot Pro** | $10 buys $15 of AI Credits with unlimited completions; X Plus at $8 works if Grok is enough |
 | About $20 | **Claude Pro** or **ChatGPT Plus** | Used fully, multi-source estimates put their usage value far above the price; Claude Free does not include Claude Code |
 | $30 | **Cursor Premium** | Only if you want the Cursor editor; Claude and GPT usage costs extra |
-| $100 | **Claude Max 5×**, **ChatGPT Pro 100**, **Copilot Max** | Copilot Max currently includes $200 of credits (the flex part can change); the other two publish no token figures |
-| $200+ | **Claude Max 20×**, **ChatGPT Pro 200 / 500** | Only Pro 500 gets Codex Ultrafast mode |
+| $100 | **Claude Max**, **ChatGPT Pro 100**, **Copilot Max** | Copilot Max currently includes $200 of credits (the flex part can change); the other two publish no token figures |
+| $200+ | **Claude Ultra**, **ChatGPT Pro 200 / 500** | Neither has a 5-hour limit (Ultra requires account verification); only Pro 500 gets Codex Ultrafast mode |
 
-**Usage per dollar:** Copilot and Cursor charge third-party models at API prices. With flex credits, Copilot gives roughly **1.5× to 2×** its price; Cursor with Claude or GPT is **1×**. Anthropic and OpenAI do not publish token amounts. Multi-source estimates on my [Atlas ranking](https://atlas.6yuwei.com) as of October 19 range from a few times to dozens of times the price, with the highest samples at about 77× for Claude Max 5× and 22× for ChatGPT Plus. These are research estimates, not guarantees. For how the multiplier works and common traps, see [How to buy AI subscriptions for the best value](/en/2026/09/17/how-to-buy-ai-subscriptions-best-value/).
+**Usage per dollar:** Copilot and Cursor charge third-party models at API prices. With flex credits, Copilot gives roughly **1.5× to 2×** its price; Cursor with Claude or GPT is **1×**. Anthropic and OpenAI do not publish token amounts. Multi-source estimates on my [Atlas ranking](https://atlas.6yuwei.com) as of October 19 range from a few times to dozens of times the price, with the highest samples at about 77× for Claude Max (formerly Max 5×) and 22× for ChatGPT Plus. These are research estimates, not guarantees. For how the multiplier works and common traps, see [How to buy AI subscriptions for the best value](/en/2026/09/17/how-to-buy-ai-subscriptions-best-value/).
 
-## Claude Code plans: Pro or Max?
+## Claude Code plans: Pro, Max or Ultra?
 
-- **Claude Code is included from Pro**; Free does not include it. Fable on Pro requires usage credits, while Max can spend up to 50% of its weekly limit on Fable.
+- **Claude Code is included from Pro**; Free does not include it. Fable on Pro requires usage credits, while Max and Ultra can spend up to 50% of their weekly limit on Fable.
+- **Since October 30, Max 5× is called Max and Max 20× is called Ultra.** Prices are unchanged and existing subscribers need to do nothing. Verified Ultra accounts no longer have a 5-hour limit, only a weekly limit of 10× Pro; newer accounts keep a temporary 5-hour limit until verified. [Claude pricing](https://claude.com/pricing), [Claude Code plan help](https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)
 - **Since September 14, the weekly limit is 125% of the pre-promotion baseline**, about 16.7% less than the 150% promotion. The 5-hour limit was not part of this change. [Official announcement](https://x.com/ClaudeDevs/status/2093742321473065266), [clarification](https://x.com/ClaudeDevs/status/2093742322525810912)
-- **Max's monthly $100 / $200 API credits cannot be used in Claude Code.** Usage credits beyond your limits are billed at API rates. [Anthropic help](https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)
+- **The monthly $100 / $200 API credits on Max and Ultra cannot be used in Claude Code.** Usage credits beyond your limits are billed at API rates. [Anthropic help](https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)
 
 ## Which ChatGPT plan for Codex?
 
-- **Plus at $20 allows roughly** 15 to 160 local messages per 5 hours on GPT-6.1 Sol, 5 to 45 on GPT-6 Astra and 350 to 3,000 on GPT-6 Luna, with weekly limits on top.
+- **Plus at $20 allows roughly** 15 to 160 local messages per 5 hours on GPT-6.1 Sol, 35 to 285 on GPT-6.1 Terra, 5 to 45 on GPT-6 Astra and 350 to 3,000 on GPT-6 Luna, with weekly limits on top.
+- **GPT-6.1 Terra arrived on October 26.** Its API price is half of GPT-6.1 Sol, it is available in Codex on Plus and Pro, and it allows roughly twice as many messages per 5 hours as Sol, which suits everyday tasks. [OpenAI announcement](https://openai.com/index/introducing-gpt-6-1-terra/)
 - **Pro comes in $100, $200 and $500 tiers**, none of which currently has a 5-hour limit. Only the $500 tier includes Ultrafast. New sign-ups for the $200 tier were paused on September 10 and reopened at the end of September with a changed allowance for new subscribers.
 - **Free and Go can run light Codex tasks** on GPT-6 Luna as it rolls out. GPT-5.5 was retired from Codex on October 14. [Codex pricing](https://learn.chatgpt.com/docs/pricing)
 
@@ -76,4 +78,4 @@ If you mainly code with Claude or GPT, subscribing to Claude Pro or ChatGPT Plus
 
 - **All plans moved to AI Credits on June 1.** Base credits equal the price, plus a flex allotment that can change ($5 on Pro, $31 on Pro+, $100 on Max). [GitHub announcement](https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/)
 - **Code completions and next edit suggestions are free on paid plans**, so Pro at $10 is enough if completions are what you need.
-- **Pro+ and Max can delegate tasks to third-party coding agents** such as Claude and Codex (preview); the Copilot cloud agent is included from Pro.
+- **From Pro up, you can delegate tasks to third-party coding agents** such as Claude and Codex (public preview), and the Copilot cloud agent is included too; Free gets neither.

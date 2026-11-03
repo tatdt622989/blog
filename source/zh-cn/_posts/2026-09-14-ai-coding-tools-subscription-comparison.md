@@ -1,9 +1,9 @@
 ---
 title: "AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度"
 date: 2026-09-14 01:45:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-03 12:00:00
 translation_key: ai-frontend-coding-subscriptions-value-guide
-description: "2026 年 10 月 AI 编程订阅对比：Copilot Pro 10 美元最便宜，Claude Code 和 Codex 都是 20 美元起，Cursor 已改为 X 订阅，Claude、GPT 另按 API 计费。一张表看清各套餐月费、额度和按预算怎么选最划算。"
+description: "2026 年 11 月 AI 编程订阅对比：Copilot Pro 10 美元最便宜，Claude Code 和 Codex 都是 20 美元起，Claude Max 20× 已更名 Ultra 并取消 5 小时上限，Cursor 改为 X 订阅。一张表看清各套餐月费、额度和按预算怎么选最划算。"
 permalink: 2026/09/14/ai-coding-tools-subscription-comparison/
 translations:
   zh-TW: "/2026/09/14/ai-coding-tools-subscription-comparison/"
@@ -21,18 +21,18 @@ tags:
 
 ![2026 AI 编程订阅套餐价格对比](cover.jpg)
 
-**先说结论（2026 年 10 月 19 日对照各家官方定价页核实）**：预算只有 10 美元，选 **GitHub Copilot Pro**；20 美元档想要最多的 Agent 用量，选 **Claude Pro**（含 Claude Code）或 **ChatGPT Plus**（含 Codex）；每天高强度使用再升级到 100～200 美元的 **Claude Max** 或 **ChatGPT Pro**。**Cursor** 从 10 月 12 日起改卖 X 订阅，新套餐自带额度只覆盖 Grok 模型，用 Claude、GPT 要另外按 API 官方价付费。
+**先说结论（2026 年 11 月 3 日对照各家官方定价页核实）**：预算只有 10 美元，选 **GitHub Copilot Pro**；20 美元档想要最多的 Agent 用量，选 **Claude Pro**（含 Claude Code）或 **ChatGPT Plus**（含 Codex）；每天高强度使用再升级到 100 美元的 **Claude Max**、200 美元的 **Claude Ultra** 或 **ChatGPT Pro**。Claude 在 10 月 30 日把 Max 20× 更名为 Ultra，完成验证的账号不再有 5 小时上限。**Cursor** 从 10 月 12 日起改卖 X 订阅，新套餐自带额度只覆盖 Grok 模型，用 Claude、GPT 要另外按 API 官方价付费。
 
 <!--more-->
 
-## 2026 年 10 月价格总表
+## 2026 年 11 月价格总表
 
-以下为个人套餐的美元月费，不含税；数据截至 **2026-10-19**。
+以下为个人套餐的美元月费，不含税；数据截至 **2026-11-03**。
 
 | 工具 | 套餐与月费 | 额度计算方式 | 可用模型 |
 | --- | --- | --- | --- |
-| **Claude Code** | Pro $20（年付约 $17／月）、Max 5× $100、Max 20× $200 | 5 小时窗口 + 周上限，与 Claude 应用共享；Max 是 Pro 的 5／20 倍 | Opus、Sonnet、Haiku；Max 上 Fable 最多占周额度 50% |
-| **Codex** | Free、Go $8、Plus $20、Pro $100／$200／$500 | Plus 按模型估算每 5 小时消息数；Pro 目前没有 5 小时上限，只有周额度 | GPT-6.1 Sol、GPT-6 Astra、GPT-6 Luna |
+| **Claude Code** | Pro $20（年付约 $17／月）、Max $100、Ultra $200 | 5 小时窗口 + 周上限，与 Claude 应用共享；Max 是 Pro 的 5 倍；Ultra 周额度是 Pro 的 10 倍，完成验证的账号没有 5 小时上限 | Opus、Sonnet、Haiku；Max、Ultra 上 Fable 最多占周额度 50% |
+| **Codex** | Free、Go $8、Plus $20、Pro $100／$200／$500 | Plus 按模型估算每 5 小时消息数；Pro 目前没有 5 小时上限，只有周额度 | GPT-6.1 Sol、GPT-6.1 Terra、GPT-6 Astra、GPT-6 Luna |
 | **GitHub Copilot** | Free、Pro $10、Pro+ $39、Max $100 | 每月 AI Credits（1 credit = $0.01）：1,500／7,000／20,000；代码补全不扣点 | Pro 为部分模型，Pro+ 起含高级模型 |
 | **Cursor（X 订阅）** | Plus $8、Premium $30、Super $100、Ultra $200 | 与 Grok 共用周额度；Premium、Super、Ultra 分别是 Plus 的 4、15、50 倍 | 自带额度仅限 Grok；第三方模型需 Premium 及以上，按 API 官方价另计 |
 
@@ -45,20 +45,22 @@ tags:
 | 10 美元以内 | **Copilot Pro** | 10 美元换 15 美元的 AI Credits，补全不限量；只用 Grok 的话 X Plus 8 美元也够 |
 | 20 美元左右 | **Claude Pro** 或 **ChatGPT Plus** | 跑满的情况下，多来源估算的用量价值远高于月费；Claude 免费版不含 Claude Code |
 | 30 美元 | **Cursor Premium** | 看重 Cursor 编辑器体验才选；Claude、GPT 用量另外付费 |
-| 100 美元 | **Claude Max 5×**、**ChatGPT Pro 100**、**Copilot Max** | Copilot Max 目前含 200 美元 credits（flex 部分可能调整）；前两者官方不公布 token 数 |
-| 200 美元以上 | **Claude Max 20×**、**ChatGPT Pro 200／500** | 只有 Pro 500 有 Codex Ultrafast 模式 |
+| 100 美元 | **Claude Max**、**ChatGPT Pro 100**、**Copilot Max** | Copilot Max 目前含 200 美元 credits（flex 部分可能调整）；前两者官方不公布 token 数 |
+| 200 美元以上 | **Claude Ultra**、**ChatGPT Pro 200／500** | 两者都没有 5 小时上限（Ultra 需完成账号验证）；只有 Pro 500 有 Codex Ultrafast 模式 |
 
-**每 1 美元能换多少用量**：Copilot 和 Cursor 对第三方模型都按 API 价格扣费，Copilot 算上 flex 额度约为月费的 **1.5～2 倍**，Cursor 调用 Claude、GPT 就是 **1 倍**。Anthropic 和 OpenAI 不公布 token 数，我做的 [Atlas 排行榜](https://atlas.6yuwei.com) 10 月 19 日的多来源估算从几倍到几十倍不等，最高样本是 Claude Max 5× 约 77 倍、ChatGPT Plus 约 22 倍，属于研究估算，不是官方承诺。倍率怎么算、有哪些坑，见 [AI 订阅怎么买最划算](/zh-cn/2026/09/17/how-to-buy-ai-subscriptions-best-value/)。
+**每 1 美元能换多少用量**：Copilot 和 Cursor 对第三方模型都按 API 价格扣费，Copilot 算上 flex 额度约为月费的 **1.5～2 倍**，Cursor 调用 Claude、GPT 就是 **1 倍**。Anthropic 和 OpenAI 不公布 token 数，我做的 [Atlas 排行榜](https://atlas.6yuwei.com) 10 月 19 日的多来源估算从几倍到几十倍不等，最高样本是 Claude Max（原 Max 5×）约 77 倍、ChatGPT Plus 约 22 倍，属于研究估算，不是官方承诺。倍率怎么算、有哪些坑，见 [AI 订阅怎么买最划算](/zh-cn/2026/09/17/how-to-buy-ai-subscriptions-best-value/)。
 
-## Claude Code 套餐：Pro 还是 Max？
+## Claude Code 套餐：Pro、Max 还是 Ultra？
 
-- **Claude Pro 起就包含 Claude Code**，免费版不含。Pro 用 Fable 需要另购 usage credits，Max 最多可用掉周额度的 50%。
+- **Claude Pro 起就包含 Claude Code**，免费版不含。Pro 用 Fable 需要另购 usage credits，Max 和 Ultra 最多可用掉周额度的 50%。
+- **10 月 30 日起 Max 5× 更名为 Max、Max 20× 更名为 Ultra**，价格不变，老用户无需操作。Ultra 完成验证的账号取消 5 小时上限，只保留周上限（Pro 的 10 倍）；较新的账号在验证完成前仍有临时的 5 小时上限。[Claude 定价页](https://claude.com/pricing)、[Claude Code 套餐说明](https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)
 - **9 月 14 日起周上限调整为促销前基准的 125%**，比促销期的 150% 少约 16.7%；5 小时上限不在这次调整范围内。[官方公告](https://x.com/ClaudeDevs/status/2093742321473065266)、[官方补充](https://x.com/ClaudeDevs/status/2093742322525810912)
-- **Max 附赠的每月 100／200 美元 API credits 不能在 Claude Code 里用**，超出额度后的 usage credits 按 API 价格计费。[Anthropic 说明](https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)
+- **Max、Ultra 附赠的每月 100／200 美元 API credits 不能在 Claude Code 里用**，超出额度后的 usage credits 按 API 价格计费。[Anthropic 说明](https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)
 
 ## Codex 该买哪个 ChatGPT 套餐？
 
-- **Plus（20 美元）每 5 小时大约能发** GPT-6.1 Sol 15～160 条、GPT-6 Astra 5～45 条、GPT-6 Luna 350～3,000 条本地消息，另有周上限。
+- **Plus（20 美元）每 5 小时大约能发** GPT-6.1 Sol 15～160 条、GPT-6.1 Terra 35～285 条、GPT-6 Astra 5～45 条、GPT-6 Luna 350～3,000 条本地消息，另有周上限。
+- **10 月 26 日新增 GPT-6.1 Terra**：API 价格是 GPT-6.1 Sol 的一半，Plus、Pro 都能在 Codex 里用，同样 5 小时能发的消息约为 Sol 的两倍，适合日常任务。[OpenAI 公告](https://openai.com/index/introducing-gpt-6-1-terra/)
 - **Pro 分 100、200、500 美元三档**，目前都没有 5 小时上限；只有 500 美元档支持 Ultrafast。200 美元档 9 月 10 日曾暂停新订阅，9 月底已重新开放，但新用户的额度有调整。
 - **Free 和 Go 也能用 Codex 跑轻量任务**（GPT-6 Luna，逐步开放）；GPT-5.5 已于 10 月 14 日从 Codex 下线。[Codex 定价](https://learn.chatgpt.com/docs/pricing)
 
@@ -76,4 +78,4 @@ tags:
 
 - **6 月 1 日起全面改为 AI Credits 计费**：基础额度等于月费，另加会浮动的 flex 额度（Pro 5 美元、Pro+ 31 美元、Max 100 美元）。[GitHub 公告](https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/)
 - **付费套餐的代码补全和 next edit suggestions 不扣点**，只需要补全的话，Pro（10 美元）就够了。
-- **Pro+ 和 Max 可以把任务派给 Claude、Codex 等第三方编程 Agent**（预览中）；Pro 起包含 Copilot cloud agent。
+- **Pro 起就能把任务派给 Claude、Codex 等第三方编程 Agent**（公开预览），同时包含 Copilot 云端 Agent；免费版两者都不含。
