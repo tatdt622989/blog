@@ -2,7 +2,7 @@
 title: "Japan Tax-Free Shopping 2026: How the New Refund System Works, With Kiosk Locations at 8 Airports"
 date: 2026-11-05 12:00:00
 updated: 2026-11-05 12:00:00
-description: "From 1 November 2026, Japan charges tourists tax at the till and refunds it after customs checks at departure. Rules, fees, the 90-day deadline and kiosk floors at major airports."
+description: "Since 1 November 2026, Japan charges tourists tax at the till and refunds it after a customs check at departure. Rules, fees and airport kiosk floors."
 permalink: 2026/11/05/japan-tax-free-refund-method-guide-2026/
 translation_key: japan-tax-free-refund-method-guide-2026
 translations:

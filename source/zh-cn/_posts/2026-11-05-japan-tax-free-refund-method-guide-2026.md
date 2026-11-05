@@ -2,7 +2,7 @@
 title: "日本退税新政攻略：11/1 起先付税、离境再退，8 大机场退税机位置与流程图解"
 date: 2026-11-05 12:00:00
 updated: 2026-11-05 12:00:00
-description: "日本免税购物自 2026 年 11 月 1 日起改为退税模式（リファンド方式）：结账先付含税价，离境时在托运行李前通过海关 KIOSK 或 Visit Japan Web 完成确认，才能退回消费税。整理新旧政策差异、5,000 日元门槛、90 天期限算法、手续费，以及成田、羽田、关西、中部、福冈、新千岁、那霸、神户的机器楼层与现金退税位置。"
+description: "日本免税购物自 2026 年 11 月 1 日起改为先付税、离境退：结账付含税价，托运行李前通过海关 KIOSK 或 Visit Japan Web 确认后才退回消费税。整理新旧差异、5,000 日元门槛、90 天期限、手续费，以及成田、羽田、关西等 8 大机场的退税机楼层与现金退税位置。"
 permalink: 2026/11/05/japan-tax-free-refund-method-guide-2026/
 translation_key: japan-tax-free-refund-method-guide-2026
 translations:
