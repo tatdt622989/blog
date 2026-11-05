@@ -133,11 +133,28 @@ function createVariant(imagePath, width) {
   return outPath;
 }
 
+// A page that Hexo did not regenerate still points at a variant (cover-card-720.jpg).
+// Map it back to the original so variants are never built from variants.
+function originalCoverPath(imagePath) {
+  if (!imagePath) return imagePath;
+
+  const parsed = path.parse(imagePath);
+  const baseName = parsed.name.replace(/(-card-\d+)+$/, '');
+  if (baseName === parsed.name) return imagePath;
+
+  for (const ext of supportedExtensions) {
+    const candidate = path.join(parsed.dir, `${baseName}${ext}`);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+
+  return null;
+}
+
 function optimizeCoverTag(tag, htmlPath, variantsByImage) {
   if (!hasClass(tag, 'post-cover-image')) return tag;
 
   const src = getAttribute(tag, 'src');
-  const imagePath = resolvePublicImagePath(src, htmlPath);
+  const imagePath = originalCoverPath(resolvePublicImagePath(src, htmlPath));
   const sourceWidth = Number(getAttribute(tag, 'width'));
 
   if (

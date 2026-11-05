@@ -63,3 +63,34 @@ test('responsive covers keep a sizes hint chosen by the template', async () => {
     fs.rmSync(publicDir, { recursive: true, force: true });
   }
 });
+
+test('a stale page that already points at a cover variant does not create nested variants', async () => {
+  const fs = await import('node:fs');
+  const os = await import('node:os');
+  const publicDir = fs.mkdtempSync(path.join(os.tmpdir(), 'blog-optimizer-stale-'));
+
+  try {
+    const cover = path.join(process.cwd(), 'source/_posts/2026-09-09-GPT-6-做遊戲用什麼引擎？Godot、Unity、Unreal-與網頁遊戲工具怎麼選/cover.jpg');
+    const width = spawnSync('sips', ['-g', 'pixelWidth', cover], { encoding: 'utf8' }).stdout.match(/pixelWidth: (\d+)/)[1];
+    fs.mkdirSync(path.join(publicDir, 'post'));
+    fs.copyFileSync(cover, path.join(publicDir, 'post/cover.jpg'));
+    fs.copyFileSync(cover, path.join(publicDir, 'post/cover-card-720.jpg'));
+    fs.writeFileSync(
+      path.join(publicDir, 'post/index.html'),
+      `<img class="post-cover-image" src="/post/cover-card-720.jpg?v=old" width="${width}" height="1">`,
+    );
+
+    for (let run = 0; run < 2; run += 1) {
+      const result = spawnSync(process.execPath, ['scripts/optimize-public-images.js', '--public-dir', publicDir], { encoding: 'utf8' });
+      assert.equal(result.status, 0, result.stderr);
+    }
+
+    const files = fs.readdirSync(path.join(publicDir, 'post'));
+    assert.deepEqual(files.filter((file) => /-card-\d+-card-/.test(file)), []);
+    const html = fs.readFileSync(path.join(publicDir, 'post/index.html'), 'utf8');
+    assert.match(html, /src="\/post\/cover-card-720\.jpg\?v=/);
+    assert.match(html, /srcset="[^"]*\/post\/cover\.jpg\?v=[^"]* \d+w"/);
+  } finally {
+    fs.rmSync(publicDir, { recursive: true, force: true });
+  }
+});
