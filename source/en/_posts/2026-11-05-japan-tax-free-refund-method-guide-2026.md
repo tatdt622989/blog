@@ -1,7 +1,7 @@
 ---
 title: "Japan Tax-Free Shopping 2026: How the New Refund System Works, With Kiosk Locations at 8 Airports"
 date: 2026-11-05 12:00:00
-updated: 2026-11-05 12:00:00
+updated: 2026-11-06 01:45:00
 description: "Since 1 November 2026, Japan charges tourists tax at the till and refunds it after a customs check at departure. Rules, fees and airport kiosk floors."
 permalink: 2026/11/05/japan-tax-free-refund-method-guide-2026/
 translation_key: japan-tax-free-refund-method-guide-2026
@@ -21,7 +21,7 @@ tags:
 
 Since **1 November 2026**, tax-free shopping in Japan no longer means tax-free at the till. You pay the full tax-inclusive price, and the store (or the refund company it uses) pays the consumption tax back only after customs confirms at departure that you are taking the goods out of Japan.
 
-This guide covers the official rules, the order of steps at the airport, the kiosk floors and cash refund points at the major airports, and the mistakes that cost people their refund.
+This guide covers the official rules, the order of steps at the airport, the kiosk floors and cash refund points at the major airports, and the mistakes that cost people their refund. To see how much you will get back first, try my free [**Japan tax refund calculator**](https://tool.6yuwei.com/en/japan-tax-refund/): enter your receipts to get the refund in yen and your own currency, with the ¥5,000 minimum and 90-day deadline checked for you.
 
 <!--more-->
 
@@ -52,6 +52,8 @@ Anything bought on or before 31 October still follows the old rules: you paid no
 | Posting home | **No refund** for goods you post or ship separately (that option ended on 31 March 2025). Shipping arranged directly by the store falls under export rules, so ask the store |
 | Used in Japan | Food, drinks and cosmetics opened or used in Japan **do not qualify** |
 
+**An exception to the minimum:** At a department store or mall with a tax-free procedure counter that handles several shops, the counter can add up what you bought at those shops on the same day to reach 5,000 yen (National Tax Agency Q&A, question 24-2). Without such a counter, each store counts on its own.
+
 ## How much you get back, and the fees
 
 You get back the **consumption tax portion**, which is not 10% of the price you paid:
@@ -62,6 +64,10 @@ You get back the **consumption tax portion**, which is not 10% of the price you 
 | 8% | Food and non-alcoholic drinks | Price × 8/108 | 5,400 yen paid → 400 yen back |
 
 **Fees:** The government charges nothing. Most stores hand refunds to a refund company, and the Tourism Agency's FAQ for stores says the law does not decide whether the traveler or the store pays that company's fee, adding that **in other countries the traveler usually pays**. Expect to receive less than the table shows, and ask the store what it deducts.
+
+**[Free Japan tax refund calculator: enter your receipts, see the refund in yen and your currency](https://tool.6yuwei.com/en/japan-tax-refund/)**
+
+Enter the 10% and 8% amounts for each checkout to see what each receipt returns and what is left after the fee. For a receipt under 5,000 yen, it shows how much more you would need to buy on the same checkout.
 
 ## Step by step
 
@@ -75,7 +81,7 @@ You get back the **consumption tax portion**, which is not 10% of the price you 
 | 4 Result | Same place | **Green**: done. **Red**: show every item on that receipt at the customs inspection area |
 | 5 Get paid | Airport or later | Cash machines at the airport (only if your store's refund company is connected), or a later refund to your card or account |
 
-**The 90-day deadline:** count from the **day after** purchase to day 90. The official example: goods bought on 1 November must be confirmed by **30 January**.
+**The 90-day deadline:** count from the **day after** purchase to day 90. The official example: goods bought on 1 November must be confirmed by **30 January**. Enter your purchase and departure dates in the [tax refund calculator](https://tool.6yuwei.com/en/japan-tax-refund/) and it lists the deadline for each receipt and flags any you would miss.
 
 **Visit Japan Web:** Available at Narita, Haneda, Kansai, Chubu, Fukuoka, New Chitose and Naha. Before security, connect to the customs Wi-Fi (SSID **Customs_WiFi_For_TaxRefund**, password **jcustoms**) and complete the check on your phone instead of queuing for a kiosk. It is limited to temporary visitor, diplomatic and official status; Japanese citizens cannot use it. Kansai customs recommends it because the kiosks can get crowded.
 
