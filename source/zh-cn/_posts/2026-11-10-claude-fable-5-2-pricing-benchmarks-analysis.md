@@ -22,8 +22,6 @@ tags:
 
 **Claude Fable 5.2 是 Anthropic 于 2026 年 11 月 9 日发布的最高规格公开模型，主打长时间运行的智能体任务和高难度推理。** API 单价比 Fable 5.1 低 20%，在官方公布的 12 项基准测试中拿下 10 项第一，Artificial Analysis 的独立评测也排名第一；不过它的单价仍是 Opus 5.5 的两倍，生成速度在同类模型中偏慢。
 
-本文基于 Anthropic 公告、API 文档和 Artificial Analysis 页面，梳理 Fable 5.2 的规格、价格、基准测试、限制和适用场景。**基准数据大多由官方自行公布，本文未做独立实测。**
-
 <!--more-->
 
 ## Claude Fable 5.2 是什么？和 Mythos 5.2 有什么区别
@@ -105,7 +103,7 @@ AA 的结果与官方结论方向一致：能力上限最高，但在 max 设置
 
 ## Effort 怎么选：官方称低档位即可追平 Opus 5.5
 
-Anthropic 公布了 Fable 5.2 在较低 effort 下与 Opus 5.5 最高档位的对比。成本比例为官方估算，尚无第三方验证。[官方公告](https://www.anthropic.com/claude-fable-and-mythos-5-2)
+Anthropic 公布了 Fable 5.2 在较低 effort 下与 Opus 5.5 最高档位的对比。[官方公告](https://www.anthropic.com/claude-fable-and-mythos-5-2)
 
 | 基准测试 | Fable 5.2 档位与结果 | Opus 5.5 最高档位 | 官方称单任务成本 |
 | --- | --- | --- | --- |
@@ -143,8 +141,6 @@ API 文档建议从默认的 **high** 开始；对最难的长时间编程任务
 | 代码迁移 | 智能体团队把生产环境服务从 Python 重写为 Rust，启动速度约提升 26 倍 |
 | 操作系统原型 | 从空文件夹开始，协调 1,000 多个子智能体、历时 8 天，做出可在笔记本上启动的操作系统原型 |
 
-这些案例目前没有第三方复现结果，更适合用来理解模型定位，不宜当作普通用户的预期效果。
-
 ## 开发者升级前要处理的变更
 
 从 Fable 5.1 升级，除了把模型 ID 改为 **claude-fable-5-2**，还有四项可能直接报错的变更。[官方迁移说明](https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2)
@@ -173,4 +169,4 @@ Anthropic 在 API 文档中建议多数任务先用 Opus 5.5，当 Opus 提高 e
 | 渗透测试、漏洞研究、生物研究 | Fable 5.2 多半会拦截，需要 Mythos 5.2 的认证资格 |
 | 无法保留数据 30 天的机构 | 需先获得 Anthropic 授权，否则无法使用 |
 
-本文数据核查于 2026 年 11 月 10 日。基准测试、排行榜和订阅权益可能更新，请以官方页面为准。延伸阅读：[Claude Opus 5.5 发布解读](/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/)。
+延伸阅读：[Claude Opus 5.5 发布解读](/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/)。

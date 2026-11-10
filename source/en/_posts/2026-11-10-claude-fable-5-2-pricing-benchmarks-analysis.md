@@ -22,8 +22,6 @@ tags:
 
 **Claude Fable 5.2 is the most capable public model Anthropic offers, released on November 9, 2026 for long-running agent work and hard reasoning.** Its API price is 20% lower than Fable 5.1, it leads 10 of the 12 benchmarks Anthropic published for public models, and Artificial Analysis ranks it first. It also costs twice as much as Opus 5.5 per token and is one of the slowest models measured.
 
-This analysis uses the Anthropic announcement, the API documentation, and Artificial Analysis data to cover specifications, pricing, benchmarks, limits, and fit. **Most benchmark figures are self-reported by Anthropic; this blog did not test the model independently.**
-
 <!--more-->
 
 ## What Is Claude Fable 5.2, and How Is It Different From Mythos 5.2?
@@ -105,7 +103,7 @@ AA agrees with Anthropic on capability: Fable 5.2 has the highest ceiling. At ma
 
 ## Choosing an Effort Level: Lower Settings Match Opus 5.5, Says Anthropic
 
-Anthropic compared Fable 5.2 at lower effort with Opus 5.5 at its top setting. The cost ratios are Anthropic estimates and have no third-party check yet. [Official announcement](https://www.anthropic.com/claude-fable-and-mythos-5-2)
+Anthropic compared Fable 5.2 at lower effort with Opus 5.5 at its top setting. [Official announcement](https://www.anthropic.com/claude-fable-and-mythos-5-2)
 
 | Benchmark | Fable 5.2 setting and result | Opus 5.5 top setting | Cost per task, per Anthropic |
 | --- | --- | --- | --- |
@@ -143,8 +141,6 @@ Anthropic and the press also point out limits:
 | Code migration | An agent team rewrote a production service from Python to Rust; it starts about 26 times faster |
 | Operating system prototype | Starting from an empty folder, it coordinated over 1,000 subagents for eight days and built an OS prototype that boots on a laptop |
 
-No third party has reproduced these results. They show how Anthropic positions the model, not what a typical user should expect.
-
 ## Changes Developers Must Handle Before Upgrading
 
 Moving from Fable 5.1 means changing the model ID to **claude-fable-5-2** and checking four changes that can return errors. [Official migration notes](https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2)
@@ -173,4 +169,4 @@ Anthropic's API documentation suggests starting most work on Opus 5.5 and moving
 | Penetration testing, vulnerability research, biology research | Fable 5.2 mostly blocks these; Mythos 5.2 requires verification |
 | Organizations that cannot keep data for 30 days | Needs Anthropic approval before use |
 
-Data checked on November 10, 2026. Benchmarks, rankings, and plan benefits can change; the official pages are authoritative. Related: [Claude Opus 5.5 launch analysis](/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/).
+Related: [Claude Opus 5.5 launch analysis](/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/).

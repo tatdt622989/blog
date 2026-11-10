@@ -91,6 +91,11 @@ tags:
    - **英文文章**：`source/en/_posts/YYYY-MM-DD-<英文slug>.md`，front-matter 須包含 `permalink: YYYY/MM/DD/<英文slug>/`、相同 `translation_key`、`translations.zh-TW: /YYYY/MM/DD/<繁中標題URL>/` 與 `translations.zh-CN: /zh-cn/YYYY/MM/DD/<英文slug>/`。
    - **資源目錄**：簡中與英文文章資產目錄 `source/zh-cn/_posts/YYYY-MM-DD-<英文slug>/` 及 `source/en/_posts/YYYY-MM-DD-<英文slug>/` 須放置同名 `cover.jpg` 與相關插圖。
 
+7. **禁止寫關於文章本身的免責或說明句**
+   - 不寫「本文未自行實測」「數字多為官方自行公布」「本文整理 A、B、C，說明……」「資料查核於某日」「請以官方頁面為準」「未經第三方驗證／尚無第三方重現」這類話，三語版本都一樣（英文如 "this blog did not test…"、"the official pages are authoritative"）。
+   - 資料來源用段落內的連結標出即可；表格欄名寫「官方稱」或段落標題寫「官方評測」就足以表示出處。
+   - 前言直接講結論，不要再加一段介紹本文要寫什麼。
+
 ### 3. 本機預覽
 
 ```bash

@@ -251,7 +251,6 @@
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/cover-card-720.jpg?v=17b32fc9" alt="Claude Fable 5.2 规格与 FrontierCode 2.0 官方基准测试对比图，列出 Fable 5.2、Opus 5.5、GPT-6 Astra、Gemini 4 Carbon 和 Fable 5.1 的得分" width="1200" height="630" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/cover-card-480.jpg?v=028588cb 480w, /zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/cover-card-720.jpg?v=17b32fc9 720w, /zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/cover-card-960.jpg?v=b5fe7f23 960w, /zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/cover.jpg?v=4095da1b 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p><strong>Claude Fable 5.2 是 Anthropic 于 2026 年 11 月 9 日发布的最高规格公开模型，主打长时间运行的智能体任务和高难度推理。</strong> API 单价比 Fable 5.1 低 20%，在官方公布的 12 项基准测试中拿下 10 项第一，Artificial Analysis 的独立评测也排名第一；不过它的单价仍是 Opus 5.5 的两倍，生成速度在同类模型中偏慢。</p>
-<p>本文基于 Anthropic 公告、API 文档和 Artificial Analysis 页面，梳理 Fable 5.2 的规格、价格、基准测试、限制和适用场景。<strong>基准数据大多由官方自行公布，本文未做独立实测。</strong></p>
 <span id="more"></span>
 
 <h2 id="Claude-Fable-5-2-是什么？和-Mythos-5-2-有什么区别"><a href="#Claude-Fable-5-2-是什么？和-Mythos-5-2-有什么区别" class="headerlink" title="Claude Fable 5.2 是什么？和 Mythos 5.2 有什么区别"></a>Claude Fable 5.2 是什么？和 Mythos 5.2 有什么区别</h2><p>Fable 5.2 和 <strong>Mythos 5.2</strong> 是同一个底层模型。Fable 5.2 增加了网络安全和生物领域的防护，向所有用户开放；Mythos 5.2 放宽这两类防护，只提供给通过 Anthropic 认证计划的机构。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-fable-and-mythos-5-2">官方公告</a></p>
@@ -511,7 +510,7 @@
 </tr>
 </tbody></table></div>
 <p>AA 的结果与官方结论方向一致：能力上限最高，但在 max 设置下，等待时间和成本都明显高于其他模型。这是 max 的数据，不代表 medium 或 high 下的日常使用体验。</p>
-<h2 id="Effort-怎么选：官方称低档位即可追平-Opus-5-5"><a href="#Effort-怎么选：官方称低档位即可追平-Opus-5-5" class="headerlink" title="Effort 怎么选：官方称低档位即可追平 Opus 5.5"></a>Effort 怎么选：官方称低档位即可追平 Opus 5.5</h2><p>Anthropic 公布了 Fable 5.2 在较低 effort 下与 Opus 5.5 最高档位的对比。成本比例为官方估算，尚无第三方验证。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-fable-and-mythos-5-2">官方公告</a></p>
+<h2 id="Effort-怎么选：官方称低档位即可追平-Opus-5-5"><a href="#Effort-怎么选：官方称低档位即可追平-Opus-5-5" class="headerlink" title="Effort 怎么选：官方称低档位即可追平 Opus 5.5"></a>Effort 怎么选：官方称低档位即可追平 Opus 5.5</h2><p>Anthropic 公布了 Fable 5.2 在较低 effort 下与 Opus 5.5 最高档位的对比。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude-fable-and-mythos-5-2">官方公告</a></p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
@@ -613,7 +612,6 @@
 <td>从空文件夹开始，协调 1,000 多个子智能体、历时 8 天，做出可在笔记本上启动的操作系统原型</td>
 </tr>
 </tbody></table></div>
-<p>这些案例目前没有第三方复现结果，更适合用来理解模型定位，不宜当作普通用户的预期效果。</p>
 <h2 id="开发者升级前要处理的变更"><a href="#开发者升级前要处理的变更" class="headerlink" title="开发者升级前要处理的变更"></a>开发者升级前要处理的变更</h2><p>从 Fable 5.1 升级，除了把模型 ID 改为 <strong>claude-fable-5-2</strong>，还有四项可能直接报错的变更。<a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2">官方迁移说明</a></p>
 <ol>
 <li><strong>修改历史消息会让 thinking blocks 失效</strong>：改动 system、tools 或之前的消息后再回传 thinking blocks，所有账号都会收到 400 错误。Fable 5.1 只对 2026 年 8 月 31 日之后创建的账号这样处理。</li>
@@ -657,7 +655,7 @@
 <td>需先获得 Anthropic 授权，否则无法使用</td>
 </tr>
 </tbody></table></div>
-<p>本文数据核查于 2026 年 11 月 10 日。基准测试、排行榜和订阅权益可能更新，请以官方页面为准。延伸阅读：<a href="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">Claude Opus 5.5 发布解读</a>。</p>
+<p>延伸阅读：<a href="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">Claude Opus 5.5 发布解读</a>。</p>
 
       
     </div>
