@@ -1,0 +1,1146 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析 | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="Gemini 4 Carbon 于 2026 年 11 月 10 日全面开放，优惠价每百万 tokens 输入 2 美元、输出 10 美元，12 月起 4 美元、20 美元。汇总官方 17 项基准测试、AA 独立评测、开放渠道、API 规格及与 Fable 5.2、Argon 的区别。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/11/11/Gemini-4-Carbon-%E4%B8%8A%E7%B7%9A%EF%BC%9A%E8%A9%95%E6%B8%AC%E3%80%81%E5%83%B9%E6%A0%BC%E8%88%87-Fable-5-2%E3%80%81Argon-%E5%B7%AE%E7%95%B0%E5%88%86%E6%9E%90/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/11/11/Gemini-4-Carbon-%E4%B8%8A%E7%B7%9A%EF%BC%9A%E8%A9%95%E6%B8%AC%E3%80%81%E5%83%B9%E6%A0%BC%E8%88%87-Fable-5-2%E3%80%81Argon-%E5%B7%AE%E7%95%B0%E5%88%86%E6%9E%90/">
+  
+
+  <meta property="og:title" content="Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析"/>
+  <meta property="og:description" content="Gemini 4 Carbon 于 2026 年 11 月 10 日全面开放，优惠价每百万 tokens 输入 2 美元、输出 10 美元，12 月起 4 美元、20 美元。汇总官方 17 项基准测试、AA 独立评测、开放渠道、API 规格及与 Fable 5.2、Argon 的区别。"/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/"/>
+  <meta property="og:locale" content="zh_CN"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="en_US"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover.jpg?v=e80119f7" />
+  <meta property="og:image:alt" content="Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析" />
+  
+  <meta property="article:published_time" content="2026-11-10T16:40:00.000Z" />
+  <meta property="article:modified_time" content="2026-11-10T16:40:00.000Z" />
+  <meta property="article:section" content="AI 科技" />
+  
+  <meta property="article:tag" content="AI" />
+  
+  <meta property="article:tag" content="Artificial Analysis" />
+  
+  <meta property="article:tag" content="Gemini" />
+  
+  <meta property="article:tag" content="Google" />
+  
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析">
+  <meta name="twitter:description" content="Gemini 4 Carbon 于 2026 年 11 月 10 日全面开放，优惠价每百万 tokens 输入 2 美元、输出 10 美元，12 月起 4 美元、20 美元。汇总官方 17 项基准测试、AA 独立评测、开放渠道、API 规格及与 Fable 5.2、Argon 的区别。">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover.jpg?v=e80119f7">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/","url":"https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/","headline":"Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析","description":"Gemini 4 Carbon 于 2026 年 11 月 10 日全面开放，优惠价每百万 tokens 输入 2 美元、输出 10 美元，12 月起 4 美元、20 美元。汇总官方 17 项基准测试、AA 独立评测、开放渠道、API 规格及与 Fable 5.2、Argon 的区别。","datePublished":"2026-11-10T16:40:00.000Z","dateModified":"2026-11-10T16:40:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI, Artificial Analysis, Gemini, Google","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析","item":"https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/zh-cn/">
+      <img src="/zh-cn/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="切换语言">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">简体中文</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/11/11/Gemini-4-Carbon-上線：評測、價格與-Fable-5-2、Argon-差異分析/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>繁体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>简体中文</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option "
+        
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/zh-cn/">首页</a></li>
+    
+      <li><a href="/zh-cn/archives">归档</a></li>
+    
+      <li><a href="/zh-cn/ai-dev-map/">开发地图</a></li>
+    
+    <li><a href="https://iraiya.com" target="_blank" rel="noopener">产品</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="搜索">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">搜索</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-gemini-4-carbon-launch-benchmarks-pricing" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-11-10T16:40:00.000Z"><a href="/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/">2026-11-11</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover-card-720.jpg?v=c2ce43bb" alt="Gemini 4 Carbon 规格与 Terminal-Bench 4.0 官方对比图，列出 Gemini 4 Carbon、Claude Opus 5.5、GPT-6 Astra、Gemini 4 Argon 和 Claude Fable 5.1 的得分" width="1200" height="630" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover-card-480.jpg?v=59e5416b 480w, /zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover-card-720.jpg?v=c2ce43bb 720w, /zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover-card-960.jpg?v=d0fdd67c 960w, /zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/cover.jpg?v=e80119f7 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p><strong>Gemini 4 Carbon 是 Google 目前最强的模型，2026 年 11 月 10 日起向开发者、企业和 Google AI Ultra 订阅用户开放。</strong> 在 Google 官方对比表中，Carbon 在 17 项基准测试中拿下 14 项第一；Artificial Analysis 智能指数为 60 分，低于前一天发布的 Claude Fable 5.2（65 分），但单个评测任务成本约为 Fable 5.2 的三成，速度也更快。优惠价与 Gemini 4 Argon 相同，11 月 30 日之后翻倍。</p>
+<span id="more"></span>
+
+<h2 id="Gemini-4-Carbon-是什么？规格一览"><a href="#Gemini-4-Carbon-是什么？规格一览" class="headerlink" title="Gemini 4 Carbon 是什么？规格一览"></a>Gemini 4 Carbon 是什么？规格一览</h2><p>Carbon 基于 Gemini 4 Argon，主打长时间智能体编程、高难度推理、科学研究和安全防御。10 月 28 日先向 Fairwind 计划的安全防御人员开放，11 月 10 日全面开放。<a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">Google 公告</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Gemini 4 Carbon</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>API 模型 ID</td>
+<td><strong>gemini-4-carbon</strong></td>
+</tr>
+<tr>
+<td>上下文窗口</td>
+<td>1,048,576 tokens，输入、思考和输出共用</td>
+</tr>
+<tr>
+<td>最大输出</td>
+<td>同步请求 65,536 tokens；后台模式可扩展到接近 100 万 tokens</td>
+</tr>
+<tr>
+<td>输入</td>
+<td>文本、图片、音频、视频、PDF</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>文本（不支持图片、音频生成和 Live API）</td>
+</tr>
+<tr>
+<td>知识截止</td>
+<td>2026 年 3 月</td>
+</tr>
+<tr>
+<td>思考等级</td>
+<td>low、<strong>medium（默认）</strong>、high</td>
+</tr>
+<tr>
+<td>支持的工具</td>
+<td>函数调用、代码执行、电脑操作、Google 搜索与地图、URL context、File search、结构化输出</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>仅支持隐式缓存，4,096 tokens 及以上自动启用；不支持显式缓存</td>
+</tr>
+<tr>
+<td>免费层</td>
+<td>不提供</td>
+</tr>
+</tbody></table></div>
+<p>规格来源：<a target="_blank" rel="noopener" href="https://aistudio.google.com/docs/models/gemini-4-carbon">模型文档</a>、<a target="_blank" rel="noopener" href="https://deepmind.google/models/model-cards/gemini-4-carbon/">模型卡</a>。</p>
+<h2 id="谁能用？各渠道开放情况"><a href="#谁能用？各渠道开放情况" class="headerlink" title="谁能用？各渠道开放情况"></a>谁能用？各渠道开放情况</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>开放渠道</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发者</td>
+<td>Gemini API 付费层、Google AI Studio、Android Studio；Google AI Ultra 订阅用户还可在 Antigravity 中使用</td>
+</tr>
+<tr>
+<td>企业</td>
+<td>Gemini Enterprise（API 或模型下拉菜单）、Google Antigravity、CodeMender</td>
+</tr>
+<tr>
+<td>普通用户</td>
+<td>Google AI Ultra 订阅用户，在 Gemini App 和搜索的 AI 模式中逐步开放；公告未提及 Google AI Pro</td>
+</tr>
+<tr>
+<td>安全防御人员</td>
+<td>Fairwind 计划，使用安全专用版本</td>
+</tr>
+<tr>
+<td>科研人员</td>
+<td>可申请在 Antigravity 最高用量档免费使用 Argon 和 Carbon 6 个月，按资格和容量审核</td>
+</tr>
+</tbody></table></div>
+<h2 id="Gemini-4-Carbon-价格：优惠期到-11-月-30-日"><a href="#Gemini-4-Carbon-价格：优惠期到-11-月-30-日" class="headerlink" title="Gemini 4 Carbon 价格：优惠期到 11 月 30 日"></a>Gemini 4 Carbon 价格：优惠期到 11 月 30 日</h2><p>单位为 <strong>美元／百万 tokens</strong>，思考 tokens 按输出计费。Carbon 与 Argon 价格相同。<a target="_blank" rel="noopener" href="https://aistudio.google.com/docs/pricing">Gemini API 价格</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>计费项</th>
+<th align="right">优惠价（至 11&#x2F;30）</th>
+<th align="right">12 月 1 日起</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入</td>
+<td align="right">$2.00</td>
+<td align="right">$4.00</td>
+</tr>
+<tr>
+<td>输出（含思考）</td>
+<td align="right">$10.00</td>
+<td align="right">$20.00</td>
+</tr>
+<tr>
+<td>缓存输入</td>
+<td align="right">$0.10</td>
+<td align="right">$0.20</td>
+</tr>
+<tr>
+<td>Batch／Flex 输入、输出</td>
+<td align="right">$1.00、$5.00</td>
+<td align="right">$2.00、$10.00</td>
+</tr>
+<tr>
+<td>Priority 输入、输出</td>
+<td align="right">$3.60、$18.00</td>
+<td align="right">$7.20、$36.00</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li><strong>Google 搜索接地</strong>：每月前 5,000 次免费（Gemini 3 及以后的模型共用），之后每 1,000 次 $14，每天上限 1,500 次。</li>
+<li><strong>与 Claude 对比</strong>：12 月起的 $4／$20 与 Claude Opus 5.5 相同，是 Claude Fable 5.2（$8／$40）的一半。</li>
+</ul>
+<h2 id="官方基准测试：17-项中-14-项第一"><a href="#官方基准测试：17-项中-14-项第一" class="headerlink" title="官方基准测试：17 项中 14 项第一"></a>官方基准测试：17 项中 14 项第一</h2><p>以下为 Google 公布的对比表。表中的 Claude 旗舰是 <strong>Fable 5.1</strong>，不包含前一天发布的 Fable 5.2。<a target="_blank" rel="noopener" href="https://deepmind.google/models/gemini/">Gemini 模型页</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:840px"><table>
+<thead>
+<tr>
+<th>基准测试（领域）</th>
+<th align="right">Carbon</th>
+<th align="right">Argon</th>
+<th align="right">GPT-6 Astra</th>
+<th align="right">Opus 5.5</th>
+<th align="right">Fable 5.1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AA Index v5.0（综合）</td>
+<td align="right"><strong>59</strong></td>
+<td align="right">50</td>
+<td align="right">57</td>
+<td align="right">58</td>
+<td align="right">49</td>
+</tr>
+<tr>
+<td>Vals Index v2.2（综合）</td>
+<td align="right"><strong>70.4%</strong></td>
+<td align="right">69.2%</td>
+<td align="right">65.0%</td>
+<td align="right">70.2%</td>
+<td align="right">未列出</td>
+</tr>
+<tr>
+<td>SWE-sweep（智能体编程）</td>
+<td align="right"><strong>9.6%</strong></td>
+<td align="right">未列出</td>
+<td align="right">9.5%</td>
+<td align="right">3.6%</td>
+<td align="right">2.9%</td>
+</tr>
+<tr>
+<td>FrontierSWE 2（智能体编程）</td>
+<td align="right">61.2%</td>
+<td align="right">55.0%</td>
+<td align="right"><strong>65.5%</strong></td>
+<td align="right">62.3%</td>
+<td align="right">56.3%</td>
+</tr>
+<tr>
+<td>Terminal-Bench 4.0（智能体编程）</td>
+<td align="right"><strong>65.2%</strong></td>
+<td align="right">57.1%</td>
+<td align="right">59.1%</td>
+<td align="right">59.6%</td>
+<td align="right">52.0%</td>
+</tr>
+<tr>
+<td>Agents’ Last Exam v1.1（电脑操作）</td>
+<td align="right"><strong>77.4%</strong></td>
+<td align="right">69.0%</td>
+<td align="right">73.1%</td>
+<td align="right">71.6%</td>
+<td align="right">未列出</td>
+</tr>
+<tr>
+<td>OSWorld-2.1 离线子集（电脑操作）</td>
+<td align="right">81.5%</td>
+<td align="right">74.7%</td>
+<td align="right">80.9%</td>
+<td align="right"><strong>87.2%</strong></td>
+<td align="right">76.8%</td>
+</tr>
+<tr>
+<td>AutomationBench（知识工作）</td>
+<td align="right"><strong>53.9%</strong></td>
+<td align="right">51.3%</td>
+<td align="right">41.4%</td>
+<td align="right">42.5%</td>
+<td align="right">31.4%</td>
+</tr>
+<tr>
+<td>Vending-Bench 2 账户余额（知识工作）</td>
+<td align="right"><strong>$16,484</strong></td>
+<td align="right">$13,718</td>
+<td align="right">$15,515</td>
+<td align="right">$9,235</td>
+<td align="right">$5,422</td>
+</tr>
+<tr>
+<td>Chartography（多模态）</td>
+<td align="right"><strong>72.5%</strong></td>
+<td align="right">71.6%</td>
+<td align="right">71.0%</td>
+<td align="right">66.3%</td>
+<td align="right">46.2%</td>
+</tr>
+<tr>
+<td>Blueprint-Bench 2（多模态）</td>
+<td align="right"><strong>58.6%</strong></td>
+<td align="right">54.4%</td>
+<td align="right">49.7%</td>
+<td align="right">51.2%</td>
+<td align="right">41.9%</td>
+</tr>
+<tr>
+<td>GraphWalks 256K–1M（长上下文）</td>
+<td align="right"><strong>96.2%</strong></td>
+<td align="right">84.2%</td>
+<td align="right">71.8%</td>
+<td align="right">66.8%</td>
+<td align="right">65.0%</td>
+</tr>
+<tr>
+<td>RiemannBench（数学）</td>
+<td align="right">72.0%</td>
+<td align="right"><strong>76.0%</strong></td>
+<td align="right">72.0%</td>
+<td align="right">69.6%</td>
+<td align="right">65.6%</td>
+</tr>
+<tr>
+<td>Terminal-Bench-Science 0.1（科学）</td>
+<td align="right"><strong>64.8%</strong></td>
+<td align="right">52.9%</td>
+<td align="right">63.3%</td>
+<td align="right">59.0%</td>
+<td align="right">43.3%</td>
+</tr>
+<tr>
+<td>CWE-bench（漏洞修复）</td>
+<td align="right"><strong>71.0%</strong></td>
+<td align="right">68.0%</td>
+<td align="right">68.0%</td>
+<td align="right">67.0%</td>
+<td align="right">58.0%</td>
+</tr>
+<tr>
+<td>ExploitGym（漏洞利用）</td>
+<td align="right"><strong>54.8%</strong></td>
+<td align="right">42.0%</td>
+<td align="right">42.4%</td>
+<td align="right">34.5%</td>
+<td align="right">未列出</td>
+</tr>
+<tr>
+<td>SEC-bench Pro（漏洞发现）</td>
+<td align="right"><strong>88.2%</strong></td>
+<td align="right">83.4%</td>
+<td align="right">85.4%</td>
+<td align="right">未列出</td>
+<td align="right">未列出</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li><strong>落后的 3 项</strong>：FrontierSWE 2 不敌 GPT-6 Astra，OSWorld-2.1 不敌 Opus 5.5，RiemannBench 不敌自家的 Argon。</li>
+<li><strong>差距最大的是长上下文</strong>：GraphWalks 96.2%，比第二名 Argon 高 12 个百分点，比 Opus 5.5 高约 29 个百分点。</li>
+<li><strong>安全类分数</strong>在不启用防护机制的条件下测得。</li>
+<li><strong>Google 另称</strong>：Carbon 在 CursorBench 4.0、WANDR 和 AutomationBench 排名第一，单任务成本比次优的外部模型低一半以上；在与 AA 合作推出的 Multimodal Knowledge Agent 测试中排名第二，平均单任务成本不到第一名的六分之一。</li>
+</ul>
+<h2 id="与-Claude-Fable-5-2-对比：重叠的-5-项测试"><a href="#与-Claude-Fable-5-2-对比：重叠的-5-项测试" class="headerlink" title="与 Claude Fable 5.2 对比：重叠的 5 项测试"></a>与 Claude Fable 5.2 对比：重叠的 5 项测试</h2><p>将 Google 表中 Carbon 的得分与 Anthropic 公布的 Fable 5.2 得分对照。两家各自运行测试，同一模型的分数也有出入，例如 Opus 5.5 的 Chartography 在 Google 表中为 66.3%，在 Anthropic 表中为 64.4%。<a target="_blank" rel="noopener" href="https://www.anthropic.com/claude/fable">Fable 5.2 产品页</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>基准测试</th>
+<th align="right">Gemini 4 Carbon</th>
+<th align="right">Claude Fable 5.2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FrontierSWE v2</td>
+<td align="right">61.2%</td>
+<td align="right"><strong>69.9%</strong></td>
+</tr>
+<tr>
+<td>AutomationBench</td>
+<td align="right"><strong>53.9%</strong></td>
+<td align="right">51.4%</td>
+</tr>
+<tr>
+<td>Terminal-Bench-Science 0.1</td>
+<td align="right">64.8%</td>
+<td align="right"><strong>74.6%</strong></td>
+</tr>
+<tr>
+<td>OSWorld 2.1</td>
+<td align="right">81.5%</td>
+<td align="right"><strong>89.3%</strong></td>
+</tr>
+<tr>
+<td>Chartography</td>
+<td align="right">72.5%</td>
+<td align="right"><strong>73.4%</strong></td>
+</tr>
+</tbody></table></div>
+<p>Fable 5.2 的完整分析见 <a href="/zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/">Claude Fable 5.2 是什么？价格、基准测试与 Opus 5.5 区别</a>。</p>
+<h2 id="独立评测：AA-第-4-名，成本约为-Fable-5-2-的三成"><a href="#独立评测：AA-第-4-名，成本约为-Fable-5-2-的三成" class="headerlink" title="独立评测：AA 第 4 名，成本约为 Fable 5.2 的三成"></a>独立评测：AA 第 4 名，成本约为 Fable 5.2 的三成</h2><p>在 Artificial Analysis（AA）Intelligence Index v5.0.1 排行榜中，前 3 名都是不同 effort 档位的 Fable 5.2，Carbon（high）排第 4，Opus 5.5（max）排第 5。Google 10 月 28 日公布的“59 分第一”是 Fable 5.2 发布前的 v5.0 结果。<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/gemini-4-carbon">AA 模型页</a></p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>AA 指标</th>
+<th align="right">Gemini 4 Carbon（high）</th>
+<th align="right">Claude Fable 5.2（max）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Intelligence Index</td>
+<td align="right">60（第 4）</td>
+<td align="right"><strong>65（第 1）</strong></td>
+</tr>
+<tr>
+<td>输出速度</td>
+<td align="right">80 tokens&#x2F;s</td>
+<td align="right">103 tokens&#x2F;s</td>
+</tr>
+<tr>
+<td>首个答案 token 等待时间</td>
+<td align="right"><strong>66.85 秒</strong></td>
+<td align="right">231.55 秒</td>
+</tr>
+<tr>
+<td>每个评测任务耗时</td>
+<td align="right"><strong>25.6 分钟</strong></td>
+<td align="right">44.1 分钟</td>
+</tr>
+<tr>
+<td>每个评测任务成本</td>
+<td align="right"><strong>$7.76</strong></td>
+<td align="right">$26.54</td>
+</tr>
+<tr>
+<td>整套评测输出 tokens</td>
+<td align="right"><strong>约 2.05 亿</strong></td>
+<td align="right">约 2.75 亿</td>
+</tr>
+</tbody></table></div>
+<p>AA 按 12 月起的 $4／$20 计算 Carbon 成本，优惠期内的实际花费约为表中的一半。两者都远高于同类模型中位数：Carbon 的输出 tokens 约为中位数（7,280 万）的 2.8 倍，等待时间约为中位数（12.15 秒）的 5.5 倍。</p>
+<h2 id="安全测试结果"><a href="#安全测试结果" class="headerlink" title="安全测试结果"></a>安全测试结果</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>测试</th>
+<th align="right">Carbon</th>
+<th align="right">Argon</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自适应红队智能体，单次攻击突破率</td>
+<td align="right">0.8%</td>
+<td align="right">3.1%</td>
+</tr>
+<tr>
+<td>Gray Swan 自动化网络攻击查询成功率</td>
+<td align="right">2.17%</td>
+<td align="right">9.86%</td>
+</tr>
+<tr>
+<td>Gray Swan 间接提示注入攻击成功率</td>
+<td align="right">0%</td>
+<td align="right">0.7%</td>
+</tr>
+<tr>
+<td>375 项智能体诚实度任务通过率</td>
+<td align="right">92%</td>
+<td align="right">70%</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li>Carbon 拦截了自适应红队智能体 99% 的攻击路径。</li>
+<li>外部机构 Trajectory Labs 测试 132 小时、超过 13,000 次请求，未发现新的通用越狱方法。</li>
+<li>在诚实度测试中，Carbon 98% 拒绝编造缺失的实验数据，68% 会指出方法上的缺陷。</li>
+<li>模型卡列出的局限：会产生幻觉、偶尔变慢或超时、思考等级越高 tokens 消耗越多；Google 也表示提示注入防御仍需改进。<a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">安全公告</a></li>
+</ul>
+<h2 id="新功能：Antigravity-的-x2F-swarm-多智能体模式"><a href="#新功能：Antigravity-的-x2F-swarm-多智能体模式" class="headerlink" title="新功能：Antigravity 的 &#x2F;swarm 多智能体模式"></a>新功能：Antigravity 的 &#x2F;swarm 多智能体模式</h2><p><strong>&#x2F;swarm</strong>（预览）把一个提示词拆成一组协作智能体，并实时显示进度。Carbon 负责架构、协调和审查等高推理角色；更快的模型在各自隔离的工作区并行执行，另有对抗式验证智能体测试改动。Antigravity 的托管智能体也支持 Carbon。</p>
+<h2 id="开发者迁移要点"><a href="#开发者迁移要点" class="headerlink" title="开发者迁移要点"></a>开发者迁移要点</h2><p>从 Argon 切换到 Carbon 只需修改模型 ID，请求格式不变；但每轮思考 tokens 更多，延迟更长。从 Gemini 3.x 及更早版本迁移，需要处理以下变更：<a target="_blank" rel="noopener" href="https://aistudio.google.com/docs/whats-new-gemini-4-carbon">What’s new in Gemini 4 Carbon</a></p>
+<ol>
+<li><strong>改用 Interactions API</strong>，用 <code>generation_config.thinking_level</code> 设置思考等级，多轮状态通过 <code>previous_interaction_id</code> 保存在服务端。</li>
+<li><strong>移除显式缓存</strong>：<code>cachedContents</code>、<code>caches.create</code> 不再支持。</li>
+<li><strong>移除 temperature、top_p、top_k</strong>：这些参数会被忽略。</li>
+<li><strong>调高 max_output_tokens</strong>：思考也计入其中，原本低于 32K 的要调到至少 32,768。</li>
+<li><strong>超过 64K 的输出使用后台模式</strong>：设置 <code>background: true</code>，服务端按每段 64K 接续生成，需要自行拼接。</li>
+<li><strong>延长超时</strong>：高难度请求可能需要数分钟，HTTP 超时建议至少 15 分钟。</li>
+</ol>
+<h2 id="Carbon、Argon、Fable-5-2-怎么选"><a href="#Carbon、Argon、Fable-5-2-怎么选" class="headerlink" title="Carbon、Argon、Fable 5.2 怎么选"></a>Carbon、Argon、Fable 5.2 怎么选</h2><p>Google 自己的建议是：多数软件开发和知识工作用 Argon，最难的问题才用 Carbon。</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th>需求</th>
+<th>更合适的模型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日常开发、交互式编程、生产环境快速迭代</td>
+<td>Gemini 4 Argon</td>
+<td>同价但 tokens 消耗少、延迟低</td>
+</tr>
+<tr>
+<td>超长文档、多份资料交叉分析</td>
+<td>Gemini 4 Carbon</td>
+<td>GraphWalks 长上下文领先</td>
+</tr>
+<tr>
+<td>高难度推理、长时间智能体编程且预算有限</td>
+<td>Gemini 4 Carbon</td>
+<td>AA 分数接近顶尖，单任务成本约为 Fable 5.2 的三成</td>
+</tr>
+<tr>
+<td>追求最高能力、不在意速度和成本</td>
+<td>Claude Fable 5.2</td>
+<td>AA 第一，FrontierSWE、OSWorld 得分更高</td>
+</tr>
+<tr>
+<td>漏洞研究与修复</td>
+<td>Carbon（Fairwind 版）</td>
+<td>三项安全测试领先，需通过 Fairwind 审核</td>
+</tr>
+</tbody></table></div>
+<p>延伸阅读：<a href="/zh-cn/2026/10/01/gemini-4-argon-launch-pricing-access/">Gemini 4 Argon 发布解读</a>。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Artificial-Analysis/">Artificial Analysis</a>, <a href="/zh-cn/tags/Gemini/">Gemini</a>, <a href="/zh-cn/tags/Google/">Google</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">分享文章</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="复制链接" aria-label="复制链接">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>复制链接</span>
+    </button>
+
+    
+      <!-- 簡體中文（大陸生態）：微信、微博、知乎、X -->
+      <button type="button" class="share-btn share-btn-wechat" data-action="wechat-share" data-title="Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析" data-url="https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/" title="微信分享" aria-label="微信分享">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.858-2.554.432-5.468 3.203-6.42 1.433-.493 2.977-.428 4.354.12-.663-4.757-4.764-8.332-9.362-8.332zm-2.4 4.544a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm5.093 0a1.272 1.272 0 1 1 0 2.542 1.272 1.272 0 0 1 0-2.542zm4.364 4.095c-3.79 0-6.862 2.576-6.862 5.755 0 1.748.922 3.322 2.372 4.387.124.092.193.24.168.394l-.308 1.17c-.015.055-.038.112-.038.168 0 .13.103.233.23.233.048 0 .092-.016.132-.043l1.503-.88c.162-.095.357-.123.566-.077a8.03 8.03 0 0 0 2.237.318c3.79 0 6.863-2.576 6.863-5.755 0-3.179-3.073-5.755-6.863-5.755zm-2.144 3.597a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007zm4.289 0a1.004 1.004 0 1 1 0 2.007 1.004 1.004 0 0 1 0-2.007z"/>
+        </svg>
+        <span>微信</span>
+      </button>
+      <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F11%2F11%2Fgemini-4-carbon-launch-benchmarks-pricing%2F&title=Gemini%204%20Carbon%20%E5%8F%91%E5%B8%83%EF%BC%9A%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E3%80%81%E4%BB%B7%E6%A0%BC%E4%B8%8E%20Fable%205.2%E3%80%81Argon%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-weibo" title="分享到微博" aria-label="分享到微博">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M10.093 21.011c-4.57 0-8.293-2.616-8.293-5.839 0-3.22 3.723-5.836 8.293-5.836s8.295 2.616 8.295 5.836c0 3.223-3.725 5.839-8.295 5.839zm0-10.428c-3.882 0-7.042 2.062-7.042 4.589 0 2.529 3.16 4.59 7.042 4.59s7.043-2.061 7.043-4.59c0-2.527-3.161-4.589-7.043-4.589zm11.391-4.707c-.426-.14-.707-.035-.625.39.227 1.157-.14 2.146-1.077 2.872-.942.727-2.193.818-3.414.283-.418-.182-.693-.058-.616.368.077.426.377.625.795.808 1.706.744 3.518.59 4.887-.465 1.365-1.055 1.89-2.538 1.55-4.256zm-1.893 1.036c-.23-.075-.382-.019-.338.21.123.626-.076 1.161-.583 1.554-.51.394-1.187.443-1.848.153-.226-.098-.375-.031-.334.2.042.23.204.337.43.436.924.403 1.905.32 2.646-.252.739-.571 1.023-1.374.839-2.301z"/>
+        </svg>
+        <span>微博</span>
+      </a>
+      <a href="https://www.zhihu.com/share?url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F11%2F11%2Fgemini-4-carbon-launch-benchmarks-pricing%2F&title=Gemini%204%20Carbon%20%E5%8F%91%E5%B8%83%EF%BC%9A%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E3%80%81%E4%BB%B7%E6%A0%BC%E4%B8%8E%20Fable%205.2%E3%80%81Argon%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-zhihu" title="分享到知乎" aria-label="分享到知乎">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M5.72 4.098c.174 0 .348.01.52.03.62.072.932.414.932 1.025v3.424h2.247c.58 0 .87.27.87.81v.83c0 .54-.29.81-.87.81H7.172v3.837c0 1.25-.49 2.227-1.47 2.93-1.11.79-2.61 1.185-4.5 1.185-.36 0-.6-.23-.72-.69-.12-.46.03-.78.45-.96 1.44-.61 2.4-1.28 2.88-2.01.48-.73.72-1.63.72-2.702V10.22H2.392c-.58 0-.87-.27-.87-.81v-.83c0-.54.29-.81.87-.81h2.14V5.153c0-.61.31-.954.93-1.025.08-.01.17-.02.26-.03zm9.14 0c.58 0 .87.29.87.87v10.42c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87zm3.89 0c.58 0 .87.29.87.87v14.16c0 .58-.29.87-.87.87h-1.38c-.58 0-.87-.29-.87-.87V4.968c0-.58.29-.87.87-.87z"/>
+        </svg>
+        <span>知乎</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%20%E5%8F%91%E5%B8%83%EF%BC%9A%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E3%80%81%E4%BB%B7%E6%A0%BC%E4%B8%8E%20Fable%205.2%E3%80%81Argon%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90&url=https%3A%2F%2Fblog.6yuwei.com%2Fzh-cn%2F2026%2F11%2F11%2Fgemini-4-carbon-launch-benchmarks-pricing%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="Gemini 4 Carbon 发布：基准测试、价格与 Fable 5.2、Argon 对比分析" data-url="https://blog.6yuwei.com/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/" title="分享文章" aria-label="分享文章" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>分享文章...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/">
+  <h3 class="related-posts-title">相关文章</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" class="related-post-link"
+           data-rel-title="Codex 5 小时限制与额度查询：重置时间、用完怎么办"
+           data-rel-path="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"
+           data-rel-tag="AI"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" alt="Codex 5 小时限制与额度查询：重置时间、用完怎么办" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Codex 5 小时限制与额度查询：重置时间、用完怎么办</h4>
+            
+              <time class="related-post-date">2026-06-18</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/" class="related-post-link"
+           data-rel-title="Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读"
+           data-rel-path="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/"
+           data-rel-tag="AI"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/cover.jpg?v=123e4c05" alt="Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读</h4>
+            
+              <time class="related-post-date">2026-09-23</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/17/artificial-analysis-definitive-guide-llm-selection/" class="related-post-link"
+           data-rel-title="Artificial Analysis 是什么？Intelligence Index、速度与成本怎么看"
+           data-rel-path="/zh-cn/2026/08/17/artificial-analysis-definitive-guide-llm-selection/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/17/artificial-analysis-definitive-guide-llm-selection/cover.jpg?v=ebfd126a" alt="Artificial Analysis 是什么？Intelligence Index、速度与成本怎么看" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">Artificial Analysis 是什么？Intelligence Index、速度与成本怎么看</h4>
+            
+              <time class="related-post-date">2026-08-17</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="搜索">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">搜索</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/zh-cn/categories/AI/">AI</a><small>9</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/">AI 工具</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/">AI 科技</a><small>20</small></li>
+  
+    <li><a href="/zh-cn/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a><small>3</small></li>
+  
+    <li><a href="/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/AI/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8/">日本旅游</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%97%A5%E8%AF%AD%E5%AD%A6%E4%B9%A0/">日语学习</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BB%BA%E7%AB%99/">服务器与建站</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><small>6</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/">独立开发</a><small>4</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%8E%A9%E5%85%B7%E4%B8%8E%E6%A1%8C%E6%B8%B8/">玩具与桌游</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%94%9F%E6%B4%BB/">生活</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E7%94%9F%E6%B4%BB%E6%B6%88%E8%B4%B9/">生活消费</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%80%9D%E7%BB%B4/">观点与思维</a><small>1</small></li>
+  
+    <li><a href="/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><small>2</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/categories/">查看全部分类</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">常用标签</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>36</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>12</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/"><span>独立开发者</span><small>11</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-Agent/"><span>AI Agent</span><small>10</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>10</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>9</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>8</small></a></li>
+  
+    <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/OpenAI/"><span>OpenAI</span><small>7</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>6</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
+  
+    <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E/"><span>安全漏洞</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%85%8D%E8%B4%B9%E8%B5%84%E6%BA%90/"><span>免费资源</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E5%8F%B0%E6%B9%BE/"><span>台湾</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E7%BD%91%E7%AB%99%E8%BF%90%E7%BB%B4/"><span>网站运维</span><small>2</small></a></li>
+  
+    <li><a href="/zh-cn/tags/AI-%E7%BB%98%E5%9B%BE/"><span>AI 绘图</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/zh-cn/tags/">查看全部标签</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/zh-cn/rss.xml">订阅 RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"复制","codeCopied":"已复制","toastCodeCopied":"代码已复制到剪贴板","copyLinkLabel":"复制链接","linkCopied":"已复制文章链接","headingCopied":"已复制章节链接","tocTitle":"目录","searchLoading":"加载中...","searchEmpty":"输入关键词开始搜索...","searchNoResults":"找不到符合「%s」的相关文章","tableScrollLabel":"表格，可左右滚动","tableScrollHint":"左右滑动查看完整表格；也可使用键盘方向键。"};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="搜索文章标题、标签或关键字..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">输入关键词开始搜索...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">按 ESC 关闭，↑↓ 选择，Enter 打开</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/zh-cn/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/zh-cn/js/jquery-3.4.1.min.js"></script>
+<script defer src="/zh-cn/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/zh-cn/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/zh-cn/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
