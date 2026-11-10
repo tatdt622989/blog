@@ -1,7 +1,7 @@
 ---
 title: "Claude Fable 5.2 Explained: Pricing, Benchmarks, and How It Compares With Opus 5.5"
 date: 2026-11-10 08:40:00
-updated: 2026-11-10 08:40:00
+updated: 2026-11-10 09:53:10
 description: "Claude Fable 5.2 costs $8/$40 per million tokens. Compare 12 official benchmarks, AA results, Opus 5.5 pricing, safeguards, and migration changes."
 permalink: 2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/
 translation_key: claude-fable-5-2-pricing-benchmarks-analysis
@@ -58,7 +58,20 @@ Prices are in **USD per million tokens**. Fable 5.1 cache-read and batch prices 
 
 - **Cache reads cost 2.5% of the input price**, against 5% on Opus 5.5, so both models charge the same for cache reads. For agents that reread a large codebase, the price gap comes mostly from uncached input and from output.
 - **Fast mode** generates up to 2.5 times faster, according to Anthropic, at double the standard price.
-- **Subscriptions:** On Pro and standard Team seats, Fable can use up to 50% of the weekly allowance. Eligible paid plans get one to three Fable resets, depending on subscription length. See [how Claude banked resets work](/en/2026/10/19/claude-banked-reset-guide/).
+
+## Is Fable 5.2 Usage Separate? How Each Plan Counts It
+
+**Fable has no separate allowance.** On Max, Ultra, and Team premium seats, Fable draws from the same weekly limit as other models and uses it faster. Pro and Team standard seats do not include Fable normally; it bills to usage credits instead of the plan limit. [Official launch offer](https://support.claude.com/en/articles/17506494)
+
+| Plan | How Fable usage normally counts | Launch offer |
+| --- | --- | --- |
+| Pro, Team standard seats | Usage credits (must be turned on) | November 9 to 16, 2026: up to 50% of the weekly limit on Fable, plus one Fable reset that expires November 16 |
+| Max, Ultra, Team premium seats, legacy seat-based Enterprise premium seats | Shared weekly limit with other models | One to three Fable resets by subscription length, expiring March 8, 2027 |
+
+- **Number of resets:** Counted from the first paid bill: under 6 months gets one, 6 to 12 months gets two, over 12 months gets three.
+- **What a reset does:** It returns the weekly usage spent on Fable; usage on other models stays. Accounts with a five-hour limit get the whole window refilled. Resets do not raise limits.
+- **Not eligible:** Free, legacy seat-based Enterprise standard seats, self-serve Enterprise, usage-based Enterprise, and HIPAA-ready Enterprise.
+- **How to use:** Go to **Settings → Usage** and choose the free reset. The offer covers Fable 5.2, 5.1, and 5. See [how Claude banked resets work](/en/2026/10/19/claude-banked-reset-guide/).
 
 ## Official Benchmarks: First on 10 of 12, Behind on Two
 

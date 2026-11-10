@@ -1,7 +1,7 @@
 ---
 title: Claude Fable 5.2 是什么？价格、基准测试与 Opus 5.5 区别全面解读
 date: 2026-11-10 08:40:00
-updated: 2026-11-10 08:40:00
+updated: 2026-11-10 09:53:10
 description: Claude Fable 5.2 于 2026 年 11 月 9 日发布，API 价格降至每百万 tokens 输入 8 美元、输出 40 美元。汇总官方 12 项基准测试、Artificial Analysis 独立评测、与 Opus 5.5 的价差、安全防护和开发者迁移要点。
 permalink: 2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/
 translation_key: claude-fable-5-2-pricing-benchmarks-analysis
@@ -58,7 +58,20 @@ Fable 5.2 和 **Mythos 5.2** 是同一个底层模型。Fable 5.2 增加了网�
 
 - **缓存读取只按输入价的 2.5% 计费**，Opus 5.5 是 5%，因此两者缓存读取单价相同。对反复读取大型代码库的智能体任务来说，价差主要来自未命中缓存的输入和输出。
 - **Fast mode** 官方称生成速度最高提升 2.5 倍，单价是标准模式的两倍。
-- **订阅套餐**：Pro 和标准 Team 席位中，Fable 最多可占每周额度的 50%；符合条件的付费套餐按订阅时长获得 1 到 3 次 Fable 额度重置。重置的用法见 [Claude Banked Reset 使用指南](/zh-cn/2026/10/19/claude-banked-reset-guide/)。
+
+## Fable 5.2 用量是独立的吗？各套餐怎么计算
+
+**Fable 没有独立额度。** Max、Ultra 和 Team 高级席位使用 Fable，会扣同一份每周额度，而且消耗速度比其他模型快。Pro 和 Team 标准席位平时不包含 Fable，使用时改扣 usage credits，不占套餐额度。[官方发布优惠说明](https://support.claude.com/zh-TW/articles/17506494)
+
+| 套餐 | Fable 平时怎么计费 | 发布优惠 |
+| --- | --- | --- |
+| Pro、Team 标准席位 | 扣 usage credits（需手动开启） | 2026 年 11 月 9 日至 16 日可用每周额度的 50% 使用 Fable，另有 1 次 Fable 重置，11 月 16 日到期 |
+| Max、Ultra、Team 高级席位、旧版按席位计费的 Enterprise 高级席位 | 与其他模型共用每周额度 | 按订阅时长获得 1 到 3 次 Fable 重置，2027 年 3 月 8 日到期 |
+
+- **重置次数**：从第一次付费账单起算，不满 6 个月 1 次，6 到 12 个月 2 次，超过 12 个月 3 次。
+- **重置效果**：退回每周额度中已用在 Fable 上的部分，其他模型的用量不变；有五小时额度的账号会整段补满。重置不会提高上限。
+- **不适用**：Free、旧版按席位计费的 Enterprise 标准席位、自助式 Enterprise、按用量计费的 Enterprise、HIPAA Enterprise。
+- **使用方法**：**Settings → Usage**，在额度重置中选择免费重置；优惠覆盖 Fable 5.2、5.1 和 5。重置流程见 [Claude Banked Reset 使用指南](/zh-cn/2026/10/19/claude-banked-reset-guide/)。
 
 ## 官方基准测试：12 项中 10 项第一，有两项落后
 

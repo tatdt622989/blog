@@ -1,7 +1,7 @@
 ---
 title: Claude Fable 5.2 是什麼？價格、評測與 Opus 5.5 差異完整分析
 date: 2026-11-10 08:40:00
-updated: 2026-11-10 08:40:00
+updated: 2026-11-10 09:53:10
 description: Claude Fable 5.2 於 2026 年 11 月 9 日推出，API 價格降為每百萬 tokens 輸入 $8、輸出 $40。整理官方 12 項評測、Artificial Analysis 獨立測試、與 Opus 5.5 的價差、Mythos 5.2 的差別、安全防護與開發者遷移重點。
 translation_key: claude-fable-5-2-pricing-benchmarks-analysis
 translations:
@@ -57,7 +57,20 @@ Fable 5.2 與 **Mythos 5.2** 是同一個底層模型。Fable 5.2 加上網路�
 
 - **快取讀取只收輸入價的 2.5%**，Opus 5.5 是 5%，所以兩者的快取讀取單價相同。反覆讀取大型程式碼庫的代理工作，價差主要落在未快取的輸入與輸出。
 - **Fast mode** 官方稱最高可達 2.5 倍生成速度，單價是標準模式的兩倍。
-- **訂閱方案**：Pro 與標準 Team 席位使用 Fable 最多可占每週額度的 50%；符合資格的付費方案依訂閱時長取得 1 到 3 次 Fable 額度重設。重設的使用方式見 [Claude Banked Reset 怎麼用](/2026/10/19/claude-banked-reset-guide/)。
+
+## Fable 5.2 用量是獨立的嗎？各方案怎麼算
+
+**Fable 沒有獨立額度。** Max、Ultra 與 Team 進階席位使用 Fable，會扣同一份每週額度，而且消耗得比其他模型快。Pro 與 Team 標準席位平常不含 Fable，使用時改扣 usage credits，不占方案額度。[官方推出優惠說明](https://support.claude.com/zh-TW/articles/17506494)
+
+| 方案 | Fable 平常怎麼計算 | 推出優惠 |
+| --- | --- | --- |
+| Pro、Team 標準席位 | 扣 usage credits（需自行開啟） | 2026 年 11 月 9 日至 16 日可用每週額度的 50% 使用 Fable，另有 1 次 Fable 重設，11 月 16 日到期 |
+| Max、Ultra、Team 進階席位、舊版席位制 Enterprise 進階席位 | 與其他模型共用每週額度 | 依訂閱時長取得 1 到 3 次 Fable 重設，2027 年 3 月 8 日到期 |
+
+- **重設次數**：從第一次付費帳單起算，未滿 6 個月 1 次，6 到 12 個月 2 次，超過 12 個月 3 次。
+- **重設的效果**：退回每週額度中已花在 Fable 的用量，其他模型的用量不變；有五小時額度的帳戶會整段補滿。重設不會提高上限。
+- **不適用**：Free、舊版席位制 Enterprise 標準席位、自助式 Enterprise、用量計費 Enterprise、HIPAA Enterprise。
+- **使用方式**：**Settings → Usage**，在額度重設中選擇免費重設；優惠涵蓋 Fable 5.2、5.1 與 5。重設流程見 [Claude Banked Reset 怎麼用](/2026/10/19/claude-banked-reset-guide/)。
 
 ## 官方評測：12 項中 10 項第一，但有兩項落後
 
