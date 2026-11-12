@@ -18,7 +18,7 @@ tags:
   - 内存安全
 ---
 
-![Rust 重写案例一览：操作系统 Linux、Android、Windows、Ubuntu，云服务 Cloudflare、AWS Firecracker，开发工具 Vite、Next.js、uv、Ruff、fish，应用 Discord、GitHub Copilot、Chrome](cover.jpg)
+![戴着安全帽的橙色螃蟹，把软件城市里开裂的灰色石砖换成闪亮的锈橙色金属砖，周围有服务器、终端、聊天应用窗口和手机](cover.jpg)
 
 **Rust 确实越来越火，但火在特定领域：操作系统、云基础设施、开发工具，以及对内存占用和启动速度敏感的桌面应用。** 核心原因是内存安全，以及不依赖垃圾回收（GC）也能跑得快。2026 年又多了一股推力：AI 让大规模重写的成本大幅下降。不过 Rust 还不是通用首选，TypeScript 7 的编译器就选了 Go，TIOBE 11 月排名也从第 10 跌回第 11。
 

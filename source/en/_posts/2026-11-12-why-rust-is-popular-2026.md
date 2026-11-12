@@ -18,7 +18,7 @@ tags:
   - Memory Safety
 ---
 
-![Overview of Rust rewrites: Linux, Android, Windows and Ubuntu in operating systems, Cloudflare and AWS Firecracker in the cloud, Vite, Next.js, uv, Ruff and fish in dev tools, and Discord, GitHub Copilot and Chrome in apps](cover.jpg)
+![An orange crab in a hard hat replacing cracked grey stone blocks of a software city with shiny rust-orange metal blocks, surrounded by a server rack, a terminal, a chat app window and a phone](cover.jpg)
 
 **Rust is growing, but in specific places: operating systems, cloud infrastructure, developer tools, and desktop apps that care about memory use and startup time.** The main reasons are memory safety and speed without a garbage collector (GC). In 2026 a new force joined them: AI has made large rewrites much cheaper. Rust is still not the default choice for everything, though. The TypeScript 7 compiler went with Go, and Rust slipped from 10th to 11th on TIOBE in November.
 

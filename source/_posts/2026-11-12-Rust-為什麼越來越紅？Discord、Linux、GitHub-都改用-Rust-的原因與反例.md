@@ -17,7 +17,7 @@ tags:
   - 記憶體安全
 ---
 
-![Rust 改寫案例總覽：作業系統 Linux、Android、Windows、Ubuntu，雲端 Cloudflare、AWS Firecracker，開發工具 Vite、Next.js、uv、Ruff、fish，應用 Discord、GitHub Copilot、Chrome](cover.jpg)
+![戴著工地安全帽的橘色螃蟹，把軟體城市裡龜裂的灰色石磚換成閃亮的鏽橘色金屬磚，周圍有伺服器、終端機、聊天 App 視窗與手機](cover.jpg)
 
 **Rust 確實越來越紅，但紅在特定地方：作業系統、雲端基礎設施、開發工具，以及在意記憶體與啟動速度的桌面 App。** 主因是記憶體安全，以及不靠垃圾回收（GC）也能跑得快。2026 年又多了一個推力：AI 讓大型改寫的成本大降。不過 Rust 還不是通用首選，TypeScript 7 的編譯器就選了 Go，TIOBE 11 月排名也從第 10 掉回第 11。
 
