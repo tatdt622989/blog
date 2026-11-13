@@ -36,8 +36,6 @@
   <meta property="article:modified_time" content="2026-09-11T04:45:00.000Z" />
   <meta property="article:section" content="游戏开发" />
   
-  <meta property="article:tag" content="TypeScript" />
-  
   <meta property="article:tag" content="AI" />
   
   <meta property="article:tag" content="Claude" />
@@ -50,6 +48,8 @@
   
   <meta property="article:tag" content="前端开发" />
   
+  <meta property="article:tag" content="TypeScript" />
+  
   <meta property="article:tag" content="Godot" />
   
   
@@ -58,7 +58,7 @@
   <meta name="twitter:description" content="为什么叫 AI 制作网页很顺利，做游戏却经常画面穿模或配置崩溃？本文跳过通用的软件周期理论，直接聚焦在游戏引擎架构：为什么 Web 技术常常胜过传统引擎？Godot 该怎么正确桥接？以及 3D 与多人游戏该如何搭配工具。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg?v=c7d67a68">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/","url":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/","headline":"适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析","description":"为什么叫 AI 制作网页很顺利，做游戏却经常画面穿模或配置崩溃？本文跳过通用的软件周期理论，直接聚焦在游戏引擎架构：为什么 Web 技术常常胜过传统引擎？Godot 该怎么正确桥接？以及 3D 与多人游戏该如何搭配工具。","datePublished":"2026-09-11T04:00:00.000Z","dateModified":"2026-09-11T04:45:00.000Z","inLanguage":"zh-CN","articleSection":"游戏开发","keywords":"TypeScript, AI, Claude, Codex, 游戏开发, 独立开发者, 前端开发, Godot","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/","url":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/","headline":"适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析","description":"为什么叫 AI 制作网页很顺利，做游戏却经常画面穿模或配置崩溃？本文跳过通用的软件周期理论，直接聚焦在游戏引擎架构：为什么 Web 技术常常胜过传统引擎？Godot 该怎么正确桥接？以及 3D 与多人游戏该如何搭配工具。","datePublished":"2026-09-11T04:00:00.000Z","dateModified":"2026-09-11T04:45:00.000Z","inLanguage":"zh-CN","articleSection":"游戏开发","keywords":"AI, Claude, Codex, 游戏开发, 独立开发者, 前端开发, TypeScript, Godot","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"游戏开发","item":"https://blog.6yuwei.com/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"},{"@type":"ListItem","position":3,"name":"适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析","item":"https://blog.6yuwei.com/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"}]}</script>
   
@@ -434,7 +434,7 @@
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/TypeScript/">TypeScript</a>, <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Claude/">Claude</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>, <a href="/zh-cn/tags/Godot/">Godot</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Claude/">Claude</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>, <a href="/zh-cn/tags/TypeScript/">TypeScript</a>, <a href="/zh-cn/tags/Godot/">Godot</a>
   </div>
 
         
@@ -646,7 +646,7 @@
   <h3 class="title">常用标签</h3>
   <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>36</small></a></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>37</small></a></li>
   
     <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>12</small></a></li>
   
@@ -656,9 +656,9 @@
   
     <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>10</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>9</small></a></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>9</small></a></li>
   
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>8</small></a></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>9</small></a></li>
   
     <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
   
@@ -666,13 +666,13 @@
   
     <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>6</small></a></li>
   
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>5</small></a></li>
+  
     <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>5</small></a></li>
   
     <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>5</small></a></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
     <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   

@@ -5,7 +5,7 @@
   
   <title>Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例 | 6yuwei</title>
   <meta name="author" content="6yuwei">
-  <meta name="description" content="Rust 为什么越来越火？Linux 7.0 正式支持 Rust，Android、Windows、Cloudflare、Vite、GitHub Copilot 相继采用，Discord 也宣布桌面端弃用 Electron。汇总知名重写案例、五大原因，以及 TypeScript 选 Go 等反例。">
+  <meta name="description" content="Rust 为什么越来越火？从 Linux 7.0 正式纳入内核、Discord 桌面端弃用 Electron 改用 Rust，到 Vite、Next.js 与 GitHub Copilot 全面重写，深入解析大厂转向 Rust 的 5 大原因、TypeScript 改选 Go 的反例，以及什么项目适合引入 Rust。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/">
   
@@ -19,7 +19,7 @@
   
 
   <meta property="og:title" content="Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例"/>
-  <meta property="og:description" content="Rust 为什么越来越火？Linux 7.0 正式支持 Rust，Android、Windows、Cloudflare、Vite、GitHub Copilot 相继采用，Discord 也宣布桌面端弃用 Electron。汇总知名重写案例、五大原因，以及 TypeScript 选 Go 等反例。"/>
+  <meta property="og:description" content="Rust 为什么越来越火？从 Linux 7.0 正式纳入内核、Discord 桌面端弃用 Electron 改用 Rust，到 Vite、Next.js 与 GitHub Copilot 全面重写，深入解析大厂转向 Rust 的 5 大原因、TypeScript 改选 Go 的反例，以及什么项目适合引入 Rust。"/>
   <meta property="og:site_name" content="6yuwei"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/"/>
@@ -33,26 +33,28 @@
   <meta property="og:image:alt" content="Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例" />
   
   <meta property="article:published_time" content="2026-11-12T10:00:00.000Z" />
-  <meta property="article:modified_time" content="2026-11-12T10:00:00.000Z" />
+  <meta property="article:modified_time" content="2026-11-12T12:40:00.000Z" />
   <meta property="article:section" content="软件工程" />
+  
+  <meta property="article:tag" content="AI" />
+  
+  <meta property="article:tag" content="开发工具" />
+  
+  <meta property="article:tag" content="前端开发" />
+  
+  <meta property="article:tag" content="软件工程" />
   
   <meta property="article:tag" content="Rust" />
   
-  <meta property="article:tag" content="编程语言" />
-  
-  <meta property="article:tag" content="Discord" />
-  
   <meta property="article:tag" content="Linux" />
-  
-  <meta property="article:tag" content="内存安全" />
   
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例">
-  <meta name="twitter:description" content="Rust 为什么越来越火？Linux 7.0 正式支持 Rust，Android、Windows、Cloudflare、Vite、GitHub Copilot 相继采用，Discord 也宣布桌面端弃用 Electron。汇总知名重写案例、五大原因，以及 TypeScript 选 Go 等反例。">
+  <meta name="twitter:description" content="Rust 为什么越来越火？从 Linux 7.0 正式纳入内核、Discord 桌面端弃用 Electron 改用 Rust，到 Vite、Next.js 与 GitHub Copilot 全面重写，深入解析大厂转向 Rust 的 5 大原因、TypeScript 改选 Go 的反例，以及什么项目适合引入 Rust。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/cover.jpg?v=d5bded27">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/","url":"https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/","headline":"Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例","description":"Rust 为什么越来越火？Linux 7.0 正式支持 Rust，Android、Windows、Cloudflare、Vite、GitHub Copilot 相继采用，Discord 也宣布桌面端弃用 Electron。汇总知名重写案例、五大原因，以及 TypeScript 选 Go 等反例。","datePublished":"2026-11-12T10:00:00.000Z","dateModified":"2026-11-12T10:00:00.000Z","inLanguage":"zh-CN","articleSection":"软件工程","keywords":"Rust, 编程语言, Discord, Linux, 内存安全","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/","url":"https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/","headline":"Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例","description":"Rust 为什么越来越火？从 Linux 7.0 正式纳入内核、Discord 桌面端弃用 Electron 改用 Rust，到 Vite、Next.js 与 GitHub Copilot 全面重写，深入解析大厂转向 Rust 的 5 大原因、TypeScript 改选 Go 的反例，以及什么项目适合引入 Rust。","datePublished":"2026-11-12T10:00:00.000Z","dateModified":"2026-11-12T12:40:00.000Z","inLanguage":"zh-CN","articleSection":"软件工程","keywords":"AI, 开发工具, 前端开发, 软件工程, Rust, Linux","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"软件工程","item":"https://blog.6yuwei.com/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"},{"@type":"ListItem","position":3,"name":"Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例","item":"https://blog.6yuwei.com/zh-cn/2026/11/12/why-rust-is-popular-2026/"}]}</script>
   
@@ -250,256 +252,247 @@
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/11/12/why-rust-is-popular-2026/cover-card-720.jpg?v=fad70e95" alt="戴着安全帽的橙色螃蟹，把软件城市里开裂的灰色石砖换成闪亮的锈橙色金属砖，周围有服务器、终端、聊天应用窗口和手机" width="1200" height="630" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/11/12/why-rust-is-popular-2026/cover-card-480.jpg?v=9aaaa9fd 480w, /zh-cn/2026/11/12/why-rust-is-popular-2026/cover-card-720.jpg?v=fad70e95 720w, /zh-cn/2026/11/12/why-rust-is-popular-2026/cover-card-960.jpg?v=e7672c7e 960w, /zh-cn/2026/11/12/why-rust-is-popular-2026/cover.jpg?v=d5bded27 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
-<p><strong>Rust 确实越来越火，但火在特定领域：操作系统、云基础设施、开发工具，以及对内存占用和启动速度敏感的桌面应用。</strong> 核心原因是内存安全，以及不依赖垃圾回收（GC）也能跑得快。2026 年又多了一股推力：AI 让大规模重写的成本大幅下降。不过 Rust 还不是通用首选，TypeScript 7 的编译器就选了 Go，TIOBE 11 月排名也从第 10 跌回第 11。</p>
+<p>不管你是写前端、写 Python 还是每天开着桌面软件办公，这两年都很难忽略 <strong>Rust</strong> 的存在：前端打包工具换成了 Rust 编写的 <strong>Turbopack</strong> 与 <strong>Rolldown（Vite 8）</strong>，Python 社区一窝蜂换用 <strong>uv</strong> 与 <strong>Ruff</strong>，<strong>Linux 7.0</strong> 正式摘掉 Rust 的实验性标签，连玩家们每天挂着的 <strong>Discord</strong> 也在 2026 年 11 月宣布桌面端将弃用 <strong>Electron</strong>、改用 <strong>Rust</strong> 从头重构。</p>
+<p><strong>Rust 确实越来越火，但它的流行高度集中：主要发生在操作系统内核、高并发云基础设施、开发者工具链，以及受够内存膨胀与启动缓慢的跨平台客户端。</strong> 让各大科技巨头愿意投入重写的根本原因，在于 Rust 不依赖垃圾回收（Garbage Collection, GC），就能同时实现<strong>编译期内存安全</strong>与<strong>接近 C 语言的执行性能</strong>；而在 2026 年，AI 辅助编程搭配 Rust 严格的编译器检查，更让过去动辄耗时数年的大型项目迁移成本大幅下降。不过，Rust 并不是所有软件的标准答案——微软重写 <strong>TypeScript 7</strong> 编译器时就选择了 <strong>Go</strong>，Cloudflare 也曾因为一行 Rust 代码里的 <code>unwrap()</code> 引发全球大宕机。</p>
 <span id="more"></span>
 
-<h2 id="Rust-有多火？三个指标"><a href="#Rust-有多火？三个指标" class="headerlink" title="Rust 有多火？三个指标"></a>Rust 有多火？三个指标</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<h2 id="Rust-现在到底有多火？从排行榜与开发者调查拆解真实热度"><a href="#Rust-现在到底有多火？从排行榜与开发者调查拆解真实热度" class="headerlink" title="Rust 现在到底有多火？从排行榜与开发者调查拆解真实热度"></a>Rust 现在到底有多火？从排行榜与开发者调查拆解真实热度</h2><p>不少开发者心里都会有个疑问：技术社区里几乎每周都有某个知名项目“用 Rust 重写（Rewrite It in Rust）”的新闻，但打开招聘网站，Rust 的岗位数量却远不如 Python、Java 或 TypeScript。要看清 Rust 的真实生态位，可以把主流排行榜与开发者调查放在一起对比：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
-<th>指标</th>
-<th>数据</th>
+<th>指标来源</th>
+<th>关键数据与排名变化</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><a target="_blank" rel="noopener" href="https://www.tiobe.com/tiobe-index/">TIOBE 2026 年 11 月</a></td>
-<td>第 11 名，1.63%；一年前第 14 名。7 到 10 月连续四个月排第 10，11 月被 Go 反超</td>
+<td><a target="_blank" rel="noopener" href="https://www.tiobe.com/tiobe-index/">TIOBE 2026 年 11 月指数</a></td>
+<td>排名第 <strong>11 名</strong>（占比 **1.63%**），较一年前的第 14 名上升三位；2026 年 7 月至 10 月连续四个月跻身前 10 名，11 月才被 <strong>Go</strong> 微弱反超</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener" href="https://survey.stackoverflow.co/2026/technology/data/languages">Stack Overflow 2026 调查</a></td>
-<td>18.0% 的受访者大量使用，排第 12</td>
+<td><a target="_blank" rel="noopener" href="https://survey.stackoverflow.co/2026/technology/data/languages">Stack Overflow 2026 开发者调查</a></td>
+<td><strong>18.0%</strong> 的受访开发者表示过去一年重度使用 Rust，在所有编程语言中排第 <strong>12 名</strong></td>
 </tr>
 <tr>
-<td>Stack Overflow 2025 调查</td>
-<td>连续第九年当选“最受推崇语言”，72% 的使用者还想继续用</td>
+<td>Stack Overflow 2025 开发者调查</td>
+<td>连续第九年蝉联“最受推崇语言”，高达 <strong>72%</strong> 用过 Rust 的开发者表示明年想继续使用</td>
 </tr>
 </tbody></table></div>
-<p>使用率不算高，但用户黏性很强；一年内排名上升三位。</p>
-<h2 id="转向-Rust-的知名案例"><a href="#转向-Rust-的知名案例" class="headerlink" title="转向 Rust 的知名案例"></a>转向 Rust 的知名案例</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
+<p>这三组数据反映出一个非常清晰的趋势：<strong>Rust 不是靠庞大的初学者基数或普通业务系统冲高市场份额，而是凭借极高的开发者留存率，在底层系统与基础工具链领域稳步渗透。</strong> 许多前端或 Python 工程师虽然日常不直接写 Rust，但每天运行打包构建、代码检查或安装依赖包时，底层跑的其实已经全是 Rust 编译出来的二进制程序。</p>
+<h2 id="为什么大厂纷纷转向-Rust？五个解决工程痛点的核心原因"><a href="#为什么大厂纷纷转向-Rust？五个解决工程痛点的核心原因" class="headerlink" title="为什么大厂纷纷转向 Rust？五个解决工程痛点的核心原因"></a>为什么大厂纷纷转向 Rust？五个解决工程痛点的核心原因</h2><p>把一个已经在线上稳定运行多年的系统换成另一种语言，对任何工程团队来说都是高风险决策。为什么 Google、微软、Cloudflare、GitHub 与 Discord 依然决定迈出这一步？背后主要有五个实际的工程考量：</p>
+<h3 id="1-编译期守住内存安全，从根源拦截底层安全漏洞"><a href="#1-编译期守住内存安全，从根源拦截底层安全漏洞" class="headerlink" title="1. 编译期守住内存安全，从根源拦截底层安全漏洞"></a>1. 编译期守住内存安全，从根源拦截底层安全漏洞</h3><p>在传统的操作系统、浏览器引擎与底层原生库中，C 与 C++ 几乎是唯一能兼顾性能与硬件控制的选择。但手动管理内存的代价极高——微软与 Google 都曾公开统计，过去几十年约有 <strong>70% 的高危安全漏洞</strong>（例如缓冲区溢出 Buffer Overflow、释放后使用 Use-After-Free、双重释放与数据竞争）都源于内存安全缺陷。像此前 <a href="/zh-cn/2026/10/21/nodejs-october-2026-security-analysis/">Node.js 十月安全更新</a>中修复的 Brotli 原生解码器越界写入漏洞，就是底层原生代码常见的风险。</p>
+<p>Rust 通过独特的<strong>所有权（Ownership）</strong>、<strong>借用检查器（Borrow Checker）</strong>与<strong>生命周期（Lifetimes）</strong>机制，在不牺牲运行速度的前提下，把内存检查前置到“编译阶段”。只要代码存在悬垂指针或未受保护的跨线程读写，编译器就会直接报错拦截。</p>
+<p>根据 <a target="_blank" rel="noopener" href="https://blog.google/security/rust-in-android-move-fast-fix-things/">Google Android 安全团队公布的实战数据</a>，自从 Android 新增系统代码大规模采用 Rust 后，内存安全漏洞占全部漏洞的比例<strong>历史上首次降到 20% 以内</strong>；Android 内部 Rust 代码的内存漏洞密度大约只有 C／C++ 的<strong>千分之一</strong>，而且由于编译期检查严格，工程师提交代码后的回滚率（Rollback Rate）也降低了 <strong>4 倍</strong>。</p>
+<h3 id="2-告别垃圾回收（GC）停顿，彻底消除服务的延迟毛刺"><a href="#2-告别垃圾回收（GC）停顿，彻底消除服务的延迟毛刺" class="headerlink" title="2. 告别垃圾回收（GC）停顿，彻底消除服务的延迟毛刺"></a>2. 告别垃圾回收（GC）停顿，彻底消除服务的延迟毛刺</h3><p>既然追求内存安全，为什么不直接用 Go、Java、C# 或 JavaScript？在绝大多数普通业务后台，这些语言确实够用。但它们都依赖<strong>垃圾回收器（Garbage Collector, GC）</strong>在后台定期扫描并回收不再使用的内存。当服务承载极高并发、或者在内存中维护数百万个缓存对象时，GC 触发扫描就会造成短暂却明显的停顿（即工程上常说的“延迟毛刺”）。</p>
+<p>最典型的案例就是 <strong>Discord</strong> 在 2020 年将负责追踪用户已读状态的 **<a target="_blank" rel="noopener" href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust">Read States 服务从 Go 迁移到 Rust</a>**。当时 Go 语言的运行时每 2 分钟就会强制执行一次垃圾回收，导致服务固定每两分钟出现一次明显的延迟尖峰；改用 Rust 后，内存在变量离开作用域的瞬间便确定性地释放，延迟曲线瞬间变得平滑，同时 CPU 与内存占用也大幅下降。</p>
+<h3 id="3-接近-C-语言的执行性能与毫秒级冷启动速度"><a href="#3-接近-C-语言的执行性能与毫秒级冷启动速度" class="headerlink" title="3. 接近 C 语言的执行性能与毫秒级冷启动速度"></a>3. 接近 C 语言的执行性能与毫秒级冷启动速度</h3><p>对于命令行工具（CLI）、前端打包器与 AI Agent 运行时来说，“启动要快、占用资源要少”直接决定了开发者的使用体验。解释型语言或带有庞大虚拟机的运行时，光是启动加载与即时编译（JIT）就要消耗不少时间。</p>
+<p><strong>GitHub Copilot</strong> 在 2026 年 8 月将旗下的 Agent 运行时从原本的 TypeScript 与 Node.js <a target="_blank" rel="noopener" href="https://github.blog/news-insights/product-news/migrating-the-github-copilot-runtime-to-rust-using-copilot/">全面重写为 83 万行 Rust</a>。根据 <a target="_blank" rel="noopener" href="https://infoq.com/news/2026/10/github-copilot-rust-migration">InfoQ 的技术报道</a>，重写后的运行时从启动到完成第一轮对话的耗时，由原来的 <strong>5.25 秒</strong>直接压缩到 <strong>292 毫秒</strong>，冷启动延迟几乎难以察觉。</p>
+<h3 id="4-一套核心代码，通过-FFI-与-WebAssembly-多端复用"><a href="#4-一套核心代码，通过-FFI-与-WebAssembly-多端复用" class="headerlink" title="4. 一套核心代码，通过 FFI 与 WebAssembly 多端复用"></a>4. 一套核心代码，通过 FFI 与 WebAssembly 多端复用</h3><p>现代软件往往需要同时覆盖 Windows、macOS、Linux、iOS、Android 与 Web 端。如果每个平台各自用原生语言写一套核心逻辑，不仅维护成本高昂，还很容易出现“移动端算出来的结果和桌面端不一致”的同步隐患。</p>
+<p>Rust 编译出的原生库没有沉重的运行时依赖，能轻松通过 <strong>FFI（外部函数接口）</strong> 供 Python、Node.js、Swift、Kotlin 或 Go 直接调用，也能编译成 <strong>WebAssembly（Wasm）</strong> 运行在浏览器中。GitHub Copilot 的 Rust 运行时正是利用这一特性，用同一套底层核心同时服务六种不同编程语言的 SDK；Discord 的新一代跨端架构也采取了完全相同的思路。</p>
+<h3 id="5-2026-年的关键推力：AI-编程加上严格编译器，让大规模重写算得过账"><a href="#5-2026-年的关键推力：AI-编程加上严格编译器，让大规模重写算得过账" class="headerlink" title="5. 2026 年的关键推力：AI 编程加上严格编译器，让大规模重写算得过账"></a>5. 2026 年的关键推力：AI 编程加上严格编译器，让大规模重写算得过账</h3><p>过去许多团队明知老系统性能不佳，却不敢轻易启动重写，因为<strong>重写软件最贵的永远是工程师的人力与时间</strong>。但到了 2026 年，AI 编码代理（Coding Agents）与 Rust 的结合改变了这笔账。</p>
+<p>正如我们在<a href="/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/">从 Vibe Coding 狂欢到 PR 审查地狱</a>一文中所探讨的，AI 生成动态语言代码时，最怕产生“看似能跑、却在边界条件下崩溃”的隐蔽缺陷；而 <strong>Rust 极其严格的类型系统与借用检查器，恰好成为 AI 写代码最天然的自动化验证闸门</strong>。当 AI 写出类型不匹配或生命周期错误的代码时，Rust 编译器会给出非常详尽的报错信息，让 AI 代理自己读取报错、自行修正，直到通过编译与测试为止。</p>
+<p>GitHub 官方就透露，将 Copilot Agent 运行时迁移到 83 万行 Rust 这项庞大工程，放在过去至少需要一个完整团队投入一到两年；但这次主要由<strong>一名工程师借助 Copilot，在约 14.5 周内</strong>便完成了迁移。</p>
+<h2 id="哪些知名项目已经换成-Rust？四大领域代表案例汇总"><a href="#哪些知名项目已经换成-Rust？四大领域代表案例汇总" class="headerlink" title="哪些知名项目已经换成 Rust？四大领域代表案例汇总"></a>哪些知名项目已经换成 Rust？四大领域代表案例汇总</h2><p>为了帮你快速把握行业全貌，先将近年来最具代表性的大厂与开源重写案例整理如下表，随后再看各领域背后的技术演进逻辑：</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
 <th>领域</th>
-<th>项目</th>
-<th>改了什么</th>
-<th>时间</th>
+<th>项目或企业</th>
+<th>重写内容与实际成效</th>
+<th>关键时间点</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>操作系统</td>
-<td>Linux 内核</td>
-<td><a target="_blank" rel="noopener" href="https://linuxiac.com/linux-kernel-7-0-released/">Linux 7.0</a> 去掉 Rust 的“实验性”标签，Rust 正式成为内核语言之一</td>
-<td>2026-04</td>
+<td><strong>Linux 内核</strong></td>
+<td><a target="_blank" rel="noopener" href="https://linuxiac.com/linux-kernel-7-0-released/">Linux 7.0</a> 正式去掉 Rust 的“实验性”标签，Rust 成为内核长期支持的官方语言之一</td>
+<td>2026 年 4 月</td>
 </tr>
 <tr>
 <td>操作系统</td>
-<td>Android</td>
-<td>新代码大量采用 Rust，内存安全漏洞<a target="_blank" rel="noopener" href="https://blog.google/security/rust-in-android-move-fast-fix-things/">首次降到总数的 20% 以内</a></td>
-<td>2025</td>
+<td><strong>Android</strong></td>
+<td>新增系统代码大量采用 Rust，内存安全漏洞占比<a target="_blank" rel="noopener" href="https://blog.google/security/rust-in-android-move-fast-fix-things/">首次降至总数的 20% 以内</a></td>
+<td>2025 年</td>
 </tr>
 <tr>
 <td>操作系统</td>
-<td>Windows</td>
-<td>字体解析组件 DirectWriteCore 移植为 15.4 万行 Rust；Win32k 的 GDI region 代码已随 Windows 发布（<a target="_blank" rel="noopener" href="https://www.thestack.technology/rewriting-windows-in-rust/">Azure CTO Russinovich</a>）</td>
-<td>2025</td>
+<td><strong>Windows</strong></td>
+<td>字体解析组件 <strong>DirectWriteCore</strong> 移植为 15.4 万行 Rust；<strong>Win32k</strong> 的 GDI region 代码已随系统发布（<a target="_blank" rel="noopener" href="https://www.thestack.technology/rewriting-windows-in-rust/">Azure CTO Russinovich</a>）</td>
+<td>2025 年</td>
 </tr>
 <tr>
 <td>操作系统</td>
-<td>Ubuntu 26.04 LTS</td>
-<td>默认改用 sudo-rs 和 Rust 版 coreutils，cp、mv、rm 仍用 GNU 版</td>
-<td>2026-04</td>
+<td><strong>Ubuntu 26.04 LTS</strong></td>
+<td>默认改用 <strong>sudo-rs</strong> 与 Rust 版 coreutils（<strong>cp</strong>、<strong>mv</strong>、<strong>rm</strong> 仍保留 GNU 版本）</td>
+<td>2026 年 4 月</td>
 </tr>
 <tr>
-<td>云服务</td>
-<td>Cloudflare</td>
-<td><a target="_blank" rel="noopener" href="https://blog.cloudflare.com/how-we-built-pingora-the-proxy-that-connects-cloudflare-to-the-internet/">Pingora</a> 替代 NGINX，日处理请求超过 1 万亿，同等流量下 CPU 降低 70%、内存降低 67%</td>
-<td>2022</td>
+<td>云基础设施</td>
+<td><strong>Cloudflare</strong></td>
+<td>以自研的 <a target="_blank" rel="noopener" href="https://blog.cloudflare.com/how-we-built-pingora-the-proxy-that-connects-cloudflare-to-the-internet/">Pingora</a> 替代 NGINX，日处理请求超 1 万亿次，同等流量下 <strong>CPU 降低 70%、内存降低 67%</strong></td>
+<td>2022 年起</td>
 </tr>
 <tr>
-<td>云服务</td>
-<td>AWS</td>
-<td>Lambda 和 Fargate 底层的微虚拟机 Firecracker 由 Rust 编写</td>
-<td>2018</td>
+<td>云基础设施</td>
+<td><strong>AWS</strong></td>
+<td>支撑 AWS Lambda 与 Fargate 底层的微虚拟机 <strong>Firecracker</strong> 完全由 Rust 编写</td>
+<td>2018 年起</td>
 </tr>
 <tr>
 <td>浏览器</td>
-<td>Chrome</td>
-<td>Web 字体改用 Rust 编写的 <a target="_blank" rel="noopener" href="https://developer.chrome.com/blog/memory-safety-fonts">Skrifa</a> 替代 FreeType</td>
-<td>2025</td>
+<td><strong>Google Chrome</strong></td>
+<td>Web 字体处理改用 Rust 编写的 <a target="_blank" rel="noopener" href="https://developer.chrome.com/blog/memory-safety-fonts">Skrifa</a> 替代老牌 C 语言库 FreeType</td>
+<td>2025 年</td>
 </tr>
 <tr>
 <td>开发工具</td>
-<td>Vite 8</td>
-<td>默认打包工具换成 Rust 编写的 <a target="_blank" rel="noopener" href="https://vite.dev/blog/announcing-vite8">Rolldown</a>，官方称构建提速 10 到 30 倍</td>
-<td>2026-03</td>
+<td><strong>Vite 8</strong></td>
+<td>默认打包工具换成 Rust 打造的 <a target="_blank" rel="noopener" href="https://vite.dev/blog/announcing-vite8">Rolldown</a>，官方测试构建提速 <strong>10 到 30 倍</strong></td>
+<td>2026 年 3 月</td>
 </tr>
 <tr>
 <td>开发工具</td>
-<td>Next.js 16</td>
-<td>Rust 编写的 <a target="_blank" rel="noopener" href="https://nextjs.org/blog/next-16">Turbopack</a> 成为默认打包工具</td>
-<td>2025-10</td>
+<td><strong>Next.js 16</strong></td>
+<td>Rust 编写的 <a target="_blank" rel="noopener" href="https://nextjs.org/blog/next-16">Turbopack</a> 正式成为默认打包工具</td>
+<td>2025 年 10 月</td>
 </tr>
 <tr>
 <td>开发工具</td>
-<td>uv、Ruff</td>
-<td>Python 包管理与代码检查工具；开发商 Astral 被 <a target="_blank" rel="noopener" href="https://thenewstack.io/openai-astral-acquisition/">OpenAI 宣布收购</a>，并入 Codex 团队</td>
-<td>2026-03</td>
+<td><strong>uv、Ruff</strong></td>
+<td>Python 高速包管理与代码检查工具；开发商 Astral 于 2026 年 3 月被 <a target="_blank" rel="noopener" href="https://thenewstack.io/openai-astral-acquisition/">OpenAI 宣布收购</a>并并入 Codex 团队</td>
+<td>2026 年 3 月</td>
 </tr>
 <tr>
 <td>开发工具</td>
-<td>fish shell</td>
-<td>4.0 版整体从 C++ 迁移到 Rust</td>
-<td>2025-02</td>
+<td><strong>fish shell</strong></td>
+<td>4.0 版本完成从 C++ 到 Rust 的整体迁移</td>
+<td>2025 年 2 月</td>
 </tr>
 <tr>
 <td>开发工具</td>
-<td>GitHub Copilot</td>
-<td>Agent 运行时从 TypeScript／Node.js <a target="_blank" rel="noopener" href="https://github.blog/news-insights/product-news/migrating-the-github-copilot-runtime-to-rust-using-copilot/">重写为 83 万行 Rust</a></td>
-<td>2026-08</td>
+<td><strong>GitHub Copilot</strong></td>
+<td>Agent 运行时从 TypeScript／Node.js <a target="_blank" rel="noopener" href="https://github.blog/news-insights/product-news/migrating-the-github-copilot-runtime-to-rust-using-copilot/">重写为 83 万行 Rust</a>，启动加首轮对话从 5.25 秒降至 292 毫秒</td>
+<td>2026 年 8 月</td>
 </tr>
 <tr>
-<td>应用</td>
-<td>Discord</td>
-<td>后端服务、语音，2026 年再加上桌面端，详见下节</td>
-<td>2018 起</td>
+<td>跨端应用</td>
+<td><strong>Discord</strong></td>
+<td>从后端服务、语音引擎一路扩展到 2026 年宣布桌面端弃用 Electron 改用 Rust（代号 <strong>Phoenix</strong>）</td>
+<td>2018 年至 2026 年</td>
 </tr>
 </tbody></table></div>
-<p>共同点很明显：都是<strong>底层、长时间运行、对性能或安全高度敏感</strong>的软件，而不是普通的业务系统。</p>
-<h2 id="Discord：从后端一路改到桌面端"><a href="#Discord：从后端一路改到桌面端" class="headerlink" title="Discord：从后端一路改到桌面端"></a>Discord：从后端一路改到桌面端</h2><p>Discord 是“应用转向 Rust”最完整的案例，2018 年起就在基础设施、语音和部分客户端中使用 Rust。</p>
+<p>从这张表可以清晰地看出一条规律：<strong>转向 Rust 的全部是“底层内核、长时间高并发运行、对安全或延迟极度敏感”的基础软件，而不是普通的企业内部业务后台。</strong></p>
+<ul>
+<li><strong>操作系统与浏览器看重的是“收敛攻击面”</strong>：像字体解析器（Windows 的 <strong>DirectWriteCore</strong>、Chrome 的 <strong>Skrifa</strong>）与权限提升工具（Ubuntu 的 <strong>sudo-rs</strong>），每天都要解析来自外部不可信的复杂二进制数据，过去是黑客挖掘缓冲区溢出漏洞的重灾区，换成 Rust 能直接消除整类内存越界风险。</li>
+<li><strong>云厂商看重的是“硬件成本与单机密度”</strong>：对于 Cloudflare 这种每天处理超过 1 万亿次请求的网络巨头来说，<strong>Pingora</strong> 省下的 70% CPU 与 67% 内存，折算下来就是少采购数万台服务器与巨额机房电费。</li>
+<li><strong>前端与 Python 工具链看重的是“开发者等待时间”</strong>：JavaScript 与 Python 写业务逻辑很顺手，但拿来处理成千上万个文件的抽象语法树（AST）解析与打包时，单线程与解释器开销就会成为瓶颈。改用 Rust 结合多线程并行计算（如 <strong>Rolldown</strong>、<strong>Turbopack</strong>、<strong>uv</strong>、<strong>Ruff</strong>），能把原本几十秒的构建与依赖安装缩短到一两秒内。</li>
+</ul>
+<h2 id="深度案例：为什么-Discord-决定连桌面端都弃用-Electron、改用-Rust？"><a href="#深度案例：为什么-Discord-决定连桌面端都弃用-Electron、改用-Rust？" class="headerlink" title="深度案例：为什么 Discord 决定连桌面端都弃用 Electron、改用 Rust？"></a>深度案例：为什么 Discord 决定连桌面端都弃用 Electron、改用 Rust？</h2><p>在所有案例中，<strong>Discord</strong> 是最能代表“应用软件从后端一路 Rust 化到前端桌面”的完整样本。</p>
+<p>Discord 从 2018 年起就在后端基础设施与语音服务中使用 Rust，并在 2020 年完成著名的 Read States 服务迁移。然而，广大玩家与社区用户每天打开的 <strong>Discord 桌面客户端</strong>，多年来一直基于 <strong>Electron</strong> 框架（底层打包了完整的 Chromium 浏览器与 Node.js）。虽然 Electron 让团队能用一套 React 代码跨平台交付，但也带来了众所周知的痛点：内存动辄占用 1 GB 以上、冷启动要等好几秒。</p>
+<p>即便 Discord 工程团队在 2026 年 9 月将客户端升级到 <strong>Electron 42</strong>，虽然让 CPU 使用率中位数下降了约 **17%**，但内存占用反而微升了约 **4%**——这证明只要底层还背着整套浏览器引擎，内存优化就存在物理上限。</p>
+<p>因此在 <strong>2026 年 11 月 4 日</strong>，Discord 首席技术官 Stanislav Vishnevskiy 正式宣布内部代号为 <strong>Phoenix</strong> 的跨世代重构计划：桌面端将<a target="_blank" rel="noopener" href="https://www.ghacks.net/2026/11/06/discord-is-rebuilding-its-desktop-app-in-rust-with-the-new-client-using-290-mb-of-ram/">彻底弃用 Electron</a>，改用 <strong>Rust</strong> 搭配 <strong>Zed 编辑器</strong>团队开发的 GPU 加速界面框架 <strong>GPUI</strong> 重新打造。</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
-<th>时间</th>
-<th>事件</th>
+<th>评估维度</th>
+<th>旧版 Discord（Electron 架构）</th>
+<th>新版代号 Phoenix（Rust + GPUI 架构）</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>2020-02</td>
-<td><a target="_blank" rel="noopener" href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust">Read States 服务从 Go 迁移到 Rust</a>。Go 的 GC 每 2 分钟强制运行一次，导致延迟毛刺；Rust 版没有毛刺，延迟、CPU、内存全面占优</td>
+<td><strong>内存占用</strong></td>
+<td>常态占用数百 MB 至超过 1 GB</td>
+<td>Windows 11 上同时登录两个账号仅占 <strong>290.2 MB</strong>（CTO 公布的实测截图）</td>
 </tr>
 <tr>
-<td>2026-09</td>
-<td>升级到 Electron 42，CPU 中位数下降约 17%，内存反而上升约 4%</td>
+<td><strong>冷启动时间</strong></td>
+<td>约 <strong>6 秒</strong></td>
+<td>约 <strong>1 秒</strong></td>
 </tr>
 <tr>
-<td>2026-11-04</td>
-<td>CTO Stanislav Vishnevskiy 宣布桌面端<a target="_blank" rel="noopener" href="https://www.ghacks.net/2026/11/06/discord-is-rebuilding-its-desktop-app-in-rust-with-the-new-client-using-290-mb-of-ram/">弃用 Electron</a>，UI 改用 Zed 编辑器团队的 GPUI，内部代号 Phoenix</td>
+<td><strong>移动端架构</strong></td>
+<td>使用 React Native</td>
+<td>移除 React Native，保留 iOS／Android 原生界面，与桌面端共享同一套 Rust 核心业务逻辑</td>
+</tr>
+<tr>
+<td><strong>Web 端架构</strong></td>
+<td>纯 JavaScript 与 HTML</td>
+<td>保留 HTML 页面渲染，底层状态与逻辑改为编译成 <strong>WebAssembly</strong></td>
+</tr>
+<tr>
+<td><strong>当前进度</strong></td>
+<td>线上正式版运行中</td>
+<td>内部构建版本已完成验证，官方预告将于近期开启外部测试</td>
 </tr>
 </tbody></table></div>
-<p>Phoenix 的规划与官方称的数据：</p>
+<p>Discord 的架构演进为跨平台应用指出了另一条可行的路径：不一定要为了跨平台而在桌面端塞进整个浏览器，通过 <strong>Rust 编写底层共享逻辑</strong>，再分别对接桌面端 GPU 渲染、移动端原生 UI 与 Web 端 Wasm，就能同时兼顾多端研发效率与原生级别的轻量体验。</p>
+<h2 id="Rust-不是万金油：不选-Rust-的真实反例与翻车代价"><a href="#Rust-不是万金油：不选-Rust-的真实反例与翻车代价" class="headerlink" title="Rust 不是万金油：不选 Rust 的真实反例与翻车代价"></a>Rust 不是万金油：不选 Rust 的真实反例与翻车代价</h2><p>看到这里，你可能会想：“既然 Rust 又快又安全，那我们是不是该把公司所有新项目都换成 Rust？”先别急，软件工程世界没有零代价的银弹。以下四个真实反例，清晰地划出了 Rust 目前的能力边界：</p>
+<h3 id="1-为什么微软-TypeScript-7-编译器放弃-Rust、选择-Go？"><a href="#1-为什么微软-TypeScript-7-编译器放弃-Rust、选择-Go？" class="headerlink" title="1. 为什么微软 TypeScript 7 编译器放弃 Rust、选择 Go？"></a>1. 为什么微软 TypeScript 7 编译器放弃 Rust、选择 Go？</h3><p>当前端圈的工具链（Vite、Next.js、SWC、Biome）纷纷投向 Rust 时，微软在重写自家 <strong><a href="/zh-cn/2023/03/05/what-is-typescript/">TypeScript</a> 7</strong> 原生编译器（将编译速度提升约 10 倍）时，却出人意料地选择了 <strong>Go 语言</strong>，而不是 Rust。</p>
+<p>微软团队给出的理由非常务实：原本用 TypeScript 编写的老编译器，架构上重度依赖<strong>垃圾回收（GC）</strong>以及大量<strong>相互引用（Cyclic References）的抽象语法树（AST）数据结构</strong>。如果选用同样具备 GC 的 Go 语言，工程师可以把老编译器的代码“一对一逐文件移植”，完整保留十多年来积累的类型推导逻辑与边界行为；但如果改用 Rust，借用检查器会直接禁止这种复杂的双向与循环引用结构，团队就必须把整套编译器的数据结构与算法推倒重来，不仅工期难以评估，也很难保证新版行为与旧版 100% 兼容。</p>
+<h3 id="2-内存安全不等于不会宕机：Cloudflare-的-unwrap-全球大故障"><a href="#2-内存安全不等于不会宕机：Cloudflare-的-unwrap-全球大故障" class="headerlink" title="2. 内存安全不等于不会宕机：Cloudflare 的 unwrap() 全球大故障"></a>2. 内存安全不等于不会宕机：Cloudflare 的 unwrap() 全球大故障</h3><p>很多人误以为“用 Rust 写的系统就不会崩溃”，但 <strong>2025 年 11 月 18 日</strong>发生的 <a target="_blank" rel="noopener" href="https://blog.cloudflare.com/18-november-2025-outage/">Cloudflare 全球大故障</a>给所有工程师敲响了警钟。</p>
+<p>这起被 Cloudflare 称为自 2019 年以来最严重的事故，起因是一份配置文件大小超出了系统预期的上限，而用 Rust 编写的新一代 <strong>FL2</strong> 代理程序在读取该配置时，直接调用了 <code>unwrap()</code> 处理返回结果。当错误发生时，<code>unwrap()</code> 直接触发程序 <strong>panic（崩溃退出）</strong>，进而导致全球网络流量中断。这个案例证明了一件事：<strong>Rust 能帮你拦下内存越界与数据竞争，但拦不住草率的错误处理与业务逻辑缺陷。</strong></p>
+<h3 id="3-企业引入放缓：陡峭的学习曲线与招人瓶颈"><a href="#3-企业引入放缓：陡峭的学习曲线与招人瓶颈" class="headerlink" title="3. 企业引入放缓：陡峭的学习曲线与招人瓶颈"></a>3. 企业引入放缓：陡峭的学习曲线与招人瓶颈</h3><p>在基础设施大厂之外，普通企业对 Rust 的态度其实相当审慎。根据 <a target="_blank" rel="noopener" href="https://www.developer-tech.com/news/rust-adoption-stalls-memory-safe-programming-trends/">DeveloperTech 2026 年 4 月的行业报道</a>，许多企业采用 Rust 的步伐出现放缓迹象，核心卡在两个现实问题：<strong>学习曲线太陡</strong>与<strong>资深工程师难招</strong>。</p>
+<p>对习惯了 Java、C#、Go 或 Python 的工程师来说，刚接触 Rust 的所有权、生命周期标注与异步类型时，往往要经历一段“跟编译器较劲”的阵痛期。如果只是普通的企业内部系统、电商网站或 CRUD 业务后台，性能瓶颈通常在数据库查询或外部 API 网络延迟，用 Java、C# 或 Go 开发的速度更快、团队更好招人，强行上马 Rust 反而会拖慢业务交付节奏。</p>
+<h3 id="4-生态成熟度与“全面消除-C-”的传闻澄清"><a href="#4-生态成熟度与“全面消除-C-”的传闻澄清" class="headerlink" title="4. 生态成熟度与“全面消除 C++”的传闻澄清"></a>4. 生态成熟度与“全面消除 C++”的传闻澄清</h3><p>虽然 Rust 在系统层与命令行工具领域非常成熟，但在图形界面（GUI）与部分垂直领域仍在快速迭代。例如 Discord 这次选用的 <strong>GPUI</strong> 框架就尚未发布 1.0 正式版，Discord 团队必须自己投入人力维护定制补丁。</p>
+<p>另外，网络上一度盛传“微软宣布在 2030 年前把 Windows 用 Rust 全部重写”——事实上，那是微软工程师 Galen Hunt 在社交平台上提到目标在 2030 年前“借助 AI 与自动化工具消除 C／C++ 代码”，事后已公开澄清那属于<strong>代码迁移工具的内部研究项目</strong>，并非微软要把整套 Windows 操作系统全部改写成 Rust。</p>
+<h2 id="技术选型指南：你的项目适合用-Rust、Go-还是维持现状？"><a href="#技术选型指南：你的项目适合用-Rust、Go-还是维持现状？" class="headerlink" title="技术选型指南：你的项目适合用 Rust、Go 还是维持现状？"></a>技术选型指南：你的项目适合用 Rust、Go 还是维持现状？</h2><p>如果你正在评估下一个项目或重构计划是否应该引入 Rust，可以顺着下面这张决策流程图，从项目的<strong>性能敏感度</strong>、<strong>架构特性</strong>与<strong>团队成本</strong>三个关键闸门来判断：</p>
+<pre class="mermaid">
+flowchart TD
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    Start([1. 启动新项目或评估老系统重写]):::plan
+    G1["闸门一：瓶颈在 CPU／内存安全／冷启动，<br>还是数据库与网络 I/O？"]:::gate
+    CRUD["维持 TypeScript / Python / Java / C#<br>（普通 CRUD 与业务后台首选开发效率）"]:::test
+    G2["闸门二：能否容忍毫秒级 GC 停顿？<br>或老代码是否重度依赖循环引用？"]:::gate
+    ChooseGo["优先考虑 Go 语言<br>（如 TypeScript 7 编译器、常规云原生微服务）"]:::dev
+    G3["闸门三：是否为操作系统／打包工具／跨端核心，<br>且有 AI 辅助或充足迁移周期？"]:::gate
+    ChooseRust([2. 引入 Rust：兼顾内存安全、极致性能与多端复用]):::done
+
+    Start --> G1
+    G1 -->|瓶颈在数据库或业务逻辑频繁变动| CRUD
+    G1 -->|追求极低资源占用、安全或高吞吐| G2
+    G2 -->|可接受 GC，且需快速逐文件迁移或好招人| ChooseGo
+    G2 -->|不可有 GC 毛刺，或需编译为 Wasm / FFI| G3
+    G3 -->|团队排期极紧且无系统编程经验| ChooseGo
+    G3 -->|符合底层、工具链或跨端核心需求| ChooseRust
+</pre>
+
+<p>总结来说，你可以用这张对照表快速做出决定：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
-<th>项目</th>
-<th>内容</th>
+<th>非常适合引入 Rust 的场景</th>
+<th>不一定需要（建议选其他语言）的场景</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>内存</td>
-<td>Windows 11 上登录两个账号占用 290.2 MB（CTO 公布的截图）</td>
+<td><strong>操作系统内核、驱动程序、嵌入式与浏览器引擎</strong>：需要直接操控底层硬件资源，且绝不能出现内存越界漏洞</td>
+<td><strong>普通 CRUD 网站、电商与企业管理后台</strong>：需求变化快，用 TypeScript、Python、Java 或 Go 开发效率高得多</td>
 </tr>
 <tr>
-<td>启动时间</td>
-<td>约 1 秒，旧版约 6 秒</td>
+<td><strong>高并发代理服务器、实时通信与数据库</strong>：如 Cloudflare Pingora 或 Discord，不能容忍任何 GC 延迟毛刺</td>
+<td><strong>重度依赖 GC 与复杂循环引用的存量大型项目</strong>：如 TypeScript 编译器，改用 Go 逐文件移植比用 Rust 重新设计更务实</td>
 </tr>
 <tr>
-<td>移动端</td>
-<td>去掉 React Native，保留原生界面，与桌面端共享 Rust 编写的业务逻辑</td>
+<td><strong>编译器、打包工具、Linter 与 CLI 工具</strong>：如 Vite Rolldown、uv、Copilot CLI，极度在意毫秒级启动与多核并行处理</td>
+<td><strong>上线排期紧迫、且团队完全没有 Rust 经验的项目</strong>：初期与借用检查器磨合的成本，可能会直接耽误产品验证</td>
 </tr>
 <tr>
-<td>Web 端</td>
-<td>保留 HTML 渲染，逻辑改为 WebAssembly</td>
-</tr>
-<tr>
-<td>上线时间</td>
-<td>目前只有内部版本，CTO 表示“很快”开始测试，未公布日期</td>
+<td><strong>跨桌面、移动、Web 共享的底层核心逻辑</strong>：需要通过 FFI 或 WebAssembly 编写一次供多端调用</td>
+<td><strong>性能瓶颈在 SQL 查询或外部 API 等待时间的服务</strong>：换成 Rust 并不会让慢速的数据库查询变快</td>
 </tr>
 </tbody></table></div>
-<h2 id="为什么选-Rust？五大原因"><a href="#为什么选-Rust？五大原因" class="headerlink" title="为什么选 Rust？五大原因"></a>为什么选 Rust？五大原因</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
-<thead>
-<tr>
-<th>原因</th>
-<th>说明</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>内存安全</td>
-<td>编译期就拦下越界访问、use-after-free 等错误，而这类错误是 C／C++ 漏洞的大头</td>
-<td>Android 的 Rust 代码，内存安全漏洞密度约为 C／C++ 的千分之一；变更回滚率也低 4 倍</td>
-</tr>
-<tr>
-<td>没有 GC 停顿</td>
-<td>不用垃圾回收，延迟稳定，适合实时服务和内核</td>
-<td>Discord Read States 的延迟毛刺消失</td>
-</tr>
-<tr>
-<td>性能接近 C</td>
-<td>运行时小、启动快</td>
-<td>Copilot 启动加一轮对话从 5.25 秒降到 292 毫秒（<a target="_blank" rel="noopener" href="https://infoq.com/news/2026/10/github-copilot-rust-migration">InfoQ</a>）</td>
-</tr>
-<tr>
-<td>一套代码多端复用</td>
-<td>可通过 FFI 供其他语言调用，也能编译成 WebAssembly</td>
-<td>Copilot 的 Rust 运行时供六种语言的 SDK 调用；Discord 桌面、移动、Web 共享逻辑</td>
-</tr>
-<tr>
-<td>AI 降低重写成本</td>
-<td>重写最贵的是人力；AI 编程加上 Rust 严格的编译检查，大规模迁移变得可行</td>
-<td>GitHub 称 Copilot 运行时原本需要一个团队做一到两年，这次主要由一名工程师借助 Copilot 在约 14.5 周内完成</td>
-</tr>
-</tbody></table></div>
-<p>第五点是 2026 年的新变化。Rust 编译器非常严格，AI 写错的代码大多编译不过，相当于多了一道自动检查。</p>
-<h2 id="不选-Rust-的情况与代价"><a href="#不选-Rust-的情况与代价" class="headerlink" title="不选 Rust 的情况与代价"></a>不选 Rust 的情况与代价</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
-<thead>
-<tr>
-<th>情况</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>TypeScript 7 选了 Go</td>
-<td>微软把 TypeScript 编译器用 Go 重写，速度提升约 10 倍。原编译器重度依赖 GC 和相互引用的数据结构，Go 可以逐文件移植，Rust 则需要重新设计</td>
-</tr>
-<tr>
-<td>学习难、招人难</td>
-<td><a target="_blank" rel="noopener" href="https://www.developer-tech.com/news/rust-adoption-stalls-memory-safe-programming-trends/">DeveloperTech</a> 2026 年 4 月报道企业采用放缓，原因是学习曲线陡、资深工程师难招；普通业务系统仍以 Java、C#、Go 为主</td>
-</tr>
-<tr>
-<td>Rust 也会宕机</td>
-<td>2025 年 11 月 18 日 <a target="_blank" rel="noopener" href="https://blog.cloudflare.com/18-november-2025-outage/">Cloudflare 全球大故障</a>：配置文件超出上限，Rust 编写的 FL2 代理在 <code>unwrap()</code> 处直接 panic，是 Cloudflare 自 2019 年以来最严重的事故。内存安全不等于逻辑正确</td>
-</tr>
-<tr>
-<td>生态仍在成长</td>
-<td>Discord 采用的 GPUI 尚未到 1.0，Discord 需要自行维护补丁</td>
-</tr>
-<tr>
-<td>传闻要分清</td>
-<td>微软工程师 Galen Hunt 称要在 2030 年前“消除所有 C／C++”，后来澄清这是迁移工具的研究项目，并非用 Rust 重写 Windows</td>
-</tr>
-</tbody></table></div>
-<h2 id="什么项目适合用-Rust？"><a href="#什么项目适合用-Rust？" class="headerlink" title="什么项目适合用 Rust？"></a>什么项目适合用 Rust？</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
-<thead>
-<tr>
-<th>适合</th>
-<th>不一定需要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>操作系统、驱动、浏览器引擎</td>
-<td>普通 CRUD 网站和业务后台</td>
-</tr>
-<tr>
-<td>高并发代理、数据库、实时服务</td>
-<td>依赖 GC 和复杂对象关系的存量大型项目</td>
-</tr>
-<tr>
-<td>编译器、打包工具、CLI 等开发工具</td>
-<td>团队没有 Rust 经验、上线周期很紧的项目</td>
-</tr>
-<tr>
-<td>需要同时运行在桌面、移动、Web 的核心逻辑</td>
-<td>性能瓶颈在数据库或网络，而不在代码本身</td>
-</tr>
-</tbody></table></div>
+<h2 id="常见问题-FAQ"><a href="#常见问题-FAQ" class="headerlink" title="常见问题 FAQ"></a>常见问题 FAQ</h2><h3 id="Q1：2026-年值得开始学-Rust-吗？哪些工程师最该学？"><a href="#Q1：2026-年值得开始学-Rust-吗？哪些工程师最该学？" class="headerlink" title="Q1：2026 年值得开始学 Rust 吗？哪些工程师最该学？"></a>Q1：2026 年值得开始学 Rust 吗？哪些工程师最该学？</h3><p>如果你的日常工作是编写普通业务页面或拼接后端接口，不学 Rust 完全不会影响工作。但如果你属于以下三类开发者，学习 Rust 的投资回报率会非常高：</p>
+<ol>
+<li><strong>想深入前端或 Python 工具链底层的开发者</strong>：如今主流的打包工具（Turbopack、Rolldown）与 Python 工具（uv、Ruff、Pydantic 核心）都是用 Rust 写的，懂 Rust 才有能力阅读源码或编写高性能插件。</li>
+<li><strong>需要打造轻量级桌面应用或跨端核心的独立开发者</strong>：使用 Tauri 或 GPUI 搭配 Rust，能做出体积仅有几 MB、内存占用极低的桌面软件。</li>
+<li><strong>重度使用 AI 写代码的工程师</strong>：借助 Rust 严格的编译器约束 AI 代理，单人就能开发出过去需要小团队才能维护的高性能底层工具。</li>
+</ol>
+<h3 id="Q2：Rust-和-Go-该怎么选？它们是互相取代的关系吗？"><a href="#Q2：Rust-和-Go-该怎么选？它们是互相取代的关系吗？" class="headerlink" title="Q2：Rust 和 Go 该怎么选？它们是互相取代的关系吗？"></a>Q2：Rust 和 Go 该怎么选？它们是互相取代的关系吗？</h3><p>两者虽然经常被放在一起比较，但生态定位其实相当互补。<strong>Go 语言</strong>的设计哲学是“简单、编译快、心智负担低、内置垃圾回收（GC）”，非常适合云原生微服务、API 网关、容器编排工具（如 Docker、Kubernetes）以及像 TypeScript 7 这样需要快速移植的项目；而 <strong>Rust</strong> 的设计哲学是“零成本抽象、无 GC、编译期把关所有内存与并发安全”，适合对延迟毛刺零容忍、追求极限硬件利用率或需要嵌入其他语言运行时的底层核心。</p>
+<h3 id="Q3：Rust-未来会完全取代-C-和-C-吗？"><a href="#Q3：Rust-未来会完全取代-C-和-C-吗？" class="headerlink" title="Q3：Rust 未来会完全取代 C 和 C++ 吗？"></a>Q3：Rust 未来会完全取代 C 和 C++ 吗？</h3><p>短期内不会“完全取代”存量庞大的 C／C++ 历史代码库，因为全球仍有数十亿行稳定运行的 C／C++ 系统，没有商业理由全部推倒重写。但从 Linux 7.0 正式扶正 Rust、Android 与 Windows 将高风险解析组件换成 Rust 的趋势来看，<strong>“新编写的系统底层模块与高风险解析器优先采用 Rust，存量 C／C++ 代码维持维护或逐步替换边界模块”</strong>，已经成为整个科技行业的明确共识。</p>
 
       
     </div>
@@ -514,7 +507,7 @@
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/Rust/">Rust</a>, <a href="/zh-cn/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>, <a href="/zh-cn/tags/Discord/">Discord</a>, <a href="/zh-cn/tags/Linux/">Linux</a>, <a href="/zh-cn/tags/%E5%86%85%E5%AD%98%E5%AE%89%E5%85%A8/">内存安全</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>, <a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>, <a href="/zh-cn/tags/Rust/">Rust</a>, <a href="/zh-cn/tags/Linux/">Linux</a>
   </div>
 
         
@@ -585,7 +578,7 @@
         <a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/" class="related-post-link"
            data-rel-title="告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战"
            data-rel-path="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/"
-           data-rel-tag="软件工程"
+           data-rel-tag="AI"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -594,7 +587,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">软件工程</span>
+              <span class="related-post-tag">AI</span>
             
             <h4 class="related-post-item-title">告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战</h4>
             
@@ -605,46 +598,46 @@
       </div>
     
       <div class="related-post-card">
-        <a href="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/" class="related-post-link"
-           data-rel-title="AI 时代，E2E 测试该如何升级？从固定脚本到 AI-native Harness"
-           data-rel-path="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/"
-           data-rel-tag="软件工程"
+        <a href="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/" class="related-post-link"
+           data-rel-title="Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破"
+           data-rel-path="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/"
+           data-rel-tag="AI"
            data-rel-position="2">
           <div class="related-post-cover">
             
-              <img src="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg?v=de8aafbd" alt="AI 时代，E2E 测试该如何升级？从固定脚本到 AI-native Harness" loading="lazy" decoding="async">
-            
-          </div>
-          <div class="related-post-info">
-            
-              <span class="related-post-tag">软件工程</span>
-            
-            <h4 class="related-post-item-title">AI 时代，E2E 测试该如何升级？从固定脚本到 AI-native Harness</h4>
-            
-              <time class="related-post-date">2026-09-01</time>
-            
-          </div>
-        </a>
-      </div>
-    
-      <div class="related-post-card">
-        <a href="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/" class="related-post-link"
-           data-rel-title="Codex 5 小时限制与额度查询：重置时间、用完怎么办"
-           data-rel-path="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/"
-           data-rel-tag="AI"
-           data-rel-position="3">
-          <div class="related-post-cover">
-            
-              <img src="/zh-cn/2026/06/18/claude-codex-usage-limits-guide/cover.webp?v=fa6a9f8f" alt="Codex 5 小时限制与额度查询：重置时间、用完怎么办" loading="lazy" decoding="async">
+              <img src="/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/cover.jpg?v=1a81b644" alt="Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破" loading="lazy" decoding="async">
             
           </div>
           <div class="related-post-info">
             
               <span class="related-post-tag">AI</span>
             
-            <h4 class="related-post-item-title">Codex 5 小时限制与额度查询：重置时间、用完怎么办</h4>
+            <h4 class="related-post-item-title">Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破</h4>
             
-              <time class="related-post-date">2026-06-18</time>
+              <time class="related-post-date">2026-09-03</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/" class="related-post-link"
+           data-rel-title="从 Vibe Coding 狂欢到 PR 审查地狱：这几年软件工程界到底发生了什么？"
+           data-rel-path="/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/"
+           data-rel-tag="AI"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/cover.jpg?v=46cc0650" alt="从 Vibe Coding 狂欢到 PR 审查地狱：这几年软件工程界到底发生了什么？" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">AI</span>
+            
+            <h4 class="related-post-item-title">从 Vibe Coding 狂欢到 PR 审查地狱：这几年软件工程界到底发生了什么？</h4>
+            
+              <time class="related-post-date">2026-08-26</time>
             
           </div>
         </a>
@@ -726,7 +719,7 @@
   <h3 class="title">常用标签</h3>
   <ul class="entry tag-summary__list">
   
-    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>36</small></a></li>
+    <li><a href="/zh-cn/tags/AI/"><span>AI</span><small>37</small></a></li>
   
     <li><a href="/zh-cn/tags/Claude/"><span>Claude</span><small>12</small></a></li>
   
@@ -736,9 +729,9 @@
   
     <li><a href="/zh-cn/tags/Codex/"><span>Codex</span><small>10</small></a></li>
   
-    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>9</small></a></li>
+    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>9</small></a></li>
   
-    <li><a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span>开发工具</span><small>8</small></a></li>
+    <li><a href="/zh-cn/tags/Claude-Code/"><span>Claude Code</span><small>9</small></a></li>
   
     <li><a href="/zh-cn/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
   
@@ -746,13 +739,13 @@
   
     <li><a href="/zh-cn/tags/Anthropic/"><span>Anthropic</span><small>6</small></a></li>
   
+    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>5</small></a></li>
+  
+    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>5</small></a></li>
+  
     <li><a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span>游戏开发</span><small>5</small></a></li>
   
     <li><a href="/zh-cn/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>5</small></a></li>
-  
-    <li><a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span>前端开发</span><small>4</small></a></li>
-  
-    <li><a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span>软件工程</span><small>4</small></a></li>
   
     <li><a href="/zh-cn/tags/LLM/"><span>LLM</span><small>3</small></a></li>
   
