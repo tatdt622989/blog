@@ -2,7 +2,7 @@
 title: Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例
 date: 2026-11-12 18:00:00
 updated: 2026-11-12 20:40:00
-description: Rust 为什么越来越火？从 Linux 7.0 正式纳入内核、Discord 桌面端弃用 Electron 改用 Rust，到 Vite、Next.js 与 GitHub Copilot 全面重写，深入解析大厂转向 Rust 的 5 大原因、TypeScript 改选 Go 的反例，以及什么项目适合引入 Rust。
+description: Rust 为什么越来越火？从 Linux 7.0、Discord 到 Vite 与 GitHub Copilot 重写，解析大厂转向 Rust 的 5 大原因、TypeScript 改选 Go 的反例，以及什么项目适合引入 Rust。
 permalink: 2026/11/12/why-rust-is-popular-2026/
 translation_key: why-rust-is-popular-2026
 translations:

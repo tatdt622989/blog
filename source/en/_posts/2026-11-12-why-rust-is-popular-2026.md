@@ -2,7 +2,7 @@
 title: "Why Is Rust So Popular? Why Discord, Linux, and GitHub Are Moving to Rust, and Who Isn't"
 date: 2026-11-12 18:00:00
 updated: 2026-11-12 20:40:00
-description: "Why is Rust so popular in 2026? From Linux 7.0 and Discord dropping Electron for Rust to Vite, Next.js, and GitHub Copilot rewrites, explore the 5 key reasons companies adopt Rust, why TypeScript 7 chose Go instead, and when Rust fits your project."
+description: "Why Linux, Discord, and GitHub adopt Rust: 5 key reasons teams move to Rust, why TypeScript 7 chose Go, and when Rust fits your project."
 permalink: 2026/11/12/why-rust-is-popular-2026/
 translation_key: why-rust-is-popular-2026
 translations:
