@@ -1,0 +1,824 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>What Is Claude Code&#39;s Code Mode? How Writing Scripts Cuts AI Tool Overhead | 6yuwei</title>
+  <meta name="author" content="6yuwei">
+  <meta name="description" content="See how Claude Code&#39;s experimental Code Mode writes JavaScript to batch tool calls, cut latency, and save tokens, with setup and limits.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/">
+  
+  <link rel="alternate" hreflang="zh-TW" href="https://blog.6yuwei.com/2026/11/15/Claude-Code-%E7%9A%84-Code-Mode-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%94%A8%E7%94%9F%E6%B4%BB%E4%BE%8B%E5%AD%90%E7%9C%8B%E6%87%82-AI-%E5%A6%82%E4%BD%95%E9%9D%A0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%B0%91%E8%B5%B0%E5%86%A4%E6%9E%89%E8%B7%AF/">
+  
+  <link rel="alternate" hreflang="zh-CN" href="https://blog.6yuwei.com/zh-cn/2026/11/15/claude-code-mode-explained/">
+  
+  <link rel="alternate" hreflang="en" href="https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/">
+  
+  <link rel="alternate" hreflang="x-default" href="https://blog.6yuwei.com/2026/11/15/Claude-Code-%E7%9A%84-Code-Mode-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E7%94%A8%E7%94%9F%E6%B4%BB%E4%BE%8B%E5%AD%90%E7%9C%8B%E6%87%82-AI-%E5%A6%82%E4%BD%95%E9%9D%A0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%B0%91%E8%B5%B0%E5%86%A4%E6%9E%89%E8%B7%AF/">
+  
+
+  <meta property="og:title" content="What Is Claude Code&#39;s Code Mode? How Writing Scripts Cuts AI Tool Overhead"/>
+  <meta property="og:description" content="See how Claude Code&#39;s experimental Code Mode writes JavaScript to batch tool calls, cut latency, and save tokens, with setup and limits."/>
+  <meta property="og:site_name" content="6yuwei"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <meta property="og:locale:alternate" content="zh_TW"/>
+  
+  <meta property="og:locale:alternate" content="zh_CN"/>
+  
+  <meta property="og:image" content="https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/cover.jpg?v=55fc8ee2" />
+  <meta property="og:image:alt" content="What Is Claude Code&#39;s Code Mode? How Writing Scripts Cuts AI Tool Overhead" />
+  
+  <meta property="article:published_time" content="2026-11-15T07:04:56.000Z" />
+  <meta property="article:modified_time" content="2026-11-15T07:04:56.000Z" />
+  <meta property="article:section" content="AI Tools" />
+  
+  <meta property="article:tag" content="Claude Code" />
+  
+  <meta property="article:tag" content="AI" />
+  
+  <meta property="article:tag" content="JavaScript" />
+  
+  <meta property="article:tag" content="AI Agent" />
+  
+  <meta property="article:tag" content="Developer Tools" />
+  
+  <meta property="article:tag" content="Claude" />
+  
+  <meta property="article:tag" content="Anthropic" />
+  
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Claude Code&#39;s Code Mode? How Writing Scripts Cuts AI Tool Overhead">
+  <meta name="twitter:description" content="See how Claude Code&#39;s experimental Code Mode writes JavaScript to batch tool calls, cut latency, and save tokens, with setup and limits.">
+  <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/cover.jpg?v=55fc8ee2">
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/","url":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/","headline":"What Is Claude Code's Code Mode? How Writing Scripts Cuts AI Tool Overhead","description":"See how Claude Code's experimental Code Mode writes JavaScript to batch tool calls, cut latency, and save tokens, with setup and limits.","datePublished":"2026-11-15T07:04:56.000Z","dateModified":"2026-11-15T07:04:56.000Z","inLanguage":"en","articleSection":"AI Tools","keywords":"Claude Code, AI, JavaScript, AI Agent, Developer Tools, Claude, Anthropic","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/cover.jpg"]}</script>
+  
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI Tools","item":"https://blog.6yuwei.com/en/categories/AI-Tools/"},{"@type":"ListItem","position":3,"name":"What Is Claude Code's Code Mode? How Writing Scripts Cuts AI Tool Overhead","item":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/"}]}</script>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </noscript>
+
+  <script>
+  (function(){
+    var callbacks = [];
+    var loaded = false;
+    window.loadBlogThirdParty = function(callback){
+      if (loaded) {
+        callback();
+      } else {
+        callbacks.push(callback);
+      }
+    };
+    function flush(){
+      if (loaded) return;
+      loaded = true;
+      callbacks.splice(0).forEach(function(callback){ callback(); });
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(flush, { timeout: 2500 });
+      } else {
+        setTimeout(flush, 1500);
+      }
+    }
+    window.addEventListener('load', schedule, { once: true });
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
+      window.addEventListener(eventName, flush, { once: true, passive: true });
+    });
+  }());
+  </script>
+
+  <script>
+  // Real ads only on the production host, so hexo server and other local previews never inflate AdSense.
+  if (location.hostname === 'blog.6yuwei.com') loadBlogThirdParty(function(){
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3389697259947664';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  });
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.6yuwei.com/favicon-32x32.png?v=20260817">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://blog.6yuwei.com/favicon-192x192.png?v=20260817">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.6yuwei.com/apple-touch-icon.png?v=20260817">
+  <link rel="shortcut icon" href="https://blog.6yuwei.com/favicon.png?v=20260817">
+  
+    <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
+  
+  <link rel="stylesheet" href="/en/css/style.css?v=4131163397">
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<!-- Google tag (gtag.js) - GA4 -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HW6MDZLN6Z');
+	loadBlogThirdParty(function(){
+		var script = document.createElement('script');
+		script.async = true;
+		script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HW6MDZLN6Z';
+		document.head.appendChild(script);
+	});
+</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <div class="logo">
+    <a href="/en/">
+      <img src="/en/img/logo.svg" alt="6yuwei" width="298" height="115">
+    </a>
+  </div>
+</div>
+<div class="header-search">
+  <button type="button" class="search-trigger header-search__trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+  </button>
+</div>
+
+<div class="language-switcher">
+  <details class="language-switcher__menu">
+    <summary aria-label="Switch language">
+      <span class="language-switcher__globe" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+        </svg>
+      </span>
+      <span class="language-switcher__current">English</span>
+      <span class="language-switcher__chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="language-switcher__panel">
+      <a
+        href="/2026/11/15/Claude-Code-的-Code-Mode-是什麼？用生活例子看懂-AI-如何靠寫程式少走冤枉路/"
+        lang="zh-TW"
+        hreflang="zh-TW"
+        class="language-switcher__option "
+        
+      >
+        <span>Traditional Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">TC</span>
+      </a>
+      <a
+        href="/zh-cn/2026/11/15/claude-code-mode-explained/"
+        lang="zh-CN"
+        hreflang="zh-CN"
+        class="language-switcher__option "
+        
+      >
+        <span>Simplified Chinese</span>
+        <span class="language-switcher__code" aria-hidden="true">SC</span>
+      </a>
+      <a
+        href="/en/2026/11/15/claude-code-mode-explained/"
+        lang="en"
+        hreflang="en"
+        class="language-switcher__option is-active"
+        aria-current="page"
+      >
+        <span>English</span>
+        <span class="language-switcher__code" aria-hidden="true">EN</span>
+      </a>
+    </div>
+  </details>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/en/">Home</a></li>
+    
+      <li><a href="/en/archives">Archives</a></li>
+    
+      <li><a href="/en/ai-dev-map/">Dev Map</a></li>
+    
+    <li><a href="https://iraiya.com" target="_blank" rel="noopener">Products</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div class="mobile-search inner">
+    <button type="button" class="search-trigger mobile-search__trigger" aria-label="Search">
+      <span class="search-trigger__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <span class="search-trigger__label">Search</span>
+    </button>
+  </div>
+  <div id="content" class="inner">
+    
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-claude-code-mode-explained" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon" style="display: none"></div>
+        <time class="dt-published" datetime="2026-11-15T07:04:56.000Z"><a href="/en/2026/11/15/claude-code-mode-explained/">2026-11-15</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">What Is Claude Code&#39;s Code Mode? How Writing Scripts Cuts AI Tool Overhead</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p class="post-cover-frame"><img src="/en/2026/11/15/claude-code-mode-explained/cover-card-720.jpg?v=875c51f5" alt="Flat editorial vector illustration showing an AI assistant bundling scattered multi-step tasks onto one smooth track into a clean terminal window" width="1200" height="675" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/11/15/claude-code-mode-explained/cover-card-480.jpg?v=6a216a69 480w, /en/2026/11/15/claude-code-mode-explained/cover-card-720.jpg?v=875c51f5 720w, /en/2026/11/15/claude-code-mode-explained/cover-card-960.jpg?v=d053aa10 960w, /en/2026/11/15/claude-code-mode-explained/cover.jpg?v=55fc8ee2 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+<p><strong>Code Mode is an experimental opt-in feature in Claude Code that turns Claude from a walkie-talkie assistant—checking back after every single step—into an autonomous runner that writes one short JavaScript snippet to batch multiple tool calls together.</strong> Instead of bouncing back and forth across separate turns to search files, edit code, and run tests, Claude chains and parallelizes the work inside a single step, cutting wait time and saving context tokens. Because it is still experimental, it starts off disabled and carries important caveats around session resuming and Auto mode review. <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/code-mode">Official Claude Code Mode documentation</a></p>
+<span id="more"></span>
+
+<h2 id="Why-Does-Code-Mode-Exist-Think-of-Grocery-Errands-by-Walkie-Talkie"><a href="#Why-Does-Code-Mode-Exist-Think-of-Grocery-Errands-by-Walkie-Talkie" class="headerlink" title="Why Does Code Mode Exist? Think of Grocery Errands by Walkie-Talkie"></a>Why Does Code Mode Exist? Think of Grocery Errands by Walkie-Talkie</h2><p>To understand what <strong>Code Mode</strong> fixes, imagine hiring a smart personal assistant to pick up soy sauce, greens, and garlic from a big supermarket for dinner.</p>
+<p>In <strong>standard tool-calling mode</strong>, an AI behaves as if you are micromanaging it over a walkie-talkie. <strong>After every tiny action, the assistant has to walk all the way back to your living room door to report what happened and wait for your next instruction before heading out again</strong>:</p>
+<ol>
+<li>You say, “Go check what soy sauces are on the shelf.” The assistant walks to the store, photographs all 50 bottles and their nutrition labels, and dumps a massive stack of brochures on your coffee table.</li>
+<li>You read through the pile and say, “Okay, buy the cheapest one.” The assistant walks back to check out and returns with the receipt.</li>
+<li>You say, “Now grab some greens.” Another round-trip.</li>
+<li>You say, “Now grab garlic.” Yet another round-trip.</li>
+</ol>
+<p>An errand that should have taken five minutes turns into four or five tiring back-and-forth trips. Inside <strong>Claude Code</strong>, that same sequential loop creates two familiar bottlenecks:</p>
+<ul>
+<li><strong>Context window clutter:</strong> Searching a repository or reading raw logs pulls hundreds of lines of irrelevant output onto the model’s working desk. Every extra line burns tokens and makes it harder for the model to stay focused.</li>
+<li><strong>Round-trip latency:</strong> Each standalone <strong>Grep</strong>, <strong>Read</strong>, <strong>Edit</strong>, or <strong>Bash</strong> call forces another full inference pass before the next step can start, and independent tasks sit idle in line instead of running together.</li>
+</ul>
+<p><strong>Code Mode flips the workflow.</strong> Instead of giving orders step by step over a radio, Claude writes itself a short <strong>JavaScript</strong> checklist: scan the 50 soy sauce prices locally, pick the cheapest bottle right there in the aisle, grab the greens and garlic in the same trip, and walk back to your living room with only the chosen bottle and the final receipt. Your coffee table stays clean, and five round-trips collapse into <strong>one</strong>.</p>
+<h2 id="What-Does-It-Actually-Look-Like-Breaking-Down-the-Official-4-Line-Example"><a href="#What-Does-It-Actually-Look-Like-Breaking-Down-the-Official-4-Line-Example" class="headerlink" title="What Does It Actually Look Like? Breaking Down the Official 4-Line Example"></a>What Does It Actually Look Like? Breaking Down the Official 4-Line Example</h2><p>Suppose you ask Claude Code to locate a retry policy function in your source folder, raise its maximum attempts from 3 to 5, and verify the change with a targeted test.</p>
+<p>With <strong>Code Mode</strong> turned on, Claude handles all of that in a single JavaScript block behind the scenes:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> files = <span class="keyword">await</span> $<span class="string">`rg -l &quot;function retryPolicy&quot; src`</span>.<span class="title function_">text</span>();</span><br><span class="line"><span class="keyword">const</span> target = files.<span class="title function_">trim</span>().<span class="title function_">split</span>(<span class="string">&quot;\n&quot;</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">await</span> <span class="title function_">edit</span>(target, <span class="string">&quot;maxAttempts: 3&quot;</span>, <span class="string">&quot;maxAttempts: 5&quot;</span>);</span><br><span class="line">(&#123; <span class="attr">edited</span>: target, <span class="attr">tests</span>: $<span class="string">`npm test -- retryPolicy`</span>.<span class="title function_">nothrow</span>() &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Even if you rarely write JavaScript, each line maps cleanly to plain English:</p>
+<ol>
+<li><strong>Line 1 (Check the aisle):</strong> Runs <strong>rg</strong> (ripgrep) across <strong>src</strong> to list files containing <code>function retryPolicy</code>. In standard mode, that entire raw output goes straight into the chat context; here, it stays inside a local variable.</li>
+<li><strong>Line 2 (Pick the match):</strong> Parses the string right inside the script and picks the first matching path as <code>target</code>, keeping intermediate noise out of Claude’s context window.</li>
+<li><strong>Line 3 (Make the edit):</strong> Calls <strong>edit</strong> to replace <code>maxAttempts: 3</code> with <code>maxAttempts: 5</code> in that target file.</li>
+<li><strong>Line 4 (Verify and report only what matters):</strong> Runs <code>npm test -- retryPolicy</code> and returns only the edited filename and test result back to the conversation.</li>
+</ol>
+<p>Here is the end-to-end flow in one vertical view:</p>
+<pre class="mermaid">
+flowchart TD
+    classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef gate fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef dev fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#3b0764;
+    classDef test fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef mem fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#0f172a;
+    classDef done fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff;
+
+    Start([1. User gives a multi-step coding task]):::plan
+    Plan["2. Claude writes a JavaScript snippet<br>chaining search, filter, edit, and tests"]:::plan
+    Gate["3. Permission and safety gate<br>Auto mode evaluates whole block / Hooks check"]:::gate
+    Exec["4. Script executes inside the session<br>runs tools concurrently and filters locally"]:::dev
+    Filter["5. Only condensed results return to Claude<br>keeping raw noise out of context"]:::test
+    UI["6. Chat stays clean with familiar diffs<br>Press Ctrl + O to expand raw Code rows"]:::mem
+    Done([7. Lower latency and fewer tokens spent]):::done
+
+    Start --> Plan
+    Plan --> Gate
+    Gate --> Exec
+    Exec --> Filter
+    Filter --> UI
+    UI --> Done
+</pre>
+
+<p>This builds on the pattern Anthropic shared in its <a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/code-execution-with-mcp">November 2025 engineering post on code execution with MCP</a>: rather than forcing language models to juggle dozens of tool schemas and raw payloads through chat turns, letting them express control flow in actual code taps straight into what coding models already do best.</p>
+<h2 id="When-Does-Code-Mode-Shine-Everyday-Analogies-vs-Real-Coding-Tasks"><a href="#When-Does-Code-Mode-Shine-Everyday-Analogies-vs-Real-Coding-Tasks" class="headerlink" title="When Does Code Mode Shine? Everyday Analogies vs. Real Coding Tasks"></a>When Does Code Mode Shine? Everyday Analogies vs. Real Coding Tasks</h2><p>You do not need Code Mode just to tweak one typo. Where it makes an immediate difference is any task involving repetition, heavy search filtering, or independent commands that do not need to wait on one another:</p>
+<div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<thead>
+<tr>
+<th align="left">Everyday Analogy</th>
+<th align="left">Real Claude Code Task</th>
+<th align="left">Why Code Mode Helps</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Reconciling 30 receipts at once</strong> instead of asking your manager after every single slip</td>
+<td align="left"><strong>Repetitive edits across dozens of files</strong> (renaming a config key or updating an API signature everywhere)</td>
+<td align="left">Loops inside one script handle all edits in a single pass instead of 30 back-and-forth turns</td>
+</tr>
+<tr>
+<td align="left"><strong>Highlighting only abnormal lab results</strong> rather than reading 200 normal pages aloud</td>
+<td align="left"><strong>Broad searches filtered before reading</strong> (running <strong>Grep</strong> or <strong>Glob</strong> and trimming results in JS first)</td>
+<td align="left">Raw search clutter never reaches the context window, saving tokens and keeping reasoning sharp</td>
+</tr>
+<tr>
+<td align="left"><strong>A chef boiling rice, stir-frying, and simmering soup together</strong> instead of waiting for one pot at a time</td>
+<td align="left"><strong>Running independent checks concurrently</strong> (triggering linters and separate test suites in parallel)</td>
+<td align="left">Non-conflicting commands run together in one script block, cutting total wait time</td>
+</tr>
+</tbody></table></div>
+<h2 id="Does-It-Clutter-the-Terminal-Press-Ctrl-O-to-Peek-Under-the-Hood"><a href="#Does-It-Clutter-the-Terminal-Press-Ctrl-O-to-Peek-Under-the-Hood" class="headerlink" title="Does It Clutter the Terminal? Press Ctrl + O to Peek Under the Hood"></a>Does It Clutter the Terminal? Press Ctrl + O to Peek Under the Hood</h2><p>Hearing that Claude writes JavaScript for every multi-step action can raise a natural worry: will the terminal turn into an unreadable wall of generated glue scripts?</p>
+<p>In practice, the main conversation stays clean. <strong>Code Mode</strong> tucks the underlying script away in the standard chat view and surfaces the familiar high-level results—such as clean file diffs—just as before.</p>
+<p>Whenever you want to inspect the exact JavaScript Claude generated and ran, press <strong>Ctrl + O</strong> to open the transcript viewer. Each script execution appears as a collapsed <strong>Code</strong> row that you can expand anytime to audit what happened. For more terminal workflow shortcuts, see <a href="/en/2026/10/14/claude-code-fun-commands/">Fun Claude Code Commands</a>.</p>
+<h2 id="How-to-Enable-or-Disable-Code-Mode-and-Why-Repo-Configs-Cannot-Turn-It-On"><a href="#How-to-Enable-or-Disable-Code-Mode-and-Why-Repo-Configs-Cannot-Turn-It-On" class="headerlink" title="How to Enable or Disable Code Mode (and Why Repo Configs Cannot Turn It On)"></a>How to Enable or Disable Code Mode (and Why Repo Configs Cannot Turn It On)</h2><p>Because <strong>Code Mode</strong> is experimental and opt-in, it is <strong>off by default</strong>. You can test it for a single terminal launch or enable it globally in your user profile:</p>
+<h3 id="Option-1-Try-It-for-One-Terminal-Session"><a href="#Option-1-Try-It-for-One-Terminal-Session" class="headerlink" title="Option 1: Try It for One Terminal Session"></a>Option 1: Try It for One Terminal Session</h3><p>Pass the environment variable when launching <strong>Claude Code</strong> so everything resets once you close the terminal:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 claude</span><br></pre></td></tr></table></figure>
+
+<p>To explicitly turn it off again in your shell, set it back to <strong>0</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=0</span><br></pre></td></tr></table></figure>
+
+<h3 id="Option-2-Enable-It-Globally-in-User-Settings"><a href="#Option-2-Enable-It-Globally-in-User-Settings" class="headerlink" title="Option 2: Enable It Globally in User Settings"></a>Option 2: Enable It Globally in User Settings</h3><p>To keep it turned on across sessions, add the variable under <strong>env</strong> in <strong>~&#x2F;.claude&#x2F;settings.json</strong> (or pass a settings file via <strong>claude –settings</strong>):</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;CLAUDE_CODE_EXPERIMENTAL_CODE_MODE&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Why-Project-Settings-Files-Cannot-Enable-Code-Mode"><a href="#Why-Project-Settings-Files-Cannot-Enable-Code-Mode" class="headerlink" title="Why Project Settings Files Cannot Enable Code Mode"></a>Why Project Settings Files Cannot Enable Code Mode</h3><p>There is an intentional security boundary here: <strong>you cannot turn on Code Mode from project-level .claude&#x2F;settings.json or .claude&#x2F;settings.local.json files.</strong></p>
+<p>Think of it like receiving a package in the mail with a sticky note inside that says “unlock your front door automatically”—your smart lock should ignore instructions coming from inside an untrusted parcel. In the same way, cloning an open-source repo should never let a repository’s config file silently opt your agent into experimental script execution. Organization admins can also block or disable Code Mode centrally through managed settings, and any explicit <strong>0</strong> in your shell, user settings, or managed policy keeps it turned off.</p>
+<h2 id="Four-Limitations-to-Know-Before-Turning-It-On"><a href="#Four-Limitations-to-Know-Before-Turning-It-On" class="headerlink" title="Four Limitations to Know Before Turning It On"></a>Four Limitations to Know Before Turning It On</h2><p>Bundling tool calls into scripts speeds up multi-step tasks, but the official documentation highlights four clear constraints worth weighing first:</p>
+<ol>
+<li><strong>Experimental status:</strong> Code Mode is disabled by default and may change or be removed in a future release.</li>
+<li><strong>Terminal-only session resume:</strong> You can resume a Code Mode session <strong>only inside the terminal with Code Mode enabled</strong>. Switching to another surface or turning Code Mode off prevents resuming that session seamlessly.</li>
+<li><strong>Coarser Auto mode review:</strong> Under <strong>Auto mode</strong>, the background safety classifier normally evaluates each standalone tool call one by one—like an accountant signing off on individual receipts. With Code Mode active, the classifier instead evaluates <strong>the entire generated JavaScript block as a single action</strong>, more like approving a bundled purchase order all at once. Underlying permission rules (<strong>allow</strong>, <strong>ask</strong>, <strong>deny</strong>) and hooks still enforce boundaries.</li>
+<li><strong>Blocking wait on long scripts:</strong> Unless a long-running script is explicitly sent to the background, your session waits for the whole code block to finish before moving to the next turn.</li>
+</ol>
+<h2 id="When-Should-You-Use-Code-Mode-vs-Stick-With-the-Default"><a href="#When-Should-You-Use-Code-Mode-vs-Stick-With-the-Default" class="headerlink" title="When Should You Use Code Mode vs. Stick With the Default?"></a>When Should You Use Code Mode vs. Stick With the Default?</h2><p><strong>Code Mode lets a coding model orchestrate its tools using the medium it understands best—actual code—rather than playing twenty questions across chat turns.</strong></p>
+<p>If your workflow leans heavily on cross-file refactors, noisy codebase searches that benefit from local filtering, or parallel test runs, running <code>CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 claude</code> on a personal repo is an easy win. If you regularly hop between terminal and non-terminal interfaces when resuming sessions, or want Auto mode’s classifier inspecting every tool call individually, keeping the default off makes more sense for now.</p>
+<p>If you also coordinate multiple parallel terminal sessions, check out <a href="/en/2026/08/09/claude-code-cross-session-messaging/">Claude Code Cross-Session Messaging</a>, or read the <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/code-mode">official Claude Code Mode documentation</a> for the latest updates.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/en/categories/AI-Tools/">AI Tools</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/en/tags/Claude-Code/">Claude Code</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/JavaScript/">JavaScript</a>, <a href="/en/tags/AI-Agent/">AI Agent</a>, <a href="/en/tags/Developer-Tools/">Developer Tools</a>, <a href="/en/tags/Claude/">Claude</a>, <a href="/en/tags/Anthropic/">Anthropic</a>
+  </div>
+
+        
+<div class="article-share">
+  <div class="article-share-title">Share</div>
+  <div class="article-share-buttons">
+    <!-- 通用：複製連結 -->
+    <button type="button" class="share-btn share-btn-copy" data-action="copy-link" title="Copy Link" aria-label="Copy Link">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span>Copy Link</span>
+    </button>
+
+    
+      <!-- 英文（全球開發者生態）：X、LinkedIn、Reddit、Hacker News、Facebook -->
+      <a href="https://twitter.com/intent/tweet?text=What%20Is%20Claude%20Code&#39;s%20Code%20Mode%3F%20How%20Writing%20Scripts%20Cuts%20AI%20Tool%20Overhead&url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F11%2F15%2Fclaude-code-mode-explained%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-twitter" title="Share on X" aria-label="Share on X">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>X</span>
+      </a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F11%2F15%2Fclaude-code-mode-explained%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-linkedin" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63z"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://reddit.com/submit?url=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F11%2F15%2Fclaude-code-mode-explained%2F&title=What%20Is%20Claude%20Code&#39;s%20Code%20Mode%3F%20How%20Writing%20Scripts%20Cuts%20AI%20Tool%20Overhead" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-reddit" title="Share on Reddit" aria-label="Share on Reddit">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.197-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+        </svg>
+        <span>Reddit</span>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.6yuwei.com%2Fen%2F2026%2F11%2F15%2Fclaude-code-mode-explained%2F" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-facebook" title="Share on Facebook" aria-label="Share on Facebook">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+    
+
+    <!-- 原生分享（行動裝置自動啟用） -->
+    <button type="button" class="share-btn share-btn-native" data-action="native-share" data-title="What Is Claude Code&#39;s Code Mode? How Writing Scripts Cuts AI Tool Overhead" data-url="https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/" title="Share" aria-label="Share" style="display: none;">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>Share...</span>
+    </button>
+  </div>
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+    
+      
+
+<div class="related-posts" data-rel-source="/en/2026/11/15/claude-code-mode-explained/">
+  <h3 class="related-posts-title">Related Posts</h3>
+  <div class="related-posts-grid">
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/" class="related-post-link"
+           data-rel-title="Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis"
+           data-rel-path="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/"
+           data-rel-tag="Claude Code"
+           data-rel-position="1">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/cover.jpg?v=123e4c05" alt="Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Claude Code</span>
+            
+            <h4 class="related-post-item-title">Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis</h4>
+            
+              <time class="related-post-date">2026-09-23</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/" class="related-post-link"
+           data-rel-title="Claude Fable 5.2 Explained: Pricing, Benchmarks, and How It Compares With Opus 5.5"
+           data-rel-path="/en/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/"
+           data-rel-tag="Claude Code"
+           data-rel-position="2">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/cover.jpg?v=4095da1b" alt="Claude Fable 5.2 Explained: Pricing, Benchmarks, and How It Compares With Opus 5.5" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Claude Code</span>
+            
+            <h4 class="related-post-item-title">Claude Fable 5.2 Explained: Pricing, Benchmarks, and How It Compares With Opus 5.5</h4>
+            
+              <time class="related-post-date">2026-11-10</time>
+            
+          </div>
+        </a>
+      </div>
+    
+      <div class="related-post-card">
+        <a href="/en/2026/09/29/claude-sonnet-5-5-launch-pricing-upgrade/" class="related-post-link"
+           data-rel-title="Claude Sonnet 5.5 Is Here: Pricing, Features, and Upgrade Notes"
+           data-rel-path="/en/2026/09/29/claude-sonnet-5-5-launch-pricing-upgrade/"
+           data-rel-tag="Claude Code"
+           data-rel-position="3">
+          <div class="related-post-cover">
+            
+              <img src="/en/2026/09/29/claude-sonnet-5-5-launch-pricing-upgrade/cover.jpg?v=59d00cb9" alt="Claude Sonnet 5.5 Is Here: Pricing, Features, and Upgrade Notes" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="related-post-info">
+            
+              <span class="related-post-tag">Claude Code</span>
+            
+            <h4 class="related-post-item-title">Claude Sonnet 5.5 Is Here: Pricing, Features, and Upgrade Notes</h4>
+            
+              <time class="related-post-date">2026-09-29</time>
+            
+          </div>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+
+    
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <button type="button" class="search-trigger" aria-label="Search">
+    <span class="search-trigger__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </span>
+    <span class="search-trigger__label">Search</span>
+    <kbd class="search-trigger__kbd" data-kbd-shortcut>&#8984;K</kbd>
+  </button>
+</div>
+
+
+  
+<div class="widget tag category-summary">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/en/categories/AI/">AI</a><small>10</small></li>
+  
+    <li><a href="/en/categories/AI-Technology/">AI Technology</a><small>7</small></li>
+  
+    <li><a href="/en/categories/AI-Tools/">AI Tools</a><small>19</small></li>
+  
+    <li><a href="/en/categories/Cybersecurity/">Cybersecurity</a><small>2</small></li>
+  
+    <li><a href="/en/categories/Frontend-Development/">Frontend Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Game-Development/">Game Development</a><small>6</small></li>
+  
+    <li><a href="/en/categories/Independent-Development/">Independent Development</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Indie-Development/">Indie Development</a><small>3</small></li>
+  
+    <li><a href="/en/categories/Indie-Hacker/">Indie Hacker</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Information-Security/">Information Security</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Japan-Travel/">Japan Travel</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Japanese-Learning/">Japanese Learning</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Life/">Life</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Servers-Hosting/">Servers &amp; Hosting</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Shopping/">Shopping</a><small>1</small></li>
+  
+    <li><a href="/en/categories/Software-Engineering/">Software Engineering</a><small>4</small></li>
+  
+    <li><a href="/en/categories/Toys-and-Games/">Toys and Games</a><small>1</small></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/categories/">View all categories</a>
+</div>
+
+
+
+  
+<div class="widget tag tag-summary">
+  <h3 class="title">Popular tags</h3>
+  <ul class="entry tag-summary__list">
+  
+    <li><a href="/en/tags/AI/"><span>AI</span><small>34</small></a></li>
+  
+    <li><a href="/en/tags/Claude/"><span>Claude</span><small>11</small></a></li>
+  
+    <li><a href="/en/tags/Claude-Code/"><span>Claude Code</span><small>11</small></a></li>
+  
+    <li><a href="/en/tags/Codex/"><span>Codex</span><small>10</small></a></li>
+  
+    <li><a href="/en/tags/Developer-Tools/"><span>Developer Tools</span><small>9</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agent/"><span>AI Agent</span><small>8</small></a></li>
+  
+    <li><a href="/en/tags/Anthropic/"><span>Anthropic</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/ChatGPT/"><span>ChatGPT</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/Indie-Developer/"><span>Indie Developer</span><small>7</small></a></li>
+  
+    <li><a href="/en/tags/OpenAI/"><span>OpenAI</span><small>6</small></a></li>
+  
+    <li><a href="/en/tags/Artificial-Analysis/"><span>Artificial Analysis</span><small>5</small></a></li>
+  
+    <li><a href="/en/tags/Game-Development/"><span>Game Development</span><small>5</small></a></li>
+  
+    <li><a href="/en/tags/Software-Engineering/"><span>Software Engineering</span><small>4</small></a></li>
+  
+    <li><a href="/en/tags/AI-Agents/"><span>AI Agents</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/AI-Image-Generation/"><span>AI Image Generation</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/JavaScript/"><span>JavaScript</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/LLM/"><span>LLM</span><small>3</small></a></li>
+  
+    <li><a href="/en/tags/AI-Coding/"><span>AI Coding</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/AI-Development-Tools/"><span>AI Development Tools</span><small>2</small></a></li>
+  
+    <li><a href="/en/tags/Aseprite/"><span>Aseprite</span><small>2</small></a></li>
+  
+  </ul>
+  <a class="widget-directory-link" href="/en/tags/">View all tags</a>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 <a class="copyright" target="_blank" rel="noopener" href="https://6yuwei.com">6yuwei</a>
+  
+</div>
+
+<div class="alignright"><a class="rss-link" href="/en/rss.xml">Subscribe via RSS</a></div>
+
+<div class="clearfix"></div>
+</footer>
+  <script>window.BLOG_I18N = {"copyCode":"Copy","codeCopied":"Copied","toastCodeCopied":"Code copied to clipboard","copyLinkLabel":"Copy Link","linkCopied":"Article link copied","headingCopied":"Section link copied","tocTitle":"Table of Contents","searchLoading":"Loading...","searchEmpty":"Type keywords to start searching...","searchNoResults":"No articles matching \"%s\"","tableScrollLabel":"Table, scroll horizontally for more columns","tableScrollHint":"Scroll horizontally to view the full table. You can also use the arrow keys."};</script>
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal__backdrop" data-action="close-search"></div>
+  <div class="search-modal__card">
+    <header class="search-modal__header">
+      <span class="search-modal__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-modal__input"
+        placeholder="Search articles, tags, or keywords..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+      >
+      <button type="button" class="search-modal__close" data-action="close-search" aria-label="Close">
+        <kbd class="search-modal__kbd-esc">ESC</kbd>
+      </button>
+    </header>
+    <div id="search-results" class="search-modal__body" role="listbox">
+      <div class="search-modal__empty-hint">Type keywords to start searching...</div>
+    </div>
+    <footer class="search-modal__footer">
+      <div class="search-modal__shortcuts">
+        <span class="search-modal__shortcut"><kbd>↑</kbd><kbd>↓</kbd></span>
+        <span class="search-modal__shortcut"><kbd>↵</kbd></span>
+        <span class="search-modal__shortcut"><kbd>ESC</kbd></span>
+      </div>
+      <div class="search-modal__hint-text">ESC to close, ↑↓ to navigate, Enter to open</div>
+    </footer>
+  </div>
+</div>
+<div id="blog-toast" class="blog-toast" role="status" aria-live="polite"></div>
+
+  <script defer src="/en/js/custom.js?v=260923-2"></script>
+
+
+<script defer src="/en/js/jquery-3.4.1.min.js"></script>
+<script defer src="/en/js/jquery.imagesloaded.min.js"></script>
+<script defer src="/en/js/gallery.js?v=260526-1"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+<script defer src="/en/fancybox/jquery.fancybox.pack.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  if (window.jQuery && jQuery.fn.fancybox) {
+    jQuery('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+<script>
+(function(){
+  function initMermaid(){
+    var els = document.querySelectorAll('.mermaid');
+    if (!els || !els.length) return;
+
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = function(){
+      if (!window.mermaid) return;
+
+      // 初始化 Mermaid
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          fontFamily: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '15px',
+          primaryColor: '#f0f9ff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0284c7',
+          lineColor: '#334155',
+          secondaryColor: '#f8fafc',
+          tertiaryColor: '#ffffff',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f8fafc',
+          clusterBorder: '#94a3b8',
+          nodeBorder: '#0284c7',
+          mainBkg: '#f0f9ff'
+        },
+        flowchart: {
+          useMaxWidth: false,
+          htmlLabels: true,
+          curve: 'basis',
+          nodeSpacing: 25,
+          rankSpacing: 35
+        }
+      });
+
+      // 執行渲染
+      window.mermaid.run({
+        querySelector: '.mermaid'
+      }).then(function(){
+        // 渲染完成後掛載外層卡片與純按鈕縮放工具列
+        els.forEach(function(el){
+          var svg = el.querySelector('svg');
+          if (!svg) return;
+
+          var box = document.createElement('div');
+          box.className = 'mermaid-box';
+
+          var header = document.createElement('div');
+          header.className = 'mermaid-header';
+          header.innerHTML = `
+            <span class="mermaid-title">架構流程圖</span>
+            <div class="mermaid-tools">
+              <span class="zoom-level">100%</span>
+              <button class="mermaid-btn btn-zoom-in" title="放大">＋ 放大</button>
+              <button class="mermaid-btn btn-zoom-out" title="縮小">－ 縮小</button>
+              <button class="mermaid-btn btn-reset" title="重置">↺ 重置</button>
+            </div>
+          `;
+
+          var viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+
+          el.parentNode.insertBefore(box, el);
+          viewport.appendChild(el);
+          box.appendChild(header);
+          box.appendChild(viewport);
+
+          var currentScale = 1.0;
+          var zoomLevelText = header.querySelector('.zoom-level');
+
+          function applyScale(newScale){
+            currentScale = Math.min(Math.max(newScale, 0.75), 2.5);
+            svg.style.transform = 'scale(' + currentScale + ')';
+            svg.style.transformOrigin = 'top center';
+            svg.style.transition = 'transform 0.15s ease';
+            zoomLevelText.textContent = Math.round(currentScale * 100) + '%';
+          }
+
+          header.querySelector('.btn-zoom-in').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale + 0.25);
+          });
+          header.querySelector('.btn-zoom-out').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(currentScale - 0.25);
+          });
+          header.querySelector('.btn-reset').addEventListener('click', function(e){
+            e.stopPropagation();
+            applyScale(1.0);
+          });
+        });
+      }).catch(function(err){
+        console.error('Mermaid render error:', err);
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>
