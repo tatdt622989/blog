@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,9 +245,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=4ccd482f" alt="Node.js 安全更新示意：伺服器連結解壓縮、TLS 憑證與亂數狀態的修補節點" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-480.jpg?v=1998c692 480w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=4ccd482f 720w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-960.jpg?v=f58b5872 960w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-1280.jpg?v=2f5cf314 1280w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover.jpg?v=dfbdd378 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=56959b7d" alt="Node.js 安全更新示意：伺服器連結解壓縮、TLS 憑證與亂數狀態的修補節點" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-480.jpg?v=4dfd0407 480w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-720.jpg?v=56959b7d 720w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-960.jpg?v=34ca4909 960w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover-card-1280.jpg?v=ece16144 1280w, /2026/10/21/Nodejs%E5%8D%81%E6%9C%88%E5%AE%89%E5%85%A8%E6%9B%B4%E6%96%B0%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/cover.jpg?v=dfbdd378 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>2026 年 10 月 21 日，<strong>Node.js 安全更新</strong>列出 10 項具名漏洞，最高嚴重度為 <strong>High</strong>。其中包含 Brotli 解壓縮可能造成遠端程式碼執行、TLS 主機名驗證繞過，以及啟動快照重複使用亂數快取等問題。</p>
 <p>這次值得仔細讀，因為風險入口不只在「有人連進你的網站」。後端向外抓取資料、重用 HTTP 連線、打包單一執行檔，都可能涉及不同的漏洞條件。下面依官方公告、發行紀錄與公開修補程式碼，逐項說明應該檢查什麼。</p>
 <span id="more"></span>
@@ -357,7 +358,7 @@
 <p>容易漏掉的入口，是<strong>你的後端主動向外連線</strong>。修補版內建的 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/deps/undici/src/lib/web/fetch/index.js">Undici fetch 原始碼</a>可看到，回應的內容編碼為 <strong>br</strong> 時會使用 Brotli 解碼器。</p>
 <p>因此，以下是值得盤點的情境：抓取使用者提供的網址、匯入遠端內容、串接可被攻擊者控制的回應來源，以及處理外來壓縮檔。這是根據資料流推導的檢查範圍，<strong>不代表每一種操作都已證實可成功利用</strong>。</p>
 <p>只把頁面壓縮成 Brotli 後送出去，也不能直接當成解碼漏洞已可觸發的證據。應追的是「誰提供壓縮內容、誰負責解開」，而不是只搜尋設定裡有沒有 Brotli 這個字。</p>
-<h2 id="DNS-與-TLS：名稱解析和身分驗證必須一致"><a href="#DNS-與-TLS：名稱解析和身分驗證必須一致" class="headerlink" title="DNS 與 TLS：名稱解析和身分驗證必須一致"></a>DNS 與 TLS：名稱解析和身分驗證必須一致</h2><p>這組問題的共同線索，是<strong>同一份輸入，經過不同元件後被理解成不同的名稱或位址</strong>。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="DNS-與-TLS：名稱解析和身分驗證必須一致"><a href="#DNS-與-TLS：名稱解析和身分驗證必須一致" class="headerlink" title="DNS 與 TLS：名稱解析和身分驗證必須一致"></a>DNS 與 TLS：名稱解析和身分驗證必須一致</h2><p>這組問題的共同線索，是<strong>同一份輸入，經過不同元件後被理解成不同的名稱或位址</strong>。</p>
 <h3 id="NUL-截斷：驗證的字串與實際解析的名稱可能不同"><a href="#NUL-截斷：驗證的字串與實際解析的名稱可能不同" class="headerlink" title="NUL 截斷：驗證的字串與實際解析的名稱可能不同"></a>NUL 截斷：驗證的字串與實際解析的名稱可能不同</h3><p><strong>CVE-2026-105482</strong> 涉及 DNS 名稱中的 NUL，也就是值為零的字元。<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/6b78ea171de305446126cb94ceb6a45b6297466c">修補程式碼</a>把 DNS 解析入口的檢查改為拒絕含 NUL 的字串，涵蓋 callback 與 Promise 形式的解析流程。</p>
 <p>如果應用程式先用完整字串做存取限制，後面的解析層卻只處理截斷後的部分，就可能出現驗證落差。不過，是否進一步形成 SSRF 等應用層風險，還要看輸入來源、限制規則與後續連線方式，不能只憑這個 CVE 名稱下結論。</p>
 <h3 id="TLS-繞過：憑證有效，不等於就是你要連的主機"><a href="#TLS-繞過：憑證有效，不等於就是你要連的主機" class="headerlink" title="TLS 繞過：憑證有效，不等於就是你要連的主機"></a>TLS 繞過：憑證有效，不等於就是你要連的主機</h3><p><strong>105483、106069、106072</strong> 涉及全形數字、非標準 IP 表示法與憑證名稱比對。HTTPS 驗證除了確認憑證鏈，也需要確認對端身分符合預期主機。</p>
@@ -396,6 +397,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

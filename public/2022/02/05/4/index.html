@@ -100,7 +100,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -229,6 +229,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2022/02/05/4/cover-card-720.jpg?v=5662b8ba" width="900" height="456" decoding="async" class="auto-layout-image post-cover-image" srcset="/2022/02/05/4/cover-card-480.jpg?v=2b33497b 480w, /2022/02/05/4/cover-card-720.jpg?v=5662b8ba 720w, /2022/02/05/4/cover.webp?v=5899d155 900w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -239,7 +240,7 @@
 <h3 id="上方菜單中找到檔案-gt-匯出-gt-glTF2-0"><a href="#上方菜單中找到檔案-gt-匯出-gt-glTF2-0" class="headerlink" title="上方菜單中找到檔案-&gt;匯出-&gt;glTF2.0"></a>上方菜單中找到檔案-&gt;匯出-&gt;glTF2.0</h3><p><img src="/2022/02/05/4/blender-2.jpg?v=7c60a266"></p>
 <h3 id="在彈出的視窗右側的選單中將格式修改為-glTF-Embedded-gltf-，並且勾選-所選的物體-選項"><a href="#在彈出的視窗右側的選單中將格式修改為-glTF-Embedded-gltf-，並且勾選-所選的物體-選項" class="headerlink" title="在彈出的視窗右側的選單中將格式修改為[glTF Embedded (.gltf)]，並且勾選[所選的物體]選項"></a>在彈出的視窗右側的選單中將格式修改為[glTF Embedded (.gltf)]，並且勾選[所選的物體]選項</h3><p><img src="/2022/02/05/4/blender-3.jpg?v=0f6f6de2"></p>
 <h3 id="選取存檔位置後匯出-glTF2-0"><a href="#選取存檔位置後匯出-glTF2-0" class="headerlink" title="選取存檔位置後匯出 glTF2.0"></a>選取存檔位置後匯出 glTF2.0</h3><p><img src="/2022/02/05/4/blender-4.jpg?v=b415883c"></p>
-<h2 id="使用Three-js載入glTF模型檔"><a href="#使用Three-js載入glTF模型檔" class="headerlink" title="使用Three.js載入glTF模型檔"></a>使用Three.js載入glTF模型檔</h2><h3 id="載入GLTFLoader"><a href="#載入GLTFLoader" class="headerlink" title="載入GLTFLoader"></a>載入GLTFLoader</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">GLTFLoader</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;three/examples/jsm/loaders/GLTFLoader.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="使用Three-js載入glTF模型檔"><a href="#使用Three-js載入glTF模型檔" class="headerlink" title="使用Three.js載入glTF模型檔"></a>使用Three.js載入glTF模型檔</h2><h3 id="載入GLTFLoader"><a href="#載入GLTFLoader" class="headerlink" title="載入GLTFLoader"></a>載入GLTFLoader</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">GLTFLoader</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;three/examples/jsm/loaders/GLTFLoader.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <h3 id="使用GLTFLoader載入模型"><a href="#使用GLTFLoader載入模型" class="headerlink" title="使用GLTFLoader載入模型"></a>使用GLTFLoader載入模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> loader = <span class="keyword">new</span> <span class="title class_">GLTFLoader</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 壓縮模型的插件</span></span><br><span class="line"><span class="keyword">const</span> dracoLoader = <span class="keyword">new</span> <span class="title class_">DRACOLoader</span>();</span><br><span class="line">dracoLoader.<span class="title function_">setDecoderPath</span>( <span class="string">&#x27;/examples/js/libs/draco/&#x27;</span> ); <span class="comment">// 路徑需指向此插件位置</span></span><br><span class="line">loader.<span class="title function_">setDRACOLoader</span>( dracoLoader );</span><br><span class="line"></span><br><span class="line">loader.<span class="title function_">load</span>(</span><br><span class="line">	<span class="comment">// 模型位置</span></span><br><span class="line">	<span class="string">&#x27;models/gltf/test/test.gltf&#x27;</span>,</span><br><span class="line">	<span class="comment">// 模型非同步載入後的回調函式</span></span><br><span class="line">	<span class="function">(<span class="params"> gltf </span>) =&gt;</span> &#123;</span><br><span class="line">		scene.<span class="title function_">add</span>( gltf.<span class="property">scene</span> ); <span class="comment">// 將載入的模型加入場景</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 載入過程，可以用來製作進度條</span></span><br><span class="line">	<span class="function">(<span class="params">xhr</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>( ( xhr.<span class="property">loaded</span> / xhr.<span class="property">total</span> * <span class="number">100</span> ) + <span class="string">&#x27;% loaded&#x27;</span> );</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 錯誤時</span></span><br><span class="line">	<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;An error happened&#x27;</span> );</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
@@ -247,6 +248,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

@@ -28,6 +28,14 @@ fancybox: true
 google_analytics: G-HW6MDZLN6Z
 rss:
 
+# Fixed ad slots on posts (AdSense ad units blog-article and blog-bottom). Auto ads no longer add
+# in-page ads, so these are the only ads inside a post. Leave a slot empty to remove it.
+adsense:
+  client: ca-pub-3389697259947664
+  slots:
+    article: "8046211557"
+    bottom: "3935576155"
+
 comment_provider: none
 # Facebook comment
 facebook:

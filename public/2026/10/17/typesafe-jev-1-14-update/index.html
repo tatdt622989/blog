@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,9 +245,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/10/17/typesafe-jev-1-14-update/cover-card-720.jpg?v=18da00a5" alt="Jev 1.14 多模態決策示意：圖片中的杯子以邊界框定位，並連接結構化決策選項" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/17/typesafe-jev-1-14-update/cover-card-480.jpg?v=185c9182 480w, /2026/10/17/typesafe-jev-1-14-update/cover-card-720.jpg?v=18da00a5 720w, /2026/10/17/typesafe-jev-1-14-update/cover-card-960.jpg?v=f4e1fb05 960w, /2026/10/17/typesafe-jev-1-14-update/cover-card-1280.jpg?v=18c774ae 1280w, /2026/10/17/typesafe-jev-1-14-update/cover.jpg?v=897c7c9b 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/10/17/typesafe-jev-1-14-update/cover-card-720.jpg?v=cdb3a47e" alt="Jev 1.14 多模態決策示意：圖片中的杯子以邊界框定位，並連接結構化決策選項" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/17/typesafe-jev-1-14-update/cover-card-480.jpg?v=5164bd0e 480w, /2026/10/17/typesafe-jev-1-14-update/cover-card-720.jpg?v=cdb3a47e 720w, /2026/10/17/typesafe-jev-1-14-update/cover-card-960.jpg?v=af7ce315 960w, /2026/10/17/typesafe-jev-1-14-update/cover-card-1280.jpg?v=d093a78e 1280w, /2026/10/17/typesafe-jev-1-14-update/cover.jpg?v=897c7c9b 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>Jev 1.14.0 在 2026 年 10 月 14 日推出。這次 TypeSafe AI 除了更新模型，也開放圖片輸入、Box 位置定位，以及更長的上下文。原本專注文字判斷的決策介面，開始能接進視覺工作流。</p>
 <p>如果你第一次聽到 Jev，可以先讀前一篇 <a href="/2026/09/17/typesafe-jev-system-one-model-guide/">Jev 是什麼？System One 模型與機率決策入門</a>，了解 Choice、Score、Noul 的用途。這篇接著整理新版本的變化，資料查核至 <strong>2026 年 10 月 17 日</strong>；內容依據官方公告與文件，未執行付費 API 評測。</p>
 <span id="more"></span>
@@ -284,7 +285,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.typesafe.ai/v1/systemone \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$TYPESAFE_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;TypeSafe-Danger-Zone-Images: true&quot;</span> \</span><br><span class="line">  -F <span class="string">&#x27;request=&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;jev-1.14.0&quot;,</span></span><br><span class="line"><span class="string">    &quot;state&quot;: &#123;&quot;photo&quot;: &quot;d96b219e-product-photo&quot;&#125;,</span></span><br><span class="line"><span class="string">    &quot;assets&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;d96b219e-product-photo&quot;: &#123;&quot;type&quot;: &quot;image&quot;, &quot;part&quot;: &quot;photo-upload&quot;&#125;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &quot;questions&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;present&quot;: &#123;&quot;type&quot;: &quot;noul&quot;, &quot;instructions&quot;: &quot;Is there a mug in photo?&quot;&#125;,</span></span><br><span class="line"><span class="string">      &quot;location&quot;: &#123;&quot;type&quot;: &quot;box&quot;, &quot;instructions&quot;: &quot;The mug in photo&quot;&#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;;type=application/json&#x27;</span> \</span><br><span class="line">  -F <span class="string">&#x27;photo-upload=@./product.jpg;type=image/jpeg&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>不要只看到有座標就執行後續動作。我會把「目標不存在、畫面模糊、同時有多個杯子」都放進測試資料。</p>
-<h2 id="長上下文開到-262k，仍要控制輸入範圍"><a href="#長上下文開到-262k，仍要控制輸入範圍" class="headerlink" title="長上下文開到 262k，仍要控制輸入範圍"></a>長上下文開到 262k，仍要控制輸入範圍</h2><p>依 <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/models#context-length">上下文限制文件</a>，預設是<strong>整個請求 64k、單一問題 32k</strong>；加入 <strong>TypeSafe-Danger-Zone-Long-Context: true</strong> 後，兩個上限都可提高到 <strong>262k token</strong>，1.13 與 1.14 都能使用。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="長上下文開到-262k，仍要控制輸入範圍"><a href="#長上下文開到-262k，仍要控制輸入範圍" class="headerlink" title="長上下文開到 262k，仍要控制輸入範圍"></a>長上下文開到 262k，仍要控制輸入範圍</h2><p>依 <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/models#context-length">上下文限制文件</a>，預設是<strong>整個請求 64k、單一問題 32k</strong>；加入 <strong>TypeSafe-Danger-Zone-Long-Context: true</strong> 後，兩個上限都可提高到 <strong>262k token</strong>，1.13 與 1.14 都能使用。</p>
 <p>這項能力同樣需要主動開啟。官方提醒，長上下文會更慢、準確度也會降低。以客服分類為例，我仍會先取出與當前問題相關的紀錄，再決定是否需要放大上下文。</p>
 <h2 id="SDK-也更新了，JavaScript-專案先看-Node-js-版本"><a href="#SDK-也更新了，JavaScript-專案先看-Node-js-版本" class="headerlink" title="SDK 也更新了，JavaScript 專案先看 Node.js 版本"></a>SDK 也更新了，JavaScript 專案先看 Node.js 版本</h2><p>這次不能只看模型名稱，套件環境也有變化：</p>
 <ul>
@@ -301,6 +302,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

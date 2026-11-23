@@ -112,7 +112,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -241,6 +241,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2023/03/05/what-is-typescript/cover-card-720.jpg?v=def7b9e9" alt="TypeScript 与 JavaScript 静态类型入门封面" width="1920" height="1280" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2023/03/05/what-is-typescript/cover-card-480.jpg?v=6cf0f886 480w, /zh-cn/2023/03/05/what-is-typescript/cover-card-720.jpg?v=def7b9e9 720w, /zh-cn/2023/03/05/what-is-typescript/cover-card-960.jpg?v=98d50e9f 960w, /zh-cn/2023/03/05/what-is-typescript/cover-card-1280.jpg?v=21293cd2 1280w, /zh-cn/2023/03/05/what-is-typescript/cover.webp?v=805edb9a 1920w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -258,7 +259,7 @@
 <li><strong>枚举（Enums）</strong>：定义一组具有清晰语义的具名常量集合，彻底替代魔法字符串与硬编码数字，增强业务逻辑的可读性与易维护性。</li>
 </ul>
 <p>更为重要的是，这些类型元数据直接赋能了现代 IDE。无论是在 VS Code 还是其他编辑环境中，开发者都能享受到毫秒级的智能感知（IntelliSense）、精准的代码补全、即时错误提示以及安全的跨文件全局重构体验。</p>
-<h2 id="实战示例：带有类型约束的计算器函数"><a href="#实战示例：带有类型约束的计算器函数" class="headerlink" title="实战示例：带有类型约束的计算器函数"></a>实战示例：带有类型约束的计算器函数</h2><p>为了直观体会 TypeScript 的类型约束力量，我们以一个基础的计算器程序为例。该程序接收两个数值与一个运算符号（加、减、乘、除），并返回运算结果。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="实战示例：带有类型约束的计算器函数"><a href="#实战示例：带有类型约束的计算器函数" class="headerlink" title="实战示例：带有类型约束的计算器函数"></a>实战示例：带有类型约束的计算器函数</h2><p>为了直观体会 TypeScript 的类型约束力量，我们以一个基础的计算器程序为例。该程序接收两个数值与一个运算符号（加、减、乘、除），并返回运算结果。</p>
 <p>在纯 JavaScript 中，如果不做繁复的手动校验，用户传入诸如 <code>%</code> 等非法运算符可能会直接导致未知逻辑；而在 TypeScript 中，我们可以通过<strong>字面量联合类型</strong>在编译期建立绝对防线：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">Operator</span> = <span class="string">&#x27;+&#x27;</span> | <span class="string">&#x27;-&#x27;</span> | <span class="string">&#x27;*&#x27;</span> | <span class="string">&#x27;/&#x27;</span>; <span class="comment">// 严格约束运算符只能为这四种字符之一</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">calculate</span>(<span class="params">operator: Operator, num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span></span>): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (operator) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> num1 + num2;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> num1 - num2;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> num1 * num2;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> num1 / num2;</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Invalid operator&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> num1 = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> num2 = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="attr">operator</span>: <span class="title class_">Operator</span> = <span class="string">&#x27;+&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">calculate</span>(operator, num1, num2);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;num1&#125;</span> <span class="subst">$&#123;operator&#125;</span> <span class="subst">$&#123;num2&#125;</span> = <span class="subst">$&#123;result&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
 
@@ -282,6 +283,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

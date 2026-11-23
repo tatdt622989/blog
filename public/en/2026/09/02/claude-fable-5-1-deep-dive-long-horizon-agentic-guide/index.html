@@ -114,7 +114,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/en/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -243,6 +243,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/en/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-720.jpg?v=96c87415" alt="Claude Fable 5.1 Flagship Model Architecture and Long-Horizon Agent Flow" width="1280" height="714" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-480.jpg?v=200962a3 480w, /en/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-720.jpg?v=96c87415 720w, /en/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-960.jpg?v=9c900b99 960w, /en/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover.jpg?v=ea31fc34 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -358,7 +359,7 @@
 </ul>
 <h3 id="3-Modifying-Conversation-History-Invalidates-Thinking-Signatures"><a href="#3-Modifying-Conversation-History-Invalidates-Thinking-Signatures" class="headerlink" title="3. Modifying Conversation History Invalidates Thinking Signatures"></a>3. Modifying Conversation History Invalidates Thinking Signatures</h3><p>Thinking blocks are strictly bound to their preceding system prompts, tools, and conversation history. Modifying earlier messages will invalidate the block signature and return a 400 error. Maintain absolute prefix integrity across multi-turn agent sessions.</p>
 <hr>
-<h2 id="Five-Standout-Features-and-Architectural-Upgrades"><a href="#Five-Standout-Features-and-Architectural-Upgrades" class="headerlink" title="Five Standout Features and Architectural Upgrades"></a>Five Standout Features and Architectural Upgrades</h2><p>Beyond raw reasoning performance, Claude Fable 5.1 brings dedicated architectural primitives for robust agent systems:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Five-Standout-Features-and-Architectural-Upgrades"><a href="#Five-Standout-Features-and-Architectural-Upgrades" class="headerlink" title="Five Standout Features and Architectural Upgrades"></a>Five Standout Features and Architectural Upgrades</h2><p>Beyond raw reasoning performance, Claude Fable 5.1 brings dedicated architectural primitives for robust agent systems:</p>
 <h3 id="1-Per-Message-Effort-Configuration-Beta"><a href="#1-Per-Message-Effort-Configuration-Beta" class="headerlink" title="1. Per-Message Effort Configuration (Beta)"></a>1. Per-Message Effort Configuration (Beta)</h3><p>Developers can now dynamically adjust thinking intensity (<code>effort: &quot;low&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;high&quot;</code>, or <code>&quot;max&quot;</code>) on a per-turn basis without invalidating prompt cache hits. Use <code>low</code> effort for lightweight file reads, and dial up to <code>high</code> or <code>max</code> when resolving architectural conflicts or multi-layer test failures.</p>
 <h3 id="2-Turn-Scoped-System-Messages-Beta"><a href="#2-Turn-Scoped-System-Messages-Beta" class="headerlink" title="2. Turn-Scoped System Messages (Beta)"></a>2. Turn-Scoped System Messages (Beta)</h3><p>You can now append <code>&#123;&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;...&quot;&#125;</code> messages midway through the <code>messages</code> array. This allows orchestrators to enforce dynamic step requirements without mutating top-level prompts or disrupting cached context prefixes.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Mid-conversation system message example</span></span><br><span class="line">messages = [</span><br><span class="line">    &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;What is the delivery status for order A1234?&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Let me look up your order details.&quot;</span>&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Tool-use requirement: The application requires calling order_lookup before responding. Begin with the tool call.&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
@@ -398,6 +399,9 @@ flowchart TD
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

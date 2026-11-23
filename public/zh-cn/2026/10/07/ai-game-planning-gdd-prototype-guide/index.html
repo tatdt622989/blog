@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,9 +245,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-720.jpg?v=d5709e1b" alt="画有接星星玩法的设计笔记、游戏手柄与规划卡片组成的开发示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-480.jpg?v=10962449 480w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-720.jpg?v=d5709e1b 720w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-960.jpg?v=a60d6a8e 960w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-1280.jpg?v=76b71b04 1280w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover.jpg?v=27354f0a 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-720.jpg?v=0e379abf" alt="画有接星星玩法的设计笔记、游戏手柄与规划卡片组成的开发示意图" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-480.jpg?v=6317cf82 480w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-720.jpg?v=0e379abf 720w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-960.jpg?v=6a49a3f2 960w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover-card-1280.jpg?v=2f730130 1280w, /zh-cn/2026/10/07/ai-game-planning-gdd-prototype-guide/cover.jpg?v=27354f0a 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>想用 AI 做游戏，很容易从“我要做一款 RPG”扩展到角色、装备、抽卡和联机，最后却连一局都没法完整玩下来。开工前先明确玩家反复做什么，再收敛成能玩、能重开、能观察反馈的小原型。本文用“接星星”小游戏，写清核心玩法、一页 GDD 和首版验收。</p>
 <span id="more"></span>
 
@@ -293,7 +294,7 @@
 </ul>
 <p>这些数值是示例起点，还没有做过平衡测试。把下落速度、生成间隔和回合长度集中作为<strong>可调参数</strong>，试玩后一次调整一项，方便判断哪个改动影响了体验。</p>
 <p>输入方式也要明确：桌面端按住左／右方向键移动；手机在游戏区域内拖动篮子；到边界就停止。竖屏尺寸变化后，篮子和掉落范围仍应处于可见区域。</p>
-<h2 id="一页-GDD-模板：记录玩法与范围"><a href="#一页-GDD-模板：记录玩法与范围" class="headerlink" title="一页 GDD 模板：记录玩法与范围"></a>一页 GDD 模板：记录玩法与范围</h2><p><strong>GDD 是游戏设计文档（Game Design Document）</strong>。小原型先用一页记录核心规则、范围和验证目标。可以下载<a href="game-plan-template.txt">游戏规划空白模板</a>，或参考下面的填写示例：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="一页-GDD-模板：记录玩法与范围"><a href="#一页-GDD-模板：记录玩法与范围" class="headerlink" title="一页 GDD 模板：记录玩法与范围"></a>一页 GDD 模板：记录玩法与范围</h2><p><strong>GDD 是游戏设计文档（Game Design Document）</strong>。小原型先用一页记录核心规则、范围和验证目标。可以下载<a href="game-plan-template.txt">游戏规划空白模板</a>，或参考下面的填写示例：</p>
 <blockquote>
 <p><strong>一句话概念</strong>：在短回合中移动篮子接星星，争取更高分。</p>
 <p><strong>目标玩家与平台</strong>：希望玩短回合的人；手机竖屏与桌面浏览器。</p>
@@ -364,6 +365,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

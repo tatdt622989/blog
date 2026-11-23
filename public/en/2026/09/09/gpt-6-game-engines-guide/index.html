@@ -124,7 +124,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/en/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -253,6 +253,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/en/2026/09/09/gpt-6-game-engines-guide/cover-card-720.jpg?v=d954f992" alt="Concept illustration of GPT-6 helping build a platformer, a forest adventure, and a space exploration game" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/09/09/gpt-6-game-engines-guide/cover-card-480.jpg?v=5bb23783 480w, /en/2026/09/09/gpt-6-game-engines-guide/cover-card-720.jpg?v=d954f992 720w, /en/2026/09/09/gpt-6-game-engines-guide/cover-card-960.jpg?v=9dae23db 960w, /en/2026/09/09/gpt-6-game-engines-guide/cover.jpg?v=d3bc7701 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -365,7 +366,7 @@
 </tbody></table></div>
 <p>My default: <strong>start with Phaser for a shareable 2D browser game; choose Godot for an ongoing 2D or small 3D project.</strong> If you already know an engine, stay with it. This is a workflow recommendation based on official documentation, not a controlled benchmark of the seven tools.</p>
 <h3 id="What-does-a-game-engine-actually-do"><a href="#What-does-a-game-engine-actually-do" class="headerlink" title="What does a game engine actually do?"></a>What does a game engine actually do?</h3><p>AI can write code, but “the player collects a coin” needs rendering, input, collision detection, rules, and audio feedback. <strong>An engine provides those foundations so you and the AI only write rules such as “each coin is worth 10 points; five coins win the level.”</strong> A number-guessing or text-choice game can skip the engine. Phaser is a game framework; PixiJS and Three.js are graphics libraries, so game systems are yours to add.</p>
-<h2 id="GPT-6-with-Phaser-or-PixiJS-2D-browser-games"><a href="#GPT-6-with-Phaser-or-PixiJS-2D-browser-games" class="headerlink" title="GPT-6 with Phaser or PixiJS: 2D browser games"></a>GPT-6 with Phaser or PixiJS: 2D browser games</h2><p>Phaser is a web game framework with official <a target="_blank" rel="noopener" href="https://phaser.io/tutorials/create-game-app">JavaScript and TypeScript templates</a>; its <a target="_blank" rel="noopener" href="https://docs.phaser.io/phaser/concepts/scenes">scene system</a> brings together cameras, loading, input, timing, and optional physics. A code-only project lets Codex run the whole edit-run-inspect loop. Start with one character, one obstacle type, and a restart button.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="GPT-6-with-Phaser-or-PixiJS-2D-browser-games"><a href="#GPT-6-with-Phaser-or-PixiJS-2D-browser-games" class="headerlink" title="GPT-6 with Phaser or PixiJS: 2D browser games"></a>GPT-6 with Phaser or PixiJS: 2D browser games</h2><p>Phaser is a web game framework with official <a target="_blank" rel="noopener" href="https://phaser.io/tutorials/create-game-app">JavaScript and TypeScript templates</a>; its <a target="_blank" rel="noopener" href="https://docs.phaser.io/phaser/concepts/scenes">scene system</a> brings together cameras, loading, input, timing, and optional physics. A code-only project lets Codex run the whole edit-run-inspect loop. Start with one character, one obstacle type, and a restart button.</p>
 <p>PixiJS is a <strong>2D rendering library</strong>; its <a target="_blank" rel="noopener" href="https://pixijs.com/faq/FAQPage">official FAQ</a> says it is not a complete game engine. Use it for card displays or custom effects, but agree with the agent on screen transitions, game state, and collisions first, or you will end up with only a rendering layer.</p>
 <p><strong>A finished web game is not automatically playable on a phone</strong>: check in portrait mode that controls do not cover the player, touch works, and restarting clears the previous round. Before sharing, read <a href="/en/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/">why a localhost link will not work for friends</a>.</p>
 <h2 id="GPT-6-with-Godot-the-friendliest-open-source-option"><a href="#GPT-6-with-Godot-the-friendliest-open-source-option" class="headerlink" title="GPT-6 with Godot: the friendliest open-source option"></a>GPT-6 with Godot: the friendliest open-source option</h2><p>Godot’s <a target="_blank" rel="noopener" href="https://docs.godotengine.org/en/stable/engine_details/file_formats/tscn.html">TSCN scene format</a> is plain text, so Codex can read and edit scene structure directly, and the <a target="_blank" rel="noopener" href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html">command line</a> handles running and exporting. As of October the latest stable release is <a target="_blank" rel="noopener" href="https://godotengine.org/download/archive/4.7.2-stable/">Godot 4.7.2</a>; tell the agent the exact version so it does not mix Godot 3 and 4 nodes or APIs.</p>
@@ -385,6 +386,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

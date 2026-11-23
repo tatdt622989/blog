@@ -24,9 +24,9 @@
   <meta property="article:modified_time" content="2026-09-26T04:30:39.000Z" />
   <meta property="article:section" content="前端開發" />
   
-  <meta property="article:tag" content="JavaScript" />
-  
   <meta property="article:tag" content="前端開發" />
+  
+  <meta property="article:tag" content="JavaScript" />
   
   
   <meta name="twitter:card" content="summary_large_image">
@@ -34,7 +34,7 @@
   <meta name="twitter:description" content="想在網頁加入圖表，可以從 Chart.js 開始。本文整理 npm 與 CDN 安裝、script 和模組引入方式，再以畫布範例示範建立與更新圖表、調整尺寸及銷毀實例，方便初學者依照自己的專案環境選擇用法。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2022/02/05/3/cover.webp?v=4f423c9e">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/05/3/","url":"https://blog.6yuwei.com/2022/02/05/3/","headline":"輕巧實用的圖表套件Chart.js","description":"想在網頁加入圖表，可以從 Chart.js 開始。本文整理 npm 與 CDN 安裝、script 和模組引入方式，再以畫布範例示範建立與更新圖表、調整尺寸及銷毀實例，方便初學者依照自己的專案環境選擇用法。","datePublished":"2022-02-05T15:00:24.000Z","dateModified":"2026-09-26T04:30:39.000Z","inLanguage":"zh-TW","articleSection":"前端開發","keywords":"JavaScript, 前端開發","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2022/02/05/3/cover.webp"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/02/05/3/","url":"https://blog.6yuwei.com/2022/02/05/3/","headline":"輕巧實用的圖表套件Chart.js","description":"想在網頁加入圖表，可以從 Chart.js 開始。本文整理 npm 與 CDN 安裝、script 和模組引入方式，再以畫布範例示範建立與更新圖表、調整尺寸及銷毀實例，方便初學者依照自己的專案環境選擇用法。","datePublished":"2022-02-05T15:00:24.000Z","dateModified":"2026-09-26T04:30:39.000Z","inLanguage":"zh-TW","articleSection":"前端開發","keywords":"前端開發, JavaScript","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2022/02/05/3/cover.webp"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"前端開發","item":"https://blog.6yuwei.com/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"輕巧實用的圖表套件Chart.js","item":"https://blog.6yuwei.com/2022/02/05/3/"}]}</script>
   
@@ -100,7 +100,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -229,6 +229,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2022/02/05/3/cover-card-720.jpg?v=4eb055c2" width="1920" height="1272" decoding="async" class="auto-layout-image post-cover-image" srcset="/2022/02/05/3/cover-card-480.jpg?v=7b405a65 480w, /2022/02/05/3/cover-card-720.jpg?v=4eb055c2 720w, /2022/02/05/3/cover-card-960.jpg?v=da5db079 960w, /2022/02/05/3/cover-card-1280.jpg?v=fcfdb21d 1280w, /2022/02/05/3/cover.webp?v=4f423c9e 1920w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -243,7 +244,7 @@
 
 <h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Chart</span>, registerables &#125; <span class="keyword">from</span> <span class="string">&#x27;chart.js&#x27;</span>;</span><br><span class="line"><span class="title class_">Chart</span>.<span class="title function_">register</span>(...registerables);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myChart = <span class="keyword">new</span> <span class="title class_">Chart</span>(ctx, &#123;...&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p> 先在html中建立畫布</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p> 先在html中建立畫布</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;myChart&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;400&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>取得畫布元素</p>
@@ -263,6 +264,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         
@@ -274,7 +278,7 @@
         
   
   <div class="tags">
-    <a href="/tags/JavaScript/">JavaScript</a>, <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>
+    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>, <a href="/tags/JavaScript/">JavaScript</a>
   </div>
 
         
@@ -345,7 +349,7 @@
         <a href="/2022/02/06/5/" class="related-post-link"
            data-rel-title="網頁導引神器Shepherd.js"
            data-rel-path="/2022/02/06/5/"
-           data-rel-tag="JavaScript"
+           data-rel-tag="前端開發"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -354,7 +358,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">JavaScript</span>
+              <span class="related-post-tag">前端開發</span>
             
             <h4 class="related-post-item-title">網頁導引神器Shepherd.js</h4>
             
@@ -391,7 +395,7 @@
         <a href="/2022/03/14/1/" class="related-post-link"
            data-rel-title="Google Map Marker Clustering的使用方式與自訂標記"
            data-rel-path="/2022/03/14/1/"
-           data-rel-tag="JavaScript"
+           data-rel-tag="前端開發"
            data-rel-position="3">
           <div class="related-post-cover">
             
@@ -400,7 +404,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">JavaScript</span>
+              <span class="related-post-tag">前端開發</span>
             
             <h4 class="related-post-item-title">Google Map Marker Clustering的使用方式與自訂標記</h4>
             

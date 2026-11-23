@@ -24,9 +24,9 @@
   <meta property="article:modified_time" content="2026-09-26T04:30:39.000Z" />
   <meta property="article:section" content="前端開發" />
   
-  <meta property="article:tag" content="JavaScript" />
-  
   <meta property="article:tag" content="前端開發" />
+  
+  <meta property="article:tag" content="JavaScript" />
   
   
   <meta name="twitter:card" content="summary_large_image">
@@ -34,7 +34,7 @@
   <meta name="twitter:description" content="Google Maps 標記太多時，如何用 Marker Clustering 讓地圖更容易閱讀？本文整理 MarkerClusterer 安裝、模組引入與 TypeScript 型別設定，再示範群組標記及自訂顯示方式，並提供效果展示連結。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2022/03/14/1/cover.jpg?v=3fd450d4">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/03/14/1/","url":"https://blog.6yuwei.com/2022/03/14/1/","headline":"Google Map Marker Clustering的使用方式與自訂標記","description":"Google Maps 標記太多時，如何用 Marker Clustering 讓地圖更容易閱讀？本文整理 MarkerClusterer 安裝、模組引入與 TypeScript 型別設定，再示範群組標記及自訂顯示方式，並提供效果展示連結。","datePublished":"2022-03-14T15:31:46.000Z","dateModified":"2026-09-26T04:30:39.000Z","inLanguage":"zh-TW","articleSection":"前端開發","keywords":"JavaScript, 前端開發","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2022/03/14/1/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2022/03/14/1/","url":"https://blog.6yuwei.com/2022/03/14/1/","headline":"Google Map Marker Clustering的使用方式與自訂標記","description":"Google Maps 標記太多時，如何用 Marker Clustering 讓地圖更容易閱讀？本文整理 MarkerClusterer 安裝、模組引入與 TypeScript 型別設定，再示範群組標記及自訂顯示方式，並提供效果展示連結。","datePublished":"2022-03-14T15:31:46.000Z","dateModified":"2026-09-26T04:30:39.000Z","inLanguage":"zh-TW","articleSection":"前端開發","keywords":"前端開發, JavaScript","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2022/03/14/1/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"前端開發","item":"https://blog.6yuwei.com/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"Google Map Marker Clustering的使用方式與自訂標記","item":"https://blog.6yuwei.com/2022/03/14/1/"}]}</script>
   
@@ -100,7 +100,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -229,6 +229,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2022/03/14/1/cover-card-720.jpg?v=65ea25ea" width="1024" height="683" decoding="async" class="auto-layout-image post-cover-image" srcset="/2022/03/14/1/cover-card-480.jpg?v=4b60c726 480w, /2022/03/14/1/cover-card-720.jpg?v=65ea25ea 720w, /2022/03/14/1/cover-card-960.jpg?v=653a20b9 960w, /2022/03/14/1/cover.jpg?v=3fd450d4 1024w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -246,12 +247,15 @@
 
 <h3 id="CDN-1"><a href="#CDN-1" class="headerlink" title="CDN"></a>CDN</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> markerCluster = <span class="keyword">new</span> markerClusterer.<span class="title class_">MarkerClusterer</span>(&#123; map, markers &#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="自訂標記"><a href="#自訂標記" class="headerlink" title="自訂標記"></a>自訂標記</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 在renderer中自訂渲染器</span></span><br><span class="line"><span class="keyword">const</span> markerCluster = <span class="keyword">new</span> <span class="title class_">MarkerClusterer</span>(&#123; map, markers, algorithm, <span class="attr">renderer</span>: &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params">&#123; count, position &#125;, stats</span>) &#123;</span><br><span class="line">        <span class="comment">// 圖標顏色</span></span><br><span class="line">        <span class="keyword">const</span> color = <span class="string">&quot;#000&quot;</span>;</span><br><span class="line">        <span class="comment">// 將svg轉換成base64，可自行更換圖檔</span></span><br><span class="line">        <span class="keyword">const</span> svg = <span class="variable language_">window</span>.<span class="title function_">btoa</span>(<span class="string">`</span></span><br><span class="line"><span class="string">          &lt;svg fill=&quot;<span class="subst">$&#123;color&#125;</span>&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 240 240&quot;&gt;</span></span><br><span class="line"><span class="string">            &lt;circle cx=&quot;120&quot; cy=&quot;120&quot; opacity=&quot;.6&quot; r=&quot;70&quot; /&gt;</span></span><br><span class="line"><span class="string">            &lt;circle cx=&quot;120&quot; cy=&quot;120&quot; opacity=&quot;.3&quot; r=&quot;90&quot; /&gt;</span></span><br><span class="line"><span class="string">            &lt;circle cx=&quot;120&quot; cy=&quot;120&quot; opacity=&quot;.2&quot; r=&quot;110&quot; /&gt;</span></span><br><span class="line"><span class="string">          &lt;/svg&gt;</span></span><br><span class="line"><span class="string">        `</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> google.<span class="property">maps</span>.<span class="title class_">Marker</span>(&#123;</span><br><span class="line">            position,</span><br><span class="line">            <span class="attr">icon</span>: &#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`data:image/svg+xml;base64,<span class="subst">$&#123;svg&#125;</span>`</span>,</span><br><span class="line">                <span class="attr">scaledSize</span>: <span class="keyword">new</span> google.<span class="property">maps</span>.<span class="title class_">Size</span>(<span class="number">50</span>, <span class="number">50</span>),</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 文字樣式</span></span><br><span class="line">            <span class="attr">label</span>: &#123;</span><br><span class="line">                <span class="attr">text</span>: <span class="title class_">String</span>(count),</span><br><span class="line">                <span class="attr">color</span>: <span class="string">&quot;rgba(255,255,255,1)&quot;</span>,</span><br><span class="line">                <span class="attr">fontSize</span>: <span class="string">&quot;12px&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">title</span>: <span class="string">`Cluster of <span class="subst">$&#123;count&#125;</span> markers`</span>,</span><br><span class="line">            <span class="comment">// 圖層順序設定</span></span><br><span class="line">            <span class="attr">zIndex</span>: <span class="title class_">Number</span>(google.<span class="property">maps</span>.<span class="property">Marker</span>.<span class="property">MAX_ZINDEX</span>) + count,</span><br><span class="line">        &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#125;);</span><br></pre></td></tr></table></figure>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="自訂標記"><a href="#自訂標記" class="headerlink" title="自訂標記"></a>自訂標記</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 在renderer中自訂渲染器</span></span><br><span class="line"><span class="keyword">const</span> markerCluster = <span class="keyword">new</span> <span class="title class_">MarkerClusterer</span>(&#123; map, markers, algorithm, <span class="attr">renderer</span>: &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params">&#123; count, position &#125;, stats</span>) &#123;</span><br><span class="line">        <span class="comment">// 圖標顏色</span></span><br><span class="line">        <span class="keyword">const</span> color = <span class="string">&quot;#000&quot;</span>;</span><br><span class="line">        <span class="comment">// 將svg轉換成base64，可自行更換圖檔</span></span><br><span class="line">        <span class="keyword">const</span> svg = <span class="variable language_">window</span>.<span class="title function_">btoa</span>(<span class="string">`</span></span><br><span class="line"><span class="string">          &lt;svg fill=&quot;<span class="subst">$&#123;color&#125;</span>&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 240 240&quot;&gt;</span></span><br><span class="line"><span class="string">            &lt;circle cx=&quot;120&quot; cy=&quot;120&quot; opacity=&quot;.6&quot; r=&quot;70&quot; /&gt;</span></span><br><span class="line"><span class="string">            &lt;circle cx=&quot;120&quot; cy=&quot;120&quot; opacity=&quot;.3&quot; r=&quot;90&quot; /&gt;</span></span><br><span class="line"><span class="string">            &lt;circle cx=&quot;120&quot; cy=&quot;120&quot; opacity=&quot;.2&quot; r=&quot;110&quot; /&gt;</span></span><br><span class="line"><span class="string">          &lt;/svg&gt;</span></span><br><span class="line"><span class="string">        `</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> google.<span class="property">maps</span>.<span class="title class_">Marker</span>(&#123;</span><br><span class="line">            position,</span><br><span class="line">            <span class="attr">icon</span>: &#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`data:image/svg+xml;base64,<span class="subst">$&#123;svg&#125;</span>`</span>,</span><br><span class="line">                <span class="attr">scaledSize</span>: <span class="keyword">new</span> google.<span class="property">maps</span>.<span class="title class_">Size</span>(<span class="number">50</span>, <span class="number">50</span>),</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 文字樣式</span></span><br><span class="line">            <span class="attr">label</span>: &#123;</span><br><span class="line">                <span class="attr">text</span>: <span class="title class_">String</span>(count),</span><br><span class="line">                <span class="attr">color</span>: <span class="string">&quot;rgba(255,255,255,1)&quot;</span>,</span><br><span class="line">                <span class="attr">fontSize</span>: <span class="string">&quot;12px&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">title</span>: <span class="string">`Cluster of <span class="subst">$&#123;count&#125;</span> markers`</span>,</span><br><span class="line">            <span class="comment">// 圖層順序設定</span></span><br><span class="line">            <span class="attr">zIndex</span>: <span class="title class_">Number</span>(google.<span class="property">maps</span>.<span class="property">Marker</span>.<span class="property">MAX_ZINDEX</span>) + count,</span><br><span class="line">        &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>在這裡快速介紹一些基本的使用方式給大家，若需要更多的自訂功能請參考<a target="_blank" rel="noopener" href="https://googlemaps.github.io/js-markerclusterer/index.html">官方文件</a></p>
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         
@@ -263,7 +267,7 @@
         
   
   <div class="tags">
-    <a href="/tags/JavaScript/">JavaScript</a>, <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>
+    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>, <a href="/tags/JavaScript/">JavaScript</a>
   </div>
 
         
@@ -334,7 +338,7 @@
         <a href="/2022/02/06/5/" class="related-post-link"
            data-rel-title="網頁導引神器Shepherd.js"
            data-rel-path="/2022/02/06/5/"
-           data-rel-tag="JavaScript"
+           data-rel-tag="前端開發"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -343,7 +347,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">JavaScript</span>
+              <span class="related-post-tag">前端開發</span>
             
             <h4 class="related-post-item-title">網頁導引神器Shepherd.js</h4>
             
@@ -357,7 +361,7 @@
         <a href="/2022/02/05/3/" class="related-post-link"
            data-rel-title="輕巧實用的圖表套件Chart.js"
            data-rel-path="/2022/02/05/3/"
-           data-rel-tag="JavaScript"
+           data-rel-tag="前端開發"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -366,7 +370,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">JavaScript</span>
+              <span class="related-post-tag">前端開發</span>
             
             <h4 class="related-post-item-title">輕巧實用的圖表套件Chart.js</h4>
             

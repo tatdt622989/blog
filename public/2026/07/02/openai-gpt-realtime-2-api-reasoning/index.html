@@ -102,7 +102,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -231,9 +231,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720.jpg?v=f44e876f" alt="OpenAI GPT-Realtime-2 語音推理模型示意圖" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-480.jpg?v=72466b9d 480w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720.jpg?v=f44e876f 720w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-960.jpg?v=1bf63073 960w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-1280.jpg?v=2bc442f2 1280w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover.jpg?v=6d92ed86 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720.jpg?v=4ff308f2" alt="OpenAI GPT-Realtime-2 語音推理模型示意圖" width="1376" height="768" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-480.jpg?v=d7726308 480w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-720.jpg?v=4ff308f2 720w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-960.jpg?v=486bd98a 960w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover-card-1280.jpg?v=117dd477 1280w, /2026/07/02/openai-gpt-realtime-2-api-reasoning/cover.jpg?v=6d92ed86 1376w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>OpenAI 推出的全新 <strong>gpt-realtime-2</strong> 語音模型，最大變革在於 AI 在開口說話前，會先在後台「推理思考」。它不再只是個快速丟出標準答案的語音助理，而是能像真人日語老師一樣，溫和引導你發現文法錯誤、並模擬高階商務敬語情境。本文直接進入重點，<strong>前半部分提供一般學習者的免代碼設定指南，後半部分則提供開發者 API 串接與優化指南</strong>。</p>
 <span id="more"></span>
 
@@ -273,7 +274,7 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">請扮演一位溫和、極具耐心且專業的日語口說家教（日本語教師）。</span><br><span class="line">在接下來的語音對話中，請完全使用日語與我交流。</span><br><span class="line">當我（學習者）在對話中犯了任何文法錯誤、助詞使用不當（例如 は 與 が 混淆）或敬語使用錯誤時，請不要直接給我正確答案。</span><br><span class="line">請在開口前先在後台推理我犯錯的原因，然後用簡單、易懂的日文給我提示或暗示，引導我自己發現錯誤並重新嘗試回答。</span><br><span class="line">如果我嘗試了兩次仍然無法回答，或者我主動用中文提問時，請切換成繁體中文為我詳細解釋文法規則，解釋完畢後再切換回日語引導我練習。</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="進階開發：如何用-API-串接語音推理家教？"><a href="#進階開發：如何用-API-串接語音推理家教？" class="headerlink" title="進階開發：如何用 API 串接語音推理家教？"></a>進階開發：如何用 API 串接語音推理家教？</h2><p>如果你是開發者，希望將 <strong>gpt-realtime-2</strong> 整合進自己的日語學習 App、網頁或通訊軟體中，則需要透過 WebSocket 或 WebRTC 來與 OpenAI 的 Realtime API 建立連線。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="進階開發：如何用-API-串接語音推理家教？"><a href="#進階開發：如何用-API-串接語音推理家教？" class="headerlink" title="進階開發：如何用 API 串接語音推理家教？"></a>進階開發：如何用 API 串接語音推理家教？</h2><p>如果你是開發者，希望將 <strong>gpt-realtime-2</strong> 整合進自己的日語學習 App、網頁或通訊軟體中，則需要透過 WebSocket 或 WebRTC 來與 OpenAI 的 Realtime API 建立連線。</p>
 <p>當連線成功建立後，你可以發送一個 <strong>session.update</strong> 事件來配置語音家教的角色指令與推理強度。以下是具體的 JSON 配置範例：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;session.update&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;session&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gpt-realtime-2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;instructions&quot;</span><span class="punctuation">:</span> <span class="string">&quot;你是一位專業的日語口說家教（日本語教師）。當學習者說日語時，你不要直接給予正確答案，而是要在後台推理他所犯的文法或助詞錯誤。請以引導的方式，用溫和的日文提示他，並帶領他自己修正。若遭遇嚴重錯誤，再用繁體中文解釋文法規則。&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;voice&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shimmer&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;reasoning&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;effort&quot;</span><span class="punctuation">:</span> <span class="string">&quot;low&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -334,6 +335,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

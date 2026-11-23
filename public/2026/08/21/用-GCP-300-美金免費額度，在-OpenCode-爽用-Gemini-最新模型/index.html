@@ -114,7 +114,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -243,6 +243,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/cover-card-720.jpg?v=7e5af80a" width="1200" height="669" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/cover-card-480.jpg?v=60aa5155 480w, /2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/cover-card-720.jpg?v=7e5af80a 720w, /2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/cover-card-960.jpg?v=cda35776 960w, /2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/cover.jpg?v=4690a881 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -334,7 +335,7 @@
 <li>建議在金鑰設定加上 <strong>API 限制</strong>，只允許 Agent Platform API；官方提醒拿到金鑰的人都能花你的配額。<a target="_blank" rel="noopener" href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/api-keys">官方 API Key 說明</a></li>
 </ol>
 <p>用 API Key 不需要安裝 gcloud CLI，也不用設定 Service Account。另外，官方還有一種免綁卡的 <strong>express mode</strong> 免費方案（限 @gmail.com 帳號、90 天、配額較低），它和 300 美金試用金是<strong>兩套不同的方案</strong>，不要混在一起。<a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview">express mode 說明</a></p>
-<h2 id="步驟三：在-OpenCode-連上-Vertex-並選模型"><a href="#步驟三：在-OpenCode-連上-Vertex-並選模型" class="headerlink" title="步驟三：在 OpenCode 連上 Vertex 並選模型"></a>步驟三：在 OpenCode 連上 Vertex 並選模型</h2><ol>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="步驟三：在-OpenCode-連上-Vertex-並選模型"><a href="#步驟三：在-OpenCode-連上-Vertex-並選模型" class="headerlink" title="步驟三：在 OpenCode 連上 Vertex 並選模型"></a>步驟三：在 OpenCode 連上 Vertex 並選模型</h2><ol>
 <li>在 OpenCode 輸入 <strong>&#x2F;connect</strong>，選 <strong>Vertex</strong>，貼上 API Key。也可以改用環境變數：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOOGLE_VERTEX_API_KEY=<span class="string">&quot;你的 API Key&quot;</span></span><br></pre></td></tr></table></figure>
@@ -404,6 +405,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

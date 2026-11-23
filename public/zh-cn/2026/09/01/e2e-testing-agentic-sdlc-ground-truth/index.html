@@ -120,7 +120,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -249,6 +249,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-720.jpg?v=ca69ca85" alt="AI 时代的 E2E 验收系统将产品版本、固定测试、AI 探索与测试记录串联的技术插图" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-480.jpg?v=8c117004 480w, /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-720.jpg?v=ca69ca85 720w, /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover-card-960.jpg?v=011028d8 960w, /zh-cn/2026/09/01/e2e-testing-agentic-sdlc-ground-truth/cover.jpg?v=de8aafbd 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -529,7 +530,7 @@ flowchart TD
 </tbody></table></div>
 <p>无论这两者背后使用的是否为同一种底层大模型，关键在于<strong>执行角色、上下文沙盒、工具权限与决策闭环的彻底分离</strong>。最新关于 LLM 软件工程的研究表明，如果让模型先写出错误实现再由其自行生成测试，其用例漏判率会大幅上升；因此，修改者与检验者绝不能共享相同的先验逻辑偏差。</p>
 <hr>
-<h2 id="五、测试运行记录治理：为智能体提供可自省的证据链"><a href="#五、测试运行记录治理：为智能体提供可自省的证据链" class="headerlink" title="五、测试运行记录治理：为智能体提供可自省的证据链"></a>五、测试运行记录治理：为智能体提供可自省的证据链</h2><h3 id="告别单一文本报错，留存全维度调用凭据"><a href="#告别单一文本报错，留存全维度调用凭据" class="headerlink" title="告别单一文本报错，留存全维度调用凭据"></a>告别单一文本报错，留存全维度调用凭据</h3><p>仅仅向智能体抛出一句简单的 <code>Expected visible, received hidden</code>，几乎无法为它提供任何有效的排查线索。系统必须在断言失败的瞬间，完整保留现场证据：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五、测试运行记录治理：为智能体提供可自省的证据链"><a href="#五、测试运行记录治理：为智能体提供可自省的证据链" class="headerlink" title="五、测试运行记录治理：为智能体提供可自省的证据链"></a>五、测试运行记录治理：为智能体提供可自省的证据链</h2><h3 id="告别单一文本报错，留存全维度调用凭据"><a href="#告别单一文本报错，留存全维度调用凭据" class="headerlink" title="告别单一文本报错，留存全维度调用凭据"></a>告别单一文本报错，留存全维度调用凭据</h3><p>仅仅向智能体抛出一句简单的 <code>Expected visible, received hidden</code>，几乎无法为它提供任何有效的排查线索。系统必须在断言失败的瞬间，完整保留现场证据：</p>
 <ul>
 <li>失败前后时刻的完整 DOM 快照、ARIA 快照或移动端原生 UI 控件树。</li>
 <li>失败现场屏幕截图、关键视频录像、Playwright Trace 追踪轨迹与完整执行输出。</li>
@@ -714,6 +715,9 @@ flowchart TD
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

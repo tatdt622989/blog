@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,6 +245,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-720.jpg?v=e6586c7b" alt="开源 AI 绘图精准控制与 ComfyUI 节点工作流全景" width="1200" height="669" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-480.jpg?v=a2e70098 480w, /zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-720.jpg?v=e6586c7b 720w, /zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-960.jpg?v=781d3e57 960w, /zh-cn/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -334,7 +335,7 @@ flowchart TD
 <h3 id="4-切片超分层（Tile-Upscale，低显存攻坚-4K）"><a href="#4-切片超分层（Tile-Upscale，低显存攻坚-4K）" class="headerlink" title="4. 切片超分层（Tile Upscale，低显存攻坚 4K）"></a>4. 切片超分层（Tile Upscale，低显存攻坚 4K）</h3><p>若业务需要交付 4K 或 8K 超精细大图，直接全尺寸推理会导致消费级显卡即刻爆显存（OOM）。工业级方案是在此处激活 <strong>ControlNet Tile</strong>，将大画布切割为数十个重叠的独立磁砖分块（Tiles）按序精算，并由 Tile 节点锁紧边界一致性后无缝拼装，实现平民显卡输出巨幅画作。</p>
 <h3 id="5-资产落地层（Post-Processing-amp-Rembg）"><a href="#5-资产落地层（Post-Processing-amp-Rembg）" class="headerlink" title="5. 资产落地层（Post-Processing &amp; Rembg）"></a>5. 资产落地层（Post-Processing &amp; Rembg）</h3><p>在管线终点串接 <strong>LayerDiffuse</strong> 或 <strong>Rembg</strong> 节点，实现发丝级主体识别并剥离背景，直出具备 Alpha 透明通道的 PNG 格式立绘。同时可串联 LUT 调色节点统一不同资产的色彩倾向，无缝导入游戏引擎。</p>
 <hr>
-<h2 id="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"><a href="#手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘" class="headerlink" title="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"></a>手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘</h2><p>为了让抽象的理论真正落地，我们以一个真实的独立游戏美术需求为例，从零搭建一条确定性生产管线：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"><a href="#手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘" class="headerlink" title="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"></a>手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘</h2><p>为了让抽象的理论真正落地，我们以一个真实的独立游戏美术需求为例，从零搭建一条确定性生产管线：</p>
 <h3 id="任务目标与交付标准"><a href="#任务目标与交付标准" class="headerlink" title="任务目标与交付标准"></a>任务目标与交付标准</h3><ul>
 <li><strong>角色设定</strong>：银发、深红瞳孔、黑色皮质斗篷、手握长剑。</li>
 <li><strong>动作要求</strong>：双手执剑迎战的动态姿态，透视为微仰角，五指抓握剑柄必须严格符合人体工学。</li>
@@ -394,6 +395,9 @@ flowchart TD
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,9 +245,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-720.jpg?v=e0fd4d2d" alt="AI 時代資安防護示意：盾牌連接電腦、手機與雲端，分離的備份保護重要資料" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-480.jpg?v=381813c6 480w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-720.jpg?v=e0fd4d2d 720w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-960.jpg?v=fe474a16 960w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-1280.jpg?v=b2659817 1280w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover.jpg?v=a65334af 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-720.jpg?v=6032bd79" alt="AI 時代資安防護示意：盾牌連接電腦、手機與雲端，分離的備份保護重要資料" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-480.jpg?v=74d03fa1 480w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-720.jpg?v=6032bd79 720w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-960.jpg?v=140e837b 960w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover-card-1280.jpg?v=c0c8057a 1280w, /2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/cover.jpg?v=a65334af 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>2026 年 10 月在資安圈被許多人稱為「黑色十月」。短短幾週內，修補與外洩通知幾乎沒有停過：PHP 與 Node.js 底層執行環境同日釋出重大安全更新，AI 開發圈常用的 LiteLLM 爆發供應鏈投毒，雲端部署平台 Zeabur、Railway 與 AI 編碼代理工具 OpenCode 接連傳出環境變數與 API 金鑰外洩，台灣電商系統商 91APP 與國際企業供應鏈更直接出現 AI 自主滲透工具 <strong>ARTEX</strong> 的實戰痕跡，連底層 HTTPS 信任鏈都碰上 eMudhra 中繼憑證私鑰隨機性危機。</p>
 <p>當 AI 能幫我們寫程式、讀郵件、連接雲端服務，方便增加了，風險也跟著跨過更多系統。我想從十月這一連串真實事件出發，先用官方調查報告把各起事故的破口與影響範圍理清楚，再談一般使用者、獨立開發者與小團隊可以怎麼調整習慣，讓一次疏忽不至於演變成一整串損失。</p>
 <span id="more"></span>
@@ -312,7 +313,7 @@
 <h3 id="5-eMudhra-中繼憑證危機：連-HTTPS-信任底座都可能出現破口"><a href="#5-eMudhra-中繼憑證危機：連-HTTPS-信任底座都可能出現破口" class="headerlink" title="5. eMudhra 中繼憑證危機：連 HTTPS 信任底座都可能出現破口"></a>5. eMudhra 中繼憑證危機：連 HTTPS 信任底座都可能出現破口</h3><p>除了應用程式與平台，十月連底層密碼學信任鏈也拉響警報。社群研究者在 <strong>10 月 17 日</strong>向瀏覽器廠商通報，國際數位憑證機構 <strong>eMudhra</strong> 旗下的 <strong>8 張中繼憑證（Intermediate CA）</strong>（6 張用於網站 TLS、2 張用於程式碼簽章）私鑰產生時隨機性不足，等同私鑰已經外洩。一旦攻擊者握有受信任中繼 CA 的私鑰，理論上就能為任意網域簽發看似合法的 HTTPS 憑證。</p>
 <p><strong>Google Chrome</strong> 與 <strong>Mozilla Firefox</strong> 在接獲通報後數小時內，分別透過 <strong>CRLSet</strong> 與 <strong>OneCRL</strong> 完成緊急封鎖；Google 也指出，封鎖前憑證透明度（Certificate Transparency）日誌中沒有任何串接到這些中繼 CA 的 TLS 憑證。<a target="_blank" rel="noopener" href="https://blog.google/security/protecting-chrome-and-android-users-from-compromised-emudhra-intermediate-ca-certificates/">Google 安全公告</a>、<a target="_blank" rel="noopener" href="https://blog.mozilla.org/security/2026/10/20/protecting-firefox-users-following-the-compromise-of-emudhra-intermediate-certificates/">Mozilla 安全公告</a></p>
 <p>但這起事件對工程團隊的真正提醒在於：<strong>瀏覽器會自動更新撤銷清單，你的後端容器、命令列工具與執行環境卻不會。</strong> 10 月 21 日的 Node.js 安全更新因此也包含 eMudhra 相關的憑證庫更新，Python 的 <strong>certifi</strong> 套件則在 10 月的新版移除相關根憑證；如果後端服務長期不更新基礎映像檔，就可能繼續信任早已被瀏覽器撤銷的憑證。</p>
-<h2 id="AI-放大的，是速度、權限與損失的連動"><a href="#AI-放大的，是速度、權限與損失的連動" class="headerlink" title="AI 放大的，是速度、權限與損失的連動"></a>AI 放大的，是速度、權限與損失的連動</h2><p>把上面六類事件放在一起看，我的判斷很明確：<strong>AI 並沒有發明全新的管理漏洞，而是讓「未更新的邊緣工具、未撤銷的金鑰、過大的跨系統權限」在極短時間內連鎖引爆。</strong> 可以從三個角度理解：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="AI-放大的，是速度、權限與損失的連動"><a href="#AI-放大的，是速度、權限與損失的連動" class="headerlink" title="AI 放大的，是速度、權限與損失的連動"></a>AI 放大的，是速度、權限與損失的連動</h2><p>把上面六類事件放在一起看，我的判斷很明確：<strong>AI 並沒有發明全新的管理漏洞，而是讓「未更新的邊緣工具、未撤銷的金鑰、過大的跨系統權限」在極短時間內連鎖引爆。</strong> 可以從三個角度理解：</p>
 <p><strong>第一，偵察與試錯的時間差幾乎歸零。</strong> 過去從一個內部工具漏洞（如 91APP 案中的 Appsmith）摸進內網、翻找 GitLab 儲存庫到定位資料庫金鑰，可能需要熟練攻擊者花上數天；當 <strong>ARTEX</strong> 這類多代理工具把偵察、漏洞掃描與憑證搜刮串成自動化流程，「外圍工具晚幾天更新」或「內部環境多放一把明文金鑰」的容錯空間就被大幅壓縮。</p>
 <p><strong>第二，授權範圍與託管邊界變得更關鍵。</strong> 不論是企業內部部署的 AI 助手，還是開發者交給雲端平台（如 Zeabur、Railway、OpenCode）代管的環境變數，只要同一個環境裡同時握有讀取郵件、查詢客戶資料、存取程式碼庫與呼叫外部服務的最高權限，單點失守就會變成全線潰堤。</p>
 <p><strong>第三，失竊憑證會直接變成算力帳單與精準詐騙素材。</strong> Railway 的初步證據顯示攻擊者在找 AI 供應商 API 金鑰用於模型蒸餾，OpenCode 也把事件稱為大規模蒸餾攻擊；而在 91APP 事件中，即使沒有外洩信用卡資料，光靠個資與真實訂單明細，就能讓一般消費者面對極難辨識的客製化詐騙。</p>
@@ -350,6 +351,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

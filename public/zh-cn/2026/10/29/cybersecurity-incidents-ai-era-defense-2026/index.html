@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,9 +245,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-720.jpg?v=e0fd4d2d" alt="AI 时代网络安全防护示意：盾牌连接电脑、手机与云服务，独立备份保护重要数据" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-480.jpg?v=381813c6 480w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-720.jpg?v=e0fd4d2d 720w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-960.jpg?v=fe474a16 960w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-1280.jpg?v=b2659817 1280w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover.jpg?v=a65334af 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-720.jpg?v=6032bd79" alt="AI 时代网络安全防护示意：盾牌连接电脑、手机与云服务，独立备份保护重要数据" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-480.jpg?v=74d03fa1 480w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-720.jpg?v=6032bd79 720w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-960.jpg?v=140e837b 960w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover-card-1280.jpg?v=c0c8057a 1280w, /zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/cover.jpg?v=a65334af 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>2026 年 10 月被安全社区广泛称为“黑色十月”。短短几周内，漏洞通告与数据泄露通报几乎没有间断：PHP 与 Node.js 底层运行时在同一天发布紧急安全更新，AI 开发常用的 LiteLLM 遭遇供应链投毒，云部署平台 Zeabur、Railway 与 AI 编程代理工具 OpenCode 接连曝出环境变量与 API 密钥泄露，电商 SaaS 服务商 91APP 与跨国企业供应链更直接出现了 AI 自主渗透工具 <strong>ARTEX</strong> 的实战痕迹，连底层 HTTPS 信任链也遇上了 eMudhra 中间证书私钥随机性危机。</p>
 <p>AI 能帮我们写代码、读邮件、调用云服务，也让数据与权限流经更多系统。这篇文章想从十月这一连串真实安全事件出发，先依据官方调查报告理清各起事件的突破口与影响范围，再讨论普通用户、独立开发者和小团队如何调整安全习惯，减少一次疏忽引发的连锁损失。</p>
 <span id="more"></span>
@@ -312,7 +313,7 @@
 <h3 id="5-eMudhra-中间证书危机：连-HTTPS-信任底座都可能出现裂痕"><a href="#5-eMudhra-中间证书危机：连-HTTPS-信任底座都可能出现裂痕" class="headerlink" title="5. eMudhra 中间证书危机：连 HTTPS 信任底座都可能出现裂痕"></a>5. eMudhra 中间证书危机：连 HTTPS 信任底座都可能出现裂痕</h3><p>除了应用与平台，十月连底层密码学信任链也拉响了警报。社区研究者在 <strong>10 月 17 日</strong>向浏览器厂商通报，国际数字证书机构 <strong>eMudhra</strong> 旗下的 <strong>8 张中间证书（Intermediate CA）</strong>（6 张用于网站 TLS、2 张用于代码签名）私钥生成时随机性不足，等同私钥已经泄露。一旦攻击者掌握受信任中间 CA 的私钥，理论上就能为任意域名签发受信任的 HTTPS 证书。</p>
 <p><strong>Google Chrome</strong> 与 <strong>Mozilla Firefox</strong> 在收到通报后数小时内，分别通过 <strong>CRLSet</strong> 与 <strong>OneCRL</strong> 完成紧急封锁；Google 也指出，封锁前证书透明度（Certificate Transparency）日志中没有任何链接到这些中间 CA 的 TLS 证书。<a target="_blank" rel="noopener" href="https://blog.google/security/protecting-chrome-and-android-users-from-compromised-emudhra-intermediate-ca-certificates/">Google 安全公告</a>、<a target="_blank" rel="noopener" href="https://blog.mozilla.org/security/2026/10/20/protecting-firefox-users-following-the-compromise-of-emudhra-intermediate-certificates/">Mozilla 安全公告</a></p>
 <p>但这起事件对工程团队的关键提醒在于：<strong>浏览器会自动同步吊销列表，你的后端容器、命令行工具与运行时却不会。</strong> 因此 10 月 21 日的 Node.js 安全更新也包含了 eMudhra 相关的证书库更新，Python 的 <strong>certifi</strong> 软件包则在 10 月的新版中移除了相关根证书；如果后端服务长期不更新基础镜像，就可能继续信任早已被浏览器拉黑的证书。</p>
-<h2 id="AI-放大了速度、权限和损失之间的关联"><a href="#AI-放大了速度、权限和损失之间的关联" class="headerlink" title="AI 放大了速度、权限和损失之间的关联"></a>AI 放大了速度、权限和损失之间的关联</h2><p>把以上六类事件放在一起审视，我的判断很明确：<strong>AI 并没有创造全新的管理缺陷，而是让“未更新的边缘工具、未吊销的密钥、过大的跨系统权限”在极短时间内产生连锁反应。</strong> 主要体现在三个方面：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="AI-放大了速度、权限和损失之间的关联"><a href="#AI-放大了速度、权限和损失之间的关联" class="headerlink" title="AI 放大了速度、权限和损失之间的关联"></a>AI 放大了速度、权限和损失之间的关联</h2><p>把以上六类事件放在一起审视，我的判断很明确：<strong>AI 并没有创造全新的管理缺陷，而是让“未更新的边缘工具、未吊销的密钥、过大的跨系统权限”在极短时间内产生连锁反应。</strong> 主要体现在三个方面：</p>
 <p><strong>第一，侦察与试错的时间窗口大幅缩短。</strong> 过去从一个内部工具漏洞（如 91APP 案中的 Appsmith）进入内网、翻找 GitLab 仓库到定位数据库密钥，可能需要熟练攻击者耗费数天；当 <strong>ARTEX</strong> 这类多代理工具把侦察、漏洞扫描与凭据搜寻串成自动化流水线，“边缘工具晚几天打补丁”或“内网多放一把明文密钥”的容错空间就被急剧压缩。</p>
 <p><strong>第二，工具授权与托管边界成为关键防线。</strong> 无论是企业内部接入的 AI 助手，还是开发者交给云平台（如 Zeabur、Railway、OpenCode）托管的环境变量，只要同一环境同时拥有读取邮件、查询客户数据、访问代码仓库和调用外部服务的高权限，单点失守就会迅速演变为全局风险。</p>
 <p><strong>第三，被盗凭据会直接转化为算力账单与精准诈骗素材。</strong> Railway 的初步证据显示攻击者在搜寻 AI 供应商 API 密钥用于模型蒸馏，OpenCode 也把事件定性为大规模蒸馏攻击；而在 91APP 事件中，即便没有泄露信用卡信息，仅凭个人信息与真实订单明细，就足以让普通消费者面对极具迷惑性的定制化诈骗。</p>
@@ -350,6 +351,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

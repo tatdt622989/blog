@@ -10,13 +10,19 @@
       <% } %>
       <%- partial('post/title') %>
     </header>
+    <% var showArticleAds = !index && item.layout === 'post' && item.no_tracking !== true; %>
     <div class="e-content entry" itemprop="articleBody">
       <% if (item.excerpt && index){ %>
         <%- item.excerpt %>
+      <% } else if (showArticleAds) { %>
+        <%- with_mid_article_ad(item.content) %>
       <% } else { %>
         <%- item.content %>
       <% } %>
     </div>
+    <% if (showArticleAds){ %>
+      <%- article_ad('bottom') %>
+    <% } %>
     <footer>
       <% if (index){ %>
         <% if (item.excerpt){ %>

@@ -1567,6 +1567,44 @@ article .related-posts .related-post-info .related-post-date {
   margin-top: auto;
   line-height: 1;
 }
+.article-ad {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-direction: reverse;
+  -moz-box-direction: reverse;
+  -o-box-direction: reverse;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+  margin: 2em 0;
+  overflow: hidden;
+}
+.article-ad ins.adsbygoogle {
+  min-height: 120px;
+}
+.article-ad ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+.article-ad ins.adsbygoogle[data-ad-status="unfilled"] + .article-ad-label {
+  display: none;
+}
+.article-ad--article ins.adsbygoogle {
+  min-height: 200px;
+}
+.article-ad-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #878787;
+  text-align: center;
+  margin-bottom: 4px;
+}
 #comment {
   padding: 20px;
   background: #fff;

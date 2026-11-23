@@ -104,7 +104,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -233,9 +233,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-720.jpg?v=d42b1b58" alt="MCP 2026-07-28 協定更新與 AI Agent 工具連線示意圖" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-480.jpg?v=d7b62d54 480w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-720.jpg?v=d42b1b58 720w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-960.jpg?v=a3a2a34c 960w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-1280.jpg?v=5dc8de45 1280w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover.jpg?v=63dd81af 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-720.jpg?v=6bc992bc" alt="MCP 2026-07-28 協定更新與 AI Agent 工具連線示意圖" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-480.jpg?v=1990c24a 480w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-720.jpg?v=6bc992bc 720w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-960.jpg?v=94be066c 960w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover-card-1280.jpg?v=94895ec1 1280w, /2026/08/03/MCP-2026-07-28-RC-%E6%94%B9%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%BE%9E-Stateless%E3%80%81Tasks-%E5%88%B0-MCP-Apps/cover.jpg?v=63dd81af 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>如果把 AI Agent 想成一位會自己查資料、操作工具的助理，那麼 <strong>MCP（Model Context Protocol，模型上下文協定）</strong> 就像是 AI 世界裡的一套共通插座規格。只要工具和 AI 都遵守這套規格，Agent 就能用比較一致的方式讀取資料、呼叫功能，或把結果交回使用者。</p>
 <p>最近 MCP 出現了 <strong>2026-07-28 RC（Release Candidate，發布候選版）</strong>。這不是改幾個欄位的小更新，而是重新思考遠端 MCP Server 要如何連線、如何維持狀態，以及長時間任務要怎麼和使用者互動。</p>
 <p>先講結論：<strong>一般使用者不需要看到 RC 就立刻重設所有 MCP；MCP 開發者則應該開始測試新舊兩種連線方式。</strong>截至 2026 年 8 月 3 日，官方規格儲存庫仍將 <strong>2025-11-25</strong> 列為最新正式版本，<strong>2026-07-28</strong> 仍以 RC 和各 SDK 的遷移文件為主要參考。不同工具的支援速度也不會完全同步。</p>
@@ -289,7 +290,7 @@
 <li>預覽一個即將送出的動作</li>
 </ul>
 <p><strong>MCP Apps</strong> 的方向，是讓 Server 可以提供由 Server 渲染的互動介面，讓支援的 Host 把它顯示在 AI 工作流裡。這不代表每個 MCP Client 都會自動出現漂亮的畫面，而是協定開始為「工具加上介面」預留正式位置。</p>
-<h2 id="這次還有哪些重要變化？"><a href="#這次還有哪些重要變化？" class="headerlink" title="這次還有哪些重要變化？"></a>這次還有哪些重要變化？</h2><h3 id="授權更靠近-OAuth-與-OpenID-Connect"><a href="#授權更靠近-OAuth-與-OpenID-Connect" class="headerlink" title="授權更靠近 OAuth 與 OpenID Connect"></a>授權更靠近 OAuth 與 OpenID Connect</h3><p>當 MCP Server 從本機小工具變成遠端服務，登入、權限、Token 保存和撤銷就不能再用臨時做法處理。2026-07-28 RC 把授權方向拉近 OAuth 與 OpenID Connect 的實務部署，目標是讓企業比較容易接上既有的登入與權限系統。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="這次還有哪些重要變化？"><a href="#這次還有哪些重要變化？" class="headerlink" title="這次還有哪些重要變化？"></a>這次還有哪些重要變化？</h2><h3 id="授權更靠近-OAuth-與-OpenID-Connect"><a href="#授權更靠近-OAuth-與-OpenID-Connect" class="headerlink" title="授權更靠近 OAuth 與 OpenID Connect"></a>授權更靠近 OAuth 與 OpenID Connect</h3><p>當 MCP Server 從本機小工具變成遠端服務，登入、權限、Token 保存和撤銷就不能再用臨時做法處理。2026-07-28 RC 把授權方向拉近 OAuth 與 OpenID Connect 的實務部署，目標是讓企業比較容易接上既有的登入與權限系統。</p>
 <p>這對一般使用者的提醒是：看到 MCP 要求連接外部帳號時，不要只看它「能不能用」，也要確認它會存取哪些資料、能不能執行寫入操作，以及權限能不能隨時撤銷。</p>
 <h3 id="Roots、Sampling、Logging-被標示為-Deprecated"><a href="#Roots、Sampling、Logging-被標示為-Deprecated" class="headerlink" title="Roots、Sampling、Logging 被標示為 Deprecated"></a>Roots、Sampling、Logging 被標示為 Deprecated</h3><p>在新版本方向中，Roots、Sampling 和 Logging 被標示為 <strong>Deprecated（不建議新的實作繼續依賴）</strong>。Deprecated 不等於今天立刻全部消失，而是代表開發者不應再把它們當成未來唯一的設計基礎。</p>
 <p>MCP 仍然需要一段新舊版本並存的時間，因此升級時要看你連接的 Client、Server 和 SDK 各自支援什麼，而不是只看規格文件上的一個日期。</p>
@@ -325,6 +326,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

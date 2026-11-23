@@ -120,7 +120,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -249,6 +249,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2026/11/12/Rust-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%B6%8A%E4%BE%86%E8%B6%8A%E7%B4%85%EF%BC%9FDiscord%E3%80%81Linux%E3%80%81GitHub-%E9%83%BD%E6%94%B9%E7%94%A8-Rust-%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%88%87%E5%8F%8D%E4%BE%8B/cover-card-720.jpg?v=fad70e95" alt="戴著工地安全帽的橘色螃蟹，把軟體城市裡龜裂的灰色石磚換成閃亮的鏽橘色金屬磚，周圍有伺服器、終端機、聊天 App 視窗與手機" width="1200" height="630" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/11/12/Rust-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%B6%8A%E4%BE%86%E8%B6%8A%E7%B4%85%EF%BC%9FDiscord%E3%80%81Linux%E3%80%81GitHub-%E9%83%BD%E6%94%B9%E7%94%A8-Rust-%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%88%87%E5%8F%8D%E4%BE%8B/cover-card-480.jpg?v=9aaaa9fd 480w, /2026/11/12/Rust-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%B6%8A%E4%BE%86%E8%B6%8A%E7%B4%85%EF%BC%9FDiscord%E3%80%81Linux%E3%80%81GitHub-%E9%83%BD%E6%94%B9%E7%94%A8-Rust-%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%88%87%E5%8F%8D%E4%BE%8B/cover-card-720.jpg?v=fad70e95 720w, /2026/11/12/Rust-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%B6%8A%E4%BE%86%E8%B6%8A%E7%B4%85%EF%BC%9FDiscord%E3%80%81Linux%E3%80%81GitHub-%E9%83%BD%E6%94%B9%E7%94%A8-Rust-%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%88%87%E5%8F%8D%E4%BE%8B/cover-card-960.jpg?v=e7672c7e 960w, /2026/11/12/Rust-%E7%82%BA%E4%BB%80%E9%BA%BC%E8%B6%8A%E4%BE%86%E8%B6%8A%E7%B4%85%EF%BC%9FDiscord%E3%80%81Linux%E3%80%81GitHub-%E9%83%BD%E6%94%B9%E7%94%A8-Rust-%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%88%87%E5%8F%8D%E4%BE%8B/cover.jpg?v=d5bded27 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -386,7 +387,7 @@
 <li><strong>雲端大廠看重的是「硬體成本與密度」</strong>：對 Cloudflare 這種每天處理超過 1 兆次請求的網路巨頭來說，<strong>Pingora</strong> 省下的 70% CPU 與 67% 記憶體，換算下來就是少買數萬台伺服器與龐大的機房電費。</li>
 <li><strong>前端與 Python 工具鏈看重的是「開發者等待時間」</strong>：JavaScript 與 Python 寫商業邏輯很方便，但拿來處理成千上萬個檔案的語法樹解析與打包時，單執行緒與直譯開銷就會成為瓶頸。改用 Rust 結合平行運算（如 <strong>Rolldown</strong>、<strong>Turbopack</strong>、<strong>uv</strong>、<strong>Ruff</strong>），能把原本幾十秒的建置與安裝縮短到一兩秒內。</li>
 </ul>
-<h2 id="深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？"><a href="#深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？" class="headerlink" title="深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？"></a>深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？</h2><p>在所有案例中，<strong>Discord</strong> 是最能代表「應用程式從後端一路 Rust 化到前端桌面」的完整縮影。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？"><a href="#深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？" class="headerlink" title="深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？"></a>深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？</h2><p>在所有案例中，<strong>Discord</strong> 是最能代表「應用程式從後端一路 Rust 化到前端桌面」的完整縮影。</p>
 <p>Discord 從 2018 年起就在後端基礎設施與語音服務中使用 Rust，並在 2020 年完成著名的 Read States 服務遷移。然而，廣大玩家與社群使用者每天打開的 <strong>Discord 桌面版</strong>，多年來一直是基於 <strong>Electron</strong> 框架（底層打包了完整的 Chromium 瀏覽器與 Node.js）。雖然 Electron 讓團隊能用一套 React 程式碼跨平台開發，但也帶來了眾所皆知的缺點：記憶體動輒吃掉 1 GB 以上、冷啟動要等好幾秒。</p>
 <p>即便 Discord 工程團隊在 2026 年 9 月努力將客戶端升級到 <strong>Electron 42</strong>，雖然讓中位數 CPU 使用率下降了約 **17%**，但記憶體占用反而微幅上升了約 **4%**——這證明只要還揹著整座瀏覽器引擎，優化就有物理極限。</p>
 <p>因此在 <strong>2026 年 11 月 4 日</strong>，Discord 技術長 Stanislav Vishnevskiy 正式宣布內部代號為 <strong>Phoenix</strong> 的跨世代重構計畫：桌面版將<a target="_blank" rel="noopener" href="https://www.ghacks.net/2026/11/06/discord-is-rebuilding-its-desktop-app-in-rust-with-the-new-client-using-290-mb-of-ram/">徹底拋棄 Electron</a>，改用 <strong>Rust</strong> 搭配 <strong>Zed 編輯器</strong>團隊打造的 GPU 加速介面框架 <strong>GPUI</strong> 重新打造。</p>
@@ -496,6 +497,9 @@ flowchart TD
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

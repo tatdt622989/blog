@@ -114,7 +114,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -243,9 +243,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-720.jpg?v=024b773f" alt="VoiceStudio 本地 AI 配音工作台与电脑配置指南" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-480.jpg?v=917a5518 480w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-720.jpg?v=024b773f 720w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-960.jpg?v=a50eab40 960w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-1280.jpg?v=00061d80 1280w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg?v=97053b40 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-720.jpg?v=fd3ed726" alt="VoiceStudio 本地 AI 配音工作台与电脑配置指南" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-480.jpg?v=fa2b8d28 480w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-720.jpg?v=fd3ed726 720w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-960.jpg?v=54df6a32 960w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover-card-1280.jpg?v=0bcdb216 1280w, /zh-cn/2026/10/05/voicestudio-local-voice-ai-hardware-guide/cover.jpg?v=97053b40 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>VoiceStudio 将文本转语音、声音克隆、视频配音和批量音频制作放进同一个桌面界面。对于想做游戏角色试音、视频旁白或语言学习素材的人，它的吸引力在于：可以直接在自己的电脑上运行受支持的语音模型。</p>
 <p>但安装成功，并不等于适合每天用来制作音频。下面先用一张四档配置表说明 Windows、Linux 和 Mac 分别适合哪些任务，再介绍功能与上手方法。</p>
 <span id="more"></span>
@@ -303,7 +304,7 @@
 <li><strong>完整视频配音比生成一句语音更复杂。</strong> 语音识别等步骤也会占用资源，余量不足会增加模型卸载与重新加载的次数。</li>
 </ol>
 <p>配置建议的依据是：<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/engines/omnivoice.md">OmniVoice 引擎说明</a>给出的独立 GPU 推荐显存下限为 <strong>6GB</strong>；<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/performance.md">官方性能指南</a>指出，16GB Apple Silicon 在配音流程中可能需要轮流卸载模型。较大显存的 NVIDIA 配置有更大的并行空间，而 Apple Silicon 当前按单次生成设计，更多内存主要减少资源争抢与模型加载切换。</p>
-<h2 id="先确认平台是否能使用-GPU-加速"><a href="#先确认平台是否能使用-GPU-加速" class="headerlink" title="先确认平台是否能使用 GPU 加速"></a>先确认平台是否能使用 GPU 加速</h2><p><strong>Windows 10／11 x64</strong>是常见安装路线。主要 PyTorch 引擎使用 <strong>NVIDIA CUDA</strong> 加速，也能在没有受支持 GPU 时使用 CPU。常规安装包会处理运行环境，不需要先手动安装一整套 CUDA Toolkit。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="先确认平台是否能使用-GPU-加速"><a href="#先确认平台是否能使用-GPU-加速" class="headerlink" title="先确认平台是否能使用 GPU 加速"></a>先确认平台是否能使用 GPU 加速</h2><p><strong>Windows 10／11 x64</strong>是常见安装路线。主要 PyTorch 引擎使用 <strong>NVIDIA CUDA</strong> 加速，也能在没有受支持 GPU 时使用 CPU。常规安装包会处理运行环境，不需要先手动安装一整套 CUDA Toolkit。</p>
 <p>Windows 下的 <strong>AMD Radeon 与 Intel 显卡，不能直接加速该安装环境中的 PyTorch 引擎</strong>。部分其他引擎采用不同后端，例如 audio.cpp 可以使用 Vulkan，所以不能按“有独显”就直接套用 NVIDIA 那一栏。<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/install/windows.md">Windows 安装文档</a>给出了具体区别；Windows ARM 仍属于实验性支持。</p>
 <p><strong>Apple Silicon Mac</strong>支持 MPS，部分模型还有 MLX 路径。官方要求 <strong>macOS 13.3 或更新版本</strong>，并应选择原生 <strong>arm64</strong> 安装包。<strong>Intel Mac 目前不支持本地后端</strong>，只能运行界面并连接其他电脑上的远程后端，不能将它当成“只是慢一点的 CPU 版 Mac”。<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/blob/main/docs/install/macos.md">macOS 安装文档</a></p>
 <p>Linux 可以使用 NVIDIA；AMD ROCm 则需要逐项确认显卡、系统和所选引擎的兼容性。初次体验建议从手头已有、明确受支持的平台开始。</p>
@@ -325,6 +326,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

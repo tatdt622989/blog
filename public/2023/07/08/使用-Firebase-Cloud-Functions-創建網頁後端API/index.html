@@ -100,7 +100,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -229,6 +229,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/cover-card-720.jpg?v=e39c5e44" width="1024" height="1024" decoding="async" class="auto-layout-image post-cover-image" srcset="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/cover-card-480.jpg?v=2cd94f46 480w, /2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/cover-card-720.jpg?v=e39c5e44 720w, /2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/cover-card-960.jpg?v=739aedda 960w, /2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/cover.webp?v=35951e8a 1024w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -274,7 +275,7 @@
 <p>這個網址可以使用 <strong>GET</strong> 、 <strong>POST</strong> 、 <strong>PUT</strong> 、 <strong>DELETE</strong> 和 <strong>OPTIONS</strong> 的HTTP方法進行調用，由於這個function使用req.body接收資料，所以這裡筆者選用POST的方式進行測試。</p>
 <p><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase9.png?v=5163f403"></p>
 <p>使用Postman測試可以發現確實回傳給我隨機的數字，這樣就代表成功了！</p>
-<h2 id="補充：如何搭配Realtime-Database"><a href="#補充：如何搭配Realtime-Database" class="headerlink" title="補充：如何搭配Realtime Database"></a>補充：如何搭配Realtime Database</h2><p>若希望在function內使用Realtime Database做資料的存取，可以使用firebase-admin來協助將資料寫入資料庫</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="補充：如何搭配Realtime-Database"><a href="#補充：如何搭配Realtime-Database" class="headerlink" title="補充：如何搭配Realtime Database"></a>補充：如何搭配Realtime Database</h2><p>若希望在function內使用Realtime Database做資料的存取，可以使用firebase-admin來協助將資料寫入資料庫</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;onCall, <span class="title class_">HttpsError</span>&#125; = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/v2/https&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;setGlobalOptions&#125; = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/v2&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">&quot;firebase-functions/logger&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> admin = <span class="built_in">require</span>(<span class="string">&quot;firebase-admin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize the app</span></span><br><span class="line">admin.<span class="title function_">initializeApp</span>();</span><br><span class="line"></span><br><span class="line"><span class="title function_">setGlobalOptions</span>(&#123;<span class="attr">region</span>: <span class="string">&quot;asia-east1&quot;</span>&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>這裡將先前的function修改成會將結果寫入資料庫，主要就是使用 <strong>const db &#x3D; admin.database();</strong> 來將資料庫引入，再執行寫入。</p>
@@ -288,6 +289,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

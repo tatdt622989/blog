@@ -635,3 +635,28 @@ article
         margin-top auto
         line-height 1
 
+
+// Fixed ad slots on posts (scripts/article-ads.js). The ad reserves space to limit layout shift.
+// The label follows the ad in the HTML so an unfilled ad hides its label too; column-reverse shows
+// the label above the ad.
+.article-ad
+  display flex
+  flex-direction column-reverse
+  margin 2em 0
+  overflow hidden
+  ins.adsbygoogle
+    min-height 120px
+    &[data-ad-status="unfilled"]
+      display none !important
+      & + .article-ad-label
+        display none
+
+.article-ad--article ins.adsbygoogle
+  min-height 200px
+
+.article-ad-label
+  font-size 11px
+  letter-spacing 0.08em
+  color color-meta
+  text-align center
+  margin-bottom 4px

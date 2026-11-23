@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,9 +245,10 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
-        <p class="post-cover-frame"><img src="/zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-720.jpg?v=4ccd482f" alt="Node.js 安全更新示意：服务器连接解压缩、TLS 证书及随机数状态的修复节点" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-480.jpg?v=1998c692 480w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-720.jpg?v=4ccd482f 720w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-960.jpg?v=f58b5872 960w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-1280.jpg?v=2f5cf314 1280w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover.jpg?v=dfbdd378 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
+        <p class="post-cover-frame"><img src="/zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-720.jpg?v=56959b7d" alt="Node.js 安全更新示意：服务器连接解压缩、TLS 证书及随机数状态的修复节点" width="1672" height="941" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-480.jpg?v=4dfd0407 480w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-720.jpg?v=56959b7d 720w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-960.jpg?v=34ca4909 960w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover-card-1280.jpg?v=ece16144 1280w, /zh-cn/2026/10/21/nodejs-october-2026-security-analysis/cover.jpg?v=dfbdd378 1672w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
 <p>2026 年 10 月 21 日的 <strong>Node.js 安全更新</strong>列出 10 项具名漏洞，最高等级为 <strong>High</strong>。其中包括 Brotli 解码器可能导致远程代码执行、TLS 主机名校验绕过，以及启动快照导致随机数缓存重复使用等问题。</p>
 <p>这次需要注意的不只是网站接收请求的入口。后端主动访问远程资源、复用 HTTP 连接、生成单文件可执行程序，也可能涉及不同的漏洞条件。本文结合官方公告、发布说明和公开修复代码，分析应该检查哪些实际路径。</p>
 <span id="more"></span>
@@ -357,7 +358,7 @@
 <p>容易漏掉的路径是<strong>服务器主动发起出站请求</strong>。修复版内置的 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/deps/undici/src/lib/web/fetch/index.js">Undici fetch 源码</a>显示，当响应内容编码为 <strong>br</strong> 时，会调用 Brotli 解码器。</p>
 <p>因此，接受用户提供的网址、导入远程内容、读取可由攻击者控制的响应，以及处理外来压缩文件，都是值得排查的场景。这是依据数据流推导的检查范围，<strong>不代表每个场景都已证实可成功利用</strong>。</p>
 <p>如果服务只是把内容压缩成 Brotli 后发给浏览器，也不能据此确认触发了解码漏洞。排查需要弄清数据的提供方和解压方，而不是只搜索配置中是否出现 Brotli。</p>
-<h2 id="DNS-与-TLS：名称解析和身份校验需要保持一致"><a href="#DNS-与-TLS：名称解析和身份校验需要保持一致" class="headerlink" title="DNS 与 TLS：名称解析和身份校验需要保持一致"></a>DNS 与 TLS：名称解析和身份校验需要保持一致</h2><p>这组问题共同涉及一个边界：<strong>同一份输入经过不同组件处理后，可能被理解为不同的名称或地址</strong>。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="DNS-与-TLS：名称解析和身份校验需要保持一致"><a href="#DNS-与-TLS：名称解析和身份校验需要保持一致" class="headerlink" title="DNS 与 TLS：名称解析和身份校验需要保持一致"></a>DNS 与 TLS：名称解析和身份校验需要保持一致</h2><p>这组问题共同涉及一个边界：<strong>同一份输入经过不同组件处理后，可能被理解为不同的名称或地址</strong>。</p>
 <h3 id="NUL-截断可能造成校验值与解析值不一致"><a href="#NUL-截断可能造成校验值与解析值不一致" class="headerlink" title="NUL 截断可能造成校验值与解析值不一致"></a>NUL 截断可能造成校验值与解析值不一致</h3><p><strong>CVE-2026-105482</strong> 涉及名称中的 NUL，即数值为零的字符。<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/6b78ea171de305446126cb94ceb6a45b6297466c">修复代码</a>将 DNS 解析入口改为拒绝包含 NUL 的字符串，覆盖 callback 和 Promise 解析流程。</p>
 <p>如果业务代码对完整字符串做访问限制，后续解析层却只使用截断后的部分，就可能出现校验落差。能否进一步构成 SSRF 等应用层问题，仍取决于输入来源、限制规则和连接方式，不能只根据 CVE 标题下结论。</p>
 <h3 id="TLS-主机名绕过影响的是对端身份确认"><a href="#TLS-主机名绕过影响的是对端身份确认" class="headerlink" title="TLS 主机名绕过影响的是对端身份确认"></a>TLS 主机名绕过影响的是对端身份确认</h3><p><strong>105483、106069、106072</strong> 涉及全角数字、非标准 IP 写法与证书名称匹配。HTTPS 除了验证证书链，还需要确认对端身份符合预期主机。</p>
@@ -396,6 +397,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

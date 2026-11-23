@@ -120,7 +120,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -249,6 +249,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/cover-card-720.jpg?v=ca69ca85" alt="AI 時代的 E2E 驗收系統把產品版本、固定測試、AI 探索與測試紀錄串在一起的技術插圖" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/cover-card-480.jpg?v=8c117004 480w, /2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/cover-card-720.jpg?v=ca69ca85 720w, /2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/cover-card-960.jpg?v=011028d8 960w, /2026/09/01/AI-%E6%99%82%E4%BB%A3%EF%BC%8CE2E-%E6%B8%AC%E8%A9%A6%E8%A6%81%E6%80%8E%E9%BA%BC%E5%8D%87%E7%B4%9A%EF%BC%9F%E5%BE%9E%E5%9B%BA%E5%AE%9A%E8%85%B3%E6%9C%AC%E5%88%B0-AI-native-Harness/cover.jpg?v=de8aafbd 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -526,7 +527,7 @@ flowchart TD
 </tr>
 </tbody></table></div>
 <p>是否使用不同模型不是重點。重要的是把角色、上下文、環境和決策權分開。2026 年一項 LLM 測試生成研究在特定實驗中觀察到，先生成錯誤程式碼再生成測試，抓錯率低於獨立生成測試；這也是 Builder 和 Validator 不應共用同一套錯誤假設的原因。<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05139">On the risk of coding before testing</a></p>
-<h2 id="五、把測試紀錄留下來，讓-Agent-能查問題"><a href="#五、把測試紀錄留下來，讓-Agent-能查問題" class="headerlink" title="五、把測試紀錄留下來，讓 Agent 能查問題"></a>五、把測試紀錄留下來，讓 Agent 能查問題</h2><h3 id="不要只留下錯誤訊息"><a href="#不要只留下錯誤訊息" class="headerlink" title="不要只留下錯誤訊息"></a>不要只留下錯誤訊息</h3><p>只留下 <code>Expected visible, received hidden</code>，幾乎無法幫 Agent 找原因。測試至少要在失敗時保存：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五、把測試紀錄留下來，讓-Agent-能查問題"><a href="#五、把測試紀錄留下來，讓-Agent-能查問題" class="headerlink" title="五、把測試紀錄留下來，讓 Agent 能查問題"></a>五、把測試紀錄留下來，讓 Agent 能查問題</h2><h3 id="不要只留下錯誤訊息"><a href="#不要只留下錯誤訊息" class="headerlink" title="不要只留下錯誤訊息"></a>不要只留下錯誤訊息</h3><p>只留下 <code>Expected visible, received hidden</code>，幾乎無法幫 Agent 找原因。測試至少要在失敗時保存：</p>
 <ul>
 <li>失敗前後的 DOM Snapshot、ARIA Snapshot 或 Native UI Tree。</li>
 <li>Screenshot、必要時的 video、Trace 和執行 log。</li>
@@ -711,6 +712,9 @@ flowchart TD
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

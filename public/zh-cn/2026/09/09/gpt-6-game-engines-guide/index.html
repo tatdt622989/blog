@@ -124,7 +124,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -253,6 +253,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/09/09/gpt-6-game-engines-guide/cover-card-720.jpg?v=d954f992" alt="GPT-6 辅助制作 2D 平台、森林冒险与太空探索游戏的引擎选型概念图" width="1280" height="720" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/09/gpt-6-game-engines-guide/cover-card-480.jpg?v=5bb23783 480w, /zh-cn/2026/09/09/gpt-6-game-engines-guide/cover-card-720.jpg?v=d954f992 720w, /zh-cn/2026/09/09/gpt-6-game-engines-guide/cover-card-960.jpg?v=9dae23db 960w, /zh-cn/2026/09/09/gpt-6-game-engines-guide/cover.jpg?v=d3bc7701 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -365,7 +366,7 @@
 </tbody></table></div>
 <p>我的默认建议：<strong>想先做一款能分享的 2D 网页小游戏，从 Phaser 起步；想长期打磨 2D 或小型 3D 作品，优先看 Godot。</strong>已经熟悉某个引擎就继续用。这是基于官方文档的流程建议，并非七种工具同条件实测的排名。</p>
 <h3 id="游戏引擎到底帮你做了什么"><a href="#游戏引擎到底帮你做了什么" class="headerlink" title="游戏引擎到底帮你做了什么"></a>游戏引擎到底帮你做了什么</h3><p>AI 能写代码，但“角色捡金币”背后涉及画面绘制、输入处理、碰撞检测、规则判定和音效反馈。<strong>引擎把这些底层能力封装好，你和 AI 只需要写“每枚金币加 10 分、集齐五枚过关”这样的玩法规则。</strong>猜数字、文字选项类小游戏可以不用引擎；Phaser 属于游戏框架，PixiJS 和 Three.js 是图形库，游戏系统需要自己补齐。</p>
-<h2 id="GPT-6-Phaser-或-PixiJS：2D-网页游戏"><a href="#GPT-6-Phaser-或-PixiJS：2D-网页游戏" class="headerlink" title="GPT-6 + Phaser 或 PixiJS：2D 网页游戏"></a>GPT-6 + Phaser 或 PixiJS：2D 网页游戏</h2><p>Phaser 是网页游戏框架，官方提供 <a target="_blank" rel="noopener" href="https://phaser.io/tutorials/create-game-app">JavaScript 和 TypeScript 项目模板</a>，<a target="_blank" rel="noopener" href="https://docs.phaser.io/phaser/concepts/scenes">场景系统</a>整合了摄像机、资源加载、输入、计时和可选物理插件。纯代码项目能让 Codex 完整跑通“改代码、运行、看画面”的闭环。第一版只放一个角色、一种障碍和重开按钮。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="GPT-6-Phaser-或-PixiJS：2D-网页游戏"><a href="#GPT-6-Phaser-或-PixiJS：2D-网页游戏" class="headerlink" title="GPT-6 + Phaser 或 PixiJS：2D 网页游戏"></a>GPT-6 + Phaser 或 PixiJS：2D 网页游戏</h2><p>Phaser 是网页游戏框架，官方提供 <a target="_blank" rel="noopener" href="https://phaser.io/tutorials/create-game-app">JavaScript 和 TypeScript 项目模板</a>，<a target="_blank" rel="noopener" href="https://docs.phaser.io/phaser/concepts/scenes">场景系统</a>整合了摄像机、资源加载、输入、计时和可选物理插件。纯代码项目能让 Codex 完整跑通“改代码、运行、看画面”的闭环。第一版只放一个角色、一种障碍和重开按钮。</p>
 <p>PixiJS 是 <strong>2D 渲染库</strong>，<a target="_blank" rel="noopener" href="https://pixijs.com/faq/FAQPage">官方 FAQ</a>明确说它不是完整的游戏引擎。做卡牌展示或自定义特效可以用它，但要先和 AI 约定场景切换、游戏状态和碰撞的实现方式，否则很容易只做出一层渲染。</p>
 <p><strong>网页版跑通不代表手机上能玩</strong>：要在竖屏下确认按钮不挡角色、触控有效、重开后上一局状态被清空。准备发给朋友前，先看 <a href="/zh-cn/2026/09/06/why-localhost-cannot-be-shared-web-deployment-101/">localhost 链接为什么别人打不开</a>。</p>
 <h2 id="GPT-6-Godot：对独立开发最友好的开源方案"><a href="#GPT-6-Godot：对独立开发最友好的开源方案" class="headerlink" title="GPT-6 + Godot：对独立开发最友好的开源方案"></a>GPT-6 + Godot：对独立开发最友好的开源方案</h2><p>Godot 的 <a target="_blank" rel="noopener" href="https://docs.godotengine.org/en/stable/engine_details/file_formats/tscn.html">TSCN 场景格式</a>是纯文本，Codex 可以直接读懂并修改场景结构；<a target="_blank" rel="noopener" href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html">命令行</a>可用于运行和导出。截至 10 月，官方最新稳定版是 <a target="_blank" rel="noopener" href="https://godotengine.org/download/archive/4.7.2-stable/">Godot 4.7.2</a>。记得把准确版本号告诉 AI，避免它把 Godot 3 和 4 的节点、API 混着用。</p>
@@ -385,6 +386,9 @@
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

@@ -114,7 +114,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -243,6 +243,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-720.jpg?v=96c87415" alt="Claude Fable 5.1 旗舰模型核心架构与长时程智能体神经网络流程示意图" width="1280" height="714" decoding="async" class="auto-layout-image post-cover-image" srcset="/zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-480.jpg?v=200962a3 480w, /zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-720.jpg?v=96c87415 720w, /zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover-card-960.jpg?v=9c900b99 960w, /zh-cn/2026/09/02/claude-fable-5-1-deep-dive-long-horizon-agentic-guide/cover.jpg?v=ea31fc34 1280w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -359,7 +360,7 @@
 </ul>
 <h3 id="3-对话历史变动会导致思考签名即刻失效"><a href="#3-对话历史变动会导致思考签名即刻失效" class="headerlink" title="3. 对话历史变动会导致思考签名即刻失效"></a>3. 对话历史变动会导致思考签名即刻失效</h3><p>为了确保长推理链的严密性与防篡改安全性，Claude Fable 5.1 的每个思考区块均与之前的系统提示词、工具定义以及全部对话历史深度绑定。如果你的后端服务在多轮会话中途擅自修改了前面的消息内容，API 将直接拦截并抛出签名无效的 400 错误。在设计智能体框架的缓存与会话存储时，务必确保消息前缀（Prefix）的字节流保持百分之百的一致。</p>
 <hr>
-<h2 id="五大核心新特性与架构演进"><a href="#五大核心新特性与架构演进" class="headerlink" title="五大核心新特性与架构演进"></a>五大核心新特性与架构演进</h2><p>除了顶尖推理能力的显著突破，Claude Fable 5.1 还深度引入了多项为自主智能体量身定制的底层能力：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五大核心新特性与架构演进"><a href="#五大核心新特性与架构演进" class="headerlink" title="五大核心新特性与架构演进"></a>五大核心新特性与架构演进</h2><p>除了顶尖推理能力的显著突破，Claude Fable 5.1 还深度引入了多项为自主智能体量身定制的底层能力：</p>
 <h3 id="1-逐消息-Effort-动态调控（Beta）"><a href="#1-逐消息-Effort-动态调控（Beta）" class="headerlink" title="1. 逐消息 Effort 动态调控（Beta）"></a>1. 逐消息 Effort 动态调控（Beta）</h3><p>以往在会话中调整思考强度（Effort）往往需要修改全局配置，这往往会破坏已有的提示词缓存状态。Claude Fable 5.1 允许在同一次会话的不同消息轮次中，动态传递 <code>effort: &quot;low&quot;</code>、<code>&quot;medium&quot;</code>、<code>&quot;high&quot;</code> 或 <code>&quot;max&quot;</code>，且<strong>完全不会破坏此前的提示词缓存命中</strong>。</p>
 <p>例如在智能体工作流中，执行普通的文件读取与存在性检查时，可指定 <code>low</code> effort 以极速获得响应；而一旦推进到核心算法重构或复杂编译错误排查时，则可动态拔高至 <code>high</code> 或 <code>max</code>。</p>
 <h3 id="2-轮次级系统消息（Turn-scoped-System-Messages-Beta）"><a href="#2-轮次级系统消息（Turn-scoped-System-Messages-Beta）" class="headerlink" title="2. 轮次级系统消息（Turn-scoped System Messages, Beta）"></a>2. 轮次级系统消息（Turn-scoped System Messages, Beta）</h3><p>开发者现在可以在 <code>messages</code> 数组任意位置插入 <code>role: &quot;system&quot;</code> 的消息。这对于自动化智能体系统而言是一项重磅利好——你无需修改最顶层的 System Prompt，在百分之百保留既有提示词缓存的前提下，即可向当前执行步骤精准注入临时约束或特定工具调用要求。</p>
@@ -401,6 +402,9 @@ flowchart TD
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         

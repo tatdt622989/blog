@@ -116,7 +116,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=4131163397">
+  <link rel="stylesheet" href="/en/css/style.css?v=733e437975">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -245,6 +245,7 @@
   
 
     </header>
+    
     <div class="e-content entry" itemprop="articleBody">
       
         <p class="post-cover-frame"><img src="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-720.jpg?v=e6586c7b" alt="Deterministic AI image generation and ComfyUI node pipeline architecture" width="1200" height="669" decoding="async" class="auto-layout-image post-cover-image" srcset="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-480.jpg?v=a2e70098 480w, /en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-720.jpg?v=e6586c7b 720w, /en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover-card-960.jpg?v=781d3e57 960w, /en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/cover.jpg?v=b2985914 1200w" sizes="(max-width: 820px) calc(100vw - 40px), 711px"></p>
@@ -306,7 +307,7 @@
 </tbody></table></div>
 <p>For original characters, the gold standard involves training a dedicated LoRA on 15 to 25 curated reference images (set around 0.7 strength) while pairing it with a baseline character portrait loaded into IP-Adapter (set around 0.5 strength). This dual-anchor strategy prevents rigid overfitting while ensuring facial symmetry remains locked across arbitrary environments.</p>
 <hr>
-<h2 id="Deconstructing-the-Five-Stage-ComfyUI-Production-Pipeline"><a href="#Deconstructing-the-Five-Stage-ComfyUI-Production-Pipeline" class="headerlink" title="Deconstructing the Five-Stage ComfyUI Production Pipeline"></a>Deconstructing the Five-Stage ComfyUI Production Pipeline</h2><p>Unlike monolithic web interfaces that treat generation as an opaque single step, <strong>ComfyUI</strong> exposes image creation as a modular, graph-based data pipeline.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Deconstructing-the-Five-Stage-ComfyUI-Production-Pipeline"><a href="#Deconstructing-the-Five-Stage-ComfyUI-Production-Pipeline" class="headerlink" title="Deconstructing the Five-Stage ComfyUI Production Pipeline"></a>Deconstructing the Five-Stage ComfyUI Production Pipeline</h2><p>Unlike monolithic web interfaces that treat generation as an opaque single step, <strong>ComfyUI</strong> exposes image creation as a modular, graph-based data pipeline.</p>
 <p>Professional game art pipelines break production down into five discrete, progressive stages:</p>
 <pre class="mermaid">
 flowchart TD
@@ -394,6 +395,9 @@ flowchart TD
 
       
     </div>
+    
+      <aside class="article-ad article-ad--bottom" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3935576155" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+    
     <footer>
       
         
