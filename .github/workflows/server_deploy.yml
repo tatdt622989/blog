@@ -19,8 +19,9 @@ concurrency:
 
 jobs:
   build:
-    # The existing responsive-cover optimizer uses macOS's sips utility.
-    runs-on: macos-15
+    # The existing responsive-cover optimizer uses macOS's sips utility. Intel macOS: on 2026-11-23
+    # three runs never got an arm64 macos-15 runner (capacity). GitHub supports this image until 2027-08.
+    runs-on: macos-15-intel
     env:
       TZ: Asia/Taipei
     steps:
