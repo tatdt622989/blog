@@ -1,5 +1,6 @@
-title: "What Is Artificial Analysis? How to Read the Intelligence Index, Speed and Cost"
-description: "Artificial Analysis benchmarks LLMs on intelligence, speed, latency and cost. How to read Intelligence Index v4.3.2 and Cost per Task, Oct 2026."
+---
+title: "Artificial Analysis Guide: 2026 LLM Leaderboard & Metrics"
+description: "Read Artificial Analysis Intelligence Index v5.0.1, speed, latency, and Cost per Task, with Nov 2026 leaders Claude Fable 5.2 and Gemini 4 Carbon."
 permalink: 2026/08/17/artificial-analysis-definitive-guide-llm-selection/
 translation_key: artificial-analysis-definitive-guide-llm-selection
 translations:
@@ -13,12 +14,12 @@ tags:
   - Artificial Analysis
   - Software Engineering
 date: 2026-08-17 14:13:06
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 00:30:00
 ---
 
 ![Artificial Analysis Independent Benchmarking Platform Cover](cover.jpg)
 
-**[Artificial Analysis](https://artificialanalysis.ai/) (artificialanalysis.ai) is an independent AI benchmarking site. It runs every LLM through the same evaluations and the same API speed tests, then compares how smart (Intelligence Index), how fast (output speed and latency) and how expensive (Cost per Task) each model is.** If you want to know whether a new model is actually better, or which API fits your budget, the **Leaderboards → Models** page gives you a first answer in one table. This guide explains each metric, how the index is scored as of October 2026, and which chart to use for which job.
+**[Artificial Analysis](https://artificialanalysis.ai/) (artificialanalysis.ai) is an independent AI benchmarking site that runs every LLM through the same evaluations and API speed tests, comparing intelligence (Intelligence Index), speed (output speed and latency), and real cost (Cost per Task).** As of **November 2026 (Intelligence Index v5.0.1)**, [Claude Fable 5.2](/en/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/) (max) leads at 65, while [Gemini 4 Carbon](/en/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/) (high) ranks 4th at 60 for less than a third of the per-task cost. Jump straight to [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) for live rankings, or read on to decode every chart and metric.
 
 <!--more-->
 
@@ -75,11 +76,23 @@ Speed figures come from the model creator's first-party API, or the median acros
 
 ![Cost to Run Artificial Analysis Intelligence Index, stacked by output, reasoning and cache cost (August 2026 screenshot)](02_pareto_quality_cost.jpg)
 
-## Leaderboard Snapshot: October 2026
+## November 2026 Leaderboard Highlights (Intelligence Index v5.0.1)
 
-Selected rows from [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) on October 19, 2026 (Intelligence Index v4.3.2; figures update continuously):
+Artificial Analysis moved its composite benchmark to **Intelligence Index v5.0.1** in November 2026. Data checked in mid-November from the official [Claude Fable 5.2](https://artificialanalysis.ai/models/claude-fable-5-2) and [Gemini 4 Carbon](https://artificialanalysis.ai/models/gemini-4-carbon) AA model pages highlights the sharp trade-off between peak capability and per-task cost:
 
-| Model (setting) | Intelligence Index | Cost per Task | Output speed (t/s) | First-chunk latency (s) |
+| Model (setting) | v5.0.1 rank & score | Cost per task | Output speed (t/s) | Time to first answer token (s) | Deep dive |
+|------|------|------|------|------|------|
+| **Claude Fable 5.2 (max)** | **65 (#1)** | $26.54 | 103 | 231.55 | [Fable 5.2 pricing & benchmarks](/en/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/) |
+| **Gemini 4 Carbon (high)** | **60 (#4)** | $7.76 (half during intro promo) | 80 | 66.85 | [Gemini 4 Carbon launch & review](/en/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/) |
+
+- Different effort tiers of **Claude Fable 5.2** hold the top three spots, with **Claude Opus 5.5 (max)** in 5th (58 on v5.0).
+- Fable 5.2 (max) sets the ceiling but takes 44.1 minutes and $26.54 per evaluation task; **Gemini 4 Carbon (high)** cuts cost by over 70% and wait time by roughly 70%, making it far easier to deploy for budget-conscious agent workloads.
+
+### Prior v4.3.2 Multi-Model Cost & Latency Reference (October 2026)
+
+This October 19, 2026 snapshot from [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) (**Intelligence Index v4.3.2**) remains useful for seeing how reasoning effort tiers (max vs. xhigh vs. high) affect latency and task cost. Do not subtract scores across index versions:
+
+| Model (setting) | Intelligence Index (v4.3.2) | Cost per Task | Output speed (t/s) | First-chunk latency (s) |
 |------|------|------|------|------|
 | Claude Opus 5.5 (max) | 58 | $5.98 | 98 | 562.75 |
 | Claude Sonnet 5.5 (max) | 56 | $5.46 | 136 | 391.60 |
@@ -92,10 +105,10 @@ Selected rows from [Leaderboards → Models](https://artificialanalysis.ai/leade
 
 Two takeaways:
 
-- **The top score is not the best value.** GPT-6.1 Sol (max) is 6 points behind the leader at under one-eighth of the Cost per Task.
+- **The top score is not the best value.** GPT-6.1 Sol (max) is 6 points behind the v4.3.2 leader at under one-eighth of the Cost per Task.
 - **Max settings often take minutes to the first chunk.** They suit background batch and agent jobs, not interfaces that need an instant reply.
 
-Launch-day details: [Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis](/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/) and [GPT-6 Sol and Luna: Artificial Analysis Scores, API Prices, and How to Choose](/en/2026/09/23/gpt-6-sol-luna-pricing-aa-review/).
+Earlier launch-day breakdowns: [Claude Opus 5.5 Launch Analysis](/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/) and [GPT-6 Sol and Luna Review](/en/2026/09/23/gpt-6-sol-luna-pricing-aa-review/).
 
 ## Using the Pareto Frontier to Find Value
 

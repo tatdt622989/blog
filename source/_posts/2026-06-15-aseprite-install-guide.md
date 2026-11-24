@@ -1,8 +1,6 @@
 ---
-title: Aseprite 安裝教學：踏進 AI Pixel Art 的第一步
-description: >-
-  Aseprite 像素繪圖軟體安裝與 PixelLab AI 像素外掛串接教學。本文為你整理 Steam
-  正式版購買、免費編譯原始碼等三種取得管道，並帶你一步步完成外掛授權，快速解決遊戲美術素材短缺痛點。
+title: "Aseprite 下載與安裝教學：免費編譯、Steam 購買與 PixelLab AI 外掛設定"
+description: "Aseprite 下載與安裝完整教學：比較 Steam 購買、GitHub 原始碼免費編譯與試用版限制（試用版不能裝外掛），並手把手教你串接 PixelLab AI 像素畫外掛與權限設定，快速建立遊戲美術工作流。"
 cover: cover-v2.png
 translation_key: aseprite-install-guide
 translations:
@@ -17,18 +15,14 @@ tags:
   - 遊戲開發
   - AI
 date: 2026-06-15 00:18:00
-updated: 2026-08-27 19:00:00
+updated: 2026-11-25 00:30:00
 ---
 
-![Aseprite 安裝與 PixelLab 外掛串接教學封面](cover-v2.png)
+![Aseprite 下載安裝與 PixelLab AI 像素外掛串接教學封面](cover-v2.png)
 
-## 前言
+在上一篇 [想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星](/2026/06/15/pixellab-ai-pixel-art-game-assets/) 裡，我介紹了用 AI 生成 pixel art 素材的工具 **PixelLab**。但要在桌面端把它用得最順，得先下載並裝好業界最受歡迎的像素繪圖軟體——**Aseprite**。這篇整理三種合法取得管道（Steam 購買、GitHub 原始碼免費編譯、試用版差異），並帶你把 Aseprite 與 PixelLab 外掛一次設定完成。
 
-在上一篇 [想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星](/2026/06/15/pixellab-ai-pixel-art-game-assets/) 裡，我介紹了用 AI 生成 pixel art 素材的神器 **PixelLab**。但要在桌面端把它用得最順，得先有一個東西——**Aseprite**。
-
-Aseprite 是業界最受歡迎的像素繪圖軟體，而 PixelLab 的桌面外掛就是掛在它上面跑的。這篇就帶你把 Aseprite 從零裝好，並接上 PixelLab 外掛。
-
-> ⚠️ **先講最重要的雷**：Aseprite 的**試用版（Trial）不支援外掛（plugin / extension）**。也就是說，如果你的目的是用 PixelLab，**就必須取得正式版**，試用版裝不了外掛。
+> **先講最重要的限制**：Aseprite 的**試用版（Trial）不支援外掛（plugin / extension）**。如果你的目的是用 PixelLab 或其他擴充套件，**就必須使用正式版或自行免費編譯版本**，試用版裝不了外掛。
 
 <!--more-->
 
@@ -72,7 +66,7 @@ Aseprite 的原始碼是公開的。根據官方授權，你**可以自行下載
 
 裝好後先打開一次，確認能正常進到主畫面。
 
-> 📌 PixelLab 外掛需要 **Aseprite v1.3.7 或更新版本**。可在 **Help → About** 確認版本，太舊的話先更新。
+> **版本需求**：PixelLab 外掛需要 **Aseprite v1.3.7 或更新版本**。可在 **Help → About** 確認版本，太舊的話先更新。
 
 ## 安裝 PixelLab 外掛
 
@@ -117,7 +111,7 @@ Aseprite 的原始碼是公開的。根據官方授權，你**可以自行下載
 到這裡，你已經具備了用 AI 生成 pixel art 的完整環境：**Aseprite（編輯器）＋ PixelLab（AI 生成外掛）**。
 
 接下來推薦你兩條深入學習的路徑：
-- **動手生第一隻角色**：回到上一篇照著功能導覽實作 👉 [想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星](/2026/06/15/pixellab-ai-pixel-art-game-assets/)
-- **提升手繪與動畫效率**：裝上社群推薦的神級外掛（調色盤一鍵匯入、等角網格、水波與視差動畫）👉 [Aseprite 繪圖效率翻倍！五款必裝神級擴充套件與實戰技巧](/2026/08/18/Aseprite-繪圖效率翻倍！五款必裝神級擴充套件與實戰技巧/)
+- **動手生第一隻角色**：回到上一篇照著功能導覽實作，見 [想用 AI 做遊戲卻搞不定素材？PixelLab 是你的救星](/2026/06/15/pixellab-ai-pixel-art-game-assets/)
+- **提升手繪與動畫效率**：裝上社群推薦的外掛（調色盤一鍵匯入、等角網格、水波與視差動畫），見 [Aseprite 擴充套件推薦：五款必裝外掛讓繪圖效率翻倍（含安裝教學）](/2026/08/18/Aseprite-繪圖效率翻倍！五款必裝神級擴充套件與實戰技巧/)
 
 祝你做遊戲順利，從此再也不用為素材卡關。

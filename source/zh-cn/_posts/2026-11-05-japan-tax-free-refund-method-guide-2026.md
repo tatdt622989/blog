@@ -1,8 +1,8 @@
 ---
-title: "日本退税新政攻略：11/1 起先付税、离境再退，8 大机场退税机位置与流程图解"
+title: "日本退税新政攻略：羽田、关西、成田、新千岁 8 大机场退税柜台与机台位置"
 date: 2026-11-05 12:00:00
-updated: 2026-11-06 01:45:00
-description: "日本免税购物自 2026 年 11 月 1 日起改为先付税、离境退：结账付含税价，托运行李前通过海关 KIOSK 或 Visit Japan Web 确认后才退回消费税。整理新旧差异、5,000 日元门槛、90 天期限、手续费，以及成田、羽田、关西等 8 大机场的退税机楼层与现金退税位置。"
+updated: 2026-11-25 00:30:00
+description: "日本 2026/11/1 起改为先付税、离境再退税：托运行李前刷 KIOSK 或用 Visit Japan Web 确认后退回消费税。整理 5,000 日元门槛、手续费与羽田、大阪关西、成田、新千岁、神户 8 大机场退税机楼层与时间。"
 permalink: 2026/11/05/japan-tax-free-refund-method-guide-2026/
 translation_key: japan-tax-free-refund-method-guide-2026
 translations:
@@ -129,6 +129,13 @@ tags:
 - 只有当店家的退款服务商**已接入**该机器时才能领现金；Self Tax Refund（日本空港ビルデング与 GLORY 合作）和 CASH JAPAN 是两套系统，结账时先问清楚。
 - 其他机场（仙台、广岛、高松、熊本、鹿儿岛等地方机场）也在海关位置地图里，大多在 1F；部分机场和港口没有常设 KIOSK，需咨询现场海关。完整楼层图见日本海关的 [机器位置地图](https://www.customs.go.jp/kaigairyoko/taxrefund/map.htm)。
 
+### 热门机场退税柜台与营业时间速查（羽田、大阪关西、新千岁、神户）
+
+- **羽田机场退税柜台与时间**：海关 KIOSK 位于 **T2 国际线区 3F（06:00–26:00）** 与 **T3 3F（24 小时）**；出境后领取日元现金的 Self Tax Refund 机器位于 **T2 3F（06:45–25:30）** 与 **T3 3F（24 小时）**，红眼航班在 T3 也能正常办理。
+- **大阪关西机场退税位置**：海关 KIOSK 在 **T1 4F** 与 **T2 1F**（托运行李前）；高峰时段机台容易排长队，关西海关建议优先连接出发大厅专用 Wi-Fi，用 **Visit Japan Web** 在线完成确认。
+- **新千岁机场退税位置**：海关 KIOSK 设在**国际线航站楼 3F**，同样支持 Visit Japan Web，务必先完成确认再去值机托运。
+- **神户机场退税注意事项**：海关 KIOSK 位于 **T2 1F**，**不支持 Visit Japan Web**，只能现场刷护照办理，建议多预留排队时间。
+
 ## 最容易拿不到退税的情况
 
 | 情况 | 结果 | 如何避免 |
@@ -144,3 +151,8 @@ tags:
 **时效说明：** 本文依据 2026 年 11 月 5 日核实的官方信息整理；退款方式、手续费和现金退税机会随店家与机场调整，出发前请以购买店家说明及各机场公告为准。
 
 **参考资料：** [国税厅 リファンド方式](https://www.nta.go.jp/publication/pamph/shohi/menzei/201805/format/002.htm)、[观光厅 旅客专页](https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00021.html)、[日本海关 外国游客免税制度](https://www.customs.go.jp/kaigairyoko/taxrefund/jpn.htm)、[成田机场 退税说明](https://www.narita-airport.jp/en/service/exchange/taxrefund/)、[羽田机场 退税说明](https://tokyo-haneda.com/zh-CHT/service/facilities/tax_refund.html)。
+
+## 延伸阅读
+
+- 出行前用 AI 速练旅游与购物日语对话：[AI 学日语 2026 指南：工具对比与阅读、听力、口语、JLPT 练习方法](/zh-cn/2023/11/07/ai-tools-learn-japanese/)
+- 提前规划明年跨年与假期行程：[2027 台湾连假攻略：9 个连假一览，春节请 5 天休 16 天，全年无调休补班](/zh-cn/2026/10/30/taiwan-2027-holidays-leave-guide/)

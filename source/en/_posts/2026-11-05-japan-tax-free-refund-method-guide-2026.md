@@ -1,8 +1,8 @@
 ---
-title: "Japan Tax-Free Shopping 2026: How the New Refund System Works, With Kiosk Locations at 8 Airports"
+title: "Japan Tax-Free Refund 2026: New Rules & 8 Airport Kiosks"
 date: 2026-11-05 12:00:00
-updated: 2026-11-06 01:45:00
-description: "Since 1 November 2026, Japan charges tourists tax at the till and refunds it after a customs check at departure. Rules, fees and airport kiosk floors."
+updated: 2026-11-25 00:30:00
+description: "Japan's Nov 2026 tax-free refund charges tax at the till and refunds after customs check. Rules, fees, and Haneda, Narita, Kansai & Kobe kiosks."
 permalink: 2026/11/05/japan-tax-free-refund-method-guide-2026/
 translation_key: japan-tax-free-refund-method-guide-2026
 translations:
@@ -129,6 +129,13 @@ Enter the 10% and 8% amounts for each checkout to see what each receipt returns 
 - A cash machine only works if **your store's refund company is connected to it**. Self Tax Refund (Japan Airport Terminal and GLORY) and CASH JAPAN are separate systems, so ask at the till.
 - Regional airports such as Sendai, Hiroshima, Takamatsu, Kumamoto and Kagoshima are also on the customs map, mostly on 1F. Some airports and seaports have no permanent kiosk; ask customs on site. Full floor maps are on the Japan Customs [kiosk location map](https://www.customs.go.jp/kaigairyoko/taxrefund/map.htm).
 
+### Quick Notes for Major Airports (Haneda, Kansai, New Chitose, Kobe)
+
+- **Haneda Airport hours and terminals**: Customs kiosks are on **T2 international area 3F (06:00–26:00)** and **T3 3F (24 hours)**. Airside Self Tax Refund cash machines are on **T2 3F (06:45–25:30)** and **T3 3F (24 hours)**, so late-night T3 flights remain covered.
+- **Kansai International Airport (Osaka)**: Customs kiosks sit on **T1 4F** and **T2 1F** before bag drop. Because queues build up at peak times, Kansai customs recommends using **Visit Japan Web** over the departure hall customs Wi-Fi first.
+- **New Chitose Airport (Sapporo)**: Customs kiosks are on **International Terminal 3F** and support Visit Japan Web; finish confirmation before dropping checked luggage.
+- **Kobe Airport**: Customs kiosks are on **T2 1F** and **do not support Visit Japan Web**, so allow extra time to scan your passport in person.
+
 ## How people lose their refund
 
 | Situation | Result | How to avoid it |
@@ -144,3 +151,8 @@ Enter the 10% and 8% amounts for each checkout to see what each receipt returns 
 **Accuracy:** Based on official information checked on 5 November 2026. Refund methods, fees and cash machines vary by store and airport and may change, so follow your store's instructions and the airport's notices.
 
 **References:** [National Tax Agency refund method](https://www.nta.go.jp/publication/pamph/shohi/menzei/201805/format/002.htm), [Japan Tourism Agency traveler page](https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html), [Japan Customs tax refund program](https://www.customs.go.jp/kaigairyoko/taxrefund/jpn.htm), [Narita Airport tax refund](https://www.narita-airport.jp/en/service/exchange/taxrefund/), [Haneda Airport tax refund](https://tokyo-haneda.com/en/service/facilities/tax_refund.html).
+
+## Further Reading
+
+- Brush up on practical shopping and travel Japanese before departure: [AI Tools to Learn Japanese in 2026: What Works, Prices, and Prompts](/en/2023/11/07/ai-tools-learn-japanese/)
+- Planning regional trips around 2027 long weekends: [Taiwan Public Holidays 2027: All 9 Long Weekends and How to Turn 5 Days Off Into 16](/en/2026/10/30/taiwan-2027-holidays-leave-guide/)

@@ -1,8 +1,8 @@
 ---
-title: "Google Cloud 300 美元免费额度：申请条件、90 天期限、可用范围与防扣费"
+title: "Google Cloud 300 美元免费额度：能用 Gemini API 吗？申请条件、90 天与防扣费"
 date: 2026-10-19 16:45:00
-updated: 2026-10-19 16:45:00
-description: "Google Cloud 新用户可领取 US$300 免费试用金，有效期 90 天，不升级就不会扣费。本文梳理申请条件、哪些服务不能抵扣、Gemini 能否使用、到期后的处理、剩余额度查询与预算设置。"
+updated: 2026-11-25 00:30:00
+description: "Google Cloud（GCP）新用户可领 US$300 免费试用金，有效期 90 天、不升级不扣费。AI Studio 的 Gemini API 不能抵扣，改走 Agent Platform（原 Vertex AI）即可使用；梳理资格、可用范围、额度查询与预算设置。"
 permalink: 2026/10/19/google-cloud-300-free-trial-guide/
 translation_key: google-cloud-300-free-trial-guide
 translations:
@@ -19,9 +19,9 @@ tags:
 
 ![Google Cloud 300 美元免费额度封面：深色背景上的信用卡和云朵几何图形，搭配蓝绿黄红点缀色](cover.jpg)
 
-Google Cloud 给**从未付费过的新用户**发放 US$300 的 Welcome credit（免费试用金），**自注册起 90 天内有效**。试用期内不计费；额度用完或满 90 天后资源会被停掉，**只要你没有手动升级为付费账号，就不会自动扣费**。需要注意：**AI Studio 的 Gemini API 不能用这笔钱抵扣**，但在 Google Cloud 上通过 Gemini Enterprise Agent Platform（原 Vertex AI）调用 Gemini 可以。
+**Google Cloud（GCP）给从未付费过的新用户发放 US$300 的 Welcome credit（免费试用金），自注册起 90 天内有效，不手动升级绝不会自动扣费；想用来调用 Gemini API 也可以，但必须选对入口。** 官方虽然标明 **AI Studio 的 Gemini API 不能用这笔试用金抵扣**，但在 Google Cloud 控制台通过 **Gemini Enterprise Agent Platform（原 Vertex AI）** 调用 Gemini 模型时，费用可直接从 300 美元额度扣除。额度用完或满 90 天后资源仅会停止，不会向银行卡扣款。
 
-以下内容以 Google Cloud 官方文档为准，核对日期 2026-10-19。
+以下内容以 Google Cloud 官方文档为准，更新核对日期 2026-11-25。
 
 <!--more-->
 

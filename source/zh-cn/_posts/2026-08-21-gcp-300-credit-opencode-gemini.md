@@ -1,8 +1,8 @@
 ---
-title: "GCP 300 美元免费额度实战：OpenCode 接入 Gemini 3.8 Flash 教程"
+title: "OpenCode 接入 Gemini 实战教程：用 GCP 300 美元赠金跑 Agent Platform"
 date: 2026-08-21 10:45:00
-updated: 2026-10-19 16:00:00
-description: "GCP（谷歌云）新用户 300 美元试用赠金可以抵扣 Agent Platform（原 Vertex AI）上的 Gemini 调用费用。本文教你创建 API Key 并接入 OpenCode，算清 300 美元能跑多少 Token，以及 90 天到期或赠金用完后会发生什么。"
+updated: 2026-11-25 00:30:00
+description: "手把手教你把 Google Cloud Agent Platform（原 Vertex AI）上的 Gemini 模型接入 OpenCode，用 GCP 300 美元免费赠金抵扣费用。包含 API Key 创建、Token 消耗估算与防扣费配置。"
 permalink: 2026/08/21/gcp-300-credit-opencode-gemini/
 translation_key: gcp-300-credit-opencode-gemini
 translations:
@@ -18,9 +18,9 @@ tags:
 
 ![用 GCP 300 美元免费额度在 OpenCode 中调用 Gemini 模型](cover.jpg)
 
-**GCP 300 美元免费额度可以直接拿来在 OpenCode 里写代码。** Google Cloud 新用户的 300 美元试用赠金（有效期 90 天）可以抵扣 **Agent Platform（原 Vertex AI）** 上的 Gemini 调用费用：在 **Agent Studio** 创建一个 API Key，填进 OpenCode 的 Vertex 配置，就能调用 **Gemini 3.8 Flash** 等模型，试用期内不会自动扣费。有两个例外：**AI Studio 的 Gemini API** 和 **Claude 等合作伙伴模型**都不能用这笔赠金抵扣。
+**想在 OpenCode 里用免费额度跑 Gemini 写代码，关键是走 Google Cloud Agent Platform（原 Vertex AI）的 API Key，而不是 AI Studio。** 在 **Agent Studio** 创建好密钥并填进 OpenCode 的 Vertex 配置，就能直接调用 **Gemini 3.8 Flash**、**Gemini 4 Argon** 以及最新上线的 [Gemini 4 Carbon](/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/)，由 GCP 90 天试用赠金全额抵扣。
 
-本文只讲 OpenCode 接入和用量管控，信息核对时间为 2026 年 10 月 19 日。试用资格、绑卡验证和完整限制，请看 [Google Cloud 300 美元免费试用完整教程](/zh-cn/2026/10/19/google-cloud-300-free-trial-guide/)。文中截图来自繁体中文控制台。
+如果你只想先了解 **Google Cloud 300 美元免费额度的申请条件、绑卡验证、Always Free 差异与到期防扣费总规则**，请直接阅读总指南：[Google Cloud 300 美元免费额度完整教程](/zh-cn/2026/10/19/google-cloud-300-free-trial-guide/)；本文专注讲解 **OpenCode 接入步骤与 Token 用量管控**（更新核对日期：2026 年 11 月 25 日，文中截图来自繁体中文控制台）。
 
 <!--more-->
 

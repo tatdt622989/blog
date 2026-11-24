@@ -1,6 +1,6 @@
 ---
-title: Aseprite 安装指南：连接 PixelLab 迈入 AI 像素画创作
-description: Aseprite 像素绘画软件安装与 PixelLab AI 插件集成完整指南。详细对比 Steam 正式版购买与免费源码编译等获取途径，重点解析试用版无法加载插件的限制，带你手把手完成扩展安装与网络权限授权，快速打通独立游戏美术工作流。
+title: "Aseprite 下载与安装教程：免费源码编译、Steam 购买与 PixelLab AI 插件配置"
+description: "Aseprite 下载与安装完整教程：对比 Steam 正式版购买、GitHub 免费源码编译与试用版限制（试用版无法装插件），手把手带你接入 PixelLab AI 像素画扩展并完成权限授权。"
 permalink: 2026/06/15/how-to-install-aseprite/
 translation_key: aseprite-install-guide
 translations:
@@ -16,7 +16,7 @@ tags:
   - 游戏开发
   - AI
 date: 2026-06-15 00:18:00
-updated: 2026-08-27 19:00:00
+updated: 2026-11-25 00:30:00
 ---
 
 ![Aseprite 安装与 PixelLab 插件集成教程封面](cover-v2.png)
@@ -122,7 +122,7 @@ Aseprite 的核心代码完全开源。根据官方许可协议（EULA），开�
 
 为了进一步发挥该工作流的最大威力，推荐沿着以下两条技术路径继续深入：
 
-- **AI 角色与物件生成实战**：前往上一篇教程实操掌握模型提示词控制与动画生成技巧：[想用 AI 做独立游戏却搞不定素材？PixelLab 体验与上手指南](/2026/06/15/pixellab-ai-pixel-art-game-assets/)。
-- **效率倍增的神级扩展库**：为 Aseprite 进一步武装社区高口碑扩展（如调色板一键导入、等距透视网格、流体与视差动画生成器）：[Aseprite 绘图效率翻倍！五款必装神级扩展与实战技巧](/2026/08/18/Aseprite-%E7%B9%AA%E5%9C%96%E6%95%88%E7%8E%87%E7%BF%BB%E5%80%8D%EF%BC%81%E4%BA%94%E6%AC%BE%E5%BF%85%E8%A3%9D%E7%A5%9E%E7%B4%9A%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6%E8%88%87%E5%AF%A6%E6%88%B0%E6%8A%80%E5%B7%A7/)。
+- **AI 角色与物件生成实战**：前往上一篇教程实操掌握模型提示词控制与动画生成技巧：[想用 AI 做独立游戏却搞不定素材？PixelLab 体验与上手指南（繁体中文）](/2026/06/15/pixellab-ai-pixel-art-game-assets/)。
+- **效率倍增的常用扩展库**：为 Aseprite 进一步配置社区高口碑扩展（如调色板一键导入、等距透视网格、流体与视差动画生成器）：[Aseprite 插件推荐：五款必装扩展提升像素画效率（附安装教程）](/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/)。
 
 从搭建环境到打通全流程，告别资产瓶颈，尽情释放你的游戏创意。

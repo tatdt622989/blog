@@ -1,6 +1,6 @@
 ---
-title: Artificial Analysis 是什么？Intelligence Index、速度与成本怎么看
-description: "Artificial Analysis 是独立的大模型评测网站，横向对比 LLM 的智能、速度、延迟与成本。本文讲清 Intelligence Index v4.3.2 和 Cost per Task 怎么读，并附 2026 年 10 月榜单快照与选型方法。"
+title: "Artificial Analysis 排行榜怎么看？2026 最新大模型排名、Intelligence Index 与成本指南"
+description: "Artificial Analysis 是独立 AI 模型榜单，对比 LLM 智能、速度与 Cost per Task。更新 2026 年 11 月 v5.0.1 榜首（Fable 5.2、Gemini 4 Carbon），讲清指标口径与帕累托前沿选型法。"
 permalink: 2026/08/17/artificial-analysis-definitive-guide-llm-selection/
 translation_key: artificial-analysis-definitive-guide-llm-selection
 translations:
@@ -14,12 +14,12 @@ tags:
   - Artificial Analysis
   - 软件工程
 date: 2026-08-17 14:13:06
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 00:30:00
 ---
 
 ![Artificial Analysis 大模型选型指南封面](cover.jpg)
 
-**[Artificial Analysis](https://artificialanalysis.ai/)（artificialanalysis.ai）是一个独立的 AI 模型评测网站：它在自己的测试环境里，用同一套评测集和同样的 API 测速条件跑各家大模型，横向对比“有多聪明（Intelligence Index）、有多快（输出速度与延迟）、要花多少钱（Cost per Task）”。** 想判断新模型是不是真的更强，或者预算内该接哪家 API，打开 **Leaderboards → Models** 一张表就能完成第一轮筛选。本文讲清各项指标的口径、2026 年 10 月当前的计分方式，以及不同场景该看哪张图。
+**[Artificial Analysis](https://artificialanalysis.ai/)（artificialanalysis.ai）是目前开发者参考最多的独立 AI 模型评测网站：它在统一测试环境与 API 测速条件下跑各家大模型，横向对比“有多聪明（Intelligence Index）、有多快（输出速度与延迟）、要花多少钱（Cost per Task）”。** 截至 **2026 年 11 月（Intelligence Index v5.0.1）**，榜首由 [Claude Fable 5.2](/zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/)（max，65 分）拿下，[Gemini 4 Carbon](/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/)（high，60 分）以不到三成的单任务成本位列第 4。想看实时排名可直接打开 [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models)；本文讲清核心指标口径以及不同场景该看哪张图。
 
 <!--more-->
 
@@ -76,11 +76,23 @@ updated: 2026-10-19 16:00:00
 
 ![Cost to Run Artificial Analysis Intelligence Index 堆叠图，拆分输出、推理与缓存成本（2026 年 8 月截图）](02_pareto_quality_cost.jpg)
 
-## 2026 年 10 月榜单快照
+## 2026 年 11 月最新榜单亮点（Intelligence Index v5.0.1）
 
-以下是 2026 年 10 月 19 日 [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) 的部分数据（Intelligence Index v4.3.2，数据持续更新）：
+Artificial Analysis 已于 2026 年 11 月将综合指数更新至 **Intelligence Index v5.0.1**。根据 2026 年 11 月中旬核对 [Claude Fable 5.2](https://artificialanalysis.ai/models/claude-fable-5-2) 与 [Gemini 4 Carbon](https://artificialanalysis.ai/models/gemini-4-carbon) 官方 AA 模型页的实测数据，头部模型呈现出明显的“能力上限 vs 成本效率”分化：
 
-| 模型（档位） | Intelligence Index | Cost per Task | 输出速度（t/s） | 首个 chunk 延迟（秒） |
+| 模型（档位） | v5.0.1 排名与分数 | 单任务评测成本 | 输出速度（t/s） | 首个答案 Token 等待（秒） | 深度解读 |
+|------|------|------|------|------|------|
+| **Claude Fable 5.2 (max)** | **65 分（第 1）** | $26.54 | 103 | 231.55 | [Fable 5.2 价格与基准测试解读](/zh-cn/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/) |
+| **Gemini 4 Carbon (high)** | **60 分（第 4）** | $7.76（优惠期约半价） | 80 | 66.85 | [Gemini 4 Carbon 评测与迁移指南](/zh-cn/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/) |
+
+- 前 3 名全部由不同 effort 档位的 **Claude Fable 5.2** 占据，**Claude Opus 5.5 (max)** 排在第 5（v5.0 为 58 分）。
+- Fable 5.2 (max) 综合上限最高，但单任务耗时 44.1 分钟、成本 $26.54 位居榜内最高；**Gemini 4 Carbon (high)** 成本不到三成且等待时长缩短约七成，更适合预算敏感的长时智能体任务。
+
+### 前版 v4.3.2 多模型成本与速度对照参考（2026 年 10 月）
+
+以下保留 2026 年 10 月 19 日 [Leaderboards → Models](https://artificialanalysis.ai/leaderboards/models) 的 **Intelligence Index v4.3.2** 快照，便于观察同一模型在不同档位（max / xhigh / high）下的延迟和单任务费用差距（不同版本分数不可直接相减）：
+
+| 模型（档位） | Intelligence Index (v4.3.2) | Cost per Task | 输出速度（t/s） | 首个 chunk 延迟（秒） |
 |------|------|------|------|------|
 | Claude Opus 5.5 (max) | 58 | $5.98 | 98 | 562.75 |
 | Claude Sonnet 5.5 (max) | 56 | $5.46 | 136 | 391.60 |
@@ -93,10 +105,10 @@ updated: 2026-10-19 16:00:00
 
 这张表能直接得出两个选型结论：
 
-- **最高分不等于性价比最高。** GPT-6.1 Sol (max) 只比榜首低 6 分，Cost per Task 却不到其八分之一。
+- **最高分不等于性价比最高。** GPT-6.1 Sol (max) 只比同版榜首低 6 分，Cost per Task 却不到其八分之一。
 - **max 档位的首个 chunk 延迟往往以分钟计**，更适合后台批处理和智能体任务，不适合要求秒级响应的交互界面。
 
-各模型发布时的详细评测可参考[Claude Opus 5.5 发布：AA 登顶、价格降幅与完整评测解读](/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/)和[GPT-6 Sol 与 Luna 发布：Artificial Analysis 评分、API 价格与选型](/zh-cn/2026/09/23/gpt-6-sol-luna-pricing-aa-review/)。
+其他模型发布时的详细评测也可参考 [Claude Opus 5.5 发布解读](/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/) 和 [GPT-6 Sol 与 Luna 评分与选型](/zh-cn/2026/09/23/gpt-6-sol-luna-pricing-aa-review/)。
 
 ## 用帕累托前沿找高性价比模型
 

@@ -1,8 +1,8 @@
 ---
-title: "Google Cloud $300 Free Credit: Eligibility, 90-Day Limit, Coverage, and Avoiding Charges"
+title: "Google Cloud $300 Free Credit: 90-Day Rules & Gemini API"
 date: 2026-10-19 16:45:00
-updated: 2026-10-19 16:45:00
-description: "Google Cloud's $300 free trial lasts 90 days and won't charge you unless you upgrade. Eligibility, what it covers, Gemini, and how to avoid bills."
+updated: 2026-11-25 00:30:00
+description: "Google Cloud's $300 free credit lasts 90 days with no auto-charge. See eligibility, the AI Studio Gemini API catch, Vertex AI setup, and budgets."
 permalink: 2026/10/19/google-cloud-300-free-trial-guide/
 translation_key: google-cloud-300-free-trial-guide
 translations:
@@ -19,9 +19,9 @@ tags:
 
 ![Google Cloud $300 free credit cover: a credit card and cloud shapes on a dark background with blue, green, yellow, and red accents](cover.jpg)
 
-Google Cloud gives **new customers who have never paid for it** US$300 in Welcome credit, **valid for 90 days from sign-up**. You are not billed during the trial. When the credit runs out or 90 days pass, your resources are stopped, and **you are not charged unless you manually upgrade to a paid account**. One catch: **the credit cannot pay for the Gemini API in AI Studio**, but calling Gemini through Gemini Enterprise Agent Platform (formerly Vertex AI) on Google Cloud is covered.
+Google Cloud gives **new customers who have never paid for it** US$300 in Welcome credit, **valid for 90 days from sign-up**. You are not billed during the trial: when the credit runs out or 90 days pass, resources stop and **you are never charged unless you manually upgrade**. If you noticed the fine print saying **"excludes Gemini API,"** that only applies to **AI Studio** keys—calling Gemini models through **Gemini Enterprise Agent Platform (formerly Vertex AI)** inside Google Cloud is covered by the $300 credit.
 
-Everything below follows Google Cloud's official documentation as of 2026-10-19.
+Everything below follows Google Cloud's official documentation, reviewed on 2026-11-25.
 
 <!--more-->
 

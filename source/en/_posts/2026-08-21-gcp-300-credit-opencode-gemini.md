@@ -1,8 +1,8 @@
 ---
-title: "GCP $300 Free Credit in OpenCode: Run Gemini 3.8 Flash via Vertex AI"
+title: "Run Gemini in OpenCode Using GCP $300 Free Credit (Vertex AI)"
 date: 2026-08-21 10:45:00
-updated: 2026-10-19 16:00:00
-description: "Use the GCP $300 free trial credit to run Gemini in OpenCode via Agent Platform: API key setup, token math, and what happens after 90 days."
+updated: 2026-11-25 00:30:00
+description: "Connect OpenCode to Gemini on Google Cloud Agent Platform (Vertex AI) with the $300 trial credit: API key setup, token math, and billing limits."
 permalink: 2026/08/21/gcp-300-credit-opencode-gemini/
 translation_key: gcp-300-credit-opencode-gemini
 translations:
@@ -18,9 +18,9 @@ tags:
 
 ![Using the GCP $300 free credit to run Gemini models in OpenCode](cover.jpg)
 
-**Yes, the GCP $300 free trial credit works for coding in OpenCode.** The Google Cloud credit for new customers (valid for 90 days) covers Gemini usage on **Agent Platform (formerly Vertex AI)**. Create an API key in **Agent Studio**, paste it into OpenCode's Vertex provider, and you can run **Gemini 3.8 Flash** and other Gemini models. You are not charged automatically during the trial. Two exceptions: the credit does not pay for the **Gemini API in AI Studio** or for **partner models such as Claude**.
+**To code in OpenCode with free Gemini usage, connect via Google Cloud Agent Platform (formerly Vertex AI) rather than AI Studio.** Create an API key in **Agent Studio**, paste it into OpenCode's Vertex provider, and you can run **Gemini 3.8 Flash**, **Gemini 4 Argon**, or [Gemini 4 Carbon](/en/2026/11/11/gemini-4-carbon-launch-benchmarks-pricing/) funded by the 90-day GCP trial credit.
 
-This guide covers the OpenCode setup and cost control, with facts checked on October 19, 2026. For eligibility, card verification and the full list of trial limits, see the [Google Cloud $300 free trial guide](/en/2026/10/19/google-cloud-300-free-trial-guide/). The screenshots come from a Traditional Chinese console, so labels appear in Chinese.
+Looking for **full $300 Welcome credit eligibility, card rules, Always Free limits, and billing safeguards** first? Start with the main overview: [Google Cloud $300 Free Credit: 90-Day Rules & Gemini API](/en/2026/10/19/google-cloud-300-free-trial-guide/). This walkthrough focuses strictly on **OpenCode configuration and token budgeting** (updated November 25, 2026; screenshots are from a Traditional Chinese console).
 
 <!--more-->
 

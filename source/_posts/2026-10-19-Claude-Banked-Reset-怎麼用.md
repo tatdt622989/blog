@@ -1,8 +1,8 @@
 ---
-title: "Claude Banked Reset 怎麼用？免費額度重設步驟、期限與限制"
+title: "Claude Banked Reset 怎麼用？免費額度重設券領取資格、步驟與限制"
 date: 2026-10-19 16:30:00
-updated: 2026-10-19 16:30:00
-description: "Claude banked reset 是 Anthropic 隨 Opus 5.5 發給 Pro、Max、Team 的一次性額度重設，到網頁版或桌面版 Settings → Usage 按 Reset for free 就能補滿五小時或每週額度，據報可用到 10 月 22 日。本文整理領取步驟、不能在 Claude Code 按的原因、每週週期會不會變，以及和 Codex banked reset 的差異。"
+updated: 2026-11-25 00:30:00
+description: "Claude 免費額度重設（Banked Reset）怎麼拿與怎麼用？整理最新 Fable 5.2 重設資格（Max／Ultra 效期至 2027/3/8）、Settings → Usage 領取步驟、Claude Code 連動，以及與 Codex 重設的差異。"
 permalink: 2026/10/19/claude-banked-reset-guide/
 translation_key: claude-banked-reset-guide
 translations:
@@ -19,22 +19,24 @@ tags:
 
 ![Claude banked reset 封面：環形用量表從耗盡重新補滿到 100%](cover.jpg)
 
-**Claude 的 banked reset，是 Anthropic 在 2026 年 9 月 22 日推出 Opus 5.5 時，發給訂閱者「先存著、想用再用」的一次額度重設。** 用網頁版 claude.ai 或 Claude Desktop 打開 **Settings → Usage**，在 **Resets** 區塊按 **Reset for free** 並確認，五小時或每週額度（依你的優惠卡片而定）就會立刻補滿。據第三方整理的 @ClaudeDevs 貼文，Pro、Max、Team 可以用到 **2026 年 10 月 22 日**，確切時刻與時區官方未公開，以你帳戶頁面上標示的到期時間為準；過期沒用就失效。
+**Claude 的 banked reset（官方稱 limit reset，社群常稱免費重設券），是 Anthropic 不定期發給訂閱者的「先存著、想用再用」額度重設權益。** 用網頁版 claude.ai 或 Claude Desktop 打開 **Settings → Usage**，在 **Resets** 區塊按 **Reset for free** 並確認，對應的五小時或每週額度就會立刻恢復。目前除了 2026 年 9 月隨 Opus 5.5 發放的那一波（已於 10 月到期）外，Anthropic 在 2026 年 11 月 9 日推出 Fable 5.2 時也再次發放 **Fable 重設**：Max、Ultra 與 Team 進階席位依訂閱時長可拿 1 到 3 次，效期一路到 **2027 年 3 月 8 日**。
 
-官方說明頁稱它為 **limit reset**，「banked reset」是社群與第三方的叫法，指的是同一件事。本文資料查核日為 2026 年 10 月 19 日。
+實際可用次數與到期時間以你帳戶 **Settings → Usage** 頁面上顯示的為準，過期沒用就會失效。本文資料更新查核日為 2026 年 11 月 25 日。
 
 <!--more-->
 
-## 誰拿得到？
+## 誰拿得到？最新重設資格一覽
 
-| 方案 | 狀態 | 依據 |
-| --- | --- | --- |
-| Pro、Max（5x、20x）、Team | 有，據報可用到 10 月 22 日 | [Anthropic 公告](https://www.anthropic.com/claude-opus-5-5)寫明發給「subscription users」；方案名單與期限來自 [findskill.ai 轉述的 @ClaudeDevs 貼文](https://findskill.ai/blog/claude-reset-for-free-button-limits-explained/) |
-| 席次制 Enterprise | 未明確 | 公告只說提高了五小時上限，沒有點名重設 |
-| Free | 查無資料 | 公告對象是訂閱使用者 |
-| API（Claude Console） | 不適用 | 這是 claude.ai 訂閱的用量權益，不是 API 額度 |
+Anthropic 會在重大模型發布時發放限時重設，截至 2026 年 11 月已有兩波主要發放紀錄：
 
-最簡單的確認方式：打開 **Settings → Usage**，有 **Resets** 區塊和 **Reset for free** 按鈕，就代表你有。
+| 方案 | 最新 Fable 5.2 重設（11/9 發放） | 過往 Opus 5.5 重設（9/22 發放） | 依據 |
+| --- | --- | --- | --- |
+| Max（5x、20x）、Ultra、Team 進階席位、舊版席位制 Enterprise 進階席位 | **1 到 3 次 Fable 重設**，依首次付費起算訂閱時長（未滿 6 個月 1 次、6–12 個月 2 次、超過 12 個月 3 次），**2027 年 3 月 8 日到期** | 已於 10 月 22 日到期 | [Fable 5.2 推出優惠說明](https://support.claude.com/zh-TW/articles/17506494) |
+| Pro、Team 標準席位 | 11 月 9 日至 16 日推出期間提供 1 次（已於 11 月 16 日到期） | 已於 10 月 22 日到期 | 同上 |
+| Free、自助式／用量計費／HIPAA Enterprise | 不適用 | 不適用 | 同上 |
+| API（Claude Console） | 不適用（此為 claude.ai 訂閱用量權益，非 API 額度） | 不適用 | [官方 limit reset 說明](https://support.claude.com/en/articles/17007452-what-is-a-limit-reset) |
+
+最簡單的確認方式：打開 **Settings → Usage**，有 **Resets** 區塊和 **Reset for free** 按鈕，就代表帳號裡還有可用次數。關於 Fable 5.2 的方案計費與重設細則（例如 Fable 重設會退回每週額度中花在 Fable 的用量，並補滿五小時額度），可延伸閱讀 [Claude Fable 5.2 是什麼？價格、評測與 Opus 5.5 差異完整分析](/2026/11/10/Claude-Fable-5-2-是什麼？價格、評測與-Opus-5-5-差異完整分析/)。
 
 **注意：在使用前降級或取消訂閱，這次重設就會消失。**[官方說明](https://support.claude.com/en/articles/17007452-what-is-a-limit-reset)
 
@@ -76,11 +78,11 @@ tags:
 
 如果手上沒有重設可用，Claude Code v2.1.234 之後可以等額度恢復後自動接續中斷的任務（部分情況會自動開始等待，也可從 **/rate-limit-options** 選擇）；有開 usage credits 的話，也可以用 **/usage-credits** 付費繼續。[Claude Code 文件](https://code.claude.com/docs/en/costs)
 
-## 10 月 22 日之後會怎樣？
+## 到期沒用會怎樣？之後還會發嗎？
 
-- 沒用掉的重設會在優惠標示的時間**直接失效**，不會轉成其他額度。
+- 沒用掉的重設會在優惠標示的時間**直接失效**，不會轉成其他額度或現金折抵。
 - 平常的五小時與每週限制照常運作，不受影響。
-- 官方把 limit reset 定義為「不定期提供給符合資格方案的優惠」，之後若再發放，同樣會出現在 **Settings → Usage**，並標示各自的到期日。
+- 官方把 limit reset 定義為「不定期提供給符合資格方案的優惠」，像 9 月 Opus 5.5 與 11 月 Fable 5.2 都有額外發放；之後若再發放，同樣會出現在 **Settings → Usage**，並標示各自的到期日。
 
 ## 平常的 Claude 額度什麼時候重設？
 
@@ -88,9 +90,9 @@ tags:
 | --- | --- | --- |
 | 五小時 session 限制 | 從該次 session 開始算起，五小時後恢復 | **Settings → Usage**；Claude Code 用 **/usage** |
 | 每週限制 | 每週在帳號被指定的**固定時間**重設，不因你何時開始使用而改變 | **Settings → Usage** 會顯示下一次重設時間 |
-| Max 的 Fable 每週限制 | Max 方案另有一個獨立的 Fable 每週上限 | 同上 |
+| Fable 用量計算 | Max、Ultra、Team 進階席位與其他模型共用每週額度；Pro 平常改扣 usage credits | 同上 |
 
-資料來源：[Pro 方案說明](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan)、[Claude Code 搭配 Pro／Max](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan)。Opus 5.5 同時提高了 Pro、Max、Team 與席次制 Enterprise 的五小時上限，完整背景見本站的 [Claude Opus 5.5 上線解析](/2026/09/23/Claude-Opus-5-5-上線：AA-登頂、價格降幅與完整評測解析/)。
+資料來源：[Pro 方案說明](https://support.claude.com/en/articles/8325606-what-is-the-pro-plan)、[Claude Code 搭配 Pro／Max](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan)、[Fable 5.2 推出優惠說明](https://support.claude.com/zh-TW/articles/17506494)。Opus 5.5 同時提高了 Pro、Max、Team 與席次制 Enterprise 的五小時上限，完整背景見本站的 [Claude Opus 5.5 上線解析](/2026/09/23/Claude-Opus-5-5-上線：AA-登頂、價格降幅與完整評測解析/)。
 
 ## 和 Codex banked reset 有什麼不同？
 
@@ -98,10 +100,10 @@ tags:
 
 | 項目 | Claude limit reset | OpenAI Codex banked reset |
 | --- | --- | --- |
-| 補回範圍 | 五小時**或**每週，依優惠而定 | full reset 會同時補回五小時與每週 |
+| 補回範圍 | 五小時**或**每週（Fable 重設會退回每週 Fable 用量並補滿五小時），依優惠而定 | full reset 會同時補回五小時與每週 |
 | 每週重設時間 | **不變** | **會改變**，用完要回面板確認新的重設時間 |
 | 在哪裡按 | 只有網頁版、Claude Desktop | Codex App、CLI、網頁的 **Settings → Usage** |
 | 額度還沒用完時按下 | 可以按，按下即用掉、無法復原 | 至少補回一個視窗才會被扣掉 |
-| 期限 | 以 **Settings → Usage** 標示為準（本次據報 10 月 22 日） | 以帳戶顯示為準 |
+| 期限 | 以 **Settings → Usage** 標示為準（例如 Fable 重設至 2027/3/8） | 以帳戶顯示為準 |
 
 Codex 部分依據 [OpenAI 官方說明](https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work)。Codex 的額度查詢、Credits 與使用時機，請看 [Codex 額度用完怎麼辦？](/2026/06/18/claude-codex-quota-guide/)。

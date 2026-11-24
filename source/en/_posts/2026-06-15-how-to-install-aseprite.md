@@ -1,8 +1,6 @@
-title: How to Install Aseprite and Add the PixelLab Extension
-description: >-
-  Install Aseprite on Windows, macOS, or Linux, compare official and
-  source-build options, and connect the PixelLab AI pixel art extension step by
-  step.
+---
+title: "Aseprite Download & Install Guide: Free Build & PixelLab"
+description: "Download and install Aseprite on Windows, macOS, or Linux: compare Steam, free GitHub source builds, trial limits, and PixelLab AI extension setup."
 permalink: 2026/06/15/how-to-install-aseprite/
 translation_key: aseprite-install-guide
 translations:
@@ -17,7 +15,7 @@ tags:
   - PixelLab
   - Game Development
 date: 2026-06-15 00:18:00
-updated: 2026-08-27 19:00:00
+updated: 2026-11-25 00:30:00
 ---
 
 ![Aseprite installation and PixelLab extension setup guide](cover-v2.png)
@@ -139,6 +137,8 @@ Check that you are signed into the expected PixelLab account and that your plan 
 Once the integration works, keep Aseprite responsible for precise drawing, layers, palettes, and animation timing while using PixelLab for suitable generation or editing tasks. AI output is most useful as material to refine, not as a replacement for inspecting every frame and maintaining a consistent palette.
 
 For a reliable setup, keep both applications current, download extensions only from the PixelLab account page, and never install redistributed Aseprite binaries from unknown sources.
+
+To expand your pixel art workflow further with palette importers, isometric grids, and animation scripts, continue with [Best Aseprite Extensions: 5 Plugins for Pixel Art and How to Install Them](/en/2026/08/18/aseprite-extensions-pixel-art-workflow/).
 
 ## Official References
 
