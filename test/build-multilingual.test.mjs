@@ -199,6 +199,26 @@ test('multilingual build writes all locale trees to an isolated output directory
     assert.match(simplifiedChineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/zh-cn\/categories\/<\/loc>/);
     assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\/tags\/<\/loc>/);
     assert.match(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\/categories\/<\/loc>/);
+    assert.doesNotMatch(chineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/(?:tags|categories)\/[^<]+\/<\/loc>/);
+    assert.doesNotMatch(simplifiedChineseSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/zh-cn\/(?:tags|categories)\/[^<]+\/<\/loc>/);
+    assert.doesNotMatch(englishSitemap, /<loc>https:\/\/blog\.6yuwei\.com\/en\/(?:tags|categories)\/[^<]+\/<\/loc>/);
+
+    for (const locale of ['', 'zh-cn', 'en']) {
+      const tagPage = fs.readFileSync(path.join(outputDir, locale, 'tags', 'AI', 'index.html'), 'utf8');
+      const archivePage = fs.readFileSync(path.join(outputDir, locale, 'archives', 'index.html'), 'utf8');
+      const pagedHome = fs.readFileSync(path.join(outputDir, locale, 'page', '2', 'index.html'), 'utf8');
+      const tagDirectory = fs.readFileSync(path.join(outputDir, locale, 'tags', 'index.html'), 'utf8');
+      const categoryDirectory = fs.readFileSync(path.join(outputDir, locale, 'categories', 'index.html'), 'utf8');
+
+      assert.match(tagPage, /<meta name="robots" content="noindex, follow">/);
+      assert.match(archivePage, /<meta name="robots" content="noindex, follow">/);
+      assert.match(pagedHome, /<meta name="robots" content="noindex, follow">/);
+      assert.doesNotMatch(tagDirectory, /noindex/);
+      assert.doesNotMatch(categoryDirectory, /noindex/);
+    }
+    assert.doesNotMatch(chineseHome, /noindex/);
+    assert.doesNotMatch(simplifiedChineseHome, /noindex/);
+    assert.doesNotMatch(englishHome, /noindex/);
 
     assert.equal(chineseContent.meta.url, 'https://blog.6yuwei.com');
     assert.equal(simplifiedChineseContent.meta.url, 'https://blog.6yuwei.com/zh-cn');

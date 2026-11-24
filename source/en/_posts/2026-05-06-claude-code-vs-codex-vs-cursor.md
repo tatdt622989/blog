@@ -1,3 +1,4 @@
+---
 title: 'Claude Code vs Codex vs Cursor (2026): Pricing, Models, and Which to Choose'
 description: "Claude Code vs Codex vs Cursor in October 2026: prices, models and limits, what Cursor's X Subscription changes, and which tool to pick."
 permalink: 2026/05/06/claude-code-vs-codex-vs-cursor/
@@ -13,7 +14,7 @@ tags:
   - Codex
   - Cursor
 date: 2026-05-06 21:30:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 ---
 
 ![Claude Code, Codex, and Cursor AI coding workflow comparison](cover-v2.jpg)
@@ -125,7 +126,7 @@ The pool refreshes weekly and is shared with Grok apps. [Cursor pricing](https:/
 | You often hand off work from a phone or browser | **Codex Cloud** or **Claude Code on the web** |
 | You code intensively and run many tasks in parallel | **Claude Max 20x** or **ChatGPT Pro** |
 
-To compare how much API-equivalent usage each subscription buys per dollar, see the [September 2026 AI coding subscription comparison](/en/2026/09/14/ai-coding-tools-subscription-comparison/).
+To compare how much API-equivalent usage each subscription buys per dollar, see the [September 2026 AI coding subscription comparison](/en/2026/09/14/ai-coding-tools-subscription-comparison/). To see how Claude Code reduces tool-calling overhead with scripting, read [What Is Claude Code's Code Mode?](/en/2026/11/15/claude-code-mode-explained/), or explore why modern dev toolchains keep rewriting core components in Rust in [Why Is Rust So Popular?](/en/2026/11/12/why-rust-is-popular-2026/).
 
 ## Official References
 

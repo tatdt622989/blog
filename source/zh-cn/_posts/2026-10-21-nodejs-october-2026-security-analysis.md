@@ -1,7 +1,7 @@
 ---
 title: "Node.js 十月安全更新深度分析：Brotli RCE、TLS 校验绕过与 10 项漏洞修复"
 date: 2026-10-21 23:49:20
-updated: 2026-10-21 23:55:04
+updated: 2026-11-25 01:15:00
 description: "Node.js 于 2026 年 10 月 21 日修复 10 项具名漏洞，涉及 Brotli 远程代码执行、TLS 主机名校验绕过及随机数快照。本文结合官方公告、发布说明与修复提交，分析触发条件、受影响分支、npm audit 的边界及部署验证方法。"
 permalink: 2026/10/21/nodejs-october-2026-security-analysis/
 translation_key: nodejs-october-2026-security-analysis
@@ -152,4 +152,4 @@ node -p "JSON.stringify({ node: process.version, executable: process.execPath, v
 
 部署之后，应确认**运行进程已重启或替换、所有副本都加载修复版本、快照与 SEA 已重新生成、关键连接和解压流程通过测试**。镜像标签变化或 CI 成功，不能独立证明旧工作负载已经退出流量。
 
-同日的 [PHP 漏洞与网站停机事件](/zh-cn/2026/10/21/php-critical-vulnerabilities-japan-shutdowns-2026/)也体现了运行时更新的重要性。但 PHP 的停机名单不能用来证明这些 Node.js 漏洞已经被利用。是否暂时停服，应结合实际暴露路径、补丁可用性和部署能力判断。
+同日的 [PHP 漏洞与网站停机事件](/zh-cn/2026/10/21/php-critical-vulnerabilities-japan-shutdowns-2026/)也体现了运行时更新的重要性。但 PHP 的停机名单不能用来证明这些 Node.js 漏洞已经被利用。是否暂时停服，应结合实际暴露路径、补丁可用性和部署能力判断。想把十月这轮运行时漏洞、供应链投毒与密钥泄漏整理成日常防护清单，可以继续阅读 [安全事件接连爆发：AI 时代我们该如何保护自己？](/zh-cn/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/)。

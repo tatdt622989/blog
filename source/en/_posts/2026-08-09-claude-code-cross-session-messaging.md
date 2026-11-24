@@ -1,3 +1,4 @@
+---
 title: "Claude Code Cross-Session Messaging: List Sessions and Send Messages"
 description: "Make two Claude Code sessions talk on v2.1.224+: @-mention a session to message it, list sessions with /list-agents, and fix common issues."
 permalink: 2026/08/09/claude-code-cross-session-messaging/
@@ -13,7 +14,7 @@ tags:
   - Developer Tools
   - Parallel Work
 date: 2026-08-09 14:10:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 ---
 
 ![Claude Code cross-session messaging between independent development sessions](cover.jpg)
@@ -150,7 +151,7 @@ See the [settings reference](https://code.claude.com/docs/en/settings-reference#
 | Subagents | Delegating a focused task from the current session | No, result only |
 | [Agent teams](https://code.claude.com/docs/en/agent-teams) | A lead plus teammates with a shared task list | Separate contexts, team messaging |
 
-Agent teams are still **experimental** and need **CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1**, and they use noticeably more tokens. For two terminals trading a few updates, messaging is enough. For designing a full multi-agent workflow, read the [Agentic SDLC architecture guide](/en/2026/08/24/agentic-sdlc-architecture-guide/); if you're still choosing tools, see [Claude Code vs Codex vs Cursor](/en/2026/05/06/claude-code-vs-codex-vs-cursor/).
+Agent teams are still **experimental** and need **CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1**, and they use noticeably more tokens. For two terminals trading a few updates, messaging is enough. To see how Claude Code cuts tool round-trips by writing scripts, read [What Is Claude Code's Code Mode?](/en/2026/11/15/claude-code-mode-explained/); for designing a full multi-agent workflow, see the [Agentic SDLC architecture guide](/en/2026/08/24/agentic-sdlc-architecture-guide/); if you're still choosing tools, see [Claude Code vs Codex vs Cursor](/en/2026/05/06/claude-code-vs-codex-vs-cursor/).
 
 ## Troubleshooting
 

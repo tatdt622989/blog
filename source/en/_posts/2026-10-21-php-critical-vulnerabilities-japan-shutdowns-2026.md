@@ -1,7 +1,7 @@
 ---
 title: "Japan's PHP Security Scramble: Why pixiv, BASE and Other Services Went Offline"
 date: 2026-10-21 22:48:07
-updated: 2026-10-21 22:48:07
+updated: 2026-11-25 01:15:00
 description: "Japan's PHP security scramble: two critical flaws, fixed versions, the prime minister's warning, and six verified service maintenance notices."
 permalink: 2026/10/21/php-critical-vulnerabilities-japan-shutdowns-2026/
 translation_key: php-critical-vulnerabilities-japan-shutdowns-2026
@@ -88,4 +88,4 @@ Verify that **the PHP runtime actually serving public requests is patched, runni
 
 PHP also warns that configuration changes reduce exposure to particular attack paths without completely replacing an update. For ordinary users, the immediate reference is the provider's recovery announcement; a maintenance page alone is not evidence that their account has been compromised.
 
-The disruption shows how a shared runtime can connect otherwise unrelated daily activities. Providers accepting temporary service interruption to address that common risk is what made this PHP security event so visible.
+The disruption shows how a shared runtime can connect otherwise unrelated daily activities. Providers accepting temporary service interruption to address that common risk is what made this PHP security event so visible. For practical takeaways across October's runtime flaws, supply-chain attacks, and API key leaks, see [How to Protect Yourself in the AI Security Era](/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/).

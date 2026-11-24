@@ -1,3 +1,4 @@
+---
 title: "Claude Code 跨 Session 溝通：/list-agents 列出 Session 並互傳訊息"
 description: "Claude Code 兩個 Session 怎麼溝通？v2.1.224 起不用裝外掛，直接請 Claude 傳話或用 @名稱 指定對象；/list-agents（/peers）列出可聯絡的 Session，claude agents 看背景工作。附跨機、權限設定與排查。"
 translation_key: claude-code-cross-session-messaging
@@ -12,7 +13,7 @@ tags:
   - AI Agent
   - 開發工具
 date: 2026-08-09 14:10:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 ---
 
 ![Claude Code 跨工作階段訊息讓多個 Session 交換任務摘要的示意圖](cover.jpg)
@@ -149,7 +150,7 @@ claude -p "檢查 migration 是否完成" \
 | 子代理（subagents） | 目前 Session 把小任務委派出去，結果回報給主對話 | 否，只回傳結果 |
 | [Agent Teams](https://code.claude.com/docs/en/agent-teams) | 由 lead 拆任務、有共享任務清單的代理團隊 | 各自獨立，團隊內互傳訊息 |
 
-Agent Teams 仍是**實驗性功能**，需設定 **CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1** 才會啟用，token 用量也明顯較高。只是想讓兩個終端機交換幾句進度，用跨 Session 訊息就夠了。想進一步設計多代理的開發流程，可以看 [Agentic SDLC 完整架構解析](/2026/08/24/告別-Vibe-Coding！Agentic-SDLC-完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰/)；還在比較工具的話，見 [Claude Code、Codex、Cursor 比較](/2026/05/06/AI-coding-工具比較：Claude-Code、Codex、Cursor-怎麼選？/)。
+Agent Teams 仍是**實驗性功能**，需設定 **CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1** 才會啟用，token 用量也明顯較高。只是想讓兩個終端機交換幾句進度，用跨 Session 訊息就夠了。想了解 Claude Code 怎麼靠寫腳本大幅減少工具往返，可看 [Claude Code 的 Code Mode 是什麼？](/2026/11/15/Claude-Code-的-Code-Mode-是什麼？用生活例子看懂-AI-如何靠寫程式少走冤枉路/)；想進一步設計多代理的開發流程，可以看 [Agentic SDLC 完整架構解析](/2026/08/24/告別-Vibe-Coding！Agentic-SDLC-完整架構解析：從狀態機、驗證閘門到熱門開源專案實戰/)；還在比較工具的話，見 [Claude Code、Codex、Cursor 比較](/2026/05/06/AI-coding-工具比較：Claude-Code、Codex、Cursor-怎麼選？/)。
 
 ## 常見問題排查
 

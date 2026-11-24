@@ -1,8 +1,8 @@
 ---
 title: 發布即被禁？Claude Fable 5 遭美國政府緊急出口管制，Anthropic 的下一步棋怎麼走？
 date: 2026-06-16 14:36:36
-updated: 2026-08-17 15:20:00
-description: 2026年6月9日，Anthropic 發布了新世代 Mythos-class 旗艦模型 Claude Fable 5，但僅三天後即被美國政府以安全為由緊急叫停出口。本文深入剖析此次管制事件的導火線與底層架構，並探討開發者如何在此變局下，善用目前的主力旗艦 Claude Opus 4.8 繼續穩健開發。
+updated: 2026-11-25 01:15:00
+description: "2026 年 6 月 Anthropic 發布旗艦模型 Claude Fable 5，三天後即遭美國政府以安全為由緊急出口管制。本文剖析 Mythos 架構與管制導火線，並說明開發者該如何以既有主力模型穩健銜接開發工作。"
 categories:
 - AI 科技
 tags:

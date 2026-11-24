@@ -16,7 +16,7 @@ tags:
   - Codex
   - Cursor
 date: 2026-05-06 21:30:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 ---
 
 ![Claude Code、Codex、Cursor 三款 AI 编程工具对比封面](cover-v2.jpg)
@@ -128,7 +128,7 @@ Pro 和 Max 都有 5 小时会话上限和每周上限，Claude、Claude Code �
 | 经常离开电脑，想用手机或网页派发后台任务 | **Codex Cloud** 或 **Claude Code 网页版** |
 | 每天高强度编码、多任务并行 | **Claude Max 20x** 或 **ChatGPT Pro** |
 
-想看每花 1 美元能换到多少 API 等值用量，可对照 [2026 年 9 月 AI 编程订阅方案对比](/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/)。
+想看每花 1 美元能换到多少 API 等值用量，可对照 [2026 年 9 月 AI 编程订阅方案对比](/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/)。想进一步了解 Claude Code 如何通过写脚本降低工具调用开销，推荐阅读 [Claude Code 的 Code Mode 是什么？](/zh-cn/2026/11/15/claude-code-mode-explained/)；如果好奇为何越来越多底层开发工具链转向 Rust，可延伸阅读 [Rust 为什么越来越火？Discord、Linux、GitHub 纷纷转向 Rust 的原因与反例](/zh-cn/2026/11/12/why-rust-is-popular-2026/)。
 
 ## 参考资料
 

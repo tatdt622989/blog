@@ -1,7 +1,7 @@
 ---
 title: "How to Make a Game with GPT-6: Godot, Unity, Unreal, or Web Engines"
 date: 2026-09-09 15:00:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 description: "Making a game with GPT-6? Use GPT-6.1 Sol or Astra in Codex, Phaser for 2D web, Godot for indie or Unity with the Codex plugin, then build a level."
 translation_key: gpt-6-game-engines-guide
 permalink: 2026/09/09/gpt-6-game-engines-guide/
@@ -112,4 +112,4 @@ A common mix-up: [Unreal's Python scripting is for the editor](https://dev.epicg
 
 This is a starting brief, not a guarantee. Play through start, move, collect, win, and restart yourself. Once that loop holds, add music and sound effects with an [AI game audio workflow](/en/2026/08/27/indie-game-ai-audio-workflow/).
 
-**For a first project, a small game you can keep changing, testing, and finishing matters more than picking the strongest model or engine.**
+**For a first project, a small game you can keep changing, testing, and finishing matters more than picking the strongest model or engine.** If you also follow AAA open-world systems and launch editions, see our [GTA 6 Launch Guide: Unlock Times, Disc-Free Retail Boxes, New Systems & Lessons from GTA 5](/en/2026/11/17/gta-6-launch-guide-editions-mechanics-gta5-lessons/).

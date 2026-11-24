@@ -101,6 +101,7 @@
     ogImage = contentImage;
   }
   var isHomePage = canonicalUrl === homeUrl;
+  var shouldNoindex = Boolean(page.tag || page.archive || page.current > 1);
   var structuredData = [];
   if (isHomePage) {
     structuredData.push(compactObject({
@@ -238,6 +239,7 @@
   }
   %>
   <title><%= resolvedTitle %></title>
+  <% if (shouldNoindex){ %><meta name="robots" content="noindex, follow"><% } %>
   <% if (config.author){ %><meta name="author" content="<%= config.author %>"><% } %>
   <% if (metaDescription){ %><meta name="description" content="<%= metaDescription %>"><% } %>
   <meta name="viewport" content="width=device-width, initial-scale=1">

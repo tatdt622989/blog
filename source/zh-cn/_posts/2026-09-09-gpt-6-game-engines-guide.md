@@ -1,7 +1,7 @@
 ---
 title: "用 GPT-6 做游戏怎么入门？Godot、Unity、Unreal 与网页引擎选型"
 date: 2026-09-09 15:00:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 description: "用 GPT-6 做游戏怎么入门？在 Codex 中选 GPT-6.1 Sol 或 Astra，2D 网页游戏用 Phaser、独立游戏用 Godot、有 C# 基础用 Unity（官方 Codex 插件）、3D 大作考虑 Unreal，再从单关卡原型做起。附七种工具对比与起步提示词。"
 translation_key: gpt-6-game-engines-guide
 permalink: 2026/09/09/gpt-6-game-engines-guide/
@@ -112,4 +112,4 @@ Unreal 支持 [Blueprint 与 C++](https://dev.epicgames.com/documentation/unreal
 
 这只是起步示例，不保证一次成功。开始、操作、成功、重开这一轮仍要亲自玩一遍。循环稳定后，再用 [AI 游戏音效工作流](/zh-cn/2026/08/27/indie-game-ai-audio-workflow/)补上配乐和音效。
 
-**对第一个作品来说，能持续修改、测试并最终完成的小游戏，比选中最强的模型或引擎更重要。**
+**对第一个作品来说，能持续修改、测试并最终完成的小游戏，比选中最强的模型或引擎更重要。** 如果你对 3A 开放世界大作的系统变革与发售细节感兴趣，也可以顺带看看 [GTA 6 上手完全指南：解锁时间、无光盘实体卡陷阱、系统变革与 GTA 5 历年避坑分析](/zh-cn/2026/11/17/gta-6-launch-guide-editions-mechanics-gta5-lessons/)。

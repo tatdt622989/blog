@@ -1,8 +1,8 @@
 ---
 title: Rust 為什麼越來越紅？Discord、Linux、GitHub 都改用 Rust 的原因與反例
 date: 2026-11-12 18:00:00
-updated: 2026-11-12 20:40:00
-description: Rust 為什麼越來越紅？從 Linux 7.0 正式納入核心、Discord 桌面版拋棄 Electron 改用 Rust，到 Vite、Next.js 與 GitHub Copilot 全面改寫，深入解析大廠轉向 Rust 的 5 大原因、TypeScript 改選 Go 的反例，以及什麼專案適合導入 Rust。
+updated: 2026-11-25 01:15:00
+description: "Rust 為什麼越來越紅？從 Linux 7.0 納入核心、Discord 拋棄 Electron 改寫，到 Vite、Next.js 與 GitHub 導入，解析大廠轉向 Rust 的 5 大原因、TypeScript 改選 Go 的反例，以及適用專案。"
 translation_key: why-rust-is-popular-2026
 translations:
   zh-CN: /zh-cn/2026/11/12/why-rust-is-popular-2026/

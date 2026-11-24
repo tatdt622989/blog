@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   
   <title>PHP 重大漏洞有多嚴重？日本首相示警，pixiv、BASE 等服務掀停機潮 | 6yuwei</title>
+  
   <meta name="author" content="6yuwei">
   <meta name="description" content="2026 年 10 月 21 日 PHP 重大漏洞引發日本服務停機潮，連首相高市早苗都發文示警。本文整理兩個 CVE、官方修補版本，以及 pixiv、BOOTH、BASE、CoDMON 等官方維護公告，說明預防性停機與受駭的差別。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +34,7 @@
   <meta property="og:image:alt" content="PHP 重大漏洞有多嚴重？日本首相示警，pixiv、BASE 等服務掀停機潮" />
   
   <meta property="article:published_time" content="2026-10-21T14:48:07.000Z" />
-  <meta property="article:modified_time" content="2026-10-21T14:48:07.000Z" />
+  <meta property="article:modified_time" content="2026-11-24T17:15:00.000Z" />
   <meta property="article:section" content="資訊安全" />
   
   <meta property="article:tag" content="日本" />
@@ -50,7 +51,7 @@
   <meta name="twitter:description" content="2026 年 10 月 21 日 PHP 重大漏洞引發日本服務停機潮，連首相高市早苗都發文示警。本文整理兩個 CVE、官方修補版本，以及 pixiv、BOOTH、BASE、CoDMON 等官方維護公告，說明預防性停機與受駭的差別。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/cover.jpg?v=55f8d423">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/","url":"https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/","headline":"PHP 重大漏洞有多嚴重？日本首相示警，pixiv、BASE 等服務掀停機潮","description":"2026 年 10 月 21 日 PHP 重大漏洞引發日本服務停機潮，連首相高市早苗都發文示警。本文整理兩個 CVE、官方修補版本，以及 pixiv、BOOTH、BASE、CoDMON 等官方維護公告，說明預防性停機與受駭的差別。","datePublished":"2026-10-21T14:48:07.000Z","dateModified":"2026-10-21T14:48:07.000Z","inLanguage":"zh-TW","articleSection":"資訊安全","keywords":"日本, 資安漏洞, 網站維運, PHP","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/","url":"https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/","headline":"PHP 重大漏洞有多嚴重？日本首相示警，pixiv、BASE 等服務掀停機潮","description":"2026 年 10 月 21 日 PHP 重大漏洞引發日本服務停機潮，連首相高市早苗都發文示警。本文整理兩個 CVE、官方修補版本，以及 pixiv、BOOTH、BASE、CoDMON 等官方維護公告，說明預防性停機與受駭的差別。","datePublished":"2026-10-21T14:48:07.000Z","dateModified":"2026-11-24T17:15:00.000Z","inLanguage":"zh-TW","articleSection":"資訊安全","keywords":"日本, 資安漏洞, 網站維運, PHP","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"資訊安全","item":"https://blog.6yuwei.com/categories/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/"},{"@type":"ListItem","position":3,"name":"PHP 重大漏洞有多嚴重？日本首相示警，pixiv、BASE 等服務掀停機潮","item":"https://blog.6yuwei.com/2026/10/21/PHP%E9%87%8D%E5%A4%A7%E6%BC%8F%E6%B4%9E%E5%BC%95%E7%99%BC%E6%97%A5%E6%9C%AC%E5%81%9C%E6%A9%9F%E6%BD%AE/"}]}</script>
   
@@ -338,7 +339,7 @@
 <p>如果主機商或 Linux 發行版採用回補修正，應以該供應商的安全公告與套件修訂版判斷，不能只看主版本號。仍用舊版 PHP 的系統，也需要確認維護來源，或遷移到受支援版本。</p>
 <p>實務上要確認三件事：<strong>對外服務的 PHP 已套用修正、運行中的處理程序已重新載入更新、關鍵功能通過檢查後才恢復對外服務。</strong> 只更新應用程式套件，或只看命令列顯示的版本，都不足以證明提供網站服務的環境已完成修補。</p>
 <p>官方也明確提醒，設定調整只能減少特定攻擊路徑的暴露，不能完整取代更新。一般使用者則先看服務官方的恢復公告；看到維護畫面，不需要直接推定自己的帳號出了問題。</p>
-<p>這次事件最值得記住的畫面，是<strong>業者願意承擔停機成本，也要先處理共用執行環境的風險</strong>。當一個底層元件需要緊急修補，影響會一路傳到看圖、購物、開店與家長聯絡。這就是今天這波停機潮讓人特別有感的原因。</p>
+<p>這次事件最值得記住的畫面，是<strong>業者願意承擔停機成本，也要先處理共用執行環境的風險</strong>。當一個底層元件需要緊急修補，影響會一路傳到看圖、購物、開店與家長聯絡。這就是今天這波停機潮讓人特別有感的原因。想從十月這一連串漏洞與供應鏈攻擊延伸建立日常帳號與專案防護習慣，見 <a href="/2026/10/29/AI%E6%99%82%E4%BB%A3%E8%B3%87%E5%AE%89%E6%87%89%E5%B0%8D%E6%8C%87%E5%8D%97/">資安事件接連爆發：AI 時代，我們該怎麼保護自己？</a>。</p>
 
       
     </div>

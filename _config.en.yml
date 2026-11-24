@@ -11,5 +11,5 @@ public_dir: public/en
 
 sitemap:
   path: sitemap.xml
-  tag: true
-  category: true
+  tags: false
+  categories: false

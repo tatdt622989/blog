@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   
   <title>Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息 | 6yuwei</title>
+  
   <meta name="author" content="6yuwei">
   <meta name="description" content="Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +34,7 @@
   <meta property="og:image:alt" content="Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息" />
   
   <meta property="article:published_time" content="2026-08-09T06:10:00.000Z" />
-  <meta property="article:modified_time" content="2026-10-19T08:00:00.000Z" />
+  <meta property="article:modified_time" content="2026-11-24T17:15:00.000Z" />
   <meta property="article:section" content="AI 科技" />
   
   <meta property="article:tag" content="AI" />
@@ -50,7 +51,7 @@
   <meta name="twitter:description" content="Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg?v=49ab829e">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","url":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","headline":"Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息","description":"Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。","datePublished":"2026-08-09T06:10:00.000Z","dateModified":"2026-10-19T08:00:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI, Claude Code, AI Agent, 开发工具","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","url":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/","headline":"Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息","description":"Claude Code 两个 Session 如何通信？v2.1.224 起无需插件，直接让 Claude 发消息或用 @名称 指定目标；/list-agents（/peers）列出可联系的会话，claude agents 查看后台任务。附跨设备、权限配置与排障。","datePublished":"2026-08-09T06:10:00.000Z","dateModified":"2026-11-24T17:15:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI, Claude Code, AI Agent, 开发工具","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Claude Code 跨 Session 通信：用 /list-agents 列出会话并互发消息","item":"https://blog.6yuwei.com/zh-cn/2026/08/09/claude-code-cross-session-messaging/"}]}</script>
   
@@ -407,7 +408,7 @@
 <td>各自独立，团队内互发消息</td>
 </tr>
 </tbody></table></div>
-<p>Agent Teams 仍是<strong>实验性功能</strong>，需要设置 <strong>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS&#x3D;1</strong> 才会启用，token 消耗也明显更高。如果只是让两个终端交换几句进度，跨会话消息就够用了。想进一步设计多智能体研发流程，可以看 <a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/">Agentic SDLC 完整架构解析</a>；还在选型的话，参考 <a href="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/">Claude Code、Codex、Cursor 对比</a>。</p>
+<p>Agent Teams 仍是<strong>实验性功能</strong>，需要设置 <strong>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS&#x3D;1</strong> 才会启用，token 消耗也明显更高。如果只是让两个终端交换几句进度，跨会话消息就够用了。想了解 Claude Code 如何通过写脚本减少工具往返开销，推荐阅读 <a href="/zh-cn/2026/11/15/claude-code-mode-explained/">Claude Code 的 Code Mode 是什么？</a>；想进一步设计多智能体研发流程，可以看 <a href="/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/">Agentic SDLC 完整架构解析</a>；还在选型的话，参考 <a href="/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/">Claude Code、Codex、Cursor 对比</a>。</p>
 <h2 id="常见问题排查"><a href="#常见问题排查" class="headerlink" title="常见问题排查"></a>常见问题排查</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>

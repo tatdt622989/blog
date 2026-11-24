@@ -1,7 +1,6 @@
+---
 title: Claude Code vs Codex vs Cursor 比較：2026 年 10 月價格、模型與怎麼選
-description: >-
-  Claude Code vs Codex vs Cursor 怎麼選？2026 年 10 月比較：Claude Code 含在 Claude Pro $20 起，擅長深改
-  repo；Codex 含在 ChatGPT Plus $20 起，可交辦雲端任務；Cursor 新方案用 Claude、GPT 需 Premium $30 並按 API 價計。
+description: "Claude Code vs Codex vs Cursor 怎麼選？2026 年比較：Claude Code 擅長深改 repo（Pro $20 起）、Codex 支援雲端任務（Plus $20 起）、Cursor 新方案用 Claude／GPT 需 Premium $30 並按 API 計費。"
 translation_key: ai-coding-tools-comparison
 translations:
   en: /en/2026/05/06/claude-code-vs-codex-vs-cursor/
@@ -16,7 +15,7 @@ tags:
   - Codex
   - Cursor
 date: 2026-05-06 21:30:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 ---
 
 ![Claude Code、Codex、Cursor 三款 AI coding 工具比較封面](cover-v2.jpg)
@@ -128,7 +127,7 @@ Pro 與 Max 都有 5 小時 session 與每週上限，Claude、Claude Code 與 I
 | 常離開電腦，想從手機或網頁交辦背景任務 | **Codex Cloud** 或 **Claude Code 網頁版** |
 | 每天高強度、平行開多個任務 | **Claude Max 20x** 或 **ChatGPT Pro** |
 
-想看每美元能換多少 API 等值用量，可對照 [2026 年 9 月 AI 寫程式訂閱方案比較](/2026/09/14/ai-coding-tools-subscription-comparison/)；Codex 額度一直被重置的背景，見 [OpenAI 為什麼不停重置 Codex 額度](/2026/07/13/OpenAI-為什麼不停重置-Codex-額度/)。
+想看每美元能換多少 API 等值用量，可對照 [2026 年 9 月 AI 寫程式訂閱方案比較](/2026/09/14/ai-coding-tools-subscription-comparison/)；Codex 額度一直被重置的背景，見 [OpenAI 為什麼不停重置 Codex 額度](/2026/07/13/OpenAI-為什麼不停重置-Codex-額度/)。如果想進一步了解 Claude Code 怎麼靠寫程式減少工具呼叫浪費，可讀 [Claude Code 的 Code Mode 是什麼？](/2026/11/15/Claude-Code-的-Code-Mode-是什麼？用生活例子看懂-AI-如何靠寫程式少走冤枉路/)；對現代開發工具鏈為何大量改寫成 Rust 有興趣，則見 [Rust 為什麼越來越紅？Discord、Linux、GitHub 都改用 Rust 的原因與反例](/2026/11/12/Rust-為什麼越來越紅？Discord、Linux、GitHub-都改用-Rust-的原因與反例/)。
 
 ## 參考資料
 

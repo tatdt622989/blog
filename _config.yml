@@ -138,5 +138,5 @@ jsonContent:
 # Sitemap
 sitemap:
   path: sitemap-zh-TW.xml
-  tag: true
-  category: true
+  tags: false
+  categories: false

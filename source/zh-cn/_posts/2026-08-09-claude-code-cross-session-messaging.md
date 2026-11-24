@@ -14,7 +14,7 @@ tags:
   - AI Agent
   - 开发工具
 date: 2026-08-09 14:10:00
-updated: 2026-10-19 16:00:00
+updated: 2026-11-25 01:15:00
 ---
 
 ![Claude Code 跨会话消息让多个 Session 交换任务摘要的示意图](cover.jpg)
@@ -151,7 +151,7 @@ claude -p "检查 migration 是否完成" \
 | 子代理（subagents） | 当前会话把小任务委派出去，结果回传主对话 | 否，只返回结果 |
 | [Agent Teams](https://code.claude.com/docs/en/agent-teams) | 由 lead 拆分任务、带共享任务列表的多智能体团队 | 各自独立，团队内互发消息 |
 
-Agent Teams 仍是**实验性功能**，需要设置 **CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1** 才会启用，token 消耗也明显更高。如果只是让两个终端交换几句进度，跨会话消息就够用了。想进一步设计多智能体研发流程，可以看 [Agentic SDLC 完整架构解析](/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/)；还在选型的话，参考 [Claude Code、Codex、Cursor 对比](/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/)。
+Agent Teams 仍是**实验性功能**，需要设置 **CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1** 才会启用，token 消耗也明显更高。如果只是让两个终端交换几句进度，跨会话消息就够用了。想了解 Claude Code 如何通过写脚本减少工具往返开销，推荐阅读 [Claude Code 的 Code Mode 是什么？](/zh-cn/2026/11/15/claude-code-mode-explained/)；想进一步设计多智能体研发流程，可以看 [Agentic SDLC 完整架构解析](/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/)；还在选型的话，参考 [Claude Code、Codex、Cursor 对比](/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/)。
 
 ## 常见问题排查
 

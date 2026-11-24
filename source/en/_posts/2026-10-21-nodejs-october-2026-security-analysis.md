@@ -1,7 +1,7 @@
 ---
 title: "Node.js October 2026 Security Update: Brotli RCE, TLS Bypasses and What to Patch"
 date: 2026-10-21 23:49:20
-updated: 2026-10-21 23:55:04
+updated: 2026-11-25 01:15:00
 description: "Analyze Node.js's October 2026 fixes: Brotli RCE, TLS bypasses, random-cache snapshots, affected branches, npm audit limits and deployment checks."
 permalink: 2026/10/21/nodejs-october-2026-security-analysis/
 translation_key: nodejs-october-2026-security-analysis
@@ -152,4 +152,4 @@ This reads version and executable information without upgrading anything. Fields
 
 Deployment verification should establish that **running workers were restarted or replaced, every replica loads a fixed runtime, relevant snapshots and SEAs were rebuilt, and essential connection and decompression flows pass checks**. A changed image tag or successful CI job alone does not establish that old workloads stopped serving traffic.
 
-The same day's [PHP incident and service suspensions](/en/2026/10/21/php-critical-vulnerabilities-japan-shutdowns-2026/) also illustrate the operational importance of runtime updates. Those PHP maintenance notices cannot establish exploitation of these Node.js flaws. A decision to suspend a service should follow its actual exposure, patch availability and deployment capabilities.
+The same day's [PHP incident and service suspensions](/en/2026/10/21/php-critical-vulnerabilities-japan-shutdowns-2026/) also illustrate the operational importance of runtime updates. Those PHP maintenance notices cannot establish exploitation of these Node.js flaws. A decision to suspend a service should follow its actual exposure, patch availability and deployment capabilities. For a broader defense checklist covering October's runtime patches, supply-chain attacks, and credential leaks, read [How to Protect Yourself in the AI Security Era](/en/2026/10/29/cybersecurity-incidents-ai-era-defense-2026/).
