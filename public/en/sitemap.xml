@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/05/06/claude-code-vs-codex-vs-cursor/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/11/25/taiwan-black-friday-deals-guide-2026/</loc>
+
+    <lastmod>2026-11-25</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/</loc>
 
     <lastmod>2026-11-24</lastmod>
 
@@ -11,7 +20,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/09/claude-code-cross-session-messaging/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/05/06/claude-code-vs-codex-vs-cursor/</loc>
 
     <lastmod>2026-11-24</lastmod>
 
@@ -56,15 +65,6 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/21/gcp-300-credit-opencode-gemini/</loc>
-
-    <lastmod>2026-11-24</lastmod>
-
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
     <loc>https://blog.6yuwei.com/en/2026/08/17/artificial-analysis-definitive-guide-llm-selection/</loc>
 
     <lastmod>2026-11-24</lastmod>
@@ -74,7 +74,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/10/19/google-cloud-300-free-trial-guide/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/08/21/gcp-300-credit-opencode-gemini/</loc>
 
     <lastmod>2026-11-24</lastmod>
 
@@ -93,6 +93,15 @@
 
   <url>
     <loc>https://blog.6yuwei.com/en/2026/11/05/japan-tax-free-refund-method-guide-2026/</loc>
+
+    <lastmod>2026-11-24</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.6yuwei.com/en/2026/10/19/google-cloud-300-free-trial-guide/</loc>
 
     <lastmod>2026-11-24</lastmod>
 
@@ -308,7 +317,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/10/07/ai-game-planning-gdd-prototype-guide/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/10/07/ai-app-planning-prd-mvp-guide/</loc>
 
     <lastmod>2026-10-06</lastmod>
 
@@ -317,7 +326,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/10/07/ai-app-planning-prd-mvp-guide/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/10/07/ai-game-planning-gdd-prototype-guide/</loc>
 
     <lastmod>2026-10-06</lastmod>
 
@@ -542,7 +551,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/</loc>
 
     <lastmod>2026-08-29</lastmod>
 
@@ -551,7 +560,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/en/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/</loc>
+    <loc>https://blog.6yuwei.com/en/2026/08/27/indie-game-ai-audio-workflow/</loc>
 
     <lastmod>2026-08-29</lastmod>
 
@@ -580,7 +589,7 @@
 
   <url>
     <loc>https://blog.6yuwei.com/en/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

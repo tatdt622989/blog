@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
+    <loc>https://blog.6yuwei.com/zh-cn/2026/11/25/taiwan-black-friday-deals-guide-2026/</loc>
+
+    <lastmod>2026-11-25</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/zh-cn/2026/05/06/claude-code-vs-codex-vs-cursor/</loc>
 
     <lastmod>2026-11-24</lastmod>
@@ -74,7 +83,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/2026/10/19/claude-banked-reset-guide/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/2026/10/19/google-cloud-300-free-trial-guide/</loc>
 
     <lastmod>2026-11-24</lastmod>
 
@@ -83,7 +92,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/2026/10/19/google-cloud-300-free-trial-guide/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/2026/10/19/claude-banked-reset-guide/</loc>
 
     <lastmod>2026-11-24</lastmod>
 
@@ -218,7 +227,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/2024/06/08/asia-vps-contabo-review/</loc>
 
     <lastmod>2026-10-19</lastmod>
 
@@ -227,7 +236,7 @@
   </url>
 
   <url>
-    <loc>https://blog.6yuwei.com/zh-cn/2024/06/08/asia-vps-contabo-review/</loc>
+    <loc>https://blog.6yuwei.com/zh-cn/2026/06/18/claude-codex-usage-limits-guide/</loc>
 
     <lastmod>2026-10-19</lastmod>
 
@@ -524,6 +533,15 @@
   </url>
 
   <url>
+    <loc>https://blog.6yuwei.com/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/</loc>
+
+    <lastmod>2026-08-29</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://blog.6yuwei.com/zh-cn/2026/08/27/indie-game-ai-audio-workflow/</loc>
 
     <lastmod>2026-08-29</lastmod>
@@ -534,15 +552,6 @@
 
   <url>
     <loc>https://blog.6yuwei.com/zh-cn/2026/08/28/grok-bot-cloud-vm-autonomous-agent-guide/</loc>
-
-    <lastmod>2026-08-29</lastmod>
-
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://blog.6yuwei.com/zh-cn/2026/08/26/vibe-coding-pr-review-engineering-shift/</loc>
 
     <lastmod>2026-08-29</lastmod>
 
@@ -580,7 +589,7 @@
 
   <url>
     <loc>https://blog.6yuwei.com/zh-cn/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
