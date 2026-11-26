@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -344,7 +350,7 @@
 <li><strong>Claude Fable 5.1</strong>（$10 &#x2F; $50）：專攻連續多輪自主代理、跨十幾個模組的大規模重構、端到端生出含即時公式的試算表與多步驟深度研究。得益於 <strong>$0.25 &#x2F; MTok</strong> 的超低快取讀取價，在超長代理對話中，綜合營運成本甚至往往比 Opus 5 更具優勢！</li>
 </ul>
 <hr>
-<h2 id="開發者必知：三大重大破壞性變更"><a href="#開發者必知：三大重大破壞性變更" class="headerlink" title="開發者必知：三大重大破壞性變更"></a>開發者必知：三大重大破壞性變更</h2><p>如果您打算將既有的工作流或專案升級至 Claude Fable 5.1，必須特別注意以下三項與過往模型不同的重大行為變更（Breaking Changes）：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="開發者必知：三大重大破壞性變更"><a href="#開發者必知：三大重大破壞性變更" class="headerlink" title="開發者必知：三大重大破壞性變更"></a>開發者必知：三大重大破壞性變更</h2><p>如果您打算將既有的工作流或專案升級至 Claude Fable 5.1，必須特別注意以下三項與過往模型不同的重大行為變更（Breaking Changes）：</p>
 <h3 id="1-禁止強制工具選擇（tool-choice-不再支援-tool-與-any）"><a href="#1-禁止強制工具選擇（tool-choice-不再支援-tool-與-any）" class="headerlink" title="1. 禁止強制工具選擇（tool_choice 不再支援 tool 與 any）"></a>1. 禁止強制工具選擇（tool_choice 不再支援 tool 與 any）</h3><p>在過往的 Claude 模型中，開發者可以透過 <code>tool_choice: &#123;&quot;type&quot;: &quot;tool&quot;, &quot;name&quot;: &quot;...&quot;&#125;</code> 或 <code>tool_choice: &#123;&quot;type&quot;: &quot;any&quot;&#125;</code> 強迫模型在下一輪必須呼叫特定工具。</p>
 <p>在 <strong>Claude Fable 5.1</strong> 中，這兩種強制設定會直接回傳 <strong>HTTP 400 invalid_request_error</strong>。</p>
 <p><strong>官方升級解法：</strong></p>
@@ -361,7 +367,7 @@
 </ul>
 <h3 id="3-對話歷史修改會使思考簽章失效"><a href="#3-對話歷史修改會使思考簽章失效" class="headerlink" title="3. 對話歷史修改會使思考簽章失效"></a>3. 對話歷史修改會使思考簽章失效</h3><p>為了確保長推理鏈的嚴謹性與安全性，Claude Fable 5.1 的每一個思考區塊都與先前的系統提示詞、工具定義以及對話歷史產生了強綁定。如果您的後端程式在多輪對話中途修改了先前的訊息內容，該請求將會直接收到簽章無效的 400 錯誤。在設計代理框架時，務必確保對話前綴（Prefix）的位元組完全一致。</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五大殺手級新功能與架構優化"><a href="#五大殺手級新功能與架構優化" class="headerlink" title="五大殺手級新功能與架構優化"></a>五大殺手級新功能與架構優化</h2><p>除了核心推理能力的躍升，Claude Fable 5.1 還引入了多項專為代理架構設計的原生能力：</p>
+<h2 id="五大殺手級新功能與架構優化"><a href="#五大殺手級新功能與架構優化" class="headerlink" title="五大殺手級新功能與架構優化"></a>五大殺手級新功能與架構優化</h2><p>除了核心推理能力的躍升，Claude Fable 5.1 還引入了多項專為代理架構設計的原生能力：</p>
 <h3 id="1-逐訊息-Effort-動態調控（Beta）"><a href="#1-逐訊息-Effort-動態調控（Beta）" class="headerlink" title="1. 逐訊息 Effort 動態調控（Beta）"></a>1. 逐訊息 Effort 動態調控（Beta）</h3><p>以往在對話中切換思考強度（Effort）通常需要變更全域設定，甚至可能破壞既有的快取狀態。Claude Fable 5.1 支援在單一對話的不同輪次中，動態指定 <code>effort: &quot;low&quot;</code>、<code>&quot;medium&quot;</code>、<code>&quot;high&quot;</code> 或 <code>&quot;max&quot;</code>，且<strong>完全不會破壞先前的提示快取命中</strong>。</p>
 <p>例如在代理工作流中，當進行簡單的檔案讀取與確認時可使用 <code>low</code> effort 節省時間；當遇到複雜演算法設計或測試錯誤修復時，則可動態提升至 <code>high</code> 或 <code>max</code>。</p>
 <h3 id="2-輪次範圍系統訊息（Turn-scoped-System-Messages-Beta）"><a href="#2-輪次範圍系統訊息（Turn-scoped-System-Messages-Beta）" class="headerlink" title="2. 輪次範圍系統訊息（Turn-scoped System Messages, Beta）"></a>2. 輪次範圍系統訊息（Turn-scoped System Messages, Beta）</h3><p>開發者現在可以在 <code>messages</code> 陣列中途附加 <code>role: &quot;system&quot;</code> 訊息。這項功能對於自動化代理框架極具價值——您可以在不更動頂層 Prompt、完全保留提示快取的前提下，精準告知當前步驟的特殊規範或工具使用條件。</p>
@@ -371,7 +377,7 @@
 <h3 id="4-0-025-倍極致快取讀取費率"><a href="#4-0-025-倍極致快取讀取費率" class="headerlink" title="4. 0.025 倍極致快取讀取費率"></a>4. 0.025 倍極致快取讀取費率</h3><p>長時程代理最耗費成本的地方在於每一輪工具調用後，都需要將累積的程式碼、檔案清單與終端機輸出重新送回模型。Claude Fable 5.1 將快取讀取費率壓低至 <strong>$0.25 &#x2F; MTok</strong>，這意味著即便對話歷史長達數十萬 Token，每一輪額外產生的讀取成本幾乎微不足道。</p>
 <h3 id="5-內容來源標記（Content-Provenance）"><a href="#5-內容來源標記（Content-Provenance）" class="headerlink" title="5. 內容來源標記（Content Provenance）"></a>5. 內容來源標記（Content Provenance）</h3><p>輸出的文字全面內嵌 Anthropic 統計式文字浮水印，在不影響語意、不增加額外 Token 的前提下提供來源鑑別。透過程式碼工具或 Files API 產生的圖片與影片更全面支援 <strong>C2PA 數位憑證簽署</strong>。</p>
 <hr>
-<h2 id="長時程代理工作流執行架構"><a href="#長時程代理工作流執行架構" class="headerlink" title="長時程代理工作流執行架構"></a>長時程代理工作流執行架構</h2><p>下圖展示了採用 Claude Fable 5.1 建構高強韌度自主代理系統時的標準運作流程：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="長時程代理工作流執行架構"><a href="#長時程代理工作流執行架構" class="headerlink" title="長時程代理工作流執行架構"></a>長時程代理工作流執行架構</h2><p>下圖展示了採用 Claude Fable 5.1 建構高強韌度自主代理系統時的標準運作流程：</p>
 <pre class="mermaid">
 flowchart TD
     Start["AGENT INITIALIZATION (代理工作流啟動)"] --> LoadContext["LOAD WORKSPACE & PROMPTS (載入專案上下文與工具定義)"]
@@ -565,6 +571,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -578,6 +585,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -629,6 +639,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -680,6 +691,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

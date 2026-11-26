@@ -41,9 +41,9 @@
   
   <meta property="article:tag" content="LLM" />
   
-  <meta property="article:tag" content="獨立開發者" />
-  
   <meta property="article:tag" content="AI Agent" />
+  
+  <meta property="article:tag" content="獨立開發者" />
   
   <meta property="article:tag" content="開發工具" />
   
@@ -55,7 +55,7 @@
   <meta name="twitter:description" content="以 DeepSeek V4.1 Flash 實算 Command Code 的 Go、GOAT 與 MOAT 訂閱性價比，透過互動長條圖、五方案折線圖與使用區間圖看懂平均 Token 成本、回本門檻與省錢幅度。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/cover.jpg?v=6f9265cc">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/","url":"https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/","headline":"Command Code 方案性價比分析：Go、GOAT、MOAT 怎麼搭最省錢？","description":"以 DeepSeek V4.1 Flash 實算 Command Code 的 Go、GOAT 與 MOAT 訂閱性價比，透過互動長條圖、五方案折線圖與使用區間圖看懂平均 Token 成本、回本門檻與省錢幅度。","datePublished":"2026-11-26T03:34:00.000Z","dateModified":"2026-11-26T03:34:00.000Z","inLanguage":"zh-TW","articleSection":"AI 科技","keywords":"AI, LLM, 獨立開發者, AI Agent, 開發工具, Command Code","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/","url":"https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/","headline":"Command Code 方案性價比分析：Go、GOAT、MOAT 怎麼搭最省錢？","description":"以 DeepSeek V4.1 Flash 實算 Command Code 的 Go、GOAT 與 MOAT 訂閱性價比，透過互動長條圖、五方案折線圖與使用區間圖看懂平均 Token 成本、回本門檻與省錢幅度。","datePublished":"2026-11-26T03:34:00.000Z","dateModified":"2026-11-26T03:34:00.000Z","inLanguage":"zh-TW","articleSection":"AI 科技","keywords":"AI, LLM, AI Agent, 獨立開發者, 開發工具, Command Code","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Command Code 方案性價比分析：Go、GOAT、MOAT 怎麼搭最省錢？","item":"https://blog.6yuwei.com/2026/11/26/Command-Code-%E6%96%B9%E6%A1%88%E6%80%A7%E5%83%B9%E6%AF%94%E5%88%86%E6%9E%90/"}]}</script>
   
@@ -89,14 +89,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -121,7 +127,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -357,7 +363,7 @@
 <li><strong>實際上只需要在 Go、GOAT、GOAT＋MOAT 三選一</strong>：<strong>Go＋MOAT</strong> 勝出的區間只有每月 $18.33 到 $20 之間——寬度才 $1.67，就算精準踩在正中間也只省不到一美元。對絕大多數開發者來說，輕度用 <strong>Go</strong>、中度直接上 <strong>GOAT</strong>、重度再疊 <strong>GOAT＋MOAT</strong> 就夠了。</li>
 <li><strong>「單獨買 MOAT」在這五種方案裡完全沒有成本優勢</strong>：原因非常直白——單買 MOAT 買 $100 原價額度要花 $5 會費加 $40 Token 費，共 $45；但只要多花 $10 疊上 GOAT，前 $100 額度直接包在裡面，總花費降到 $15。只要每月用量達到 $100 以上，<strong>GOAT＋MOAT 永遠比單買 MOAT 每月少花 $30（一年少花 $360）</strong>。</li>
 </ol>
-<h2 id="拆解平均-Token-成本：為什麼重度用戶一定要疊加？"><a href="#拆解平均-Token-成本：為什麼重度用戶一定要疊加？" class="headerlink" title="拆解平均 Token 成本：為什麼重度用戶一定要疊加？"></a>拆解平均 Token 成本：為什麼重度用戶一定要疊加？</h2><p>很多人算訂閱費時容易看錯重點，只盯著月費 $10 還是 $15，卻忘了算<strong>「平均每買 $1 原價 Token，自己實際付了幾毛錢」</strong>。我們用一個超簡單的公式就能衡量每個方案的真實折數：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="拆解平均-Token-成本：為什麼重度用戶一定要疊加？"><a href="#拆解平均-Token-成本：為什麼重度用戶一定要疊加？" class="headerlink" title="拆解平均 Token 成本：為什麼重度用戶一定要疊加？"></a>拆解平均 Token 成本：為什麼重度用戶一定要疊加？</h2><p>很多人算訂閱費時容易看錯重點，只盯著月費 $10 還是 $15，卻忘了算<strong>「平均每買 $1 原價 Token，自己實際付了幾毛錢」</strong>。我們用一個超簡單的公式就能衡量每個方案的真實折數：</p>
 <p><strong>平均成本比例 ＝（會員費 ＋ 額外 Token 費用）÷ Token 原價總用量 × 100%</strong></p>
 <p>這個比例越低，代表你用越少的錢買到相同的 Token 用量。例如 <strong>10%</strong> 就是原價一折，<strong>40%</strong> 就是原價四折。把五種方案（<strong>Go</strong>、<strong>Go＋MOAT</strong>、<strong>GOAT</strong>、<strong>GOAT＋MOAT</strong> 與 <strong>單獨 MOAT 年繳</strong>）全部畫在同一張等比例互動折線圖上——滑鼠移上去可以直接比對每個用量的精確折數，點下方圖例也能自由開關單獨曲線：</p>
 <figure class="blog-chart blog-chart--line" data-chart-engine="chartjs" data-chart-type="line" aria-label="五種方案平均 Token 成本折線圖（年度原價用量 $120～$3,600）"><div class="blog-chart__header"><div class="blog-chart__title">五種方案平均 Token 成本折線圖（年度原價用量 $120～$3,600）</div><div class="blog-chart__subtitle">橫軸為真實等比例年度原價用量，線越低代表越省；點擊底部圖例可開關個別方案曲線</div></div><div class="blog-chart__canvas-wrap" style="--chart-height:380px"><canvas class="blog-chart__canvas" role="img" aria-label="五種方案平均 Token 成本折線圖（年度原價用量 $120～$3,600）"></canvas></div><figcaption class="blog-chart__note">年度用量超過 $3,600 後，GOAT 會持續攀升至趨近 100%（原價），而 GOAT + MOAT 與 MOAT 均穩穩壓在 40%（四折）以內。</figcaption><script type="application/json" class="blog-chart-config">{"type":"line","title":"五種方案平均 Token 成本折線圖（年度原價用量 $120～$3,600）","subtitle":"橫軸為真實等比例年度原價用量，線越低代表越省；點擊底部圖例可開關個別方案曲線","height":380,"xType":"linear","xMin":120,"xMax":3600,"xTicks":[120,600,1200,1900,2400,3000,3600],"xPrefix":"$","xLabel":"年度 Token 原價用量（美元）","yMin":0,"yMax":160,"yStep":20,"ySuffix":"%","yLabel":"平均 Token 成本（原價百分比）","tooltipTitlePrefix":"年度原價用量 ","legendPosition":"bottom","referenceLines":[{"axis":"y","value":40,"color":"#64748b","label":"40% 四折漸近線","labelAlign":"right"},{"axis":"x","value":1300,"color":"#d97706","label":"$1,300 黃金交叉 (16.9%)","labelBg":"#fffbeb","labelColor":"#92400e","labelYOffset":4},{"axis":"x","value":1900,"color":"#64748b","label":"$1,900 GOAT 追平 MOAT","labelBg":"#f8fafc","labelColor":"#334155","labelYOffset":34}],"datasets":[{"label":"Go","color":"#2563eb","data":[{"x":120,"y":10},{"x":180,"y":40},{"x":220,"y":50.91},{"x":240,"y":55},{"x":400,"y":73},{"x":600,"y":82},{"x":900,"y":88},{"x":1200,"y":91},{"x":1300,"y":91.69},{"x":1900,"y":94.32},{"x":2400,"y":95.5},{"x":3600,"y":97}]},{"label":"Go + MOAT","color":"#16a34a","data":[{"x":120,"y":60},{"x":180,"y":53.33},{"x":220,"y":50.91},{"x":240,"y":50},{"x":400,"y":46},{"x":600,"y":44},{"x":900,"y":42.67},{"x":1200,"y":42},{"x":1300,"y":41.85},{"x":1900,"y":41.26},{"x":2400,"y":41},{"x":3600,"y":40.67}]},{"label":"GOAT","color":"#ea580c","data":[{"x":120,"y":100},{"x":180,"y":66.67},{"x":220,"y":54.55},{"x":240,"y":50},{"x":400,"y":30},{"x":600,"y":20},{"x":900,"y":13.33},{"x":1200,"y":10},{"x":1300,"y":16.92},{"x":1900,"y":43.16},{"x":2400,"y":55},{"x":3600,"y":70}]},{"label":"GOAT + MOAT","color":"#d97706","borderWidth":3.4,"data":[{"x":120,"y":150},{"x":180,"y":100},{"x":220,"y":81.82},{"x":240,"y":75},{"x":400,"y":45},{"x":600,"y":30},{"x":900,"y":20},{"x":1200,"y":15},{"x":1300,"y":16.92},{"x":1900,"y":24.21},{"x":2400,"y":27.5},{"x":3600,"y":31.67}]},{"label":"MOAT（年繳）","color":"#7c3aed","data":[{"x":120,"y":90},{"x":180,"y":73.33},{"x":220,"y":67.27},{"x":240,"y":65},{"x":400,"y":55},{"x":600,"y":50},{"x":900,"y":46.67},{"x":1200,"y":45},{"x":1300,"y":44.62},{"x":1900,"y":43.16},{"x":2400,"y":42.5},{"x":3600,"y":41.67}]}],"note":"年度用量超過 $3,600 後，GOAT 會持續攀升至趨近 100%（原價），而 GOAT + MOAT 與 MOAT 均穩穩壓在 40%（四折）以內。"}</script><noscript><p class="blog-chart__fallback">五種方案平均 Token 成本折線圖（年度原價用量 $120～$3,600）</p></noscript></figure>
@@ -438,7 +444,7 @@
 <li><strong>轉折點二：年用量 $1,300（每月 $108.33）</strong>——這就是 <strong>GOAT 與 GOAT＋MOAT 的黃金交叉點</strong>。只要超過 $1,200 內含額度，單獨 GOAT 每一塊錢超額都要付原價，橘色曲線立刻陡峭往上飆；就在 $1,300 這裡，兩條線在 <strong>16.92%</strong> 正式交會，從此之後 <strong>GOAT＋MOAT 一路壓著打</strong>。</li>
 <li><strong>轉折點三：年用量 $1,900（約每月 $158）</strong>——單獨 GOAT 的平均成本已經飆升到 <strong>43.16%（超過四成三）</strong>，連沒送額度的單買 MOAT 都追上它了；反觀 <strong>GOAT＋MOAT 此時平均成本依然只有 24.21%（不到原價兩成五）</strong>。就算用量一路放大到 $12,000 甚至趨近無限，單獨 GOAT 會逼近 <strong>100% 原價</strong>，而 GOAT＋MOAT 則穩穩鎖死在 <strong>40%（四折）</strong>以內。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="MOAT-回本門檻怎麼算？別背複雜表，記兩條數字就好"><a href="#MOAT-回本門檻怎麼算？別背複雜表，記兩條數字就好" class="headerlink" title="MOAT 回本門檻怎麼算？別背複雜表，記兩條數字就好"></a>MOAT 回本門檻怎麼算？別背複雜表，記兩條數字就好</h2><p>很多已經訂了 <strong>GOAT</strong> 的朋友最常問：「我到底超支到什麼程度，才該加購 <strong>MOAT</strong>？」</p>
+<h2 id="MOAT-回本門檻怎麼算？別背複雜表，記兩條數字就好"><a href="#MOAT-回本門檻怎麼算？別背複雜表，記兩條數字就好" class="headerlink" title="MOAT 回本門檻怎麼算？別背複雜表，記兩條數字就好"></a>MOAT 回本門檻怎麼算？別背複雜表，記兩條數字就好</h2><p>很多已經訂了 <strong>GOAT</strong> 的朋友最常問：「我到底超支到什麼程度，才該加購 <strong>MOAT</strong>？」</p>
 <p>拆開算其實比超市集點還簡單。加購 <strong>MOAT 年繳</strong>等於每個月多付 <strong>$5 會員費</strong>，換來每一美元超額 Token <strong>省下 60%（$0.60）</strong>。把多付的會費除以折扣率，回本門檻立刻就出來了：</p>
 <ul>
 <li><strong>年度超額回本門檻</strong>：$60 ÷ 60% ＝ <strong>$100 超額用量</strong>（整年只要原價超支超過 $100 就回本）。</li>
@@ -534,7 +540,7 @@
 </tr>
 </tbody></table></div>
 <p>挑法非常乾脆：<strong>長期每個月都會穩定超額，直接買年繳最便宜</strong>（把超額門檻壓到只要 $8.33）；<strong>只有少數衝刺月份才會爆量，平常維持 GOAT，爆量當月開一次 MOAT 月繳</strong>（只要當月額外原價儲值超過 $16.67 就回本），月底再取消即可。</p>
-<h2 id="荷包真實有感：不同用量下每月、每年到底省多少？"><a href="#荷包真實有感：不同用量下每月、每年到底省多少？" class="headerlink" title="荷包真實有感：不同用量下每月、每年到底省多少？"></a>荷包真實有感：不同用量下每月、每年到底省多少？</h2><p>折數百分比有時候沒那麼有感，我們直接換算成<strong>每個月信用卡帳單上真實少付的美元金額</strong>。以下兩張互動長條圖均以 <strong>GOAT＋MOAT 年繳</strong>為基準，所有金額都已計入會員費與額外儲值費：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="荷包真實有感：不同用量下每月、每年到底省多少？"><a href="#荷包真實有感：不同用量下每月、每年到底省多少？" class="headerlink" title="荷包真實有感：不同用量下每月、每年到底省多少？"></a>荷包真實有感：不同用量下每月、每年到底省多少？</h2><p>折數百分比有時候沒那麼有感，我們直接換算成<strong>每個月信用卡帳單上真實少付的美元金額</strong>。以下兩張互動長條圖均以 <strong>GOAT＋MOAT 年繳</strong>為基準，所有金額都已計入會員費與額外儲值費：</p>
 <figure class="blog-chart blog-chart--bar" data-chart-engine="chartjs" data-chart-type="bar" aria-label="每月實際支出比較長條圖（GOAT vs GOAT + MOAT 年繳）"><div class="blog-chart__header"><div class="blog-chart__title">每月實際支出比較長條圖（GOAT vs GOAT + MOAT 年繳）</div><div class="blog-chart__subtitle">費用已包含會員費與額外 Token 儲值，柱體越低代表實付越少</div></div><div class="blog-chart__canvas-wrap" style="--chart-height:330px"><canvas class="blog-chart__canvas" role="img" aria-label="每月實際支出比較長條圖（GOAT vs GOAT + MOAT 年繳）"></canvas></div><script type="application/json" class="blog-chart-config">{"type":"bar","title":"每月實際支出比較長條圖（GOAT vs GOAT + MOAT 年繳）","subtitle":"費用已包含會員費與額外 Token 儲值，柱體越低代表實付越少","height":330,"yPrefix":"$","yMax":1050,"yStep":200,"xLabel":"每月 Token 原價用量","yLabel":"每月實際總支出（美元）","showBarLabels":true,"legendPosition":"top","labels":["$100","$108.33","$120","$150","$200","$300","$500","$1,000"],"datasets":[{"label":"單獨 GOAT 實付","data":[10,18.33,30,60,110,210,410,910],"color":"#fb923c","labelColor":"#c2410c"},{"label":"GOAT + MOAT（年繳）實付","data":[15,18.33,23,35,55,95,175,375],"color":"#059669","labelColor":"#047857"}]}</script><noscript><p class="blog-chart__fallback">每月實際支出比較長條圖（GOAT vs GOAT + MOAT 年繳）</p></noscript></figure>
 
 <figure class="blog-chart blog-chart--bar" data-chart-engine="chartjs" data-chart-type="bar" aria-label="加購 MOAT 年繳後的年度淨省金額長條圖"><div class="blog-chart__header"><div class="blog-chart__title">加購 MOAT 年繳後的年度淨省金額長條圖</div><div class="blog-chart__subtitle">正值為每年淨省下的美元金額，負值為未達回本門檻時多付的年費差額</div></div><div class="blog-chart__canvas-wrap" style="--chart-height:300px"><canvas class="blog-chart__canvas" role="img" aria-label="加購 MOAT 年繳後的年度淨省金額長條圖"></canvas></div><script type="application/json" class="blog-chart-config">{"type":"bar","title":"加購 MOAT 年繳後的年度淨省金額長條圖","subtitle":"正值為每年淨省下的美元金額，負值為未達回本門檻時多付的年費差額","height":300,"yPrefix":"$","yShowPlus":true,"yMin":-800,"yMax":7200,"yStep":2000,"xLabel":"每月 Token 原價用量","yLabel":"每年淨節省（美元）","showBarLabels":true,"zeroLabel":"打平 $0","showLegend":false,"labels":["$100","$108.33","$120","$150","$200","$300","$500","$1,000"],"datasets":[{"label":"每年淨節省","data":[-60,0,84,300,660,1380,2820,6420],"backgroundColor":["#ef4444","#d97706","#10b981","#10b981","#10b981","#10b981","#059669","#047857"],"labelColors":["#b91c1c","#b45309","#047857","#047857","#047857","#047857","#047857","#065f46"]}]}</script><noscript><p class="blog-chart__fallback">加購 MOAT 年繳後的年度淨省金額長條圖</p></noscript></figure>
@@ -686,7 +692,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/tags/AI/">AI</a>, <a href="/tags/LLM/">LLM</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>, <a href="/tags/AI-Agent/">AI Agent</a>, <a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a>, <a href="/tags/Command-Code/">Command Code</a>
+    <a href="/tags/AI/">AI</a>, <a href="/tags/LLM/">LLM</a>, <a href="/tags/AI-Agent/">AI Agent</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>, <a href="/tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/">開發工具</a>, <a href="/tags/Command-Code/">Command Code</a>
   </div>
 
         
@@ -834,6 +840,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -847,6 +854,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -898,6 +908,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -949,6 +960,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

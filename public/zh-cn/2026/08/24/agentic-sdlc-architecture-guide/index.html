@@ -39,9 +39,9 @@
   
   <meta property="article:tag" content="AI" />
   
-  <meta property="article:tag" content="Codex" />
-  
   <meta property="article:tag" content="Claude" />
+  
+  <meta property="article:tag" content="Codex" />
   
   <meta property="article:tag" content="软件工程" />
   
@@ -53,7 +53,7 @@
   <meta name="twitter:description" content="深入解析 Agentic SDLC 软件研发全生命周期架构，从 Hook、Skill、MCP 与调度器四维分工，到涵盖 13 个阶段的标准状态机。详析 LangGraph、OpenHands、E2B、Mem0、PR-Agent 等主流工业级落地组件，确立确定性验证防线与客观信任阶层。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg?v=d7bfd9e8">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/","headline":"告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战","description":"深入解析 Agentic SDLC 软件研发全生命周期架构，从 Hook、Skill、MCP 与调度器四维分工，到涵盖 13 个阶段的标准状态机。详析 LangGraph、OpenHands、E2B、Mem0、PR-Agent 等主流工业级落地组件，确立确定性验证防线与客观信任阶层。","datePublished":"2026-08-24T06:10:32.000Z","dateModified":"2026-08-29T11:08:22.000Z","inLanguage":"zh-CN","articleSection":"软件工程","keywords":"AI, Codex, Claude, 软件工程, 前端开发","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/","headline":"告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战","description":"深入解析 Agentic SDLC 软件研发全生命周期架构，从 Hook、Skill、MCP 与调度器四维分工，到涵盖 13 个阶段的标准状态机。详析 LangGraph、OpenHands、E2B、Mem0、PR-Agent 等主流工业级落地组件，确立确定性验证防线与客观信任阶层。","datePublished":"2026-08-24T06:10:32.000Z","dateModified":"2026-08-29T11:08:22.000Z","inLanguage":"zh-CN","articleSection":"软件工程","keywords":"AI, Claude, Codex, 软件工程, 前端开发","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"软件工程","item":"https://blog.6yuwei.com/zh-cn/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"},{"@type":"ListItem","position":3,"name":"告别 Vibe Coding！Agentic SDLC 完整架构解析：从状态机、验证门禁到热门开源项目实战","item":"https://blog.6yuwei.com/zh-cn/2026/08/24/agentic-sdlc-architecture-guide/"}]}</script>
   
@@ -87,14 +87,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -119,7 +125,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -290,7 +296,7 @@
 <p>这一层边界划分是架构设计的基石。以 Claude Code 官方的系统设计哲学为例，Hook 的定位就是在生命周期的确定性切面（例如 <strong>SessionStart</strong>、<strong>PreToolUse</strong>、<strong>PostToolUse</strong>、<strong>TaskCompleted</strong>、<strong>Stop</strong>、<strong>SessionEnd</strong>）自动执行，用来注入不可逾越的规则检查与危险命令拦截；而 MCP（Model Context Protocol）本质上是模型与外部系统交互的标准 I&#x2F;O 总线，提供规范化的 Tools、Resources 与 Prompts 协议，绝对不能将它与流程编排本身混为一谈。</p>
 <p>真正掌控全局研发走向与逻辑收敛的，是底层的 <strong>全局状态机（Orchestrator）</strong>。</p>
 <hr>
-<h2 id="13-阶段全生命周期状态机与主流开源落地实践"><a href="#13-阶段全生命周期状态机与主流开源落地实践" class="headerlink" title="13 阶段全生命周期状态机与主流开源落地实践"></a>13 阶段全生命周期状态机与主流开源落地实践</h2><p>一套成熟严谨的 Agentic SDLC 架构，绝非单向线性的无脑输出，而是由意图前置收敛、刚性验证门禁、多角色并行评审以及记忆防污染闭环共同构成的 13 阶段标准化状态机：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="13-阶段全生命周期状态机与主流开源落地实践"><a href="#13-阶段全生命周期状态机与主流开源落地实践" class="headerlink" title="13 阶段全生命周期状态机与主流开源落地实践"></a>13 阶段全生命周期状态机与主流开源落地实践</h2><p>一套成熟严谨的 Agentic SDLC 架构，绝非单向线性的无脑输出，而是由意图前置收敛、刚性验证门禁、多角色并行评审以及记忆防污染闭环共同构成的 13 阶段标准化状态机：</p>
 <pre class="mermaid">
 flowchart TD
     classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
@@ -523,7 +529,7 @@ flowchart TD
 </pre>
 
 <hr>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="两条不可逾越的工程铁律"><a href="#两条不可逾越的工程铁律" class="headerlink" title="两条不可逾越的工程铁律"></a>两条不可逾越的工程铁律</h2><p>在整套 Agentic SDLC 体系中，有两个至关重要的设计原则直接决定了整个软件工程产线的稳定性底线：</p>
+<h2 id="两条不可逾越的工程铁律"><a href="#两条不可逾越的工程铁律" class="headerlink" title="两条不可逾越的工程铁律"></a>两条不可逾越的工程铁律</h2><p>在整套 Agentic SDLC 体系中，有两个至关重要的设计原则直接决定了整个软件工程产线的稳定性底线：</p>
 <h3 id="铁律一：执行顺序决定系统生死，先“确定性验证”再“大模型评审”"><a href="#铁律一：执行顺序决定系统生死，先“确定性验证”再“大模型评审”" class="headerlink" title="铁律一：执行顺序决定系统生死，先“确定性验证”再“大模型评审”"></a>铁律一：执行顺序决定系统生死，先“确定性验证”再“大模型评审”</h3><p><strong>严禁在代码甚至无法顺利通过编译或类型检查的前提下，就盲目唤起五个昂贵的大模型去进行代码审查。</strong></p>
 <ul>
 <li><strong>步骤 ⑦ 确定性验证</strong>：Build 编译、Lint 格式检查、Typecheck 类型推断、Unit Test 单元测试，是成本极低、完全零幻觉的非黑即白第一道防线。</li>
@@ -535,7 +541,7 @@ flowchart TD
 </blockquote>
 <p><strong>自动化测试套件实际跑通的硬核物理证据，其权威性永远高于 AI 在自然语言中宣称的任何自信。</strong></p>
 <hr>
-<h2 id="结构化产物证据链（Artifact-Layer）"><a href="#结构化产物证据链（Artifact-Layer）" class="headerlink" title="结构化产物证据链（Artifact Layer）"></a>结构化产物证据链（Artifact Layer）</h2><p>在不同 Agent 角色与各个流程节点之间，<strong>坚决杜绝依赖模糊含混的自然语言口头传递</strong>（例如“上一个 Agent 告诉我它已经做完了”）。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="结构化产物证据链（Artifact-Layer）"><a href="#结构化产物证据链（Artifact-Layer）" class="headerlink" title="结构化产物证据链（Artifact Layer）"></a>结构化产物证据链（Artifact Layer）</h2><p>在不同 Agent 角色与各个流程节点之间，<strong>坚决杜绝依赖模糊含混的自然语言口头传递</strong>（例如“上一个 Agent 告诉我它已经做完了”）。</p>
 <p>跨阶段的流转协同必须全量基于标准化的结构化产物文件（Artifacts）：</p>
 <ul>
 <li><strong>requirements.json</strong>：经过第一阶段规范化后确立的接口契约与验收边界。</li>
@@ -569,7 +575,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/Claude/">Claude</a>, <a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>, <a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Claude/">Claude</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>, <a href="/zh-cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
   </div>
 
         
@@ -717,6 +723,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -730,6 +737,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -777,6 +787,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -828,6 +839,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

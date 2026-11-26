@@ -81,14 +81,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -113,7 +119,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -344,7 +350,7 @@
 <li><strong>延迟优先，想按小时开关机</strong>：Vultr 东京或 ConoHa。</li>
 <li><strong>最在意总价、流量不大</strong>：OVH 新加坡，但要留意亚太区流量配额。</li>
 </ul>
-<h2 id="Contabo-评测：优缺点"><a href="#Contabo-评测：优缺点" class="headerlink" title="Contabo 评测：优缺点"></a>Contabo 评测：优缺点</h2><p><img src="/zh-cn/2024/06/08/asia-vps-contabo-review/contabo.png?v=30f39c6c" alt="Contabo 控制面板与品牌页"></p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Contabo-评测：优缺点"><a href="#Contabo-评测：优缺点" class="headerlink" title="Contabo 评测：优缺点"></a>Contabo 评测：优缺点</h2><p><img src="/zh-cn/2024/06/08/asia-vps-contabo-review/contabo.png?v=30f39c6c" alt="Contabo 控制面板与品牌页"></p>
 <p>Contabo 是德国服务商，亚洲有东京和新加坡机房。</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
@@ -423,7 +429,7 @@
 <li><strong>币种与税费</strong>：官网标价含税。中国大陆、香港、台湾账户默认以美元结算，Contabo 不额外加收 VAT，实付以结账页为准。</li>
 <li><strong>流量</strong>：VPS 总览页标注 **Unlimited Traffic***（合理使用）。日本机房以前写的是每月 10 TB 出站流量，现在日本页没有单独说明，跑大流量业务前建议先问客服。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Vultr-和-Contabo-怎么选"><a href="#Vultr-和-Contabo-怎么选" class="headerlink" title="Vultr 和 Contabo 怎么选"></a>Vultr 和 Contabo 怎么选</h2><p><img src="/zh-cn/2024/06/08/asia-vps-contabo-review/vultr.webp?v=4cf1efe2" alt="Vultr 东京 VPS 价格页面"></p>
+<h2 id="Vultr-和-Contabo-怎么选"><a href="#Vultr-和-Contabo-怎么选" class="headerlink" title="Vultr 和 Contabo 怎么选"></a>Vultr 和 Contabo 怎么选</h2><p><img src="/zh-cn/2024/06/08/asia-vps-contabo-review/vultr.webp?v=4cf1efe2" alt="Vultr 东京 VPS 价格页面"></p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -459,7 +465,7 @@
 </tr>
 </tbody></table></div>
 <p>Vultr 东京最便宜是 <strong>5 美元</strong>（1 vCPU、1 GB、25 GB SSD、1 TB 流量）。官网的 2.5 &#x2F; 3.5 美元套餐只在美国少数机房有，选东京时看不到。我 2024 年写这篇时实测台湾到 Vultr 日本机房约 <strong>40 ms</strong>，是这几家里最低的。</p>
-<h2 id="ConoHa-VPS-价格与特点"><a href="#ConoHa-VPS-价格与特点" class="headerlink" title="ConoHa VPS 价格与特点"></a>ConoHa VPS 价格与特点</h2><p><img src="/zh-cn/2024/06/08/asia-vps-contabo-review/conoha.png?v=f84df932" alt="ConoHa VPS 套餐与价格页面"></p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="ConoHa-VPS-价格与特点"><a href="#ConoHa-VPS-价格与特点" class="headerlink" title="ConoHa VPS 价格与特点"></a>ConoHa VPS 价格与特点</h2><p><img src="/zh-cn/2024/06/08/asia-vps-contabo-review/conoha.png?v=f84df932" alt="ConoHa VPS 套餐与价格页面"></p>
 <p>ConoHa 是 GMO 旗下的日本服务商，机房在东京，控制台以日文为主。支持<strong>按小时计费</strong>（有月费上限），也可以买长期套餐打折。我 2024 年实测台湾延迟约 <strong>50 ms</strong>。</p>
 <p>ConoHa 从 2026 年 7 月 1 日起取消 10% 的服务维护调整费并调整价格，调整后的按小时价格与月费上限（含税）如下：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
@@ -714,6 +720,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -727,6 +734,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -774,6 +784,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -825,6 +836,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

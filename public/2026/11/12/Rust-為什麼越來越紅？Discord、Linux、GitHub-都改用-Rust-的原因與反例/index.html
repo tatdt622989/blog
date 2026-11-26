@@ -89,14 +89,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -121,7 +127,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -293,7 +299,7 @@
 <h3 id="5-2026-年的關鍵推力：AI-輔助寫程式加上嚴格編譯器，讓大型改寫變得划算"><a href="#5-2026-年的關鍵推力：AI-輔助寫程式加上嚴格編譯器，讓大型改寫變得划算" class="headerlink" title="5. 2026 年的關鍵推力：AI 輔助寫程式加上嚴格編譯器，讓大型改寫變得划算"></a>5. 2026 年的關鍵推力：AI 輔助寫程式加上嚴格編譯器，讓大型改寫變得划算</h3><p>過去許多團隊明知舊系統效能不佳，卻不敢輕易啟動重寫，因為<strong>重寫軟體最貴的永遠是工程師的人力與時間</strong>。但到了 2026 年，AI 編碼代理（Coding Agents）與 Rust 的結合改變了這道算式。</p>
 <p>正如我們在<a href="/2026/08/26/%E5%BE%9E-Vibe-Coding-%E7%8B%82%E6%AD%A1%E5%88%B0-PR-%E5%AF%A9%E6%9F%A5%E5%9C%B0%E7%8D%84%EF%BC%9A%E9%80%99%E5%B9%BE%E5%B9%B4%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E7%95%8C%E5%88%B0%E5%BA%95%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%E4%BA%8B%EF%BC%9F/">從 Vibe Coding 狂歡到 PR 審查地獄</a>一文中所探討的，AI 生成動態語言程式碼時，最怕產生「看似能跑、卻在邊界條件崩潰」的隱蔽錯誤；而 <strong>Rust 極度嚴格的型別系統與借用檢查器，剛好成為 AI 寫程式最天然的自動化驗證閘門</strong>。當 AI 寫出型別不符或生命週期錯誤的程式碼時，Rust 編譯器會給出極為詳盡的報錯訊息，讓 AI 代理自己讀錯誤訊息、自己修正，直到通過編譯與測試為止。</p>
 <p>GitHub 官方就透露，將 Copilot Agent 執行環境移植到 83 萬行 Rust 這項浩大工程，放在過去至少需要一個完整工程團隊投入一到兩年；但這次主要由<strong>一位工程師搭配 Copilot，在約 14.5 週內</strong>就完成了遷移。</p>
-<h2 id="哪些知名專案已經換成-Rust？四大領域代表案例總整理"><a href="#哪些知名專案已經換成-Rust？四大領域代表案例總整理" class="headerlink" title="哪些知名專案已經換成 Rust？四大領域代表案例總整理"></a>哪些知名專案已經換成 Rust？四大領域代表案例總整理</h2><p>為了讓你快速掌握產業現況，先將近年最具代表性的企業與開源改寫案例整理如下表，接著再看各領域背後的轉換邏輯：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="哪些知名專案已經換成-Rust？四大領域代表案例總整理"><a href="#哪些知名專案已經換成-Rust？四大領域代表案例總整理" class="headerlink" title="哪些知名專案已經換成 Rust？四大領域代表案例總整理"></a>哪些知名專案已經換成 Rust？四大領域代表案例總整理</h2><p>為了讓你快速掌握產業現況，先將近年最具代表性的企業與開源改寫案例整理如下表，接著再看各領域背後的轉換邏輯：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:560px"><table>
 <thead>
 <tr>
@@ -388,7 +394,7 @@
 <li><strong>雲端大廠看重的是「硬體成本與密度」</strong>：對 Cloudflare 這種每天處理超過 1 兆次請求的網路巨頭來說，<strong>Pingora</strong> 省下的 70% CPU 與 67% 記憶體，換算下來就是少買數萬台伺服器與龐大的機房電費。</li>
 <li><strong>前端與 Python 工具鏈看重的是「開發者等待時間」</strong>：JavaScript 與 Python 寫商業邏輯很方便，但拿來處理成千上萬個檔案的語法樹解析與打包時，單執行緒與直譯開銷就會成為瓶頸。改用 Rust 結合平行運算（如 <strong>Rolldown</strong>、<strong>Turbopack</strong>、<strong>uv</strong>、<strong>Ruff</strong>），能把原本幾十秒的建置與安裝縮短到一兩秒內。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？"><a href="#深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？" class="headerlink" title="深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？"></a>深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？</h2><p>在所有案例中，<strong>Discord</strong> 是最能代表「應用程式從後端一路 Rust 化到前端桌面」的完整縮影。</p>
+<h2 id="深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？"><a href="#深度案例：為什麼-Discord-決定連桌面版都拋棄-Electron、改用-Rust？" class="headerlink" title="深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？"></a>深度案例：為什麼 Discord 決定連桌面版都拋棄 Electron、改用 Rust？</h2><p>在所有案例中，<strong>Discord</strong> 是最能代表「應用程式從後端一路 Rust 化到前端桌面」的完整縮影。</p>
 <p>Discord 從 2018 年起就在後端基礎設施與語音服務中使用 Rust，並在 2020 年完成著名的 Read States 服務遷移。然而，廣大玩家與社群使用者每天打開的 <strong>Discord 桌面版</strong>，多年來一直是基於 <strong>Electron</strong> 框架（底層打包了完整的 Chromium 瀏覽器與 Node.js）。雖然 Electron 讓團隊能用一套 React 程式碼跨平台開發，但也帶來了眾所皆知的缺點：記憶體動輒吃掉 1 GB 以上、冷啟動要等好幾秒。</p>
 <p>即便 Discord 工程團隊在 2026 年 9 月努力將客戶端升級到 <strong>Electron 42</strong>，雖然讓中位數 CPU 使用率下降了約 **17%**，但記憶體占用反而微幅上升了約 **4%**——這證明只要還揹著整座瀏覽器引擎，優化就有物理極限。</p>
 <p>因此在 <strong>2026 年 11 月 4 日</strong>，Discord 技術長 Stanislav Vishnevskiy 正式宣布內部代號為 <strong>Phoenix</strong> 的跨世代重構計畫：桌面版將<a target="_blank" rel="noopener" href="https://www.ghacks.net/2026/11/06/discord-is-rebuilding-its-desktop-app-in-rust-with-the-new-client-using-290-mb-of-ram/">徹底拋棄 Electron</a>，改用 <strong>Rust</strong> 搭配 <strong>Zed 編輯器</strong>團隊打造的 GPU 加速介面框架 <strong>GPUI</strong> 重新打造。</p>
@@ -427,7 +433,7 @@
 </tr>
 </tbody></table></div>
 <p>Discord 的做法為跨平台應用指出了另一條路：不一定要為了跨平台而在桌機上塞進整顆瀏覽器，透過 <strong>Rust 撰寫底層共用邏輯</strong>，再分別對接桌面端 GPU 渲染、手機端原生 UI 與網頁端 Wasm，就能同時保住開發效率與原生級別的輕量體驗。</p>
-<h2 id="Rust-不是萬靈丹：不選-Rust-的真實反例與翻車代價"><a href="#Rust-不是萬靈丹：不選-Rust-的真實反例與翻車代價" class="headerlink" title="Rust 不是萬靈丹：不選 Rust 的真實反例與翻車代價"></a>Rust 不是萬靈丹：不選 Rust 的真實反例與翻車代價</h2><p>看到這裡，你可能會想：「既然 Rust 又快又安全，那我們是不是該把公司所有新專案都改成 Rust？」先別急，工程世界沒有沒有代價的銀彈。以下四個真實反例，清楚劃出了 Rust 目前的邊界：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Rust-不是萬靈丹：不選-Rust-的真實反例與翻車代價"><a href="#Rust-不是萬靈丹：不選-Rust-的真實反例與翻車代價" class="headerlink" title="Rust 不是萬靈丹：不選 Rust 的真實反例與翻車代價"></a>Rust 不是萬靈丹：不選 Rust 的真實反例與翻車代價</h2><p>看到這裡，你可能會想：「既然 Rust 又快又安全，那我們是不是該把公司所有新專案都改成 Rust？」先別急，工程世界沒有沒有代價的銀彈。以下四個真實反例，清楚劃出了 Rust 目前的邊界：</p>
 <h3 id="1-為什麼微軟-TypeScript-7-編譯器放棄-Rust、選擇-Go？"><a href="#1-為什麼微軟-TypeScript-7-編譯器放棄-Rust、選擇-Go？" class="headerlink" title="1. 為什麼微軟 TypeScript 7 編譯器放棄 Rust、選擇 Go？"></a>1. 為什麼微軟 TypeScript 7 編譯器放棄 Rust、選擇 Go？</h3><p>當前端圈的工具鏈（Vite、Next.js、SWC、Biome）紛紛投向 Rust 時，微軟在重寫自家 <strong><a href="/2023/03/05/TypeScript%E5%85%A5%E9%96%80%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AFTypeScript%EF%BC%9F/">TypeScript</a> 7</strong> 原生編譯器（將編譯速度提升約 10 倍）時，卻出人意料地選擇了 <strong>Go 語言</strong>，而不是 Rust。</p>
 <p>微軟團隊給出的理由非常務實：原本用 TypeScript 寫成的舊編譯器，架構上高度依賴<strong>垃圾回收（GC）</strong>以及大量<strong>互相參照（Cyclic References）的抽象語法樹（AST）資料結構</strong>。如果選用同樣具備 GC 的 Go 語言，工程師可以把舊編譯器的程式碼「一對一逐檔翻譯移植」，完整保留十多年來累積的型別推論邏輯與邊界行為；但如果改用 Rust，借用檢查器會直接禁止這種複雜的雙向與循環指標結構，團隊就必須把整套編譯器的資料結構與演算法打掉重練，不僅工期難以估計，也很難保證新版行為與舊版 100% 相容。</p>
 <h3 id="2-記憶體安全不等於不會當機：Cloudflare-的-unwrap-全球大當機"><a href="#2-記憶體安全不等於不會當機：Cloudflare-的-unwrap-全球大當機" class="headerlink" title="2. 記憶體安全不等於不會當機：Cloudflare 的 unwrap() 全球大當機"></a>2. 記憶體安全不等於不會當機：Cloudflare 的 unwrap() 全球大當機</h3><p>很多人誤以為「用 Rust 寫的系統就不會崩潰」，但 <strong>2025 年 11 月 18 日</strong>發生的 <a target="_blank" rel="noopener" href="https://blog.cloudflare.com/18-november-2025-outage/">Cloudflare 全球大當機</a>給了所有工程師一記當頭棒喝。</p>
@@ -660,6 +666,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -673,6 +680,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -724,6 +734,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -775,6 +786,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

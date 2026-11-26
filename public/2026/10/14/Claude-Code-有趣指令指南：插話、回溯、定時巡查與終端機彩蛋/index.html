@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -272,7 +278,7 @@
 
 <p>接著在新分支提出另一種方案，之後用 <strong>&#x2F;resume</strong> 找回原本的對話。這很適合比較架構、文章切角或除錯假設。</p>
 <p><strong>對話分支不等於 Git 分支，也不會替你隔離檔案修改。</strong> 如果兩條路線都要動程式，請另外安排 Git 分支與 worktree。想保留目前對話、讓副本在背景工作，則是 <strong>&#x2F;fork</strong>；它的行為曾隨版本調整，先確認自己的版本。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/sessions">官方工作階段管理說明</a></p>
-<h2 id="x2F-context-與-x2F-compact：看看對話的背包裝了什麼"><a href="#x2F-context-與-x2F-compact：看看對話的背包裝了什麼" class="headerlink" title="&#x2F;context 與 &#x2F;compact：看看對話的背包裝了什麼"></a>&#x2F;context 與 &#x2F;compact：看看對話的背包裝了什麼</h2><p>聊得很久以後，先用 <strong>&#x2F;context</strong> 查看上下文占用，再用 <strong>&#x2F;compact</strong> 摘要對話、釋放空間。你可以指定摘要要保留的重點：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="x2F-context-與-x2F-compact：看看對話的背包裝了什麼"><a href="#x2F-context-與-x2F-compact：看看對話的背包裝了什麼" class="headerlink" title="&#x2F;context 與 &#x2F;compact：看看對話的背包裝了什麼"></a>&#x2F;context 與 &#x2F;compact：看看對話的背包裝了什麼</h2><p>聊得很久以後，先用 <strong>&#x2F;context</strong> 查看上下文占用，再用 <strong>&#x2F;compact</strong> 摘要對話、釋放空間。你可以指定摘要要保留的重點：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/context</span><br><span class="line">/compact 保留目前目標、不能改動的檔案、已確認的原因與下一步；省略重複測試輸出。</span><br></pre></td></tr></table></figure>
 
 <p>這組特別適合長時間除錯。比起把所有日誌一直帶著走，讓摘要保留決策與待辦，更容易接續工作。摘要會省略細節；不能遺失的規格，仍應寫進專案文件。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/commands">官方上下文與摘要指令</a></p>
@@ -281,7 +287,7 @@
 
 <p>它會分析這台電腦上的近期工作階段，產生一份 HTML 使用報告，整理工作模式、常見摩擦與改善建議。最新報告放在 <strong>~&#x2F;.claude&#x2F;usage-data&#x2F;report.html</strong>。</p>
 <p>要查額度與使用統計，則用 <strong>&#x2F;usage</strong>。目前官方將 <strong>&#x2F;cost</strong> 與 <strong>&#x2F;stats</strong> 列為它的別名，**&#x2F;stats** 會開啟統計分頁。也要留意：**&#x2F;insights 的分析會消耗方案或 API 用量**，而且不包含其他裝置上的所有對話。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/costs#analyze-your-usage-patterns">官方使用報告與用量說明</a></p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="x2F-loop：交給-Claude-定時巡查"><a href="#x2F-loop：交給-Claude-定時巡查" class="headerlink" title="&#x2F;loop：交給 Claude 定時巡查"></a>&#x2F;loop：交給 Claude 定時巡查</h2><p>等待 CI 結果時，一直手動重新整理很煩。可以指定間隔與要檢查的事情：</p>
+<h2 id="x2F-loop：交給-Claude-定時巡查"><a href="#x2F-loop：交給-Claude-定時巡查" class="headerlink" title="&#x2F;loop：交給 Claude 定時巡查"></a>&#x2F;loop：交給 Claude 定時巡查</h2><p>等待 CI 結果時，一直手動重新整理很煩。可以指定間隔與要檢查的事情：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/loop 5m 檢查目前分支的 CI 狀態。只有狀態改變或需要我處理時才回報，維持唯讀。</span><br></pre></td></tr></table></figure>
 
 <p>這是「每隔一段時間再執行提示詞」的用法。想取消時，直接請 Claude 列出排程並刪除對應任務即可。</p>
@@ -290,7 +296,7 @@
 <p>程式仍在你的電腦上執行，因此<strong>電腦必須開著，Claude Code 也必須繼續執行</strong>。它需要符合條件的 Claude 訂閱登入；API 金鑰登入不支援，Team 與 Enterprise 也可能需要管理員啟用。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/remote-control">官方遠端控制說明</a></p>
 <h3 id="x2F-voice：把想到的需求直接說出來"><a href="#x2F-voice：把想到的需求直接說出來" class="headerlink" title="&#x2F;voice：把想到的需求直接說出來"></a>&#x2F;voice：把想到的需求直接說出來</h3><p>輸入 <strong>&#x2F;voice</strong> 可切換語音輸入，**&#x2F;voice hold** 與 <strong>&#x2F;voice tap</strong> 可選擇按住錄音或點按切換。預設按住 <strong>Space</strong> 說話，放開後將辨識文字放入輸入欄。</p>
 <p>很適合先口述「這個流程哪裡怪怪的」，再用鍵盤補上檔案名稱。這是<strong>語音轉文字</strong>；送出前仍可修改內容。功能需要 Claude.ai 帳戶與本機麥克風，錄音會送至 Anthropic 伺服器辨識。<a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/voice-dictation">官方語音輸入說明</a></p>
-<h2 id="換個氣氛：顏色、電台、互動教學與貼紙"><a href="#換個氣氛：顏色、電台、互動教學與貼紙" class="headerlink" title="換個氣氛：顏色、電台、互動教學與貼紙"></a>換個氣氛：顏色、電台、互動教學與貼紙</h2><p>這幾個最有「原來還有這招」的感覺：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="換個氣氛：顏色、電台、互動教學與貼紙"><a href="#換個氣氛：顏色、電台、互動教學與貼紙" class="headerlink" title="換個氣氛：顏色、電台、互動教學與貼紙"></a>換個氣氛：顏色、電台、互動教學與貼紙</h2><p>這幾個最有「原來還有這招」的感覺：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -500,6 +506,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -513,6 +520,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -564,6 +574,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -615,6 +626,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

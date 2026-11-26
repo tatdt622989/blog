@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -318,7 +324,7 @@
 <li><strong>同一模型會依推理強度分成多筆。</strong> 例如 <strong>Claude Opus 5.5 (max)<strong>、</strong>(xhigh)<strong>、</strong>(high)</strong> 是同一模型的不同設定，分數、成本、延遲差很多，選的時候要對到你實際會用的設定。</li>
 <li><strong>小燈泡圖示代表推理（Reasoning）模型</strong>，它們會先產生思考 Token，影響成本與延遲。</li>
 </ul>
-<h2 id="速度、延遲與成本怎麼看"><a href="#速度、延遲與成本怎麼看" class="headerlink" title="速度、延遲與成本怎麼看"></a>速度、延遲與成本怎麼看</h2><p><img src="/2026/08/17/%E9%81%B8%E6%A8%A1%E5%9E%8B%E5%88%A5%E5%86%8D%E6%86%91%E6%84%9F%E8%A6%BA%EF%BC%81Artificial-Analysis-%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97%EF%BC%9A%E5%BE%9E%E5%93%81%E8%B3%AA%E3%80%81%E9%80%9F%E5%BA%A6%E5%88%B0%E6%88%90%E6%9C%AC%EF%BC%8C%E6%83%85%E5%A2%83%E5%8C%96%E6%8C%91%E5%87%BA%E6%9C%80%E9%81%A9%E5%90%88%E4%BD%A0%E7%9A%84-AI/01_homepage_highlights.jpg?v=0f358b44" alt="Artificial Analysis 首頁的 Intelligence、Speed、Cost per Task 三張重點圖（2026 年 8 月截圖）"></p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="速度、延遲與成本怎麼看"><a href="#速度、延遲與成本怎麼看" class="headerlink" title="速度、延遲與成本怎麼看"></a>速度、延遲與成本怎麼看</h2><p><img src="/2026/08/17/%E9%81%B8%E6%A8%A1%E5%9E%8B%E5%88%A5%E5%86%8D%E6%86%91%E6%84%9F%E8%A6%BA%EF%BC%81Artificial-Analysis-%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97%EF%BC%9A%E5%BE%9E%E5%93%81%E8%B3%AA%E3%80%81%E9%80%9F%E5%BA%A6%E5%88%B0%E6%88%90%E6%9C%AC%EF%BC%8C%E6%83%85%E5%A2%83%E5%8C%96%E6%8C%91%E5%87%BA%E6%9C%80%E9%81%A9%E5%90%88%E4%BD%A0%E7%9A%84-AI/01_homepage_highlights.jpg?v=0f358b44" alt="Artificial Analysis 首頁的 Intelligence、Speed、Cost per Task 三張重點圖（2026 年 8 月截圖）"></p>
 <p>首頁與 Models 頁的指標定義如下（依官方 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/methodology/performance-benchmarking">Performance Benchmarking 方法論</a> 與圖表說明）：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
@@ -362,7 +368,7 @@
 <p>速度數字取自模型原廠 API，或多家供應商的中位數；每天測 8 次，顯示<strong>過去 72 小時的中位數（P50）</strong>，所以會隨尖峰時段與供應商負載變動。</p>
 <p><strong>Cost per Task 比牌價更有參考價值</strong>：推理模型牌價便宜但思考 Token 多時，實際帳單可能比牌價貴的模型還高。若要看總額，Models 頁的 <strong>Cost to Run Artificial Analysis Intelligence Index</strong> 會把跑完整套評測的費用拆成 Output、Reasoning、Cache 等部分。</p>
 <p><img src="/2026/08/17/%E9%81%B8%E6%A8%A1%E5%9E%8B%E5%88%A5%E5%86%8D%E6%86%91%E6%84%9F%E8%A6%BA%EF%BC%81Artificial-Analysis-%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97%EF%BC%9A%E5%BE%9E%E5%93%81%E8%B3%AA%E3%80%81%E9%80%9F%E5%BA%A6%E5%88%B0%E6%88%90%E6%9C%AC%EF%BC%8C%E6%83%85%E5%A2%83%E5%8C%96%E6%8C%91%E5%87%BA%E6%9C%80%E9%81%A9%E5%90%88%E4%BD%A0%E7%9A%84-AI/02_pareto_quality_cost.jpg?v=beda9336" alt="Cost to Run Artificial Analysis Intelligence Index 堆疊圖，拆分輸出、推理與快取成本（2026 年 8 月截圖）"></p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2026-年-11-月最新排行榜亮點（Intelligence-Index-v5-0-1）"><a href="#2026-年-11-月最新排行榜亮點（Intelligence-Index-v5-0-1）" class="headerlink" title="2026 年 11 月最新排行榜亮點（Intelligence Index v5.0.1）"></a>2026 年 11 月最新排行榜亮點（Intelligence Index v5.0.1）</h2><p>Artificial Analysis 已於 2026 年 11 月將綜合指標推進至 <strong>Intelligence Index v5.0.1</strong>。依 2026 年 11 月中旬查核 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-fable-5-2">Claude Fable 5.2</a> 與 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/gemini-4-carbon">Gemini 4 Carbon</a> 官方 AA 模型頁的實測數據，前段班呈現明顯的「能力上限 vs 成本效率」分歧：</p>
+<h2 id="2026-年-11-月最新排行榜亮點（Intelligence-Index-v5-0-1）"><a href="#2026-年-11-月最新排行榜亮點（Intelligence-Index-v5-0-1）" class="headerlink" title="2026 年 11 月最新排行榜亮點（Intelligence Index v5.0.1）"></a>2026 年 11 月最新排行榜亮點（Intelligence Index v5.0.1）</h2><p>Artificial Analysis 已於 2026 年 11 月將綜合指標推進至 <strong>Intelligence Index v5.0.1</strong>。依 2026 年 11 月中旬查核 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-fable-5-2">Claude Fable 5.2</a> 與 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/gemini-4-carbon">Gemini 4 Carbon</a> 官方 AA 模型頁的實測數據，前段班呈現明顯的「能力上限 vs 成本效率」分歧：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
@@ -469,7 +475,7 @@
 <li><strong>max 設定的首個 chunk 延遲動輒數分鐘</strong>，適合背景批次與代理任務，不適合需要即時回應的介面。</li>
 </ul>
 <p>其他舊代模型發表時的詳細評測，也可對照 <a href="/2026/09/23/Claude-Opus-5-5-%E4%B8%8A%E7%B7%9A%EF%BC%9AAA-%E7%99%BB%E9%A0%82%E3%80%81%E5%83%B9%E6%A0%BC%E9%99%8D%E5%B9%85%E8%88%87%E5%AE%8C%E6%95%B4%E8%A9%95%E6%B8%AC%E8%A7%A3%E6%9E%90/">Claude Opus 5.5 上線解析</a> 與 <a href="/2026/09/23/GPT-6-Sol%E3%80%81Luna-%E4%B8%8A%E7%B7%9A%EF%BC%9AArtificial-Analysis-%E8%A9%95%E5%88%86%E3%80%81%E5%83%B9%E6%A0%BC%E8%88%87%E9%81%B8%E5%9E%8B/">GPT-6 Sol、Luna 上線評分與選型</a>。</p>
-<h2 id="用帕雷托前沿挑性價比模型"><a href="#用帕雷托前沿挑性價比模型" class="headerlink" title="用帕雷托前沿挑性價比模型"></a>用帕雷托前沿挑性價比模型</h2><p>Models 頁的 <strong>Intelligence Index vs. Cost per Task</strong> 散點圖是選型最實用的一張圖：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="用帕雷托前沿挑性價比模型"><a href="#用帕雷托前沿挑性價比模型" class="headerlink" title="用帕雷托前沿挑性價比模型"></a>用帕雷托前沿挑性價比模型</h2><p>Models 頁的 <strong>Intelligence Index vs. Cost per Task</strong> 散點圖是選型最實用的一張圖：</p>
 <ul>
 <li><strong>縱軸</strong>是智能分數（越上面越強），<strong>橫軸</strong>是 Cost per Task（越左邊越便宜）。</li>
 <li><strong>左上的 Most attractive quadrant</strong> 是又強又便宜的區域。</li>
@@ -697,6 +703,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -710,6 +717,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -761,6 +771,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -812,6 +823,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

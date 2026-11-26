@@ -89,14 +89,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -121,7 +127,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -374,7 +380,7 @@ flowchart TD
 </ul>
 <p>当元素定位失败时，智能体最不应该做的事情就是顺藤摸瓜去拼接更长、更脆弱的绝对路径 XPath。缺乏稳定的可测性支持是产品功能层面的设计缺陷，应当作为阻断项反馈给对应的工程研发团队修复。</p>
 <hr>
-<h2 id="三、Harness-的规范分层设计"><a href="#三、Harness-的规范分层设计" class="headerlink" title="三、Harness 的规范分层设计"></a>三、Harness 的规范分层设计</h2><h3 id="让智能体一目了然的工程目录树"><a href="#让智能体一目了然的工程目录树" class="headerlink" title="让智能体一目了然的工程目录树"></a>让智能体一目了然的工程目录树</h3><p>目录结构的核心目的，是让进入工程的智能体能够准确找到规范文档、测试数据、底层执行器与运行凭据。以下是一个跨 Web、移动端与 API 测试的通用架构参考（请遵循按需原则，未涉及的平台无需冗余创建）：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="三、Harness-的规范分层设计"><a href="#三、Harness-的规范分层设计" class="headerlink" title="三、Harness 的规范分层设计"></a>三、Harness 的规范分层设计</h2><h3 id="让智能体一目了然的工程目录树"><a href="#让智能体一目了然的工程目录树" class="headerlink" title="让智能体一目了然的工程目录树"></a>让智能体一目了然的工程目录树</h3><p>目录结构的核心目的，是让进入工程的智能体能够准确找到规范文档、测试数据、底层执行器与运行凭据。以下是一个跨 Web、移动端与 API 测试的通用架构参考（请遵循按需原则，未涉及的平台无需冗余创建）：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">e2e-harness/</span><br><span class="line">├── AGENTS.md              # 面向智能体的工作指引与工程规范</span><br><span class="line">├── docs/                  # 系统规格与环境架构定义</span><br><span class="line">│   ├── product-map.md</span><br><span class="line">│   ├── test-strategy.md</span><br><span class="line">│   ├── environments.md</span><br><span class="line">│   ├── selector-contract.md</span><br><span class="line">│   └── known-issues.md</span><br><span class="line">├── specs/                 # 确定性业务测试用例规格</span><br><span class="line">│   ├── smoke/</span><br><span class="line">│   ├── critical/</span><br><span class="line">│   └── regression/</span><br><span class="line">├── pages/                 # Web 界面元素与局部行为封装（按需）</span><br><span class="line">├── screens/               # 移动端原生界面封装（按需）</span><br><span class="line">├── components/            # 全局通用 UI 组件封装（Modal / Filter 等）</span><br><span class="line">├── flows/                 # 跨页面、跨接口的高阶业务动作流</span><br><span class="line">├── assertions/            # 确定性业务断言逻辑</span><br><span class="line">├── fixtures/              # 数据夹具与测试账号配置</span><br><span class="line">├── support/               # 基础设施与辅助工具</span><br><span class="line">├── adapters/              # 执行器适配层（抹平工具底层差异）</span><br><span class="line">│   ├── browser/           # Playwright 驱动</span><br><span class="line">│   ├── mobile/            # 移动端驱动适配（可选）</span><br><span class="line">│   └── api/               # 接口调用契约（可选）</span><br><span class="line">├── observability/         # 证据与日志采集（截图、Trace、网警、DB Diff）</span><br><span class="line">├── agent/                 # 智能体专区（探索、归因、生成、低风险维护）</span><br><span class="line">│   ├── exploratory/</span><br><span class="line">│   ├── failure-analysis/</span><br><span class="line">│   ├── test-generation/</span><br><span class="line">│   └── maintenance/</span><br><span class="line">├── config/                # 运行配置</span><br><span class="line">└── scripts/               # 本地与 CI 启动脚本</span><br></pre></td></tr></table></figure>
 
 <p>每一层遵循极简单一职责原则：</p>
@@ -531,7 +537,7 @@ flowchart TD
 </tbody></table></div>
 <p>无论这两者背后使用的是否为同一种底层大模型，关键在于<strong>执行角色、上下文沙盒、工具权限与决策闭环的彻底分离</strong>。最新关于 LLM 软件工程的研究表明，如果让模型先写出错误实现再由其自行生成测试，其用例漏判率会大幅上升；因此，修改者与检验者绝不能共享相同的先验逻辑偏差。</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五、测试运行记录治理：为智能体提供可自省的证据链"><a href="#五、测试运行记录治理：为智能体提供可自省的证据链" class="headerlink" title="五、测试运行记录治理：为智能体提供可自省的证据链"></a>五、测试运行记录治理：为智能体提供可自省的证据链</h2><h3 id="告别单一文本报错，留存全维度调用凭据"><a href="#告别单一文本报错，留存全维度调用凭据" class="headerlink" title="告别单一文本报错，留存全维度调用凭据"></a>告别单一文本报错，留存全维度调用凭据</h3><p>仅仅向智能体抛出一句简单的 <code>Expected visible, received hidden</code>，几乎无法为它提供任何有效的排查线索。系统必须在断言失败的瞬间，完整保留现场证据：</p>
+<h2 id="五、测试运行记录治理：为智能体提供可自省的证据链"><a href="#五、测试运行记录治理：为智能体提供可自省的证据链" class="headerlink" title="五、测试运行记录治理：为智能体提供可自省的证据链"></a>五、测试运行记录治理：为智能体提供可自省的证据链</h2><h3 id="告别单一文本报错，留存全维度调用凭据"><a href="#告别单一文本报错，留存全维度调用凭据" class="headerlink" title="告别单一文本报错，留存全维度调用凭据"></a>告别单一文本报错，留存全维度调用凭据</h3><p>仅仅向智能体抛出一句简单的 <code>Expected visible, received hidden</code>，几乎无法为它提供任何有效的排查线索。系统必须在断言失败的瞬间，完整保留现场证据：</p>
 <ul>
 <li>失败前后时刻的完整 DOM 快照、ARIA 快照或移动端原生 UI 控件树。</li>
 <li>失败现场屏幕截图、关键视频录像、Playwright Trace 追踪轨迹与完整执行输出。</li>
@@ -553,7 +559,7 @@ flowchart TD
 </ol>
 <p>Playwright 官方推出的 <strong>Test Agents</strong> 展现了智能体规划、编写与维护测试的强悍能力。它可以作为优秀的测试运维助手，但必须严守红线，不得擅自修改业务预期的正确答案。</p>
 <hr>
-<h2 id="六、多维产品形态接入-Harness-与-CI-流水线编排"><a href="#六、多维产品形态接入-Harness-与-CI-流水线编排" class="headerlink" title="六、多维产品形态接入 Harness 与 CI 流水线编排"></a>六、多维产品形态接入 Harness 与 CI 流水线编排</h2><h3 id="执行器按需选型，架构保持通用"><a href="#执行器按需选型，架构保持通用" class="headerlink" title="执行器按需选型，架构保持通用"></a>执行器按需选型，架构保持通用</h3><p>Harness 负责统揽验收全流程，而具体调用何种执行器则完全取决于受测目标的技术栈：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="六、多维产品形态接入-Harness-与-CI-流水线编排"><a href="#六、多维产品形态接入-Harness-与-CI-流水线编排" class="headerlink" title="六、多维产品形态接入 Harness 与 CI 流水线编排"></a>六、多维产品形态接入 Harness 与 CI 流水线编排</h2><h3 id="执行器按需选型，架构保持通用"><a href="#执行器按需选型，架构保持通用" class="headerlink" title="执行器按需选型，架构保持通用"></a>执行器按需选型，架构保持通用</h3><p>Harness 负责统揽验收全流程，而具体调用何种执行器则完全取决于受测目标的技术栈：</p>
 <ul>
 <li><strong>Web 端系统</strong>：优先选用 Playwright，充分运用其语义化选择器、网络拦截、Trace 追踪与高并发能力。</li>
 <li><strong>API 接口系统</strong>：选用标准 HTTP 客户端结合契约测试框架（Contract Testing）。</li>
@@ -878,6 +884,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -891,6 +898,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -938,6 +948,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -989,6 +1000,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -41,9 +41,9 @@
   
   <meta property="article:tag" content="AI Agent" />
   
-  <meta property="article:tag" content="开发工具" />
-  
   <meta property="article:tag" content="软件工程" />
+  
+  <meta property="article:tag" content="开发工具" />
   
   
   <meta name="twitter:card" content="summary_large_image">
@@ -51,7 +51,7 @@
   <meta name="twitter:description" content="Google 正式发布 Gemini 3.8 Flash！本文以一线智能体视角深度剖析其底层架构：1M 上下文窗口、长时程自省智能体循环、DeepSWE 基准突破与极致性价比，带你全面掌握下一代 AI 软件工程工作流。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/cover.jpg?v=1a81b644">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/","url":"https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/","headline":"Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破","description":"Google 正式发布 Gemini 3.8 Flash！本文以一线智能体视角深度剖析其底层架构：1M 上下文窗口、长时程自省智能体循环、DeepSWE 基准突破与极致性价比，带你全面掌握下一代 AI 软件工程工作流。","datePublished":"2026-09-03T01:00:00.000Z","dateModified":"2026-09-03T01:00:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI, AI Agent, 开发工具, 软件工程","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/","url":"https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/","headline":"Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破","description":"Google 正式发布 Gemini 3.8 Flash！本文以一线智能体视角深度剖析其底层架构：1M 上下文窗口、长时程自省智能体循环、DeepSWE 基准突破与极致性价比，带你全面掌握下一代 AI 软件工程工作流。","datePublished":"2026-09-03T01:00:00.000Z","dateModified":"2026-09-03T01:00:00.000Z","inLanguage":"zh-CN","articleSection":"AI 科技","keywords":"AI, AI Agent, 软件工程, 开发工具","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 科技","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E7%A7%91%E6%8A%80/"},{"@type":"ListItem","position":3,"name":"Gemini 3.8 Flash 突袭登场！维持 3.7 极低费率、长时程智能体循环与 DeepSWE 关键突破","item":"https://blog.6yuwei.com/zh-cn/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/"}]}</script>
   
@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -317,7 +323,7 @@
 </tbody></table></div>
 <p>从资费来看，Google 在 2026 年底前保持了极具杀伤力的优惠定价：输入每百万 Tokens 仅需 <strong>$0.75 美元</strong>，输出仅需 <strong>$3.75 美元</strong>。这意味着在各类自主开发智能体（例如 Antigravity 或各类 Agentic IDE）中进行多轮深度思考、连续读取数十个项目文件与测试报告时，综合算力成本甚至不到顶尖旗舰模型的十分之一。</p>
 <hr>
-<h2 id="底层机制突破：长时程智能体循环与极致勤奋度"><a href="#底层机制突破：长时程智能体循环与极致勤奋度" class="headerlink" title="底层机制突破：长时程智能体循环与极致勤奋度"></a>底层机制突破：长时程智能体循环与极致勤奋度</h2><p>绝大多数开发者在操作传统大语言模型时，最常遇到的挫败感来自于模型的<strong>短视（Myopia）</strong>：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="底层机制突破：长时程智能体循环与极致勤奋度"><a href="#底层机制突破：长时程智能体循环与极致勤奋度" class="headerlink" title="底层机制突破：长时程智能体循环与极致勤奋度"></a>底层机制突破：长时程智能体循环与极致勤奋度</h2><p>绝大多数开发者在操作传统大语言模型时，最常遇到的挫败感来自于模型的<strong>短视（Myopia）</strong>：</p>
 <ol>
 <li>面对复杂工程需求时，草率输出看似合理但细节漏洞百出的半成品代码。</li>
 <li>缺乏对执行结果的自检能力，一旦遇到测试失败便反复给出相同的错误补丁。</li>
@@ -357,7 +363,7 @@ flowchart TD
 
 <p>在这一执行流程中，核心灵魂正是 <strong>4 -&gt; 5 -&gt; 3</strong> 的勤奋度自省闭环。传统模型在测试失败时往往束手无策，而 Gemini 3.8 Flash 能在该封闭回路中自主读取 Traceback、重新检索关联模块、生成最小差异补丁（Minimal Diff），直到完全通过质量闸门为止。</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="基准测试深度对决：主流旗舰同台竞技"><a href="#基准测试深度对决：主流旗舰同台竞技" class="headerlink" title="基准测试深度对决：主流旗舰同台竞技"></a>基准测试深度对决：主流旗舰同台竞技</h2><p>在 Google DeepMind 公布的官方数据与 2026 年 9 月最新的实测榜单中，Gemini 3.8 Flash 展现出了直接跨入顶尖旗舰梯队的硬核实力。以下为其与当前业界主流旗舰模型的关键基准与成本对照：</p>
+<h2 id="基准测试深度对决：主流旗舰同台竞技"><a href="#基准测试深度对决：主流旗舰同台竞技" class="headerlink" title="基准测试深度对决：主流旗舰同台竞技"></a>基准测试深度对决：主流旗舰同台竞技</h2><p>在 Google DeepMind 公布的官方数据与 2026 年 9 月最新的实测榜单中，Gemini 3.8 Flash 展现出了直接跨入顶尖旗舰梯队的硬核实力。以下为其与当前业界主流旗舰模型的关键基准与成本对照：</p>
 <h3 id="主流旗舰模型关键数据对比"><a href="#主流旗舰模型关键数据对比" class="headerlink" title="主流旗舰模型关键数据对比"></a>主流旗舰模型关键数据对比</h3><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
@@ -425,7 +431,7 @@ flowchart TD
 <p>第一是<strong>终端自主能力的实质突破</strong>。在专门评估命令行调试与复杂工具链调用的 <strong>Terminal-Bench 2.1</strong> 评测中，Gemini 3.8 Flash 拿下了 <strong>89.4%</strong> 的高分，不仅大幅超越前代，甚至略微领先 Claude Opus 5（89.1%）与 GPT-5.6 Sol（88.8%）；在极高难度的数理与前沿逻辑推理 <strong>HLE-Verified</strong> 榜单上也取得了 <strong>54.9%</strong> 的佳绩。这充分表明它已彻底脱离了玩具级代码补全助手的范畴，完全能够胜任复杂系统运维与全自动化调试的重任。</p>
 <p>第二是<strong>算力成本层面的降维打击</strong>。当自主智能体需要执行数十轮单元测试修复或跨文件大型重构时，调用高阶旗舰模型往往会产生高昂的 Token 账单；而 Gemini 3.8 Flash 以不到旗舰模型十分之一的开销，交出了旗鼓相当的长时程交付品质。此外，Google 还同步推出了经过专门安全加固的 <strong>Gemini 3.8 Flash Cyber</strong>（通过 Fairwind Program 授权），专门针对漏洞挖掘、渗透利用分析与自动化安全补丁生成进行了深度强化。</p>
 <hr>
-<h2 id="开发者实战指南：如何激发最大效能"><a href="#开发者实战指南：如何激发最大效能" class="headerlink" title="开发者实战指南：如何激发最大效能"></a>开发者实战指南：如何激发最大效能</h2><p>如果你正计划在终端、Antigravity 或是自建的开源智能体工作流中接入这套架构，以下是经过生产环境实测验证、能将模型战斗力拉满的四项最佳实践：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="开发者实战指南：如何激发最大效能"><a href="#开发者实战指南：如何激发最大效能" class="headerlink" title="开发者实战指南：如何激发最大效能"></a>开发者实战指南：如何激发最大效能</h2><p>如果你正计划在终端、Antigravity 或是自建的开源智能体工作流中接入这套架构，以下是经过生产环境实测验证、能将模型战斗力拉满的四项最佳实践：</p>
 <h3 id="1-涉及系统重构时，主动开启-High-推理强度"><a href="#1-涉及系统重构时，主动开启-High-推理强度" class="headerlink" title="1. 涉及系统重构时，主动开启 High 推理强度"></a>1. 涉及系统重构时，主动开启 High 推理强度</h3><p>Gemini 3.8 Flash 支持动态调节思考预算。在处理简单的文本润色、注释生成或局部语法转写时，Low 或 Medium 模式足以提供即时响应；但当你要求模型进行跨模块重构、架构分层解耦或深层并发缺陷排查时，请务必设置 <strong>High Effort</strong>（高推理强度）。这样能让模型在敲下第一行代码前，完整遍历项目的所有潜在边界状态，大幅减少返工成本。</p>
 <h3 id="2-赋予充分的环境感知与工具权限（Tools-amp-Environment）"><a href="#2-赋予充分的环境感知与工具权限（Tools-amp-Environment）" class="headerlink" title="2. 赋予充分的环境感知与工具权限（Tools &amp; Environment）"></a>2. 赋予充分的环境感知与工具权限（Tools &amp; Environment）</h3><p>这套架构的杀手锏在于自主智能体循环。如果仅仅把它当作普通的问答对话框，就完全浪费了其底层经过严苛训练的工具协同潜力。请确保为模型配置完善的外部能力：</p>
 <ul>
@@ -455,7 +461,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
   </div>
 
         
@@ -603,6 +609,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -616,6 +623,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -663,6 +673,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -714,6 +725,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

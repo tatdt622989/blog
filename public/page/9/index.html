@@ -58,14 +58,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -90,7 +96,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -212,6 +218,7 @@
   <a href="/tags/">查看所有標籤</a>
 </nav>
 
+
   <article id="post-善用頂級LLM：2026年日語學習的高效進階策略" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -252,6 +259,8 @@
 
 
 
+  
+  
 
   <article id="post-aseprite-install-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -296,6 +305,8 @@
 
 
 
+  
+  
 
   <article id="post-pixellab-ai-pixel-art-game-assets" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -343,6 +354,10 @@
 
 
 
+  
+  
+    <aside class="site-ad site-ad--feed" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3929112387" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   <article id="post-claude-design-cowork-code-comparison" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -386,6 +401,8 @@
 
 
 
+  
+  
 
   <article id="post-當年電腦課最愛偷玩的打磚塊，沒想到在手機上玩起來更魔性" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -432,6 +449,8 @@
 
 
 
+  
+  
 
   <article id="post-日語自學也能高效，精選AI學習工具大公開（2026版）" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -474,6 +493,8 @@
 
 
 
+  
+  
 
   <article id="post-AI-coding-工具比較：Claude-Code、Codex、Cursor-怎麼選？" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -515,6 +536,8 @@
 
 
 
+  
+  
 
   <article id="post-漫步日本動漫展！一場沒有準備的即興動漫之旅" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -556,6 +579,8 @@
 
 
 
+  
+  
 
   <article id="post-如何使用192台幣，快速開一個10人的Minecraft伺服器與好友遊玩" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -597,6 +622,8 @@
 
 
 
+  
+  
 
   <article id="post-高性價比亞洲-VPS-推薦與實測心得" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -639,6 +666,8 @@
 
 
 
+  
+  
 
 
 <nav id="pagination">
@@ -652,6 +681,7 @@
 </nav>
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -665,6 +695,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -716,6 +749,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -767,6 +801,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -81,14 +81,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -113,7 +119,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -284,15 +290,15 @@
 <p>Therefore, <strong>Grok Build is not an alias for Grok 4.6</strong>. The former is the agent harness managing context, tools, and execution permissions; the latter is the underlying engine driving it. While xAI launched <strong>grok-build-0.1</strong> in May as its early coding model, the current <a target="_blank" rel="noopener" href="https://docs.x.ai/build/overview">Grok Build Documentation</a> explicitly confirms that the engine powering Grok Build is now <strong>grok-4.6</strong>.</p>
 <p>Meanwhile, <a target="_blank" rel="noopener" href="https://x.ai/news/grok-build-mode">Build Mode</a> operates as an instant creation environment for non-developers to preview and publish web apps on mobile or desktop without a local setup. When working with local Git repositories, diff inspection, and test suites, the conversation is strictly about <strong>Grok Build</strong>.</p>
 <hr>
-<h2 id="Grok-4-6-Focuses-on-Long-Horizon-Task-Persistence"><a href="#Grok-4-6-Focuses-on-Long-Horizon-Task-Persistence" class="headerlink" title="Grok 4.6 Focuses on Long-Horizon Task Persistence"></a>Grok 4.6 Focuses on Long-Horizon Task Persistence</h2><p>According to the <a target="_blank" rel="noopener" href="https://x.ai/news/grok-4-6">Grok 4.6 Announcement</a>, xAI focused this generation on extended agent autonomy, deep codebase interaction, and multi-step verification. The model is tuned to proactively test its own outputs and push broad product ideas toward functional first releases.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Grok-4-6-Focuses-on-Long-Horizon-Task-Persistence"><a href="#Grok-4-6-Focuses-on-Long-Horizon-Task-Persistence" class="headerlink" title="Grok 4.6 Focuses on Long-Horizon Task Persistence"></a>Grok 4.6 Focuses on Long-Horizon Task Persistence</h2><p>According to the <a target="_blank" rel="noopener" href="https://x.ai/news/grok-4-6">Grok 4.6 Announcement</a>, xAI focused this generation on extended agent autonomy, deep codebase interaction, and multi-step verification. The model is tuned to proactively test its own outputs and push broad product ideas toward functional first releases.</p>
 <p>In long-running development, failures rarely stem from an AI’s inability to write a specific line of syntax. Instead, agents typically fail because they lose track of original constraints after successive tool calls, modify out-of-scope files, skip running tests, or stop prematurely at the first plausible answer. Maintaining focus across context compression, error recovery, and multi-file patches is the true threshold for practical developer adoption.</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Grok-Build-Transforms-Capabilities-into-Auditable-Workflows"><a href="#Grok-Build-Transforms-Capabilities-into-Auditable-Workflows" class="headerlink" title="Grok Build Transforms Capabilities into Auditable Workflows"></a>Grok Build Transforms Capabilities into Auditable Workflows</h2><p>The real strength of Grok Build is that it avoids compressing the engineering process into a single massive prompt. For complex tasks, developers can enter <strong>Plan Mode</strong>, allowing the agent to formulate step-by-step proposals. Users can review, comment on, or edit individual plan items before granting execution approval, with all changes displayed as clean Git diffs.</p>
+<h2 id="Grok-Build-Transforms-Capabilities-into-Auditable-Workflows"><a href="#Grok-Build-Transforms-Capabilities-into-Auditable-Workflows" class="headerlink" title="Grok Build Transforms Capabilities into Auditable Workflows"></a>Grok Build Transforms Capabilities into Auditable Workflows</h2><p>The real strength of Grok Build is that it avoids compressing the engineering process into a single massive prompt. For complex tasks, developers can enter <strong>Plan Mode</strong>, allowing the agent to formulate step-by-step proposals. Users can review, comment on, or edit individual plan items before granting execution approval, with all changes displayed as clean Git diffs.</p>
 <p>This “plan first, approve second, inspect diffs” paradigm closely mirrors the engineering rigor of the Superpowers framework: as model capabilities grow, deterministic review gates become indispensable.</p>
 <p>Grok Build also ingests existing <strong>AGENTS.md</strong> files, skills, plugins, hooks, and MCP servers natively. For larger tasks, it can spin up parallel subagents across isolated Git worktrees, preventing simultaneous write conflicts on the main working tree.</p>
 <p>In July, xAI <a target="_blank" rel="noopener" href="https://x.ai/news/grok-build-open-source">open-sourced the Grok Build terminal interface and agent harness</a>, enabling developers to audit prompt construction, tool execution, and extensibility firsthand.</p>
 <hr>
-<h2 id="Critical-Guardrails-for-Long-Running-Agent-Autonomy"><a href="#Critical-Guardrails-for-Long-Running-Agent-Autonomy" class="headerlink" title="Critical Guardrails for Long-Running Agent Autonomy"></a>Critical Guardrails for Long-Running Agent Autonomy</h2><p>“Capable of autonomous execution” does not mean “suitable for unmonitored deployment.” Because Grok Build reads and writes files, runs shell commands, and connects to external APIs, robust guardrails remain essential:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Critical-Guardrails-for-Long-Running-Agent-Autonomy"><a href="#Critical-Guardrails-for-Long-Running-Agent-Autonomy" class="headerlink" title="Critical Guardrails for Long-Running Agent Autonomy"></a>Critical Guardrails for Long-Running Agent Autonomy</h2><p>“Capable of autonomous execution” does not mean “suitable for unmonitored deployment.” Because Grok Build reads and writes files, runs shell commands, and connects to external APIs, robust guardrails remain essential:</p>
 <ol>
 <li><strong>Use Plan Mode First</strong>: Always verify scope and apply sandbox constraints before allowing file modifications.</li>
 <li><strong>Define Executable Done-When Criteria</strong>: Express acceptance criteria as deterministic unit tests, type checks, or lint rules.</li>
@@ -498,6 +504,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -511,6 +518,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -558,6 +568,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -609,6 +620,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

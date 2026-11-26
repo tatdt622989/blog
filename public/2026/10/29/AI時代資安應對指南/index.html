@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -326,7 +332,7 @@
 <li><strong>提供完成任務所需的最少資料。</strong> 把文件丟給 AI 整理前，能用去識別的片段，就先移除真實姓名、電話、地址、客戶名單與各類金鑰，同時留意附件與圖片裡的中繼資料。</li>
 <li><strong>替重要資料保留獨立離線備份。</strong> 雲端同步若也同步了誤刪或惡意加密的結果，未必能提供真正需要的復原能力。</li>
 </ul>
-<h2 id="開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上"><a href="#開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上" class="headerlink" title="開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上"></a>開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上</h2><p>AI 助手修改一個專案，通常只需要該專案範圍內的有限權限。若把整個組織的管理憑證、正式資料庫連線與自動部署權限都放在同一個工作環境或同一組平台環境變數裡，一次誤操作或上游平台入侵就會迅速擴散。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上"><a href="#開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上" class="headerlink" title="開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上"></a>開發者與小團隊：把最小權限與金鑰防線落實在工具與平台上</h2><p>AI 助手修改一個專案，通常只需要該專案範圍內的有限權限。若把整個組織的管理憑證、正式資料庫連線與自動部署權限都放在同一個工作環境或同一組平台環境變數裡，一次誤操作或上游平台入侵就會迅速擴散。</p>
 <p>這也牽涉到<strong>提示注入（Prompt Injection）</strong>：網頁、Issue、郵件或外部文件中，可能藏著誘導 AI 代理讀取環境變數或執行未授權指令的內容。OWASP 建議以最小權限、外部內容隔離與高風險操作的人為審核降低影響；權限檢查必須由工具與服務端強制執行，不能只寫在系統提示詞裡。<a target="_blank" rel="noopener" href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">OWASP 風險說明</a>、<a target="_blank" rel="noopener" href="https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html">實作防護指引</a></p>
 <p>對照十月 LiteLLM、Zeabur、Railway、OpenCode、91APP、PHP 與 Node.js 的案例教訓，我會優先落實以下六項工程習慣：</p>
 <ul>
@@ -514,6 +520,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -527,6 +534,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -578,6 +588,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -629,6 +640,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

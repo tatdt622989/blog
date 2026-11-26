@@ -91,14 +91,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -123,7 +129,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -339,7 +345,7 @@ flowchart TD
 <h2 id="开启后界面会变乱吗？用-Ctrl-O-查看幕后脚本"><a href="#开启后界面会变乱吗？用-Ctrl-O-查看幕后脚本" class="headerlink" title="开启后界面会变乱吗？用 Ctrl + O 查看幕后脚本"></a>开启后界面会变乱吗？用 Ctrl + O 查看幕后脚本</h2><p>不少开发者听到“AI 每次操作都要写一段 JavaScript 来运行”，第一反应会担心：“那我的终端对话流岂不是要被大段脚本刷屏？”</p>
 <p>实际上并不会。在默认的主对话视图中，<strong>Code Mode</strong> 会隐藏冗长的底层脚本，界面上只展示熟悉且干净的高层工具结果——比如你平时看惯的文件修改 Diff。</p>
 <p>如果你想确认 Claude 到底写了什么脚本、或者排查它的筛选逻辑有没有写对，只要按下 <strong>Ctrl + O</strong> 打开完整记录查看器（Transcript Viewer），就会看到每一次脚本执行都折叠成一行 <strong>Code</strong> 提示，展开即可查看当时运行的完整 JavaScript 代码。如果还想把终端里的会话题效再往上提一档，也可以顺便看看这篇 <a href="/zh-cn/2026/10/14/claude-code-fun-commands/">Claude Code 趣味命令指南</a>。</p>
-<h2 id="如何开启和关闭-Code-Mode？配置方式与安全边界"><a href="#如何开启和关闭-Code-Mode？配置方式与安全边界" class="headerlink" title="如何开启和关闭 Code Mode？配置方式与安全边界"></a>如何开启和关闭 Code Mode？配置方式与安全边界</h2><p><strong>Code Mode</strong> 目前仍属于实验性、可自主选择开启（Opt-in）的特性，<strong>默认处于关闭状态</strong>。你可以根据使用习惯选择临时试用或全局配置：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="如何开启和关闭-Code-Mode？配置方式与安全边界"><a href="#如何开启和关闭-Code-Mode？配置方式与安全边界" class="headerlink" title="如何开启和关闭 Code Mode？配置方式与安全边界"></a>如何开启和关闭 Code Mode？配置方式与安全边界</h2><p><strong>Code Mode</strong> 目前仍属于实验性、可自主选择开启（Opt-in）的特性，<strong>默认处于关闭状态</strong>。你可以根据使用习惯选择临时试用或全局配置：</p>
 <h3 id="方式一：仅在当前终端会话试用（推荐先这样体验）"><a href="#方式一：仅在当前终端会话试用（推荐先这样体验）" class="headerlink" title="方式一：仅在当前终端会话试用（推荐先这样体验）"></a>方式一：仅在当前终端会话试用（推荐先这样体验）</h3><p>在项目目录下通过环境变量启动 <strong>Claude Code</strong>，退出终端后即自动恢复默认设置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 claude</span><br></pre></td></tr></table></figure>
 
@@ -527,6 +533,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -540,6 +547,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -587,6 +597,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -638,6 +649,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

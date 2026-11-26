@@ -1,3 +1,7 @@
+<% var showSidebarAd = page.no_tracking !== true; %>
 <% theme.widgets.forEach(function(widget){ %>
-  <%- partial('../_widget/' + widget) %>
+  <%- partial('../_widget/' + widget, {}, {cache: true}) %>
+  <% if (widget === 'search' && showSidebarAd) { %>
+    <%- article_ad('sidebar') %>
+  <% } %>
 <% }); %>

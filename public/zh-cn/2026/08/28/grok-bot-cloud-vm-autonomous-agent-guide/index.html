@@ -81,14 +81,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -113,7 +119,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -337,7 +343,7 @@
 <h3 id="2-严格执行“只读预研、延迟授权”的防护进阶（Read-and-Prepare-First）"><a href="#2-严格执行“只读预研、延迟授权”的防护进阶（Read-and-Prepare-First）" class="headerlink" title="2. 严格执行“只读预研、延迟授权”的防护进阶（Read-and-Prepare First）"></a>2. 严格执行“只读预研、延迟授权”的防护进阶（Read-and-Prepare First）</h3><p>在配置全新的常规划任务或初次验证新技能时，初期必须强制将操作权限限制为“只读模式、数据提取与草稿生成”。只有在多轮真实会话测试均表现出绝对稳定性后，方可逐步放开向生产数据库写入、向外部真实邮箱发送内容等核心写操作权限。</p>
 <h3 id="3-清醒认知云端共享环境的权限风险"><a href="#3-清醒认知云端共享环境的权限风险" class="headerlink" title="3. 清醒认知云端共享环境的权限风险"></a>3. 清醒认知云端共享环境的权限风险</h3><p>由于同一账号下的所有 Bot <strong>实际上复用同一台云端虚拟机系统</strong>，各任务间的命令行凭证、Cookie 缓存与本地目录完全共享。因此，<strong>严禁在云端虚拟机内存储高权限的生产环境主密钥、私有证书或无加密保护的机密文件</strong>，切莫天真地把不同命名的 Bot 误当成安全沙箱机制来使用。</p>
 <hr>
-<h2 id="总结：从对话工具到数字员工的范式转变"><a href="#总结：从对话工具到数字员工的范式转变" class="headerlink" title="总结：从对话工具到数字员工的范式转变"></a>总结：从对话工具到数字员工的范式转变</h2><p>从早期基于单次提示词的交互问答，到能够调用命令行工具的单兵 Coding Agent，再到如今依托常驻云端虚拟机运行的 <strong>Grok Bot</strong>，AI 正在经历一场深刻的蜕变——它正从一个“需要人类频繁敲击回车催促的应答工具”，进化为“拥有独立工作空间、能够交付确定性成果的数字同事”。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="总结：从对话工具到数字员工的范式转变"><a href="#总结：从对话工具到数字员工的范式转变" class="headerlink" title="总结：从对话工具到数字员工的范式转变"></a>总结：从对话工具到数字员工的范式转变</h2><p>从早期基于单次提示词的交互问答，到能够调用命令行工具的单兵 Coding Agent，再到如今依托常驻云端虚拟机运行的 <strong>Grok Bot</strong>，AI 正在经历一场深刻的蜕变——它正从一个“需要人类频繁敲击回车催促的应答工具”，进化为“拥有独立工作空间、能够交付确定性成果的数字同事”。</p>
 <p>真正掌握这套长效工作流的门槛，不在于编写辞藻华丽的 Prompt，而在于<strong>如何精准界定任务边界、搭建坚固的人机协同审批闸门，并将低价值的重复劳动体系化地抽象为自动化管线</strong>。唯有这样，工程师与决策者的注意力才能真正解放出来，重新聚焦于具有最高创造力与战略决策价值的本质工作之中。</p>
 <hr>
 <h3 id="官方参考资料"><a href="#官方参考资料" class="headerlink" title="官方参考资料"></a>官方参考资料</h3><ul>
@@ -517,6 +523,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -530,6 +537,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -577,6 +587,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -628,6 +639,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

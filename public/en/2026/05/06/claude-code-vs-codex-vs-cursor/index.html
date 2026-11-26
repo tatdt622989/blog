@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -355,7 +361,7 @@
 <li>New ChatGPT Pro $200 subscriptions that are not eligible for grandfathering get a lower allowance than the previous Pro $200 plan. Check <a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers">OpenAI’s Pro tiers article</a> before upgrading.</li>
 </ul>
 <p>For reset times and how to read your quota, see the <a href="/en/2026/06/18/claude-codex-usage-limits-guide/">Claude and Codex usage limits guide</a>. For the latest models behind each tool, see the <a href="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">Claude Opus 5.5 review</a> and the <a href="/en/2026/09/30/openai-devday-2026-announcements/">OpenAI DevDay 2026 roundup</a>.</p>
-<h2 id="Codex-vs-Cursor-What-Is-the-Difference"><a href="#Codex-vs-Cursor-What-Is-the-Difference" class="headerlink" title="Codex vs Cursor: What Is the Difference?"></a>Codex vs Cursor: What Is the Difference?</h2><p>Cursor is <strong>editor-first</strong>: completion, inline diffs, the agent, and manual editing share one screen, which suits people who want to inspect and adjust each step. Codex is <strong>task-first</strong>: describe the goal, let the agent finish locally or in Codex Cloud, then review.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Codex-vs-Cursor-What-Is-the-Difference"><a href="#Codex-vs-Cursor-What-Is-the-Difference" class="headerlink" title="Codex vs Cursor: What Is the Difference?"></a>Codex vs Cursor: What Is the Difference?</h2><p>Cursor is <strong>editor-first</strong>: completion, inline diffs, the agent, and manual editing share one screen, which suits people who want to inspect and adjust each step. Codex is <strong>task-first</strong>: describe the goal, let the agent finish locally or in Codex Cloud, then review.</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -391,9 +397,9 @@
 </tr>
 </tbody></table></div>
 <p><strong>What the October change means:</strong> if you mainly want GPT or Claude inside Cursor, a new plan now costs a subscription plus API usage. For GPT-heavy work, Codex is usually cheaper. Existing Cursor Pro, Pro+, and Ultra customers keep their current plan, price, and features unless they switch, and switching to the X Subscription cannot be undone. <a target="_blank" rel="noopener" href="https://cursor.com/help/the-x-subscription/overview">Cursor</a></p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Claude-Code-vs-Cursor-Can-You-Use-Both"><a href="#Claude-Code-vs-Cursor-Can-You-Use-Both" class="headerlink" title="Claude Code vs Cursor: Can You Use Both?"></a>Claude Code vs Cursor: Can You Use Both?</h2><p>Yes. Anthropic’s Claude Code extension for VS Code also installs in Cursor, so you can run Claude Code inside the Cursor editor on your Claude subscription instead of paying API rates for Claude through Cursor. <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/overview">Claude Code docs</a></p>
+<h2 id="Claude-Code-vs-Cursor-Can-You-Use-Both"><a href="#Claude-Code-vs-Cursor-Can-You-Use-Both" class="headerlink" title="Claude Code vs Cursor: Can You Use Both?"></a>Claude Code vs Cursor: Can You Use Both?</h2><p>Yes. Anthropic’s Claude Code extension for VS Code also installs in Cursor, so you can run Claude Code inside the Cursor editor on your Claude subscription instead of paying API rates for Claude through Cursor. <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/overview">Claude Code docs</a></p>
 <p>A common split is Cursor for completion and small edits, Claude Code for refactors and debugging. Two agents editing the same uncommitted files will collide, so isolate them with git worktrees.</p>
-<h2 id="Plan-Details-by-Tool"><a href="#Plan-Details-by-Tool" class="headerlink" title="Plan Details by Tool"></a>Plan Details by Tool</h2><h3 id="Claude-Code"><a href="#Claude-Code" class="headerlink" title="Claude Code"></a>Claude Code</h3><div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Plan-Details-by-Tool"><a href="#Plan-Details-by-Tool" class="headerlink" title="Plan Details by Tool"></a>Plan Details by Tool</h2><h3 id="Claude-Code"><a href="#Claude-Code" class="headerlink" title="Claude Code"></a>Claude Code</h3><div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>Plan</th>
@@ -695,6 +701,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -708,6 +715,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -755,6 +765,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -806,6 +817,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

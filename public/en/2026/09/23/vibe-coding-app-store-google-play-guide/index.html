@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -306,13 +312,13 @@
 </tbody></table></div>
 <p>Those are the fees shown on the official pages in US dollars; payment currency, taxes, and eligibility depend on your location and account. If you are publishing for a company, decide which legal entity should appear in the store before enrolling.</p>
 <p>Inventory sign-in, notifications, camera, location, analytics, ads, payments, and third-party SDKs. Privacy forms describe <strong>what the app actually does with data</strong>, including third-party code. Google requires a Data safety form even when an app does not collect user data. If users can create accounts, Apple requires a way to <a target="_blank" rel="noopener" href="https://developer.apple.com/support/offering-account-deletion-in-your-app/">initiate deletion in the app</a>; Google requires an in-app path and a <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/13327111?hl=en">web link for deletion requests</a>.</p>
-<h2 id="Three-useful-AI-workflows-before-submission"><a href="#Three-useful-AI-workflows-before-submission" class="headerlink" title="Three useful AI workflows before submission"></a>Three useful AI workflows before submission</h2><p><strong>1. Find release gaps.</strong> Give an AI assistant your project configuration, dependency list, platform build settings, and feature list. Ask for a table with evidence, missing items, and open questions. For example:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Three-useful-AI-workflows-before-submission"><a href="#Three-useful-AI-workflows-before-submission" class="headerlink" title="Three useful AI workflows before submission"></a>Three useful AI workflows before submission</h2><p><strong>1. Find release gaps.</strong> Give an AI assistant your project configuration, dependency list, platform build settings, and feature list. Ask for a table with evidence, missing items, and open questions. For example:</p>
 <blockquote>
 <p>Based only on the project files I provide, audit our iOS and Google Play release readiness. Cover build formats, signing, versions, permissions, SDKs, listing assets, and test methods. Cite the file or evidence for every conclusion. Mark anything unsupported as “needs verification.” Do not ask for private keys, certificates, or passwords.</p>
 </blockquote>
 <p><strong>2. Draft a data-flow inventory.</strong> Supply the actual SDKs, API calls, permissions, retention rules, and third-party services. Ask AI to organize what is collected, why, who receives it, and how users can delete it. Then verify that draft against server logs, provider documentation, and real network behavior before completing App Privacy or Data safety. <strong>An AI-generated inventory is not evidence by itself.</strong></p>
 <p><strong>3. Generate device tests and reviewer notes.</strong> Ask AI for cases covering first launch, registration, denied permissions, poor connectivity, purchases, sign-out, and account deletion based on features that exist. Turn confirmed test results into concise instructions for reviewers. Screenshots should show the real app; listing copy should describe features that are already working.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Test-the-candidate-builds-on-real-phones"><a href="#Test-the-candidate-builds-on-real-phones" class="headerlink" title="Test the candidate builds on real phones"></a>Test the candidate builds on real phones</h2><p>Install each candidate on at least one physical iPhone and one physical Android phone. Record the <strong>device, OS version, app version, steps, and result</strong>. A successful build proves that a file was produced; it does not prove that a user can complete a task.</p>
+<h2 id="Test-the-candidate-builds-on-real-phones"><a href="#Test-the-candidate-builds-on-real-phones" class="headerlink" title="Test the candidate builds on real phones"></a>Test the candidate builds on real phones</h2><p>Install each candidate on at least one physical iPhone and one physical Android phone. Record the <strong>device, OS version, app version, steps, and result</strong>. A successful build proves that a file was produced; it does not prove that a user can complete a task.</p>
 <ul>
 <li>Start from a fresh install and complete the primary task, including registration or sign-in if needed.</li>
 <li>Deny camera, location, or notification permissions and check that the app responds safely and explains why it asks.</li>
@@ -321,7 +327,7 @@
 <li>Run the full flow using the reviewer account. <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple’s Guideline 2.1</a> calls for valid demo credentials or a demo mode when review requires access.</li>
 </ul>
 <p>For digital features or content sold in the app, read <a target="_blank" rel="noopener" href="https://developer.apple.com/app-store/review/guidelines/">Apple’s Guideline 3.1.1</a> and the <a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/9858738?hl=en">Google Play payments policy</a>. Both have platform rules and regional exceptions. Do not select a checkout flow from a one-line AI suggestion.</p>
-<h2 id="iOS-from-App-Store-Connect-to-review"><a href="#iOS-from-App-Store-Connect-to-review" class="headerlink" title="iOS: from App Store Connect to review"></a>iOS: from App Store Connect to review</h2><ol>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="iOS-from-App-Store-Connect-to-review"><a href="#iOS-from-App-Store-Connect-to-review" class="headerlink" title="iOS: from App Store Connect to review"></a>iOS: from App Store Connect to review</h2><ol>
 <li>Enroll in the Apple Developer Program and complete the applicable identity, agreement, and payment setup.</li>
 <li><a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app">Create an app record</a> in App Store Connect with the name, primary language, bundle ID, and SKU. Match the bundle ID in your project.</li>
 <li>Build, sign, and upload with an Xcode version that meets the current SDK requirement. Use <a target="_blank" rel="noopener" href="https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/">TestFlight</a> before release; the first build for external testers may require Beta App Review.</li>
@@ -509,6 +515,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -522,6 +529,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -569,6 +579,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -620,6 +631,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

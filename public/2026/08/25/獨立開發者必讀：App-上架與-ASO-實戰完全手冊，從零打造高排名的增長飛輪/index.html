@@ -69,14 +69,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -101,7 +107,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -274,7 +280,7 @@ flowchart TD
 <li>將這些痛點與功能轉化為 20 個符合一般大眾日常搜尋口語習慣的『長尾關鍵字』，按核心詞、場景詞、痛點詞整理成表格。」</li>
 </ol>
 </blockquote>
-<h2 id="階段二：元數據黃金配置與跨語系索引密技"><a href="#階段二：元數據黃金配置與跨語系索引密技" class="headerlink" title="階段二：元數據黃金配置與跨語系索引密技"></a>階段二：元數據黃金配置與跨語系索引密技</h2><p>元數據（Metadata）是應用商店搜尋引擎認識你這款產品的唯一依據。在 Apple App Store 中，搜尋權重由高至低依序為：<strong>App 名稱 &gt; 副標題 &gt; 隱藏關鍵字欄位</strong>。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="階段二：元數據黃金配置與跨語系索引密技"><a href="#階段二：元數據黃金配置與跨語系索引密技" class="headerlink" title="階段二：元數據黃金配置與跨語系索引密技"></a>階段二：元數據黃金配置與跨語系索引密技</h2><p>元數據（Metadata）是應用商店搜尋引擎認識你這款產品的唯一依據。在 Apple App Store 中，搜尋權重由高至低依序為：<strong>App 名稱 &gt; 副標題 &gt; 隱藏關鍵字欄位</strong>。</p>
 <pre class="mermaid">
 flowchart TD
     classDef blue fill:#EBF8FF,stroke:#3182CE,stroke-width:2px,color:#2B6CB0;
@@ -327,7 +333,7 @@ flowchart TD
 <li><strong>跨語系版本</strong>：同時為我產出對應的 English (US)、簡體中文、Spanish (Mexico) 的名稱、副標題與關鍵字初稿。」</li>
 </ol>
 </blockquote>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="階段三：高轉換率視覺資產設計（CVR-引擎）"><a href="#階段三：高轉換率視覺資產設計（CVR-引擎）" class="headerlink" title="階段三：高轉換率視覺資產設計（CVR 引擎）"></a>階段三：高轉換率視覺資產設計（CVR 引擎）</h2><p>搜尋排名解決的是「曝光（Impressions）」，但「點擊率（CTR）」與「安裝轉換率（CVR）」完全取決於視覺資產。</p>
+<h2 id="階段三：高轉換率視覺資產設計（CVR-引擎）"><a href="#階段三：高轉換率視覺資產設計（CVR-引擎）" class="headerlink" title="階段三：高轉換率視覺資產設計（CVR 引擎）"></a>階段三：高轉換率視覺資產設計（CVR 引擎）</h2><p>搜尋排名解決的是「曝光（Impressions）」，但「點擊率（CTR）」與「安裝轉換率（CVR）」完全取決於視覺資產。</p>
 <h3 id="1-App-圖示（Icon）設計原則"><a href="#1-App-圖示（Icon）設計原則" class="headerlink" title="1. App 圖示（Icon）設計原則"></a>1. App 圖示（Icon）設計原則</h3><ul>
 <li><strong>極簡高對比</strong>：確保圖示在手機主畫面上縮小到 60×60 像素時，依然具備清晰的識別度。</li>
 <li><strong>單一焦點</strong>：採用純色或柔和漸層背景，搭配單一鮮明的代表性圖案，避免細小繁複的插圖。</li>
@@ -374,7 +380,7 @@ flowchart TD
 <blockquote>
 <p><strong>AI 實戰 Prompt 範例（隱私政策與條款）</strong>：<br>「我正在為一款 iOS App 準備提審，App 包含月訂閱與年訂閱，使用 StoreKit 2，本地使用 CoreData 儲存數據，未收集任何個人隱私個資與定位。請為我生成一份繁體中文與英文雙語的『隱私權政策 (Privacy Policy)』與『標準使用條款 (EULA)』Markdown 文件，內容必須完全符合 Apple App Store 最新審查指南的要求。」</p>
 </blockquote>
-<h2 id="階段五：提審通過後的首週冷啟動作戰（Launch-Boost）"><a href="#階段五：提審通過後的首週冷啟動作戰（Launch-Boost）" class="headerlink" title="階段五：提審通過後的首週冷啟動作戰（Launch Boost）"></a>階段五：提審通過後的首週冷啟動作戰（Launch Boost）</h2><p>Apple 對新發布的 App 會給予約 7 天左右的演算法曝光加成（New App Boost）。在這段期間內產生的下載量與好評，能發揮最大的排名槓桿效應。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="階段五：提審通過後的首週冷啟動作戰（Launch-Boost）"><a href="#階段五：提審通過後的首週冷啟動作戰（Launch-Boost）" class="headerlink" title="階段五：提審通過後的首週冷啟動作戰（Launch Boost）"></a>階段五：提審通過後的首週冷啟動作戰（Launch Boost）</h2><p>Apple 對新發布的 App 會給予約 7 天左右的演算法曝光加成（New App Boost）。在這段期間內產生的下載量與好評，能發揮最大的排名槓桿效應。</p>
 <pre class="mermaid">
 flowchart TD
     classDef blue fill:#EBF8FF,stroke:#3182CE,stroke-width:2px,color:#2B6CB0;
@@ -619,6 +625,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -632,6 +639,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -683,6 +693,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -734,6 +745,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

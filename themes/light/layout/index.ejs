@@ -6,8 +6,13 @@
   <a href="<%- url_for('categories/') %>"><%= __('categories') %></a>
   <a href="<%- url_for('tags/') %>"><%= __('all_tags') %></a>
 </nav>
+<% var feedIndex = 0; var feedTotal = page.posts.length; %>
 <% page.posts.each(function(item){ %>
   <%- partial('_partial/article', {item: item, index: true}) %>
+  <% feedIndex += 1; %>
+  <% if (feedIndex === 3 && feedTotal >= 4 && page.no_tracking !== true) { %>
+    <%- article_ad('feed') %>
+  <% } %>
 <% }); %>
 
 <%- partial('_partial/pagination') %>

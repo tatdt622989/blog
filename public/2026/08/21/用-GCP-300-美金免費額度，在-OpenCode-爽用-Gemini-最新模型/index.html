@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -320,7 +326,7 @@
 <li>官方註明 Flash 的優惠價是以「<strong>淨支出 50% 回饋抵免額</strong>」的方式實現，沒有說明試用金支出是否適用，<strong>保守估算請用標準價</strong>。</li>
 <li>Coding Agent 每輪都會重送大量上下文，輸入 Token 遠多於輸出；<strong>快取輸入只要原價的十分之一</strong>，所以實際能用的量通常比單算輸入價更多。</li>
 </ul>
-<h2 id="步驟一：確認試用金已入帳"><a href="#步驟一：確認試用金已入帳" class="headerlink" title="步驟一：確認試用金已入帳"></a>步驟一：確認試用金已入帳</h2><ol>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="步驟一：確認試用金已入帳"><a href="#步驟一：確認試用金已入帳" class="headerlink" title="步驟一：確認試用金已入帳"></a>步驟一：確認試用金已入帳</h2><ol>
 <li>依 <a href="/2026/10/19/google-cloud-300-free-trial-guide/">試用教學</a> 開通 Free Trial，並建立一個專用專案（例如 <strong>ai-coding-sandbox</strong>）。</li>
 <li><strong>選用</strong>：有訂閱 <strong>Google AI Pro</strong> 的話，到 <a target="_blank" rel="noopener" href="https://me.developers.google.com/benefits">Google Developer Program 福利頁</a> 每月領取 10 美元的 Gen AI 與 Cloud 抵免額：</li>
 </ol>
@@ -329,14 +335,14 @@
 <li>到 <strong>Billing → Credits</strong>，確認 <strong>Free Trial</strong> 300 美元與月度抵免額都已入帳：</li>
 </ol>
 <p><img src="/2026/08/21/%E7%94%A8-GCP-300-%E7%BE%8E%E9%87%91%E5%85%8D%E8%B2%BB%E9%A1%8D%E5%BA%A6%EF%BC%8C%E5%9C%A8-OpenCode-%E7%88%BD%E7%94%A8-Gemini-%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/gcp-billing-credits.jpg?v=bb5c8ff7" alt="GCP 結算後台顯示 300 美元 Free Trial 試用抵免額與每月 10 美元開發者福利已入帳"></p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="步驟二：啟用-Agent-Platform-API-並建立-API-Key"><a href="#步驟二：啟用-Agent-Platform-API-並建立-API-Key" class="headerlink" title="步驟二：啟用 Agent Platform API 並建立 API Key"></a>步驟二：啟用 Agent Platform API 並建立 API Key</h2><p>Vertex AI 已更名為 <strong>Gemini Enterprise Agent Platform</strong>，主控台簡稱 <strong>Agent Platform</strong>，API 也改叫 <strong>Agent Platform API</strong>。</p>
+<h2 id="步驟二：啟用-Agent-Platform-API-並建立-API-Key"><a href="#步驟二：啟用-Agent-Platform-API-並建立-API-Key" class="headerlink" title="步驟二：啟用 Agent Platform API 並建立 API Key"></a>步驟二：啟用 Agent Platform API 並建立 API Key</h2><p>Vertex AI 已更名為 <strong>Gemini Enterprise Agent Platform</strong>，主控台簡稱 <strong>Agent Platform</strong>，API 也改叫 <strong>Agent Platform API</strong>。</p>
 <ol>
 <li>在主控台搜尋並啟用 <strong>Agent Platform API</strong>。</li>
 <li>打開 <a target="_blank" rel="noopener" href="https://console.cloud.google.com/agent-platform/studio/settings/api-keys">Agent Studio 的 API 金鑰頁</a>，建立一把 API Key。</li>
 <li>建議在金鑰設定加上 <strong>API 限制</strong>，只允許 Agent Platform API；官方提醒拿到金鑰的人都能花你的配額。<a target="_blank" rel="noopener" href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/api-keys">官方 API Key 說明</a></li>
 </ol>
 <p>用 API Key 不需要安裝 gcloud CLI，也不用設定 Service Account。另外，官方還有一種免綁卡的 <strong>express mode</strong> 免費方案（限 @gmail.com 帳號、90 天、配額較低），它和 300 美金試用金是<strong>兩套不同的方案</strong>，不要混在一起。<a target="_blank" rel="noopener" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview">express mode 說明</a></p>
-<h2 id="步驟三：在-OpenCode-連上-Vertex-並選模型"><a href="#步驟三：在-OpenCode-連上-Vertex-並選模型" class="headerlink" title="步驟三：在 OpenCode 連上 Vertex 並選模型"></a>步驟三：在 OpenCode 連上 Vertex 並選模型</h2><ol>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="步驟三：在-OpenCode-連上-Vertex-並選模型"><a href="#步驟三：在-OpenCode-連上-Vertex-並選模型" class="headerlink" title="步驟三：在 OpenCode 連上 Vertex 並選模型"></a>步驟三：在 OpenCode 連上 Vertex 並選模型</h2><ol>
 <li>在 OpenCode 輸入 <strong>&#x2F;connect</strong>，選 <strong>Vertex</strong>，貼上 API Key。也可以改用環境變數：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOOGLE_VERTEX_API_KEY=<span class="string">&quot;你的 API Key&quot;</span></span><br></pre></td></tr></table></figure>
@@ -568,6 +574,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -581,6 +588,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -632,6 +642,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -683,6 +694,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

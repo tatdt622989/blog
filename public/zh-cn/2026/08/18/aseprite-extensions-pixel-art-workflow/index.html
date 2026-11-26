@@ -37,13 +37,13 @@
   <meta property="article:modified_time" content="2026-10-19T08:00:00.000Z" />
   <meta property="article:section" content="游戏开发" />
   
-  <meta property="article:tag" content="独立开发者" />
-  
   <meta property="article:tag" content="Aseprite" />
   
   <meta property="article:tag" content="Pixel Art" />
   
   <meta property="article:tag" content="游戏开发" />
+  
+  <meta property="article:tag" content="独立开发者" />
   
   
   <meta name="twitter:card" content="summary_large_image">
@@ -51,7 +51,7 @@
   <meta name="twitter:description" content="Aseprite 插件（扩展）推荐：Lospec 调色板导入、Magic Pencil 自动描边、等距网格、Wave Warp 波浪动画、Parallixel 视差背景，附价格、版本要求、下载地址与 Add Extension 安装步骤。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/cover.jpg?v=f85910b7">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/","url":"https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/","headline":"Aseprite 插件推荐：五款必装扩展提升像素画效率（附安装教程）","description":"Aseprite 插件（扩展）推荐：Lospec 调色板导入、Magic Pencil 自动描边、等距网格、Wave Warp 波浪动画、Parallixel 视差背景，附价格、版本要求、下载地址与 Add Extension 安装步骤。","datePublished":"2026-08-18T13:00:00.000Z","dateModified":"2026-10-19T08:00:00.000Z","inLanguage":"zh-CN","articleSection":"游戏开发","keywords":"独立开发者, Aseprite, Pixel Art, 游戏开发","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/","url":"https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/","headline":"Aseprite 插件推荐：五款必装扩展提升像素画效率（附安装教程）","description":"Aseprite 插件（扩展）推荐：Lospec 调色板导入、Magic Pencil 自动描边、等距网格、Wave Warp 波浪动画、Parallixel 视差背景，附价格、版本要求、下载地址与 Add Extension 安装步骤。","datePublished":"2026-08-18T13:00:00.000Z","dateModified":"2026-10-19T08:00:00.000Z","inLanguage":"zh-CN","articleSection":"游戏开发","keywords":"Aseprite, Pixel Art, 游戏开发, 独立开发者","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"游戏开发","item":"https://blog.6yuwei.com/zh-cn/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"},{"@type":"ListItem","position":3,"name":"Aseprite 插件推荐：五款必装扩展提升像素画效率（附安装教程）","item":"https://blog.6yuwei.com/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/"}]}</script>
   
@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -313,7 +319,7 @@
 <li>点击 <strong>File → Scripts → Rescan Scripts Folder</strong> 或重启软件，然后在 <strong>File → Scripts</strong> 里运行。</li>
 </ol>
 <p>扩展包不能当脚本用：把 Wave Warp、Parallixel 放进 Scripts 文件夹是加载不了的。</p>
-<h2 id="Aseprite-下载与试用版限制"><a href="#Aseprite-下载与试用版限制" class="headerlink" title="Aseprite 下载与试用版限制"></a>Aseprite 下载与试用版限制</h2><ul>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Aseprite-下载与试用版限制"><a href="#Aseprite-下载与试用版限制" class="headerlink" title="Aseprite 下载与试用版限制"></a>Aseprite 下载与试用版限制</h2><ul>
 <li><strong>试用版</strong>：<a target="_blank" rel="noopener" href="https://www.aseprite.org/trial/">官方试用页</a>目前提供 v1.3.18.6，限制是不能保存文件；据开发者和社区反馈，试用版还禁用了脚本功能，所以<strong>本文的插件在试用版上都无法运行</strong>。</li>
 <li><strong>正式版</strong>：在<a target="_blank" rel="noopener" href="https://www.aseprite.org/buy/">官网购买</a>（可选附带 Steam key），或直接在 <a target="_blank" rel="noopener" href="https://store.steampowered.com/app/431730/Aseprite/">Steam</a> 购买。</li>
 <li><strong>源码编译</strong>：源码托管在 <a target="_blank" rel="noopener" href="https://github.com/aseprite/aseprite">GitHub</a>，自行编译的版本可以使用插件。</li>
@@ -332,7 +338,7 @@
 <li><strong>保留来源信息</strong>：默认保存为 <strong>.gpl</strong>，会带上作者、颜色数量和 Lospec 链接；保存为 <strong>.aseprite</strong> 则不含这些元数据。</li>
 </ol>
 <p>首次运行需要选择 <strong>Give full trust to this script</strong>，授权它调用 curl 访问 Lospec 并写入文件。官方只支持 Windows 和 macOS；Linux 上除 <strong>Open In App</strong> 外基本可用，但不在官方支持范围内。</p>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Magic-Pencil：Aseprite-自动描边与图层拆分插件"><a href="#Magic-Pencil：Aseprite-自动描边与图层拆分插件" class="headerlink" title="Magic Pencil：Aseprite 自动描边与图层拆分插件"></a>Magic Pencil：Aseprite 自动描边与图层拆分插件</h2><p><img src="/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/magic-pencil-panel.png?v=64d2f652" alt="Magic Pencil 的笔刷效果与像素处理面板，来源：Kacper Woźniak"></p>
+<h2 id="Magic-Pencil：Aseprite-自动描边与图层拆分插件"><a href="#Magic-Pencil：Aseprite-自动描边与图层拆分插件" class="headerlink" title="Magic Pencil：Aseprite 自动描边与图层拆分插件"></a>Magic Pencil：Aseprite 自动描边与图层拆分插件</h2><p><img src="/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/magic-pencil-panel.png?v=64d2f652" alt="Magic Pencil 的笔刷效果与像素处理面板，来源：Kacper Woźniak"></p>
 <ul>
 <li><strong>开发者</strong>：Kacper Woźniak，最新版本 v2.0.5</li>
 <li><strong>下载</strong>：<a target="_blank" rel="noopener" href="https://thkaspar.itch.io/magic-pencil">itch.io 项目页</a>（Windows &#x2F; macOS &#x2F; Linux）</li>
@@ -368,7 +374,7 @@
 </tr>
 </tbody></table></div>
 <p>v2.x 不兼容 1.3-rc4 之前的 Aseprite，开发者建议用最新版本。</p>
-<h2 id="Isometric-Guidelines：2-5D-等距网格生成脚本"><a href="#Isometric-Guidelines：2-5D-等距网格生成脚本" class="headerlink" title="Isometric Guidelines：2.5D 等距网格生成脚本"></a>Isometric Guidelines：2.5D 等距网格生成脚本</h2><p><img src="/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/isometric-guidelines-preview.png?v=f6219ef2" alt="Aseprite Isometric Guidelines 生成的等距网格预览，来源：Noesteryo"></p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Isometric-Guidelines：2-5D-等距网格生成脚本"><a href="#Isometric-Guidelines：2-5D-等距网格生成脚本" class="headerlink" title="Isometric Guidelines：2.5D 等距网格生成脚本"></a>Isometric Guidelines：2.5D 等距网格生成脚本</h2><p><img src="/zh-cn/2026/08/18/aseprite-extensions-pixel-art-workflow/isometric-guidelines-preview.png?v=f6219ef2" alt="Aseprite Isometric Guidelines 生成的等距网格预览，来源：Noesteryo"></p>
 <ul>
 <li><strong>开发者</strong>：Noesteryo</li>
 <li><strong>下载</strong>：<a target="_blank" rel="noopener" href="https://noesteryo.itch.io/aseprite-isometric-guidelines">itch.io 项目页</a>（**.lua** 脚本）</li>
@@ -421,7 +427,7 @@
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>, <a href="/zh-cn/tags/Aseprite/">Aseprite</a>, <a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a>, <a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>
+    <a href="/zh-cn/tags/Aseprite/">Aseprite</a>, <a href="/zh-cn/tags/Pixel-Art/">Pixel Art</a>, <a href="/zh-cn/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>, <a href="/zh-cn/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85/">独立开发者</a>
   </div>
 
         
@@ -515,7 +521,7 @@
         <a href="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/" class="related-post-link"
            data-rel-title="适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析"
            data-rel-path="/zh-cn/2026/09/11/open-source-game-engine-architectures-for-ai-agents/"
-           data-rel-tag="独立开发者"
+           data-rel-tag="游戏开发"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -524,7 +530,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">独立开发者</span>
+              <span class="related-post-tag">游戏开发</span>
             
             <h4 class="related-post-item-title">适合 AI 开发的开源游戏架构：Web、编辑器桥接与自动检查全解析</h4>
             
@@ -538,7 +544,7 @@
         <a href="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/" class="related-post-link"
            data-rel-title="独立游戏音频全 AI 化实战：Suno 生成配乐、MOSS-SoundEffect 本地生成音效，低成本打造沉浸式游戏声音工作流"
            data-rel-path="/zh-cn/2026/08/27/indie-game-ai-audio-workflow/"
-           data-rel-tag="独立开发者"
+           data-rel-tag="游戏开发"
            data-rel-position="3">
           <div class="related-post-cover">
             
@@ -547,7 +553,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">独立开发者</span>
+              <span class="related-post-tag">游戏开发</span>
             
             <h4 class="related-post-item-title">独立游戏音频全 AI 化实战：Suno 生成配乐、MOSS-SoundEffect 本地生成音效，低成本打造沉浸式游戏声音工作流</h4>
             
@@ -569,6 +575,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -582,6 +589,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -629,6 +639,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -680,6 +691,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

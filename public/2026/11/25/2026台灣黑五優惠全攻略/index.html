@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -318,7 +324,7 @@
 </ul>
 <h3 id="台灣-Apple-官網沒有黑五活動，想換蘋果改看這些通路"><a href="#台灣-Apple-官網沒有黑五活動，想換蘋果改看這些通路" class="headerlink" title="台灣 Apple 官網沒有黑五活動，想換蘋果改看這些通路"></a>台灣 Apple 官網沒有黑五活動，想換蘋果改看這些通路</h3><p>每年這時候都有人問要不要等蘋果官網黑五。先把結論講清楚：<strong>美國 Apple 官網在 11 月 27 日至 11 月 30 日推出的「買指定產品送最高 300 美元禮品卡」活動，台灣官網與直營店今年依然沒有參加</strong>。特地找美國代購不只多付國際運費和 5% 營業稅，美版禮品卡在台灣也無法直接使用，反而不划算。</p>
 <p>在台灣想趁黑五入手 iPhone、iPad 或 Mac，直接鎖定授權經銷商（如 STUDIO A、神腦線上、燦坤）、好市多，以及 <strong>PChome 24h、momo、蝦皮商城</strong>的黑五接力活動更實在。尤其 11 月 25 日起蝦皮商城常釋出 9 折或滿額折價券，PChome 24h 與 momo 則主打點數回饋與銀行分期登錄，算完含券實付價通常比原價更有空間。</p>
-<h2 id="戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物"><a href="#戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物" class="headerlink" title="戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物"></a>戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物</h2><p>跨境網購才是黑五的靈魂。對台灣消費者來說，不必什麼都從國外買，把火力集中在<strong>台灣代理溢價高、或海外黑五降價幅度夠狠</strong>的類別，扣掉運費與稅金還是能省出一大截。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物"><a href="#戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物" class="headerlink" title="戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物"></a>戰場二：美亞、日亞與海外直寄，鎖定台灣價差最大的實體好物</h2><p>跨境網購才是黑五的靈魂。對台灣消費者來說，不必什麼都從國外買，把火力集中在<strong>台灣代理溢價高、或海外黑五降價幅度夠狠</strong>的類別，扣掉運費與稅金還是能省出一大截。</p>
 <h3 id="美國亞馬遜（Amazon-US）：12-天黑五週與直寄免運"><a href="#美國亞馬遜（Amazon-US）：12-天黑五週與直寄免運" class="headerlink" title="美國亞馬遜（Amazon US）：12 天黑五週與直寄免運"></a>美國亞馬遜（Amazon US）：12 天黑五週與直寄免運</h3><p><a target="_blank" rel="noopener" href="https://www.amazon.com/blackfriday">Amazon US 黑五週</a>從 <strong>11 月 19 日一路跑到 11 月 30 日</strong>。台灣買家下單前，先把頁面左上角收件地址（Deliver to）切成 <strong>Taiwan</strong>，篩選出支援直寄台灣的品項。符合 <strong>AmazonGlobal 免運資格</strong>的商品（常見門檻為 <strong>49 美元或 60 美元</strong>，依商品頁標示為準），結帳時務必確認物流選項勾到免運服務。</p>
 <p>從台灣視角看，美亞黑五最值得優先加入購物車的四個品項：</p>
 <ul>
@@ -339,7 +345,7 @@
 <li><strong>Shopbop</strong>：已於台灣時間 11 月 22 日晚間開跑，持續到 <strong>12 月 1 日 17:00</strong>。在 <a target="_blank" rel="noopener" href="https://www.shopbop.com/">Shopbop</a> 挑選標示黑五促銷的商品，輸入 <strong>HOLIDAY</strong> 可享 75 折，滿 100 美元即享免費直寄台灣。</li>
 <li><strong>SSENSE 與 Farfetch</strong>：想買設計師服飾、球鞋或精品包，<a target="_blank" rel="noopener" href="https://www.ssense.com/">SSENSE</a> 採直接降價制不需輸碼，<a target="_blank" rel="noopener" href="https://www.farfetch.com/tw/">Farfetch 台灣</a> 常在黑五針對折扣區祭出額外折上折。這兩家的優點是<strong>頁面結帳金額多已包含台灣關稅（DDP）</strong>，價格透明，不會在收貨時突然被快遞追討高額稅單。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算"><a href="#戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算" class="headerlink" title="戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算"></a>戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算</h2><p>如果只能挑一個類別無腦參與全球黑五，我會優先推薦<strong>數位軟體與線上服務</strong>。它們沒有國際運費、不吃你半年 6 次的海關免稅次數、沒有電壓或退貨寄回國外的問題，而且黑五往往是一整年折扣最深的一次。</p>
+<h2 id="戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算"><a href="#戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算" class="headerlink" title="戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算"></a>戰場三：數位訂閱、VPN、軟體與主機，免關稅刷卡即用最划算</h2><p>如果只能挑一個類別無腦參與全球黑五，我會優先推薦<strong>數位軟體與線上服務</strong>。它們沒有國際運費、不吃你半年 6 次的海關免稅次數、沒有電壓或退貨寄回國外的問題，而且黑五往往是一整年折扣最深的一次。</p>
 <h3 id="創意軟體：Adobe-Creative-Cloud-台灣官網首年-4-折"><a href="#創意軟體：Adobe-Creative-Cloud-台灣官網首年-4-折" class="headerlink" title="創意軟體：Adobe Creative Cloud 台灣官網首年 4 折"></a>創意軟體：Adobe Creative Cloud 台灣官網首年 4 折</h3><p>有在做影像剪輯、平面設計或自媒體的創作者，<a target="_blank" rel="noopener" href="https://www.adobe.com/tw/creativecloud/plans.html">Adobe 台灣官網</a>今年黑五誠意十足，活動一路到 <strong>11 月 27 日</strong>截止：</p>
 <ul>
 <li><strong>個人版 Creative Cloud Pro（全應用程式）</strong>：首年 <strong>4 折</strong>，從原價每月 2,310 元降到 <strong>每月 924 元</strong>（選擇年付預繳約 10,581 元）。</li>
@@ -364,7 +370,7 @@
 <li><strong>ChatGPT Plus、Claude Pro、Perplexity Pro</strong>：這三大主流 AI 助理在 2026 年黑五皆維持常態定價或既有的年繳方案，<strong>沒有推出官方限時黑五半價</strong>。</li>
 <li><strong>JetBrains 全家桶 IDE</strong>：官方慣例同樣不參與黑五全面促銷，省錢管道依然是靠<strong>連續續約折扣</strong>（第二年與第三年逐年變便宜）或學生免費授權。看到社群流傳來路不明的「黑五超低價代充或共享帳號」，務必提高警覺，容易遇到鎖帳或信用卡盜刷風險。</li>
 </ul>
-<h2 id="戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週"><a href="#戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週" class="headerlink" title="戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週"></a>戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週</h2><p>台灣玩家在黑五最容易不小心刷爆的戰場就是遊戲數位商店。2026 年三大平台的節奏已經很明確：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週"><a href="#戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週" class="headerlink" title="戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週"></a>戰場五：遊戲主機與數位商店，台灣玩家補庫存黃金週</h2><p>台灣玩家在黑五最容易不小心刷爆的戰場就是遊戲數位商店。2026 年三大平台的節奏已經很明確：</p>
 <ul>
 <li><strong>PlayStation Store 台灣（至 11 月 30 日）</strong>：<a target="_blank" rel="noopener" href="https://store.playstation.com/zh-hant-tw/">PS Store 台灣</a>數千款 PS5、PS4 數位遊戲與 DLC 最低下殺至 <strong>2.5 折</strong>。<strong>PS Plus 會籍</strong>同步祭出黑五價：<strong>Essential 基本 8 折、Extra 升級 75 折、Premium 高級 67 折</strong>。唯一要留意的是，這波會籍折扣主要針對<strong>新加入用戶或升級至更高方案</strong>；手上還有未到期會籍的老玩家若想「同級續約」，多半無法套用，購買前先登入帳號確認畫面顯示的結帳金額。</li>
 <li><strong>Steam（11 月 26 日至 11 月 30 日）</strong>：<a target="_blank" rel="noopener" href="https://store.steampowered.com/">Steam 商店</a>黑五檔期以各發行商自主促銷為主，大批 3A 與獨立遊戲都會跟進降價。如果某款願望清單裡的作品還沒落到理想價位，別衝動下單——<strong>Steam 冬季特賣緊接在 12 月 17 日至 2027 年 1 月 4 日開跑</strong>，屆時折扣面更廣。</li>
@@ -565,6 +571,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -578,6 +585,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -629,6 +639,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -680,6 +691,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

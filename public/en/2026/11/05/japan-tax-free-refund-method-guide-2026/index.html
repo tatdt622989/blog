@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -359,7 +365,7 @@
 <p><strong>Fees:</strong> The government charges nothing. Most stores hand refunds to a refund company, and the Tourism Agency’s FAQ for stores says the law does not decide whether the traveler or the store pays that company’s fee, adding that <strong>in other countries the traveler usually pays</strong>. Expect to receive less than the table shows, and ask the store what it deducts.</p>
 <p><strong><a target="_blank" rel="noopener" href="https://tool.6yuwei.com/en/japan-tax-refund/">Free Japan tax refund calculator: enter your receipts, see the refund in yen and your currency</a></strong></p>
 <p>Enter the 10% and 8% amounts for each checkout to see what each receipt returns and what is left after the fee. For a receipt under 5,000 yen, it shows how much more you would need to buy on the same checkout.</p>
-<h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><p><img src="/en/2026/11/05/japan-tax-free-refund-method-guide-2026/flow.jpg?v=f8b5bd3d" alt="The refund in 5 steps: pay at the store, register the refund, customs check first, read the result, collect the refund"></p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h2><p><img src="/en/2026/11/05/japan-tax-free-refund-method-guide-2026/flow.jpg?v=f8b5bd3d" alt="The refund in 5 steps: pay at the store, register the refund, customs check first, read the result, collect the refund"></p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -396,7 +402,7 @@
 </tbody></table></div>
 <p><strong>The 90-day deadline:</strong> count from the <strong>day after</strong> purchase to day 90. The official example: goods bought on 1 November must be confirmed by <strong>30 January</strong>. Enter your purchase and departure dates in the <a target="_blank" rel="noopener" href="https://tool.6yuwei.com/en/japan-tax-refund/">tax refund calculator</a> and it lists the deadline for each receipt and flags any you would miss.</p>
 <p><strong>Visit Japan Web:</strong> Available at Narita, Haneda, Kansai, Chubu, Fukuoka, New Chitose and Naha. Before security, connect to the customs Wi-Fi (SSID <strong>Customs_WiFi_For_TaxRefund</strong>, password <strong>jcustoms</strong>) and complete the check on your phone instead of queuing for a kiosk. It is limited to temporary visitor, diplomatic and official status; Japanese citizens cannot use it. Kansai customs recommends it because the kiosks can get crowded.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="At-the-airport-customs-check-before-bag-drop"><a href="#At-the-airport-customs-check-before-bag-drop" class="headerlink" title="At the airport: customs check before bag drop"></a>At the airport: customs check before bag drop</h2><p><img src="/en/2026/11/05/japan-tax-free-refund-method-guide-2026/airport-order.jpg?v=29718ab4" alt="Airport order: departure hall, customs check, airline check-in and bag drop, security and passport control, cash refund"></p>
+<h2 id="At-the-airport-customs-check-before-bag-drop"><a href="#At-the-airport-customs-check-before-bag-drop" class="headerlink" title="At the airport: customs check before bag drop"></a>At the airport: customs check before bag drop</h2><p><img src="/en/2026/11/05/japan-tax-free-refund-method-guide-2026/airport-order.jpg?v=29718ab4" alt="Airport order: departure hall, customs check, airline check-in and bag drop, security and passport control, cash refund"></p>
 <ul>
 <li>Customs kiosks are <strong>landside</strong>, in the departure hall, and you must use them <strong>before checking any bags</strong>, because the goods have to be with you.</li>
 <li>Once a bag is checked you <strong>cannot</strong> go back and you cannot retrieve it. After security and passport control, even Visit Japan Web no longer works.</li>
@@ -404,7 +410,7 @@
 <li>Most cash refund machines are <strong>airside</strong> (Narita also has some landside). You can only use them after the customs check.</li>
 <li>If you connect from a domestic flight to an international one, do the check at your <strong>last airport in Japan</strong>.</li>
 </ul>
-<h2 id="Kiosk-locations-at-major-airports"><a href="#Kiosk-locations-at-major-airports" class="headerlink" title="Kiosk locations at major airports"></a>Kiosk locations at major airports</h2><p><img src="/en/2026/11/05/japan-tax-free-refund-method-guide-2026/airports.jpg?v=838387de" alt="Customs tax refund kiosk floors at Narita, Haneda, Kansai, Chubu, Fukuoka, New Chitose, Naha and Kobe"></p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Kiosk-locations-at-major-airports"><a href="#Kiosk-locations-at-major-airports" class="headerlink" title="Kiosk locations at major airports"></a>Kiosk locations at major airports</h2><p><img src="/en/2026/11/05/japan-tax-free-refund-method-guide-2026/airports.jpg?v=838387de" alt="Customs tax refund kiosk floors at Narita, Haneda, Kansai, Chubu, Fukuoka, New Chitose, Naha and Kobe"></p>
 <p><strong>Customs check (kiosk) floors</strong>, from Japan Customs’ location data:</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
@@ -691,7 +697,7 @@
         <a href="/en/2026/09/14/ai-coding-tools-subscription-comparison/" class="related-post-link"
            data-rel-title="AI Coding Subscriptions Compared (2026): Claude Code vs Codex vs Cursor vs Copilot Pricing"
            data-rel-path="/en/2026/09/14/ai-coding-tools-subscription-comparison/"
-           data-rel-tag="AI"
+           data-rel-tag="Claude Code"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -700,7 +706,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">Claude Code</span>
             
             <h4 class="related-post-item-title">AI Coding Subscriptions Compared (2026): Claude Code vs Codex vs Cursor vs Copilot Pricing</h4>
             
@@ -745,6 +751,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -758,6 +765,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -805,6 +815,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -856,6 +867,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -343,7 +349,7 @@
 <li><strong>Claude Fable 5.1</strong> ($10 &#x2F; $50): The ultimate engine for multi-hour autonomous coding loops, full-codebase refactoring, and multi-step recursive problem solving. With its <strong>$0.25 &#x2F; MTok</strong> cache read rate, high-iteration agent workloads are significantly cheaper to run than on Opus 5!</li>
 </ul>
 <hr>
-<h2 id="Critical-Breaking-Changes-Every-Developer-Must-Know"><a href="#Critical-Breaking-Changes-Every-Developer-Must-Know" class="headerlink" title="Critical Breaking Changes Every Developer Must Know"></a>Critical Breaking Changes Every Developer Must Know</h2><p>Migrating existing agent pipelines to Claude Fable 5.1 requires addressing three fundamental breaking changes:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Critical-Breaking-Changes-Every-Developer-Must-Know"><a href="#Critical-Breaking-Changes-Every-Developer-Must-Know" class="headerlink" title="Critical Breaking Changes Every Developer Must Know"></a>Critical Breaking Changes Every Developer Must Know</h2><p>Migrating existing agent pipelines to Claude Fable 5.1 requires addressing three fundamental breaking changes:</p>
 <h3 id="1-Forced-Tool-Choice-Is-Strictly-Prohibited"><a href="#1-Forced-Tool-Choice-Is-Strictly-Prohibited" class="headerlink" title="1. Forced Tool Choice Is Strictly Prohibited"></a>1. Forced Tool Choice Is Strictly Prohibited</h3><p>In earlier Claude models, developers could force tool execution via <code>tool_choice: &#123;&quot;type&quot;: &quot;tool&quot;, &quot;name&quot;: &quot;...&quot;&#125;</code> or <code>tool_choice: &#123;&quot;type&quot;: &quot;any&quot;&#125;</code>. </p>
 <p>In <strong>Claude Fable 5.1</strong>, submitting either option triggers an immediate <strong>HTTP 400 invalid_request_error</strong>.</p>
 <p><strong>How to migrate:</strong></p>
@@ -360,7 +366,7 @@
 </ul>
 <h3 id="3-Modifying-Conversation-History-Invalidates-Thinking-Signatures"><a href="#3-Modifying-Conversation-History-Invalidates-Thinking-Signatures" class="headerlink" title="3. Modifying Conversation History Invalidates Thinking Signatures"></a>3. Modifying Conversation History Invalidates Thinking Signatures</h3><p>Thinking blocks are strictly bound to their preceding system prompts, tools, and conversation history. Modifying earlier messages will invalidate the block signature and return a 400 error. Maintain absolute prefix integrity across multi-turn agent sessions.</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Five-Standout-Features-and-Architectural-Upgrades"><a href="#Five-Standout-Features-and-Architectural-Upgrades" class="headerlink" title="Five Standout Features and Architectural Upgrades"></a>Five Standout Features and Architectural Upgrades</h2><p>Beyond raw reasoning performance, Claude Fable 5.1 brings dedicated architectural primitives for robust agent systems:</p>
+<h2 id="Five-Standout-Features-and-Architectural-Upgrades"><a href="#Five-Standout-Features-and-Architectural-Upgrades" class="headerlink" title="Five Standout Features and Architectural Upgrades"></a>Five Standout Features and Architectural Upgrades</h2><p>Beyond raw reasoning performance, Claude Fable 5.1 brings dedicated architectural primitives for robust agent systems:</p>
 <h3 id="1-Per-Message-Effort-Configuration-Beta"><a href="#1-Per-Message-Effort-Configuration-Beta" class="headerlink" title="1. Per-Message Effort Configuration (Beta)"></a>1. Per-Message Effort Configuration (Beta)</h3><p>Developers can now dynamically adjust thinking intensity (<code>effort: &quot;low&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;high&quot;</code>, or <code>&quot;max&quot;</code>) on a per-turn basis without invalidating prompt cache hits. Use <code>low</code> effort for lightweight file reads, and dial up to <code>high</code> or <code>max</code> when resolving architectural conflicts or multi-layer test failures.</p>
 <h3 id="2-Turn-Scoped-System-Messages-Beta"><a href="#2-Turn-Scoped-System-Messages-Beta" class="headerlink" title="2. Turn-Scoped System Messages (Beta)"></a>2. Turn-Scoped System Messages (Beta)</h3><p>You can now append <code>&#123;&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;...&quot;&#125;</code> messages midway through the <code>messages</code> array. This allows orchestrators to enforce dynamic step requirements without mutating top-level prompts or disrupting cached context prefixes.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Mid-conversation system message example</span></span><br><span class="line">messages = [</span><br><span class="line">    &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;What is the delivery status for order A1234?&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Let me look up your order details.&quot;</span>&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Tool-use requirement: The application requires calling order_lookup before responding. Begin with the tool call.&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
@@ -369,7 +375,7 @@
 <h3 id="4-0-025x-Cache-Read-Pricing"><a href="#4-0-025x-Cache-Read-Pricing" class="headerlink" title="4. 0.025x Cache Read Pricing"></a>4. 0.025x Cache Read Pricing</h3><p>At <strong>$0.25 &#x2F; MTok</strong>, reading 500,000 cached tokens across 20 agent loop iterations costs just <strong>$2.50</strong>, compared to <strong>$10.00</strong> on Opus 5. This makes iterative exploration economically viable at enterprise scale.</p>
 <h3 id="5-Content-Provenance-and-Watermarking"><a href="#5-Content-Provenance-and-Watermarking" class="headerlink" title="5. Content Provenance and Watermarking"></a>5. Content Provenance and Watermarking</h3><p>Text outputs incorporate Anthropic statistical watermarking, while generated images and video files produced through code execution tools natively embed verifiable <strong>C2PA Content Credentials</strong>.</p>
 <hr>
-<h2 id="Long-Horizon-Agent-Execution-Architecture"><a href="#Long-Horizon-Agent-Execution-Architecture" class="headerlink" title="Long-Horizon Agent Execution Architecture"></a>Long-Horizon Agent Execution Architecture</h2><p>The diagram below illustrates the complete lifecycle of an autonomous agent powered by Claude Fable 5.1:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Long-Horizon-Agent-Execution-Architecture"><a href="#Long-Horizon-Agent-Execution-Architecture" class="headerlink" title="Long-Horizon Agent Execution Architecture"></a>Long-Horizon Agent Execution Architecture</h2><p>The diagram below illustrates the complete lifecycle of an autonomous agent powered by Claude Fable 5.1:</p>
 <pre class="mermaid">
 flowchart TD
     Start["AGENT INITIALIZATION"] --> LoadContext["LOAD WORKSPACE & PROMPTS"]
@@ -562,6 +568,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -575,6 +582,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -622,6 +632,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -673,6 +684,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

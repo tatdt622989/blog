@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -286,7 +292,7 @@
 </tbody></table></div>
 <p>Put accounts, cloud sync, AI recommendations, sharing, and subscription payments in a <strong>later</strong> list. Each brings more screens, data rules, and tests. Finish the main journey, then use feedback to choose an extension.</p>
 <p>Keep an <strong>unresolved</strong> list too. Are duplicate titles allowed? Must data follow the user to a different device? Is this a browser app or an installed phone app? AI can explain the tradeoffs, but the decision needs to serve your goal.</p>
-<h2 id="Plan-empty-states-and-failures-alongside-the-happy-path"><a href="#Plan-empty-states-and-failures-alongside-the-happy-path" class="headerlink" title="Plan empty states and failures alongside the happy path"></a>Plan empty states and failures alongside the happy path</h2><p>The main journey is <strong>open the list → add a title → save → return to the list → mark as read</strong>. Sketch each step on paper or describe what appears and what the user can do. Polished UI can wait.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Plan-empty-states-and-failures-alongside-the-happy-path"><a href="#Plan-empty-states-and-failures-alongside-the-happy-path" class="headerlink" title="Plan empty states and failures alongside the happy path"></a>Plan empty states and failures alongside the happy path</h2><p>The main journey is <strong>open the list → add a title → save → return to the list → mark as read</strong>. Sketch each step on paper or describe what appears and what the user can do. Polished UI can wait.</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -316,7 +322,7 @@
 </tr>
 </tbody></table></div>
 <p>Write these decisions down so the AI does not silently invent product rules. This example stores data locally; cross-device sync and backups are outside its first-version scope. If moving between devices is the user’s main need, revisit that choice.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="A-one-page-PRD-you-can-keep-in-the-project"><a href="#A-one-page-PRD-you-can-keep-in-the-project" class="headerlink" title="A one-page PRD you can keep in the project"></a>A one-page PRD you can keep in the project</h2><p><strong>PRD stands for Product Requirements Document.</strong> A small project can start with a concise record of the important decisions and update it when those decisions change.</p>
+<h2 id="A-one-page-PRD-you-can-keep-in-the-project"><a href="#A-one-page-PRD-you-can-keep-in-the-project" class="headerlink" title="A one-page PRD you can keep in the project"></a>A one-page PRD you can keep in the project</h2><p><strong>PRD stands for Product Requirements Document.</strong> A small project can start with a concise record of the important decisions and update it when those decisions change.</p>
 <p>Download the <a href="app-plan-template.txt">blank app planning template</a>, or use this completed example:</p>
 <blockquote>
 <p><strong>Goal and user:</strong> help someone save book recommendations and find them later.</p>
@@ -329,7 +335,7 @@
 <p><strong>Completion evidence:</strong> acceptance-check results and specific feedback from people trying the app.</p>
 </blockquote>
 <p>Label missing decisions <strong>unresolved</strong>. A polished document should not turn an AI’s guesses into approved requirements.</p>
-<h2 id="Write-acceptance-checks-as-observable-outcomes"><a href="#Write-acceptance-checks-as-observable-outcomes" class="headerlink" title="Write acceptance checks as observable outcomes"></a>Write acceptance checks as observable outcomes</h2><p>“Looks good” and “works correctly” do not tell you what to test. Write <strong>an action and its expected result</strong>. GOV.UK’s <a target="_blank" rel="noopener" href="https://www.gov.uk/service-manual/agile-delivery/writing-user-stories">user-story guidance</a> describes acceptance criteria as outcomes used to check whether a need has been met. These checks are our own examples for the reading-list app.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Write-acceptance-checks-as-observable-outcomes"><a href="#Write-acceptance-checks-as-observable-outcomes" class="headerlink" title="Write acceptance checks as observable outcomes"></a>Write acceptance checks as observable outcomes</h2><p>“Looks good” and “works correctly” do not tell you what to test. Write <strong>an action and its expected result</strong>. GOV.UK’s <a target="_blank" rel="noopener" href="https://www.gov.uk/service-manual/agile-delivery/writing-user-stories">user-story guidance</a> describes acceptance criteria as outcomes used to check whether a need has been met. These checks are our own examples for the reading-list app.</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -549,6 +555,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -562,6 +569,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -609,6 +619,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -660,6 +671,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -89,14 +89,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -121,7 +127,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -372,7 +378,7 @@ flowchart TD
 <li>API、queue、資料庫寫入可以用 correlation ID 串回同一個使用者操作。</li>
 </ul>
 <p>找不到元素時，AI 不應該直接生成更長的 XPath。缺少測試介面是產品需求，應交回負責該介面的工程團隊修正。</p>
-<h2 id="三、Harness-應該怎麼分層"><a href="#三、Harness-應該怎麼分層" class="headerlink" title="三、Harness 應該怎麼分層"></a>三、Harness 應該怎麼分層</h2><h3 id="讓-Agent-找得到東西的目錄"><a href="#讓-Agent-找得到東西的目錄" class="headerlink" title="讓 Agent 找得到東西的目錄"></a>讓 Agent 找得到東西的目錄</h3><p>目錄要讓 Agent 知道規格、資料、執行器和測試紀錄放在哪裡。以下是跨 Web、Mobile 與 API 的參考骨架；不是每個產品都要照抄，沒有用到的資料夾就不要建立：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="三、Harness-應該怎麼分層"><a href="#三、Harness-應該怎麼分層" class="headerlink" title="三、Harness 應該怎麼分層"></a>三、Harness 應該怎麼分層</h2><h3 id="讓-Agent-找得到東西的目錄"><a href="#讓-Agent-找得到東西的目錄" class="headerlink" title="讓 Agent 找得到東西的目錄"></a>讓 Agent 找得到東西的目錄</h3><p>目錄要讓 Agent 知道規格、資料、執行器和測試紀錄放在哪裡。以下是跨 Web、Mobile 與 API 的參考骨架；不是每個產品都要照抄，沒有用到的資料夾就不要建立：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">e2e-harness/</span><br><span class="line">├── AGENTS.md</span><br><span class="line">├── docs/</span><br><span class="line">│   ├── product-map.md</span><br><span class="line">│   ├── test-strategy.md</span><br><span class="line">│   ├── environments.md</span><br><span class="line">│   ├── selector-contract.md</span><br><span class="line">│   └── known-issues.md</span><br><span class="line">├── specs/</span><br><span class="line">│   ├── smoke/</span><br><span class="line">│   ├── critical/</span><br><span class="line">│   └── regression/</span><br><span class="line">├── pages/                 # Web UI，需要時使用</span><br><span class="line">├── screens/               # 其他 UI surface，需要時使用</span><br><span class="line">├── components/            # 共用 UI，需要時使用</span><br><span class="line">├── flows/</span><br><span class="line">├── assertions/</span><br><span class="line">├── fixtures/</span><br><span class="line">├── support/</span><br><span class="line">├── adapters/</span><br><span class="line">│   ├── browser/           # Playwright</span><br><span class="line">│   ├── mobile/            # Mobile adapter，可選</span><br><span class="line">│   └── api/               # API client／contract，可選</span><br><span class="line">├── observability/</span><br><span class="line">├── agent/</span><br><span class="line">│   ├── exploratory/</span><br><span class="line">│   ├── failure-analysis/</span><br><span class="line">│   ├── test-generation/</span><br><span class="line">│   └── maintenance/</span><br><span class="line">├── config/</span><br><span class="line">└── scripts/</span><br></pre></td></tr></table></figure>
 
 <p>各資料夾只負責一件事：</p>
@@ -528,7 +534,7 @@ flowchart TD
 </tr>
 </tbody></table></div>
 <p>是否使用不同模型不是重點。重要的是把角色、上下文、環境和決策權分開。2026 年一項 LLM 測試生成研究在特定實驗中觀察到，先生成錯誤程式碼再生成測試，抓錯率低於獨立生成測試；這也是 Builder 和 Validator 不應共用同一套錯誤假設的原因。<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05139">On the risk of coding before testing</a></p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五、把測試紀錄留下來，讓-Agent-能查問題"><a href="#五、把測試紀錄留下來，讓-Agent-能查問題" class="headerlink" title="五、把測試紀錄留下來，讓 Agent 能查問題"></a>五、把測試紀錄留下來，讓 Agent 能查問題</h2><h3 id="不要只留下錯誤訊息"><a href="#不要只留下錯誤訊息" class="headerlink" title="不要只留下錯誤訊息"></a>不要只留下錯誤訊息</h3><p>只留下 <code>Expected visible, received hidden</code>，幾乎無法幫 Agent 找原因。測試至少要在失敗時保存：</p>
+<h2 id="五、把測試紀錄留下來，讓-Agent-能查問題"><a href="#五、把測試紀錄留下來，讓-Agent-能查問題" class="headerlink" title="五、把測試紀錄留下來，讓 Agent 能查問題"></a>五、把測試紀錄留下來，讓 Agent 能查問題</h2><h3 id="不要只留下錯誤訊息"><a href="#不要只留下錯誤訊息" class="headerlink" title="不要只留下錯誤訊息"></a>不要只留下錯誤訊息</h3><p>只留下 <code>Expected visible, received hidden</code>，幾乎無法幫 Agent 找原因。測試至少要在失敗時保存：</p>
 <ul>
 <li>失敗前後的 DOM Snapshot、ARIA Snapshot 或 Native UI Tree。</li>
 <li>Screenshot、必要時的 video、Trace 和執行 log。</li>
@@ -549,7 +555,7 @@ flowchart TD
 <li>不得刪掉判定、無限增加等待或重試，也不能把錯誤改成成功。</li>
 </ol>
 <p>Playwright 官方的 <a target="_blank" rel="noopener" href="https://playwright.dev/docs/test-agents">Test Agents</a> 已提供規劃、生成和修復測試的 Agent。它們可以協助維護測試，但不能修改產品的預期答案。</p>
-<h2 id="六、把不同產品介面接到-Harness"><a href="#六、把不同產品介面接到-Harness" class="headerlink" title="六、把不同產品介面接到 Harness"></a>六、把不同產品介面接到 Harness</h2><h3 id="Playwright-等工具只是執行器"><a href="#Playwright-等工具只是執行器" class="headerlink" title="Playwright 等工具只是執行器"></a>Playwright 等工具只是執行器</h3><p>執行器要依產品介面選擇，不要讓整套 Harness 被某一個工具綁死：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="六、把不同產品介面接到-Harness"><a href="#六、把不同產品介面接到-Harness" class="headerlink" title="六、把不同產品介面接到 Harness"></a>六、把不同產品介面接到 Harness</h2><h3 id="Playwright-等工具只是執行器"><a href="#Playwright-等工具只是執行器" class="headerlink" title="Playwright 等工具只是執行器"></a>Playwright 等工具只是執行器</h3><p>執行器要依產品介面選擇，不要讓整套 Harness 被某一個工具綁死：</p>
 <ul>
 <li>Web 介面可以使用 Playwright，處理瀏覽器操作、語意定位、Network、Trace 與 DOM 判定。</li>
 <li>API 產品可以使用 HTTP client、契約測試或服務專用執行器。</li>
@@ -875,6 +881,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -888,6 +895,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -939,6 +949,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -990,6 +1001,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

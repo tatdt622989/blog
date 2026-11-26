@@ -41,9 +41,9 @@
   
   <meta property="article:tag" content="TypeScript" />
   
-  <meta property="article:tag" content="遊戲開發" />
-  
   <meta property="article:tag" content="AI" />
+  
+  <meta property="article:tag" content="遊戲開發" />
   
   <meta property="article:tag" content="Claude" />
   
@@ -59,7 +59,7 @@
   <meta name="twitter:description" content="為什麼叫 AI 寫網頁很順利，做遊戲卻常常破圖或物件懸空？本文跳過通用的軟體週期理論，直接聚焦在遊戲引擎架構：為什麼網頁技術常常勝過傳統引擎？Godot 該怎麼正確橋接？以及 3D 與多人遊戲該如何搭配工具。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover.jpg?v=c7d67a68">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/","url":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/","headline":"適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析","description":"為什麼叫 AI 寫網頁很順利，做遊戲卻常常破圖或物件懸空？本文跳過通用的軟體週期理論，直接聚焦在遊戲引擎架構：為什麼網頁技術常常勝過傳統引擎？Godot 該怎麼正確橋接？以及 3D 與多人遊戲該如何搭配工具。","datePublished":"2026-09-11T04:00:00.000Z","dateModified":"2026-09-11T04:45:00.000Z","inLanguage":"zh-TW","articleSection":"遊戲開發","keywords":"前端開發, TypeScript, 遊戲開發, AI, Claude, Codex, 獨立開發者, Godot","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/","url":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/","headline":"適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析","description":"為什麼叫 AI 寫網頁很順利，做遊戲卻常常破圖或物件懸空？本文跳過通用的軟體週期理論，直接聚焦在遊戲引擎架構：為什麼網頁技術常常勝過傳統引擎？Godot 該怎麼正確橋接？以及 3D 與多人遊戲該如何搭配工具。","datePublished":"2026-09-11T04:00:00.000Z","dateModified":"2026-09-11T04:45:00.000Z","inLanguage":"zh-TW","articleSection":"遊戲開發","keywords":"前端開發, TypeScript, AI, 遊戲開發, Claude, Codex, 獨立開發者, Godot","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://blog.6yuwei.com/"},{"@type":"ListItem","position":2,"name":"遊戲開發","item":"https://blog.6yuwei.com/categories/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/"},{"@type":"ListItem","position":3,"name":"適合 AI 開發的開源遊戲架構：Web、編輯器橋接與自動檢查全解析","item":"https://blog.6yuwei.com/2026/09/11/%E9%81%A9%E5%90%88-AI-%E9%96%8B%E7%99%BC%E7%9A%84%E9%96%8B%E6%BA%90%E9%81%8A%E6%88%B2%E6%9E%B6%E6%A7%8B%EF%BC%9AWeb%E3%80%81Editor-Bridge-%E8%88%87%E8%87%AA%E5%8B%95%E5%8C%96%E9%A9%97%E8%AD%89%E9%96%89%E7%92%B0%E5%85%A8%E8%A7%A3%E6%9E%90/"}]}</script>
   
@@ -93,14 +93,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -125,7 +131,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -288,7 +294,7 @@
 <p>更棒的是它的桌面編輯器 <strong>Babylon Editor 5</strong>。它不是綁定雲端的付費服務，而是一個開源的跨平台桌面軟體（Windows、macOS、Linux 都能自己編譯打包），沒有任何平台綁定。</p>
 <h3 id="為什麼對-AI-很厲害"><a href="#為什麼對-AI-很厲害" class="headerlink" title="為什麼對 AI 很厲害"></a>為什麼對 AI 很厲害</h3><p>Babylon Editor 官方直接內建了 <strong>MCP（Model Context Protocol）</strong> 介面與命令列工具（CLI）。這表示 AI Agent 不僅能直接修改 TypeScript 腳本，還能透過通訊協定命令編輯器「建立某個物件」、「掛上光源」、「調整位置」，甚至叫編輯器截圖傳回給 AI 審查。</p>
 <p>在打包發布時，它有完全獨立的命令列工具 <code>babylonjs-editor-cli</code>，不用打開圖形介面就能自動打包場景與貼圖，完全可以在自己的伺服器上自動化建置。</p>
-<h2 id="方案三：傳統引擎加上專用橋接工具（Godot-的正確用法）"><a href="#方案三：傳統引擎加上專用橋接工具（Godot-的正確用法）" class="headerlink" title="方案三：傳統引擎加上專用橋接工具（Godot 的正確用法）"></a>方案三：傳統引擎加上專用橋接工具（Godot 的正確用法）</h2><p>很多人喜歡 <strong>Godot</strong>，因為它是完整、輕量且完全免費的開源引擎（MIT 授權），而且它的場景檔（<code>.tscn</code>）本來就是文字格式。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="方案三：傳統引擎加上專用橋接工具（Godot-的正確用法）"><a href="#方案三：傳統引擎加上專用橋接工具（Godot-的正確用法）" class="headerlink" title="方案三：傳統引擎加上專用橋接工具（Godot 的正確用法）"></a>方案三：傳統引擎加上專用橋接工具（Godot 的正確用法）</h2><p>很多人喜歡 <strong>Godot</strong>，因為它是完整、輕量且完全免費的開源引擎（MIT 授權），而且它的場景檔（<code>.tscn</code>）本來就是文字格式。</p>
 <h3 id="以前的常見盲點：叫-AI-盲改場景檔"><a href="#以前的常見盲點：叫-AI-盲改場景檔" class="headerlink" title="以前的常見盲點：叫 AI 盲改場景檔"></a>以前的常見盲點：叫 AI 盲改場景檔</h3><p>很多人嘗試讓 AI 直接修改 <code>.tscn</code> 檔案，結果往往很糟糕。</p>
 <p>因為 <code>.tscn</code> 雖然是文字，但長這樣：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[node name=&quot;House&quot; type=&quot;Node3D&quot;]</span><br><span class="line">transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -8.3)</span><br></pre></td></tr></table></figure>
@@ -301,7 +307,7 @@
 </ul>
 <p>這樣一來，AI 就不再是閉著眼睛改設定檔，而是能真正確認運行結果。</p>
 <h3 id="一個非常重要的注意事項：Godot-4-的網頁匯出限制"><a href="#一個非常重要的注意事項：Godot-4-的網頁匯出限制" class="headerlink" title="一個非常重要的注意事項：Godot 4 的網頁匯出限制"></a>一個非常重要的注意事項：Godot 4 的網頁匯出限制</h3><p>如果你打算用 Godot 4 做網頁遊戲，**請務必使用 GDScript，不要使用 C#**。因為目前官方 Godot 4 的 C# 專案仍然無法直接匯出為 Web（手機雙端的 C# 也還標註為實驗階段）。原生桌面遊戲才適合自由選擇 GDScript 或 C#。</p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="方案四：不要叫-AI-從零捏模型，要像拼積木一樣擺放"><a href="#方案四：不要叫-AI-從零捏模型，要像拼積木一樣擺放" class="headerlink" title="方案四：不要叫 AI 從零捏模型，要像拼積木一樣擺放"></a>方案四：不要叫 AI 從零捏模型，要像拼積木一樣擺放</h2><p>這是在 3D 遊戲開發中，幾乎所有人都踩過的坑：<strong>千萬不要叫 AI 在程式碼裡用幾十個方塊和球體去硬拼出一座村莊。</strong></p>
+<h2 id="方案四：不要叫-AI-從零捏模型，要像拼積木一樣擺放"><a href="#方案四：不要叫-AI-從零捏模型，要像拼積木一樣擺放" class="headerlink" title="方案四：不要叫 AI 從零捏模型，要像拼積木一樣擺放"></a>方案四：不要叫 AI 從零捏模型，要像拼積木一樣擺放</h2><p>這是在 3D 遊戲開發中，幾乎所有人都踩過的坑：<strong>千萬不要叫 AI 在程式碼裡用幾十個方塊和球體去硬拼出一座村莊。</strong></p>
 <p>讓 AI 用程式碼去算幾百個點的空間位置，既花費大量 Token，產出的成果又通常很難看。</p>
 <p>更好的分工是<strong>「積木歸模型庫，擺放歸 AI」</strong>：</p>
 <ol>
@@ -316,7 +322,7 @@
 <li><strong>只有 5% 的特殊功能</strong>：像是應用程式內購（IAP）、廣告、手機震動或推播通知，才透過 Capacitor 的原生外掛去串接。</li>
 </ul>
 <p>Capacitor 是完全開源的（MIT 授權），它輸出的 iOS 和 Android 專案就是標準的 Xcode 與 Android Studio 原始碼，完全掌握在你自己手裡，不需要被任何第三方的封閉雲端打包平台綁架。</p>
-<h2 id="連線多人遊戲：後端該怎麼選"><a href="#連線多人遊戲：後端該怎麼選" class="headerlink" title="連線多人遊戲：後端該怎麼選"></a>連線多人遊戲：後端該怎麼選</h2><p>如果遊戲需要連線多人遊玩，後端架構也大有學問：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="連線多人遊戲：後端該怎麼選"><a href="#連線多人遊戲：後端該怎麼選" class="headerlink" title="連線多人遊戲：後端該怎麼選"></a>連線多人遊戲：後端該怎麼選</h2><p>如果遊戲需要連線多人遊玩，後端架構也大有學問：</p>
 <ol>
 <li><strong>小型連線、房間合作制（最推薦）</strong>：<ul>
 <li>使用 <strong>Colyseus</strong>（Node.js &#x2F; TypeScript）。</li>
@@ -439,7 +445,7 @@
         
   
   <div class="tags">
-    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>, <a href="/tags/TypeScript/">TypeScript</a>, <a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a>, <a href="/tags/AI/">AI</a>, <a href="/tags/Claude/">Claude</a>, <a href="/tags/Codex/">Codex</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>, <a href="/tags/Godot/">Godot</a>
+    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/">前端開發</a>, <a href="/tags/TypeScript/">TypeScript</a>, <a href="/tags/AI/">AI</a>, <a href="/tags/%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC/">遊戲開發</a>, <a href="/tags/Claude/">Claude</a>, <a href="/tags/Codex/">Codex</a>, <a href="/tags/%E7%8D%A8%E7%AB%8B%E9%96%8B%E7%99%BC%E8%80%85/">獨立開發者</a>, <a href="/tags/Godot/">Godot</a>
   </div>
 
         
@@ -510,7 +516,7 @@
         <a href="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="related-post-link"
            data-rel-title="獨立遊戲音效 AI 工作流：Suno 產配樂、MOSS-SoundEffect 本地生音效，低成本打造遊戲聲音"
            data-rel-path="/2026/08/27/%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2%E9%9F%B3%E6%95%88%E5%85%A8-AI-%E5%8C%96%E5%AF%A6%E6%88%B0%EF%BC%9ASuno-%E7%94%A2%E9%85%8D%E6%A8%82%E3%80%81MOSS-SoundEffect-%E6%9C%AC%E5%9C%B0%E7%94%9F%E9%9F%B3%E6%95%88%EF%BC%8C%E9%9B%B6%E6%88%90%E6%9C%AC%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%81%8A%E6%88%B2%E8%81%B2%E6%95%88%E5%B7%A5%E4%BD%9C%E6%B5%81/"
-           data-rel-tag="遊戲開發"
+           data-rel-tag="AI"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -519,7 +525,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">遊戲開發</span>
+              <span class="related-post-tag">AI</span>
             
             <h4 class="related-post-item-title">獨立遊戲音效 AI 工作流：Suno 產配樂、MOSS-SoundEffect 本地生音效，低成本打造遊戲聲音</h4>
             
@@ -587,6 +593,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -600,6 +607,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -651,6 +661,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -702,6 +713,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -58,14 +58,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -90,7 +96,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -212,6 +218,7 @@
   <a href="/tags/">查看所有標籤</a>
 </nav>
 
+
   <article id="post-選模型別再憑感覺！Artificial-Analysis-完整指南：從品質、速度到成本，情境化挑出最適合你的-AI" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -252,6 +259,8 @@
 
 
 
+  
+  
 
   <article id="post-Grok-4-6-進入-Grok-Build：長時間開發工作流有什麼改變？" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -295,6 +304,8 @@
 
 
 
+  
+  
 
   <article id="post-Claude-Code-跨工作階段訊息：讓不同-Session-互相傳話的完整用法" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -337,6 +348,10 @@
 
 
 
+  
+  
+    <aside class="site-ad site-ad--feed" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3929112387" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   <article id="post-MCP-2026-07-28-RC-改了什麼？從-Stateless、Tasks-到-MCP-Apps" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -380,6 +395,8 @@
 
 
 
+  
+  
 
   <article id="post-超越傳統-RAG：2026-年-AI-工作流結合向量資料庫的四大落地應用與實戰架構" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -422,6 +439,8 @@
 
 
 
+  
+  
 
   <article id="post-模型蒸餾到底在做什麼？為什麼讓小模型變強，卻常被拿來罵人？" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -465,6 +484,8 @@
 
 
 
+  
+  
 
   <article id="post-OpenAI-為什麼不停重置-Codex-額度" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -507,6 +528,8 @@
 
 
 
+  
+  
 
   <article id="post-introducing-openai-chatgpt-work-agent-productivity" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -548,6 +571,8 @@
 
 
 
+  
+  
 
   <article id="post-gpt-5-6-tomorrow-release-guide" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -589,6 +614,8 @@
 
 
 
+  
+  
 
   <article id="post-算力極限與付費牆的終局：從-Claude-7-月限額看大模型訂閱制的變革與未來" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -632,6 +659,8 @@
 
 
 
+  
+  
 
 
 <nav id="pagination">
@@ -645,6 +674,7 @@
 </nav>
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -658,6 +688,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -709,6 +742,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -760,6 +794,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

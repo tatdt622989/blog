@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -326,7 +332,7 @@
 <li><strong>Share the minimum data required for a task.</strong> Strip names, phone numbers, addresses, customer records, and API keys from excerpts before pasting them into AI tools, and check attachments and image metadata.</li>
 <li><strong>Maintain an independent offline backup of critical files.</strong> Cloud sync can propagate accidental deletion or ransomware encryption just as quickly as normal edits.</li>
 </ul>
-<h2 id="Developers-and-small-teams-enforce-least-privilege-across-tools-and-platforms"><a href="#Developers-and-small-teams-enforce-least-privilege-across-tools-and-platforms" class="headerlink" title="Developers and small teams: enforce least privilege across tools and platforms"></a>Developers and small teams: enforce least privilege across tools and platforms</h2><p>An AI assistant modifying one repository rarely needs organization-wide credentials, production database access, or unrestricted deployment tokens in the same workspace. Concentrating all of those secrets in one environment—or one cloud dashboard—gives both human mistakes and platform compromises room to spread.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Developers-and-small-teams-enforce-least-privilege-across-tools-and-platforms"><a href="#Developers-and-small-teams-enforce-least-privilege-across-tools-and-platforms" class="headerlink" title="Developers and small teams: enforce least privilege across tools and platforms"></a>Developers and small teams: enforce least privilege across tools and platforms</h2><p>An AI assistant modifying one repository rarely needs organization-wide credentials, production database access, or unrestricted deployment tokens in the same workspace. Concentrating all of those secrets in one environment—or one cloud dashboard—gives both human mistakes and platform compromises room to spread.</p>
 <p><strong>Prompt injection</strong> adds another vector: instructions hidden inside webpages, issues, emails, or documents can steer an agent into reading environment variables or invoking connected tools. OWASP recommends enforcing least privilege, isolating untrusted external content, and requiring human approval for high-risk actions outside the model itself. <a target="_blank" rel="noopener" href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">OWASP risk guidance</a>, <a target="_blank" rel="noopener" href="https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html">implementation cheat sheet</a></p>
 <p>Drawing directly from the LiteLLM, Zeabur, Railway, OpenCode, 91APP, PHP, and Node.js incidents, I would prioritize six engineering controls:</p>
 <ul>
@@ -514,6 +520,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -527,6 +534,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -574,6 +584,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -625,6 +636,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

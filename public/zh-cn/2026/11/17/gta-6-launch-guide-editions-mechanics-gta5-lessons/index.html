@@ -87,14 +87,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -119,7 +125,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -304,14 +310,14 @@
 <li><strong>7 处专属商业据点</strong>：解锁 <strong>Rideout Customs</strong> 与 <strong>One-Eyed Willie’s</strong> 改车店、<strong>Sara’s Unisex Salon</strong> 造型店、<strong>Stock 305</strong> 服装店、<strong>Electric Fang</strong> 纹身店、<strong>Goodtime Gear</strong> 与 <strong>PTT Youngin$</strong> 黑市据点。</li>
 </ul>
 <p><strong>购买建议</strong>：参照 <strong>GTA 5</strong> 特别版与 <strong>《荒野大镖客：救赎2》</strong> 终极版的经验，特典最香的阶段主要集中在<strong>开荒前 5–10 小时</strong>，中后期商店解锁的顶级跑车与武器很快会追平数值。看重性价比且专注主线剧情，买 <strong>标准版</strong> 赶在 11 月 20 日前拿免费预购礼就够用，后续随时可以补购终极版数字升级包。</p>
-<h2 id="硬件性能实况：为什么-PS5-Pro-也锁定-30-FPS？"><a href="#硬件性能实况：为什么-PS5-Pro-也锁定-30-FPS？" class="headerlink" title="硬件性能实况：为什么 PS5 Pro 也锁定 30 FPS？"></a>硬件性能实况：为什么 PS5 Pro 也锁定 30 FPS？</h2><p><img src="/zh-cn/2026/11/17/gta-6-launch-guide-editions-mechanics-gta5-lessons/hardware-raytracing.jpg?v=498106f3" alt="全主机首发均锁定 30 FPS，PS5 Pro 额外提供 PSSR 超分辨率、专属光追阴影与 DualSense 触觉反馈"></p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="硬件性能实况：为什么-PS5-Pro-也锁定-30-FPS？"><a href="#硬件性能实况：为什么-PS5-Pro-也锁定-30-FPS？" class="headerlink" title="硬件性能实况：为什么 PS5 Pro 也锁定 30 FPS？"></a>硬件性能实况：为什么 PS5 Pro 也锁定 30 FPS？</h2><p><img src="/zh-cn/2026/11/17/gta-6-launch-guide-editions-mechanics-gta5-lessons/hardware-raytracing.jpg?v=498106f3" alt="全主机首发均锁定 30 FPS，PS5 Pro 额外提供 PSSR 超分辨率、专属光追阴影与 DualSense 触觉反馈"></p>
 <p>包括基础版 <strong>PS5</strong>、<strong>Xbox Series X|S</strong> 与 <strong>PS5 Pro</strong> 在内，本作首发全部锁定 <strong>30 FPS</strong>，<strong>未提供 60 FPS 性能模式</strong>。</p>
 <p>据 <a target="_blank" rel="noopener" href="https://www.eurogamer.net/">Digital Foundry 与 Eurogamer 技术分析</a>，瓶颈在于开放世界的 <strong>CPU 模拟上限</strong>：RAGE 引擎把大量算力投入 <strong>实时光线追踪全局光照（RTGI）</strong>、超高密度人群与车流 AI、水体物理和动态飓风天气，因此单纯降低分辨率并不能让帧率直接翻倍。</p>
 <ul>
 <li><strong>PS5 Pro 实机优势</strong>：同为 30 FPS，但借助 <strong>PSSR</strong> AI 超分辨率显著减轻动态模糊与边缘锯齿，并加入基础主机没有的 <strong>专属光追阴影（Ray-traced shadows）</strong>。</li>
 <li><strong>DualSense 舒适度设置</strong>：深度支持自适应扳机阻力、路面触觉反馈与 <strong>Tempest 3D 音效</strong>；长时间连续游玩建议在辅助设置适度调低扳机阻尼，减少手指疲劳。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="上手必看：《An-Extended-Look》五大机制变化"><a href="#上手必看：《An-Extended-Look》五大机制变化" class="headerlink" title="上手必看：《An Extended Look》五大机制变化"></a>上手必看：《An Extended Look》五大机制变化</h2><p><img src="/zh-cn/2026/11/17/gta-6-launch-guide-editions-mechanics-gta5-lessons/leonida-biomes.jpg?v=6eb4b033" alt="雷欧尼达州涵盖 Vice City、群岛、Grassrivers 沼泽、Port Gellhorn、Ambrosia 与 Mount Kalaga 六大区域"></p>
+<h2 id="上手必看：《An-Extended-Look》五大机制变化"><a href="#上手必看：《An-Extended-Look》五大机制变化" class="headerlink" title="上手必看：《An Extended Look》五大机制变化"></a>上手必看：《An Extended Look》五大机制变化</h2><p><img src="/zh-cn/2026/11/17/gta-6-launch-guide-editions-mechanics-gta5-lessons/leonida-biomes.jpg?v=6eb4b033" alt="雷欧尼达州涵盖 Vice City、群岛、Grassrivers 沼泽、Port Gellhorn、Ambrosia 与 Mount Kalaga 六大区域"></p>
 <p>2026 年 8 月 27 日播出的 <strong>27 分钟</strong> 官方实机演示 <strong>《Grand Theft Auto VI: An Extended Look》</strong>（先于 Netflix 独播 6 小时后上架官方频道，<a target="_blank" rel="noopener" href="https://variety.com/">Variety 统计</a> 四天播放超 3,110 万次），配合 <a target="_blank" rel="noopener" href="https://www.gamespot.com/">GameSpot 对 Rob Nelson 的专访</a> 确认单主线及核心剧情支线约 <strong>80 小时</strong>，有五项玩法变化直接重塑开荒习惯：</p>
 <p><img src="/zh-cn/2026/11/17/gta-6-launch-guide-editions-mechanics-gta5-lessons/dual-protagonist-tactics.jpg?v=b42459f6" alt="取消口袋无限军火库改用后备箱配装，结合双主角现场配合、换车与换装摆脱警方追捕"></p>
 <ol>
@@ -321,7 +327,7 @@
 <li><strong>6 星通缉回归与“空心星”逻辑</strong>：6 星回归且星下会显示警方记录的犯罪图标。<strong>空心白星</strong>代表警察只在搜查最后目击圈或只有模糊特征（如“一对男女”），<strong>暗巷换车、换装或双主角分头走</strong>比死踩油门更容易消星。</li>
 <li><strong>游戏内社交媒体与沉浸日常</strong>：街头突发事件和警匪追逐会实时刷上内置短视频与直播流；同时回归增肌减脂、路边撸狗或训斥、高尔夫、台球、深潜与气垫船沼泽探索等玩法。</li>
 </ol>
-<h2 id="从-GTA-5-与大表哥2十年数据看-GTA-6-四大避坑经验"><a href="#从-GTA-5-与大表哥2十年数据看-GTA-6-四大避坑经验" class="headerlink" title="从 GTA 5 与大表哥2十年数据看 GTA 6 四大避坑经验"></a>从 GTA 5 与大表哥2十年数据看 GTA 6 四大避坑经验</h2><p>对照 <strong>GTA 5</strong>（截至 2026 年 11 月 <a target="_blank" rel="noopener" href="https://www.take2games.com/">Take-Two 财报</a> 累计销量近 <strong>2.35 亿套</strong>）与 <strong>《荒野大镖客：救赎2》</strong> 的历史规律，首发进城前可以先照这张决策路径图排雷：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="从-GTA-5-与大表哥2十年数据看-GTA-6-四大避坑经验"><a href="#从-GTA-5-与大表哥2十年数据看-GTA-6-四大避坑经验" class="headerlink" title="从 GTA 5 与大表哥2十年数据看 GTA 6 四大避坑经验"></a>从 GTA 5 与大表哥2十年数据看 GTA 6 四大避坑经验</h2><p>对照 <strong>GTA 5</strong>（截至 2026 年 11 月 <a target="_blank" rel="noopener" href="https://www.take2games.com/">Take-Two 财报</a> 累计销量近 <strong>2.35 亿套</strong>）与 <strong>《荒野大镖客：救赎2》</strong> 的历史规律，首发进城前可以先照这张决策路径图排雷：</p>
 <pre class="mermaid">
 flowchart TD
     classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
@@ -533,6 +539,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -546,6 +553,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -593,6 +603,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -644,6 +655,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

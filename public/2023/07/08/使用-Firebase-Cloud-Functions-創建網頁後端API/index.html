@@ -69,14 +69,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -101,7 +107,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -241,7 +247,7 @@
 <h2 id="開始使用-Firebase-Cloud-Functions"><a href="#開始使用-Firebase-Cloud-Functions" class="headerlink" title="開始使用 Firebase Cloud Functions"></a>開始使用 Firebase Cloud Functions</h2><p>在使用任何 Firebase 相關的服務時，需要先建立一個專案和網頁應用程式，選擇”新增專案”後，請按照流程往下走把專案建立起來。<br><br><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase1.png?v=2a0f4c1c"></p>
 <p>接著，點選網頁建立網頁應用程式，接著輸入應用程式名稱，依照流程跑完。<br><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase5.png?v=3d506b71"></p>
 <p>請記得將專案升級至Blaze Plan<br><img src="/2023/07/08/%E4%BD%BF%E7%94%A8-Firebase-Cloud-Functions-%E5%89%B5%E5%BB%BA%E7%B6%B2%E9%A0%81%E5%BE%8C%E7%AB%AFAPI/firebase6.png?v=f688d33e"></p>
-<h2 id="安裝-Firebase-CLI"><a href="#安裝-Firebase-CLI" class="headerlink" title="安裝 Firebase CLI"></a>安裝 Firebase CLI</h2><p>要使用Firebase Functions還需要在本地安裝 Firebase CLI ，這裡使用NPM的形式做安裝。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="安裝-Firebase-CLI"><a href="#安裝-Firebase-CLI" class="headerlink" title="安裝 Firebase CLI"></a>安裝 Firebase CLI</h2><p>要使用Firebase Functions還需要在本地安裝 Firebase CLI ，這裡使用NPM的形式做安裝。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
 
 <p>安裝成功後，需要做身分驗證，請透過以下指令登入</p>
@@ -452,6 +458,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -465,6 +472,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -516,6 +526,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -567,6 +578,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

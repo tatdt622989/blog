@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -300,7 +306,7 @@
 <p><strong>擊飛與極限要看落入哪一個區域，不能把所有出場都算成 3 分。</strong> 遇到同時終結等難以判定的情況，依賽事規則與裁判判決處理。<a target="_blank" rel="noopener" href="https://beyblade.takaratomy.co.jp/beyblade-x/event/top.html">官方規則入口</a></p>
 <p>例如，先靠旋轉拿到 1 分，再靠極限拿到 3 分，就以 4 分結束比賽。若已經有 3 分，再取得擊飛的 2 分，總分會是 <strong>5 分</strong>，同樣獲勝；門檻是<strong>達到或超過 4 分</strong>。</p>
 <p>店家活動或朋友間的練習可能採用其他門檻，開始前先約定。計分器可選 <strong>3、4、5、7 分</strong>，這是工具設定，不代表每種門檻都是同一套官方賽制。</p>
-<h2 id="用手機記分：一般-1on1-怎麼操作？"><a href="#用手機記分：一般-1on1-怎麼操作？" class="headerlink" title="用手機記分：一般 1on1 怎麼操作？"></a>用手機記分：一般 1on1 怎麼操作？</h2><p>比賽一快，很容易忘記「剛剛是 2 分還是 3 分」或「現在誰領先」。我做這個計分器，就是希望把記分這件事變簡單：<strong>免安裝、免註冊，打開網頁就能用。</strong></p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="用手機記分：一般-1on1-怎麼操作？"><a href="#用手機記分：一般-1on1-怎麼操作？" class="headerlink" title="用手機記分：一般 1on1 怎麼操作？"></a>用手機記分：一般 1on1 怎麼操作？</h2><p>比賽一快，很容易忘記「剛剛是 2 分還是 3 分」或「現在誰領先」。我做這個計分器，就是希望把記分這件事變簡單：<strong>免安裝、免註冊，打開網頁就能用。</strong></p>
 <p>開啟 <strong><a target="_blank" rel="noopener" href="https://tool.6yuwei.com/beyblade-x-scorer/">戰鬥陀螺 X 計分器</a></strong> 後，選 <strong>1on1</strong> 與獲勝分數，再輸入雙方玩家名稱。想保留陀螺統計時，也把完整組合填上，例如 <strong>DranSword 3-60F</strong>。</p>
 <p>每回合結束後，在勝方下方按 <strong>旋轉、擊飛、爆裂或極限</strong>，工具就會加上對應分數；分不出勝負時可以記為<strong>平手</strong>。<strong>工具負責計分，終結方式仍由玩家或裁判判斷。</strong></p>
 <p><img src="/2026/10/30/%E6%88%B0%E9%AC%A5%E9%99%80%E8%9E%BAX%E8%A6%8F%E5%89%87%E8%A8%88%E5%88%86%E8%88%873on3%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5/1on1-score.jpg?v=fcb3e6e1" alt="BEYBLADE X 計分器一般 1on1 模式，顯示雙方比分、陀螺組合與四種終結按鈕"></p>
@@ -313,7 +319,7 @@
 <p>手機直放時，比分在上方，四種勝法改成一個一排的大按鈕；平板和電腦則會依螢幕大小把字和按鈕一起放大。</p>
 <p>工具也會在全螢幕模式下<strong>嘗試保持螢幕亮起</strong>，是否生效取決於瀏覽器支援、權限與省電設定。若裝置不支援原生網頁全螢幕，則採用頁面內放大的計分版面。各裝置的實際呈現仍以自己的手機或平板為準。</p>
 <p><strong><a target="_blank" rel="noopener" href="https://tool.6yuwei.com/beyblade-x-scorer/">打開免費全螢幕計分板，下一場直接用</a></strong></p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="3on3-怎麼玩？兩個人，各帶三顆陀螺"><a href="#3on3-怎麼玩？兩個人，各帶三顆陀螺" class="headerlink" title="3on3 怎麼玩？兩個人，各帶三顆陀螺"></a>3on3 怎麼玩？兩個人，各帶三顆陀螺</h2><p><strong>3on3 是兩位玩家各準備三顆陀螺</strong>，按事先安排的順序交手。陣容搭配、出場順序與對手組合，都會影響這場比賽。</p>
+<h2 id="3on3-怎麼玩？兩個人，各帶三顆陀螺"><a href="#3on3-怎麼玩？兩個人，各帶三顆陀螺" class="headerlink" title="3on3 怎麼玩？兩個人，各帶三顆陀螺"></a>3on3 怎麼玩？兩個人，各帶三顆陀螺</h2><p><strong>3on3 是兩位玩家各準備三顆陀螺</strong>，按事先安排的順序交手。陣容搭配、出場順序與對手組合，都會影響這場比賽。</p>
 <p>依官方 3on3 基礎條文，先取得 4 分獲勝；<strong>平手用同一組陀螺重賽</strong>，三組打完仍未分勝負時，重新安排順序繼續。陣容另有零件重複等限制與特定例外，正式參賽前要確認活動採用的規章。工具不會替你檢查陣容是否合法。<a target="_blank" rel="noopener" href="https://beyblade.takaratomy.co.jp/beyblade-x/_image/regulation.pdf">官方 3on3 規則 PDF</a></p>
 <h3 id="在計分器輸入陣容，讓出場順序更清楚"><a href="#在計分器輸入陣容，讓出場順序更清楚" class="headerlink" title="在計分器輸入陣容，讓出場順序更清楚"></a>在計分器輸入陣容，讓出場順序更清楚</h3><p>切換 <strong>3on3</strong> 後，雙方各有三個陀螺名稱欄位。名稱左側的圓鈕代表<strong>目前出場</strong>，記分後工具會自動切換下一顆；按 <strong>復原</strong>時，也會退回被撤銷回合所使用的陀螺。</p>
 <p><img src="/2026/10/30/%E6%88%B0%E9%AC%A5%E9%99%80%E8%9E%BAX%E8%A6%8F%E5%89%87%E8%A8%88%E5%88%86%E8%88%873on3%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5/3on3-decks.jpg?v=5047aeee" alt="BEYBLADE X 計分器 3on3 陣容設定，雙方各列出三顆陀螺並以圓鈕標示目前出場"></p>
@@ -322,7 +328,7 @@
 <p><strong>三組打完仍未分勝負時</strong>，工具會先循環回第一顆。若你們依規則重新安排了順序，請先離開全螢幕，修改陣容或點選圓鈕，讓畫面和實際出場一致。正式賽中的順序變更，仍須遵守裁判與主辦規定。</p>
 <p><img src="/2026/10/30/%E6%88%B0%E9%AC%A5%E9%99%80%E8%9E%BAX%E8%A6%8F%E5%89%87%E8%A8%88%E5%88%86%E8%88%873on3%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5/3on3-fullscreen.jpg?v=e3cb5634" alt="BEYBLADE X 3on3 全螢幕模式，顯示雙方目前出場陀螺名稱、比分與大型計分按鈕"></p>
 <p><em>3on3 也能全螢幕計分；此模式顯示目前出場名稱，完整陣容在一般介面調整。</em></p>
-<h2 id="哪顆陀螺比較強？先看懂勝率統計的分母"><a href="#哪顆陀螺比較強？先看懂勝率統計的分母" class="headerlink" title="哪顆陀螺比較強？先看懂勝率統計的分母"></a>哪顆陀螺比較強？先看懂勝率統計的分母</h2><p>想比較零件搭配，可以先固定名稱，把完整組合記下來。相同組合使用同一種寫法，會比只寫「攻擊型」更容易追蹤；名稱的英文字母大小寫不同會合併，但不同零件配置應取不同名稱。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="哪顆陀螺比較強？先看懂勝率統計的分母"><a href="#哪顆陀螺比較強？先看懂勝率統計的分母" class="headerlink" title="哪顆陀螺比較強？先看懂勝率統計的分母"></a>哪顆陀螺比較強？先看懂勝率統計的分母</h2><p>想比較零件搭配，可以先固定名稱，把完整組合記下來。相同組合使用同一種寫法，會比只寫「攻擊型」更容易追蹤；名稱的英文字母大小寫不同會合併，但不同零件配置應取不同名稱。</p>
 <p><strong>只有完成的比賽會納入統計，且每一方只統計有填陀螺名稱的回合。</strong> 中途按 <strong>重新開始</strong>的未完成比賽，不會變成已完成的統計紀錄。</p>
 <p><img src="/2026/10/30/%E6%88%B0%E9%AC%A5%E9%99%80%E8%9E%BAX%E8%A6%8F%E5%89%87%E8%A8%88%E5%88%86%E8%88%873on3%E6%96%B0%E6%89%8B%E6%94%BB%E7%95%A5/win-rate-stats.jpg?v=7bccdf11" alt="BEYBLADE X 陀螺勝率統計表，列出回合、勝負平、勝率、95% 區間、每回合得分與獲勝方式"></p>
 <p><em>真實操作得到的示範統計，共 2 場、7 回合，圖中是前三顆陀螺。手機上每顆陀螺會顯示成一張卡片，不用左右捲動。這些是用來說明介面的樣本，不是陀螺強度測試。</em></p>
@@ -490,7 +496,7 @@
         <a href="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/" class="related-post-link"
            data-rel-title="Claude Code vs Codex vs Cursor 比較：2026 年 10 月價格、模型與怎麼選"
            data-rel-path="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/"
-           data-rel-tag="OpenAI"
+           data-rel-tag="AI"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -499,7 +505,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">OpenAI</span>
+              <span class="related-post-tag">AI</span>
             
             <h4 class="related-post-item-title">Claude Code vs Codex vs Cursor 比較：2026 年 10 月價格、模型與怎麼選</h4>
             
@@ -544,6 +550,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -557,6 +564,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -608,6 +618,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -659,6 +670,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

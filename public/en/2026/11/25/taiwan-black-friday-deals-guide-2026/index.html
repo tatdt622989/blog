@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -318,7 +324,7 @@
 </ul>
 <h3 id="Skip-Apple-Taiwan’s-Official-Store—Shop-Authorized-Retailers-Instead"><a href="#Skip-Apple-Taiwan’s-Official-Store—Shop-Authorized-Retailers-Instead" class="headerlink" title="Skip Apple Taiwan’s Official Store—Shop Authorized Retailers Instead"></a>Skip Apple Taiwan’s Official Store—Shop Authorized Retailers Instead</h3><p>Every November, Apple fans in Taiwan wonder whether to wait for an official Apple promotion. Here is the short answer: <strong>Apple’s November 27–30 US gift card event (offering up to $300 in Apple Gift Cards on eligible products) does not include Apple Taiwan’s online or retail stores</strong>. Importing via a US forwarding service adds shipping and 5% VAT, and US Apple Gift Cards cannot be redeemed in Taiwan.</p>
 <p>If you want an iPhone, iPad, or Mac during Black Friday in Taiwan, compare authorized resellers such as <strong>STUDIO A, Senao Online, and Tsann Kuen</strong>, Costco Taiwan, and local e-commerce platforms (<strong>PChome 24h, momo, and Shopee Mall</strong>). Combining Shopee Mall percentage vouchers (rolling out from November 25) or PChome&#x2F;momo point multipliers with bank installment promos consistently beats paying full retail.</p>
-<h2 id="2-Cross-Border-Physical-Shopping-Amazon-US-Amazon-Japan-iHerb-amp-Luxury"><a href="#2-Cross-Border-Physical-Shopping-Amazon-US-Amazon-Japan-iHerb-amp-Luxury" class="headerlink" title="2. Cross-Border Physical Shopping: Amazon US, Amazon Japan, iHerb &amp; Luxury"></a>2. Cross-Border Physical Shopping: Amazon US, Amazon Japan, iHerb &amp; Luxury</h2><p>Cross-border retail is where Black Friday truly outshines 11.11 for shoppers in Taiwan. Focus on categories with steep local markups so the savings survive shipping and import tax.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2-Cross-Border-Physical-Shopping-Amazon-US-Amazon-Japan-iHerb-amp-Luxury"><a href="#2-Cross-Border-Physical-Shopping-Amazon-US-Amazon-Japan-iHerb-amp-Luxury" class="headerlink" title="2. Cross-Border Physical Shopping: Amazon US, Amazon Japan, iHerb &amp; Luxury"></a>2. Cross-Border Physical Shopping: Amazon US, Amazon Japan, iHerb &amp; Luxury</h2><p>Cross-border retail is where Black Friday truly outshines 11.11 for shoppers in Taiwan. Focus on categories with steep local markups so the savings survive shipping and import tax.</p>
 <h3 id="Amazon-US-12-Day-Black-Friday-Week-and-Free-Shipping-to-Taiwan"><a href="#Amazon-US-12-Day-Black-Friday-Week-and-Free-Shipping-to-Taiwan" class="headerlink" title="Amazon US: 12-Day Black Friday Week and Free Shipping to Taiwan"></a>Amazon US: 12-Day Black Friday Week and Free Shipping to Taiwan</h3><p><a target="_blank" rel="noopener" href="https://www.amazon.com/blackfriday">Amazon US Black Friday Week</a> runs for 12 days from <strong>November 19 through November 30, 2026</strong>. Before browsing, set your top-left <strong>Deliver to</strong> address to <strong>Taiwan</strong> so listings show direct shipping eligibility. Qualifying items marked for <strong>AmazonGlobal Free Shipping</strong> (commonly triggered at <strong>$49 or $60</strong>, depending on the product category) ship free once you select the free standard option at checkout.</p>
 <p>Four categories consistently yield the biggest savings for Taiwan buyers:</p>
 <ul>
@@ -339,7 +345,7 @@
 <li><strong>Shopbop</strong>: Live from November 22 evening through <strong>December 1 at 17:00 Taiwan time</strong>. On <a target="_blank" rel="noopener" href="https://www.shopbop.com/">Shopbop</a>, enter <strong>HOLIDAY</strong> on tagged items for 25% off, with free shipping to Taiwan on orders over <strong>$100</strong>.</li>
 <li><strong>SSENSE and Farfetch</strong>: <a target="_blank" rel="noopener" href="https://www.ssense.com/">SSENSE</a> applies straight markdowns without codes, while <a target="_blank" rel="noopener" href="https://www.farfetch.com/tw/">Farfetch Taiwan</a> adds extra Black Friday savings on sale styles. Both platforms generally display <strong>duties-included (DDP) Taiwan pricing</strong>, eliminating surprise courier tax bills on delivery.</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="3-Digital-Subscriptions-Software-VPNs-amp-Hosting-Zero-Duty-Instant-Value"><a href="#3-Digital-Subscriptions-Software-VPNs-amp-Hosting-Zero-Duty-Instant-Value" class="headerlink" title="3. Digital Subscriptions, Software, VPNs &amp; Hosting: Zero Duty, Instant Value"></a>3. Digital Subscriptions, Software, VPNs &amp; Hosting: Zero Duty, Instant Value</h2><p>If you want the highest return with the least friction from Taiwan, prioritize <strong>software and cloud subscriptions</strong>. There is no international shipping, no voltage worry, and no impact on your semi-annual customs quota.</p>
+<h2 id="3-Digital-Subscriptions-Software-VPNs-amp-Hosting-Zero-Duty-Instant-Value"><a href="#3-Digital-Subscriptions-Software-VPNs-amp-Hosting-Zero-Duty-Instant-Value" class="headerlink" title="3. Digital Subscriptions, Software, VPNs &amp; Hosting: Zero Duty, Instant Value"></a>3. Digital Subscriptions, Software, VPNs &amp; Hosting: Zero Duty, Instant Value</h2><p>If you want the highest return with the least friction from Taiwan, prioritize <strong>software and cloud subscriptions</strong>. There is no international shipping, no voltage worry, and no impact on your semi-annual customs quota.</p>
 <h3 id="Creative-Software-Adobe-Creative-Cloud-Taiwan-at-60-Off-Year-One"><a href="#Creative-Software-Adobe-Creative-Cloud-Taiwan-at-60-Off-Year-One" class="headerlink" title="Creative Software: Adobe Creative Cloud Taiwan at 60% Off Year One"></a>Creative Software: Adobe Creative Cloud Taiwan at 60% Off Year One</h3><p>Through <strong>November 27, 2026</strong>, <a target="_blank" rel="noopener" href="https://www.adobe.com/tw/creativecloud/plans.html">Adobe Taiwan</a> is offering one of its deepest local holiday cuts in years:</p>
 <ul>
 <li><strong>Creative Cloud Pro (All Apps, Individual)</strong>: <strong>60% off</strong> the first year, dropping from NT$2,310&#x2F;month to <strong>NT$924&#x2F;month</strong> (or roughly NT$10,581 prepaid annually).</li>
@@ -364,7 +370,7 @@
 <li><strong>ChatGPT Plus, Claude Pro, and Perplexity Pro</strong>: None of the three flagship AI assistants are running official Black Friday half-price sales; all stick to standard monthly or regular annual pricing.</li>
 <li><strong>JetBrains IDEs</strong>: JetBrains continues to rely on loyalty continuity discounts (cheaper in years two and three) and student licenses rather than sitewide Black Friday sales. Avoid gray-market shared accounts promoted on social feeds, which routinely lead to bans or compromised payment details.</li>
 </ul>
-<h2 id="5-Gaming-amp-Consoles-Taiwan’s-Best-Digital-Storefront-Week"><a href="#5-Gaming-amp-Consoles-Taiwan’s-Best-Digital-Storefront-Week" class="headerlink" title="5. Gaming &amp; Consoles: Taiwan’s Best Digital Storefront Week"></a>5. Gaming &amp; Consoles: Taiwan’s Best Digital Storefront Week</h2><ul>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="5-Gaming-amp-Consoles-Taiwan’s-Best-Digital-Storefront-Week"><a href="#5-Gaming-amp-Consoles-Taiwan’s-Best-Digital-Storefront-Week" class="headerlink" title="5. Gaming &amp; Consoles: Taiwan’s Best Digital Storefront Week"></a>5. Gaming &amp; Consoles: Taiwan’s Best Digital Storefront Week</h2><ul>
 <li><strong>PlayStation Store Taiwan (through November 30)</strong>: <a target="_blank" rel="noopener" href="https://store.playstation.com/zh-hant-tw/">PS Store Taiwan</a> discounts thousands of PS5 and PS4 titles by up to <strong>75% off</strong>. <strong>PS Plus</strong> offers <strong>20% off Essential, 25% off Extra, and 33% off Premium</strong>—primarily for new subscribers or tier upgrades. Active members trying to stack the same tier early are generally excluded, so check your account checkout screen carefully.</li>
 <li><strong>Steam (November 26–30)</strong>: <a target="_blank" rel="noopener" href="https://store.steampowered.com/">Steam</a> runs a publisher-driven Black Friday showcase. If a wishlist title has not hit its historical low, wait three weeks: the <strong>Steam Winter Sale follows from December 17, 2026 to January 4, 2027</strong>.</li>
 <li><strong>Nintendo Switch &#x2F; Switch 2</strong>: Global holiday promotions headline the <strong>Nintendo Switch 2 + Mario Kart World bundle</strong> alongside eShop software discounts. Before buying hardware locally or switching eShop regions from Taiwan, double-check local warranty coverage and Traditional Chinese language support.</li>
@@ -562,6 +568,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -575,6 +582,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -622,6 +632,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -673,6 +684,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

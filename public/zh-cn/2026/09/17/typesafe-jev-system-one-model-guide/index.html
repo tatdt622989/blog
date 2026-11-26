@@ -39,13 +39,13 @@
   
   <meta property="article:tag" content="AI" />
   
-  <meta property="article:tag" content="AI Agent" />
+  <meta property="article:tag" content="OpenAI" />
   
-  <meta property="article:tag" content="开发工具" />
+  <meta property="article:tag" content="AI Agent" />
   
   <meta property="article:tag" content="LLM" />
   
-  <meta property="article:tag" content="OpenAI" />
+  <meta property="article:tag" content="开发工具" />
   
   
   <meta name="twitter:card" content="summary_large_image">
@@ -53,7 +53,7 @@
   <meta name="twitter:description" content="TypeSafe AI 推出的 Jev 模型完全不生成文本，只返回带概率的类型安全决策。本文聚焦 Jev 的核心运行机制、五大高频落地使用场景，以及本地开源工具链（Outlines、Instructor、Adapter）替代方案，帮你用对工具打造极速、零幻觉的 AI 决策流程。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/","headline":"Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策","description":"TypeSafe AI 推出的 Jev 模型完全不生成文本，只返回带概率的类型安全决策。本文聚焦 Jev 的核心运行机制、五大高频落地使用场景，以及本地开源工具链（Outlines、Instructor、Adapter）替代方案，帮你用对工具打造极速、零幻觉的 AI 决策流程。","datePublished":"2026-09-17T10:00:00.000Z","dateModified":"2026-09-18T04:40:00.000Z","inLanguage":"zh-CN","articleSection":"AI","keywords":"AI, AI Agent, 开发工具, LLM, OpenAI","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/","url":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/","headline":"Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策","description":"TypeSafe AI 推出的 Jev 模型完全不生成文本，只返回带概率的类型安全决策。本文聚焦 Jev 的核心运行机制、五大高频落地使用场景，以及本地开源工具链（Outlines、Instructor、Adapter）替代方案，帮你用对工具打造极速、零幻觉的 AI 决策流程。","datePublished":"2026-09-17T10:00:00.000Z","dateModified":"2026-09-18T04:40:00.000Z","inLanguage":"zh-CN","articleSection":"AI","keywords":"AI, OpenAI, AI Agent, LLM, 开发工具","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/zh-cn/categories/AI/"},{"@type":"ListItem","position":3,"name":"Jev 是什么？ChatGPT 共同发明人打造的 System One 模型，不生成文本只给概率决策","item":"https://blog.6yuwei.com/zh-cn/2026/09/17/typesafe-jev-system-one-model-guide/"}]}</script>
   
@@ -87,14 +87,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -119,7 +125,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -295,7 +301,7 @@
 </tr>
 </tbody></table></div>
 <p>一句话概括：<strong>如果你的业务逻辑最终只是为了拿到 AI 结果做 <code>if</code> 分支，传统 LLM 既慢又烧钱；Jev 则是直接给你一个带概率置信度的下拉菜单。</strong></p>
-<h2 id="三种问题原语：Choice、Score、Noul"><a href="#三种问题原语：Choice、Score、Noul" class="headerlink" title="三种问题原语：Choice、Score、Noul"></a>三种问题原语：Choice、Score、Noul</h2><p>Jev 的 API 只有一个统一端点（<code>POST https://api.typesafe.ai/v1/systemone</code>），每次请求传入一个 <code>state</code>（用户诉求、代码片段或系统 JSON 状态）与一组 <code>questions</code>。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="三种问题原语：Choice、Score、Noul"><a href="#三种问题原语：Choice、Score、Noul" class="headerlink" title="三种问题原语：Choice、Score、Noul"></a>三种问题原语：Choice、Score、Noul</h2><p>Jev 的 API 只有一个统一端点（<code>POST https://api.typesafe.ai/v1/systemone</code>），每次请求传入一个 <code>state</code>（用户诉求、代码片段或系统 JSON 状态）与一组 <code>questions</code>。</p>
 <p>每个问题属于以下三种原语之一：</p>
 <ol>
 <li><strong>Choice（多选一）</strong>：从预设的分类选项中挑出最匹配的一项。</li>
@@ -309,7 +315,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;answers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;department&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;billing&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;billing&quot;</span><span class="punctuation">:</span> <span class="number">0.88</span><span class="punctuation">,</span> <span class="attr">&quot;technical&quot;</span><span class="punctuation">:</span> <span class="number">0.07</span><span class="punctuation">,</span> <span class="attr">&quot;sales&quot;</span><span class="punctuation">:</span> <span class="number">0.05</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.91</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;severity&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="number">2.1</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">0.12</span><span class="punctuation">,</span> <span class="number">0.65</span><span class="punctuation">,</span> <span class="number">0.23</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.84</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;requestsRefund&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probability&quot;</span><span class="punctuation">:</span> <span class="number">0.96</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.95</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>每个答案都自带<strong>校准过的置信度（Confidence）</strong>，后端程序可以直接依据数值设定放行或审核门槛。</p>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五大高频落地场景：什么时候该用它？"><a href="#五大高频落地场景：什么时候该用它？" class="headerlink" title="五大高频落地场景：什么时候该用它？"></a>五大高频落地场景：什么时候该用它？</h2><p>Jev 不适合用来撰写文章或闲聊对话，但在复杂的自动化流转体系中，它能成为极其强大的加速引擎：</p>
+<h2 id="五大高频落地场景：什么时候该用它？"><a href="#五大高频落地场景：什么时候该用它？" class="headerlink" title="五大高频落地场景：什么时候该用它？"></a>五大高频落地场景：什么时候该用它？</h2><p>Jev 不适合用来撰写文章或闲聊对话，但在复杂的自动化流转体系中，它能成为极其强大的加速引擎：</p>
 <h3 id="1-AI-Agent-的极速路由与工具分流（Fast-Router）"><a href="#1-AI-Agent-的极速路由与工具分流（Fast-Router）" class="headerlink" title="1. AI Agent 的极速路由与工具分流（Fast Router）"></a>1. AI Agent 的极速路由与工具分流（Fast Router）</h3><p>现有的智能体框架中，Agent 每一次决策“下一步该调用检索工具、数据库，还是直接回复用户”时，如果每次都让主力大模型跑一遍复杂的 CoT 思维链，单单选择工具这一步就得等待 3 秒以上。</p>
 <p>把第一层意图判断剥离给 Jev：</p>
 <ul>
@@ -324,7 +330,7 @@
 <h3 id="3-LLM-输出的毫秒级安全护栏（Guardrails）"><a href="#3-LLM-输出的毫秒级安全护栏（Guardrails）" class="headerlink" title="3. LLM 输出的毫秒级安全护栏（Guardrails）"></a>3. LLM 输出的毫秒级安全护栏（Guardrails）</h3><p>企业部署客服或业务 Agent 最担心的就是模型“乱答应优惠”或违规泄密。<br>传统双模型方案（模型 A 生成、模型 B 审核）会导致用户端响应时间直接翻倍。而 Jev 的延时仅 70～150 毫秒，在生成文本发给用户前的间隙，并行完成“是否包含越权承诺？”、“是否涉及隐私泄露？”等是非判断，毫秒级熔断风险输出。</p>
 <h3 id="4-实时游戏-AI-与行为决策树（Game-AI）"><a href="#4-实时游戏-AI-与行为决策树（Game-AI）" class="headerlink" title="4. 实时游戏 AI 与行为决策树（Game AI）"></a>4. 实时游戏 AI 与行为决策树（Game AI）</h3><p>游戏中的 NPC 或动态触发器通常需要每秒执行数次状态评估。<br>以往“把游戏 NPC 接入大模型”最大的死穴就是网络与生成延时高达数秒。Jev 支持每秒 10 次以上的高频请求，将玩家当前血量、距离、装备打包成 JSON 状态输入，NPC 可以在 0.1 秒内拿到“巡逻 &#x2F; 伏击 &#x2F; 撤退”的概率分布，既具 AI 随机拟真感，又完全不会引起游戏掉帧。</p>
 <h3 id="5-动态表单验证与反欺诈评分（Fraud-Detection）"><a href="#5-动态表单验证与反欺诈评分（Fraud-Detection）" class="headerlink" title="5. 动态表单验证与反欺诈评分（Fraud Detection）"></a>5. 动态表单验证与反欺诈评分（Fraud Detection）</h3><p>用户在订单备注或申请表中输入的非结构化留言往往隐藏着套现或欺诈风险。通过 Jev 可在提交瞬间即时计算异常分数与欺诈倾向概率，高危申请直接触发二次人脸或人工审核，低风险请求秒级放行。</p>
-<h2 id="实际架构流程示例"><a href="#实际架构流程示例" class="headerlink" title="实际架构流程示例"></a>实际架构流程示例</h2><p>在生产系统架构中，Jev 通常充当“快速决策门禁”的核心角色：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="实际架构流程示例"><a href="#实际架构流程示例" class="headerlink" title="实际架构流程示例"></a>实际架构流程示例</h2><p>在生产系统架构中，Jev 通常充当“快速决策门禁”的核心角色：</p>
 <pre class="mermaid">
 flowchart TD
     classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
@@ -379,7 +385,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>, <a href="/zh-cn/tags/LLM/">LLM</a>, <a href="/zh-cn/tags/OpenAI/">OpenAI</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/OpenAI/">OpenAI</a>, <a href="/zh-cn/tags/AI-Agent/">AI Agent</a>, <a href="/zh-cn/tags/LLM/">LLM</a>, <a href="/zh-cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
   </div>
 
         
@@ -527,6 +533,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -540,6 +547,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -587,6 +597,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -638,6 +649,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

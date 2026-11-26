@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -354,7 +360,7 @@
 </tr>
 </tbody></table></div>
 <p>同一個修補提交可能處理兩個 CVE，不能把提交數當成漏洞數。TLS 的 <strong>106069</strong> 與 <strong>106072</strong> 就由同一份<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/ad788ccd076b30e4e547910ace0beda2d063ad10">公開修補</a>處理，但官方對兩者的嚴重度標示不同。</p>
-<h2 id="Brotli-RCE：對外抓資料的後端也需要盤點"><a href="#Brotli-RCE：對外抓資料的後端也需要盤點" class="headerlink" title="Brotli RCE：對外抓資料的後端也需要盤點"></a>Brotli RCE：對外抓資料的後端也需要盤點</h2><p><strong>CVE-2026-111497</strong> 最需要優先關注的，是程式是否會把<strong>不可信的 Brotli 壓縮資料交給有漏洞的解碼器</strong>。官方認定可能導致遠端程式碼執行；不能進一步推成任何 Node.js 網站都能被同一個 HTTP 請求攻破。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Brotli-RCE：對外抓資料的後端也需要盤點"><a href="#Brotli-RCE：對外抓資料的後端也需要盤點" class="headerlink" title="Brotli RCE：對外抓資料的後端也需要盤點"></a>Brotli RCE：對外抓資料的後端也需要盤點</h2><p><strong>CVE-2026-111497</strong> 最需要優先關注的，是程式是否會把<strong>不可信的 Brotli 壓縮資料交給有漏洞的解碼器</strong>。官方認定可能導致遠端程式碼執行；不能進一步推成任何 Node.js 網站都能被同一個 HTTP 請求攻破。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/google/brotli/commit/0ed4268a4401abcb4472096340477cf4af7d1a2b">Brotli 上游修補</a>調整了區塊切換的錯誤處理，讓無效資料流更早被辨識，並把錯誤往呼叫端傳遞。重點是原生解碼器處理異常輸入的安全性，不只是 JavaScript 多寫一個例外捕捉就能解決。</p>
 <p>容易漏掉的入口，是<strong>你的後端主動向外連線</strong>。修補版內建的 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/deps/undici/src/lib/web/fetch/index.js">Undici fetch 原始碼</a>可看到，回應的內容編碼為 <strong>br</strong> 時會使用 Brotli 解碼器。</p>
 <p>因此，以下是值得盤點的情境：抓取使用者提供的網址、匯入遠端內容、串接可被攻擊者控制的回應來源，以及處理外來壓縮檔。這是根據資料流推導的檢查範圍，<strong>不代表每一種操作都已證實可成功利用</strong>。</p>
@@ -366,14 +372,14 @@
 <p>從 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/lib/tls.js">26.12.1 的最終 TLS 程式碼</a>可以看到：原字串不是標準 IP、經名稱轉換後卻變成 IP 的情況，會被拒絕；標準 IP 則走 IP 位址的憑證比對。這是在收緊解析與身分驗證的邊界。</p>
 <p>高優先盤點對象包含：可輸入自訂網址的代理、遠端匯入、URL 預覽，以及依賴自訂主機名規則的整合服務。實際攻擊仍需要可達的資料路徑與適合的憑證、端點等條件，<strong>不能寫成所有 HTTPS 連線都已失去保護</strong>。</p>
 <p>修補後若原本接受的非標準名稱開始報錯，應修正輸入與憑證設定，保留 TLS 身分驗證。</p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="HTTP-連線與亂數快照：Medium-為什麼仍值得處理？"><a href="#HTTP-連線與亂數快照：Medium-為什麼仍值得處理？" class="headerlink" title="HTTP 連線與亂數快照：Medium 為什麼仍值得處理？"></a>HTTP 連線與亂數快照：Medium 為什麼仍值得處理？</h2><h3 id="Keep-alive-的問題，在回應與請求的對應關係"><a href="#Keep-alive-的問題，在回應與請求的對應關係" class="headerlink" title="Keep-alive 的問題，在回應與請求的對應關係"></a>Keep-alive 的問題，在回應與請求的對應關係</h3><p><strong>CVE-2026-105481</strong> 涉及 HTTP Agent 重用閒置連線時，尚未送出新請求，就已經有資料等在作業系統的 Socket 緩衝區中。</p>
+<h2 id="HTTP-連線與亂數快照：Medium-為什麼仍值得處理？"><a href="#HTTP-連線與亂數快照：Medium-為什麼仍值得處理？" class="headerlink" title="HTTP 連線與亂數快照：Medium 為什麼仍值得處理？"></a>HTTP 連線與亂數快照：Medium 為什麼仍值得處理？</h2><h3 id="Keep-alive-的問題，在回應與請求的對應關係"><a href="#Keep-alive-的問題，在回應與請求的對應關係" class="headerlink" title="Keep-alive 的問題，在回應與請求的對應關係"></a>Keep-alive 的問題，在回應與請求的對應關係</h3><p><strong>CVE-2026-105481</strong> 涉及 HTTP Agent 重用閒置連線時，尚未送出新請求，就已經有資料等在作業系統的 Socket 緩衝區中。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/0683ee5f7d512332c9701a3e06cdeec2c34bcdbf">修補提交</a>說明，舊有資料防護依賴事件迴圈進行 I&#x2F;O 輪詢，可能還沒看到這批資料。新版在重用前主動確認待讀狀態，必要時丟棄連線。</p>
 <p>對使用連線池的 API 整合而言，這是回應是否真的屬於本次請求的正確性問題。不要直接把它改稱為已證實的伺服器端 request smuggling，或自行宣稱能跨帳號取得資料；那需要額外證據。</p>
 <h3 id="亂數快照：複製了啟動狀態，也可能複製尚未用完的亂數"><a href="#亂數快照：複製了啟動狀態，也可能複製尚未用完的亂數" class="headerlink" title="亂數快照：複製了啟動狀態，也可能複製尚未用完的亂數"></a>亂數快照：複製了啟動狀態，也可能複製尚未用完的亂數</h3><p><strong>CVE-2026-106074</strong> 的條件更特別：應用使用啟動快照，或帶有相關快照狀態的單一執行檔 <strong>SEA</strong>，而 <strong>randomUUID()／randomInt()</strong> 尚未用完的快取被保存下來。多個從相同狀態啟動的程序，可能重播相同值。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/acffa610db2d85c81d01545194d99fb67920d309">修補程式碼</a>在序列化與還原的關鍵時點清除快取。這不是「所有 Node.js 亂數都壞了」，而是特定打包與啟動方式把本應重新取得的狀態一起帶走。</p>
 <p>若應用把這些值當成必須不可預測的權杖，安全影響可能放大；若用作識別碼，也可能遇到碰撞。這是應用情境分析，不能當成已發生權杖外洩的證據。</p>
 <p>使用這類產物時，要以修補後的工具鏈重新產生快照與執行檔。<a target="_blank" rel="noopener" href="https://nodejs.org/api/single-executable-applications.html">SEA 官方文件</a>說明它包含 Node.js 執行檔與應用資料；只更新主機上另一份 Node.js，不能證明既有 SEA 已換掉內嵌的舊執行環境。</p>
-<h2 id="Permission-Model-與-ZIP-的風險要放回使用情境"><a href="#Permission-Model-與-ZIP-的風險要放回使用情境" class="headerlink" title="Permission Model 與 ZIP 的風險要放回使用情境"></a>Permission Model 與 ZIP 的風險要放回使用情境</h2><p><strong>CVE-2026-106071</strong> 與 <strong>106073</strong> 分別涉及萬用字元授權範圍，以及 <strong>fs.realpathSync</strong> 的權限檢查。<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/cc244131aaeef774effdc94b59a8a2de84a2d262">後者的修補</a>明確提到，先檢查解析後的輸入路徑，避免利用後續路徑走訪去探查授權集合之外的路徑。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Permission-Model-與-ZIP-的風險要放回使用情境"><a href="#Permission-Model-與-ZIP-的風險要放回使用情境" class="headerlink" title="Permission Model 與 ZIP 的風險要放回使用情境"></a>Permission Model 與 ZIP 的風險要放回使用情境</h2><p><strong>CVE-2026-106071</strong> 與 <strong>106073</strong> 分別涉及萬用字元授權範圍，以及 <strong>fs.realpathSync</strong> 的權限檢查。<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/cc244131aaeef774effdc94b59a8a2de84a2d262">後者的修補</a>明確提到，先檢查解析後的輸入路徑，避免利用後續路徑走訪去探查授權集合之外的路徑。</p>
 <p>使用 <strong>–permission</strong> 的工具、檔案處理流程或自動化系統，應檢查這兩項；但不能把 realpath 這個問題擴寫成已能任意讀取所有檔案內容。</p>
 <p>更根本的界線在 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/doc/api/permissions.md">Permission Model 官方文件</a>：它限制受信任程式意外存取未授權資源，<strong>不提供對惡意程式碼的安全隔離保證</strong>。會執行不可信程式碼的 AI 工具或服務，仍需要作業系統層的隔離設計。</p>
 <p><strong>CVE-2026-106070</strong> 則限官方列出的 26.x ZIP 功能。<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/745ad771566d6f0133eee775a661f48056f2cf50">修補</a>改為先驗證 ZIP 本地標頭與中央目錄的一致性，再保存標頭與內容位置，避免失敗後留下可被後續讀取誤用的快取狀態。重點是失敗路徑與重試，不宜自行升級描述為任意檔案寫入。</p>
@@ -560,6 +566,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -573,6 +580,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -624,6 +634,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -675,6 +686,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

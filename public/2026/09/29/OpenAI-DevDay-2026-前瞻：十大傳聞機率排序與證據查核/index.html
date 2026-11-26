@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -336,7 +342,7 @@
 <p>公開程式碼已加入新方案名稱，是此項排名靠前的主要依據。仍待確認的包括正式名稱、價格、額度與開賣日期。目前的<a target="_blank" rel="noopener" href="https://chatgpt.com/pricing/">公開價格頁</a>尚未列出 Pro Max，程式碼也可能先於分批上線部署。</p>
 <p>對長任務使用者而言，訂閱成本需要連同額度、支援模型和任務完成時間比較。輸出速度提高後，外部工具等待與反覆修正仍可能佔用大量時間。新方案是否調整舊訂閱的待遇，目前也沒有足夠資料確認，需另行比對正式規則與帳戶紀錄。</p>
 <p>正式公布後，需要比對方案名稱、未稅月費、地區、可用模型、速率限制與使用額度，並確認原有訂戶是否需要轉換。程式碼中的方案型別只能確認工程準備；價格頁或正式公告才足以確認開賣內容。即使最後名稱不同，只要官方清楚公布新的 Pro 分級，仍符合本項預測範圍。</p>
-<h2 id="2-常駐代理-o：設定檔與升級頁出現線索"><a href="#2-常駐代理-o：設定檔與升級頁出現線索" class="headerlink" title="2. 常駐代理 o：設定檔與升級頁出現線索"></a>2. 常駐代理 o：設定檔與升級頁出現線索</h2><p><a target="_blank" rel="noopener" href="https://www.testingcatalog.com/openai-to-announce-o-always-on-agent-during-devday/">TestingCatalog 9 月 26 日</a>記錄了 <strong>o</strong> 顯示名稱、**-o** 郵件後綴，以及升級頁的常駐助理線索。這讓常駐助理的傳聞有了比較具體的依據。至於 <strong>o 與先前流傳的 Aeon 有什麼關係</strong>，目前還不清楚。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2-常駐代理-o：設定檔與升級頁出現線索"><a href="#2-常駐代理-o：設定檔與升級頁出現線索" class="headerlink" title="2. 常駐代理 o：設定檔與升級頁出現線索"></a>2. 常駐代理 o：設定檔與升級頁出現線索</h2><p><a target="_blank" rel="noopener" href="https://www.testingcatalog.com/openai-to-announce-o-always-on-agent-during-devday/">TestingCatalog 9 月 26 日</a>記錄了 <strong>o</strong> 顯示名稱、**-o** 郵件後綴，以及升級頁的常駐助理線索。這讓常駐助理的傳聞有了比較具體的依據。至於 <strong>o 與先前流傳的 Aeon 有什麼關係</strong>，目前還不清楚。</p>
 <p>官方已在 9 月 10 日推出 <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-the-agents-api/">Agents API 公開測試</a>，讓開發者使用 Codex 的代理執行框架與長任務基礎設施。從這項進展來看，OpenAI 已經在準備讓代理長時間工作的執行環境。o 會如何使用這些能力，還要等發表。</p>
 <p>從長任務產品的用途推演，常駐代理可能處理進度追蹤、等待外部回覆、恢復任務與通知使用者。這些是此類產品可能涵蓋的工作，尚未成為 o 的已確認功能。設定中出現郵件後綴，也只能支持郵件身分相關的推測，無法據此確認收發信權限。</p>
 <p>實際使用方式仍有幾個關鍵空白：關掉電腦後是否繼續工作、中途失敗能否恢復、寄信或修改外部資料前如何取得許可，以及費用如何累計。升級頁曾出現 Pro 線索，但 Plus 的使用資格仍未公布；也沒有資料顯示能不限量持續執行。</p>
@@ -349,7 +355,7 @@
 <p>三種方案名稱對應試用、原型與正式服務的使用階段。若平台進一步整合執行環境、預算和監控，可能減少開發者在不同設定頁面之間切換的工作；這部分屬於方案設計的延伸分析，並非已公布的功能清單。</p>
 <p>完整應用部署仍未確認。正式服務需要網域、資料庫、金鑰管理與持久儲存，目前曝光的方案名稱還看不出這些部分會做到哪裡。</p>
 <p>確認本項需要正式方案頁、計費方式或可操作的新開發流程。應用託管則要另外確認網域、儲存、部署與服務對外連線等能力；僅提供代理沙箱，還不足以確定整套託管服務。技術課程或既有平台示範也不構成新方案發布。</p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="5-Chat-與-Work：聊天和工作模式可能整合"><a href="#5-Chat-與-Work：聊天和工作模式可能整合" class="headerlink" title="5. Chat 與 Work：聊天和工作模式可能整合"></a>5. Chat 與 Work：聊天和工作模式可能整合</h2><p>9 月 26 日的 <a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wr52pw/openai_devday_leaks_ultrafast_around_750_tokenss/">Reddit 傳聞整理串</a>出現 GPT-6 Sol 進入 Chat、Chat／Work／Codex 體驗合流的說法，也有留言直接質疑這只是許願。目前還沒有足夠資料確認改版內容。</p>
+<h2 id="5-Chat-與-Work：聊天和工作模式可能整合"><a href="#5-Chat-與-Work：聊天和工作模式可能整合" class="headerlink" title="5. Chat 與 Work：聊天和工作模式可能整合"></a>5. Chat 與 Work：聊天和工作模式可能整合</h2><p>9 月 26 日的 <a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wr52pw/openai_devday_leaks_ultrafast_around_750_tokenss/">Reddit 傳聞整理串</a>出現 GPT-6 Sol 進入 Chat、Chat／Work／Codex 體驗合流的說法，也有留言直接質疑這只是許願。目前還沒有足夠資料確認改版內容。</p>
 <p>官方 <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">Sol、Luna 發布文</a>將最初使用範圍放在 Work 與 Codex，並明寫當時尚未進入 Chat。目前的產品範圍留下了擴大到聊天介面的空間，但沒有對應 DevDay 的發布承諾。</p>
 <p>若介面整合成真，可能減少聊天與長任務之間的切換，讓使用者在同一處提出需求、查看進度和接收結果。目前尚無資料說明模式是否自動選擇、能否手動切換，以及 Codex 獨立工具的後續安排。</p>
 <p>會後可比對模型選單、聊天與工作入口，以及新增任務的操作步驟。若 GPT-6 Sol 進入 Chat，屬於使用範圍改變；若只有名稱調整，則需要確認是否真的影響工作流程。Codex 獨立工具停用、帳號合併或資料遷移，均需要另外的官方依據。</p>
@@ -357,7 +363,7 @@
 <p>時程修正降低了 DevDay 當天亮相的確定性。現有報導支持追蹤這條產品線，但尚不足以確認它會在指定日期發表；因此本項列為較低可能性。</p>
 <p>若產品包含資安工作流程，其使用價值會取決於能否從弱點發現、驗證一路完成修補，以及過程中的授權範圍、稽核紀錄與人工介入要求。模型能力展示之外，企業導入還需要可重現的修補結果和清楚的責任分工。</p>
 <p>確認條件是官方明確介紹新資安模型或相關產品，而非僅重申投資方向。若同步提供試用申請、適用對象或存取方式，可進一步判斷是展示、有限預覽還是正式供應。企業是否可直接採用，還要看授權條件與支援範圍。</p>
-<h2 id="7-Astra-Minor、GPT-6-1、Bel：新模型傳聞有哪些線索？"><a href="#7-Astra-Minor、GPT-6-1、Bel：新模型傳聞有哪些線索？" class="headerlink" title="7. Astra Minor、GPT-6.1、Bel：新模型傳聞有哪些線索？"></a>7. Astra Minor、GPT-6.1、Bel：新模型傳聞有哪些線索？</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/ChatGPT/comments/1vztv6r/openais_next_pretrain_codename_bel_devday/">8 月 27 日的 Bel 討論</a>談的是傳聞中的預訓練代號；<a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wnkzxy/what_are_your_predictions_for_openai_devday/">9 月的預測串</a>又把它與 Astra Minor、6.1 並列。這些名稱可能指不同階段的研究或產品，也可能有部分只是社群推測。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="7-Astra-Minor、GPT-6-1、Bel：新模型傳聞有哪些線索？"><a href="#7-Astra-Minor、GPT-6-1、Bel：新模型傳聞有哪些線索？" class="headerlink" title="7. Astra Minor、GPT-6.1、Bel：新模型傳聞有哪些線索？"></a>7. Astra Minor、GPT-6.1、Bel：新模型傳聞有哪些線索？</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/ChatGPT/comments/1vztv6r/openais_next_pretrain_codename_bel_devday/">8 月 27 日的 Bel 討論</a>談的是傳聞中的預訓練代號；<a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wnkzxy/what_are_your_predictions_for_openai_devday/">9 月的預測串</a>又把它與 Astra Minor、6.1 並列。這些名稱可能指不同階段的研究或產品，也可能有部分只是社群推測。</p>
 <p>新模型預覽列為低可能性，原因是尚未找到對應本次活動的官方模型頁或明確發布日期。即使預訓練完成，仍有後訓練、評估、算力供給和產品整合等步驟，研究進度與可用產品之間可能存在時間差。</p>
 <p>Astra Minor 和 6.1 目前連具體定位都還不清楚；Bel 的討論則較早，偏向研究進度的傳聞。現有資料不足以分別確認三者的產品身分、價格、能力與發布日期，因此合併列為一組低證據的模型傳聞。</p>
 <p>本項涵蓋上述名稱中至少一個新的通用模型正式預覽，發布時需能識別其正式名稱和新增能力。已公布的 Sol、Luna 再次示範不屬於新模型。若只有研究進度說明，尚未建立產品身分，仍應記錄為研究消息；也不宜用代號自行補上售價或評測成績。</p>
@@ -548,6 +554,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -561,6 +568,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -612,6 +622,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -663,6 +674,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

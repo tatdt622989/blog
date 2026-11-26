@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -307,7 +313,7 @@
 <p>然而，Hugging Face 官方已于 <strong>2025 年 3 月 13 日</strong><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard/discussions/1135">正式宣布该排行榜正式退役</a>。究其根本原因，在于大模型的技术范式与推理机制演进极其迅猛，传统的静态问答与多项选择题库在短短数月内便被新型模型全面刷爆，逐渐丧失了应有的区分度与鉴别力。该平台在生命周期内累计严谨评估了超过 13,000 个开源模型，是 AI 发展史上不可磨灭的重要里程碑，但在今天进行技术决策时，绝不应再将其列为持续更新的主流榜单。</p>
 <p>今天在筛选前沿开源模型时，除了参考历史评测归档，开发者更应当系统查阅官方 Model Card、开源商用协议、有效上下文窗口、量化格式支持、显存硬件开销，并在目标硬件环境中运行贴近真实业务的基准实测。</p>
 <hr>
-<h2 id="五大主流评测平台横向全景对比"><a href="#五大主流评测平台横向全景对比" class="headerlink" title="五大主流评测平台横向全景对比"></a>五大主流评测平台横向全景对比</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:700px"><table>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五大主流评测平台横向全景对比"><a href="#五大主流评测平台横向全景对比" class="headerlink" title="五大主流评测平台横向全景对比"></a>五大主流评测平台横向全景对比</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:700px"><table>
 <thead>
 <tr>
 <th align="left">评测平台</th>
@@ -538,6 +544,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -551,6 +558,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -598,6 +608,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -649,6 +660,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

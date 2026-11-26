@@ -58,14 +58,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -90,7 +96,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -212,6 +218,7 @@
   <a href="/tags/">查看所有標籤</a>
 </nav>
 
+
   <article id="post-適合-AI-開發的開源遊戲架構：Web、Editor-Bridge-與自動化驗證閉環全解析" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -254,6 +261,8 @@
 
 
 
+  
+  
 
   <article id="post-GPT-6-做遊戲用什麼引擎？Godot、Unity、Unreal-與網頁遊戲工具怎麼選" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -296,6 +305,8 @@
 
 
 
+  
+  
 
   <article id="post-為什麼-localhost-傳給朋友打不開？讓-AI-網站真正公開發布的關鍵步驟" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -340,6 +351,10 @@
 
 
 
+  
+  
+    <aside class="site-ad site-ad--feed" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="3929112387" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   <article id="post-開源-AI-繪圖精準控制全解析：從-Checkpoint、LoRA-到-ComfyUI-工業級流水線" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -382,6 +397,8 @@
 
 
 
+  
+  
 
   <article id="post-Gemini-3-8-Flash-突襲登場！維持-3-7-極低費率、長時程代理迴圈與-DeepSWE-關鍵突破" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -423,6 +440,8 @@
 
 
 
+  
+  
 
   <article id="post-Claude-Fable-5-1-旗艦發表！快取狂降-75-與長時程代理開發的核心變革" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -464,6 +483,8 @@
 
 
 
+  
+  
 
   <article id="post-AI-時代，E2E-測試要怎麼升級？從固定腳本到-AI-native-Harness" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -507,6 +528,8 @@
 
 
 
+  
+  
 
   <article id="post-AI-模型排行榜怎麼看？LMArena、SWE-bench、LiveBench-與-12-個關鍵指標完整解析" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -549,6 +572,8 @@
 
 
 
+  
+  
 
   <article id="post-CLIProxyAPI-是什麼？Codex-登入、API-轉接與開源工具串接一次看懂" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -591,6 +616,8 @@
 
 
 
+  
+  
 
   <article id="post-2026-AI-繪圖與生成影片怎麼挑？一篇看懂各大工具強項、盲測排行榜與每月-30-美元最佳組合" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -632,6 +659,8 @@
 
 
 
+  
+  
 
 
 <nav id="pagination">
@@ -645,6 +674,7 @@
 </nav>
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -658,6 +688,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -709,6 +742,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -760,6 +794,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

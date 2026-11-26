@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -275,7 +281,7 @@
 <p>You can picture your computer as an apartment building, and <strong>Port 3000</strong> as apartment number 3000 inside it. The AI development tool starts a local preview server on your machine, temporarily staging your web app inside room 3000 so you can inspect and verify features.</p>
 <p>The critical catch: <strong>This entire building exists solely on your private local network, with no public roads leading into it.</strong> The moment you close your laptop lid or terminate the terminal process, room 3000 shuts down completely, becoming inaccessible even to your own browser.</p>
 <hr>
-<h2 id="How-Real-Online-Websites-Function"><a href="#How-Real-Online-Websites-Function" class="headerlink" title="How Real Online Websites Function"></a>How Real Online Websites Function</h2><p>To make a website accessible to anyone worldwide at any time, a project relies on three foundational components: <strong>an always-on host server, a human-readable domain name, and cryptographic security</strong>.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="How-Real-Online-Websites-Function"><a href="#How-Real-Online-Websites-Function" class="headerlink" title="How Real Online Websites Function"></a>How Real Online Websites Function</h2><p>To make a website accessible to anyone worldwide at any time, a project relies on three foundational components: <strong>an always-on host server, a human-readable domain name, and cryptographic security</strong>.</p>
 <pre class="mermaid">
 flowchart TD
     A["Local Laptop (localhost:3000)<br>Private machine: shuts down when closed, unreachable externally"]
@@ -307,7 +313,7 @@ flowchart TD
 </ul>
 <p>Taking your local project and publishing it onto cloud infrastructure is what the industry refers to as <strong>deployment</strong>.</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Common-Gotchas-When-Deploying-to-the-Cloud"><a href="#Common-Gotchas-When-Deploying-to-the-Cloud" class="headerlink" title="Common Gotchas When Deploying to the Cloud"></a>Common Gotchas When Deploying to the Cloud</h2><p>When creators publish a project to the cloud for the very first time, they occasionally encounter a blank screen or broken interactive elements. This usually stems from configuration discrepancies between local and production environments:</p>
+<h2 id="Common-Gotchas-When-Deploying-to-the-Cloud"><a href="#Common-Gotchas-When-Deploying-to-the-Cloud" class="headerlink" title="Common Gotchas When Deploying to the Cloud"></a>Common Gotchas When Deploying to the Cloud</h2><p>When creators publish a project to the cloud for the very first time, they occasionally encounter a blank screen or broken interactive elements. This usually stems from configuration discrepancies between local and production environments:</p>
 <h3 id="1-Missing-Environment-Variables"><a href="#1-Missing-Environment-Variables" class="headerlink" title="1. Missing Environment Variables"></a>1. Missing Environment Variables</h3><p>During local development, AI tools frequently place sensitive credentials (such as database connection strings or OpenAI API keys) inside a file named <strong>.env</strong>.</p>
 <p>For security reasons, version control systems automatically ignore and hide this file so confidential secrets are not exposed publicly. When your code uploads to the cloud, this file stays behind. Without necessary credentials, your application halts execution, causing a blank screen.</p>
 <p><strong>How to address it</strong>: Navigate to the <strong>Environment Variables</strong> panel in your hosting provider (such as Vercel or Cloudflare Pages) and input each key and its corresponding value manually.</p>
@@ -317,7 +323,7 @@ flowchart TD
 <p>This happens because the browser asks the remote server for a physical file named <code>/dashboard</code>, which does not exist on disk.</p>
 <p><strong>How to address it</strong>: Enable a rewrite rule in your hosting platform that directs all incoming route requests to the entry file <code>index.html</code>, allowing client-side routing to handle page rendering properly.</p>
 <hr>
-<h2 id="Four-Frictionless-Steps-to-Deploy-an-AI-Project-Today"><a href="#Four-Frictionless-Steps-to-Deploy-an-AI-Project-Today" class="headerlink" title="Four Frictionless Steps to Deploy an AI Project Today"></a>Four Frictionless Steps to Deploy an AI Project Today</h2><p>Modern cloud infrastructure eliminates the traditional need to manually provision virtual private servers, configure Linux distributions, or manage command-line utilities. Using developer-friendly platforms such as <strong>Vercel</strong> or <strong>Cloudflare Pages</strong>, you can publish your app visually:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Four-Frictionless-Steps-to-Deploy-an-AI-Project-Today"><a href="#Four-Frictionless-Steps-to-Deploy-an-AI-Project-Today" class="headerlink" title="Four Frictionless Steps to Deploy an AI Project Today"></a>Four Frictionless Steps to Deploy an AI Project Today</h2><p>Modern cloud infrastructure eliminates the traditional need to manually provision virtual private servers, configure Linux distributions, or manage command-line utilities. Using developer-friendly platforms such as <strong>Vercel</strong> or <strong>Cloudflare Pages</strong>, you can publish your app visually:</p>
 <pre class="mermaid">
 flowchart TD
     S1["Step 1: Push Project to GitHub<br>Use IDE controls or GitHub Desktop to sync changes"]
@@ -520,6 +526,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -533,6 +540,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -580,6 +590,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -631,6 +642,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -71,14 +71,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -103,7 +109,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -252,7 +258,7 @@
 
 <p><img src="/2026/08/17/ChatGPT-%E8%AA%9E%E9%9F%B3%E6%A8%A1%E5%BC%8F%E5%AD%B8%E6%97%A5%E8%AA%9E%E5%AF%A6%E6%88%B0%EF%BC%9A%E5%BE%9E%E6%83%85%E5%A2%83%E8%A8%AD%E5%AE%9A%E5%88%B0%E5%8D%B3%E6%99%82%E7%B3%BE%E9%8C%AF%E7%9A%84%E9%AB%98%E6%95%88%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/chatgpt-voice-prompt-example.png?v=4afa681b" alt="ChatGPT 隨機生成日本飯店入住情境與任務對話截圖"></p>
 <p>發送後，AI 就會像上圖一樣，自動構思出如「日本飯店辦理入住，但櫃檯找不到預約資料」這種帶有突發狀況的實用情境，並清楚列出通關任務與難度設定，接著直接以日語「いらっしゃいませ。ご宿泊でしょうか？お名前をお願いできますか？」開場，完全不需要你自己構思劇本。</p>
-<h2 id="技巧二：階梯式提示機制（卡住時的三層救生圈）"><a href="#技巧二：階梯式提示機制（卡住時的三層救生圈）" class="headerlink" title="技巧二：階梯式提示機制（卡住時的三層救生圈）"></a>技巧二：階梯式提示機制（卡住時的三層救生圈）</h2><p>這是解決「不會講、接不下去」的核心關鍵。我們在 Prompt 中預先規範：當使用者卡住或主動求救時，AI 必須按照三層難度逐步給予提示，而不是直接給出最終答案：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="技巧二：階梯式提示機制（卡住時的三層救生圈）"><a href="#技巧二：階梯式提示機制（卡住時的三層救生圈）" class="headerlink" title="技巧二：階梯式提示機制（卡住時的三層救生圈）"></a>技巧二：階梯式提示機制（卡住時的三層救生圈）</h2><p>這是解決「不會講、接不下去」的核心關鍵。我們在 Prompt 中預先規範：當使用者卡住或主動求救時，AI 必須按照三層難度逐步給予提示，而不是直接給出最終答案：</p>
 <ol>
 <li><strong>第一層：關鍵單字提示（Keyword Hint）</strong><ul>
 <li>當你猶豫停頓或說「不知道該怎麼講」時，AI 先提供 2 到 3 個可能用到的核心單字（附平假名與中文）。</li>
@@ -283,7 +289,7 @@
 <li><strong>第三段（道地示範）</strong>：提供 1 個日本人最常用的道地講法，並邀請你複誦一次。</li>
 </ol>
 <p>範例：當你說了「このカメラは安くできますか？」（雖然意思能通但略顯直接），AI 會先扮演店員回應折扣規則，接著溫和提醒你：「在詢問是否有折扣時，日本人更常用『もう少しお安くなりませんか？』，語氣會更委婉禮貌喔，請跟我說一次看看！」</p>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="技巧四：語速與難度鎖定（對齊-JLPT-等級）"><a href="#技巧四：語速與難度鎖定（對齊-JLPT-等級）" class="headerlink" title="技巧四：語速與難度鎖定（對齊 JLPT 等級）"></a>技巧四：語速與難度鎖定（對齊 JLPT 等級）</h2><p>為了避免 AI 突然講出過於複雜的長句，在設定中必須明確規範回覆長度與用詞範圍：</p>
+<h2 id="技巧四：語速與難度鎖定（對齊-JLPT-等級）"><a href="#技巧四：語速與難度鎖定（對齊-JLPT-等級）" class="headerlink" title="技巧四：語速與難度鎖定（對齊 JLPT 等級）"></a>技巧四：語速與難度鎖定（對齊 JLPT 等級）</h2><p>為了避免 AI 突然講出過於複雜的長句，在設定中必須明確規範回覆長度與用詞範圍：</p>
 <ul>
 <li><strong>N5~N4（初級）</strong>：語速放慢、使用「です&#x2F;ます體」、每次回覆不超過 20 個字，遇到漢字單字主動說明假名。</li>
 <li><strong>N3（中級）</strong>：加入常見生活縮約形（如 〜ちゃう、〜とく）與基本相槌（あいづち，如 そうなんですね、なるほど）。</li>
@@ -297,7 +303,7 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">請根據剛才所有的語音對話內容，幫我整理一份學習筆記：</span><br><span class="line">1. 【錯題回顧表】：整理我說錯或不自然的句子、錯誤原因，以及修正後的道地示範（請用 Markdown 表格呈現）。</span><br><span class="line">2. 【生詞與重要句型】：提煉對話中出現過、適合 N3 程度的 5 個核心單字或文法，附上假名、中文與例句。</span><br><span class="line">3. 【卡關點回顧】：針對我剛才卡住或使用中文求助的地方，提供 2 個實用的應對句型。</span><br></pre></td></tr></table></figure>
 
 <p>這項功能可以把每次 10 分鐘的零碎口說練習，轉化為可以直接複習的結構化筆記，甚至能匯入 Anki 進行間隔重複背誦。</p>
-<h2 id="終極整合版-Prompt-模板（隨機情境-階梯引導-即時糾錯）"><a href="#終極整合版-Prompt-模板（隨機情境-階梯引導-即時糾錯）" class="headerlink" title="終極整合版 Prompt 模板（隨機情境 + 階梯引導 + 即時糾錯）"></a>終極整合版 Prompt 模板（隨機情境 + 階梯引導 + 即時糾錯）</h2><p>以下是將上述所有機制整合後的完整模板。每次練習時直接複製貼上，修改程度後發送即可直接開始：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="終極整合版-Prompt-模板（隨機情境-階梯引導-即時糾錯）"><a href="#終極整合版-Prompt-模板（隨機情境-階梯引導-即時糾錯）" class="headerlink" title="終極整合版 Prompt 模板（隨機情境 + 階梯引導 + 即時糾錯）"></a>終極整合版 Prompt 模板（隨機情境 + 階梯引導 + 即時糾錯）</h2><p>以下是將上述所有機制整合後的完整模板。每次練習時直接複製貼上，修改程度後發送即可直接開始：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">你現在是我的專屬日語口說私教。我們即將進行語音情境練習。</span><br><span class="line"></span><br><span class="line">【基本設定】</span><br><span class="line"><span class="bullet">-</span> 我的日語程度：JLPT N3</span><br><span class="line"><span class="bullet">-</span> 請隨機為我設計一個符合程度的日本生活、旅遊或職場情境。</span><br><span class="line"><span class="bullet">-</span> 請設定你的角色、我的角色與通關任務。</span><br><span class="line"></span><br><span class="line">【對話與引導規則】</span><br><span class="line"><span class="bullet">1.</span> 請先用中文簡短說明「情境設定與任務目標」，然後直接用日語說第一句話開場。</span><br><span class="line"><span class="bullet">2.</span> 每次你的日語回覆請保持在 2 句話以內，保持對話節奏。</span><br><span class="line"><span class="bullet">3.</span> 嚴格採用三段式回覆：</span><br><span class="line">   a. 【接話】：以角色身分用日語回應。</span><br><span class="line">   b. 【糾錯】：用中文簡短指出我剛才句子中的助詞、文法或不自然之處（若正確請簡短誇獎）。</span><br><span class="line">   c. 【示範】：提供 1 個道地說法，並邀我複誦一遍。</span><br><span class="line"><span class="bullet">4.</span> 【階梯式救生圈】：</span><br><span class="line"><span class="bullet">   -</span> 若我表示不會講、猶豫停頓，或說「ヒントをください」，請先提供 2 個關鍵日文單字（附假名與中文）。</span><br><span class="line"><span class="bullet">   -</span> 若我依然無法表達，請提供填空式句型骨架。</span><br><span class="line"><span class="bullet">   -</span> 若我直接說中文，請幫我翻譯為道地日語並請我複誦後，繼續推進情境。</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2026/08/17/ChatGPT-%E8%AA%9E%E9%9F%B3%E6%A8%A1%E5%BC%8F%E5%AD%B8%E6%97%A5%E8%AA%9E%E5%AF%A6%E6%88%B0%EF%BC%9A%E5%BE%9E%E6%83%85%E5%A2%83%E8%A8%AD%E5%AE%9A%E5%88%B0%E5%8D%B3%E6%99%82%E7%B3%BE%E9%8C%AF%E7%9A%84%E9%AB%98%E6%95%88%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/chatgpt-integrated-prompt-result.png?v=17798161" alt="ChatGPT 執行整合版日語私教 Prompt 之實際回覆截圖"></p>
@@ -470,6 +476,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -483,6 +490,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -534,6 +544,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -585,6 +596,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -323,7 +329,7 @@
 </tr>
 </tbody></table></div>
 <hr>
-<h2 id="一、AI-焦虑与网络生态：藏在屏幕背后的词走到了台前"><a href="#一、AI-焦虑与网络生态：藏在屏幕背后的词走到了台前" class="headerlink" title="一、AI 焦虑与网络生态：藏在屏幕背后的词走到了台前"></a>一、AI 焦虑与网络生态：藏在屏幕背后的词走到了台前</h2><h3 id="1-ドパガキ（どぱがき）"><a href="#1-ドパガキ（どぱがき）" class="headerlink" title="1. ドパガキ（どぱがき）"></a>1. ドパガキ（どぱがき）</h3><ul>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="一、AI-焦虑与网络生态：藏在屏幕背后的词走到了台前"><a href="#一、AI-焦虑与网络生态：藏在屏幕背后的词走到了台前" class="headerlink" title="一、AI 焦虑与网络生态：藏在屏幕背后的词走到了台前"></a>一、AI 焦虑与网络生态：藏在屏幕背后的词走到了台前</h2><h3 id="1-ドパガキ（どぱがき）"><a href="#1-ドパガキ（どぱがき）" class="headerlink" title="1. ドパガキ（どぱがき）"></a>1. ドパガキ（どぱがき）</h3><ul>
 <li><strong>构词拆解</strong>：<strong>ドーパミン</strong>（多巴胺）加上 <strong>ガキ</strong>（小屁孩）。</li>
 <li><strong>背后脉络</strong>：最初用来吐槽被短视频、无限下滑和抽卡手游养刁了胃口，稍微安静超过十秒就看不下去的年轻人。到了 2026 年，它迅速变成 Z 世代的<strong>自嘲标签</strong>——一边调侃自己注意力清零、连开二倍速追剧都觉得拖沓，一边拿这个词互相打趣。它同时拿下了 SHIBUYA109 lab 2026 趋势大赏的 SNS 梗词类第一名。</li>
 <li><strong>实用例句</strong>：最近ショート動画ばかり見ていて、本を 5 分も読めない。完全に<strong>ドパガキ</strong>になった。（最近光顾着刷短视频，书连五分钟都看不下去，彻底变成多巴胺小鬼了。）</li>
@@ -345,7 +351,7 @@
 <li><strong>フィジカルAI（ふぃじかるエーアイ）</strong>与 <strong>データセンター（でーたせんたー）</strong>：一边是拥有物理躯干、在连锁餐厅和展会现场自然提供服务的机器人融入生活（也就是中文圈常说的具身智能）；另一边则是支撑算力的超大型数据中心在东京近郊（尤其是千叶县一带）扎堆建设，引发耗电、选址集中和防灾隐患等现实争论。</li>
 </ul>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="二、Z-世代与网络次文化：课本里绝对学不到的鲜活表达"><a href="#二、Z-世代与网络次文化：课本里绝对学不到的鲜活表达" class="headerlink" title="二、Z 世代与网络次文化：课本里绝对学不到的鲜活表达"></a>二、Z 世代与网络次文化：课本里绝对学不到的鲜活表达</h2><h3 id="5-setlog（セットログ）"><a href="#5-setlog（セットログ）" class="headerlink" title="5. setlog（セットログ）"></a>5. setlog（セットログ）</h3><ul>
+<h2 id="二、Z-世代与网络次文化：课本里绝对学不到的鲜活表达"><a href="#二、Z-世代与网络次文化：课本里绝对学不到的鲜活表达" class="headerlink" title="二、Z 世代与网络次文化：课本里绝对学不到的鲜活表达"></a>二、Z 世代与网络次文化：课本里绝对学不到的鲜活表达</h2><h3 id="5-setlog（セットログ）"><a href="#5-setlog（セットログ）" class="headerlink" title="5. setlog（セットログ）"></a>5. setlog（セットログ）</h3><ul>
 <li><strong>构词拆解</strong>：源自韩国的日常 Vlog 应用，把一天切成若干时段（set）自动汇总成日志（log）。</li>
 <li><strong>背后脉络</strong>：精修滤镜和摆拍式社交让人越来越疲惫，<strong>setlog</strong> 反其道而行：<strong>每小时只允许拍大约 2 秒视频</strong>，一天结束后自动拼成一条完整 Vlog。根本来不及化妆找角度，反而保留了最真实松弛的日常碎片，在 2026 年日本年轻人中间迅速走红。</li>
 <li><strong>实用例句</strong>：加工なしで友達のリアルな一日が見られるから、最近は<strong>セットログ</strong>ばかり見ている。（能看到朋友零滤镜的真实一天，最近我天天刷 setlog。）</li>
@@ -369,7 +375,7 @@
 <li><strong>背后脉络</strong>：外观像糖果一样立体透亮、闪闪发亮的立体贴纸。起初只是小学生拿贴纸本互相交换的流行玩法（日文称 <strong>シル活</strong>），随后把当年痴迷贴纸本的“平成女童”一代成年女性全卷了回来，直接买到一贴难求。在满屏 AI 与算法焦虑的 2026 年，这种纯实体的怀旧手感显得格外反差。</li>
 </ul>
 <hr>
-<h2 id="三、日本高物价与出行新规：赴日旅游前也用得上的三个词"><a href="#三、日本高物价与出行新规：赴日旅游前也用得上的三个词" class="headerlink" title="三、日本高物价与出行新规：赴日旅游前也用得上的三个词"></a>三、日本高物价与出行新规：赴日旅游前也用得上的三个词</h2><h3 id="10-NISA貧乏、だけ弁当与青切符"><a href="#10-NISA貧乏、だけ弁当与青切符" class="headerlink" title="10. NISA貧乏、だけ弁当与青切符"></a>10. NISA貧乏、だけ弁当与青切符</h3><p>从钱包压力到街头交规，榜单里还有三个非常接地气的日本社会切片：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="三、日本高物价与出行新规：赴日旅游前也用得上的三个词"><a href="#三、日本高物价与出行新规：赴日旅游前也用得上的三个词" class="headerlink" title="三、日本高物价与出行新规：赴日旅游前也用得上的三个词"></a>三、日本高物价与出行新规：赴日旅游前也用得上的三个词</h2><h3 id="10-NISA貧乏、だけ弁当与青切符"><a href="#10-NISA貧乏、だけ弁当与青切符" class="headerlink" title="10. NISA貧乏、だけ弁当与青切符"></a>10. NISA貧乏、だけ弁当与青切符</h3><p>从钱包压力到街头交规，榜单里还有三个非常接地气的日本社会切片：</p>
 <ul>
 <li><strong>NISA貧乏（ニーサびんぼう）</strong>：日本新 NISA 免税投资制度带火全民理财，不少人为了打满额度把工资几乎全投进股市，结果月底手头现金见底、日常生活紧巴巴。</li>
 <li><strong>だけ弁当（だけべんとう）</strong>：高物价催生出的极简便当——整盒白米饭旁边<strong>只放单一配菜</strong>（比如只有香肠、只有厚蛋烧或只有可乐饼），舍弃花样换来极致性价比。</li>
@@ -552,6 +558,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -565,6 +572,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -612,6 +622,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -663,6 +674,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

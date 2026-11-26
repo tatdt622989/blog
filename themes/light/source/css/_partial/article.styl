@@ -736,23 +736,49 @@ article
         line-height 1
 
 
-// Fixed ad slots on posts (scripts/article-ads.js). The ad reserves space to limit layout shift.
-// The label follows the ad in the HTML so an unfilled ad hides its label too; column-reverse shows
-// the label above the ad.
-.article-ad
+// Fixed ad slots on posts, sidebar, and feeds (scripts/article-ads.js). Slots reserve space to
+// limit layout shift. The label follows the ad in the HTML so an unfilled ad hides its label too;
+// column-reverse shows the label above the ad. Outer .site-ad wrappers keep 0 padding/margin so
+// unfilled cards collapse completely with plain CSS sibling selectors.
+.article-ad,
+.site-ad
   display flex
   flex-direction column-reverse
-  margin 2em 0
   overflow hidden
   ins.adsbygoogle
+    width 100%
     min-height 120px
     &[data-ad-status="unfilled"]
       display none !important
       & + .article-ad-label
-        display none
+        display none !important
+
+.article-ad
+  margin 2em 0
 
 .article-ad--article ins.adsbygoogle
   min-height 200px
+
+.site-ad--feed
+  margin 0
+  padding 0
+  background transparent
+  .article-ad-label
+    background #fff
+    border-radius 10px 10px 0 0
+    padding 12px 0 4px
+    margin-bottom 0
+    @media screen and (max-width: 600px)
+      border-radius 0
+  ins.adsbygoogle
+    box-sizing border-box
+    background #fff
+    border-radius 0 0 10px 10px
+    padding 4px 0 16px
+    margin-bottom 30px
+    box-shadow 0 2px 6px rgba(0, 0, 0, 0.04)
+    @media screen and (max-width: 600px)
+      border-radius 0
 
 .article-ad-label
   font-size 11px

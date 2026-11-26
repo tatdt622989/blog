@@ -1689,7 +1689,8 @@ article .related-posts .related-post-info .related-post-date {
   margin-top: auto;
   line-height: 1;
 }
-.article-ad {
+.article-ad,
+.site-ad {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -1705,20 +1706,58 @@ article .related-posts .related-post-info .related-post-date {
   -webkit-flex-direction: column-reverse;
   -ms-flex-direction: column-reverse;
   flex-direction: column-reverse;
-  margin: 2em 0;
   overflow: hidden;
 }
-.article-ad ins.adsbygoogle {
+.article-ad ins.adsbygoogle,
+.site-ad ins.adsbygoogle {
+  width: 100%;
   min-height: 120px;
 }
-.article-ad ins.adsbygoogle[data-ad-status="unfilled"] {
+.article-ad ins.adsbygoogle[data-ad-status="unfilled"],
+.site-ad ins.adsbygoogle[data-ad-status="unfilled"] {
   display: none !important;
 }
-.article-ad ins.adsbygoogle[data-ad-status="unfilled"] + .article-ad-label {
-  display: none;
+.article-ad ins.adsbygoogle[data-ad-status="unfilled"] + .article-ad-label,
+.site-ad ins.adsbygoogle[data-ad-status="unfilled"] + .article-ad-label {
+  display: none !important;
+}
+.article-ad {
+  margin: 2em 0;
 }
 .article-ad--article ins.adsbygoogle {
   min-height: 200px;
+}
+.site-ad--feed {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+.site-ad--feed .article-ad-label {
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 12px 0 4px;
+  margin-bottom: 0;
+}
+@media screen and (max-width: 600px) {
+  .site-ad--feed .article-ad-label {
+    border-radius: 0;
+  }
+}
+.site-ad--feed ins.adsbygoogle {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  padding: 4px 0 16px;
+  margin-bottom: 30px;
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+@media screen and (max-width: 600px) {
+  .site-ad--feed ins.adsbygoogle {
+    border-radius: 0;
+  }
 }
 .article-ad-label {
   font-size: 11px;
@@ -1978,6 +2017,32 @@ article .related-posts .related-post-info .related-post-date {
 }
 #sidebar .search {
   margin-bottom: 30px;
+}
+#sidebar .site-ad--sidebar {
+  background: transparent;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+#sidebar .site-ad--sidebar .article-ad-label {
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 0 4px;
+  margin-bottom: 0;
+}
+#sidebar .site-ad--sidebar ins.adsbygoogle {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  padding: 4px 0 12px;
+  margin-bottom: 30px;
+  min-height: 250px;
+}
+@media screen and (max-width: 900px) {
+  #sidebar .site-ad--sidebar ins.adsbygoogle {
+    min-height: 120px;
+  }
 }
 #sidebar .tag small {
   margin-left: 15px;

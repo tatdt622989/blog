@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -341,7 +347,7 @@
 <p>Potential uses of a persistent agent include tracking progress, waiting for external replies, resuming work, and notifying a user. These are plausible scenarios for the product category, not confirmed o features. An email suffix suggests an email identity but does not establish permission to read or send messages.</p>
 <p>Unresolved operating details include whether work continues after the computer is turned off, how failures are recovered, how spending accumulates, and when permission is required to send mail or modify external data. These determine the tasks that can be delegated. Unlimited continuous execution has not been established.</p>
 <p>An identifiable product, delegation interface, task lifecycle, notification method, permissions, and eligibility would establish what has been announced. A vision statement without a product or demonstration would leave the rumor unresolved. The relationship to Aeon and any email identity, memory, or scheduling features require separate confirmation.</p>
-<h2 id="3-Ultrafast-faster-inference-for-more-developers"><a href="#3-Ultrafast-faster-inference-for-more-developers" class="headerlink" title="3. Ultrafast: faster inference for more developers"></a>3. Ultrafast: faster inference for more developers</h2><p>OpenAI <a target="_blank" rel="noopener" href="https://openai.com/index/previewing-ultrafast/">previewed Cerebras-powered GPT-5.6 Sol Ultrafast on August 13</a>. The new <a target="_blank" rel="noopener" href="https://www.testingcatalog.com/openai-prepares-to-expand-ultrafast-api-to-more-users/">TestingCatalog report</a> concerns a Playground speed selector. The current rumor concerns broader access or another entry point.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="3-Ultrafast-faster-inference-for-more-developers"><a href="#3-Ultrafast-faster-inference-for-more-developers" class="headerlink" title="3. Ultrafast: faster inference for more developers"></a>3. Ultrafast: faster inference for more developers</h2><p>OpenAI <a target="_blank" rel="noopener" href="https://openai.com/index/previewing-ultrafast/">previewed Cerebras-powered GPT-5.6 Sol Ultrafast on August 13</a>. The new <a target="_blank" rel="noopener" href="https://www.testingcatalog.com/openai-prepares-to-expand-ultrafast-api-to-more-users/">TestingCatalog report</a> concerns a Playground speed selector. The current rumor concerns broader access or another entry point.</p>
 <p>The existing preview and new interface clues support a broader rollout. That could mean another Playground entry point or expanded eligibility. The evidence does not establish that every GPT-6 model will support the same speed tier.</p>
 <p>Shorter reasoning cycles can reduce waiting across a long task. Browser loads, external APIs, tests, and human approval still contribute to completion time. Output-token throughput covers only part of the workflow; an end-to-end comparison needs the same task, quality requirements, and a record of total cost.</p>
 <p>A broader rollout needs an actual change in eligibility, interface access, or availability. Models, account types, regions, pricing, and rate limits should be checked together. Replaying the existing preview would not establish expansion, and an interface option could still depend on restricted backend eligibility.</p>
@@ -349,7 +355,7 @@
 <p>The reported plan names correspond to experimentation, prototyping, and production. Further integration of execution environments, budgets, and monitoring could reduce setup work. That is an analysis of the possible product direction, not an announced feature list.</p>
 <p>Full application hosting remains an open question. Domains, databases, durable storage, and secrets management would all need an answer before a team could rely on the platform for a production service.</p>
 <p>An official plan page, billing rules, or a usable new development flow would confirm the platform change. Full application hosting separately requires domains, storage, deployment, and public-serving capabilities. An agent sandbox, workshop, or demonstration of an existing platform would not establish that larger hosting claim.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="5-Chat-and-Work-a-possible-interface-update"><a href="#5-Chat-and-Work-a-possible-interface-update" class="headerlink" title="5. Chat and Work: a possible interface update"></a>5. Chat and Work: a possible interface update</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wr52pw/openai_devday_leaks_ultrafast_around_750_tokenss/">A September 26 Reddit thread</a> discusses Sol in Chat and a merging of product experiences. Other commenters challenge the list as wishful thinking. The details of any redesign remain unconfirmed.</p>
+<h2 id="5-Chat-and-Work-a-possible-interface-update"><a href="#5-Chat-and-Work-a-possible-interface-update" class="headerlink" title="5. Chat and Work: a possible interface update"></a>5. Chat and Work: a possible interface update</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wr52pw/openai_devday_leaks_ultrafast_around_750_tokenss/">A September 26 Reddit thread</a> discusses Sol in Chat and a merging of product experiences. Other commenters challenge the list as wishful thinking. The details of any redesign remain unconfirmed.</p>
 <p>The <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">official Sol and Luna announcement</a> initially makes them available in Work and Codex, explicitly excluding Chat at that point. An expansion is a reasonable possibility, without an event-specific commitment.</p>
 <p>An integrated interface could keep task submission, progress, and results in one place as a conversation becomes a longer assignment. Automatic mode selection, manual overrides, and the future arrangement of standalone Codex tools remain unspecified.</p>
 <p>The model menu, Chat and Work entry points, and task-creation flow can be compared after the event. Sol entering Chat would be an availability change; a renamed interface would require checking for an actual workflow change. Discontinuation of standalone Codex tools, account consolidation, or data migration each needs its own official basis.</p>
@@ -361,7 +367,7 @@
 <p>A model preview in this group is assessed as low likelihood because no official model page or release date ties these names to DevDay. Completed pretraining could still leave post-training, evaluations, capacity planning, and product integration before a usable release.</p>
 <p>Astra Minor and 6.1 still lack clear product descriptions, while the Bel discussion is closer to a report about research progress. There is insufficient detail to establish a separate product identity, price, capability set, or release date for each name, so they are treated as one group of weakly supported model rumors.</p>
 <p>This item covers an official preview of at least one new general-purpose model from the group, with an identifiable name and new capabilities. Repeating a Sol or Luna demonstration would not qualify. Research progress without a product identity should be recorded as research, while any pricing or benchmark claims need their own evidence.</p>
-<h2 id="8-Open-weights-hopes-for-a-gpt-oss-follow-up"><a href="#8-Open-weights-hopes-for-a-gpt-oss-follow-up" class="headerlink" title="8. Open weights: hopes for a gpt-oss follow-up"></a>8. Open weights: hopes for a gpt-oss follow-up</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wnkzxy/what_are_your_predictions_for_openai_devday/">Community predictions</a> include new open weights, while OpenAI <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-gpt-oss/">released gpt-oss in 2025</a>. An existing open-weight product cannot establish this event’s release schedule.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="8-Open-weights-hopes-for-a-gpt-oss-follow-up"><a href="#8-Open-weights-hopes-for-a-gpt-oss-follow-up" class="headerlink" title="8. Open weights: hopes for a gpt-oss follow-up"></a>8. Open weights: hopes for a gpt-oss follow-up</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wnkzxy/what_are_your_predictions_for_openai_devday/">Community predictions</a> include new open weights, while OpenAI <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-gpt-oss/">released gpt-oss in 2025</a>. An existing open-weight product cannot establish this event’s release schedule.</p>
 <p>A new open-weight release is assessed as low likelihood, with little evidence connecting it to this event. Potential benefits concern local deployment, customization, and control over inference costs. Licensing, hardware requirements, and access to weights would determine practical adoption.</p>
 <p>A specific model introduction, a way to obtain weights, or a concrete model preview would establish the announcement. Commercial licensing, hardware needs, and quantized versions would affect deployment choices. Open-source SDKs, tools, and tutorials should be recorded separately from model-weight releases.</p>
 <h2 id="9-Sora-3-few-concrete-clues-so-far"><a href="#9-Sora-3-few-concrete-clues-so-far" class="headerlink" title="9. Sora 3: few concrete clues so far"></a>9. Sora 3: few concrete clues so far</h2><p>Sora 3 appears in the <a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wnkzxy/what_are_your_predictions_for_openai_devday/">community prediction thread</a>. The reviewed material contains no direct evidence tying that version to this event.</p>
@@ -548,6 +554,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -561,6 +568,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -608,6 +618,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -659,6 +670,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

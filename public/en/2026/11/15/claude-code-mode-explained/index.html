@@ -39,13 +39,13 @@
   
   <meta property="article:tag" content="JavaScript" />
   
-  <meta property="article:tag" content="AI" />
-  
   <meta property="article:tag" content="Claude Code" />
   
   <meta property="article:tag" content="AI Agent" />
   
   <meta property="article:tag" content="Developer Tools" />
+  
+  <meta property="article:tag" content="AI" />
   
   <meta property="article:tag" content="Claude" />
   
@@ -57,7 +57,7 @@
   <meta name="twitter:description" content="See how Claude Code&#39;s experimental Code Mode writes JavaScript to batch tool calls, cut latency, and save tokens, with setup and limits.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/cover.jpg?v=55fc8ee2">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/","url":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/","headline":"What Is Claude Code's Code Mode? How Writing Scripts Cuts AI Tool Overhead","description":"See how Claude Code's experimental Code Mode writes JavaScript to batch tool calls, cut latency, and save tokens, with setup and limits.","datePublished":"2026-11-15T07:04:56.000Z","dateModified":"2026-11-15T07:04:56.000Z","inLanguage":"en","articleSection":"AI Tools","keywords":"JavaScript, AI, Claude Code, AI Agent, Developer Tools, Claude, Anthropic","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/","url":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/","headline":"What Is Claude Code's Code Mode? How Writing Scripts Cuts AI Tool Overhead","description":"See how Claude Code's experimental Code Mode writes JavaScript to batch tool calls, cut latency, and save tokens, with setup and limits.","datePublished":"2026-11-15T07:04:56.000Z","dateModified":"2026-11-15T07:04:56.000Z","inLanguage":"en","articleSection":"AI Tools","keywords":"JavaScript, Claude Code, AI Agent, Developer Tools, AI, Claude, Anthropic","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI Tools","item":"https://blog.6yuwei.com/en/categories/AI-Tools/"},{"@type":"ListItem","position":3,"name":"What Is Claude Code's Code Mode? How Writing Scripts Cuts AI Tool Overhead","item":"https://blog.6yuwei.com/en/2026/11/15/claude-code-mode-explained/"}]}</script>
   
@@ -91,14 +91,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -123,7 +129,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -339,7 +345,7 @@ flowchart TD
 <h2 id="Does-It-Clutter-the-Terminal-Press-Ctrl-O-to-Peek-Under-the-Hood"><a href="#Does-It-Clutter-the-Terminal-Press-Ctrl-O-to-Peek-Under-the-Hood" class="headerlink" title="Does It Clutter the Terminal? Press Ctrl + O to Peek Under the Hood"></a>Does It Clutter the Terminal? Press Ctrl + O to Peek Under the Hood</h2><p>Hearing that Claude writes JavaScript for every multi-step action can raise a natural worry: will the terminal turn into an unreadable wall of generated glue scripts?</p>
 <p>In practice, the main conversation stays clean. <strong>Code Mode</strong> tucks the underlying script away in the standard chat view and surfaces the familiar high-level results—such as clean file diffs—just as before.</p>
 <p>Whenever you want to inspect the exact JavaScript Claude generated and ran, press <strong>Ctrl + O</strong> to open the transcript viewer. Each script execution appears as a collapsed <strong>Code</strong> row that you can expand anytime to audit what happened. For more terminal workflow shortcuts, see <a href="/en/2026/10/14/claude-code-fun-commands/">Fun Claude Code Commands</a>.</p>
-<h2 id="How-to-Enable-or-Disable-Code-Mode-and-Why-Repo-Configs-Cannot-Turn-It-On"><a href="#How-to-Enable-or-Disable-Code-Mode-and-Why-Repo-Configs-Cannot-Turn-It-On" class="headerlink" title="How to Enable or Disable Code Mode (and Why Repo Configs Cannot Turn It On)"></a>How to Enable or Disable Code Mode (and Why Repo Configs Cannot Turn It On)</h2><p>Because <strong>Code Mode</strong> is experimental and opt-in, it is <strong>off by default</strong>. You can test it for a single terminal launch or enable it globally in your user profile:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="How-to-Enable-or-Disable-Code-Mode-and-Why-Repo-Configs-Cannot-Turn-It-On"><a href="#How-to-Enable-or-Disable-Code-Mode-and-Why-Repo-Configs-Cannot-Turn-It-On" class="headerlink" title="How to Enable or Disable Code Mode (and Why Repo Configs Cannot Turn It On)"></a>How to Enable or Disable Code Mode (and Why Repo Configs Cannot Turn It On)</h2><p>Because <strong>Code Mode</strong> is experimental and opt-in, it is <strong>off by default</strong>. You can test it for a single terminal launch or enable it globally in your user profile:</p>
 <h3 id="Option-1-Try-It-for-One-Terminal-Session"><a href="#Option-1-Try-It-for-One-Terminal-Session" class="headerlink" title="Option 1: Try It for One Terminal Session"></a>Option 1: Try It for One Terminal Session</h3><p>Pass the environment variable when launching <strong>Claude Code</strong> so everything resets once you close the terminal:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 claude</span><br></pre></td></tr></table></figure>
 
@@ -378,7 +384,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/en/tags/JavaScript/">JavaScript</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Claude-Code/">Claude Code</a>, <a href="/en/tags/AI-Agent/">AI Agent</a>, <a href="/en/tags/Developer-Tools/">Developer Tools</a>, <a href="/en/tags/Claude/">Claude</a>, <a href="/en/tags/Anthropic/">Anthropic</a>
+    <a href="/en/tags/JavaScript/">JavaScript</a>, <a href="/en/tags/Claude-Code/">Claude Code</a>, <a href="/en/tags/AI-Agent/">AI Agent</a>, <a href="/en/tags/Developer-Tools/">Developer Tools</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Claude/">Claude</a>, <a href="/en/tags/Anthropic/">Anthropic</a>
   </div>
 
         
@@ -449,7 +455,7 @@ flowchart TD
         <a href="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/" class="related-post-link"
            data-rel-title="Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis"
            data-rel-path="/en/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/"
-           data-rel-tag="AI"
+           data-rel-tag="Claude Code"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -458,7 +464,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">Claude Code</span>
             
             <h4 class="related-post-item-title">Claude Opus 5.5 Launch: AA Leadership, Pricing, and Benchmark Analysis</h4>
             
@@ -472,7 +478,7 @@ flowchart TD
         <a href="/en/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/" class="related-post-link"
            data-rel-title="Claude Fable 5.2 Explained: Pricing, Benchmarks, and How It Compares With Opus 5.5"
            data-rel-path="/en/2026/11/10/claude-fable-5-2-pricing-benchmarks-analysis/"
-           data-rel-tag="AI"
+           data-rel-tag="Claude Code"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -481,7 +487,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">Claude Code</span>
             
             <h4 class="related-post-item-title">Claude Fable 5.2 Explained: Pricing, Benchmarks, and How It Compares With Opus 5.5</h4>
             
@@ -526,6 +532,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -539,6 +546,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -586,6 +596,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -637,6 +648,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

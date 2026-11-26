@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -533,7 +539,7 @@ flowchart TD
 </blockquote>
 <p><strong>測試實際跑通的客觀結果，永遠高於 AI 在文字上所聲稱的信心。</strong></p>
 <hr>
-<h2 id="結構化產物層（Evidence-x2F-Artifact-Layer）"><a href="#結構化產物層（Evidence-x2F-Artifact-Layer）" class="headerlink" title="結構化產物層（Evidence &#x2F; Artifact Layer）"></a>結構化產物層（Evidence &#x2F; Artifact Layer）</h2><p>在各個 Agent 與階段之間，<strong>嚴禁依賴模糊的自然語言耳語</strong>（例如「上一隻 AI 跟我說它已經完成了」）。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="結構化產物層（Evidence-x2F-Artifact-Layer）"><a href="#結構化產物層（Evidence-x2F-Artifact-Layer）" class="headerlink" title="結構化產物層（Evidence &#x2F; Artifact Layer）"></a>結構化產物層（Evidence &#x2F; Artifact Layer）</h2><p>在各個 Agent 與階段之間，<strong>嚴禁依賴模糊的自然語言耳語</strong>（例如「上一隻 AI 跟我說它已經完成了」）。</p>
 <p>跨階段傳遞的必須是標準化的檔案產物（Artifacts）：</p>
 <ul>
 <li><strong>requirements.json</strong>：經過 Intake 階段正規化後的邊界條件與驗收標準。</li>
@@ -710,6 +716,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -723,6 +730,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -774,6 +784,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -825,6 +836,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

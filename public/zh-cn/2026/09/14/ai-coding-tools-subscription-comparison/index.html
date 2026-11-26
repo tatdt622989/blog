@@ -39,9 +39,9 @@
   
   <meta property="article:tag" content="AI" />
   
-  <meta property="article:tag" content="Codex" />
-  
   <meta property="article:tag" content="Claude Code" />
+  
+  <meta property="article:tag" content="Codex" />
   
   <meta property="article:tag" content="Cursor" />
   
@@ -55,7 +55,7 @@
   <meta name="twitter:description" content="2026 年 11 月 AI 编程订阅对比：Copilot Pro 10 美元最便宜，Claude Code 和 Codex 都是 20 美元起，Claude Max 20× 已更名 Ultra 并取消 5 小时上限，Cursor 改为 X 订阅。一张表看清各套餐月费、额度和按预算怎么选最划算。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg?v=d90bbbdb">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/","url":"https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/","headline":"AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度","description":"2026 年 11 月 AI 编程订阅对比：Copilot Pro 10 美元最便宜，Claude Code 和 Codex 都是 20 美元起，Claude Max 20× 已更名 Ultra 并取消 5 小时上限，Cursor 改为 X 订阅。一张表看清各套餐月费、额度和按预算怎么选最划算。","datePublished":"2026-09-13T17:45:00.000Z","dateModified":"2026-11-03T04:00:00.000Z","inLanguage":"zh-CN","articleSection":"AI","keywords":"AI, Codex, Claude Code, Cursor, ChatGPT, GitHub Copilot","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/","url":"https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/","headline":"AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度","description":"2026 年 11 月 AI 编程订阅对比：Copilot Pro 10 美元最便宜，Claude Code 和 Codex 都是 20 美元起，Claude Max 20× 已更名 Ultra 并取消 5 小时上限，Cursor 改为 X 订阅。一张表看清各套餐月费、额度和按预算怎么选最划算。","datePublished":"2026-09-13T17:45:00.000Z","dateModified":"2026-11-03T04:00:00.000Z","inLanguage":"zh-CN","articleSection":"AI","keywords":"AI, Claude Code, Codex, Cursor, ChatGPT, GitHub Copilot","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/zh-cn/categories/AI/"},{"@type":"ListItem","position":3,"name":"AI 编程订阅对比 2026：Claude Code、Codex、Cursor、Copilot 价格与额度","item":"https://blog.6yuwei.com/zh-cn/2026/09/14/ai-coding-tools-subscription-comparison/"}]}</script>
   
@@ -89,14 +89,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -121,7 +127,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -369,7 +375,7 @@
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/Claude-Code/">Claude Code</a>, <a href="/zh-cn/tags/Cursor/">Cursor</a>, <a href="/zh-cn/tags/ChatGPT/">ChatGPT</a>, <a href="/zh-cn/tags/GitHub-Copilot/">GitHub Copilot</a>
+    <a href="/zh-cn/tags/AI/">AI</a>, <a href="/zh-cn/tags/Claude-Code/">Claude Code</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/Cursor/">Cursor</a>, <a href="/zh-cn/tags/ChatGPT/">ChatGPT</a>, <a href="/zh-cn/tags/GitHub-Copilot/">GitHub Copilot</a>
   </div>
 
         
@@ -517,6 +523,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -530,6 +537,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -577,6 +587,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -628,6 +639,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -87,14 +87,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -119,7 +125,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -277,7 +283,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pplx-decider-v1.2&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;answers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;route_action&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;choice&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;choice&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hold&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.61</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;scale_up&quot;</span><span class="punctuation">:</span> <span class="number">0.18</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;hold&quot;</span><span class="punctuation">:</span> <span class="number">0.74</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;throttle&quot;</span><span class="punctuation">:</span> <span class="number">0.08</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>A single request typically supports 64 to 128 questions at once, with 2 to 255 options per question. You can pack every sub-decision in your pipeline into one payload, amortizing the <strong>state</strong> input tokens across dozens of simultaneous evaluations.</p>
-<h2 id="Complete-2026-Comparison-of-17-Specialized-AI-Decision-Models"><a href="#Complete-2026-Comparison-of-17-Specialized-AI-Decision-Models" class="headerlink" title="Complete 2026 Comparison of 17 Specialized AI Decision Models"></a>Complete 2026 Comparison of 17 Specialized AI Decision Models</h2><p>Excluding general-purpose chat models, here are the 17 dedicated decision models available across <strong>native vendor endpoints</strong>, <strong>Vercel AI Gateway</strong>, <strong>OpenRouter</strong>, <strong>Cloudflare Workers AI</strong>, and <strong>self-hosted &#x2F; local Apple Silicon</strong> (pricing verified as of October 25, 2026):</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Complete-2026-Comparison-of-17-Specialized-AI-Decision-Models"><a href="#Complete-2026-Comparison-of-17-Specialized-AI-Decision-Models" class="headerlink" title="Complete 2026 Comparison of 17 Specialized AI Decision Models"></a>Complete 2026 Comparison of 17 Specialized AI Decision Models</h2><p>Excluding general-purpose chat models, here are the 17 dedicated decision models available across <strong>native vendor endpoints</strong>, <strong>Vercel AI Gateway</strong>, <strong>OpenRouter</strong>, <strong>Cloudflare Workers AI</strong>, and <strong>self-hosted &#x2F; local Apple Silicon</strong> (pricing verified as of October 25, 2026):</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
@@ -426,14 +432,14 @@
 <td>Sub-1B to 27B SystemOne-compatible family for low-resource self-hosted PoCs</td>
 </tr>
 </tbody></table></div>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="How-Decision-Models-Are-Benchmarked-Three-Industry-Leaderboards"><a href="#How-Decision-Models-Are-Benchmarked-Three-Industry-Leaderboards" class="headerlink" title="How Decision Models Are Benchmarked: Three Industry Leaderboards"></a>How Decision Models Are Benchmarked: Three Industry Leaderboards</h2><p>Traditional LLM benchmarks like MMLU or HumanEval cannot measure single-pass probability calibration. In late 2026, engineering teams rely on three dedicated evaluation suites:</p>
+<h2 id="How-Decision-Models-Are-Benchmarked-Three-Industry-Leaderboards"><a href="#How-Decision-Models-Are-Benchmarked-Three-Industry-Leaderboards" class="headerlink" title="How Decision Models Are Benchmarked: Three Industry Leaderboards"></a>How Decision Models Are Benchmarked: Three Industry Leaderboards</h2><p>Traditional LLM benchmarks like MMLU or HumanEval cannot measure single-pass probability calibration. In late 2026, engineering teams rely on three dedicated evaluation suites:</p>
 <ol>
 <li><strong>Jev Decision Index</strong>: A comprehensive community and Hugging Face leaderboard tracking hundreds of open-weights fine-tunes alongside commercial APIs. Prominent entries include <strong>Fastino Labs’ GLiDE v1.2 (scoring ~71.5)</strong>, alongside <strong>Baseten Mammoth-1 (27B)</strong> and <strong>Perplexity Decider V1.2</strong> forming the frontier tier.</li>
 <li><strong>Artificial Analysis Decision Index (v1.0)</strong>: Built by Artificial Analysis, this benchmark weights four pillars equally (25% each): <strong>Knowledge &amp; Hallucination (AA-Omniscience-Decision)</strong>, <strong>Reasoning (HLE-MultiChoice)</strong>, <strong>Tool Calling (NVIDIA When2Call)</strong>, and <strong>Classification (WildGuardTest)</strong>. Models like <strong>Fastino GLiDE</strong> excel on tool calling (<del>84) and safety classification (</del>95), while <strong>Baseten Mammoth-1 (27B)</strong> (scoring <strong>65.9</strong> overall) and <strong>Liquid d1-ultra</strong> lead composite performance.</li>
 <li><strong>JevBench (by Benchmark Heaven)</strong>: An independent evaluation suite for System One-compatible engines that jointly measures <strong>typed decision accuracy</strong>, <strong>probability calibration</strong> (how closely stated confidence matches empirical accuracy), <strong>P50&#x2F;P95 latency</strong>, and <strong>inference cost</strong> (where <strong>GLiDE</strong>, <strong>Jev</strong>, and Levanto Labs’ <strong>Sage 1.3.0</strong> rank among the top hosted APIs).</li>
 </ol>
 <p>Recent research (such as the <strong>JEVal</strong> study) highlights why architectures evolve: standard single-pass decision models dominate high-throughput pattern matching, but can stumble on arithmetic, date calculations, or multi-hop logic—which motivated architectures like <strong>GLiDE v1.2</strong> with adaptive thinking.</p>
-<h2 id="Deep-Dive-Matching-Each-Decision-Model-to-the-Right-Role"><a href="#Deep-Dive-Matching-Each-Decision-Model-to-the-Right-Role" class="headerlink" title="Deep Dive: Matching Each Decision Model to the Right Role"></a>Deep Dive: Matching Each Decision Model to the Right Role</h2><p>In production architectures, relying on a single model creates a single point of failure in both availability and reasoning bias. Combining multiple heterogeneous decision cores into a voting panel yields far better stability.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Deep-Dive-Matching-Each-Decision-Model-to-the-Right-Role"><a href="#Deep-Dive-Matching-Each-Decision-Model-to-the-Right-Role" class="headerlink" title="Deep Dive: Matching Each Decision Model to the Right Role"></a>Deep Dive: Matching Each Decision Model to the Right Role</h2><p>In production architectures, relying on a single model creates a single point of failure in both availability and reasoning bias. Combining multiple heterogeneous decision cores into a voting panel yields far better stability.</p>
 <h3 id="1-Fastino-GLiDE-v1-2-Adaptive-Reasoning-Thinking-Decision-Model"><a href="#1-Fastino-GLiDE-v1-2-Adaptive-Reasoning-Thinking-Decision-Model" class="headerlink" title="1. Fastino GLiDE v1.2: Adaptive Reasoning Thinking Decision Model"></a>1. Fastino GLiDE v1.2: Adaptive Reasoning Thinking Decision Model</h3><p><a target="_blank" rel="noopener" href="https://fastino.ai/">Fastino Labs</a>‘ <strong>GLiDE v1.2 (Generalized Lightweight Decision Engine, ~28B scale)</strong> performs strongly on the <strong>Jev Decision Index</strong> (71.5) and JevBench (up to 84.5 capability score) because it addresses an important limitation in first-generation models: <strong>pure single-pass evaluation struggles with multi-step math and logic</strong>.</p>
 <p>GLiDE v1.2 introduces an <strong>Adaptive Reasoning</strong> dual-path architecture:</p>
 <ul>
@@ -639,6 +645,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -652,6 +659,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -699,6 +709,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -750,6 +761,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -37,9 +37,9 @@
   <meta property="article:modified_time" content="2026-09-14T08:35:00.000Z" />
   <meta property="article:section" content="AI" />
   
-  <meta property="article:tag" content="Suno" />
-  
   <meta property="article:tag" content="AI" />
+  
+  <meta property="article:tag" content="Suno" />
   
   <meta property="article:tag" content="Indie Game Dev" />
   
@@ -49,7 +49,7 @@
   <meta name="twitter:description" content="A complete guide to Suno v6: exploring Flagship, Wild, and Mini models with multimodal audio inputs, in-place editing, and commercial usage rights.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/cover-v3.jpg?v=a10391a3">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/","url":"https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/","headline":"Suno v6 Released: Three New Models, Multimodal Audio Inputs, and Free Tier Guide","description":"A complete guide to Suno v6: exploring Flagship, Wild, and Mini models with multimodal audio inputs, in-place editing, and commercial usage rights.","datePublished":"2026-09-14T08:35:00.000Z","dateModified":"2026-09-14T08:35:00.000Z","inLanguage":"en","articleSection":"AI","keywords":"Suno, AI, Indie Game Dev","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/cover-v3.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/","url":"https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/","headline":"Suno v6 Released: Three New Models, Multimodal Audio Inputs, and Free Tier Guide","description":"A complete guide to Suno v6: exploring Flagship, Wild, and Mini models with multimodal audio inputs, in-place editing, and commercial usage rights.","datePublished":"2026-09-14T08:35:00.000Z","dateModified":"2026-09-14T08:35:00.000Z","inLanguage":"en","articleSection":"AI","keywords":"AI, Suno, Indie Game Dev","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/cover-v3.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/en/categories/AI/"},{"@type":"ListItem","position":3,"name":"Suno v6 Released: Three New Models, Multimodal Audio Inputs, and Free Tier Guide","item":"https://blog.6yuwei.com/en/2026/09/14/suno-v6-ai-music-models-free-guide/"}]}</script>
   
@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -259,7 +265,7 @@
 <li><strong>Older Models Completely Retired</strong>: The platform has transitioned fully to the v6 architecture. While songs saved in your personal library remain playable, all new generations and extensions now run exclusively on v6 models.</li>
 </ol>
 <hr>
-<h2 id="2-Comparing-the-Three-New-Models-Flagship-Wild-or-Mini"><a href="#2-Comparing-the-Three-New-Models-Flagship-Wild-or-Mini" class="headerlink" title="2. Comparing the Three New Models: Flagship, Wild, or Mini?"></a>2. Comparing the Three New Models: Flagship, Wild, or Mini?</h2><p>Rather than cramming everything into a single model, Suno segmented v6 into three tiers tailored to different production needs:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2-Comparing-the-Three-New-Models-Flagship-Wild-or-Mini"><a href="#2-Comparing-the-Three-New-Models-Flagship-Wild-or-Mini" class="headerlink" title="2. Comparing the Three New Models: Flagship, Wild, or Mini?"></a>2. Comparing the Three New Models: Flagship, Wild, or Mini?</h2><p>Rather than cramming everything into a single model, Suno segmented v6 into three tiers tailored to different production needs:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Suno v6 Model Family</span><br><span class="line">├─ v6 (Flagship)        --&gt; Best sound stability, crystal-clear vocals (Pro / Premier)</span><br><span class="line">├─ v6-wild (Explore)    --&gt; High randomness, gritty experimental textures (Pro / Premier)</span><br><span class="line">└─ v6-mini (Fast)       --&gt; Blazing-fast generation, free for everyone</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-v6-Flagship"><a href="#1-v6-Flagship" class="headerlink" title="1. v6 (Flagship)"></a>1. v6 (Flagship)</h3><p>The primary core model, prioritizing <strong>high stability, clear vocal diction, and complete song structure</strong>.</p>
@@ -281,7 +287,7 @@
 <li><strong>Access</strong>: <strong>Available to everyone (including the Free plan)</strong>.</li>
 </ul>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="3-Hands-On-with-New-Features-Voice-Humming-In-Place-Editing-and-Sampling"><a href="#3-Hands-On-with-New-Features-Voice-Humming-In-Place-Editing-and-Sampling" class="headerlink" title="3. Hands-On with New Features: Voice Humming, In-Place Editing, and Sampling"></a>3. Hands-On with New Features: Voice Humming, In-Place Editing, and Sampling</h2><p>Beyond core sound quality improvements, v6 introduces several practical workflow tools:</p>
+<h2 id="3-Hands-On-with-New-Features-Voice-Humming-In-Place-Editing-and-Sampling"><a href="#3-Hands-On-with-New-Features-Voice-Humming-In-Place-Editing-and-Sampling" class="headerlink" title="3. Hands-On with New Features: Voice Humming, In-Place Editing, and Sampling"></a>3. Hands-On with New Features: Voice Humming, In-Place Editing, and Sampling</h2><p>Beyond core sound quality improvements, v6 introduces several practical workflow tools:</p>
 <h3 id="1-Multimodal-Voice-Input"><a href="#1-Multimodal-Voice-Input" class="headerlink" title="1. Multimodal Voice Input"></a>1. Multimodal Voice Input</h3><p>Musical emotion and groove are notoriously hard to describe with words alone. In v6, you can upload a <strong>Voice Memo</strong> directly:</p>
 <ul>
 <li>Simply hum a melody into your phone or record a few guitar chords and pass it to Suno. It will use that recording as the primary motif, fleshing it out into a full band arrangement or pop track.</li>
@@ -295,7 +301,7 @@
 </ul>
 <h3 id="3-Sampling-and-Remixing"><a href="#3-Sampling-and-Remixing" class="headerlink" title="3. Sampling and Remixing"></a>3. Sampling and Remixing</h3><p>You can now isolate a favorite guitar riff or drum loop directly from an existing song and layer new instruments over it or create a remix, making it easy to build a personalized sound library.</p>
 <hr>
-<h2 id="4-How-the-Free-Trial-Works-Free-Plan-Rules-and-Commercial-Licensing"><a href="#4-How-the-Free-Trial-Works-Free-Plan-Rules-and-Commercial-Licensing" class="headerlink" title="4. How the Free Trial Works: Free Plan Rules and Commercial Licensing"></a>4. How the Free Trial Works: Free Plan Rules and Commercial Licensing</h2><p>Here is a breakdown of what you need to know regarding free usage, limits, and commercial rights:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="4-How-the-Free-Trial-Works-Free-Plan-Rules-and-Commercial-Licensing"><a href="#4-How-the-Free-Trial-Works-Free-Plan-Rules-and-Commercial-Licensing" class="headerlink" title="4. How the Free Trial Works: Free Plan Rules and Commercial Licensing"></a>4. How the Free Trial Works: Free Plan Rules and Commercial Licensing</h2><p>Here is a breakdown of what you need to know regarding free usage, limits, and commercial rights:</p>
 <h3 id="1-Active-Free-Trial-Currently-Open"><a href="#1-Active-Free-Trial-Currently-Open" class="headerlink" title="1. Active Free Trial Currently Open"></a>1. Active Free Trial Currently Open</h3><p>Following the September 9, 2026 launch, Suno opened an <strong>active free trial promotion</strong> to let everyone test the new architecture. Once you log in, you can generate tracks with the new models for free. If you have not subscribed yet, now is the perfect time to jump in and try it.</p>
 <h3 id="2-Standard-Free-Plan-Rules"><a href="#2-Standard-Free-Plan-Rules" class="headerlink" title="2. Standard Free Plan Rules"></a>2. Standard Free Plan Rules</h3><p>Even after promotional periods, free tier users benefit directly:</p>
 <ul>
@@ -326,7 +332,7 @@
         
   
   <div class="tags">
-    <a href="/en/tags/Suno/">Suno</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Indie-Game-Dev/">Indie Game Dev</a>
+    <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Suno/">Suno</a>, <a href="/en/tags/Indie-Game-Dev/">Indie Game Dev</a>
   </div>
 
         
@@ -397,7 +403,7 @@
         <a href="/en/2026/08/27/indie-game-ai-audio-workflow/" class="related-post-link"
            data-rel-title="A Practical AI Game Audio Workflow: Local SFX and Suno BGM"
            data-rel-path="/en/2026/08/27/indie-game-ai-audio-workflow/"
-           data-rel-tag="Suno"
+           data-rel-tag="AI"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -406,7 +412,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">Suno</span>
+              <span class="related-post-tag">AI</span>
             
             <h4 class="related-post-item-title">A Practical AI Game Audio Workflow: Local SFX and Suno BGM</h4>
             
@@ -474,6 +480,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -487,6 +494,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -534,6 +544,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -585,6 +596,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

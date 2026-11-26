@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -296,7 +302,7 @@
 </tbody></table></div>
 <p>If <strong>&#x2F;list-agents</strong> is not recognized, the session lacks cross-session messaging, so update first. The <strong>Peer address</strong> row in <strong>&#x2F;status</strong> shows the session’s inbox; <strong>unavailable</strong> means the inbox socket could not be created.</p>
 <p>For more session commands (interjecting, rewinding, scheduled checks), see <a href="/en/2026/10/14/claude-code-fun-commands/">Claude Code fun commands</a>.</p>
-<h2 id="Get-Notified-When-Another-Session-Finishes"><a href="#Get-Notified-When-Another-Session-Finishes" class="headerlink" title="Get Notified When Another Session Finishes"></a>Get Notified When Another Session Finishes</h2><p>While waiting on a long task, ask Claude for a one-time notice when the other session next goes idle or exits:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Get-Notified-When-Another-Session-Finishes"><a href="#Get-Notified-When-Another-Session-Finishes" class="headerlink" title="Get Notified When Another Session Finishes"></a>Get Notified When Another Session Finishes</h2><p>While waiting on a long task, ask Claude for a one-time notice when the other session next goes idle or exits:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tell me when the migration session finishes what it&#x27;s working on</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -311,7 +317,7 @@
 <li><strong>Usage</strong>: a delivered message counts toward the receiver’s usage like a prompt you type.</li>
 <li><strong>Limits</strong>: plain text only; same-machine messages are capped at roughly one million characters; rapid bursts are refused at the sender; the receiver queues at most 50 messages, so message loops throttle themselves.</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Same-Machine-vs-Other-Machines"><a href="#Same-Machine-vs-Other-Machines" class="headerlink" title="Same Machine vs. Other Machines"></a>Same Machine vs. Other Machines</h2><div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
+<h2 id="Same-Machine-vs-Other-Machines"><a href="#Same-Machine-vs-Other-Machines" class="headerlink" title="Same Machine vs. Other Machines"></a>Same Machine vs. Other Machines</h2><div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>Where the other session runs</th>
@@ -346,7 +352,7 @@
 <li>A session marked <strong>can’t receive cross-session messages</strong> is never sent to; the result begins with <strong>Not sent</strong>.</li>
 <li>Cross-machine messages pass through servers, so keep API keys, passwords, and personal data out of them.</li>
 </ul>
-<h2 id="Permission-Settings-Inbound-Mode-Cross-Machine-Approval-Off-Switch"><a href="#Permission-Settings-Inbound-Mode-Cross-Machine-Approval-Off-Switch" class="headerlink" title="Permission Settings: Inbound Mode, Cross-Machine Approval, Off Switch"></a>Permission Settings: Inbound Mode, Cross-Machine Approval, Off Switch</h2><p><strong>Inbound mode, crossSessionInbound</strong> (also in <strong>&#x2F;config</strong> under <strong>Messages from your other sessions</strong>, v2.1.232+):</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Permission-Settings-Inbound-Mode-Cross-Machine-Approval-Off-Switch"><a href="#Permission-Settings-Inbound-Mode-Cross-Machine-Approval-Off-Switch" class="headerlink" title="Permission Settings: Inbound Mode, Cross-Machine Approval, Off Switch"></a>Permission Settings: Inbound Mode, Cross-Machine Approval, Off Switch</h2><p><strong>Inbound mode, crossSessionInbound</strong> (also in <strong>&#x2F;config</strong> under <strong>Messages from your other sessions</strong>, v2.1.232+):</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="Table, scroll horizontally for more columns" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -606,6 +612,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -619,6 +626,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -666,6 +676,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -717,6 +728,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

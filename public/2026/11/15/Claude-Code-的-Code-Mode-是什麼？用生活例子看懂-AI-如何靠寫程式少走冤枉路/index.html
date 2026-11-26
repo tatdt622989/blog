@@ -91,14 +91,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -123,7 +129,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -339,7 +345,7 @@ flowchart TD
 <h2 id="開啟後畫面會變亂嗎？用-Ctrl-O-偷看背後的程式碼"><a href="#開啟後畫面會變亂嗎？用-Ctrl-O-偷看背後的程式碼" class="headerlink" title="開啟後畫面會變亂嗎？用 Ctrl + O 偷看背後的程式碼"></a>開啟後畫面會變亂嗎？用 Ctrl + O 偷看背後的程式碼</h2><p>很多人聽到「AI 每次動作都改寫一段 JavaScript 來跑」，第一個擔心就是：「那我的終端機對話畫面會不會被滿滿的程式碼洗版？」</p>
 <p>實際上完全不會。在預設的主對話介面中，<strong>Code Mode</strong> 會把原始腳本收起來，畫面上依然只顯示高階且清爽的工具互動結果——例如你原本就習慣看到的檔案變更差異（Diff）。</p>
 <p>如果你對 Claude 背後到底寫了什麼腳本感到好奇、或者想檢查看看它的篩選邏輯對不對，只要按下 <strong>Ctrl + O</strong> 開啟逐字稿檢視器（Transcript Viewer），就會看到每一次執行都以一個收合的 <strong>Code</strong> 列呈現，點開就能完整檢閱當時執行的 JavaScript 程式碼。想要在終端機裡更順手地管理工作階段或插話回溯，也可以搭配這篇 <a href="/2026/10/14/Claude-Code-%E6%9C%89%E8%B6%A3%E6%8C%87%E4%BB%A4%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8F%92%E8%A9%B1%E3%80%81%E5%9B%9E%E6%BA%AF%E3%80%81%E5%AE%9A%E6%99%82%E5%B7%A1%E6%9F%A5%E8%88%87%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%BD%A9%E8%9B%8B/">Claude Code 有趣指令指南</a>一起服用。</p>
-<h2 id="如何開啟與關閉-Code-Mode？設定方式與安全邊界"><a href="#如何開啟與關閉-Code-Mode？設定方式與安全邊界" class="headerlink" title="如何開啟與關閉 Code Mode？設定方式與安全邊界"></a>如何開啟與關閉 Code Mode？設定方式與安全邊界</h2><p><strong>Code Mode</strong> 目前仍是實驗性、採自願啟用（Opt-in）的功能，<strong>預設為關閉狀態</strong>。你可以依照想試用的範圍，選擇單次啟動或寫進個人設定：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="如何開啟與關閉-Code-Mode？設定方式與安全邊界"><a href="#如何開啟與關閉-Code-Mode？設定方式與安全邊界" class="headerlink" title="如何開啟與關閉 Code Mode？設定方式與安全邊界"></a>如何開啟與關閉 Code Mode？設定方式與安全邊界</h2><p><strong>Code Mode</strong> 目前仍是實驗性、採自願啟用（Opt-in）的功能，<strong>預設為關閉狀態</strong>。你可以依照想試用的範圍，選擇單次啟動或寫進個人設定：</p>
 <h3 id="方法一：只在這次終端機測試（最推薦先這樣試）"><a href="#方法一：只在這次終端機測試（最推薦先這樣試）" class="headerlink" title="方法一：只在這次終端機測試（最推薦先這樣試）"></a>方法一：只在這次終端機測試（最推薦先這樣試）</h3><p>直接在專案資料夾用環境變數啟動 <strong>Claude Code</strong>，用完關閉終端機就自動恢復預設：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 claude</span><br></pre></td></tr></table></figure>
 
@@ -527,6 +533,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -540,6 +547,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -591,6 +601,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -642,6 +653,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

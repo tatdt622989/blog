@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -323,7 +329,7 @@
 </tr>
 </tbody></table></div>
 <hr>
-<h2 id="一、AI-焦慮與網路生態：當螢幕後的黑幕變成日常詞彙"><a href="#一、AI-焦慮與網路生態：當螢幕後的黑幕變成日常詞彙" class="headerlink" title="一、AI 焦慮與網路生態：當螢幕後的黑幕變成日常詞彙"></a>一、AI 焦慮與網路生態：當螢幕後的黑幕變成日常詞彙</h2><h3 id="1-ドパガキ（どぱがき）"><a href="#1-ドパガキ（どぱがき）" class="headerlink" title="1. ドパガキ（どぱがき）"></a>1. ドパガキ（どぱがき）</h3><ul>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="一、AI-焦慮與網路生態：當螢幕後的黑幕變成日常詞彙"><a href="#一、AI-焦慮與網路生態：當螢幕後的黑幕變成日常詞彙" class="headerlink" title="一、AI 焦慮與網路生態：當螢幕後的黑幕變成日常詞彙"></a>一、AI 焦慮與網路生態：當螢幕後的黑幕變成日常詞彙</h2><h3 id="1-ドパガキ（どぱがき）"><a href="#1-ドパガキ（どぱがき）" class="headerlink" title="1. ドパガキ（どぱがき）"></a>1. ドパガキ（どぱがき）</h3><ul>
 <li><strong>構詞拆解</strong>：<strong>ドーパミン</strong>（Dopamine，多巴胺）加上 <strong>ガキ</strong>（小鬼頭、屁孩）。</li>
 <li><strong>文化脈絡</strong>：原本帶點吐槽意味，用來指稱被短影音、無限滑動、抽卡手遊養壞胃口，只要超過十秒沒有高強度刺激就看不下去的年輕族群。有趣的是，2026 年它很快轉成 Z 世代的<strong>自嘲愛稱</strong>——大家一邊承認自己專注力歸零、連兩倍速電影都嫌慢，一邊笑稱自己是ドパガキ，甚至在 SHIBUYA109 lab 的 2026 趨勢大賞拿下 SNS 迷因部門第 1 名。</li>
 <li><strong>實用例句</strong>：最近ショート動画ばかり見ていて、本を 5 分も読めない。完全に<strong>ドパガキ</strong>になった。（最近都在刷短影音，連書都看不滿五分鐘，完全變成多巴胺小鬼了。）</li>
@@ -345,7 +351,7 @@
 <li><strong>フィジカルAI（ふぃじかるエーアイ）</strong>與 <strong>データセンター（でーたせんたー）</strong>：一邊是具備物理身體、能在家庭餐廳與活動會場自主行動的機器人走進日常；另一邊則是支撐算力的超大型資料中心在東京近郊（特別是千葉縣一帶）密集興建，連帶引爆耗電量、土地集中與水災風險的在地爭論。</li>
 </ul>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="二、Z-世代與社群迷因：教科書絕對找不到的鮮活日文"><a href="#二、Z-世代與社群迷因：教科書絕對找不到的鮮活日文" class="headerlink" title="二、Z 世代與社群迷因：教科書絕對找不到的鮮活日文"></a>二、Z 世代與社群迷因：教科書絕對找不到的鮮活日文</h2><h3 id="5-setlog（セットログ）"><a href="#5-setlog（セットログ）" class="headerlink" title="5. setlog（セットログ）"></a>5. setlog（セットログ）</h3><ul>
+<h2 id="二、Z-世代與社群迷因：教科書絕對找不到的鮮活日文"><a href="#二、Z-世代與社群迷因：教科書絕對找不到的鮮活日文" class="headerlink" title="二、Z 世代與社群迷因：教科書絕對找不到的鮮活日文"></a>二、Z 世代與社群迷因：教科書絕對找不到的鮮活日文</h2><h3 id="5-setlog（セットログ）"><a href="#5-setlog（セットログ）" class="headerlink" title="5. setlog（セットログ）"></a>5. setlog（セットログ）</h3><ul>
 <li><strong>構詞拆解</strong>：韓國發跡的同名 Vlog App，把一天拆成多段時間片段（set）自動記成日誌（log）。</li>
 <li><strong>文化脈絡</strong>：在過度濾鏡與精緻擺拍讓人疲乏的 2026 年，<strong>setlog</strong> 靠一條反直覺的規則爆紅：<strong>每小時只讓你拍大約 2 秒鐘的影片</strong>，到了晚上 App 會自動把一整天的碎片接成一支日常短片。因為根本沒時間挑角度或重拍，反而留住了最粗糙卻真實的生活切片，在日本年輕人之間掀起反修圖風潮。</li>
 <li><strong>實用例句</strong>：加工なしで友達のリアルな一日が見られるから、最近は<strong>セットログ</strong>ばかり見ている。（因為可以看到朋友零修圖的真實一天，最近我都在刷 setlog。）</li>
@@ -369,7 +375,7 @@
 <li><strong>文化脈絡</strong>：像透明糖果一樣立體飽滿、閃亮晶瑩的裝飾貼紙。原本只是小學生在貼紙簿裡互相交換的文具潮流（日文稱 <strong>シル活</strong>），沒想到一路燒回小時候迷過貼紙簿的「平成女童」世代大人圈，引發跨世代搶購缺貨。在一片 AI 與螢幕焦慮之中，這股實體貼紙懷舊潮意外成了最療癒的反差。</li>
 </ul>
 <hr>
-<h2 id="三、日本高物價與日常新規：旅遊前也該認識的三個字"><a href="#三、日本高物價與日常新規：旅遊前也該認識的三個字" class="headerlink" title="三、日本高物價與日常新規：旅遊前也該認識的三個字"></a>三、日本高物價與日常新規：旅遊前也該認識的三個字</h2><h3 id="10-NISA貧乏、だけ弁当與青切符"><a href="#10-NISA貧乏、だけ弁当與青切符" class="headerlink" title="10. NISA貧乏、だけ弁当與青切符"></a>10. NISA貧乏、だけ弁当與青切符</h3><p>如果把鏡頭拉回 2026 年日本人的真實荷包與街頭日常，名單裡還有三個非常接地氣的詞：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="三、日本高物價與日常新規：旅遊前也該認識的三個字"><a href="#三、日本高物價與日常新規：旅遊前也該認識的三個字" class="headerlink" title="三、日本高物價與日常新規：旅遊前也該認識的三個字"></a>三、日本高物價與日常新規：旅遊前也該認識的三個字</h2><h3 id="10-NISA貧乏、だけ弁当與青切符"><a href="#10-NISA貧乏、だけ弁当與青切符" class="headerlink" title="10. NISA貧乏、だけ弁当與青切符"></a>10. NISA貧乏、だけ弁当與青切符</h3><p>如果把鏡頭拉回 2026 年日本人的真實荷包與街頭日常，名單裡還有三個非常接地氣的詞：</p>
 <ul>
 <li><strong>NISA貧乏（ニーサびんぼう）</strong>：日本新 NISA 免稅投資制度掀起全民存股熱，卻有不少人為了塞滿投資額度把薪水幾乎全投進去，搞到月底現金見底、連日常生活都過得緊巴巴。</li>
 <li><strong>だけ弁当（だけべんとう）</strong>：面對物價上漲而爆紅的極簡便當——整盒白飯旁邊<strong>只放單一種配菜</strong>（例如只有香腸、只有玉子燒或只有可樂餅），捨棄配菜多樣性換取極致低價。</li>
@@ -552,6 +558,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -565,6 +572,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -616,6 +626,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -667,6 +678,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

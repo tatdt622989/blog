@@ -81,14 +81,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -113,7 +119,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -289,13 +295,13 @@
 </tbody></table></div>
 <p>簡而言之，<strong>Grok 是你的百科全書，Grok Build 是你的程式碼助手，而 Grok Bot 則是接管你雜務流程的虛擬實習生。</strong></p>
 <hr>
-<h2 id="支撐-Grok-Bot-的-4-大底層架構"><a href="#支撐-Grok-Bot-的-4-大底層架構" class="headerlink" title="支撐 Grok Bot 的 4 大底層架構"></a>支撐 Grok Bot 的 4 大底層架構</h2><p>為什麼 Grok Bot 能做到一般聊天視窗做不到的事？關鍵在於以下 4 個核心架構設計：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="支撐-Grok-Bot-的-4-大底層架構"><a href="#支撐-Grok-Bot-的-4-大底層架構" class="headerlink" title="支撐 Grok Bot 的 4 大底層架構"></a>支撐 Grok Bot 的 4 大底層架構</h2><p>為什麼 Grok Bot 能做到一般聊天視窗做不到的事？關鍵在於以下 4 個核心架構設計：</p>
 <h3 id="1-持久化雲端電腦（Persistent-Cloud-VM）"><a href="#1-持久化雲端電腦（Persistent-Cloud-VM）" class="headerlink" title="1. 持久化雲端電腦（Persistent Cloud VM）"></a>1. 持久化雲端電腦（Persistent Cloud VM）</h3><p>每個 Bot 都是有名稱、可保留記憶與工作狀態的隊友，但<strong>同一帳號下的所有 Bot 共用一台雲端電腦</strong>。檔案、瀏覽器登入狀態與應用程式憑證可能彼此可見，因此不同 Bot 不能當成資安隔離邊界。這種共用設計方便交接工作，也代表敏感資料必須採取最小權限管理。</p>
 <h3 id="2-真人級介面操作（Computer-Use-amp-Direct-GUI）"><a href="#2-真人級介面操作（Computer-Use-amp-Direct-GUI）" class="headerlink" title="2. 真人級介面操作（Computer Use &amp; Direct GUI）"></a>2. 真人級介面操作（Computer Use &amp; Direct GUI）</h3><p>傳統自動化必須仰賴目標網站提供開放 API，但現實中許多企業內部後台、舊版 CRM 或第三方平台根本沒有 API。Grok Bot 具備視覺與介面操作能力，能像真人一樣打開瀏覽器、輸入網址、辨識按鈕位置、點擊連結、下載報表並填寫表單。</p>
 <h3 id="3-示範即學習與常規排程（Teach-by-Demonstration-amp-Routines）"><a href="#3-示範即學習與常規排程（Teach-by-Demonstration-amp-Routines）" class="headerlink" title="3. 示範即學習與常規排程（Teach-by-Demonstration &amp; Routines）"></a>3. 示範即學習與常規排程（Teach-by-Demonstration &amp; Routines）</h3><p>當你有一套每週重複執行的流程時，可以先完成一次任務，再把做法保存成技能與 <strong>Routine（常規任務）</strong>。部分帳號也能使用示範錄製，但這項功能採逐步開放；錄製後產生的是<strong>技能草稿</strong>，仍要補上失敗處理、審核邊界並以安全資料測試，確認後才適合排程。</p>
 <h3 id="4-人機協同安全閘門（Approval-Gates）"><a href="#4-人機協同安全閘門（Approval-Gates）" class="headerlink" title="4. 人機協同安全閘門（Approval Gates）"></a>4. 人機協同安全閘門（Approval Gates）</h3><p>Grok Bot 支援審核提示與 Auto Review 規則，但不能假設所有高風險動作都會自動被攔住。較安全的做法，是在任務中明確寫出停止條件，並為寄信、付款、刪除資料、發布內容及正式環境變更設定 <strong>Require Approval</strong>。Auto Review 仍是輔助工具，不能取代最小權限與人工確認。這種人機協同設計與現代 <a href="/2026/08/24/%E5%91%8A%E5%88%A5-Vibe-Coding%EF%BC%81Agentic-SDLC-%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%BE%9E%E7%8B%80%E6%85%8B%E6%A9%9F%E3%80%81%E9%A9%97%E8%AD%89%E9%96%98%E9%96%80%E5%88%B0%E7%86%B1%E9%96%80%E9%96%8B%E6%BA%90%E5%B0%88%E6%A1%88%E5%AF%A6%E6%88%B0/">Agentic SDLC</a> 所強調的驗證閘門相近。</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="六種值得小規模測試的工作流"><a href="#六種值得小規模測試的工作流" class="headerlink" title="六種值得小規模測試的工作流"></a>六種值得小規模測試的工作流</h2><p>以下是依照官方公開能力整理的可行用法。它們是<strong>工作流範例，不是每個帳號都已完成的實測案例</strong>；正式使用前仍需確認連接器、網站權限與審核設定。</p>
+<h2 id="六種值得小規模測試的工作流"><a href="#六種值得小規模測試的工作流" class="headerlink" title="六種值得小規模測試的工作流"></a>六種值得小規模測試的工作流</h2><p>以下是依照官方公開能力整理的可行用法。它們是<strong>工作流範例，不是每個帳號都已完成的實測案例</strong>；正式使用前仍需確認連接器、網站權限與審核設定。</p>
 <h3 id="用法-1：幕僚長架構（Chief-of-Staff-Multi-Agent-Pattern）"><a href="#用法-1：幕僚長架構（Chief-of-Staff-Multi-Agent-Pattern）" class="headerlink" title="用法 1：幕僚長架構（Chief of Staff Multi-Agent Pattern）"></a>用法 1：幕僚長架構（Chief of Staff Multi-Agent Pattern）</h3><p>官方示範的一種做法，是<strong>不要把所有任務塞給同一個 Bot，而是建立層級分工</strong>：</p>
 <ul>
 <li><strong>幕僚長 Bot（Chief of Staff）</strong>：專門負責接收你的高階指令，負責拆解任務、分派工作給專業子 Bot，並在最後彙整報告。</li>
@@ -333,7 +339,7 @@
 <li><strong>多媒體素材儲備</strong>：定時分析當前發燒話題，呼叫生圖模型生成符合主題的高質感插圖，並整理好文案草稿存入排程發布庫。</li>
 </ul>
 <hr>
-<h2 id="實戰落地必看：3-大避坑指南與安全守則"><a href="#實戰落地必看：3-大避坑指南與安全守則" class="headerlink" title="實戰落地必看：3 大避坑指南與安全守則"></a>實戰落地必看：3 大避坑指南與安全守則</h2><p>在使用 Grok Bot 的自動化能力時，官方文件特別強調以下三項原則：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="實戰落地必看：3-大避坑指南與安全守則"><a href="#實戰落地必看：3-大避坑指南與安全守則" class="headerlink" title="實戰落地必看：3 大避坑指南與安全守則"></a>實戰落地必看：3 大避坑指南與安全守則</h2><p>在使用 Grok Bot 的自動化能力時，官方文件特別強調以下三項原則：</p>
 <h3 id="1-堅持單一職責原則（Narrow-Roles）"><a href="#1-堅持單一職責原則（Narrow-Roles）" class="headerlink" title="1. 堅持單一職責原則（Narrow Roles）"></a>1. 堅持單一職責原則（Narrow Roles）</h3><p>不要試圖建立一個什麼都想管的「全能萬事通 Bot」。將 Bot 的職責範圍窄化（例如「專門審核發票的 Bot」、「專門追蹤競品價格的 Bot」），比較容易檢查它使用的資料、輸出格式與失敗範圍，但仍要透過測試確認可靠性。</p>
 <h3 id="2-遵循「先擬稿、後授權」的安全進程（Read-and-Prepare-First）"><a href="#2-遵循「先擬稿、後授權」的安全進程（Read-and-Prepare-First）" class="headerlink" title="2. 遵循「先擬稿、後授權」的安全進程（Read-and-Prepare First）"></a>2. 遵循「先擬稿、後授權」的安全進程（Read-and-Prepare First）</h3><p>在剛建立新的 Routine 或指派新任務時，先將權限限制為「唯讀、分析與起草」。等觀察幾次執行結果確認完全符合預期後，再逐步開放寫入資料庫、對外發信等實際執行權限。</p>
 <h3 id="3-注意雲端虛擬機的權限邊界"><a href="#3-注意雲端虛擬機的權限邊界" class="headerlink" title="3. 注意雲端虛擬機的權限邊界"></a>3. 注意雲端虛擬機的權限邊界</h3><p>同一帳號底下的多個 Bot <strong>會共用同一台雲端電腦</strong>，包含檔案系統、瀏覽器工作階段與命令列憑證。因此，<strong>切勿在 Bot 的環境中放置高權限的正式環境 API 金鑰或未加密的機密憑證</strong>，也不要用不同 Bot 當作安全隔離方式。</p>
@@ -518,6 +524,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -531,6 +538,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -582,6 +592,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -633,6 +644,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

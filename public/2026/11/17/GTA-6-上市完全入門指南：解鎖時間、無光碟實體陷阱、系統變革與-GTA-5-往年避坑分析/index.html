@@ -87,14 +87,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -119,7 +125,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -304,14 +310,14 @@
 <li><strong>7 個專屬據點</strong>：解鎖 <strong>Rideout Customs</strong> 與 <strong>One-Eyed Willie’s</strong> 改車廠、<strong>Sara’s Unisex Salon</strong> 造型店、<strong>Stock 305</strong> 服飾店、<strong>Electric Fang</strong> 刺青店、<strong>Goodtime Gear</strong> 及 <strong>PTT Youngin$</strong> 黑市據點。</li>
 </ul>
 <p><strong>怎麼買最划算</strong>：對照 <strong>GTA 5</strong> 特別版與 <strong>碧血狂殺 2</strong> 終極版歷史，特典裝備最強勢只在<strong>前 5–10 小時</strong>，中後期多半會被商店頂規品追平。純跑劇情選 <strong>NT$2,320 標準版</strong> 搶免費預購包就很夠，後續有興趣也能單獨補買數位終極升級包。</p>
-<h2 id="硬體規格真相：為什麼連-PS5-Pro-都只跑-30-FPS？"><a href="#硬體規格真相：為什麼連-PS5-Pro-都只跑-30-FPS？" class="headerlink" title="硬體規格真相：為什麼連 PS5 Pro 都只跑 30 FPS？"></a>硬體規格真相：為什麼連 PS5 Pro 都只跑 30 FPS？</h2><p><img src="/2026/11/17/GTA-6-%E4%B8%8A%E5%B8%82%E5%AE%8C%E5%85%A8%E5%85%A5%E9%96%80%E6%8C%87%E5%8D%97%EF%BC%9A%E8%A7%A3%E9%8E%96%E6%99%82%E9%96%93%E3%80%81%E7%84%A1%E5%85%89%E7%A2%9F%E5%AF%A6%E9%AB%94%E9%99%B7%E9%98%B1%E3%80%81%E7%B3%BB%E7%B5%B1%E8%AE%8A%E9%9D%A9%E8%88%87-GTA-5-%E5%BE%80%E5%B9%B4%E9%81%BF%E5%9D%91%E5%88%86%E6%9E%90/hardware-raytracing.jpg?v=498106f3" alt="全主機首發皆目標 30 FPS，PS5 Pro 另搭載 PSSR 升頻、專屬光追陰影與 DualSense 觸覺回饋"></p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="硬體規格真相：為什麼連-PS5-Pro-都只跑-30-FPS？"><a href="#硬體規格真相：為什麼連-PS5-Pro-都只跑-30-FPS？" class="headerlink" title="硬體規格真相：為什麼連 PS5 Pro 都只跑 30 FPS？"></a>硬體規格真相：為什麼連 PS5 Pro 都只跑 30 FPS？</h2><p><img src="/2026/11/17/GTA-6-%E4%B8%8A%E5%B8%82%E5%AE%8C%E5%85%A8%E5%85%A5%E9%96%80%E6%8C%87%E5%8D%97%EF%BC%9A%E8%A7%A3%E9%8E%96%E6%99%82%E9%96%93%E3%80%81%E7%84%A1%E5%85%89%E7%A2%9F%E5%AF%A6%E9%AB%94%E9%99%B7%E9%98%B1%E3%80%81%E7%B3%BB%E7%B5%B1%E8%AE%8A%E9%9D%A9%E8%88%87-GTA-5-%E5%BE%80%E5%B9%B4%E9%81%BF%E5%9D%91%E5%88%86%E6%9E%90/hardware-raytracing.jpg?v=498106f3" alt="全主機首發皆目標 30 FPS，PS5 Pro 另搭載 PSSR 升頻、專屬光追陰影與 DualSense 觸覺回饋"></p>
 <p>包含基本款 <strong>PS5</strong>、<strong>Xbox Series X|S</strong> 甚至 <strong>PS5 Pro</strong>，首發全都目標 <strong>30 FPS</strong>，<strong>沒有 60 FPS 效能模式</strong>。</p>
 <p>根據 <a target="_blank" rel="noopener" href="https://www.eurogamer.net/">Digital Foundry 與 Eurogamer 分析</a>，瓶頸卡在開放世界的 <strong>CPU 模擬極限</strong>：GTA 6 把算力壓在 <strong>即時光線追蹤全域照明（RTGI）</strong>、超高密度人群與車流 AI、水體物理與動態颶風天候，單靠降低解析度無法讓幀數翻倍。</p>
 <ul>
 <li><strong>PS5 Pro 實質優勢</strong>：同樣 30 FPS，但靠 <strong>PSSR</strong> AI 超解析度消除動態模糊與邊緣鋸齒，並擁有基礎機型缺少的 <strong>專屬光追陰影（Ray-traced shadows）</strong>。</li>
 <li><strong>PS5 手把調校提醒</strong>：本作完整支援 <strong>DualSense</strong> 自適應扳機、細膩觸覺回饋與 <strong>Tempest 3D 音效</strong>；打算長時間連玩者，進無障礙設定微調扳機阻力能減少手指疲勞。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="進城前必看：《An-Extended-Look》五大系統變革"><a href="#進城前必看：《An-Extended-Look》五大系統變革" class="headerlink" title="進城前必看：《An Extended Look》五大系統變革"></a>進城前必看：《An Extended Look》五大系統變革</h2><p><img src="/2026/11/17/GTA-6-%E4%B8%8A%E5%B8%82%E5%AE%8C%E5%85%A8%E5%85%A5%E9%96%80%E6%8C%87%E5%8D%97%EF%BC%9A%E8%A7%A3%E9%8E%96%E6%99%82%E9%96%93%E3%80%81%E7%84%A1%E5%85%89%E7%A2%9F%E5%AF%A6%E9%AB%94%E9%99%B7%E9%98%B1%E3%80%81%E7%B3%BB%E7%B5%B1%E8%AE%8A%E9%9D%A9%E8%88%87-GTA-5-%E5%BE%80%E5%B9%B4%E9%81%BF%E5%9D%91%E5%88%86%E6%9E%90/leonida-biomes.jpg?v=6eb4b033" alt="Leonida 州橫跨 Vice City、群島、Grassrivers 沼澤、Port Gellhorn、Ambrosia 與 Mount Kalaga 六大區域"></p>
+<h2 id="進城前必看：《An-Extended-Look》五大系統變革"><a href="#進城前必看：《An-Extended-Look》五大系統變革" class="headerlink" title="進城前必看：《An Extended Look》五大系統變革"></a>進城前必看：《An Extended Look》五大系統變革</h2><p><img src="/2026/11/17/GTA-6-%E4%B8%8A%E5%B8%82%E5%AE%8C%E5%85%A8%E5%85%A5%E9%96%80%E6%8C%87%E5%8D%97%EF%BC%9A%E8%A7%A3%E9%8E%96%E6%99%82%E9%96%93%E3%80%81%E7%84%A1%E5%85%89%E7%A2%9F%E5%AF%A6%E9%AB%94%E9%99%B7%E9%98%B1%E3%80%81%E7%B3%BB%E7%B5%B1%E8%AE%8A%E9%9D%A9%E8%88%87-GTA-5-%E5%BE%80%E5%B9%B4%E9%81%BF%E5%9D%91%E5%88%86%E6%9E%90/leonida-biomes.jpg?v=6eb4b033" alt="Leonida 州橫跨 Vice City、群島、Grassrivers 沼澤、Port Gellhorn、Ambrosia 與 Mount Kalaga 六大區域"></p>
 <p>Rockstar 在 2026 年 8 月 27 日發布的 <strong>27 分鐘</strong> 實機展示 <strong>《Grand Theft Auto VI: An Extended Look》</strong>（先於 Netflix 獨播 6 小時後上架官方頻道，據 <a target="_blank" rel="noopener" href="https://variety.com/">Variety 統計</a> 四天吸睛 3,110 萬次），加上 <a target="_blank" rel="noopener" href="https://www.gamespot.com/">GameSpot 專訪</a> 揭露主線與核心劇情支線約 <strong>80 小時</strong>，五大機制改變了傳統玩法：</p>
 <p><img src="/2026/11/17/GTA-6-%E4%B8%8A%E5%B8%82%E5%AE%8C%E5%85%A8%E5%85%A5%E9%96%80%E6%8C%87%E5%8D%97%EF%BC%9A%E8%A7%A3%E9%8E%96%E6%99%82%E9%96%93%E3%80%81%E7%84%A1%E5%85%89%E7%A2%9F%E5%AF%A6%E9%AB%94%E9%99%B7%E9%98%B1%E3%80%81%E7%B3%BB%E7%B5%B1%E8%AE%8A%E9%9D%A9%E8%88%87-GTA-5-%E5%BE%80%E5%B9%B4%E9%81%BF%E5%9D%91%E5%88%86%E6%9E%90/dual-protagonist-tactics.jpg?v=b42459f6" alt="放棄隨身無限軍火庫改為後車廂配裝，並配合雙主角現場協同、換車與換裝解除警方搜捕"></p>
 <ol>
@@ -321,7 +327,7 @@
 <li><strong>6 星通緝回歸與「空心星」情報</strong>：經典 6 星回歸且星下會顯示罪行圖示。<strong>空心白星</strong>代表警方只在搜查最後目擊區或僅握有模糊特徵（例如「一對男女」），<strong>暗巷換車、換裝甚至雙主角分頭散開</strong>比無腦狂飆更容易消星。</li>
 <li><strong>即時社群生態與日常系統</strong>：街頭事件與追逐戰會即時推播到遊戲內短影音與直播平台；同步回歸健身增肌減脂、與狗互動、高爾夫、撞球、深海潛水與沼澤氣墊船等活動。</li>
 </ol>
-<h2 id="從-GTA-5-與-RDR2-十年歷史看-GTA-6-四大避坑分析"><a href="#從-GTA-5-與-RDR2-十年歷史看-GTA-6-四大避坑分析" class="headerlink" title="從 GTA 5 與 RDR2 十年歷史看 GTA 6 四大避坑分析"></a>從 GTA 5 與 RDR2 十年歷史看 GTA 6 四大避坑分析</h2><p>把 <strong>GTA 5</strong>（截至 2026 年 11 月 <a target="_blank" rel="noopener" href="https://www.take2games.com/">Take-Two 財報</a> 累計出貨近 <strong>2.35 億套</strong>）與 <strong>碧血狂殺 2</strong> 的發售史攤開來看，最關鍵的進場決策與避坑步驟能濃縮成底下這張路徑圖：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="從-GTA-5-與-RDR2-十年歷史看-GTA-6-四大避坑分析"><a href="#從-GTA-5-與-RDR2-十年歷史看-GTA-6-四大避坑分析" class="headerlink" title="從 GTA 5 與 RDR2 十年歷史看 GTA 6 四大避坑分析"></a>從 GTA 5 與 RDR2 十年歷史看 GTA 6 四大避坑分析</h2><p>把 <strong>GTA 5</strong>（截至 2026 年 11 月 <a target="_blank" rel="noopener" href="https://www.take2games.com/">Take-Two 財報</a> 累計出貨近 <strong>2.35 億套</strong>）與 <strong>碧血狂殺 2</strong> 的發售史攤開來看，最關鍵的進場決策與避坑步驟能濃縮成底下這張路徑圖：</p>
 <pre class="mermaid">
 flowchart TD
     classDef plan fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
@@ -533,6 +539,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -546,6 +553,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -597,6 +607,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -648,6 +659,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -37,9 +37,9 @@
   <meta property="article:modified_time" content="2026-10-15T05:20:25.000Z" />
   <meta property="article:section" content="AI 工具" />
   
-  <meta property="article:tag" content="Codex" />
-  
   <meta property="article:tag" content="OpenAI" />
+  
+  <meta property="article:tag" content="Codex" />
   
   <meta property="article:tag" content="ChatGPT" />
   
@@ -51,7 +51,7 @@
   <meta name="twitter:description" content="OpenAI DevDay 2026 会前预测存档，保留常驻智能体 o、Pro Max、Ultrafast、新模型和硬件的十大传闻及原始核查来源。活动已经结束，文首先提供发布汇总入口，方便对照会前预测与正式公告，避免把传闻当作当前产品信息。">
   <meta name="twitter:image" content="https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/cover.jpg?v=529c566b">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/","url":"https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/","headline":"OpenAI DevDay 2026 会前预测存档：十大传闻与发布汇总入口","description":"OpenAI DevDay 2026 会前预测存档，保留常驻智能体 o、Pro Max、Ultrafast、新模型和硬件的十大传闻及原始核查来源。活动已经结束，文首先提供发布汇总入口，方便对照会前预测与正式公告，避免把传闻当作当前产品信息。","datePublished":"2026-09-28T16:18:36.000Z","dateModified":"2026-10-15T05:20:25.000Z","inLanguage":"zh-CN","articleSection":"AI 工具","keywords":"Codex, OpenAI, ChatGPT, DevDay","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/","url":"https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/","headline":"OpenAI DevDay 2026 会前预测存档：十大传闻与发布汇总入口","description":"OpenAI DevDay 2026 会前预测存档，保留常驻智能体 o、Pro Max、Ultrafast、新模型和硬件的十大传闻及原始核查来源。活动已经结束，文首先提供发布汇总入口，方便对照会前预测与正式公告，避免把传闻当作当前产品信息。","datePublished":"2026-09-28T16:18:36.000Z","dateModified":"2026-10-15T05:20:25.000Z","inLanguage":"zh-CN","articleSection":"AI 工具","keywords":"OpenAI, Codex, ChatGPT, DevDay","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/zh-cn/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://blog.6yuwei.com/zh-cn/"},{"@type":"ListItem","position":2,"name":"AI 工具","item":"https://blog.6yuwei.com/zh-cn/categories/AI-%E5%B7%A5%E5%85%B7/"},{"@type":"ListItem","position":3,"name":"OpenAI DevDay 2026 会前预测存档：十大传闻与发布汇总入口","item":"https://blog.6yuwei.com/zh-cn/2026/09/29/openai-devday-2026-rumor-probabilities/"}]}</script>
   
@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -336,7 +342,7 @@
 <p>公开代码已经加入新套餐名称，是这一项排名靠前的主要依据。正式名称、价格、额度和开售日期仍待确认，目前<a target="_blank" rel="noopener" href="https://chatgpt.com/pricing/">官方价格页</a>也尚未列出 Pro Max。代码可以提前部署，实际开放仍可能分批进行。</p>
 <p>对于长任务用户，订阅成本需要连同额度、支持模型和任务完成时间一起比较。响应加快后，外部工具等待和反复修正仍可能占用大量时间。新套餐是否影响老订阅，目前也没有足够资料，需要比对正式规则和账户记录。</p>
 <p>正式公布后，需要核对名称、税前月费、地区、可用模型、速率限制、额度和老订阅迁移规则。代码里的套餐类型只能确认工程准备，正式公告或价格页才能确认销售内容。即使最终名称调整，只要官方清楚公布新的 Pro 分级，仍属于本项范围。</p>
-<h2 id="2-常驻智能体-o：配置和升级页出现线索"><a href="#2-常驻智能体-o：配置和升级页出现线索" class="headerlink" title="2. 常驻智能体 o：配置和升级页出现线索"></a>2. 常驻智能体 o：配置和升级页出现线索</h2><p><a target="_blank" rel="noopener" href="https://www.testingcatalog.com/openai-to-announce-o-always-on-agent-during-devday/">TestingCatalog 9 月 26 日</a>发现 <strong>o</strong>、**-o** 邮件后缀及升级页的常驻助手线索。不过，<strong>o 与 Aeon 是否为同一个产品仍未确定</strong>，Plus 能否使用也尚未公布。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2-常驻智能体-o：配置和升级页出现线索"><a href="#2-常驻智能体-o：配置和升级页出现线索" class="headerlink" title="2. 常驻智能体 o：配置和升级页出现线索"></a>2. 常驻智能体 o：配置和升级页出现线索</h2><p><a target="_blank" rel="noopener" href="https://www.testingcatalog.com/openai-to-announce-o-always-on-agent-during-devday/">TestingCatalog 9 月 26 日</a>发现 <strong>o</strong>、**-o** 邮件后缀及升级页的常驻助手线索。不过，<strong>o 与 Aeon 是否为同一个产品仍未确定</strong>，Plus 能否使用也尚未公布。</p>
 <p>官方 <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-the-agents-api/">Agents API</a>已在 9 月 10 日进入公测，提供 Codex 的智能体运行框架和长任务基础设施。这些基础设施让常驻助手的设想更可行，o 会如何使用它们还有待发布。</p>
 <p>按长任务产品的用途推演，常驻智能体可能承担进度跟踪、等待外部回复、恢复任务和发送通知。这些场景尚未成为 o 的已确认功能。邮件后缀只支持邮件身份相关的推测，无法据此确定收发邮件权限。</p>
 <p>实际使用方式仍有关键空白：电脑关机后是否继续运行、失败后如何恢复、发送邮件或修改外部数据前如何授权，以及费用如何累计。这些细节会影响可以交办的任务范围。目前也没有资料表明它能够不限量持续运行。</p>
@@ -349,7 +355,7 @@
 <p>三种套餐名称对应试用、原型和正式服务阶段。如果平台继续整合执行环境、预算和监控，可能减少开发者在不同设置之间切换的工作；这些属于产品方向分析，尚未构成已公布的功能清单。</p>
 <p>完整应用托管仍未确认。正式服务需要域名、数据库、密钥管理和持久存储，目前的界面线索还看不出这些部分会做到什么程度。</p>
 <p>确认本项需要正式套餐页、计费规则或可操作的新开发流程。应用托管还需单独确认域名、存储、部署和对外连接能力。仅有智能体沙箱，不足以确定完整托管服务；技术课程和旧平台演示也不属于新套餐发布。</p>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="5-Chat-与-Work：聊天和工作模式可能整合"><a href="#5-Chat-与-Work：聊天和工作模式可能整合" class="headerlink" title="5. Chat 与 Work：聊天和工作模式可能整合"></a>5. Chat 与 Work：聊天和工作模式可能整合</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wr52pw/openai_devday_leaks_ultrafast_around_750_tokenss/">9 月 26 日的 Reddit 讨论</a>提到 Sol 进入 Chat、聊天与工作模式整合，也有用户质疑这些说法只是许愿。目前还没有足够资料确认改版内容。</p>
+<h2 id="5-Chat-与-Work：聊天和工作模式可能整合"><a href="#5-Chat-与-Work：聊天和工作模式可能整合" class="headerlink" title="5. Chat 与 Work：聊天和工作模式可能整合"></a>5. Chat 与 Work：聊天和工作模式可能整合</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wr52pw/openai_devday_leaks_ultrafast_around_750_tokenss/">9 月 26 日的 Reddit 讨论</a>提到 Sol 进入 Chat、聊天与工作模式整合，也有用户质疑这些说法只是许愿。目前还没有足够资料确认改版内容。</p>
 <p><a target="_blank" rel="noopener" href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">官方 Sol、Luna 发布文</a>明确最初在 Work 和 Codex 提供，尚未进入 Chat。后续扩展使用场景是合理推测，发布日期则没有承诺。</p>
 <p>界面整合可能减少聊天与长任务之间的切换，让需求提交、进度查看和结果接收集中在同一处。目前尚未说明模式是否自动选择、能否手动切换，以及 Codex 独立工具如何安排。</p>
 <p>会后可比较模型菜单、聊天与工作入口，以及创建任务的步骤。Sol 进入 Chat 属于使用范围变化；单纯更名还需检查工作流是否改变。Codex 独立工具停用、账户合并或数据迁移，都需要单独的官方依据。</p>
@@ -357,7 +363,7 @@
 <p>时间表的修正降低了大会当天亮相的确定性。现有报道支持继续跟踪这条产品线，但尚不足以确认指定发布日期，因此列为较低可能性。</p>
 <p>如果产品包含安全工作流，实际价值取决于能否从漏洞发现、验证推进到修复完成，以及授权范围、审计记录和人工介入要求。企业采用还需要可复现的修复结果与明确的责任分工。</p>
 <p>确认条件是官方明确介绍新的安全模型或相关产品。试用申请、适用客户和访问方式有助于区分演示、有限预览与正式供应。仅重申安全投入尚不能确认发布，企业实际采用仍取决于授权条件和支持范围。</p>
-<h2 id="7-Astra-Minor、GPT-6-1、Bel：新模型传闻有哪些线索？"><a href="#7-Astra-Minor、GPT-6-1、Bel：新模型传闻有哪些线索？" class="headerlink" title="7. Astra Minor、GPT-6.1、Bel：新模型传闻有哪些线索？"></a>7. Astra Minor、GPT-6.1、Bel：新模型传闻有哪些线索？</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/ChatGPT/comments/1vztv6r/openais_next_pretrain_codename_bel_devday/">8 月的 Bel 帖子</a>讨论传闻中的预训练代号；<a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wnkzxy/what_are_your_predictions_for_openai_devday/">后来的预测串</a>将它与 Astra Minor、GPT-6.1 并列。这些名称未必对应同一产品或同一研发阶段。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="7-Astra-Minor、GPT-6-1、Bel：新模型传闻有哪些线索？"><a href="#7-Astra-Minor、GPT-6-1、Bel：新模型传闻有哪些线索？" class="headerlink" title="7. Astra Minor、GPT-6.1、Bel：新模型传闻有哪些线索？"></a>7. Astra Minor、GPT-6.1、Bel：新模型传闻有哪些线索？</h2><p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/ChatGPT/comments/1vztv6r/openais_next_pretrain_codename_bel_devday/">8 月的 Bel 帖子</a>讨论传闻中的预训练代号；<a target="_blank" rel="noopener" href="https://www.reddit.com/r/singularity/comments/1wnkzxy/what_are_your_predictions_for_openai_devday/">后来的预测串</a>将它与 Astra Minor、GPT-6.1 并列。这些名称未必对应同一产品或同一研发阶段。</p>
 <p>新模型预览列为低可能性，原因是缺少对应本届活动的官方模型页和明确日期。即使预训练已完成，后训练、评估、算力供应和产品集成也可能继续推进，研究进度与可用产品之间仍有时间差。</p>
 <p>Astra Minor 和 6.1 的具体定位尚不清楚，Bel 则更接近研发进度的传闻。现有资料不足以分别确认三者的产品身份、价格、能力和发布时间，因此作为一组证据较少的模型传闻讨论。</p>
 <p>本项涵盖上述名称中至少一个新通用模型正式预览，需能识别正式名称与新增能力。重新演示 Sol、Luna 不属于新模型。只有研发进展、尚无产品身份的内容，应记为研究消息；价格与评测成绩也需要各自的来源。</p>
@@ -399,7 +405,7 @@
         
   
   <div class="tags">
-    <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/OpenAI/">OpenAI</a>, <a href="/zh-cn/tags/ChatGPT/">ChatGPT</a>, <a href="/zh-cn/tags/DevDay/">DevDay</a>
+    <a href="/zh-cn/tags/OpenAI/">OpenAI</a>, <a href="/zh-cn/tags/Codex/">Codex</a>, <a href="/zh-cn/tags/ChatGPT/">ChatGPT</a>, <a href="/zh-cn/tags/DevDay/">DevDay</a>
   </div>
 
         
@@ -470,7 +476,7 @@
         <a href="/zh-cn/2026/09/30/openai-devday-2026-announcements/" class="related-post-link"
            data-rel-title="OpenAI DevDay 2026 汇总：Dots、Space、GPT-6.1 Sol 与 25 项更新"
            data-rel-path="/zh-cn/2026/09/30/openai-devday-2026-announcements/"
-           data-rel-tag="Codex"
+           data-rel-tag="OpenAI"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -479,7 +485,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">Codex</span>
+              <span class="related-post-tag">OpenAI</span>
             
             <h4 class="related-post-item-title">OpenAI DevDay 2026 汇总：Dots、Space、GPT-6.1 Sol 与 25 项更新</h4>
             
@@ -547,6 +553,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -560,6 +567,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -607,6 +617,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -658,6 +669,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

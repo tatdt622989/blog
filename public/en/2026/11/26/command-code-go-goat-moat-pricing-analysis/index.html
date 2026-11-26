@@ -37,15 +37,15 @@
   <meta property="article:modified_time" content="2026-11-26T03:34:00.000Z" />
   <meta property="article:section" content="AI Tools" />
   
-  <meta property="article:tag" content="AI" />
-  
   <meta property="article:tag" content="AI Agent" />
   
   <meta property="article:tag" content="Developer Tools" />
   
-  <meta property="article:tag" content="LLM" />
-  
   <meta property="article:tag" content="Indie Developer" />
+  
+  <meta property="article:tag" content="AI" />
+  
+  <meta property="article:tag" content="LLM" />
   
   <meta property="article:tag" content="Command Code" />
   
@@ -55,7 +55,7 @@
   <meta name="twitter:description" content="Visual breakdown of Command Code Go, GOAT, and MOAT pricing for DeepSeek V4.1 Flash—effective token cost curves, MOAT breakeven rules, and best plans.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/cover.jpg?v=6f9265cc">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/","url":"https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/","headline":"Command Code Pricing Breakdown: Go vs GOAT vs MOAT Value Analysis","description":"Visual breakdown of Command Code Go, GOAT, and MOAT pricing for DeepSeek V4.1 Flash—effective token cost curves, MOAT breakeven rules, and best plans.","datePublished":"2026-11-26T03:34:00.000Z","dateModified":"2026-11-26T03:34:00.000Z","inLanguage":"en","articleSection":"AI Tools","keywords":"AI, AI Agent, Developer Tools, LLM, Indie Developer, Command Code","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/","url":"https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/","headline":"Command Code Pricing Breakdown: Go vs GOAT vs MOAT Value Analysis","description":"Visual breakdown of Command Code Go, GOAT, and MOAT pricing for DeepSeek V4.1 Flash—effective token cost curves, MOAT breakeven rules, and best plans.","datePublished":"2026-11-26T03:34:00.000Z","dateModified":"2026-11-26T03:34:00.000Z","inLanguage":"en","articleSection":"AI Tools","keywords":"AI Agent, Developer Tools, Indie Developer, AI, LLM, Command Code","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI Tools","item":"https://blog.6yuwei.com/en/categories/AI-Tools/"},{"@type":"ListItem","position":3,"name":"Command Code Pricing Breakdown: Go vs GOAT vs MOAT Value Analysis","item":"https://blog.6yuwei.com/en/2026/11/26/command-code-go-goat-moat-pricing-analysis/"}]}</script>
   
@@ -89,14 +89,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -121,7 +127,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -357,7 +363,7 @@
 <li><strong>In real life, almost everyone only needs to choose among Go, GOAT, and GOAT + MOAT</strong>: <strong>Go + MOAT</strong> only wins in a razor-thin <strong>$1.67&#x2F;mo window</strong> ($18.33 to $20), where it saves less than $0.67&#x2F;mo at best. Most developers can safely ignore it and step straight from <strong>Go</strong> to <strong>GOAT</strong> to <strong>GOAT + MOAT</strong>.</li>
 <li><strong>Standalone MOAT never wins among these five options</strong>: Using $100 of list-price tokens on standalone MOAT costs $5 (fee) + $40 (tokens) &#x3D; $45. Stacking GOAT adds only $10 in membership fees while covering the entire $100 bucket, dropping your total to $15. At $100&#x2F;mo or more, <strong>GOAT + MOAT permanently beats standalone MOAT by $30&#x2F;mo ($360&#x2F;yr)</strong>.</li>
 </ol>
-<h2 id="Effective-Token-Cost-Curve-Why-Heavy-Users-Always-Stack"><a href="#Effective-Token-Cost-Curve-Why-Heavy-Users-Always-Stack" class="headerlink" title="Effective Token Cost Curve: Why Heavy Users Always Stack"></a>Effective Token Cost Curve: Why Heavy Users Always Stack</h2><p>Staring only at the base subscription fee ($10 vs $15) hides the metric that actually protects your wallet: <strong>what percentage of list price do you end up paying per token?</strong></p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Effective-Token-Cost-Curve-Why-Heavy-Users-Always-Stack"><a href="#Effective-Token-Cost-Curve-Why-Heavy-Users-Always-Stack" class="headerlink" title="Effective Token Cost Curve: Why Heavy Users Always Stack"></a>Effective Token Cost Curve: Why Heavy Users Always Stack</h2><p>Staring only at the base subscription fee ($10 vs $15) hides the metric that actually protects your wallet: <strong>what percentage of list price do you end up paying per token?</strong></p>
 <p><strong>Average Cost Ratio &#x3D; (Membership Fee + Extra Token Spend) &#x2F; Total List-Price Usage × 100%</strong></p>
 <p>Lower is better: <strong>10%</strong> means 90% off list price; <strong>40%</strong> means 60% off. Plotting all five plans (<strong>Go</strong>, <strong>Go + MOAT</strong>, <strong>GOAT</strong>, <strong>GOAT + MOAT</strong>, and <strong>MOAT Annual</strong>) on a true linear annual-usage scale makes every crossover unmistakable—hover any point to inspect exact percentages, or click the legend to toggle individual lines:</p>
 <figure class="blog-chart blog-chart--line" data-chart-engine="chartjs" data-chart-type="line" aria-label="Effective Token Cost Curve Across All 5 Plans ($120–$3,600/yr)"><div class="blog-chart__header"><div class="blog-chart__title">Effective Token Cost Curve Across All 5 Plans ($120–$3,600/yr)</div><div class="blog-chart__subtitle">True linear annual list-price scale; lower is cheaper. Click legend items below to toggle lines</div></div><div class="blog-chart__canvas-wrap" style="--chart-height:380px"><canvas class="blog-chart__canvas" role="img" aria-label="Effective Token Cost Curve Across All 5 Plans ($120–$3,600/yr)"></canvas></div><figcaption class="blog-chart__note">Beyond $3,600/yr, standalone GOAT drifts toward 100% list price while GOAT + MOAT stays capped below 40%.</figcaption><script type="application/json" class="blog-chart-config">{"type":"line","title":"Effective Token Cost Curve Across All 5 Plans ($120–$3,600/yr)","subtitle":"True linear annual list-price scale; lower is cheaper. Click legend items below to toggle lines","height":380,"xType":"linear","xMin":120,"xMax":3600,"xTicks":[120,600,1200,1900,2400,3000,3600],"xPrefix":"$","xLabel":"Annual List-Price Token Usage (USD)","yMin":0,"yMax":160,"yStep":20,"ySuffix":"%","yLabel":"Effective Cost (% of List Price)","tooltipTitlePrefix":"Annual list usage ","legendPosition":"bottom","referenceLines":[{"axis":"y","value":40,"color":"#64748b","label":"40% Asymptote (60% Off)","labelAlign":"right"},{"axis":"x","value":1300,"color":"#d97706","label":"$1,300 Breakeven (16.9%)","labelBg":"#fffbeb","labelColor":"#92400e","labelYOffset":4},{"axis":"x","value":1900,"color":"#64748b","label":"$1,900 GOAT = MOAT","labelBg":"#f8fafc","labelColor":"#334155","labelYOffset":34}],"datasets":[{"label":"Go","color":"#2563eb","data":[{"x":120,"y":10},{"x":180,"y":40},{"x":220,"y":50.91},{"x":240,"y":55},{"x":400,"y":73},{"x":600,"y":82},{"x":900,"y":88},{"x":1200,"y":91},{"x":1300,"y":91.69},{"x":1900,"y":94.32},{"x":2400,"y":95.5},{"x":3600,"y":97}]},{"label":"Go + MOAT","color":"#16a34a","data":[{"x":120,"y":60},{"x":180,"y":53.33},{"x":220,"y":50.91},{"x":240,"y":50},{"x":400,"y":46},{"x":600,"y":44},{"x":900,"y":42.67},{"x":1200,"y":42},{"x":1300,"y":41.85},{"x":1900,"y":41.26},{"x":2400,"y":41},{"x":3600,"y":40.67}]},{"label":"GOAT","color":"#ea580c","data":[{"x":120,"y":100},{"x":180,"y":66.67},{"x":220,"y":54.55},{"x":240,"y":50},{"x":400,"y":30},{"x":600,"y":20},{"x":900,"y":13.33},{"x":1200,"y":10},{"x":1300,"y":16.92},{"x":1900,"y":43.16},{"x":2400,"y":55},{"x":3600,"y":70}]},{"label":"GOAT + MOAT","color":"#d97706","borderWidth":3.4,"data":[{"x":120,"y":150},{"x":180,"y":100},{"x":220,"y":81.82},{"x":240,"y":75},{"x":400,"y":45},{"x":600,"y":30},{"x":900,"y":20},{"x":1200,"y":15},{"x":1300,"y":16.92},{"x":1900,"y":24.21},{"x":2400,"y":27.5},{"x":3600,"y":31.67}]},{"label":"MOAT (Annual)","color":"#7c3aed","data":[{"x":120,"y":90},{"x":180,"y":73.33},{"x":220,"y":67.27},{"x":240,"y":65},{"x":400,"y":55},{"x":600,"y":50},{"x":900,"y":46.67},{"x":1200,"y":45},{"x":1300,"y":44.62},{"x":1900,"y":43.16},{"x":2400,"y":42.5},{"x":3600,"y":41.67}]}],"note":"Beyond $3,600/yr, standalone GOAT drifts toward 100% list price while GOAT + MOAT stays capped below 40%."}</script><noscript><p class="blog-chart__fallback">Effective Token Cost Curve Across All 5 Plans ($120–$3,600/yr)</p></noscript></figure>
@@ -438,7 +444,7 @@
 <li><strong>$1,300&#x2F;yr ($108.33&#x2F;mo) — The GOAT vs GOAT + MOAT breakeven</strong>: Because standalone GOAT charges full list price past $1,200, its orange curve climbs steeply. At exactly $1,300&#x2F;yr, both plans tie at <strong>16.92%</strong>, and from there <strong>GOAT + MOAT pulls far ahead</strong>.</li>
 <li><strong>$1,900&#x2F;yr (~$158&#x2F;mo) — Standalone GOAT loses even to standalone MOAT</strong>: GOAT’s effective cost hits <strong>43.16%</strong>, matching standalone MOAT, while <strong>GOAT + MOAT sits comfortably at 24.21%</strong>. At extreme scale, standalone GOAT drifts toward <strong>100% full price</strong>, while GOAT + MOAT stays capped below <strong>40%</strong>.</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="MOAT-Breakeven-Math-Only-Two-Numbers-to-Remember"><a href="#MOAT-Breakeven-Math-Only-Two-Numbers-to-Remember" class="headerlink" title="MOAT Breakeven Math: Only Two Numbers to Remember"></a>MOAT Breakeven Math: Only Two Numbers to Remember</h2><p>Already paying for <strong>GOAT</strong> and wondering when adding <strong>MOAT</strong> actually pays for itself?</p>
+<h2 id="MOAT-Breakeven-Math-Only-Two-Numbers-to-Remember"><a href="#MOAT-Breakeven-Math-Only-Two-Numbers-to-Remember" class="headerlink" title="MOAT Breakeven Math: Only Two Numbers to Remember"></a>MOAT Breakeven Math: Only Two Numbers to Remember</h2><p>Already paying for <strong>GOAT</strong> and wondering when adding <strong>MOAT</strong> actually pays for itself?</p>
 <p>With <strong>Annual MOAT</strong>, you pay an extra <strong>$5&#x2F;mo</strong> ($60&#x2F;yr) in membership fees to save <strong>60%</strong> on every dollar of overage:</p>
 <ul>
 <li><strong>Annual overage breakeven</strong>: $60 ÷ 60% &#x3D; <strong>$100 in overage list-price usage per year</strong>.</li>
@@ -534,7 +540,7 @@
 </tr>
 </tbody></table></div>
 <p>The rule is simple: choose <strong>Annual</strong> if you consistently exceed GOAT every month; keep <strong>GOAT</strong> alone and flip on <strong>Monthly MOAT</strong> only during heavy sprint months when overage top-ups will clear <strong>$16.67</strong>.</p>
-<h2 id="Real-World-Dollar-Savings-How-Much-Does-GOAT-MOAT-Save"><a href="#Real-World-Dollar-Savings-How-Much-Does-GOAT-MOAT-Save" class="headerlink" title="Real-World Dollar Savings: How Much Does GOAT + MOAT Save?"></a>Real-World Dollar Savings: How Much Does GOAT + MOAT Save?</h2><p>Percentages are helpful, but real dollars on your monthly invoice make the gap unmistakable. Both interactive bar charts below use <strong>GOAT + MOAT Annual</strong> (including all subscription fees and overage spend):</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Real-World-Dollar-Savings-How-Much-Does-GOAT-MOAT-Save"><a href="#Real-World-Dollar-Savings-How-Much-Does-GOAT-MOAT-Save" class="headerlink" title="Real-World Dollar Savings: How Much Does GOAT + MOAT Save?"></a>Real-World Dollar Savings: How Much Does GOAT + MOAT Save?</h2><p>Percentages are helpful, but real dollars on your monthly invoice make the gap unmistakable. Both interactive bar charts below use <strong>GOAT + MOAT Annual</strong> (including all subscription fees and overage spend):</p>
 <figure class="blog-chart blog-chart--bar" data-chart-engine="chartjs" data-chart-type="bar" aria-label="Actual Monthly Spend Bar Chart (GOAT vs GOAT + MOAT Annual)"><div class="blog-chart__header"><div class="blog-chart__title">Actual Monthly Spend Bar Chart (GOAT vs GOAT + MOAT Annual)</div><div class="blog-chart__subtitle">Includes membership fees and extra token top-ups; lower bars mean smaller monthly bills</div></div><div class="blog-chart__canvas-wrap" style="--chart-height:330px"><canvas class="blog-chart__canvas" role="img" aria-label="Actual Monthly Spend Bar Chart (GOAT vs GOAT + MOAT Annual)"></canvas></div><script type="application/json" class="blog-chart-config">{"type":"bar","title":"Actual Monthly Spend Bar Chart (GOAT vs GOAT + MOAT Annual)","subtitle":"Includes membership fees and extra token top-ups; lower bars mean smaller monthly bills","height":330,"yPrefix":"$","yMax":1050,"yStep":200,"xLabel":"Monthly List-Price Token Usage","yLabel":"Actual Monthly Bill (USD)","showBarLabels":true,"legendPosition":"top","labels":["$100","$108.33","$120","$150","$200","$300","$500","$1,000"],"datasets":[{"label":"GOAT Only Bill","data":[10,18.33,30,60,110,210,410,910],"color":"#fb923c","labelColor":"#c2410c"},{"label":"GOAT + MOAT (Annual) Bill","data":[15,18.33,23,35,55,95,175,375],"color":"#059669","labelColor":"#047857"}]}</script><noscript><p class="blog-chart__fallback">Actual Monthly Spend Bar Chart (GOAT vs GOAT + MOAT Annual)</p></noscript></figure>
 
 <figure class="blog-chart blog-chart--bar" data-chart-engine="chartjs" data-chart-type="bar" aria-label="Net Annual Savings Bar Chart With Annual MOAT"><div class="blog-chart__header"><div class="blog-chart__title">Net Annual Savings Bar Chart With Annual MOAT</div><div class="blog-chart__subtitle">Positive values show annual dollars saved; negative reflects the extra fee below breakeven</div></div><div class="blog-chart__canvas-wrap" style="--chart-height:300px"><canvas class="blog-chart__canvas" role="img" aria-label="Net Annual Savings Bar Chart With Annual MOAT"></canvas></div><script type="application/json" class="blog-chart-config">{"type":"bar","title":"Net Annual Savings Bar Chart With Annual MOAT","subtitle":"Positive values show annual dollars saved; negative reflects the extra fee below breakeven","height":300,"yPrefix":"$","yShowPlus":true,"yMin":-800,"yMax":7200,"yStep":2000,"xLabel":"Monthly List-Price Token Usage","yLabel":"Net Annual Savings (USD)","showBarLabels":true,"zeroLabel":"Even $0","showLegend":false,"labels":["$100","$108.33","$120","$150","$200","$300","$500","$1,000"],"datasets":[{"label":"Annual Savings","data":[-60,0,84,300,660,1380,2820,6420],"backgroundColor":["#ef4444","#d97706","#10b981","#10b981","#10b981","#10b981","#059669","#047857"],"labelColors":["#b91c1c","#b45309","#047857","#047857","#047857","#047857","#047857","#065f46"]}]}</script><noscript><p class="blog-chart__fallback">Net Annual Savings Bar Chart With Annual MOAT</p></noscript></figure>
@@ -686,7 +692,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/AI-Agent/">AI Agent</a>, <a href="/en/tags/Developer-Tools/">Developer Tools</a>, <a href="/en/tags/LLM/">LLM</a>, <a href="/en/tags/Indie-Developer/">Indie Developer</a>, <a href="/en/tags/Command-Code/">Command Code</a>
+    <a href="/en/tags/AI-Agent/">AI Agent</a>, <a href="/en/tags/Developer-Tools/">Developer Tools</a>, <a href="/en/tags/Indie-Developer/">Indie Developer</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/LLM/">LLM</a>, <a href="/en/tags/Command-Code/">Command Code</a>
   </div>
 
         
@@ -757,7 +763,7 @@ flowchart TD
         <a href="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/" class="related-post-link"
            data-rel-title="Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet"
            data-rel-path="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/"
-           data-rel-tag="AI"
+           data-rel-tag="Developer Tools"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -766,7 +772,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">Developer Tools</span>
             
             <h4 class="related-post-item-title">Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet</h4>
             
@@ -780,7 +786,7 @@ flowchart TD
         <a href="/en/2026/10/01/gemini-4-argon-launch-pricing-access/" class="related-post-link"
            data-rel-title="Gemini 4 Argon: Million-Token Output, API Pricing and Limited Access"
            data-rel-path="/en/2026/10/01/gemini-4-argon-launch-pricing-access/"
-           data-rel-tag="AI"
+           data-rel-tag="AI Agent"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -789,7 +795,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">AI Agent</span>
             
             <h4 class="related-post-item-title">Gemini 4 Argon: Million-Token Output, API Pricing and Limited Access</h4>
             
@@ -803,7 +809,7 @@ flowchart TD
         <a href="/en/2026/08/21/gcp-300-credit-opencode-gemini/" class="related-post-link"
            data-rel-title="Run Gemini in OpenCode Using GCP $300 Free Credit (Vertex AI)"
            data-rel-path="/en/2026/08/21/gcp-300-credit-opencode-gemini/"
-           data-rel-tag="AI"
+           data-rel-tag="Developer Tools"
            data-rel-position="3">
           <div class="related-post-cover">
             
@@ -812,7 +818,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">Developer Tools</span>
             
             <h4 class="related-post-item-title">Run Gemini in OpenCode Using GCP $300 Free Credit (Vertex AI)</h4>
             
@@ -834,6 +840,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -847,6 +854,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -894,6 +904,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -945,6 +956,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

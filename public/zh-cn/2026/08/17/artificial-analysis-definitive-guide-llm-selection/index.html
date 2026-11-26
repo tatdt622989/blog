@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -318,7 +324,7 @@
 <li><strong>同一个模型会按推理强度拆成多行。</strong> <strong>Claude Opus 5.5 (max)<strong>、</strong>(xhigh)<strong>、</strong>(high)</strong> 是同一模型的不同档位，得分、成本、延迟差距很大，选型时要对准你线上实际使用的档位。</li>
 <li><strong>带小灯泡图标的是推理（Reasoning）模型</strong>，回答前会先消耗思考 Token，成本和延迟都会受影响。</li>
 </ul>
-<h2 id="速度、延迟与成本怎么看"><a href="#速度、延迟与成本怎么看" class="headerlink" title="速度、延迟与成本怎么看"></a>速度、延迟与成本怎么看</h2><p><img src="/zh-cn/2026/08/17/artificial-analysis-definitive-guide-llm-selection/01_homepage_highlights.jpg?v=0f358b44" alt="Artificial Analysis 首页 Intelligence、Speed、Cost per Task 三张重点图（2026 年 8 月截图）"></p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="速度、延迟与成本怎么看"><a href="#速度、延迟与成本怎么看" class="headerlink" title="速度、延迟与成本怎么看"></a>速度、延迟与成本怎么看</h2><p><img src="/zh-cn/2026/08/17/artificial-analysis-definitive-guide-llm-selection/01_homepage_highlights.jpg?v=0f358b44" alt="Artificial Analysis 首页 Intelligence、Speed、Cost per Task 三张重点图（2026 年 8 月截图）"></p>
 <p>首页和 Models 页的指标口径如下（来自官方 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/methodology/performance-benchmarking">Performance Benchmarking 方法论</a>及图表说明）：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
@@ -362,7 +368,7 @@
 <p>速度数据取自模型厂商的官方 API，没有官方 API 时取多家服务商的中位数；每天测 8 次，页面展示<strong>过去 72 小时的中位数（P50）</strong>，因此会随高峰时段和服务商负载波动。</p>
 <p><strong>Cost per Task 比官方单价更有参考意义</strong>：推理模型单价看着便宜，但思考 Token 一多，单题成本可能反而超过单价更贵的模型。想看总账，可以用 Models 页的 <strong>Cost to Run Artificial Analysis Intelligence Index</strong>，它把跑完整套评测的费用拆成 Output、Reasoning、Cache 等部分。</p>
 <p><img src="/zh-cn/2026/08/17/artificial-analysis-definitive-guide-llm-selection/02_pareto_quality_cost.jpg?v=beda9336" alt="Cost to Run Artificial Analysis Intelligence Index 堆叠图，拆分输出、推理与缓存成本（2026 年 8 月截图）"></p>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2026-年-11-月最新榜单亮点（Intelligence-Index-v5-0-1）"><a href="#2026-年-11-月最新榜单亮点（Intelligence-Index-v5-0-1）" class="headerlink" title="2026 年 11 月最新榜单亮点（Intelligence Index v5.0.1）"></a>2026 年 11 月最新榜单亮点（Intelligence Index v5.0.1）</h2><p>Artificial Analysis 已于 2026 年 11 月将综合指数更新至 <strong>Intelligence Index v5.0.1</strong>。根据 2026 年 11 月中旬核对 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-fable-5-2">Claude Fable 5.2</a> 与 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/gemini-4-carbon">Gemini 4 Carbon</a> 官方 AA 模型页的实测数据，头部模型呈现出明显的“能力上限 vs 成本效率”分化：</p>
+<h2 id="2026-年-11-月最新榜单亮点（Intelligence-Index-v5-0-1）"><a href="#2026-年-11-月最新榜单亮点（Intelligence-Index-v5-0-1）" class="headerlink" title="2026 年 11 月最新榜单亮点（Intelligence Index v5.0.1）"></a>2026 年 11 月最新榜单亮点（Intelligence Index v5.0.1）</h2><p>Artificial Analysis 已于 2026 年 11 月将综合指数更新至 <strong>Intelligence Index v5.0.1</strong>。根据 2026 年 11 月中旬核对 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/claude-fable-5-2">Claude Fable 5.2</a> 与 <a target="_blank" rel="noopener" href="https://artificialanalysis.ai/models/gemini-4-carbon">Gemini 4 Carbon</a> 官方 AA 模型页的实测数据，头部模型呈现出明显的“能力上限 vs 成本效率”分化：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
@@ -469,7 +475,7 @@
 <li><strong>max 档位的首个 chunk 延迟往往以分钟计</strong>，更适合后台批处理和智能体任务，不适合要求秒级响应的交互界面。</li>
 </ul>
 <p>其他模型发布时的详细评测也可参考 <a href="/zh-cn/2026/09/23/claude-opus-5-5-launch-benchmarks-pricing/">Claude Opus 5.5 发布解读</a> 和 <a href="/zh-cn/2026/09/23/gpt-6-sol-luna-pricing-aa-review/">GPT-6 Sol 与 Luna 评分与选型</a>。</p>
-<h2 id="用帕累托前沿找高性价比模型"><a href="#用帕累托前沿找高性价比模型" class="headerlink" title="用帕累托前沿找高性价比模型"></a>用帕累托前沿找高性价比模型</h2><p>Models 页的 <strong>Intelligence Index vs. Cost per Task</strong> 散点图是选型最实用的一张图：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="用帕累托前沿找高性价比模型"><a href="#用帕累托前沿找高性价比模型" class="headerlink" title="用帕累托前沿找高性价比模型"></a>用帕累托前沿找高性价比模型</h2><p>Models 页的 <strong>Intelligence Index vs. Cost per Task</strong> 散点图是选型最实用的一张图：</p>
 <ul>
 <li><strong>纵轴</strong>是智能得分（越高越强），<strong>横轴</strong>是 Cost per Task（越靠左越便宜）。</li>
 <li><strong>左上角的 Most attractive quadrant</strong> 就是又强又便宜的区域。</li>
@@ -697,6 +703,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -710,6 +717,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -757,6 +767,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -808,6 +819,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

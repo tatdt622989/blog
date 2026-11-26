@@ -10,8 +10,13 @@ if (page.archive){
 <h2 class="archive-title<% if (page.tag){ %> tag<% } else if (page.category){ %> category<% } %>"><%= title %></h2>
 
 <% if (pagination == 2){ %>
+  <% var archiveFeedIndex = 0; var archiveFeedTotal = page.posts.length; %>
   <% page.posts.each(function(item){ %>
     <%- partial('article', {item: item, index: true}) %>
+    <% archiveFeedIndex += 1; %>
+    <% if (archiveFeedIndex === 3 && archiveFeedTotal >= 4 && page.no_tracking !== true) { %>
+      <%- article_ad('feed') %>
+    <% } %>
   <% }); %>
 
   <%- partial('pagination') %>

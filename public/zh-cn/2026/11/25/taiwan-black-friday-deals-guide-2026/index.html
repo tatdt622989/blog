@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -318,7 +324,7 @@
 </ul>
 <h3 id="台湾-Apple-官网未参加黑五，买苹果转看本土授权渠道"><a href="#台湾-Apple-官网未参加黑五，买苹果转看本土授权渠道" class="headerlink" title="台湾 Apple 官网未参加黑五，买苹果转看本土授权渠道"></a>台湾 Apple 官网未参加黑五，买苹果转看本土授权渠道</h3><p>每年黑五都有人观望苹果官网。直接说结论：<strong>美国 Apple 官网在 11 月 27 日至 11 月 30 日举办的“买指定产品最高送 300 美元礼品卡”活动，台湾官网与直营店今年依旧不在名单内</strong>。绕道美国代购不仅要多付国际运费和 5% 营业税，美区礼品卡在台湾也无法直接核销，性价比并不高。</p>
 <p>人在台湾想趁黑五换 iPhone、iPad 或 Mac，不如直接盯紧授权经销商（如 STUDIO A、神脑线上、灿坤）、好市多，以及 <strong>PChome 24h、momo、虾皮商城</strong>的黑五接力促销。例如 11 月 25 日起虾皮商城常放出 9 折或满减券，PChome 24h 与 momo 则主打积分加码和信用卡分期返利，折算下来通常比原价实惠得多。</p>
-<h2 id="战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物"><a href="#战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物" class="headerlink" title="战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物"></a>战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物</h2><p>跨境海淘才是黑五真正出彩的地方。没必要什么都跨海买，把预算集中在<strong>台湾代理加价明显、或者海外黑五跳水力度极大</strong>的品类，即使算进税费和运费依旧很有赚头。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物"><a href="#战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物" class="headerlink" title="战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物"></a>战场二：美亚、日亚与海外直邮，专挑台湾价差最大的好物</h2><p>跨境海淘才是黑五真正出彩的地方。没必要什么都跨海买，把预算集中在<strong>台湾代理加价明显、或者海外黑五跳水力度极大</strong>的品类，即使算进税费和运费依旧很有赚头。</p>
 <h3 id="美国亚马逊（Amazon-US）：12-天黑五周与满额直邮免运"><a href="#美国亚马逊（Amazon-US）：12-天黑五周与满额直邮免运" class="headerlink" title="美国亚马逊（Amazon US）：12 天黑五周与满额直邮免运"></a>美国亚马逊（Amazon US）：12 天黑五周与满额直邮免运</h3><p><a target="_blank" rel="noopener" href="https://www.amazon.com/blackfriday">Amazon US 黑五周</a>从 <strong>11 月 19 日持续到 11 月 30 日</strong>。下单前先把网页左上角收货地址（Deliver to）切换为 <strong>Taiwan</strong>，页面就会自动标出支持直邮台湾的商品。符合 <strong>AmazonGlobal 免运条件</strong>的商品（常见门槛为 <strong>49 美元或 60 美元</strong>，以商品详情页显示为准），结算时记得确认配送方式已勾选免费标准直邮。</p>
 <p>以台湾市价做参照，美亚黑五最值得优先放入购物车的四大品类如下：</p>
 <ul>
@@ -339,7 +345,7 @@
 <li><strong>Shopbop</strong>：已于台湾时间 11 月 22 日晚间上线，持续至 <strong>12 月 1 日 17:00</strong>。在 <a target="_blank" rel="noopener" href="https://www.shopbop.com/">Shopbop</a> 选购标注黑五活动标签的单品，输入 <strong>HOLIDAY</strong> 可享 75 折，满 100 美元即享免费直邮台湾。</li>
 <li><strong>SSENSE 与 Farfetch</strong>：购买设计师服饰、球鞋或包袋时，<a target="_blank" rel="noopener" href="https://www.ssense.com/">SSENSE</a> 采用页面直接降价，<a target="_blank" rel="noopener" href="https://www.farfetch.com/tw/">Farfetch 台湾</a> 常在黑五对特价区叠加折上折。两家平台的共同优势是<strong>结算价格普遍已含台湾进口关税（DDP）</strong>，账单透明，签收时不会突然冒出额外税单。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心"><a href="#战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心" class="headerlink" title="战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心"></a>战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心</h2><p>如果只想选一个最省心的类别参与全球黑五，<strong>数字软件和云端订阅</strong>绝对排在首位。没有跨国运费、不消耗半年 6 次的海关免税额度、也不存在电压和跨国退货麻烦，而且黑五往往是全年价格最低点。</p>
+<h2 id="战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心"><a href="#战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心" class="headerlink" title="战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心"></a>战场三：数字订阅、VPN、创意软件与建站主机，免税即买即用最省心</h2><p>如果只想选一个最省心的类别参与全球黑五，<strong>数字软件和云端订阅</strong>绝对排在首位。没有跨国运费、不消耗半年 6 次的海关免税额度、也不存在电压和跨国退货麻烦，而且黑五往往是全年价格最低点。</p>
 <h3 id="创意软件：Adobe-Creative-Cloud-台湾官网首年-4-折"><a href="#创意软件：Adobe-Creative-Cloud-台湾官网首年-4-折" class="headerlink" title="创意软件：Adobe Creative Cloud 台湾官网首年 4 折"></a>创意软件：Adobe Creative Cloud 台湾官网首年 4 折</h3><p>从事视频剪辑、平面设计或自媒体创作的用户，<a target="_blank" rel="noopener" href="https://www.adobe.com/tw/creativecloud/plans.html">Adobe 台湾官网</a>今年黑五力度很足，活动截至 <strong>11 月 27 日</strong>：</p>
 <ul>
 <li><strong>个人版 Creative Cloud Pro（全套应用）</strong>：首年 <strong>4 折</strong>，由原价每月 2,310 新台币降至 <strong>每月 924 新台币</strong>（选择年付预缴约 10,581 新台币）。</li>
@@ -364,7 +370,7 @@
 <li><strong>ChatGPT Plus、Claude Pro、Perplexity Pro</strong>：三大主流 AI 助手在 2026 年黑五均维持常规价格或既有年付方案，<strong>官方没有推出限时黑五半价</strong>。</li>
 <li><strong>JetBrains 全家桶 IDE</strong>：官方惯例同样不搞黑五全面大促，主要优惠还是依靠<strong>连续续订折扣</strong>或学生教育免费授权。遇到社交平台兜售的低价共享账号或代充服务务必绕道，封号和盗刷风险很高。</li>
 </ul>
-<h2 id="战场五：游戏主机与数字商店，台湾玩家补库黄金周"><a href="#战场五：游戏主机与数字商店，台湾玩家补库黄金周" class="headerlink" title="战场五：游戏主机与数字商店，台湾玩家补库黄金周"></a>战场五：游戏主机与数字商店，台湾玩家补库黄金周</h2><p>数字游戏商店是台湾玩家黑五最容易清空愿望单的阵地，2026 年三大平台的节奏已经清晰：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="战场五：游戏主机与数字商店，台湾玩家补库黄金周"><a href="#战场五：游戏主机与数字商店，台湾玩家补库黄金周" class="headerlink" title="战场五：游戏主机与数字商店，台湾玩家补库黄金周"></a>战场五：游戏主机与数字商店，台湾玩家补库黄金周</h2><p>数字游戏商店是台湾玩家黑五最容易清空愿望单的阵地，2026 年三大平台的节奏已经清晰：</p>
 <ul>
 <li><strong>PlayStation Store 台湾（至 11 月 30 日）</strong>：<a target="_blank" rel="noopener" href="https://store.playstation.com/zh-hant-tw/">PS Store 台湾</a>数千款 PS5、PS4 数字版游戏与 DLC 低至 <strong>2.5 折</strong>。<strong>PS Plus 会员</strong>同步推出黑五折扣：<strong>基本档（Essential）8 折、升级档（Extra）75 折、高级档（Premium）67 折</strong>。需要留意的是，本轮会籍折扣主要面向<strong>新订阅用户或向上升级档位</strong>，未到期的老会员进行同级续费通常不享受优惠，结账前先登录核实页面价格。</li>
 <li><strong>Steam（11 月 26 日至 11 月 30 日）</strong>：<a target="_blank" rel="noopener" href="https://store.steampowered.com/">Steam 商店</a>黑五以各大发行商主导特卖为主。如果心仪作品还没降到史低价也不用着急，<strong>Steam 冬季特卖紧接着会在 12 月 17 日至 2027 年 1 月 4 日登场</strong>，折扣覆盖面会更全。</li>
@@ -565,6 +571,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -578,6 +585,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -625,6 +635,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -676,6 +687,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

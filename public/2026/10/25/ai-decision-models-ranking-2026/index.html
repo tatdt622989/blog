@@ -87,14 +87,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -119,7 +125,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -277,7 +283,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pplx-decider-v1.2&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;answers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;route_action&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;choice&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;choice&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hold&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.61</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;scale_up&quot;</span><span class="punctuation">:</span> <span class="number">0.18</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;hold&quot;</span><span class="punctuation">:</span> <span class="number">0.74</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;throttle&quot;</span><span class="punctuation">:</span> <span class="number">0.08</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>單次請求通常支援同時塞入 64 到 128 道問題，每個問題可包含 2 到 255 個選項。這代表你可以把整個系統所有待決策的子任務打包成一次 API 呼叫，共用同一份 <strong>state</strong> 輸入成本，一次拿回所有判斷。</p>
-<h2 id="2026-年-17-款專用-AI-決策模型完整評比表"><a href="#2026-年-17-款專用-AI-決策模型完整評比表" class="headerlink" title="2026 年 17 款專用 AI 決策模型完整評比表"></a>2026 年 17 款專用 AI 決策模型完整評比表</h2><p>我們排除所有通用聊天模型，整理目前在各評測基準與 <strong>原生供應商</strong>、<strong>Vercel AI Gateway</strong>、<strong>OpenRouter</strong>、<strong>Cloudflare Workers AI</strong> 與 <strong>自架／本機端</strong> 實際可用的 17 款專用決策模型（資料與價格查核截至 2026-10-25）：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2026-年-17-款專用-AI-決策模型完整評比表"><a href="#2026-年-17-款專用-AI-決策模型完整評比表" class="headerlink" title="2026 年 17 款專用 AI 決策模型完整評比表"></a>2026 年 17 款專用 AI 決策模型完整評比表</h2><p>我們排除所有通用聊天模型，整理目前在各評測基準與 <strong>原生供應商</strong>、<strong>Vercel AI Gateway</strong>、<strong>OpenRouter</strong>、<strong>Cloudflare Workers AI</strong> 與 <strong>自架／本機端</strong> 實際可用的 17 款專用決策模型（資料與價格查核截至 2026-10-25）：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:840px"><table>
 <thead>
 <tr>
@@ -426,14 +432,14 @@
 <td>從 Sub-1B 到 27B 的開源 SystemOne 相容模型家族，適合低資源 PoC 自架</td>
 </tr>
 </tbody></table></div>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="決策模型怎麼跑分？認識三大權威評測基準"><a href="#決策模型怎麼跑分？認識三大權威評測基準" class="headerlink" title="決策模型怎麼跑分？認識三大權威評測基準"></a>決策模型怎麼跑分？認識三大權威評測基準</h2><p>傳統大模型的 MMLU 或 HumanEval 根本測不出「單次前向傳播的機率校準度」。在 2026 年底挑選決策模型時，業界主要看以下三個專用排行榜：</p>
+<h2 id="決策模型怎麼跑分？認識三大權威評測基準"><a href="#決策模型怎麼跑分？認識三大權威評測基準" class="headerlink" title="決策模型怎麼跑分？認識三大權威評測基準"></a>決策模型怎麼跑分？認識三大權威評測基準</h2><p>傳統大模型的 MMLU 或 HumanEval 根本測不出「單次前向傳播的機率校準度」。在 2026 年底挑選決策模型時，業界主要看以下三個專用排行榜：</p>
 <ol>
 <li><strong>Jev Decision Index</strong>：追蹤數百款開源權重微調版與商業 API 的綜合排行榜。其中 <strong>Fastino Labs 的 GLiDE v1.2（Generalized Lightweight Decision Engine，約 71.5 分）</strong> 與 <strong>Baseten Mammoth-1 (27B)<strong>、</strong>Perplexity Decider V1.2</strong> 並列最受矚目的領先群。</li>
 <li><strong>Artificial Analysis Decision Index（v1.0）</strong>：由知名獨立評測機構 Artificial Analysis 建立，將分數平均拆為四大支柱（各佔 25%）：<strong>知識與抗幻覺（AA-Omniscience-Decision）</strong>、<strong>複雜推理（HLE-MultiChoice）</strong>、<strong>工具呼叫判斷（NVIDIA When2Call）</strong> 與 <strong>安全分類（WildGuardTest）</strong>。在此榜單中，<strong>Fastino GLiDE</strong> 在 When2Call 工具呼叫（約 84 分）與 WildGuardTest 安全分類（約 95 分）表現優異，而 **Baseten Mammoth-1 (27B)**（總分約 <strong>65.9 分</strong>）與 <strong>Liquid d1-ultra</strong> 則穩居綜合表現第一梯隊。</li>
 <li><strong>JevBench（Benchmark Heaven）</strong>：專門針對相容 System One 協定的決策系統所設計的獨立評測框架，同時衡量 <strong>結構化決策準確率</strong>、<strong>機率校準度（Calibration，模型說 80% 把握時是否真的有 80% 答對）</strong>、<strong>P50&#x2F;P95 延遲</strong> 與 <strong>推論成本</strong>（商業 API 榜單上除了 <strong>GLiDE</strong> 與 <strong>Jev</strong> 外，Levanto Labs 的 <strong>Sage 1.3.0</strong> 也是高分代表）。</li>
 </ol>
 <p>值得注意的是，最新學術研究（如 <strong>JEVal</strong> 評測報告）也提醒工程團隊：傳統單次前向（Single-Pass）決策模型在「證據明確的模式識別與多條件路由」上擁有壓倒性的速度與成本優勢，但在遇到算術、日期換算或跨越多步驟的複雜邏輯時容易失準——這也促成了 <strong>GLiDE v1.2</strong> 這類具備思考路徑的架構誕生。</p>
-<h2 id="主流決策模型深度剖析：誰適合放在哪個位置？"><a href="#主流決策模型深度剖析：誰適合放在哪個位置？" class="headerlink" title="主流決策模型深度剖析：誰適合放在哪個位置？"></a>主流決策模型深度剖析：誰適合放在哪個位置？</h2><p>在生產環境中，我們強烈建議不要只綁死單一顆模型，而是把不同架構的決策模型組合成「多核心決策委員會」，原因在於每顆模型的訓練基底與風險偏好截然不同。</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="主流決策模型深度剖析：誰適合放在哪個位置？"><a href="#主流決策模型深度剖析：誰適合放在哪個位置？" class="headerlink" title="主流決策模型深度剖析：誰適合放在哪個位置？"></a>主流決策模型深度剖析：誰適合放在哪個位置？</h2><p>在生產環境中，我們強烈建議不要只綁死單一顆模型，而是把不同架構的決策模型組合成「多核心決策委員會」，原因在於每顆模型的訓練基底與風險偏好截然不同。</p>
 <h3 id="1-Fastino-GLiDE-v1-2：引入適應性推理的思考型決策模型"><a href="#1-Fastino-GLiDE-v1-2：引入適應性推理的思考型決策模型" class="headerlink" title="1. Fastino GLiDE v1.2：引入適應性推理的思考型決策模型"></a>1. Fastino GLiDE v1.2：引入適應性推理的思考型決策模型</h3><p><a target="_blank" rel="noopener" href="https://fastino.ai/">Fastino Labs</a> 推出的 <strong>GLiDE v1.2（Generalized Lightweight Decision Engine，28B 規模）</strong> 在 <strong>Jev Decision Index</strong>（71.5 分）與 JevBench（能力分達 84.5）表現亮眼，其核心關鍵在於解決了第一代決策模型常見的短板：<strong>「純單次前向傳播無法應對多步驟數學與符號邏輯」</strong>。</p>
 <p>GLiDE v1.2 採用了 <strong>適應性推理（Adaptive Reasoning）</strong> 雙路徑設計：</p>
 <ul>
@@ -639,6 +645,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -652,6 +659,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -703,6 +713,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -754,6 +765,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

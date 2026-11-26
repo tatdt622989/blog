@@ -89,14 +89,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -121,7 +127,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -372,7 +378,7 @@ flowchart TD
 <li>correlation IDs that connect a user action to API, queue, service, and database events.</li>
 </ul>
 <p>When an element cannot be found, an agent should not generate a longer XPath. A missing test interface is a product requirement for the team that owns that surface.</p>
-<h2 id="3-How-to-Structure-the-Harness"><a href="#3-How-to-Structure-the-Harness" class="headerlink" title="3. How to Structure the Harness"></a>3. How to Structure the Harness</h2><h3 id="A-Directory-an-Agent-Can-Navigate"><a href="#A-Directory-an-Agent-Can-Navigate" class="headerlink" title="A Directory an Agent Can Navigate"></a>A Directory an Agent Can Navigate</h3><p>The folders should make it obvious where an agent finds specifications, data, runners, and test records. The following is a cross-product reference structure; do not create folders a product does not need:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="3-How-to-Structure-the-Harness"><a href="#3-How-to-Structure-the-Harness" class="headerlink" title="3. How to Structure the Harness"></a>3. How to Structure the Harness</h2><h3 id="A-Directory-an-Agent-Can-Navigate"><a href="#A-Directory-an-Agent-Can-Navigate" class="headerlink" title="A Directory an Agent Can Navigate"></a>A Directory an Agent Can Navigate</h3><p>The folders should make it obvious where an agent finds specifications, data, runners, and test records. The following is a cross-product reference structure; do not create folders a product does not need:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">e2e-harness/</span><br><span class="line">├── AGENTS.md</span><br><span class="line">├── docs/</span><br><span class="line">│   ├── product-map.md</span><br><span class="line">│   ├── test-strategy.md</span><br><span class="line">│   ├── environments.md</span><br><span class="line">│   ├── selector-contract.md</span><br><span class="line">│   └── known-issues.md</span><br><span class="line">├── specs/</span><br><span class="line">│   ├── smoke/</span><br><span class="line">│   ├── critical/</span><br><span class="line">│   └── regression/</span><br><span class="line">├── pages/                 # Web UI, optional</span><br><span class="line">├── screens/               # Other UI surfaces, optional</span><br><span class="line">├── components/            # Shared UI, optional</span><br><span class="line">├── flows/</span><br><span class="line">├── assertions/</span><br><span class="line">├── fixtures/</span><br><span class="line">├── support/</span><br><span class="line">├── adapters/</span><br><span class="line">│   ├── browser/           # Playwright</span><br><span class="line">│   ├── mobile/            # Appium, optional</span><br><span class="line">│   └── api/               # API client/contract, optional</span><br><span class="line">├── observability/</span><br><span class="line">├── agent/</span><br><span class="line">│   ├── exploratory/</span><br><span class="line">│   ├── failure-analysis/</span><br><span class="line">│   ├── test-generation/</span><br><span class="line">│   └── maintenance/</span><br><span class="line">├── config/</span><br><span class="line">└── scripts/</span><br></pre></td></tr></table></figure>
 
 <p>Each folder should have one job:</p>
@@ -528,7 +534,7 @@ flowchart TD
 </tr>
 </tbody></table></div>
 <p>The model brand is not the point. Keep roles, context, environment, and decision rights separate. In one 2026 study, tests generated after faulty code had weaker fault detection than independently generated tests in that experiment. That is another reason to keep Builder assumptions out of the Validator’s acceptance context. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05139">On the risk of coding before testing</a></p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="5-Keep-Test-Records-So-Agents-Can-Diagnose-Problems"><a href="#5-Keep-Test-Records-So-Agents-Can-Diagnose-Problems" class="headerlink" title="5. Keep Test Records So Agents Can Diagnose Problems"></a>5. Keep Test Records So Agents Can Diagnose Problems</h2><h3 id="Do-Not-Leave-Only-an-Error-Message"><a href="#Do-Not-Leave-Only-an-Error-Message" class="headerlink" title="Do Not Leave Only an Error Message"></a>Do Not Leave Only an Error Message</h3><p><code>Expected visible, received hidden</code> is not enough to find the cause. On failure, the harness should keep at least:</p>
+<h2 id="5-Keep-Test-Records-So-Agents-Can-Diagnose-Problems"><a href="#5-Keep-Test-Records-So-Agents-Can-Diagnose-Problems" class="headerlink" title="5. Keep Test Records So Agents Can Diagnose Problems"></a>5. Keep Test Records So Agents Can Diagnose Problems</h2><h3 id="Do-Not-Leave-Only-an-Error-Message"><a href="#Do-Not-Leave-Only-an-Error-Message" class="headerlink" title="Do Not Leave Only an Error Message"></a>Do Not Leave Only an Error Message</h3><p><code>Expected visible, received hidden</code> is not enough to find the cause. On failure, the harness should keep at least:</p>
 <ul>
 <li>the DOM snapshot, ARIA snapshot, or native UI tree before and after the failed step;</li>
 <li>screenshots, video when needed, traces, and execution logs;</li>
@@ -549,7 +555,7 @@ flowchart TD
 <li>no check is deleted, timeout is inflated, retry is made unlimited, or error state is turned into success.</li>
 </ol>
 <p>Playwright’s official <a target="_blank" rel="noopener" href="https://playwright.dev/docs/test-agents">Test Agents</a> include planner, generator, and healer capabilities. They can help maintain tests, but must not have permission to change the product’s expected answer.</p>
-<h2 id="6-Connect-Product-Interfaces-to-the-Harness"><a href="#6-Connect-Product-Interfaces-to-the-Harness" class="headerlink" title="6. Connect Product Interfaces to the Harness"></a>6. Connect Product Interfaces to the Harness</h2><h3 id="Playwright-and-Similar-Tools-Are-Runners"><a href="#Playwright-and-Similar-Tools-Are-Runners" class="headerlink" title="Playwright and Similar Tools Are Runners"></a>Playwright and Similar Tools Are Runners</h3><p>Choose the runner adapter based on the product surface rather than coupling the whole harness to one tool:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="6-Connect-Product-Interfaces-to-the-Harness"><a href="#6-Connect-Product-Interfaces-to-the-Harness" class="headerlink" title="6. Connect Product Interfaces to the Harness"></a>6. Connect Product Interfaces to the Harness</h2><h3 id="Playwright-and-Similar-Tools-Are-Runners"><a href="#Playwright-and-Similar-Tools-Are-Runners" class="headerlink" title="Playwright and Similar Tools Are Runners"></a>Playwright and Similar Tools Are Runners</h3><p>Choose the runner adapter based on the product surface rather than coupling the whole harness to one tool:</p>
 <ul>
 <li>Use Playwright for web interfaces, including browser actions, semantic locators, network inspection, traces, and DOM assertions.</li>
 <li>Use an HTTP client, contract runner, or service-specific adapter for API products.</li>
@@ -875,6 +881,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -888,6 +895,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -935,6 +945,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -986,6 +997,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

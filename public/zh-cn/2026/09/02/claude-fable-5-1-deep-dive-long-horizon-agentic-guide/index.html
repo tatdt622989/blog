@@ -83,14 +83,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -115,7 +121,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -344,7 +350,7 @@
 <li><strong>Claude Fable 5.1</strong>（$10 &#x2F; $50）：专攻连续数十轮的多步骤自主智能体、跨数十个模块的大规模系统重构、端到端生成包含动态计算的财务模型电子表格，以及深度网络探查。得益于 <strong>$0.25 &#x2F; MTok</strong> 的极低缓存读取资费，在极长上下文的智能体对话中，其综合运行成本甚至往往比 Opus 5 更具经济优势！</li>
 </ul>
 <hr>
-<h2 id="开发者必读：三大重大不兼容变更"><a href="#开发者必读：三大重大不兼容变更" class="headerlink" title="开发者必读：三大重大不兼容变更"></a>开发者必读：三大重大不兼容变更</h2><p>如果你正着手将现有的工程工作流或智能体项目迁移至 Claude Fable 5.1，必须格外警惕以下三项与过往模型截然不同的行为变更（Breaking Changes）：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="开发者必读：三大重大不兼容变更"><a href="#开发者必读：三大重大不兼容变更" class="headerlink" title="开发者必读：三大重大不兼容变更"></a>开发者必读：三大重大不兼容变更</h2><p>如果你正着手将现有的工程工作流或智能体项目迁移至 Claude Fable 5.1，必须格外警惕以下三项与过往模型截然不同的行为变更（Breaking Changes）：</p>
 <h3 id="1-禁止强制工具选择（tool-choice-不再支持-tool-与-any）"><a href="#1-禁止强制工具选择（tool-choice-不再支持-tool-与-any）" class="headerlink" title="1. 禁止强制工具选择（tool_choice 不再支持 tool 与 any）"></a>1. 禁止强制工具选择（tool_choice 不再支持 tool 与 any）</h3><p>在以往的 Claude 系列模型中，开发者常常通过 <code>tool_choice: &#123;&quot;type&quot;: &quot;tool&quot;, &quot;name&quot;: &quot;...&quot;&#125;</code> 或 <code>tool_choice: &#123;&quot;type&quot;: &quot;any&quot;&#125;</code> 强行要求模型在下一轮必须调用某个特定工具。</p>
 <p>在 <strong>Claude Fable 5.1</strong> 中，这两种强制模式已被废止，若继续传递该参数将直接触发 <strong>HTTP 400 invalid_request_error</strong>。</p>
 <p><strong>官方标准升级方案：</strong></p>
@@ -361,7 +367,7 @@
 </ul>
 <h3 id="3-对话历史变动会导致思考签名即刻失效"><a href="#3-对话历史变动会导致思考签名即刻失效" class="headerlink" title="3. 对话历史变动会导致思考签名即刻失效"></a>3. 对话历史变动会导致思考签名即刻失效</h3><p>为了确保长推理链的严密性与防篡改安全性，Claude Fable 5.1 的每个思考区块均与之前的系统提示词、工具定义以及全部对话历史深度绑定。如果你的后端服务在多轮会话中途擅自修改了前面的消息内容，API 将直接拦截并抛出签名无效的 400 错误。在设计智能体框架的缓存与会话存储时，务必确保消息前缀（Prefix）的字节流保持百分之百的一致。</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="五大核心新特性与架构演进"><a href="#五大核心新特性与架构演进" class="headerlink" title="五大核心新特性与架构演进"></a>五大核心新特性与架构演进</h2><p>除了顶尖推理能力的显著突破，Claude Fable 5.1 还深度引入了多项为自主智能体量身定制的底层能力：</p>
+<h2 id="五大核心新特性与架构演进"><a href="#五大核心新特性与架构演进" class="headerlink" title="五大核心新特性与架构演进"></a>五大核心新特性与架构演进</h2><p>除了顶尖推理能力的显著突破，Claude Fable 5.1 还深度引入了多项为自主智能体量身定制的底层能力：</p>
 <h3 id="1-逐消息-Effort-动态调控（Beta）"><a href="#1-逐消息-Effort-动态调控（Beta）" class="headerlink" title="1. 逐消息 Effort 动态调控（Beta）"></a>1. 逐消息 Effort 动态调控（Beta）</h3><p>以往在会话中调整思考强度（Effort）往往需要修改全局配置，这往往会破坏已有的提示词缓存状态。Claude Fable 5.1 允许在同一次会话的不同消息轮次中，动态传递 <code>effort: &quot;low&quot;</code>、<code>&quot;medium&quot;</code>、<code>&quot;high&quot;</code> 或 <code>&quot;max&quot;</code>，且<strong>完全不会破坏此前的提示词缓存命中</strong>。</p>
 <p>例如在智能体工作流中，执行普通的文件读取与存在性检查时，可指定 <code>low</code> effort 以极速获得响应；而一旦推进到核心算法重构或复杂编译错误排查时，则可动态拔高至 <code>high</code> 或 <code>max</code>。</p>
 <h3 id="2-轮次级系统消息（Turn-scoped-System-Messages-Beta）"><a href="#2-轮次级系统消息（Turn-scoped-System-Messages-Beta）" class="headerlink" title="2. 轮次级系统消息（Turn-scoped System Messages, Beta）"></a>2. 轮次级系统消息（Turn-scoped System Messages, Beta）</h3><p>开发者现在可以在 <code>messages</code> 数组任意位置插入 <code>role: &quot;system&quot;</code> 的消息。这对于自动化智能体系统而言是一项重磅利好——你无需修改最顶层的 System Prompt，在百分之百保留既有提示词缓存的前提下，即可向当前执行步骤精准注入临时约束或特定工具调用要求。</p>
@@ -371,7 +377,7 @@
 <h3 id="4-0-025-倍超低缓存读取费率"><a href="#4-0-025-倍超低缓存读取费率" class="headerlink" title="4. 0.025 倍超低缓存读取费率"></a>4. 0.025 倍超低缓存读取费率</h3><p>长时程智能体最主要的账单消耗，在于每一轮工具调用后，都必须把不断膨胀的代码文件、目录结构与终端输出整体送回模型上下文。Claude Fable 5.1 将缓存读取成本压到了仅需 <strong>$0.25 &#x2F; MTok</strong>，这意味着即便历史上下文已经积累到了数十万 Token，每一轮工具交互所带来的增量读取成本依然微乎其微。</p>
 <h3 id="5-内容来源权威标记（Content-Provenance）"><a href="#5-内容来源权威标记（Content-Provenance）" class="headerlink" title="5. 内容来源权威标记（Content Provenance）"></a>5. 内容来源权威标记（Content Provenance）</h3><p>模型输出的纯文本内容默认嵌入 Anthropic 统计式文本水印，在完全不影响语义表达且不增加额外 Token 负担的前提下提供防伪溯源；而通过内置代码工具或 Files API 生成的图像与视频，更已全面原生支持 <strong>C2PA 数字证书签名</strong>。</p>
 <hr>
-<h2 id="长时程智能体工作流执行架构"><a href="#长时程智能体工作流执行架构" class="headerlink" title="长时程智能体工作流执行架构"></a>长时程智能体工作流执行架构</h2><p>下图清晰展示了基于 Claude Fable 5.1 构建高可用自主智能体系统时的标准运行时拓扑：</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="长时程智能体工作流执行架构"><a href="#长时程智能体工作流执行架构" class="headerlink" title="长时程智能体工作流执行架构"></a>长时程智能体工作流执行架构</h2><p>下图清晰展示了基于 Claude Fable 5.1 构建高可用自主智能体系统时的标准运行时拓扑：</p>
 <pre class="mermaid">
 flowchart TD
     Start["AGENT INITIALIZATION (智能体工作流启动)"] --> LoadContext["LOAD WORKSPACE & PROMPTS (载入项目上下文与工具定义)"]
@@ -565,6 +571,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -578,6 +585,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -625,6 +635,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -676,6 +687,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

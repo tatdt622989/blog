@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -296,7 +302,7 @@
 </tbody></table></div>
 <p>如果 <strong>&#x2F;list-agents</strong> 顯示指令不存在，代表這個 Session 沒有跨 Session 訊息功能，先升級版本。**&#x2F;status** 的 <strong>Peer address</strong> 一列會顯示本 Session 的收件位址；若顯示 <strong>unavailable</strong>，代表收件 socket 沒建立成功。</p>
 <p>想熟悉更多 Session 相關指令（插話、回溯、定時巡查），可以參考 <a href="/2026/10/14/Claude-Code-%E6%9C%89%E8%B6%A3%E6%8C%87%E4%BB%A4%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8F%92%E8%A9%B1%E3%80%81%E5%9B%9E%E6%BA%AF%E3%80%81%E5%AE%9A%E6%99%82%E5%B7%A1%E6%9F%A5%E8%88%87%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%BD%A9%E8%9B%8B/">Claude Code 有趣指令指南</a>。</p>
-<h2 id="等另一個-Session-做完再通知我"><a href="#等另一個-Session-做完再通知我" class="headerlink" title="等另一個 Session 做完再通知我"></a>等另一個 Session 做完再通知我</h2><p>在等長時間任務時，可以請 Claude 訂閱「對方下次閒置或結束時通知一次」：</p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="等另一個-Session-做完再通知我"><a href="#等另一個-Session-做完再通知我" class="headerlink" title="等另一個 Session 做完再通知我"></a>等另一個 Session 做完再通知我</h2><p>在等長時間任務時，可以請 Claude 訂閱「對方下次閒置或結束時通知一次」：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">migration 那個 Session 做完手上的工作時告訴我</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -346,7 +352,7 @@
 <li>標示 <strong>can’t receive cross-session messages</strong> 的 Session，訊息不會送出，結果以 <strong>Not sent</strong> 開頭。</li>
 <li>跨機路徑會經過伺服器，不要把 API key、密碼或個資放進訊息。</li>
 </ul>
-<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="權限設定：收件模式、跨機核准與全部關閉"><a href="#權限設定：收件模式、跨機核准與全部關閉" class="headerlink" title="權限設定：收件模式、跨機核准與全部關閉"></a>權限設定：收件模式、跨機核准與全部關閉</h2><p><strong>收件模式 crossSessionInbound</strong>（也可在 <strong>&#x2F;config</strong> 的 <strong>Messages from your other sessions</strong> 設定，v2.1.232 起）：</p>
+<h2 id="權限設定：收件模式、跨機核准與全部關閉"><a href="#權限設定：收件模式、跨機核准與全部關閉" class="headerlink" title="權限設定：收件模式、跨機核准與全部關閉"></a>權限設定：收件模式、跨機核准與全部關閉</h2><p><strong>收件模式 crossSessionInbound</strong>（也可在 <strong>&#x2F;config</strong> 的 <strong>Messages from your other sessions</strong> 設定，v2.1.232 起）：</p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -379,7 +385,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">claude -p <span class="string">&quot;檢查 migration 是否完成&quot;</span> \</span><br><span class="line">  --settings <span class="string">&#x27;&#123;&quot;crossSessionInbound&quot;:&quot;accept&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>設定項說明見 <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/settings-reference#crosssessioninbound">Settings reference</a>。</p>
-<h2 id="跨-Session-訊息、-x2F-resume、子代理、Agent-Teams-怎麼選"><a href="#跨-Session-訊息、-x2F-resume、子代理、Agent-Teams-怎麼選" class="headerlink" title="跨 Session 訊息、&#x2F;resume、子代理、Agent Teams 怎麼選"></a>跨 Session 訊息、&#x2F;resume、子代理、Agent Teams 怎麼選</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="跨-Session-訊息、-x2F-resume、子代理、Agent-Teams-怎麼選"><a href="#跨-Session-訊息、-x2F-resume、子代理、Agent-Teams-怎麼選" class="headerlink" title="跨 Session 訊息、&#x2F;resume、子代理、Agent Teams 怎麼選"></a>跨 Session 訊息、&#x2F;resume、子代理、Agent Teams 怎麼選</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th>機制</th>
@@ -606,6 +612,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -619,6 +626,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -670,6 +680,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -721,6 +732,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

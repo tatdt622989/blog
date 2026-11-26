@@ -39,9 +39,9 @@
   
   <meta property="article:tag" content="AI Coding" />
   
-  <meta property="article:tag" content="AI" />
-  
   <meta property="article:tag" content="Developer Tools" />
+  
+  <meta property="article:tag" content="AI" />
   
   <meta property="article:tag" content="Software Engineering" />
   
@@ -51,7 +51,7 @@
   <meta name="twitter:description" content="AI can generate code quickly, but review remains expensive. This guide examines vibe coding, stable technology, verification, and testing.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/cover.jpg?v=46cc0650">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/","url":"https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/","headline":"From Vibe Coding to PR Review Bottlenecks: What Changed in Software Engineering?","description":"AI can generate code quickly, but review remains expensive. This guide examines vibe coding, stable technology, verification, and testing.","datePublished":"2026-08-26T14:08:22.000Z","dateModified":"2026-08-29T10:50:35.000Z","inLanguage":"en","articleSection":"Software Engineering","keywords":"AI Coding, AI, Developer Tools, Software Engineering","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/","url":"https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/","headline":"From Vibe Coding to PR Review Bottlenecks: What Changed in Software Engineering?","description":"AI can generate code quickly, but review remains expensive. This guide examines vibe coding, stable technology, verification, and testing.","datePublished":"2026-08-26T14:08:22.000Z","dateModified":"2026-08-29T10:50:35.000Z","inLanguage":"en","articleSection":"Software Engineering","keywords":"AI Coding, Developer Tools, AI, Software Engineering","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Software Engineering","item":"https://blog.6yuwei.com/en/categories/Software-Engineering/"},{"@type":"ListItem","position":3,"name":"From Vibe Coding to PR Review Bottlenecks: What Changed in Software Engineering?","item":"https://blog.6yuwei.com/en/2026/08/26/vibe-coding-pr-review-engineering-shift/"}]}</script>
   
@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -263,7 +269,7 @@
 </ul>
 <p>This does not prove that AI always reduces productivity. It shows why output volume is a poor measure of engineering value. A randomized METR study of 16 experienced open-source developers found that early-2025 AI tools made participants 19% slower on tasks in mature repositories they already knew well. METR also cautioned that the result applied to that specific sample, tool generation, and task setting; it should not be generalized to every developer.</p>
 <p>The useful conclusion is narrower: <strong>AI-assisted work still needs review, execution, and evidence.</strong></p>
-<h2 id="2-The-Junior-Developer-Cliff"><a href="#2-The-Junior-Developer-Cliff" class="headerlink" title="2. The Junior Developer Cliff"></a>2. The Junior Developer Cliff</h2><p>Traditional engineering careers include years of small debugging tasks, test fixes, support work, and routine implementation. Those tasks may look inefficient, but they help developers build intuition about state, concurrency, boundaries, and failure modes.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="2-The-Junior-Developer-Cliff"><a href="#2-The-Junior-Developer-Cliff" class="headerlink" title="2. The Junior Developer Cliff"></a>2. The Junior Developer Cliff</h2><p>Traditional engineering careers include years of small debugging tasks, test fixes, support work, and routine implementation. Those tasks may look inefficient, but they help developers build intuition about state, concurrency, boundaries, and failure modes.</p>
 <p>As companies expect AI to absorb more boilerplate, documentation, and simple tests, the industry faces a legitimate training question: if entry-level tasks shrink, where will new engineers gain the experience required to review AI-generated systems later?</p>
 <p>It would be too broad to claim that every company has already replaced junior teams with one senior engineer and several agents. A more realistic direction is that junior work changes. New developers need to learn earlier how to:</p>
 <ul>
@@ -274,7 +280,7 @@
 <li>stop an agent when evidence is missing.</li>
 </ul>
 <p>The goal is not to skip fundamentals. It is to learn them while using AI as a tool rather than as an authority.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="3-Why-Boring-Technology-Looks-Attractive-Again"><a href="#3-Why-Boring-Technology-Looks-Attractive-Again" class="headerlink" title="3. Why Boring Technology Looks Attractive Again"></a>3. Why Boring Technology Looks Attractive Again</h2><p>The renewed interest in <strong>Choose Boring Technology</strong> has a practical explanation. Mature databases, frameworks, and protocols have extensive documentation, familiar failure modes, and many examples. Both humans and AI agents have an easier time reasoning about systems built from well-understood parts.</p>
+<h2 id="3-Why-Boring-Technology-Looks-Attractive-Again"><a href="#3-Why-Boring-Technology-Looks-Attractive-Again" class="headerlink" title="3. Why Boring Technology Looks Attractive Again"></a>3. Why Boring Technology Looks Attractive Again</h2><p>The renewed interest in <strong>Choose Boring Technology</strong> has a practical explanation. Mature databases, frameworks, and protocols have extensive documentation, familiar failure modes, and many examples. Both humans and AI agents have an easier time reasoning about systems built from well-understood parts.</p>
 <pre class="mermaid">
 flowchart TD
     classDef patch fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
@@ -293,7 +299,7 @@ flowchart TD
 
 <p>A clear monolith can also be easier for an agent to understand than a feature spread across many repositories and services. That does not make every monolith good or every distributed system wrong. It means complexity needs to justify itself.</p>
 <p>Postgres, SQLite, standard SQL, simple REST or RPC, and server-rendered pages are therefore common starting points. Their value is not fashion. It is the ability to inspect logs, reproduce failures, and use mature tools when something breaks.</p>
-<h2 id="4-Testing-Matters-More-Not-Less"><a href="#4-Testing-Matters-More-Not-Less" class="headerlink" title="4. Testing Matters More, Not Less"></a>4. Testing Matters More, Not Less</h2><p>Kent Beck’s <strong>Augmented Coding: Beyond the Vibes</strong> describes using test-driven development to keep AI-generated work aligned with the intended design. Simon Willison similarly argues that automated tests are no longer optional when working with coding agents.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="4-Testing-Matters-More-Not-Less"><a href="#4-Testing-Matters-More-Not-Less" class="headerlink" title="4. Testing Matters More, Not Less"></a>4. Testing Matters More, Not Less</h2><p>Kent Beck’s <strong>Augmented Coding: Beyond the Vibes</strong> describes using test-driven development to keep AI-generated work aligned with the intended design. Simon Willison similarly argues that automated tests are no longer optional when working with coding agents.</p>
 <p>The strongest version of this idea is not that tests are the only form of truth. It is that AI increases the need for several layers of verification:</p>
 <ul>
 <li><strong>Type systems</strong> can catch some interface and data-shape mistakes at compile time, but no reliable evidence supports a fixed claim such as eliminating 60% of AI errors.</li>
@@ -329,7 +335,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/en/tags/AI-Coding/">AI Coding</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Developer-Tools/">Developer Tools</a>, <a href="/en/tags/Software-Engineering/">Software Engineering</a>
+    <a href="/en/tags/AI-Coding/">AI Coding</a>, <a href="/en/tags/Developer-Tools/">Developer Tools</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/Software-Engineering/">Software Engineering</a>
   </div>
 
         
@@ -400,7 +406,7 @@ flowchart TD
         <a href="/en/2026/11/12/why-rust-is-popular-2026/" class="related-post-link"
            data-rel-title="Why Is Rust So Popular? Why Discord, Linux, and GitHub Are Moving to Rust, and Who Isn&#39;t"
            data-rel-path="/en/2026/11/12/why-rust-is-popular-2026/"
-           data-rel-tag="AI"
+           data-rel-tag="Developer Tools"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -409,7 +415,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">Developer Tools</span>
             
             <h4 class="related-post-item-title">Why Is Rust So Popular? Why Discord, Linux, and GitHub Are Moving to Rust, and Who Isn&#39;t</h4>
             
@@ -423,7 +429,7 @@ flowchart TD
         <a href="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/" class="related-post-link"
            data-rel-title="Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet"
            data-rel-path="/en/2026/09/04/open-source-ai-image-generation-pipeline-comfyui-guide/"
-           data-rel-tag="AI"
+           data-rel-tag="Developer Tools"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -432,7 +438,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">Developer Tools</span>
             
             <h4 class="related-post-item-title">Beyond Random Prompting: The Definitive Guide to Deterministic AI Image Generation with ComfyUI, LoRA, and ControlNet</h4>
             
@@ -477,6 +483,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -490,6 +497,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -537,6 +547,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -588,6 +599,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

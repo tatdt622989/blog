@@ -37,9 +37,9 @@
   <meta property="article:modified_time" content="2026-09-18T04:40:00.000Z" />
   <meta property="article:section" content="AI" />
   
-  <meta property="article:tag" content="AI" />
-  
   <meta property="article:tag" content="AI Agent" />
+  
+  <meta property="article:tag" content="AI" />
   
   <meta property="article:tag" content="LLM" />
   
@@ -53,7 +53,7 @@
   <meta name="twitter:description" content="TypeSafe AI&#39;s Jev returns type-safe decisions with probabilities, not text. A guide to top real-world use cases and open-source tools.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg?v=b9fee980">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/","url":"https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/","headline":"What Is Jev? The System One Model That Returns Probabilities, Not Text","description":"TypeSafe AI's Jev returns type-safe decisions with probabilities, not text. A guide to top real-world use cases and open-source tools.","datePublished":"2026-09-17T10:00:00.000Z","dateModified":"2026-09-18T04:40:00.000Z","inLanguage":"en","articleSection":"AI","keywords":"AI, AI Agent, LLM, Tools, OpenAI","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/","url":"https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/","headline":"What Is Jev? The System One Model That Returns Probabilities, Not Text","description":"TypeSafe AI's Jev returns type-safe decisions with probabilities, not text. A guide to top real-world use cases and open-source tools.","datePublished":"2026-09-17T10:00:00.000Z","dateModified":"2026-09-18T04:40:00.000Z","inLanguage":"en","articleSection":"AI","keywords":"AI Agent, AI, LLM, Tools, OpenAI","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://blog.6yuwei.com/en/categories/AI/"},{"@type":"ListItem","position":3,"name":"What Is Jev? The System One Model That Returns Probabilities, Not Text","item":"https://blog.6yuwei.com/en/2026/09/17/typesafe-jev-system-one-model-guide/"}]}</script>
   
@@ -87,14 +87,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -119,7 +125,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -294,7 +300,7 @@
 </tr>
 </tbody></table></div>
 <p>Put simply: <strong>if your software only needs an AI decision to branch downstream logic, generative LLMs are slow and wasteful; a decision model gives you a typed dropdown with probabilities.</strong></p>
-<h2 id="Three-Core-Primitives-Choice-Score-Noul"><a href="#Three-Core-Primitives-Choice-Score-Noul" class="headerlink" title="Three Core Primitives: Choice, Score, Noul"></a>Three Core Primitives: Choice, Score, Noul</h2><p>Jev exposes a single API endpoint (<code>POST https://api.typesafe.ai/v1/systemone</code>). Each request takes an application <code>state</code> alongside a collection of <code>questions</code>.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Three-Core-Primitives-Choice-Score-Noul"><a href="#Three-Core-Primitives-Choice-Score-Noul" class="headerlink" title="Three Core Primitives: Choice, Score, Noul"></a>Three Core Primitives: Choice, Score, Noul</h2><p>Jev exposes a single API endpoint (<code>POST https://api.typesafe.ai/v1/systemone</code>). Each request takes an application <code>state</code> alongside a collection of <code>questions</code>.</p>
 <p>Each question belongs to one of three primitives:</p>
 <ol>
 <li><strong>Choice (Categorical)</strong>: Selects one best option from a discrete list of categories.</li>
@@ -308,7 +314,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;answers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;department&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;billing&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;billing&quot;</span><span class="punctuation">:</span> <span class="number">0.88</span><span class="punctuation">,</span> <span class="attr">&quot;technical&quot;</span><span class="punctuation">:</span> <span class="number">0.07</span><span class="punctuation">,</span> <span class="attr">&quot;sales&quot;</span><span class="punctuation">:</span> <span class="number">0.05</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.91</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;severity&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="number">2.1</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probabilities&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">0.12</span><span class="punctuation">,</span> <span class="number">0.65</span><span class="punctuation">,</span> <span class="number">0.23</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.84</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;requestsRefund&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;probability&quot;</span><span class="punctuation">:</span> <span class="number">0.96</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.95</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>Because confidence scores are calibrated, your backend code can safely enforce strict routing thresholds.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="5-Practical-Use-Cases-in-Production"><a href="#5-Practical-Use-Cases-in-Production" class="headerlink" title="5 Practical Use Cases in Production"></a>5 Practical Use Cases in Production</h2><p>Jev cannot write a blog post, but in automated pipelines, it shines:</p>
+<h2 id="5-Practical-Use-Cases-in-Production"><a href="#5-Practical-Use-Cases-in-Production" class="headerlink" title="5 Practical Use Cases in Production"></a>5 Practical Use Cases in Production</h2><p>Jev cannot write a blog post, but in automated pipelines, it shines:</p>
 <h3 id="1-High-Speed-Agent-Tool-Routing-Fast-Router"><a href="#1-High-Speed-Agent-Tool-Routing-Fast-Router" class="headerlink" title="1. High-Speed Agent Tool Routing (Fast Router)"></a>1. High-Speed Agent Tool Routing (Fast Router)</h3><p>In agent frameworks, deciding whether to invoke a search tool, query SQL, or answer directly usually requires a full Chain-of-Thought step from a frontier LLM, adding 3+ seconds per step.</p>
 <p>Using Jev as the L1 triage router:</p>
 <ul>
@@ -323,7 +329,7 @@
 <h3 id="3-Real-Time-LLM-Output-Guardrails"><a href="#3-Real-Time-LLM-Output-Guardrails" class="headerlink" title="3. Real-Time LLM Output Guardrails"></a>3. Real-Time LLM Output Guardrails</h3><p>Customer-facing chatbots risk hallucinations, accidental discount promises, or policy violations.<br>Running a secondary LLM to audit responses doubles user wait times. With Jev’s 70-150ms latency, responses can be checked for unauthorized promises or privacy leaks in parallel before streaming to the client.</p>
 <h3 id="4-Real-Time-Game-AI-amp-Dynamic-Triggers"><a href="#4-Real-Time-Game-AI-amp-Dynamic-Triggers" class="headerlink" title="4. Real-Time Game AI &amp; Dynamic Triggers"></a>4. Real-Time Game AI &amp; Dynamic Triggers</h3><p>NPC state machines and game event systems evaluate environmental triggers several times per second.<br>Sequential LLM latencies break real-time game loops. Jev comfortably handles 10+ evaluations per second. Feeding player health, distance, and inventory as state allows NPCs to sample from patrol, ambush, or retreat distributions without dropping frames.</p>
 <h3 id="5-Automated-Form-Verification-amp-Fraud-Detection"><a href="#5-Automated-Form-Verification-amp-Fraud-Detection" class="headerlink" title="5. Automated Form Verification &amp; Fraud Detection"></a>5. Automated Form Verification &amp; Fraud Detection</h3><p>Free-text notes in checkout or onboarding forms often conceal dispute or fraud risks. Jev computes risk scores and intent probabilities synchronously during form submission, triggering 2FA or human escalation only when necessary.</p>
-<h2 id="Production-Flow-Architecture"><a href="#Production-Flow-Architecture" class="headerlink" title="Production Flow Architecture"></a>Production Flow Architecture</h2><p>Here is how a decision model sits in an automated pipeline:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Production-Flow-Architecture"><a href="#Production-Flow-Architecture" class="headerlink" title="Production Flow Architecture"></a>Production Flow Architecture</h2><p>Here is how a decision model sits in an automated pipeline:</p>
 <pre class="mermaid">
 flowchart TD
     classDef intake fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
@@ -378,7 +384,7 @@ flowchart TD
         
   
   <div class="tags">
-    <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/AI-Agent/">AI Agent</a>, <a href="/en/tags/LLM/">LLM</a>, <a href="/en/tags/Tools/">Tools</a>, <a href="/en/tags/OpenAI/">OpenAI</a>
+    <a href="/en/tags/AI-Agent/">AI Agent</a>, <a href="/en/tags/AI/">AI</a>, <a href="/en/tags/LLM/">LLM</a>, <a href="/en/tags/Tools/">Tools</a>, <a href="/en/tags/OpenAI/">OpenAI</a>
   </div>
 
         
@@ -449,7 +455,7 @@ flowchart TD
         <a href="/en/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/" class="related-post-link"
            data-rel-title="Gemini 3.8 Flash Unleashed: Frontier-Tier Agentic Loops, DeepSWE Breakthroughs, and Ultra-Low Pricing"
            data-rel-path="/en/2026/09/03/gemini-3-8-flash-unleashed-long-horizon-agentic-loops-deepswe/"
-           data-rel-tag="AI"
+           data-rel-tag="AI Agent"
            data-rel-position="1">
           <div class="related-post-cover">
             
@@ -458,7 +464,7 @@ flowchart TD
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">AI</span>
+              <span class="related-post-tag">AI Agent</span>
             
             <h4 class="related-post-item-title">Gemini 3.8 Flash Unleashed: Frontier-Tier Agentic Loops, DeepSWE Breakthroughs, and Ultra-Low Pricing</h4>
             
@@ -526,6 +532,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -539,6 +546,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -586,6 +596,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -637,6 +648,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

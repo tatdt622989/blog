@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -359,7 +365,7 @@
 <p><strong>手續費：</strong> 政府不收任何費用。但多數店家會把退款委託給代行業者，觀光廳的免稅店 FAQ 寫明「手續費由旅客或店家負擔沒有規定，<strong>國外一般由旅客負擔</strong>」。所以實際入帳可能少於上表，結帳時記得問店家扣多少、怎麼退。</p>
 <p><strong><a target="_blank" rel="noopener" href="https://tool.6yuwei.com/japan-tax-refund/">免費試算日本退稅：輸入收據金額，看能退多少日圓和台幣</a></strong></p>
 <p>一張收據填一次結帳的 10% 和 8% 金額，就會顯示每張能退多少、扣掉手續費後的金額，還沒滿 5,000 日圓的也會告訴你同一次結帳再買多少就能退。</p>
-<h2 id="完整流程"><a href="#完整流程" class="headerlink" title="完整流程"></a>完整流程</h2><p><img src="/2026/11/05/%E6%97%A5%E6%9C%AC%E9%80%80%E7%A8%85%E6%96%B0%E5%88%B6%E6%94%BB%E7%95%A5/flow.jpg?v=d7aa93d2" alt="新制退稅 5 步驟：店內結帳、登錄退款方式、機場先做海關確認、看判定結果、領取退款"></p>
+<aside class="article-ad article-ad--article" aria-label="廣告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="完整流程"><a href="#完整流程" class="headerlink" title="完整流程"></a>完整流程</h2><p><img src="/2026/11/05/%E6%97%A5%E6%9C%AC%E9%80%80%E7%A8%85%E6%96%B0%E5%88%B6%E6%94%BB%E7%95%A5/flow.jpg?v=d7aa93d2" alt="新制退稅 5 步驟：店內結帳、登錄退款方式、機場先做海關確認、看判定結果、領取退款"></p>
 <div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右捲動" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
@@ -691,7 +697,7 @@
         <a href="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/" class="related-post-link"
            data-rel-title="Claude Code vs Codex vs Cursor 比較：2026 年 10 月價格、模型與怎麼選"
            data-rel-path="/2026/05/06/AI-coding-%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83%EF%BC%9AClaude-Code%E3%80%81Codex%E3%80%81Cursor-%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F/"
-           data-rel-tag="OpenAI"
+           data-rel-tag="AI"
            data-rel-position="2">
           <div class="related-post-cover">
             
@@ -700,7 +706,7 @@
           </div>
           <div class="related-post-info">
             
-              <span class="related-post-tag">OpenAI</span>
+              <span class="related-post-tag">AI</span>
             
             <h4 class="related-post-item-title">Claude Code vs Codex vs Cursor 比較：2026 年 10 月價格、模型與怎麼選</h4>
             
@@ -745,6 +751,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜尋">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -758,6 +765,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="廣告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">廣告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -809,6 +819,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -860,6 +871,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

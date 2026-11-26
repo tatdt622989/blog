@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -280,15 +286,15 @@
 <h2 id="Images-can-supply-both-the-input-and-the-criteria"><a href="#Images-can-supply-both-the-input-and-the-criteria" class="headerlink" title="Images can supply both the input and the criteria"></a>Images can supply both the input and the criteria</h2><p>The <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/images">image documentation</a> allows pictures in <strong>state, instructions, and criteria</strong>. A product classifier, for example, could receive a product photo and reference pictures defining its categories.</p>
 <p>Image support is also enabled for <strong>1.13</strong>. It remains an experimental <strong>Danger Zone</strong> feature: include <strong>TypeSafe-Danger-Zone-Images: true</strong> in each relevant request. TypeSafe does not yet consider its reliability ready for production.</p>
 <p>I would start with one narrow visual decision. Testing whether a photo matches a clearly defined category gives you a more useful starting point than asking the model to interpret an entire scene and handle every possible action.</p>
-<h2 id="Box-returns-a-location-including-when-the-target-is-absent"><a href="#Box-returns-a-location-including-when-the-target-is-absent" class="headerlink" title="Box returns a location, including when the target is absent"></a>Box returns a location, including when the target is absent</h2><p>The new <strong>Box</strong> question requires <strong>1.14</strong> and returns one bounding box. Its <strong>top, bottom, left, and right</strong> edges are fractions from 0 to 1, relative to the image’s height or width. See the <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/primitives/box">Box reference</a>.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Box-returns-a-location-including-when-the-target-is-absent"><a href="#Box-returns-a-location-including-when-the-target-is-absent" class="headerlink" title="Box returns a location, including when the target is absent"></a>Box returns a location, including when the target is absent</h2><p>The new <strong>Box</strong> question requires <strong>1.14</strong> and returns one bounding box. Its <strong>top, bottom, left, and right</strong> edges are fractions from 0 to 1, relative to the image’s height or width. See the <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/primitives/box">Box reference</a>.</p>
 <p>The catch is that <strong>Box has no “not found” result</strong>. An absent target still produces coordinates. Add a Noul question asking whether the object exists, then decide in code whether to use the box.</p>
 <p>The following unexecuted example follows the documented <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/images#over-http">HTTP image upload format</a>. Supply your own <strong>product.jpg</strong> and set <strong>TYPESAFE_API_KEY</strong> in your environment. Running it uses your account’s API allowance.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.typesafe.ai/v1/systemone \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer <span class="variable">$TYPESAFE_API_KEY</span>&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;TypeSafe-Danger-Zone-Images: true&quot;</span> \</span><br><span class="line">  -F <span class="string">&#x27;request=&#123;</span></span><br><span class="line"><span class="string">    &quot;model&quot;: &quot;jev-1.14.0&quot;,</span></span><br><span class="line"><span class="string">    &quot;state&quot;: &#123;&quot;photo&quot;: &quot;d96b219e-product-photo&quot;&#125;,</span></span><br><span class="line"><span class="string">    &quot;assets&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;d96b219e-product-photo&quot;: &#123;&quot;type&quot;: &quot;image&quot;, &quot;part&quot;: &quot;photo-upload&quot;&#125;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &quot;questions&quot;: &#123;</span></span><br><span class="line"><span class="string">      &quot;present&quot;: &#123;&quot;type&quot;: &quot;noul&quot;, &quot;instructions&quot;: &quot;Is there a mug in photo?&quot;&#125;,</span></span><br><span class="line"><span class="string">      &quot;location&quot;: &#123;&quot;type&quot;: &quot;box&quot;, &quot;instructions&quot;: &quot;The mug in photo&quot;&#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;;type=application/json&#x27;</span> \</span><br><span class="line">  -F <span class="string">&#x27;photo-upload=@./product.jpg;type=image/jpeg&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>Valid coordinates are only the starting point. I would include absent objects, blurred images, and multiple similar objects in the test set before using the result downstream.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Context-can-reach-262k-but-keep-the-input-focused"><a href="#Context-can-reach-262k-but-keep-the-input-focused" class="headerlink" title="Context can reach 262k, but keep the input focused"></a>Context can reach 262k, but keep the input focused</h2><p>The <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/models#context-length">context reference</a> gives defaults of <strong>64k per request and 32k per question</strong>. Adding <strong>TypeSafe-Danger-Zone-Long-Context: true</strong> raises both limits to <strong>262k tokens</strong>, on either 1.13 or 1.14.</p>
+<h2 id="Context-can-reach-262k-but-keep-the-input-focused"><a href="#Context-can-reach-262k-but-keep-the-input-focused" class="headerlink" title="Context can reach 262k, but keep the input focused"></a>Context can reach 262k, but keep the input focused</h2><p>The <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/models#context-length">context reference</a> gives defaults of <strong>64k per request and 32k per question</strong>. Adding <strong>TypeSafe-Danger-Zone-Long-Context: true</strong> raises both limits to <strong>262k tokens</strong>, on either 1.13 or 1.14.</p>
 <p>Long context requires opting in. TypeSafe warns that it is slower and less accurate. For a support classifier, I would retrieve the relevant records first and expand the context only when the task needs it.</p>
-<h2 id="The-SDK-updates-include-a-new-Node-js-requirement"><a href="#The-SDK-updates-include-a-new-Node-js-requirement" class="headerlink" title="The SDK updates include a new Node.js requirement"></a>The SDK updates include a new Node.js requirement</h2><p>Check the client environment as well as the model ID:</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="The-SDK-updates-include-a-new-Node-js-requirement"><a href="#The-SDK-updates-include-a-new-Node-js-requirement" class="headerlink" title="The SDK updates include a new Node.js requirement"></a>The SDK updates include a new Node.js requirement</h2><p>Check the client environment as well as the model ID:</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://docs.typesafe.ai/sdk/python/changelog">Python SDK 0.7.5</a> adds image assets and Box support, with zstd request compression enabled by default.</li>
 <li><a target="_blank" rel="noopener" href="https://docs.typesafe.ai/sdk/javascript/changelog">JavaScript SDK 0.7.0</a> adds images and Box, requires <strong>Node.js 22 or newer</strong>, and stops exporting request payload types.</li>
@@ -465,6 +471,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -478,6 +485,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -525,6 +535,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -576,6 +587,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/zh-cn/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/zh-cn/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/zh-cn/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -308,7 +314,7 @@
 </tbody></table></div>
 <p>针对原创游戏主角，业界成熟的打法是收集 15 到 25 张多视角图训练出专属角色 LoRA（权重配置在 0.7 左右），同时在节点链路上接入一张基准立绘走 IP-Adapter（权重配置在 0.5 左右）。双重约束并存，既规避了单 LoRA 权重过高导致动作僵死过拟合，又能确保面部轮廓在各类复杂光影下高度统一。</p>
 <hr>
-<h2 id="拆解-ComfyUI-五层工业级微调流水线"><a href="#拆解-ComfyUI-五层工业级微调流水线" class="headerlink" title="拆解 ComfyUI 五层工业级微调流水线"></a>拆解 ComfyUI 五层工业级微调流水线</h2><p>传统表单式 WebUI 将各计算步骤封装于黑盒之中，难以介入各级中间数据。而 <strong>ComfyUI</strong> 凭借其直观的节点图（Node-based Pipeline），将图像生成完全重构为一条透明、可回溯、支持异步批量调用的工程流水线。</p>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="拆解-ComfyUI-五层工业级微调流水线"><a href="#拆解-ComfyUI-五层工业级微调流水线" class="headerlink" title="拆解 ComfyUI 五层工业级微调流水线"></a>拆解 ComfyUI 五层工业级微调流水线</h2><p>传统表单式 WebUI 将各计算步骤封装于黑盒之中，难以介入各级中间数据。而 <strong>ComfyUI</strong> 凭借其直观的节点图（Node-based Pipeline），将图像生成完全重构为一条透明、可回溯、支持异步批量调用的工程流水线。</p>
 <p>专业工作流从不追求一次性直出完美大图，而是严格实行<strong>五层渐进式递进优化</strong>：</p>
 <pre class="mermaid">
 flowchart TD
@@ -336,7 +342,7 @@ flowchart TD
 <h3 id="4-切片超分层（Tile-Upscale，低显存攻坚-4K）"><a href="#4-切片超分层（Tile-Upscale，低显存攻坚-4K）" class="headerlink" title="4. 切片超分层（Tile Upscale，低显存攻坚 4K）"></a>4. 切片超分层（Tile Upscale，低显存攻坚 4K）</h3><p>若业务需要交付 4K 或 8K 超精细大图，直接全尺寸推理会导致消费级显卡即刻爆显存（OOM）。工业级方案是在此处激活 <strong>ControlNet Tile</strong>，将大画布切割为数十个重叠的独立磁砖分块（Tiles）按序精算，并由 Tile 节点锁紧边界一致性后无缝拼装，实现平民显卡输出巨幅画作。</p>
 <h3 id="5-资产落地层（Post-Processing-amp-Rembg）"><a href="#5-资产落地层（Post-Processing-amp-Rembg）" class="headerlink" title="5. 资产落地层（Post-Processing &amp; Rembg）"></a>5. 资产落地层（Post-Processing &amp; Rembg）</h3><p>在管线终点串接 <strong>LayerDiffuse</strong> 或 <strong>Rembg</strong> 节点，实现发丝级主体识别并剥离背景，直出具备 Alpha 透明通道的 PNG 格式立绘。同时可串联 LUT 调色节点统一不同资产的色彩倾向，无缝导入游戏引擎。</p>
 <hr>
-<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"><a href="#手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘" class="headerlink" title="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"></a>手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘</h2><p>为了让抽象的理论真正落地，我们以一个真实的独立游戏美术需求为例，从零搭建一条确定性生产管线：</p>
+<h2 id="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"><a href="#手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘" class="headerlink" title="手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘"></a>手把手实战演练：制作独立游戏主角“银发刺客”战斗立绘</h2><p>为了让抽象的理论真正落地，我们以一个真实的独立游戏美术需求为例，从零搭建一条确定性生产管线：</p>
 <h3 id="任务目标与交付标准"><a href="#任务目标与交付标准" class="headerlink" title="任务目标与交付标准"></a>任务目标与交付标准</h3><ul>
 <li><strong>角色设定</strong>：银发、深红瞳孔、黑色皮质斗篷、手握长剑。</li>
 <li><strong>动作要求</strong>：双手执剑迎战的动态姿态，透视为微仰角，五指抓握剑柄必须严格符合人体工学。</li>
@@ -363,7 +369,7 @@ flowchart TD
 <p>注：为直观解说确定性管线中各节点的演进原理，上方步骤 1 至步骤 3 包含流程原理示意与局部修复对比效果图；步骤 4 与步骤 5 则为基于 RTX 4090 算力与 RMBG 2.0 模型实测输出之高分辨率成果与透明去背交付品。</p>
 </blockquote>
 <hr>
-<h2 id="结语：从盲目试错到工程化交付的思维跃迁"><a href="#结语：从盲目试错到工程化交付的思维跃迁" class="headerlink" title="结语：从盲目试错到工程化交付的思维跃迁"></a>结语：从盲目试错到工程化交付的思维跃迁</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
+<aside class="article-ad article-ad--article" aria-label="广告"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="结语：从盲目试错到工程化交付的思维跃迁"><a href="#结语：从盲目试错到工程化交付的思维跃迁" class="headerlink" title="结语：从盲目试错到工程化交付的思维跃迁"></a>结语：从盲目试错到工程化交付的思维跃迁</h2><div class="table-wrap data-table-wrap" role="region" aria-label="表格，可左右滚动" tabindex="0" style="--table-min-width:0px"><table>
 <thead>
 <tr>
 <th align="left">维度对比</th>
@@ -558,6 +564,7 @@ flowchart TD
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="搜索">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -571,6 +578,9 @@ flowchart TD
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="广告"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">广告</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -618,6 +628,7 @@ flowchart TD
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -669,6 +680,7 @@ flowchart TD
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>

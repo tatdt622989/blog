@@ -39,11 +39,11 @@
   
   <meta property="article:tag" content="JavaScript" />
   
-  <meta property="article:tag" content="Node.js" />
-  
   <meta property="article:tag" content="Security Vulnerabilities" />
   
   <meta property="article:tag" content="Website Operations" />
+  
+  <meta property="article:tag" content="Node.js" />
   
   
   <meta name="twitter:card" content="summary_large_image">
@@ -51,7 +51,7 @@
   <meta name="twitter:description" content="Analyze Node.js&#39;s October 2026 fixes: Brotli RCE, TLS bypasses, random-cache snapshots, affected branches, npm audit limits and deployment checks.">
   <meta name="twitter:image" content="https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/cover.jpg?v=dfbdd378">
   
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/","url":"https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/","headline":"Node.js October 2026 Security Update: Brotli RCE, TLS Bypasses and What to Patch","description":"Analyze Node.js's October 2026 fixes: Brotli RCE, TLS bypasses, random-cache snapshots, affected branches, npm audit limits and deployment checks.","datePublished":"2026-10-21T15:49:20.000Z","dateModified":"2026-11-24T17:15:00.000Z","inLanguage":"en","articleSection":"Cybersecurity","keywords":"JavaScript, Node.js, Security Vulnerabilities, Website Operations","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/cover.jpg"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":"https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/","url":"https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/","headline":"Node.js October 2026 Security Update: Brotli RCE, TLS Bypasses and What to Patch","description":"Analyze Node.js's October 2026 fixes: Brotli RCE, TLS bypasses, random-cache snapshots, affected branches, npm audit limits and deployment checks.","datePublished":"2026-10-21T15:49:20.000Z","dateModified":"2026-11-24T17:15:00.000Z","inLanguage":"en","articleSection":"Cybersecurity","keywords":"JavaScript, Security Vulnerabilities, Website Operations, Node.js","author":[{"@type":"Person","name":"6yuwei","url":"https://blog.6yuwei.com/en/"}],"publisher":{"@type":"Organization","name":"6yuwei","url":"https://blog.6yuwei.com/en/","logo":{"@type":"ImageObject","url":"https://blog.6yuwei.com/img/logo.png","width":596,"height":230}},"image":["https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/cover.jpg"]}</script>
   
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blog.6yuwei.com/en/"},{"@type":"ListItem","position":2,"name":"Cybersecurity","item":"https://blog.6yuwei.com/en/categories/Cybersecurity/"},{"@type":"ListItem","position":3,"name":"Node.js October 2026 Security Update: Brotli RCE, TLS Bypasses and What to Patch","item":"https://blog.6yuwei.com/en/2026/10/21/nodejs-october-2026-security-analysis/"}]}</script>
   
@@ -85,14 +85,20 @@
       loaded = true;
       callbacks.splice(0).forEach(function(callback){ callback(); });
     }
-    function schedule(){
+    function schedule(timeout){
+      if (loaded) return;
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(flush, { timeout: 2500 });
+        requestIdleCallback(flush, { timeout: timeout });
       } else {
-        setTimeout(flush, 1500);
+        setTimeout(flush, Math.min(timeout, 1000));
       }
     }
-    window.addEventListener('load', schedule, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ schedule(1200); }, { once: true });
+    } else {
+      schedule(1200);
+    }
+    window.addEventListener('load', function(){ schedule(300); }, { once: true });
     ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(eventName){
       window.addEventListener(eventName, flush, { once: true, passive: true });
     });
@@ -117,7 +123,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
+  <link rel="stylesheet" href="/en/css/style.css?v=bf31fc8e0c">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -354,7 +360,7 @@
 </tr>
 </tbody></table></div>
 <p>A patch can address multiple CVEs. The <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/ad788ccd076b30e4e547910ace0beda2d063ad10">same TLS change</a> handles <strong>106069</strong> and <strong>106072</strong>, although the public advisory assigns different severities to them. Counting commits would therefore give a misleading vulnerability total.</p>
-<h2 id="Brotli-RCE-also-matters-to-backends-fetching-remote-content"><a href="#Brotli-RCE-also-matters-to-backends-fetching-remote-content" class="headerlink" title="Brotli RCE also matters to backends fetching remote content"></a>Brotli RCE also matters to backends fetching remote content</h2><p>For <strong>CVE-2026-111497</strong>, the central question is whether <strong>untrusted Brotli data reaches a vulnerable decoder</strong>. Node.js identifies remote code execution as a possible impact. That does not establish a universal HTTP request capable of compromising every Node.js website.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Brotli-RCE-also-matters-to-backends-fetching-remote-content"><a href="#Brotli-RCE-also-matters-to-backends-fetching-remote-content" class="headerlink" title="Brotli RCE also matters to backends fetching remote content"></a>Brotli RCE also matters to backends fetching remote content</h2><p>For <strong>CVE-2026-111497</strong>, the central question is whether <strong>untrusted Brotli data reaches a vulnerable decoder</strong>. Node.js identifies remote code execution as a possible impact. That does not establish a universal HTTP request capable of compromising every Node.js website.</p>
 <p>The <a target="_blank" rel="noopener" href="https://github.com/google/brotli/commit/0ed4268a4401abcb4472096340477cf4af7d1a2b">upstream Brotli patch</a> changes block-switch error handling so invalid streams are detected earlier and errors propagate to callers. This concerns native decoder behavior; adding a JavaScript exception handler does not replace the runtime correction.</p>
 <p>An easily missed path is an <strong>outbound request made by your own backend</strong>. The fixed runtime’s bundled <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/deps/undici/src/lib/web/fetch/index.js">Undici fetch implementation</a> invokes Brotli decompression for a response encoded as <strong>br</strong>.</p>
 <p>That makes user-supplied URL fetching, remote imports, attacker-influenced response sources and external compressed files relevant inventory targets. These are scenarios inferred from data flow, <strong>not confirmation that every such feature has an exploitable attack chain</strong>.</p>
@@ -366,14 +372,14 @@
 <p>The <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/lib/tls.js">final TLS implementation in 26.12.1</a> rejects a host that is not originally a canonical IP address but becomes one after name conversion. Canonical IP literals follow IP-address certificate matching. The correction tightens the boundary between name normalization and peer authentication.</p>
 <p>Inspect custom-URL proxies, remote importers, link previews and services enforcing outbound destination policies. Exploitation still requires a reachable input path and suitable certificate and endpoint conditions. <strong>The announcement does not establish that every HTTPS connection is compromised.</strong></p>
 <p>If newly rejected non-canonical names break an integration, correct the input and certificate configuration while retaining TLS identity checks.</p>
-<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="HTTP-connection-reuse-and-snapshot-randomness"><a href="#HTTP-connection-reuse-and-snapshot-randomness" class="headerlink" title="HTTP connection reuse and snapshot randomness"></a>HTTP connection reuse and snapshot randomness</h2><h3 id="Keep-alive-concerns-the-request-response-association"><a href="#Keep-alive-concerns-the-request-response-association" class="headerlink" title="Keep-alive concerns the request-response association"></a>Keep-alive concerns the request-response association</h3><p><strong>CVE-2026-105481</strong> concerns an HTTP Agent reusing an idle connection when data already waits in the operating system’s socket buffer before the next request is sent.</p>
+<h2 id="HTTP-connection-reuse-and-snapshot-randomness"><a href="#HTTP-connection-reuse-and-snapshot-randomness" class="headerlink" title="HTTP connection reuse and snapshot randomness"></a>HTTP connection reuse and snapshot randomness</h2><h3 id="Keep-alive-concerns-the-request-response-association"><a href="#Keep-alive-concerns-the-request-response-association" class="headerlink" title="Keep-alive concerns the request-response association"></a>Keep-alive concerns the request-response association</h3><p><strong>CVE-2026-105481</strong> concerns an HTTP Agent reusing an idle connection when data already waits in the operating system’s socket buffer before the next request is sent.</p>
 <p>The <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/0683ee5f7d512332c9701a3e06cdeec2c34bcdbf">patch description</a> explains that the existing guard depended on event-loop I&#x2F;O polling and might not yet have observed that data. The correction checks for pending reads before reuse and discards a connection when necessary.</p>
 <p>Connection-pooled API integrations should care about whether a response belongs to the current request. Calling this a demonstrated server-side request-smuggling exploit, or claiming cross-account data access, would require additional evidence.</p>
 <h3 id="Startup-snapshots-can-copy-unused-random-cache-entries"><a href="#Startup-snapshots-can-copy-unused-random-cache-entries" class="headerlink" title="Startup snapshots can copy unused random-cache entries"></a>Startup snapshots can copy unused random-cache entries</h3><p><strong>CVE-2026-106074</strong> involves startup snapshots, including SEAs containing relevant snapshot state, retaining unused <strong>randomUUID() &#x2F; randomInt()</strong> cache entries. Processes restored from the same state can replay the same values.</p>
 <p>The <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/acffa610db2d85c81d01545194d99fb67920d309">fix</a> resets caches at critical serialization and deserialization stages. It addresses state carried through a particular build and startup process; it does not establish that every Node.js random API is broken.</p>
 <p>Applications requiring these values to be unpredictable tokens could face more serious consequences; identifier use could encounter collisions. Those are application-level implications, not reports of observed token theft.</p>
 <p>Rebuild affected snapshots and executables with the fixed toolchain. The <a target="_blank" rel="noopener" href="https://nodejs.org/api/single-executable-applications.html">SEA documentation</a> describes bundling the Node.js executable with application data. Updating a separate host installation does not prove an existing SEA has replaced its embedded runtime.</p>
-<h2 id="Permission-Model-and-ZIP-issues-need-their-usage-context"><a href="#Permission-Model-and-ZIP-issues-need-their-usage-context" class="headerlink" title="Permission Model and ZIP issues need their usage context"></a>Permission Model and ZIP issues need their usage context</h2><p><strong>CVE-2026-106071</strong> concerns wildcard authorization, while <strong>106073</strong> concerns <strong>fs.realpathSync</strong> permission checks. The <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/cc244131aaeef774effdc94b59a8a2de84a2d262">realpath patch</a> checks the resolved input path before filesystem traversal can probe paths outside the granted set.</p>
+<aside class="article-ad article-ad--article" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;text-align:center" data-ad-client="ca-pub-3389697259947664" data-ad-slot="8046211557" data-ad-layout="in-article" data-ad-format="fluid"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside><h2 id="Permission-Model-and-ZIP-issues-need-their-usage-context"><a href="#Permission-Model-and-ZIP-issues-need-their-usage-context" class="headerlink" title="Permission Model and ZIP issues need their usage context"></a>Permission Model and ZIP issues need their usage context</h2><p><strong>CVE-2026-106071</strong> concerns wildcard authorization, while <strong>106073</strong> concerns <strong>fs.realpathSync</strong> permission checks. The <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/cc244131aaeef774effdc94b59a8a2de84a2d262">realpath patch</a> checks the resolved input path before filesystem traversal can probe paths outside the granted set.</p>
 <p>Tools and file-processing workflows using <strong>–permission</strong> should inspect these fixes. The realpath evidence does not establish arbitrary reading of every file’s contents.</p>
 <p>The <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/v26.12.1/doc/api/permissions.md">Permission Model documentation</a> also sets a fundamental boundary: it constrains trusted code’s accidental resource access and <strong>does not guarantee isolation from malicious code</strong>. AI tools or services executing untrusted code still need operating-system-level isolation.</p>
 <p><strong>CVE-2026-106070</strong> concerns the ZIP functionality listed for 26.x. Its <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/commit/745ad771566d6f0133eee775a661f48056f2cf50">patch</a> validates local-header consistency and calculates the content offset before caching either. This prevents a failed validation from leaving state that a subsequent read can misuse. The evidence concerns failure and retry behavior, not an established arbitrary-file-write primitive.</p>
@@ -412,7 +418,7 @@
         
   
   <div class="tags">
-    <a href="/en/tags/JavaScript/">JavaScript</a>, <a href="/en/tags/Node-js/">Node.js</a>, <a href="/en/tags/Security-Vulnerabilities/">Security Vulnerabilities</a>, <a href="/en/tags/Website-Operations/">Website Operations</a>
+    <a href="/en/tags/JavaScript/">JavaScript</a>, <a href="/en/tags/Security-Vulnerabilities/">Security Vulnerabilities</a>, <a href="/en/tags/Website-Operations/">Website Operations</a>, <a href="/en/tags/Node-js/">Node.js</a>
   </div>
 
         
@@ -560,6 +566,7 @@
 
 </div></div>
     <aside id="sidebar" class="alignright">
+
   <div class="search">
   <button type="button" class="search-trigger" aria-label="Search">
     <span class="search-trigger__icon" aria-hidden="true">
@@ -573,6 +580,9 @@
   </button>
 </div>
 
+  
+    <aside class="widget site-ad site-ad--sidebar" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3389697259947664" data-ad-slot="6279943553" data-ad-format="auto" data-full-width-responsive="true"></ins><div class="article-ad-label">Advertisement</div><script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+  
 
   
 <div class="widget tag category-summary">
@@ -620,6 +630,7 @@
 </div>
 
 
+  
 
   
 <div class="widget tag tag-summary">
@@ -671,6 +682,7 @@
 </div>
 
 
+  
 </aside>
     <div class="clearfix"></div>
   </div>
