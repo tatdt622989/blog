@@ -280,6 +280,106 @@ article
         max-width 100%
         height auto
 
+    .blog-chart
+      position relative
+      max-width 100%
+      overflow hidden
+      margin 28px 0
+      padding 22px 24px 18px
+      background #ffffff !important
+      border 1px solid #e2e8f0
+      border-radius 14px
+      box-shadow 0 4px 16px rgba(15, 23, 42, 0.05)
+      transition border-color 0.2s ease, box-shadow 0.2s ease
+      box-sizing border-box
+      &:hover
+        border-color #94a3b8
+        box-shadow 0 8px 22px rgba(15, 23, 42, 0.08)
+
+      .blog-chart__header
+        margin-bottom 14px
+
+      .blog-chart__title
+        font-size 18px
+        font-weight 700
+        color #0f172a
+        line-height 1.35
+        margin 0
+
+      .blog-chart__subtitle
+        margin-top 4px
+        font-size 13.5px
+        color #64748b
+        line-height 1.45
+
+      .blog-chart__canvas-wrap
+        position relative
+        width 100%
+        height var(--chart-height, 340px)
+
+      .blog-chart__canvas
+        display block
+        width 100% !important
+        height 100% !important
+
+      .blog-chart__range-wrap
+        width 100%
+        padding 6px 0 2px
+
+      .blog-chart__range-svg
+        display block
+        width 100%
+        height auto
+        overflow visible
+
+      .blog-chart__range-segment
+        cursor pointer
+        outline none
+        transition opacity 0.15s ease
+        &:hover
+        &:focus
+          opacity 0.9
+
+      .blog-chart__range-tooltip
+        margin-top 10px
+        padding 8px 12px
+        border-radius 8px
+        background #f8fafc
+        border 1px solid #e2e8f0
+        font-size 13px
+        color #475569
+        line-height 1.45
+        &.is-active
+          background #f0fdf4
+          border-color #a7f3d0
+          color #065f46
+          font-weight 600
+
+      .blog-chart__note
+        margin-top 12px
+        padding-top 10px
+        border-top 1px solid #f1f5f9
+        font-size 12.5px
+        color #64748b
+        line-height 1.5
+
+      .blog-chart__fallback
+        padding 18px
+        text-align center
+        color #64748b
+        font-size 13.5px
+
+      @media screen and (max-width: 640px)
+        padding 16px 14px 14px
+        margin 22px 0
+        .blog-chart__title
+          font-size 16px
+        .blog-chart__subtitle
+          font-size 12.5px
+        .blog-chart__canvas-wrap
+          height calc(var(--chart-height, 340px) * 0.85)
+          min-height 260px
+
 
 
 

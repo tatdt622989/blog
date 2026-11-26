@@ -104,7 +104,7 @@
   
     <link rel="alternate" href="/en/rss.xml" title="6yuwei" type="application/rss+xml">
   
-  <link rel="stylesheet" href="/en/css/style.css?v=733e437975">
+  <link rel="stylesheet" href="/en/css/style.css?v=b418b4b5fd">
   <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
   
 <!-- Google tag (gtag.js) - GA4 -->
@@ -1078,6 +1078,24 @@
     document.addEventListener('DOMContentLoaded', initMermaid);
   } else {
     initMermaid();
+  }
+})();
+</script>
+
+<script>
+(function(){
+  function initCharts(){
+    if (!document.querySelector('.blog-chart')) return;
+    var script = document.createElement('script');
+    script.src = '/en/js/blog-charts.js?v=261126-1';
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCharts);
+  } else {
+    initCharts();
   }
 })();
 </script>

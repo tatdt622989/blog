@@ -142,3 +142,21 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 })();
 </script>
+
+<script>
+(function(){
+  function initCharts(){
+    if (!document.querySelector('.blog-chart')) return;
+    var script = document.createElement('script');
+    script.src = '<%- url_for("js/blog-charts.js?v=261126-1") %>';
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCharts);
+  } else {
+    initCharts();
+  }
+})();
+</script>
